@@ -1,0 +1,46 @@
+fills:
+  D: "#FF8C00" # dark orange
+  E: "#008B00" # green
+  U: "white"
+  Rand: "gray"
+  sun_dry: "white"
+  sun_wet: "white" 
+  shade_dry: "#8B7355" # brown
+  shade_wet: "#1874CD" # blue
+colors:
+  D: "black" 
+  E: "black" 
+  U: "black"
+  Rand: "gray"
+  sun_dry: "#8B7355" # brown
+  sun_wet: "#1874CD" # blue
+  shade_dry: "black"
+  shade_wet: "black"
+box:
+  GL:
+    LMA:
+      Deciduous: "a"
+      Evergreen: "b"
+    LMAp:
+      Deciduous: "a"
+      Evergreen: "a"
+    LMAs:
+      Deciduous: "a"
+      Evergreen: "b"
+  PA:
+    LMA:
+      Sun_Dry: a
+      Shade_Dry: b
+      Sun_Wet: c
+      Shade_Wet: d
+    LMAp:
+      Sun_Dry: a
+      Shade_Dry: b
+      Sun_Wet: a
+      Shade_Wet: b
+    LMAs:
+      Sun_Dry: a
+      Shade_Dry: a
+      Sun_Wet: b
+      Shade_Wet: ab
+

@@ -1,0 +1,70 @@
+
+---
+title: "Null model check for Panama"
+output:
+  bookdown::pdf_book:
+    fig_caption: true
+    keep_tex: yes
+    toc: no
+    number_sections: no
+    pandoc_args:
+      - "--filter"
+      - "pandoc-crossref"
+fontsize: 12pt
+sansfont: Times New Roman
+geometry: margin=1in
+link-citations: yes
+---
+## Optimal LL
+ According to optimal LL theory, the optimal leaf lifespan (LL~opt~) maximizes a leaf’s lifetime carbon gain per-unit time, which is determined by potential LL, net photosynthetic rate, and construction cost per unit leaf area:
+
+\begin{align}
+  &{\rm LL_{opt}} = \sqrt{2bC/(a-m)}(\#eq:kikuzawa)
+\end{align}
+
+where *a* is the realized (i.e., light-dependent) gross photosynthetic rate per unit leaf area, *m* is the realized daily respiration rate per unit leaf area, *b* is the rate of decline in photosynthetic capacity with leaf age (which determines potential LL in the Kikuzawa model), and *C* is the construction cost per unit leaf area. To implement this Optimal LL Model, we assumed that (i) potential LL is proportional to LMAs; and (ii) leaf construction cost per unit area (g glucose per unit leaf area) is proportional to LMA. Assumption (ii) is justified because leaf construction cost per unit mass (g glucose per unit leaf mass) is strongly conserved. Thus, Eq. \@ref(eq:kikuzawa) can be written in terms of the traits considered in our analysis as:
+
+### LMAsLMA (simple orginal version)
+
+\begin{align}
+  {\rm E[LL}_{i}] &=\beta_{2} \sqrt{{\rm LMAs}_{i}{\rm LMA}_{i}
+  / (\theta_{\rm L} A_{{\rm area} \; i} - R_{{\rm area} \; i})}(\#eq:simple)
+\end{align}
+
+where $\beta_{2}$ is a constant, and $\theta_{\rm L} (0 < \theta_{\rm L} < 1)$ is a scaling parameter that accounts for the effects of light availability on the realized photosynthetic rate. The expected value of the logarithm of LL for the Optimal LL Model is:
+
+- Potential LL is proportional to LMAs.
+
+### $LMAs^{\beta_2}LMA$ (power-law)
+
+\begin{align}
+  {\rm E[LL}_{i}] &=\beta_{2} \sqrt{{\rm LMAs^{\beta_3}}_{i}{\rm LMA}_{i}
+  / (\theta_{\rm L} A_{{\rm area} \; i} - R_{{\rm area} \; i})} \notag \\
+  (\#eq:power)
+\end{align}
+
+
+- Potential LL and LMAs have a power-law relationship
+
+
+### $LMAs^{\beta_3}(\beta_4 LMAp + (1 - \beta_4) LMAs)$ (complicated)
+
+\begin{align}
+  {\rm E[LL}_{i}] &=\beta_{2} \sqrt{{\rm {LMAs}_i^{\beta_3}}_{i}{(\beta_4 \rm {LMAp}_i + (1 - \beta_4) \rm {LMAs_i})}
+  / (\theta_{\rm L} A_{{\rm area} \; i} - R_{{\rm area} \; i})} (\#eq:comp)
+\end{align}
+
+- Potential LL and LMAs have a power-law relationship.
+- LMAp and LMAs have differenct construction cost.
+
+
+### $LMAs^{\beta_2}$ (power-law, simple)
+
+\begin{align}
+  {\rm E[LL}_{i}] &=\beta_{2} \sqrt{{\rm LMAs^{\beta_3}}_{i}
+  / (\theta_{\rm L} A_{{\rm area} \; i} - R_{{\rm area} \; i})} \notag \\
+  (\#eq:power-simple)
+\end{align}
+
+- Model looks simple but no clear relationship between Kikuzawa model
+

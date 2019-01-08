@@ -1,0 +1,385 @@
+
+```{r}
+set.seed(10)
+
+library(tidyverse)
+library(mvtnorm)
+library(rstan)
+library(stringr)
+library(loo)
+rstan_options(auto_write = TRUE)
+# options(mc.cores = parallel::detectCores())
+options(mc.cores = 4)
+
+theme_set(theme_light())
+
+settings <- yaml::yaml.load_file("../settings.yml")
+
+para <- yaml::yaml.load_file("../parameter.yml")
+n_sample <- 200
+
+# GL sim data -----------------------------------------------------------------
+GL <- read_csv("../data/GL20170911.csv") 
+
+GL_para <- GL %>%
+  mutate(ratio = LMAp4/LMA) %>%
+  group_by(DE) %>%
+  dplyr::summarize(mu_LMA = mean(log(LMA)),
+            mid_LMA = median(log(LMA)),
+            sigma_LMA = sd(log(LMA)),
+            mu_f = mean(ratio),
+            var_f = var(ratio),
+            n = n()) %>%
+  ungroup %>%
+  mutate(n = as.integer(n / sum(n) * n_sample)) 
+
+# 100 sample
+GL_para[1, "n"] <- 16
+
+LMA <- mapply(rlnorm, 
+              GL_para$n, 
+             # GL_para$mu_LMA - 0.5 * GL_para$sigma_LMA^2, 
+              GL_para$mid_LMA,
+              GL_para$sigma_LMA) %>% 
+  unlist
+
+beta_est <- function(mu, var) {
+  alpha <- ((1 - mu) / var - 1 / mu) * mu ^ 2
+  beta <- alpha * (1 / mu - 1)
+  return(params = c(alpha = alpha, beta = beta))
+}
+
+f_dat <- mapply(beta_est,
+       GL_para$mu_f,
+       GL_para$var_f) %>% 
+  t %>%
+  as_data_frame %>%
+  mutate(n = GL_para$n)
+
+f_val <- mapply(rbeta, 
+       f_dat$n, 
+       f_dat$alpha, 
+       f_dat$beta) %>%
+  unlist
+
+LMAp <- LMA * f_val
+LMAs <- LMA - LMAp
+
+sigma1 <- 0.388
+sigma2 <- 0.54
+sigma3 <- 0.44
+rho12 <- -0.53
+rho23 <- -0.6
+rho13 <- 0.43
+log_alpha <- 1.55
+log_beta <- -0.63
+log_r <- -1
+alpha2 <- 0.22
+beta2 <- 0.8
+rp <- 0.25
+rs <- 0.11
+
+Sigma <- matrix(c(sigma1^2, rho12*sigma1*sigma2, rho13*sigma1*sigma3,
+    rho12*sigma1*sigma2, sigma2^2, rho23*sigma2*sigma3,
+    rho13*sigma1*sigma3, rho23*sigma2*sigma3, sigma3^2), ncol =3)
+
+# leaf data -------------------------------------------------------------
+obs <- NULL
+for (i in 1:n_sample){
+  mu_temp <- rmvnorm(1,
+    mean = c(log_alpha + alpha2 * log(LMAp[i]) - 0.5 * sigma1^2,
+        log_beta + beta2 * log(LMAs[i]) - 0.5 * sigma2^2,
+        log_r + rp * log(LMAp[i]) + rs * log(LMAs[i]) - 0.5 * sigma3^2),
+    sigma = Sigma
+    )
+  obs <- rbind(obs, mu_temp)
+}
+
+dat <- data_frame(LMA, f_val, LMAp, LMAs) %>%
+  mutate(DE = rep(c("D", "E", "U"), GL_para$n)) %>%
+  mutate(Aarea = exp(obs[,1]) - exp(obs[,3])) %>%
+  mutate(LL = exp(obs[,2])) %>%
+  mutate(Rarea = exp(obs[,3])) 
+
+ggplot(dat, aes(f_val, fill = DE)) +
+  geom_histogram() +
+  facet_grid(DE~.)
+```
+
+
+# model
+
+```{r, eval = T}
+
+list_dat <- list(N = nrow(dat),
+                 obs = cbind(log(dat[ , "Aarea"] + dat[ , "Rarea"]),
+                             log(dat[ , "LL"]),
+                             log(dat[ , "Rarea"])),
+                 LMA = dat$LMA,
+                 A = dat$Aarea,
+                 LL = dat$LL,
+                 R = dat$Rarea,
+                 q_lim = 1,
+                 leaf = 1,
+                 dry = 1,
+                 DE = as.numeric(as.factor(dat$DE)))
+
+system.time(res <- stan(file = "../model/m0.stan",
+             data = list_dat,
+             iter = 600,
+             warmup = 300,
+             thin = 1,
+             chains = 4,
+             control = list(adapt_delta = 0.99, max_treedepth = 20)))
+
+system.time(res_beta <- stan(file = "../model/m0_beta.stan",
+             data = list_dat,
+             iter = 600,
+             warmup = 300,
+             thin = 1,
+             chains = 4,
+             control = list(adapt_delta = 0.99, max_treedepth = 20)))
+
+save.image("moge.rda")
+
+```
+
+```{r}
+load("moge.rda")
+
+loo1 <- loo(extract_log_lik(res,"log_lik"))
+loo2 <- loo(extract_log_lik(res_beta,"log_lik"))
+
+loo1
+loo2
+plot(loo1)
+plot(loo2)
+
+summary_GL_LDL <- data.frame(summary(res)$summary)
+
+GL <- dat %>%
+  as_data_frame 
+
+P_vec <- paste("p[", 1:nrow(GL), "]", sep = "")
+mu2_vec <- paste("mu2[", 1:nrow(GL), "]", sep = "")
+#Mu_vec <- paste("mu[", 1:nrow(GL), ",2]", sep = "")
+temp_LMAm <- summary_GL_LDL[P_vec, "mean"] * GL$LMA
+temp_LMAs <- GL$LMA - temp_LMAm
+temp_LL <- exp(summary_GL_LDL[mu2_vec, "mean"])
+
+ap <- rstan::extract(res, "beta[2]")[[1]]
+temp_LMAp <- median(ap) * temp_LMAm
+
+GL <- GL %>%
+  mutate(LMAp = temp_LMAm) %>%
+  mutate(LMAs = temp_LMAs) %>%
+  mutate(preLL = temp_LL)  %>%
+  mutate(gr = factor(DE,
+    labels = c("Deciduous",
+               "Evergreen",
+               "Unclassified"
+                      ))) %>%
+  arrange(desc(gr))
+
+log_LMAp <- rstan::extract(res, "log_LMAp")[[1]]
+log_LMAs <- rstan::extract(res, "log_LMAs")[[1]]
+as <- rstan::extract(res, "beta[3]")[[1]]
+ap <- rstan::extract(res, "beta[2]")[[1]]
+preLL <- rstan::extract(res, "mu2")[[1]]
+
+
+#cor.test(log(PA$LMAs), log(PA$Aarea)) %>% print
+
+#cor.test(log(PA$LDs), log(PA$Aarea)) %>% print
+
+```
+
+```{r, echo = F}
+var_p <- function(data)cov(data$LMA, data$LMAp)
+var_s <- function(data)cov(data$LMA, data$LMAs)
+var_t <- function(data)var(data$LMA)
+
+var_p <- function(data)var(data$LMAp)
+var_s <- function(data)var(data$LMAs)
+cov_ps <- function(data)cov(data$LMAp, data$LMAs)
+var_t <- function(data)var(data$LMA)
+
+var_dat <- GL %>%
+  mutate(site = "GL") %>%
+  group_by(site) %>%
+  nest %>%
+  mutate(var_LMAm = map_dbl(data, var_p)) %>%
+  mutate(var_LMAs = map_dbl(data, var_s)) %>%
+  mutate(cov_ms = 2 * map_dbl(data, cov_ps)) %>%
+  mutate(var_total = map_dbl(data, var_t)) %>%
+  dplyr::select(-data)
+
+var_dat_s <- var_dat %>%
+  mutate(LMAm_variance = var_LMAm / (var_LMAm + var_LMAs) * 100) %>%
+  mutate(LMAs_variance = var_LMAs / (var_LMAm + var_LMAs) * 100) %>%
+  gather(var, val, c(LMAm_variance, LMAs_variance))
+
+var_dat_s2 <- var_dat %>%
+  mutate(LMAm_variance = var_LMAm / (var_total) * 100) %>%
+  mutate(LMAs_variance = var_LMAs / (var_total) * 100) %>%
+  mutate(cov_LMAm_LMAs = cov_ms / (var_total) * 100) %>%
+  gather(var, val, c(LMAm_variance, LMAs_variance, cov_LMAm_LMAs)) 
+
+
+```
+
+```{r, echo = F, eval = T}
+waic(extract_log_lik(res,"log_lik"))$waic
+loo(extract_log_lik(res,"log_lik"))
+
+cor(log(GL$LMAp), log(GL$Aarea))
+cor(log(GL$preLL), log(GL$LL))
+cor(log(GL$LMAp), log(GL$Rarea))
+
+cor(log(GL$LMAp), log(GL$Aarea)) * cor(log(GL$preLL), log(GL$LL)) * cor(log(GL$LMAp), log(GL$Rarea))
+
+
+tail(summary_GL_LDL)
+```
+
+# Paramters 
+
+```{r, echo = F, eval = T}
+
+plot(res)
+traceplot(res)
+pairs(res, pars = c("beta[6]", "beta[7]", "p[1]", "lp__"))
+
+
+DT::datatable(summary_GL_LDL)
+
+```
+
+# Trait correlations
+
+## A~area~, R~area~, LL
+
+Open symbols indicate sun leaves and closed symbols indicate shade leaves. The results look nice and do not alter main conclusions.
+
+```{r, echo = F, message = F}
+
+GL2 <- GL %>%
+  gather(LMA, val, c("LMA", "LMAp", "LMAs")) %>%
+  gather(trait, val2, c("Aarea", "LL", "Rarea")) 
+
+GL3 <- GL %>%
+  gather(LMA, val, c("LMA", "LMAp", "LMAs"))
+
+fills <- c("Deciduous" = settings$fills$D,
+          "Evergreen" = settings$fills$E,
+          "Unclassified" = settings$fills$U)
+
+cols <- c("Deciduous" = settings$colors$D,
+          "Evergreen" = settings$colors$E,
+          "Unclassified" = settings$colors$U)
+
+ggplot(GL2, aes(x = val, y = val2, fill = gr, col = gr)) +
+  geom_point(shape = 21) +
+  facet_grid(trait ~ LMA, scale = "free") +
+  xlab("LMA") +
+  ylab("Traits") +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x)))
+```
+
+## Observed LL vs predicted LL
+
+Note: Light and site effects were not included in this model.
+
+```{r, echo = F, message = F}
+
+my_breaks <- function(...){
+  c(0.002, 0.005, 0.02, 0.05, 0.1, 0.2,  0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500)
+}
+
+
+ggplot(GL, aes(x = LL, y = preLL, fill = gr, col = gr)) +
+  geom_point(shape = 21) +
+  xlab("obsLL") +
+  ylab("preLL") +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols) +
+  geom_abline(aes(slope = 1, intercept = 0), 
+              lty = 2, 
+              lwd = 0.25, 
+              col = "gray20") +
+  scale_x_log10(breaks = my_breaks(), expand = c(0.1, 0),
+                limits = c(min(GL$LL), max(GL$LL))) +
+  scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0), 
+                limits = c(min(GL$LL), max(GL$LL))) +
+  coord_fixed()
+
+
+cor.test(log(GL$LL), log(GL$preLL))
+
+
+```
+
+
+## LMAp vs LMAs
+
+```{r, echo = F, message = F}
+ggplot(GL, aes(x = LMAp, y = LMAs, fill = gr, col = gr)) +
+  geom_point(shape = 21) +
+  xlab("LMAm") +
+  ylab("LMAs") +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x)))
+```
+
+## Trait means
+
+The results look nice and do not alter main conclusions.
+
+```{r, echo = F, message = F}
+
+ggplot(GL2, aes(x = gr, y = val,
+                                         fill = gr,
+                                         col = gr)) +
+  geom_boxplot() +
+  facet_grid(.~LMA, scale = "free") +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols) 
+
+
+```
+
+
+# Decomposition of LMA variation 
+
+1) var(LMAm) & var(LMAs) & 2*cov(LMAm, LMAs), 2)relative contribution: var(LMAm)/(var(LMAm) + var(LMAs)) & var(LMAs) /(var(LMAm) + var(LMAs))
+
+```{r, echo = F}
+
+ggplot(var_dat_s2, aes(x = site, y = val, fill = var)) +
+  geom_col() +
+  ylab("val (%)") 
+
+ggplot(var_dat_s, aes(x = site, y = val, fill = var)) +
+  geom_bar(position = "fill",stat = "identity") +
+  scale_y_continuous(labels = percent_format())
+
+GL %>% print
+
+```
+
+```{r, eval = F}
+
+x <- sep(10, 500, length = 100)
+
+```

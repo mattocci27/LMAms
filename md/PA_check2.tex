@@ -1,0 +1,877 @@
+\documentclass[12pt,]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+    \setsansfont[]{Times New Roman}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Null model check for Panama},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Null model check for Panama}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{}
+  \preauthor{}\postauthor{}
+  \date{}
+  \predate{}\postdate{}
+
+\usepackage{subfig}
+\AtBeginDocument{%
+\renewcommand*\figurename{Figure}
+\renewcommand*\tablename{Table}
+}
+\AtBeginDocument{%
+\renewcommand*\listfigurename{List of Figures}
+\renewcommand*\listtablename{List of Tables}
+}
+\usepackage{float}
+\floatstyle{ruled}
+\makeatletter
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\makeatother
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+
+\begin{document}
+\maketitle
+
+\subsection{Optimal LL}\label{optimal-ll}
+
+According to optimal LL theory, the optimal leaf lifespan
+(LL\textsubscript{opt}) maximizes a leaf's lifetime carbon gain per-unit
+time, which is determined by potential LL, net photosynthetic rate, and
+construction cost per unit leaf area:
+
+\begin{align}
+  &{\rm LL_{opt}} = \sqrt{2bC/(a-m)}\label{eq:kikuzawa}
+\end{align}
+
+where \emph{a} is the realized (i.e., light-dependent) gross
+photosynthetic rate per unit leaf area, \emph{m} is the realized daily
+respiration rate per unit leaf area, \emph{b} is the rate of decline in
+photosynthetic capacity with leaf age (which determines potential LL in
+the Kikuzawa model), and \emph{C} is the construction cost per unit leaf
+area. To implement this Optimal LL Model, we assumed that (i) potential
+LL is proportional to LMAs; and (ii) leaf construction cost per unit
+area (g glucose per unit leaf area) is proportional to LMA. Assumption
+(ii) is justified because leaf construction cost per unit mass (g
+glucose per unit leaf mass) is strongly conserved. Thus, Eq.
+\eqref{eq:kikuzawa} can be written in terms of the traits considered in
+our analysis as:
+
+\subsubsection{LMAsLMA (simple orginal
+version)}\label{lmaslma-simple-orginal-version}
+
+\begin{align}
+  {\rm E[LL}_{i}] &=\beta_{2} \sqrt{{\rm LMAs}_{i}{\rm LMA}_{i}
+  / (\theta_{\rm L} A_{{\rm area} \; i} - R_{{\rm area} \; i})}\label{eq:simple}
+\end{align}
+
+where \(\beta_{2}\) is a constant, and
+\(\theta_{\rm L} (0 < \theta_{\rm L} < 1)\) is a scaling parameter that
+accounts for the effects of light availability on the realized
+photosynthetic rate. The expected value of the logarithm of LL for the
+Optimal LL Model is:
+
+\begin{itemize}
+\tightlist
+\item
+  Potential LL is proportional to LMAs.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\(LMAs^{\beta_2}LMA\)
+(power-law)}{LMAs\^{}\{\textbackslash{}beta\_2\}LMA (power-law)}}\label{lmasbeta_2lma-power-law}
+
+\begin{align}
+  {\rm E[LL}_{i}] &=\beta_{2} \sqrt{{\rm LMAs^{\beta_3}}_{i}{\rm LMA}_{i}
+  / (\theta_{\rm L} A_{{\rm area} \; i} - R_{{\rm area} \; i})} \notag \\
+  \label{eq:power}
+\end{align}
+
+\begin{itemize}
+\tightlist
+\item
+  Potential LL and LMAs have a power-law relationship
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\(LMAs^{\beta_2}\) (power-law,
+simple)}{LMAs\^{}\{\textbackslash{}beta\_2\} (power-law, simple)}}\label{lmasbeta_2-power-law-simple}
+
+\begin{align}
+  {\rm E[LL}_{i}] &=\beta_{2} \sqrt{{\rm LMAs^{\beta_3}}_{i}
+  / (\theta_{\rm L} A_{{\rm area} \; i} - R_{{\rm area} \; i})} \notag \\
+  \label{eq:power-simple}
+\end{align}
+
+\begin{itemize}
+\tightlist
+\item
+  Model looks simple but no clear relationship between Kikuzawa model
+\end{itemize}
+
+\newpage
+
+\subsection{LMAsLMA}\label{lmaslma}
+
+\begin{verbatim}
+## This is loo version 1.1.0
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: 132 (100.0%) p_waic estimates greater than 0.4.
+## We recommend trying loo() instead.
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 338.7957
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Some Pareto k diagnostic values are too high. See help('pareto-k-
+## diagnostic') for details.
+\end{verbatim}
+
+\begin{verbatim}
+## Computed from 1500 by 132 log-likelihood matrix
+## 
+##          Estimate   SE
+## elpd_loo   -203.5 11.5
+## p_loo       153.7  2.6
+## looic       407.1 22.9
+## 
+## Pareto k diagnostic values:
+##                          Count  Pct 
+## (-Inf, 0.5]   (good)       0    0.0%
+##  (0.5, 0.7]   (ok)         8    6.1%
+##    (0.7, 1]   (bad)      103   78.0%
+##    (1, Inf)   (very bad)  21   15.9%
+## See help('pareto-k-diagnostic') for details.
+\end{verbatim}
+
+\begin{verbatim}
+## \newpage
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "LMAsLMA; obs"
+\end{verbatim}
+
+\includegraphics{PA_check2_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\begin{verbatim}
+## \newpage
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "LMAsLMA; LMA only"
+\end{verbatim}
+
+\includegraphics{PA_check2_files/figure-latex/unnamed-chunk-3-2.pdf}
+
+\begin{verbatim}
+## \newpage
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "LMAsLMA; LMA all"
+\end{verbatim}
+
+\includegraphics{PA_check2_files/figure-latex/unnamed-chunk-3-3.pdf}
+
+\begin{verbatim}
+## [1] "LMAsLMA; obs"
+\end{verbatim}
+
+\begin{verbatim}
+##                  mean      se_mean         sd      X2.5.       X25.
+## log_alpha   0.8535545 0.0294720087 0.20024580  0.4287056  0.7356734
+## log_beta   -0.3959652 0.0020505700 0.06719720 -0.5224365 -0.4381886
+## rp          0.5863030 0.0093591055 0.08076962  0.4244855  0.5325897
+## rs         -0.1032293 0.0036181467 0.08673120 -0.2590501 -0.1661930
+## alpha2      0.4509602 0.0069775923 0.05018995  0.3578523  0.4163822
+## log_r      -1.9164224 0.0154941677 0.38000192 -2.6039297 -2.1949889
+## log_site   -0.4698879 0.0086602721 0.10095895 -0.6611812 -0.5387507
+## q           0.2815419 0.0005147632 0.01993669  0.2536988  0.2670401
+## L_sigma[1]  0.3314224 0.0013786792 0.03661722  0.2623759  0.3079885
+## L_sigma[2]  0.4147436 0.0016696561 0.04165371  0.3397346  0.3854397
+##                  X50.        X75.     X97.5.      n_eff     Rhat
+## log_alpha   0.8689561  0.99176326  1.2147126   46.16442 1.074018
+## log_beta   -0.3977468 -0.35338374 -0.2515786 1073.87368 1.000152
+## rp          0.5836426  0.64032250  0.7419690   74.47789 1.044133
+## rs         -0.1059477 -0.04698316  0.0717023  574.61688 1.008659
+## alpha2      0.4489153  0.48120488  0.5529896   51.73952 1.066507
+## log_r      -1.9273554 -1.65092431 -1.1522683  601.49924 1.013419
+## log_site   -0.4733805 -0.40006326 -0.2778686  135.90223 1.024316
+## q           0.2779607  0.29190909  0.3294533 1500.00000 1.000996
+## L_sigma[1]  0.3278893  0.35406759  0.4103078  705.41447 1.002126
+## L_sigma[2]  0.4112853  0.44284295  0.5003102  622.37665 1.009947
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "LMAsLMA; LMA only"
+\end{verbatim}
+
+\begin{verbatim}
+##                  mean     se_mean         sd      X2.5.        X25.
+## log_alpha   2.1148324 0.127487235 0.40294527  1.5187168  1.82335107
+## log_beta    3.4084928 0.085345182 0.44644396  2.5259196  3.11076941
+## rp          0.4260811 0.123178239 0.33430959 -0.3902072  0.42984699
+## rs         -0.1104991 0.094276033 0.25180431 -0.3353174 -0.24903472
+## alpha2      0.1098944 0.039080983 0.12286744 -0.1724278  0.03687486
+## beta2       0.1101888 0.051122347 0.26672905 -0.2840430 -0.08723508
+## log_r      -1.3401979 0.122154867 0.50836587 -2.1433590 -1.69834279
+## log_site   -0.7585722 0.003686312 0.09499908 -0.9365106 -0.82198545
+## q           0.3537738 0.003828171 0.06923786  0.2696584  0.30484001
+## L_sigma[1]  0.5804862 0.004043095 0.04292814  0.5025927  0.55209857
+##                   X50.       X75.     X97.5.      n_eff     Rhat
+## log_alpha   2.01968696  2.3603273  3.0516021   9.989844 1.348336
+## log_beta    3.52225045  3.7396889  4.0706704  27.363767 1.139262
+## rp          0.55581587  0.6292318  0.7343078   7.365966 1.579833
+## rs         -0.20540181 -0.1339086  0.5444211   7.133846 1.639085
+## alpha2      0.13842519  0.1996432  0.2879382   9.884226 1.354930
+## beta2       0.04258948  0.2937017  0.6498895  27.221939 1.138971
+## log_r      -1.40477252 -1.0406834 -0.1736890  17.319336 1.127819
+## log_site   -0.76135539 -0.6955107 -0.5712562 664.132356 1.005561
+## q           0.33622903  0.3857893  0.5289259 327.118202 1.011712
+## L_sigma[1]  0.57807815  0.6071700  0.6693633 112.734359 1.053177
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "LMAsLMA; LMA all"
+\end{verbatim}
+
+\begin{verbatim}
+##                   mean     se_mean         sd       X2.5.        X25.
+## log_alpha   1.77674408 0.017702445 0.31738392  1.24310896  1.52379572
+## log_beta   -0.06370832 0.003771053 0.12892859 -0.32285507 -0.14582239
+## rp          0.20133405 0.016277297 0.25748424 -0.21639744 -0.02429202
+## rs         -0.10297395 0.006175331 0.14953384 -0.35190024 -0.20314020
+## alpha2      0.21044692 0.005136629 0.09353550  0.02232685  0.13666543
+## log_r      -0.46363632 0.045217803 0.76195048 -1.72295918 -1.09291067
+## log_site   -0.09070075 0.004780144 0.16079964 -0.41060190 -0.19458127
+## q           0.74102771 0.005479914 0.14740230  0.46372206  0.62662199
+## L_sigma[1]  0.53290734 0.001631490 0.04315913  0.45139884  0.50495611
+## L_sigma[2]  0.93100815 0.002014448 0.06934767  0.80120840  0.88392431
+##                   X50.        X75.    X97.5.     n_eff      Rhat
+## log_alpha   1.73452069  2.02591940 2.3983281  321.4425 1.0054120
+## log_beta   -0.06308016  0.01918580 0.1824969 1168.8886 1.0017011
+## rp          0.16655272  0.45867351 0.5812076  250.2285 1.0065319
+## rs         -0.12527004 -0.01538499 0.2397811  586.3521 1.0011590
+## alpha2      0.22431424  0.28337088 0.3649348  331.5862 1.0055355
+## log_r      -0.47412961  0.10295581 0.9582553  283.9452 1.0082184
+## log_site   -0.09090713  0.01279612 0.2211251 1131.5877 1.0014106
+## q           0.74259772  0.86406678 0.9839016  723.5375 1.0008400
+## L_sigma[1]  0.53147764  0.56149266 0.6182451  699.8040 1.0025558
+## L_sigma[2]  0.92874914  0.97441138 1.0762877 1185.0905 0.9990043
+\end{verbatim}
+
+\includegraphics{PA_check2_files/figure-latex/unnamed-chunk-3-4.pdf}
+
+\newpage
+
+\subsection{\texorpdfstring{\[LMAs^{\beta_2}LMA\]}{LMAs\^{}\{\textbackslash{}beta\_2\}LMA}}\label{lmasbeta_2lma}
+
+\begin{verbatim}
+## Warning: 132 (100.0%) p_waic estimates greater than 0.4.
+## We recommend trying loo() instead.
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 448.5085
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Some Pareto k diagnostic values are too high. See help('pareto-k-
+## diagnostic') for details.
+\end{verbatim}
+
+\begin{verbatim}
+## Computed from 1500 by 132 log-likelihood matrix
+## 
+##          Estimate   SE
+## elpd_loo   -247.0 15.7
+## p_loo       143.3  8.5
+## looic       494.0 31.4
+## 
+## Pareto k diagnostic values:
+##                          Count  Pct 
+## (-Inf, 0.5]   (good)       0    0.0%
+##  (0.5, 0.7]   (ok)        17   12.9%
+##    (0.7, 1]   (bad)      103   78.0%
+##    (1, Inf)   (very bad)  12    9.1%
+## See help('pareto-k-diagnostic') for details.
+\end{verbatim}
+
+\includegraphics{PA_check2_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{verbatim}
+## \newpage
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "LMAs^beta2 LMA; LMA all"
+\end{verbatim}
+
+\includegraphics{PA_check2_files/figure-latex/unnamed-chunk-4-2.pdf}
+
+\begin{verbatim}
+## [1] "LMAs^betaLMA; obs"
+\end{verbatim}
+
+\begin{verbatim}
+##                   mean      se_mean         sd      X2.5.        X25.
+## log_alpha   0.65357636 0.0064243621 0.21603764  0.2062127  0.50899056
+## log_beta    0.75252793 0.0206361313 0.42451627  0.2080330  0.45650234
+## rp          0.61050489 0.0025222844 0.08439604  0.4544683  0.55402610
+## rs         -0.01941606 0.0051363067 0.11278398 -0.1951134 -0.09711934
+## alpha2      0.50543719 0.0016490243 0.05537783  0.4042136  0.46756196
+## beta2       0.35857215 0.0116789866 0.23949631 -0.2188130  0.25368291
+## log_r      -2.26388636 0.0121423656 0.39301211 -3.0813135 -2.51376075
+## log_site   -0.56065461 0.0027229743 0.09428746 -0.7451339 -0.62000901
+## q           0.29867250 0.0009448802 0.03120286  0.2586106  0.27645341
+## L_sigma[1]  0.28211519 0.0013801287 0.04505086  0.1948921  0.25188826
+## L_sigma[2]  0.48539636 0.0021925887 0.05366408  0.3926005  0.44609296
+## L_sigma[3]  0.62356111 0.0041369901 0.08995541  0.4440054  0.56305305
+##                  X50.        X75.     X97.5.     n_eff      Rhat
+## log_alpha   0.6584357  0.80641968  1.0534103 1130.8339 0.9999009
+## log_beta    0.6185858  0.94785615  1.7713279  423.1868 1.0038935
+## rp          0.6074230  0.66673394  0.7727926 1119.5824 1.0025037
+## rs         -0.0368249  0.03690346  0.2613520  482.1619 1.0060451
+## alpha2      0.5043436  0.54207859  0.6173063 1127.7627 0.9992077
+## beta2       0.4360377  0.52310897  0.6598510  420.5206 1.0049606
+## log_r      -2.2385191 -1.98533402 -1.5692739 1047.6235 1.0020739
+## log_site   -0.5596743 -0.49892852 -0.3818314 1199.0045 0.9994212
+## q           0.2924393  0.31290416  0.3780358 1090.5241 0.9991229
+## L_sigma[1]  0.2829334  0.31296035  0.3706981 1065.5333 0.9990168
+## L_sigma[2]  0.4845016  0.52236006  0.5927767  599.0362 1.0007993
+## L_sigma[3]  0.6249914  0.68695475  0.7895510  472.8089 1.0063521
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "LMAs^betaLMA; LMA all"
+\end{verbatim}
+
+\begin{verbatim}
+##                   mean     se_mean         sd       X2.5.        X25.
+## log_alpha   2.30756156 0.057977496 0.17842871  1.94508528  2.19550021
+## log_beta    2.57044950 0.108069088 0.30208384  2.06789112  2.37112029
+## rp          0.51655828 0.054651360 0.18828998 -0.19200804  0.51015109
+## rs         -0.37882955 0.081113524 0.16015765 -0.51216235 -0.48706288
+## alpha2      0.05366579 0.013349524 0.05088285 -0.04333159  0.02636803
+## beta2      -0.67464864 0.104336083 0.21131023 -1.12688028 -0.82746216
+## log_r      -0.84286817 0.021004295 0.44136069 -1.60553992 -1.07462633
+## log_site   -0.09228320 0.034621098 0.12905515 -0.31003299 -0.18404647
+## q           0.72618534 0.003085714 0.10939109  0.50571807  0.65248664
+## L_sigma[1]  0.56862226 0.012847211 0.03997221  0.49354650  0.54394173
+## L_sigma[2]  0.82002746 0.048620193 0.08300693  0.65935467  0.75556014
+## L_sigma[3]  0.27115152 0.166097339 0.25757327  0.00067738  0.01502885
+##                   X50.         X75.      X97.5.       n_eff     Rhat
+## log_alpha   2.34165161  2.421770959  2.62833911    9.471322 1.114635
+## log_beta    2.52722269  2.747527598  3.23311229    7.813615 1.120472
+## rp          0.57894419  0.592263015  0.69047143   11.870048 1.072884
+## rs         -0.40325939 -0.325372917 -0.03233473    3.898602 1.223763
+## alpha2      0.04260353  0.083173896  0.15945066   14.528184 1.060416
+## beta2      -0.62119739 -0.509069474 -0.36719025    4.101776 1.234311
+## log_r      -0.83621439 -0.724405669  0.42182634  441.541027 1.011188
+## log_site   -0.08948922 -0.009348325  0.17201888   13.895333 1.146852
+## q           0.72432996  0.786977163  0.95214877 1256.760220 1.010674
+## L_sigma[1]  0.56477166  0.590560232  0.65126689    9.680520 1.273770
+## L_sigma[2]  0.82787095  0.883075019  0.96662715    2.914710 1.419521
+## L_sigma[3]  0.24750784  0.440092642  0.88216969    2.404785 1.550825
+\end{verbatim}
+
+\includegraphics{PA_check2_files/figure-latex/unnamed-chunk-4-3.pdf}
+
+\newpage
+
+\subsection{potential LL}\label{potential-ll}
+
+\begin{verbatim}
+## Warning: 86 (65.2%) p_waic estimates greater than 0.4.
+## We recommend trying loo() instead.
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 624.8549
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Some Pareto k diagnostic values are too high. See help('pareto-k-
+## diagnostic') for details.
+\end{verbatim}
+
+\begin{verbatim}
+## Computed from 1500 by 132 log-likelihood matrix
+## 
+##          Estimate   SE
+## elpd_loo   -334.7 14.9
+## p_loo       105.1  5.9
+## looic       669.3 29.8
+## 
+## Pareto k diagnostic values:
+##                          Count  Pct 
+## (-Inf, 0.5]   (good)      2     1.5%
+##  (0.5, 0.7]   (ok)       46    34.8%
+##    (0.7, 1]   (bad)      69    52.3%
+##    (1, Inf)   (very bad) 15    11.4%
+## See help('pareto-k-diagnostic') for details.
+\end{verbatim}
+
+\includegraphics{PA_check2_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{verbatim}
+## \newpage
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "potential; LMA all"
+\end{verbatim}
+
+\includegraphics{PA_check2_files/figure-latex/unnamed-chunk-5-2.pdf}
+
+\begin{verbatim}
+## [1] "potential; obs"
+\end{verbatim}
+
+\begin{verbatim}
+##                    mean     se_mean         sd       X2.5.        X25.
+## log_alpha     0.7066430 0.009275146 0.25374057  0.23302723  0.54111619
+## log_beta      2.0624191 0.013030833 0.37931086  1.14051676  1.86153680
+## rp            0.5392085 0.004680671 0.11375845  0.30721022  0.45933748
+## rs            0.1025812 0.009155723 0.17721058 -0.19906781 -0.04223491
+## alpha2        0.4916792 0.002459615 0.06607546  0.35131856  0.45011845
+## beta2         0.1256029 0.003946159 0.11457535 -0.07002974  0.04681922
+## log_r        -2.3834473 0.015405481 0.41882799 -3.22592601 -2.67305551
+## L_sigma[1]    0.3161144 0.001845738 0.05311027  0.22305624  0.27874260
+## L_sigma[2]    0.7293202 0.001373002 0.04840800  0.63572970  0.69809862
+## L_sigma[3]    0.6750915 0.005065098 0.10832916  0.41889434  0.61992313
+## L_Omega[1,1]  1.0000000 0.000000000 0.00000000  1.00000000  1.00000000
+## L_Omega[1,2]  0.0000000 0.000000000 0.00000000  0.00000000  0.00000000
+##                     X50.       X75.     X97.5.     n_eff     Rhat
+## log_alpha     0.70440342  0.8620264  1.2577666  748.4078 1.005063
+## log_beta      2.09154240  2.3173114  2.7100489  847.3176 1.006474
+## rp            0.54636964  0.6218224  0.7476896  590.6785 1.004873
+## rs            0.09226688  0.2458042  0.4187633  374.6226 1.007191
+## alpha2        0.49386325  0.5352383  0.6122356  721.6826 1.005832
+## beta2         0.11895358  0.1856314  0.4069824  843.0109 1.006517
+## log_r        -2.37231239 -2.0820750 -1.5751002  739.1300 1.000956
+## L_sigma[1]    0.31479521  0.3498480  0.4267706  827.9745 1.002836
+## L_sigma[2]    0.72890802  0.7594229  0.8266534 1243.0591 1.000673
+## L_sigma[3]    0.69847758  0.7476299  0.8301358  457.4198 1.005597
+## L_Omega[1,1]  1.00000000  1.0000000  1.0000000 1500.0000      NaN
+## L_Omega[1,2]  0.00000000  0.0000000  0.0000000 1500.0000      NaN
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "poential; LMA all"
+\end{verbatim}
+
+\begin{verbatim}
+##                     mean     se_mean         sd       X2.5.        X25.
+## log_alpha     2.29358953 0.051721222 0.21009001  2.00409326  2.12260412
+## log_beta      2.63744545 0.141440299 0.33216354  2.08761185  2.35513939
+## rp            0.25877661 0.280818691 0.42838807 -0.40241796 -0.33480844
+## rs           -0.07415082 0.302968651 0.45366576 -0.49624454 -0.40940153
+## alpha2        0.05101833 0.016904335 0.06361313 -0.08835113  0.01158858
+## beta2        -0.04577058 0.051839450 0.10787141 -0.26312418 -0.12942279
+## log_r        -0.97337548 0.037504765 0.32193952 -1.55797381 -1.14276676
+## L_sigma[1]    0.55617192 0.008655915 0.03653704  0.47994698  0.53373789
+## L_sigma[2]    0.74853863 0.011022968 0.04803603  0.65337998  0.71132865
+## L_sigma[3]    0.27965829 0.052649003 0.14973278  0.03770554  0.16820526
+## L_Omega[1,1]  1.00000000 0.000000000 0.00000000  1.00000000  1.00000000
+## L_Omega[1,2]  0.00000000 0.000000000 0.00000000  0.00000000  0.00000000
+##                     X50.        X75.     X97.5.       n_eff     Rhat
+## log_alpha     2.26604685  2.43021480  2.7706879   16.499593 1.136042
+## log_beta      2.61790084  2.88491545  3.3206953    5.515153 1.167029
+## rp            0.50512779  0.57460521  0.6803997    2.327141 1.824535
+## rs           -0.33472325  0.57438526  0.6241249    2.242212 1.926659
+## alpha2        0.05830653  0.10109457  0.1469446   14.161112 1.113401
+## beta2        -0.04971115  0.05556237  0.1121367    4.330040 1.244314
+## log_r        -1.01229680 -0.80487820 -0.3610455   73.684421 1.032905
+## L_sigma[1]    0.56449751  0.57776020  0.6245112   17.817254 1.122555
+## L_sigma[2]    0.75865369  0.78409746  0.8259182   18.990532 1.106817
+## L_sigma[3]    0.29110768  0.35974132  0.6011497    8.088230 1.165664
+## L_Omega[1,1]  1.00000000  1.00000000  1.0000000 1500.000000      NaN
+## L_Omega[1,2]  0.00000000  0.00000000  0.0000000 1500.000000      NaN
+\end{verbatim}
+
+\includegraphics{PA_check2_files/figure-latex/unnamed-chunk-5-3.pdf}
+
+\subsection{not root}\label{not-root}
+
+\begin{verbatim}
+## Warning: 132 (100.0%) p_waic estimates greater than 0.4.
+## We recommend trying loo() instead.
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 372.2751
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Some Pareto k diagnostic values are too high. See help('pareto-k-
+## diagnostic') for details.
+\end{verbatim}
+
+\begin{verbatim}
+## Computed from 1500 by 132 log-likelihood matrix
+## 
+##          Estimate   SE
+## elpd_loo   -221.2 12.2
+## p_loo       129.0  3.9
+## looic       442.5 24.5
+## 
+## Pareto k diagnostic values:
+##                          Count  Pct 
+## (-Inf, 0.5]   (good)      0     0.0%
+##  (0.5, 0.7]   (ok)       10     7.6%
+##    (0.7, 1]   (bad)      99    75.0%
+##    (1, Inf)   (very bad) 23    17.4%
+## See help('pareto-k-diagnostic') for details.
+\end{verbatim}
+
+\includegraphics{PA_check2_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{verbatim}
+## \newpage
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "not root; LMA all"
+\end{verbatim}
+
+\includegraphics{PA_check2_files/figure-latex/unnamed-chunk-6-2.pdf}
+
+\begin{verbatim}
+## [1] "not root; obs"
+\end{verbatim}
+
+\begin{verbatim}
+##                   mean     se_mean         sd      X2.5.        X25.
+## log_alpha   0.76852930 0.016492403 0.21229524  0.3090442  0.63451280
+## log_beta    2.21452209 0.011027401 0.21769162  1.7843359  2.07669945
+## rp          0.63080495 0.005515127 0.08248916  0.4763318  0.57568680
+## rs         -0.04486085 0.004067673 0.07116311 -0.1806685 -0.09107259
+## alpha2      0.47360092 0.004124574 0.05431709  0.3717848  0.43460357
+## beta2       0.86035213 0.008074115 0.17493948  0.5596713  0.73919664
+## beta3       0.39739130 0.002779874 0.06258582  0.2908798  0.35467552
+## log_r      -2.27265678 0.019622886 0.36031611 -2.9415784 -2.52117221
+## log_site   -0.71459085 0.004331017 0.08472373 -0.8779823 -0.77295193
+## q           0.33632305 0.002814470 0.06827740  0.2574395  0.28706222
+## L_sigma[1]  0.32150945 0.003975334 0.04333452  0.2430739  0.29144999
+## L_sigma[2]  0.40215881 0.002734320 0.04261808  0.3269000  0.37406680
+##                   X50.          X75.      X97.5.    n_eff     Rhat
+## log_alpha   0.77419297  0.9125422594  1.15200248 165.6962 1.018368
+## log_beta    2.21321559  2.3514860253  2.64454192 389.7060 1.005475
+## rp          0.62737021  0.6827052969  0.79419592 223.7086 1.013391
+## rs         -0.04522672 -0.0008613696  0.09803047 306.0679 1.016200
+## alpha2      0.47324423  0.5080016879  0.58443617 173.4263 1.017389
+## beta2       0.84820306  0.9600212815  1.24524559 469.4462 1.001233
+## beta3       0.38950015  0.4353222089  0.53923946 506.8759 1.003317
+## log_r      -2.27211307 -2.0235650189 -1.58746033 337.1643 1.005431
+## log_site   -0.71669902 -0.6600840182 -0.55082231 382.6753 1.001781
+## q           0.31791685  0.3662835048  0.50918486 588.5194 1.000055
+## L_sigma[1]  0.31837551  0.3490926679  0.41767840 118.8285 1.031952
+## L_sigma[2]  0.39747199  0.4275674296  0.49606671 242.9343 1.011297
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "not root; LMA all"
+\end{verbatim}
+
+\begin{verbatim}
+##                    mean      se_mean           sd        X2.5.
+## log_alpha    2.38797741  0.057242433   0.22049786    1.9600570
+## log_beta     2.88080776  0.123307607   0.45539158    2.2118512
+## rp           0.22854195  0.327617682   0.44380475   -0.4404073
+## rs          -0.14947747  0.186497173   0.30337175   -0.4823890
+## alpha2       0.02344709  0.017888675   0.06741914   -0.1090528
+## beta2      -25.93350866 28.232329535 334.77000046 -900.4363164
+## beta3        0.06278774  0.044895161   0.13366654   -0.0304549
+## log_r       -0.57041091  0.589992748   0.79213264   -1.6628403
+## log_site    -0.08231442  0.008079947   0.11344007   -0.3080712
+## q            0.67136805  0.012184874   0.16874558    0.3710902
+## L_sigma[1]   0.55208031  0.006038755   0.03400137    0.4986313
+## L_sigma[2]   0.74020579  0.007097347   0.05162939    0.6491225
+##                     X25.          X50.         X75.      X97.5.      n_eff
+## log_alpha   2.241779e+00  2.3881722727  2.540808923   2.8119800  14.837904
+## log_beta    2.586196e+00  2.8071274813  3.081010179   4.0907106  13.639243
+## rp         -3.009158e-01  0.5201125099  0.589718748   0.6928803   1.835056
+## rs         -3.844838e-01 -0.3159000513  0.101824329   0.5427619   2.646097
+## alpha2     -2.356501e-02  0.0236096418  0.071218764   0.1560643  14.203983
+## beta2      -2.993650e+01 -0.7051028871  6.141402211 824.6892378 140.604635
+## beta3      -2.425337e-04  0.0008440625  0.069980232   0.4676178   8.864339
+## log_r      -1.167358e+00 -0.8483270873  0.085347083   0.9907297   1.802613
+## log_site   -1.549497e-01 -0.0864603425 -0.009242493   0.1506080 197.113319
+## q           5.403272e-01  0.6676455327  0.800668518   0.9764695 191.788583
+## L_sigma[1]  5.266242e-01  0.5497149729  0.573420445   0.6250168  31.702830
+## L_sigma[2]  7.050404e-01  0.7350097547  0.770078122   0.8513220  52.917811
+##                Rhat
+## log_alpha  1.249822
+## log_beta   1.209390
+## rp         2.510774
+## rs         1.696213
+## alpha2     1.253914
+## beta2      1.002489
+## beta3      1.413374
+## log_r      2.264450
+## log_site   1.011626
+## q          1.011745
+## L_sigma[1] 1.061004
+## L_sigma[2] 1.043325
+\end{verbatim}
+
+\includegraphics{PA_check2_files/figure-latex/unnamed-chunk-6-3.pdf}
+
+\begin{verbatim}
+## 
+##  Pearson's product-moment correlation
+## 
+## data:  log(PA2$Rarea_all) and log(PA2$LMAp_all)
+## t = -0.92871, df = 130, p-value = 0.3548
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.24860807  0.09094975
+## sample estimates:
+##         cor 
+## -0.08118437
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Pearson's product-moment correlation
+## 
+## data:  log(PA2$LL) and log(PA2$preLL)
+## t = 19.058, df = 130, p-value < 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.8053709 0.8974277
+## sample estimates:
+##       cor 
+## 0.8581486
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Pearson's product-moment correlation
+## 
+## data:  log(PA2$LL) and log(PA2$LMAs)
+## t = 10.321, df = 130, p-value < 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.5650122 0.7553493
+## sample estimates:
+##       cor 
+## 0.6710939
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Pearson's product-moment correlation
+## 
+## data:  log(PA2$Narea) and log(PA2$LMA)
+## t = 12.546, df = 130, p-value < 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.6515708 0.8086632
+## sample estimates:
+##       cor 
+## 0.7400495
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Pearson's product-moment correlation
+## 
+## data:  log(PA2$Narea) and log(PA2$LMAp)
+## t = 14.213, df = 130, p-value < 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.7028462 0.8390732
+## sample estimates:
+##       cor 
+## 0.7800383
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = log(Aarea + Rarea) ~ log(LMAp), data = PA)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.90891 -0.18090  0.04405  0.19145  0.69249 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.54989    0.09012   6.102 1.12e-08 ***
+## log(LMAp)    0.51856    0.02575  20.135  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.2974 on 130 degrees of freedom
+## Multiple R-squared:  0.7572, Adjusted R-squared:  0.7553 
+## F-statistic: 405.4 on 1 and 130 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = log(Rarea) ~ log(LMAp) + log(LMAs), data = PA)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.74442 -0.36143  0.09818  0.35319  1.15720 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -2.47908    0.26830  -9.240 6.49e-16 ***
+## log(LMAp)    0.67983    0.04999  13.599  < 2e-16 ***
+## log(LMAs)   -0.09242    0.05675  -1.629    0.106    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.573 on 129 degrees of freedom
+## Multiple R-squared:  0.6028, Adjusted R-squared:  0.5966 
+## F-statistic: 97.87 on 2 and 129 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Pearson's product-moment correlation
+## 
+## data:  log(PA2$Parea) and log(PA2$LMA)
+## t = 9.1321, df = 130, p-value = 1.129e-15
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.5085952 0.7191891
+## sample estimates:
+##       cor 
+## 0.6251399
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Pearson's product-moment correlation
+## 
+## data:  log(PA2$Parea) and log(PA2$LMAp)
+## t = 12.031, df = 130, p-value < 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.6335494 0.7977720
+## sample estimates:
+##       cor 
+## 0.7258447
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Pearson's product-moment correlation
+## 
+## data:  log(PA2$cell_area) and log(PA2$LMA)
+## t = 13.896, df = 98, p-value < 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.7357304 0.8714596
+## sample estimates:
+##       cor 
+## 0.8144515
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Pearson's product-moment correlation
+## 
+## data:  log(PA2$cell_area) and log(PA2$LMAp)
+## t = 5.8213, df = 98, p-value = 7.389e-08
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.3448081 0.6396302
+## sample estimates:
+##       cor 
+## 0.5068959
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Pearson's product-moment correlation
+## 
+## data:  log(PA2$cell_area) and log(PA2$LMAs)
+## t = 5.8966, df = 98, p-value = 5.282e-08
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.350563 0.643482
+## sample estimates:
+##      cor 
+## 0.511744
+\end{verbatim}
+
+
+\end{document}

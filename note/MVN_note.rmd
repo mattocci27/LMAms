@@ -1,0 +1,139 @@
+
+
+---
+title: "MVN for LMAp and LMAs"
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE,
+                      warning=FALSE,
+                      message=FALSE,
+                   eval = T)
+```
+
+```{r caching, include=FALSE}
+library(methods)
+library(knitr)
+library(kableExtra)
+```
+
+Consider a multivariate multiple regression model:
+
+$$
+\begin{eqnarray}
+\left[
+\begin{array}{ccc}
+y_{11} & y_{12} & y_{13} \\
+\vdots & \ddots & \vdots \\
+y_{n1} & y_{n2} & y_{n3} \\
+\end{array}
+\right]
+=
+\left[
+\begin{array}{ccc}
+x_{11} & x_{12} & x_{13} \\
+\vdots & \ddots & \vdots \\
+x_{n1} & x_{n2} & x_{n3} \\
+\end{array}
+\right]
+\left[
+\begin{array}{ccc}
+\beta_{11} & \beta_{12} & \beta_{13} \\
+\beta_{21} & \beta_{22} & \beta_{23} \\
+\beta_{31} & \beta_{32} & \beta_{33} \\
+\end{array}
+\right]
++
+\left[
+\begin{array}{ccc}
+\epsilon_{11} & \epsilon_{12} & \epsilon_{13} \\
+\vdots & \ddots & \vdots \\
+\epsilon_{n1} & \epsilon_{n2} & \epsilon_{n3} \\
+\end{array}
+\right]
+\end{eqnarray}
+$$
+
+
+Where $y_{i1}$ is Aarea,  $y_{i2}$ is LL, $y_{i3}$ is Rarea, $x_{i1}$ is an intercept, $x_{i2}$ is LMAp, and $x_{i3}$ is LMAs. In our model, however, $y_{i1}$ is sum of Aarea and Rarea. Thus, the above eq. can be rewritten as:
+
+$$
+\begin{eqnarray}
+\left[
+\begin{array}{ccc}
+y_{11} + y_{13} & y_{12} & y_{13} \\
+\vdots & \ddots & \vdots \\
+y_{n1} + y_{n3} & y_{n2} & y_{n3} \\
+\end{array}
+\right]
+=
+\left[
+\begin{array}{ccc}
+x_{11} & x_{12} & x_{13} \\
+\vdots & \ddots & \vdots \\
+x_{n1} & x_{n2} & x_{n3} \\
+\end{array}
+\right]
+\left[
+\begin{array}{ccc}
+\beta_{11} + \beta_{13} & \beta_{12} & \beta_{13} \\
+\beta_{21} + \beta_{23} & \beta_{22} & \beta_{23} \\
+\beta_{31} + \beta_{33} & \beta_{32} & \beta_{33} \\
+\end{array}
+\right]
++
+\left[
+\begin{array}{ccc}
+\epsilon_{11} & \epsilon_{12} & \epsilon_{13} \\
+\vdots & \ddots & \vdots \\
+\epsilon_{n1} & \epsilon_{n2} & \epsilon_{n3} \\
+\end{array}
+\right]
+\end{eqnarray}
+$$
+
+but what we are assuming is:
+
+$$
+\begin{eqnarray}
+\left[
+\begin{array}{ccc}
+y_{11} + y_{12} & y_{12} & y_{13} \\
+\vdots & \ddots & \vdots \\
+y_{n1} + y_{n3} & y_{n2} & y_{n3} \\
+\end{array}
+\right]
+=
+\left[
+\begin{array}{ccc}
+x_{11} & x_{12} & x_{13} \\
+\vdots & \ddots & \vdots \\
+x_{n1} & x_{n2} & x_{n3} \\
+\end{array}
+\right]
+\left[
+\begin{array}{ccc}
+\beta_{11} + \beta_{13} & \beta_{12} & \beta_{13} \\
+\beta_{21} + \beta_{23} & 0 & \beta_{23} \\
+0 & \beta_{32} & \beta_{33} \\
+\end{array}
+\right]
++
+\left[
+\begin{array}{ccc}
+\epsilon_{11} & \epsilon_{12} & \epsilon_{13} \\
+\vdots & \ddots & \vdots \\
+\epsilon_{n1} & \epsilon_{n2} & \epsilon_{n3} \\
+\end{array}
+\right]
+\end{eqnarray}
+$$
+
+In our definition, LMAs does not play role for Aarea, thus $\beta_{22} = 0$ is fine but the above model further produces an assumption of $\beta_{31} = -\beta_{33}$. Thus, negative covariance between LMAs and net and/or gross photosynthetic rates will produce positive covariance between LMAs and Rdark and vice versa.
+
+
+**What should we do?**
+
+1. We can assume that $y_{i1}$ is Aarea instead of Aarea + Rarea. Aarea is gross Amax - daily respiration which could still contain information for Rdark.
+1. We can use three univariate regressions instead of using a single multivariate regression to get rid of the assumption of $\beta_{31} = -\beta_{33}$. As far as I ran some simulation, a univariate normal distribution has better performance to estimate parameters of interests.
+    1. As long as we use a univariate normal distribution, Aarea or Aarea + Rarea seems not a big deal.

@@ -1,0 +1,45 @@
+# Notes S3 Model tests with randomized data
+
+We created 9 randomized LMA datasets and we fit the models to the randomized datasets. We randomized leaf traits values (i.e., LMA, *A*~area~, *R*~area~ and LL) across leaves. Thus we removed the the observed covariances among leaf traits. To compare model fit between the non-randomized dataset and randomized LMA dataset, we calculated a standardized effect size (SES) for correlation between focal variables and translated them to P-value as described in the main text.
+
+### Parameter estimation
+
+Models were fit and convergence of posterior distributions was assessed as described in the main text.
+
+## Results
+
+Non-informative flat priors for latent variables (non-hierarchical models) performed better than the hierarchical models. True values of model structural parameters (i.e., all parameters except for latent variables) were usually located within the central part of their posterior distributions for models with either non-hierarchical or hierarchical priors on latent variables (Figs. S4.5-S4.7). However, the match between posterior estimates and true values tended to be better for the non-hierarchical models (Figs. S4.5-S4.6), and in one case (WC dataset), the hierarchical model did not converge.
+
+For latent variables (which are relevant to many results and conclusions presented in the main text), the non-hierarchical model yielded posterior means that were unbiased and strongly correlated with the true values for the GL1 and PA datasets, whereas the hierarchical models had weaker relationships with the true values and/or systematic bias (Fig. S4.8). For the simulated WC dataset, the non-hierarchical model performed better than the hierarchical model, although neither set of priors yielded posterior means that were well-correlated with the true values of latent variables (Fig. S4.8).
+
+LMA randomization is an effective way to identify meaningful correlations between LMAp and LMAs and other traits. When the true correlations between LMAp and LMAs and other traits are strong (as in the simulated GL and PA datasets), the estimated correlations (derived from posterior distributions of the latent variables fi; Eqs. 2-3) are very similar to the true correlations and significantly different from correlations derived from datasets in which LMA was randomized among leaves (see GL1 and PA in Fig. S4.9). In contrast, when the true correlations between LMAp and LMAs and other traits are weak (as in the simulated WC dataset), the estimated correlations and randomization-based correlations are very similar to each other and significantly greater than the true correlations (see WC in Fig. S4.9). These results suggest that (i) if the true correlations between LMAp and LMAs and other traits are weak, then model assumptions (e.g., the degrees of freedom provided by latent variables) can lead to over-estimates of these correlations; but (ii) such artefactual results can be diagnosed using the LMA-randomization tests presented here and in the main text. Specifically, if results obtained from the original data (non-randomized) are significantly different from results obtained from LMA-randomized data, then the tests presented here (Fig. S4.9) suggest that the estimated correlations are similar to the true correlations.
+Inferred differences in LMAp and LMAs among groups (e.g, evergreen vs. deciduous leaves) and inferred contributions of LMAp and LMAs to total
+
+LMA variance depend more on the data than on model assumptions. Estimated distributions of LMAp and LMAs for evergreen and deciduous leaves were very similar to the true distributions for simulated GL1 data (which has similar properties to the original GLOPNET dataset), as well as for simulated GL2 data (where LMA distributions for evergreen and deciduous leaves were swapped) (Figs. S4.10-S4.11). The estimated variance contributions of LMAp and LMAs to total LMA variation were very similar to the true values for GL1 and roughly similar to the true values for GL2 (Fig. S4.11). Despite the quantitative mismatch between estimated and true values for GL2 variance partitioning (Fig. S4.12), the estimates are qualitatively correct in identifying LMAp as the dominant variance component in GL2. These test results suggest that using our modeling approach, estimated differences in LMAp and LMAs between groups of leaves and estimates of LMA variance components are at least qualitatively robust, and depend more strongly on the properties
+of the dataset than on model assumptions.
+
+
+```{r GL-rand, echo = F, dpi = 300, fig.width = 6, fig.height = 6, fig.cap = "Leaf-trait relationships in the randomized GLOPNET dataset with no functional correlations involving LMA, *A*~area~, *R*~area~ and LL. Symbols show 1 of 10 randomized datasets, in which all leaf traits were randomized among all leaves in the GLOPNET dataset we analyzed."}
+
+img <- readPNG("../../figs/GL_rand.png", native = TRUE, info = TRUE)
+grid.raster(img, interpolate=F)
+
+```
+
+`r page_break("")`
+
+```{r PA-rand, echo = F, dpi = 300, fig.width = 6, fig.height = 6, fig.cap = "Observed vs. predicted leaf lifespan (LL) in the Optimal LL Model (Eq. 8). Predicted LL values are posterior means. The dashed line indicates the 1:1 relationship. Symbols show 1 of 10 randomized datasets, in which all leaf traits were randomized among all leaves in the Panama dataset we analyzed."}
+
+img <- readPNG("../../figs/PA_rand.png", native = TRUE, info = TRUE)
+grid.raster(img, interpolate=F)
+
+```
+
+`r page_break("")`
+
+```{r LL-rand, echo = F, dpi = 300, fig.width = 6, fig.height = 6, fig.cap = "Leaf-trait relationships in the randomized Panama dataset. Symbols show 1 of 10 randomized datasets, in which all leaf traits were randomized among all leaves in the Panama dataset we analyzed."}
+
+img <- readPNG("../../figs/LL_rand.png", native = TRUE, info = TRUE)
+grid.raster(img, interpolate=F)
+
+```

@@ -1,0 +1,828 @@
+---
+title: "Type2_check"
+---
+
+
+```{r echo = FALSE}
+library(tidyverse)
+library(rstan)
+library(smatr)
+```
+
+# Simulation 
+
+## Type 1
+
+### Aarea + Rarea
+
+```{r echo = FALSE}
+load("./data/GL1_potLL_sim.rda")
+#load("./data/GL1_pot_com_sim.rda")
+
+GL_summary <- data.frame(summary(res)$summary)
+GL <- GL_sim_dat %>%
+  mutate(DE = gr)
+P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
+
+GL <- GL %>%
+  mutate(DE = ifelse(GL$DE == "", "U", as.character(DE))) %>%
+  mutate(LMAp_pot =  GL_summary[P_vec, "mean"] * LMA) %>%
+  mutate(LMAp_hi =  GL_summary[P_vec, "X97.5."] * LMA) %>%
+  mutate(LMAp_hi2 = LMAp_pot + GL_summary[P_vec, "sd"] * LMA) %>% 
+  mutate(LMAp_lo =  GL_summary[P_vec, "X2.5."] * LMA) %>%
+  mutate(LMAp_lo2 = LMAp_pot - GL_summary[P_vec, "sd"] * LMA) %>% 
+  mutate(LMAs_pot = LMA - LMAp_pot) %>%
+  mutate(LMAs_hi = LMA - LMAp_hi) %>%
+  mutate(LMAs_lo = LMA - LMAp_lo) %>%
+  mutate(mu1 = GL_summary[paste("mu[",1:nrow(GL),",1]",sep=""),"mean"]*2-2.5) %>%
+  mutate(mu1 = GL_summary[paste("mu[",1:nrow(GL),",1]",sep=""),"mean"]) %>%
+  mutate(mu2 = GL_summary[paste("mu[",1:nrow(GL),",2]",sep=""),"mean"]) %>%
+  mutate(mu3 = GL_summary[paste("mu[",1:nrow(GL),",3]",sep=""),"mean"]) %>%
+  mutate(res = Aarea + Rarea - exp(mu1)) %>%
+  mutate(f = LMAp_pot / LMA)
+
+l5 <- lm(log(Aarea+Rarea) ~ log(LMAp_pot), GL)
+s5 <- sma(log(Aarea+Rarea) ~ log(LMAp_pot), GL)
+
+l6 <- lm(log(LL) ~ log(LMAs_pot), GL)
+s6 <- sma(log(LL) ~ log(LMAs_pot), GL)
+
+l7 <- lm(log(Rarea) ~ log(LMAp_pot) + log(LMAs_pot), GL)
+
+moge <- data_frame(int = extract(res, "log_alpha") %>% unlist,
+  slope = extract(res, "alpha2") %>% unlist)
+
+ggplot(GL, 
+       aes(x = log(LMAp_pot), y = log(Aarea + Rarea), col = DE)) +
+  geom_errorbarh(aes(xmax = log(LMAp_hi), xmin = log(LMAp_lo)), 
+                 alpha = 0.3) +
+  geom_point() +
+  geom_abline(slope = moge$slope, intercept = moge$int, alpha = 0.02, col = "grey") +
+  geom_point(aes(y = mu1), col = "black") +
+  geom_abline(slope=GL_summary["alpha2", "mean"],
+              intercept= GL_summary["log_alpha", "mean"]) +
+  geom_abline(slope=l5[[1]][2], intercept=l5[[1]][1], lty = 2) +
+  geom_abline(slope=s5[[1]][[1]][2,1], 
+              intercept=s5[[1]][[1]][1,1], lty = 2, col = "red") +
+  theme_light()
+
+```
+
+
+### LL 
+
+```{r echo = FALSE}
+moge2 <- data_frame(int = extract(res, "log_beta") %>% unlist,
+  slope = extract(res, "beta2") %>% unlist)
+
+ggplot(GL, 
+       aes(x = log(LMAs_pot), y = log(LL), col = DE)) +
+  geom_errorbarh(aes(xmax = log(LMAs_hi), xmin = log(LMAs_lo)), 
+                 alpha = 0.3) +
+  geom_point() +
+  geom_point(aes(y = mu2), col = "black") +
+  #geom_abline(slope=0.23, intercept= 1.57) +
+  geom_abline(slope=GL_summary["beta2", "mean"],
+              intercept= GL_summary["log_beta", "mean"]) +
+  geom_abline(slope = moge2$slope, intercept = moge2$int, alpha = 0.02, col = "grey") +
+  geom_abline(slope=l6[[1]][2], intercept=l6[[1]][1], lty = 2) +
+  geom_abline(slope=s6[[1]][[1]][2,1], 
+              intercept=s6[[1]][[1]][1,1], lty = 2, col = "red") +
+  theme_light()
+
+```
+
+# Obs
+
+## Type 1
+
+### Aarea + Rarea
+
+```{r echo = FALSE}
+  load("./data/GL_potPL_obs.rda")
+
+  GL_summary <- data.frame(summary(res)$summary)
+  GL <- dat
+#GL <- GL_sim_dat %>%
+#  mutate(DE = gr)
+  P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
+
+  GL <- GL %>%
+    mutate(DE = ifelse(GL$DE == "", "U", as.character(DE))) %>%
+    mutate(LMAp_pot =  GL_summary[P_vec, "mean"] * LMA) %>%
+    mutate(LMAp_hi =  GL_summary[P_vec, "X97.5."] * LMA) %>%
+    mutate(LMAp_hi2 = LMAp_pot + GL_summary[P_vec, "sd"] * LMA) %>% 
+    mutate(LMAp_lo =  GL_summary[P_vec, "X2.5."] * LMA) %>%
+    mutate(LMAp_lo2 = LMAp_pot - GL_summary[P_vec, "sd"] * LMA) %>% 
+    mutate(LMAs_pot = LMA - LMAp_pot) %>%
+    mutate(LMAs_hi = LMA - LMAp_hi) %>%
+    mutate(LMAs_lo = LMA - LMAp_lo) %>%
+    mutate(mu1 = GL_summary[paste("mu[",1:nrow(GL),",1]",sep=""),"mean"]) %>%
+    mutate(mu12 = -0.16 + 0.64 * log(LMAp_pot)) %>%
+    mutate(mu2 = GL_summary[paste("mu[",1:nrow(GL),",2]",sep=""),"mean"]) %>%
+    mutate(mu3 = GL_summary[paste("mu[",1:nrow(GL),",3]",sep=""),"mean"]) %>%
+    mutate(res = Aarea + Rarea - exp(mu1)) %>%
+    mutate(f = LMAp_pot / LMA)
+
+  l5 <- lm(log(Aarea+Rarea) ~ log(LMAp_pot), GL)
+  s5 <- sma(log(Aarea+Rarea) ~ log(LMAp_pot), GL)
+
+  l6 <- lm(log(LL) ~ log(LMAs_pot), GL)
+  s6 <- sma(log(LL) ~ log(LMAs_pot), GL)
+
+  l7 <- lm(log(Rarea) ~ log(LMAp_pot) + log(LMAs_pot), GL)
+
+  moge <- data_frame(int = extract(res, "log_alpha") %>% unlist,
+    slope = extract(res, "alpha2") %>% unlist)
+
+  ggplot(GL, 
+         aes(x = log(LMAp_pot), y = log(Aarea + Rarea), col = DE)) +
+    geom_errorbarh(aes(xmax = log(LMAp_hi), xmin = log(LMAp_lo)), 
+                   alpha = 0.3) +
+    geom_point() +
+    geom_abline(slope = moge$slope, intercept = moge$int, alpha = 0.02, col = "grey") +
+    geom_point(aes(y = mu1), col = "black") +
+    geom_point(aes(y = mu12), col = "orange") +
+    geom_abline(slope=GL_summary["alpha2", "mean"],
+    #geom_abline(slope= 0.6,
+    #            intercept = -.16) +
+                intercept= GL_summary["log_alpha", "mean"]) +
+    geom_abline(slope=l5[[1]][2], intercept=l5[[1]][1], lty = 2) +
+    geom_abline(slope=s5[[1]][[1]][2,1], 
+                intercept=s5[[1]][[1]][1,1], lty = 2, col = "red") +
+    theme_light()
+
+```
+
+
+### LL 
+
+```{r echo = FALSE}
+  moge2 <- data_frame(int = extract(res, "log_beta") %>% unlist,
+    slope = extract(res, "beta2") %>% unlist)
+
+  ggplot(GL, 
+       aes(x = log(LMAs_pot), y = log(LL), col = DE)) +
+  geom_errorbarh(aes(xmax = log(LMAs_hi), xmin = log(LMAs_lo)), 
+                 alpha = 0.3) +
+  geom_point() +
+  geom_point(aes(y = mu2), col = "black") +
+  #geom_abline(slope=0.23, intercept= 1.57) +
+  geom_abline(slope=GL_summary["beta2", "mean"],
+              intercept= GL_summary["log_beta", "mean"]) +
+  geom_abline(slope = moge2$slope, intercept = moge2$int, alpha = 0.02, col = "grey") +
+  geom_abline(slope=l6[[1]][2], intercept=l6[[1]][1], lty = 2) +
+  geom_abline(slope=s6[[1]][[1]][2,1], 
+              intercept=s6[[1]][[1]][1,1], lty = 2, col = "red") +
+  theme_light()
+
+```
+
+## A ~ LMAp, R ~ LMAp + LMAs
+
+### Aarea + Rarea
+
+```{r echo = FALSE}
+  load("./data/GL_potPL4_obs.rda")
+
+  GL_summary <- data.frame(summary(res)$summary)
+  GL <- dat
+#GL <- GL_sim_dat %>%
+#  mutate(DE = gr)
+  P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
+
+  GL <- GL %>%
+    mutate(DE = ifelse(GL$DE == "", "U", as.character(DE))) %>%
+    mutate(LMAp_pot =  GL_summary[P_vec, "mean"] * LMA) %>%
+    mutate(LMAp_hi =  GL_summary[P_vec, "X97.5."] * LMA) %>%
+    mutate(LMAp_hi2 = LMAp_pot + GL_summary[P_vec, "sd"] * LMA) %>% 
+    mutate(LMAp_lo =  GL_summary[P_vec, "X2.5."] * LMA) %>%
+    mutate(LMAp_lo2 = LMAp_pot - GL_summary[P_vec, "sd"] * LMA) %>% 
+    mutate(LMAs_pot = LMA - LMAp_pot) %>%
+    mutate(LMAs_hi = LMA - LMAp_hi) %>%
+    mutate(LMAs_lo = LMA - LMAp_lo) %>%
+    mutate(mu1 = GL_summary[paste("mu[",1:nrow(GL),",1]",sep=""),"mean"]) %>%
+    mutate(mu12 = -0.16 + 0.64 * log(LMAp_pot)) %>%
+    mutate(mu2 = GL_summary[paste("mu[",1:nrow(GL),",2]",sep=""),"mean"]) %>%
+    mutate(mu3 = GL_summary[paste("mu[",1:nrow(GL),",3]",sep=""),"mean"]) %>%
+    mutate(res = Aarea + Rarea - exp(mu1)) %>%
+    mutate(f = LMAp_pot / LMA)
+
+  l5 <- lm(log(Aarea) ~ log(LMAp_pot), GL)
+  s5 <- sma(log(Aarea) ~ log(LMAp_pot), GL)
+
+  l6 <- lm(log(LL) ~ log(LMAs_pot), GL)
+  s6 <- sma(log(LL) ~ log(LMAs_pot), GL)
+
+  l7 <- lm(log(Rarea) ~ log(LMAp_pot) + log(LMAs_pot), GL)
+
+  moge <- data_frame(int = extract(res, "log_alpha") %>% unlist,
+    slope = extract(res, "alpha2") %>% unlist)
+
+  ggplot(GL, 
+         aes(x = log(LMAp_pot), y = log(Aarea), col = DE)) +
+    geom_errorbarh(aes(xmax = log(LMAp_hi), xmin = log(LMAp_lo)), 
+                   alpha = 0.3) +
+    geom_point() +
+    geom_abline(slope = moge$slope, intercept = moge$int, alpha = 0.02, col = "grey") +
+    geom_point(aes(y = mu1), col = "black") +
+    geom_abline(slope=GL_summary["alpha2", "mean"],
+                intercept= GL_summary["log_alpha", "mean"]) +
+    geom_abline(slope=l5[[1]][2], intercept=l5[[1]][1], lty = 2) +
+    geom_abline(slope=s5[[1]][[1]][2,1], 
+                intercept=s5[[1]][[1]][1,1], lty = 2, col = "red") +
+    theme_light()
+
+```
+
+
+### LL 
+
+```{r echo = FALSE}
+  moge2 <- data_frame(int = extract(res, "log_beta") %>% unlist,
+    slope = extract(res, "beta2") %>% unlist)
+
+  ggplot(GL, 
+       aes(x = log(LMAs_pot), y = log(LL), col = DE)) +
+  geom_errorbarh(aes(xmax = log(LMAs_hi), xmin = log(LMAs_lo)), 
+                 alpha = 0.3) +
+  geom_point() +
+  geom_point(aes(y = mu2), col = "black") +
+  #geom_abline(slope=0.23, intercept= 1.57) +
+  geom_abline(slope=GL_summary["beta2", "mean"],
+              intercept= GL_summary["log_beta", "mean"]) +
+  geom_abline(slope = moge2$slope, intercept = moge2$int, alpha = 0.02, col = "grey") +
+  geom_abline(slope=l6[[1]][2], intercept=l6[[1]][1], lty = 2) +
+  geom_abline(slope=s6[[1]][[1]][2,1], 
+              intercept=s6[[1]][[1]][1,1], lty = 2, col = "red") +
+  theme_light()
+
+```
+
+## A ~ LMAp, LL ~ LMAs
+
+### Aarea + Rarea
+
+```{r echo = FALSE}
+  load("./data/GL_potPL5_obs.rda")
+
+  GL_summary <- data.frame(summary(res)$summary)
+  GL <- dat
+#GL <- GL_sim_dat %>%
+#  mutate(DE = gr)
+  P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
+
+  GL <- GL %>%
+    mutate(DE = ifelse(GL$DE == "", "U", as.character(DE))) %>%
+    mutate(LMAp_pot =  GL_summary[P_vec, "mean"] * LMA) %>%
+    mutate(LMAp_hi =  GL_summary[P_vec, "X97.5."] * LMA) %>%
+    mutate(LMAp_hi2 = LMAp_pot + GL_summary[P_vec, "sd"] * LMA) %>% 
+    mutate(LMAp_lo =  GL_summary[P_vec, "X2.5."] * LMA) %>%
+    mutate(LMAp_lo2 = LMAp_pot - GL_summary[P_vec, "sd"] * LMA) %>% 
+    mutate(LMAs_pot = LMA - LMAp_pot) %>%
+    mutate(LMAs_hi = LMA - LMAp_hi) %>%
+    mutate(LMAs_lo = LMA - LMAp_lo) %>%
+    mutate(mu1 = GL_summary[paste("mu[",1:nrow(GL),",1]",sep=""),"mean"]) %>%
+    mutate(mu12 = -0.16 + 0.64 * log(LMAp_pot)) %>%
+    mutate(mu2 = GL_summary[paste("mu[",1:nrow(GL),",2]",sep=""),"mean"]) %>%
+    mutate(mu3 = GL_summary[paste("mu[",1:nrow(GL),",3]",sep=""),"mean"]) %>%
+    mutate(res = Aarea + Rarea - exp(mu1)) %>%
+    mutate(f = LMAp_pot / LMA)
+
+  l5 <- lm(log(Aarea) ~ log(LMAp_pot), GL)
+  s5 <- sma(log(Aarea) ~ log(LMAp_pot), GL)
+
+  l6 <- lm(log(LL) ~ log(LMAs_pot), GL)
+  s6 <- sma(log(LL) ~ log(LMAs_pot), GL)
+
+  l7 <- lm(log(Rarea) ~ log(LMAp_pot) + log(LMAs_pot), GL)
+
+  moge <- data_frame(int = extract(res, "log_alpha") %>% unlist,
+    slope = extract(res, "alpha2") %>% unlist)
+
+  ggplot(GL, 
+         aes(x = log(LMAp_pot), y = log(Aarea), col = DE)) +
+    geom_errorbarh(aes(xmax = log(LMAp_hi), xmin = log(LMAp_lo)), 
+                   alpha = 0.3) +
+    geom_point() +
+    geom_abline(slope = moge$slope, intercept = moge$int, alpha = 0.02, col = "grey") +
+    geom_point(aes(y = mu1), col = "black") +
+    geom_abline(slope=GL_summary["alpha2", "mean"],
+                intercept= GL_summary["log_alpha", "mean"]) +
+    geom_abline(slope=l5[[1]][2], intercept=l5[[1]][1], lty = 2) +
+    geom_abline(slope=s5[[1]][[1]][2,1], 
+                intercept=s5[[1]][[1]][1,1], lty = 2, col = "red") +
+    theme_light()
+
+```
+
+
+### LL 
+
+```{r echo = FALSE}
+  moge2 <- data_frame(int = extract(res, "log_beta") %>% unlist,
+    slope = extract(res, "beta2") %>% unlist)
+
+  ggplot(GL, 
+       aes(x = log(LMAs_pot), y = log(LL), col = DE)) +
+  geom_errorbarh(aes(xmax = log(LMAs_hi), xmin = log(LMAs_lo)), 
+                 alpha = 0.3) +
+  geom_point() +
+  geom_point(aes(y = mu2), col = "black") +
+  #geom_abline(slope=0.23, intercept= 1.57) +
+  geom_abline(slope=GL_summary["beta2", "mean"],
+              intercept= GL_summary["log_beta", "mean"]) +
+  geom_abline(slope = moge2$slope, intercept = moge2$int, alpha = 0.02, col = "grey") +
+  geom_abline(slope=l6[[1]][2], intercept=l6[[1]][1], lty = 2) +
+  geom_abline(slope=s6[[1]][[1]][2,1], 
+              intercept=s6[[1]][[1]][1,1], lty = 2, col = "red") +
+  theme_light()
+
+```
+
+## no LL , A ~ LMAp, R ~ LMAp + LMAs
+
+### Aarea + Rarea
+
+```{r echo = FALSE}
+  load("./data/GL_potPL6_obs.rda")
+
+  GL_summary <- data.frame(summary(res)$summary)
+  GL <- dat
+#GL <- GL_sim_dat %>%
+#  mutate(DE = gr)
+  P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
+
+  GL <- GL %>%
+    mutate(DE = ifelse(GL$DE == "", "U", as.character(DE))) %>%
+    mutate(LMAp_pot =  GL_summary[P_vec, "mean"] * LMA) %>%
+    mutate(LMAp_hi =  GL_summary[P_vec, "X97.5."] * LMA) %>%
+    mutate(LMAp_hi2 = LMAp_pot + GL_summary[P_vec, "sd"] * LMA) %>% 
+    mutate(LMAp_lo =  GL_summary[P_vec, "X2.5."] * LMA) %>%
+    mutate(LMAp_lo2 = LMAp_pot - GL_summary[P_vec, "sd"] * LMA) %>% 
+    mutate(LMAs_pot = LMA - LMAp_pot) %>%
+    mutate(LMAs_hi = LMA - LMAp_hi) %>%
+    mutate(LMAs_lo = LMA - LMAp_lo) %>%
+    mutate(mu1 = GL_summary[paste("mu[",1:nrow(GL),",1]",sep=""),"mean"]) %>%
+    mutate(mu12 = -0.16 + 0.64 * log(LMAp_pot)) %>%
+    mutate(mu2 = GL_summary[paste("mu[",1:nrow(GL),",2]",sep=""),"mean"]) %>%
+    mutate(mu3 = GL_summary[paste("mu[",1:nrow(GL),",3]",sep=""),"mean"]) %>%
+    mutate(res = Aarea + Rarea - exp(mu1)) %>%
+    mutate(f = LMAp_pot / LMA)
+
+  l5 <- lm(log(Aarea) ~ log(LMAp_pot), GL)
+  s5 <- sma(log(Aarea) ~ log(LMAp_pot), GL)
+
+  l6 <- lm(log(LL) ~ log(LMAs_pot), GL)
+  s6 <- sma(log(LL) ~ log(LMAs_pot), GL)
+
+  l7 <- lm(log(Rarea) ~ log(LMAp_pot) + log(LMAs_pot), GL)
+
+  moge <- data_frame(int = extract(res, "log_alpha") %>% unlist,
+    slope = extract(res, "alpha2") %>% unlist)
+
+  ggplot(GL, 
+         aes(x = log(LMAp_pot), y = log(Aarea), col = DE)) +
+    geom_errorbarh(aes(xmax = log(LMAp_hi), xmin = log(LMAp_lo)), 
+                   alpha = 0.3) +
+    geom_point() +
+    geom_abline(slope = moge$slope, intercept = moge$int, alpha = 0.02, col = "grey") +
+    geom_point(aes(y = mu1), col = "black") +
+    geom_abline(slope=GL_summary["alpha2", "mean"],
+                intercept= GL_summary["log_alpha", "mean"]) +
+    geom_abline(slope=l5[[1]][2], intercept=l5[[1]][1], lty = 2) +
+    geom_abline(slope=s5[[1]][[1]][2,1], 
+                intercept=s5[[1]][[1]][1,1], lty = 2, col = "red") +
+    theme_light()
+  
+  ggplot(GL, 
+         aes(x = log(LMAp_pot), y = log(Rarea), col = DE)) +
+    geom_errorbarh(aes(xmax = log(LMAp_hi), xmin = log(LMAp_lo)), 
+                   alpha = 0.3) +
+    geom_point() +
+    geom_point(aes(y = mu3), col = "black") +
+    theme_light()
+
+```
+
+## opt
+
+### Aarea + Rarea
+
+```{r echo = FALSE}
+  load("./data/GL_optGL_obs.rda")
+
+  GL_summary <- data.frame(summary(res)$summary)
+  GL <- dat
+#GL <- GL_sim_dat %>%
+#  mutate(DE = gr)
+  P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
+
+  GL <- GL %>%
+    mutate(DE = ifelse(GL$DE == "", "U", as.character(DE))) %>%
+    mutate(LMAp_pot =  GL_summary[P_vec, "mean"] * LMA) %>%
+    mutate(LMAp_hi =  GL_summary[P_vec, "X97.5."] * LMA) %>%
+    mutate(LMAp_hi2 = LMAp_pot + GL_summary[P_vec, "sd"] * LMA) %>% 
+    mutate(LMAp_lo =  GL_summary[P_vec, "X2.5."] * LMA) %>%
+    mutate(LMAp_lo2 = LMAp_pot - GL_summary[P_vec, "sd"] * LMA) %>% 
+    mutate(LMAs_pot = LMA - LMAp_pot) %>%
+    mutate(LMAs_hi = LMA - LMAp_hi) %>%
+    mutate(LMAs_lo = LMA - LMAp_lo) %>%
+    mutate(mu1 = GL_summary[paste("mu[",1:nrow(GL),",1]",sep=""),"mean"]) %>%
+    mutate(mu12 = -0.16 + 0.64 * log(LMAp_pot)) %>%
+    mutate(mu2 = GL_summary[paste("mu[",1:nrow(GL),",2]",sep=""),"mean"]) %>%
+    mutate(mu3 = GL_summary[paste("mu[",1:nrow(GL),",3]",sep=""),"mean"]) %>%
+    mutate(res = Aarea + Rarea - exp(mu1)) %>%
+    mutate(f = LMAp_pot / LMA)
+
+  l5 <- lm(log(Aarea) ~ log(LMAp_pot), GL)
+  s5 <- sma(log(Aarea) ~ log(LMAp_pot), GL)
+
+  l6 <- lm(log(LL) ~ log(LMAs_pot), GL)
+  s6 <- sma(log(LL) ~ log(LMAs_pot), GL)
+
+  l7 <- lm(log(Rarea) ~ log(LMAp_pot) + log(LMAs_pot), GL)
+
+  moge <- data_frame(int = extract(res, "log_alpha") %>% unlist,
+    slope = extract(res, "alpha2") %>% unlist)
+
+  ggplot(GL, 
+         aes(x = log(LMAp_pot), y = log(Aarea), col = DE)) +
+    geom_errorbarh(aes(xmax = log(LMAp_hi), xmin = log(LMAp_lo)), 
+                   alpha = 0.3) +
+    geom_point() +
+    geom_abline(slope = moge$slope, intercept = moge$int, alpha = 0.02, col = "grey") +
+    geom_point(aes(y = mu1), col = "black") +
+    geom_abline(slope=GL_summary["alpha2", "mean"],
+                intercept= GL_summary["log_alpha", "mean"]) +
+    geom_abline(slope=l5[[1]][2], intercept=l5[[1]][1], lty = 2) +
+    geom_abline(slope=s5[[1]][[1]][2,1], 
+                intercept=s5[[1]][[1]][1,1], lty = 2, col = "red") +
+    theme_light()
+
+```
+
+
+### LL 
+
+```{r echo = FALSE}
+
+  ggplot(GL, 
+       aes(x = log(LMAs_pot), y = log(LL), col = DE)) +
+  geom_errorbarh(aes(xmax = log(LMAs_hi), xmin = log(LMAs_lo)), 
+                 alpha = 0.3) +
+  geom_point() +
+  geom_point(aes(y = mu2), col = "black") +
+  #geom_abline(slope=0.23, intercept= 1.57) +
+  geom_abline(slope = moge2$slope, intercept = moge2$int, alpha = 0.02, col = "grey") +
+  geom_abline(slope=l6[[1]][2], intercept=l6[[1]][1], lty = 2) +
+  geom_abline(slope=s6[[1]][[1]][2,1], 
+              intercept=s6[[1]][[1]][1,1], lty = 2, col = "red") +
+  theme_light()
+  
+```
+
+
+### pot-com
+
+### Aarea + Rarea
+
+```{r echo = FALSE}
+load("./data/GL_pot_com_obs.rda")
+
+
+GL_summary <- data.frame(summary(res)$summary)
+GL <- dat
+#GL <- GL_sim_dat %>%
+#  mutate(DE = gr)
+P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
+
+GL <- GL %>%
+  mutate(DE = ifelse(GL$DE == "", "U", as.character(DE))) %>%
+  mutate(LMAp_pot =  GL_summary[P_vec, "mean"] * LMA) %>%
+  mutate(LMAp_hi =  GL_summary[P_vec, "X97.5."] * LMA) %>%
+  mutate(LMAp_hi2 = LMAp_pot + GL_summary[P_vec, "sd"] * LMA) %>% 
+  mutate(LMAp_lo =  GL_summary[P_vec, "X2.5."] * LMA) %>%
+  mutate(LMAp_lo2 = LMAp_pot - GL_summary[P_vec, "sd"] * LMA) %>% 
+  mutate(LMAs_pot = LMA - LMAp_pot) %>%
+  mutate(LMAs_hi = LMA - LMAp_hi) %>%
+  mutate(LMAs_lo = LMA - LMAp_lo) %>%
+  mutate(mu1 = GL_summary[paste("mu[",1:nrow(GL),",1]",sep=""),"mean"]) %>%
+  mutate(mu12 = -0.16 + 0.64 * log(LMAp_pot)) %>%
+  mutate(mu2 = GL_summary[paste("mu[",1:nrow(GL),",2]",sep=""),"mean"]) %>%
+  mutate(mu3 = GL_summary[paste("mu[",1:nrow(GL),",3]",sep=""),"mean"]) %>%
+  mutate(res = Aarea + Rarea - exp(mu1)) %>%
+  mutate(f = LMAp_pot / LMA)
+
+l5 <- lm(log(Aarea+Rarea) ~ log(LMAp_pot), GL)
+s5 <- sma(log(Aarea+Rarea) ~ log(LMAp_pot), GL)
+
+l6 <- lm(log(LL) ~ log(LMAs_pot), GL)
+s6 <- sma(log(LL) ~ log(LMAs_pot), GL)
+
+l7 <- lm(log(Rarea) ~ log(LMAp_pot) + log(LMAs_pot), GL)
+
+moge <- data_frame(int = extract(res, "log_alpha") %>% unlist,
+  slope = extract(res, "alpha2") %>% unlist)
+
+ggplot(GL, 
+       aes(x = log(LMAp_pot), y = log(Aarea + Rarea), col = DE)) +
+  geom_errorbarh(aes(xmax = log(LMAp_hi), xmin = log(LMAp_lo)), 
+                 alpha = 0.3) +
+  geom_point() +
+  geom_abline(slope = moge$slope, intercept = moge$int, alpha = 0.02, col = "grey") +
+  geom_point(aes(y = mu1), col = "black") +
+  geom_point(aes(y = mu12), col = "orange") +
+  geom_abline(slope=GL_summary["alpha2", "mean"],
+  #geom_abline(slope= 0.6,
+  #            intercept = -.16) +
+              intercept= GL_summary["log_alpha", "mean"]) +
+  geom_abline(slope=l5[[1]][2], intercept=l5[[1]][1], lty = 2) +
+  geom_abline(slope=s5[[1]][[1]][2,1], 
+              intercept=s5[[1]][[1]][1,1], lty = 2, col = "red") +
+  theme_light()
+
+```
+
+
+### LL 
+
+```{r echo = FALSE}
+moge2 <- data_frame(int = extract(res, "log_beta") %>% unlist,
+  slope = extract(res, "beta2") %>% unlist)
+
+ggplot(GL, 
+       aes(x = log(LMAs_pot), y = log(LL), col = DE)) +
+  geom_errorbarh(aes(xmax = log(LMAs_hi), xmin = log(LMAs_lo)), 
+                 alpha = 0.3) +
+  geom_point() +
+  geom_point(aes(y = mu2), col = "black") +
+  #geom_abline(slope=0.23, intercept= 1.57) +
+  geom_abline(slope=GL_summary["beta2", "mean"],
+              intercept= GL_summary["log_beta", "mean"]) +
+  geom_abline(slope = moge2$slope, intercept = moge2$int, alpha = 0.02, col = "grey") +
+  geom_abline(slope=l6[[1]][2], intercept=l6[[1]][1], lty = 2) +
+  geom_abline(slope=s6[[1]][[1]][2,1], 
+              intercept=s6[[1]][[1]][1,1], lty = 2, col = "red") +
+  theme_light()
+
+```
+
+
+### pot-diff
+
+### Aarea + Rarea
+
+```{r echo = FALSE}
+load("./data/GL_pot_diff_obs.rda")
+
+
+GL_summary <- data.frame(summary(res)$summary)
+GL <- dat
+#GL <- GL_sim_dat %>%
+#  mutate(DE = gr)
+P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
+
+GL <- GL %>%
+  mutate(DE = ifelse(GL$DE == "", "U", as.character(DE))) %>%
+  mutate(LMAp_pot =  GL_summary[P_vec, "mean"] * LMA) %>%
+  mutate(LMAp_hi =  GL_summary[P_vec, "X97.5."] * LMA) %>%
+  mutate(LMAp_hi2 = LMAp_pot + GL_summary[P_vec, "sd"] * LMA) %>% 
+  mutate(LMAp_lo =  GL_summary[P_vec, "X2.5."] * LMA) %>%
+  mutate(LMAp_lo2 = LMAp_pot - GL_summary[P_vec, "sd"] * LMA) %>% 
+  mutate(LMAs_pot = LMA - LMAp_pot) %>%
+  mutate(LMAs_hi = LMA - LMAp_hi) %>%
+  mutate(LMAs_lo = LMA - LMAp_lo) %>%
+  mutate(mu1 = GL_summary[paste("mu[",1:nrow(GL),",1]",sep=""),"mean"]) %>%
+  mutate(mu12 = -0.16 + 0.64 * log(LMAp_pot)) %>%
+  mutate(mu2 = GL_summary[paste("mu[",1:nrow(GL),",2]",sep=""),"mean"]) %>%
+  mutate(mu3 = GL_summary[paste("mu[",1:nrow(GL),",3]",sep=""),"mean"]) %>%
+  mutate(res = Aarea + Rarea - exp(mu1)) %>%
+  mutate(f = LMAp_pot / LMA)
+
+l5 <- lm(log(Aarea+Rarea) ~ log(LMAp_pot), GL)
+s5 <- sma(log(Aarea+Rarea) ~ log(LMAp_pot), GL)
+
+l6 <- lm(log(LL) ~ log(LMAs_pot), GL)
+s6 <- sma(log(LL) ~ log(LMAs_pot), GL)
+
+l7 <- lm(log(Rarea) ~ log(LMAp_pot) + log(LMAs_pot), GL)
+
+moge <- data_frame(int = extract(res, "log_alpha") %>% unlist,
+  slope = extract(res, "alpha2") %>% unlist)
+
+ggplot(GL, 
+       aes(x = log(LMAp_pot), y = log(Aarea + Rarea), col = DE)) +
+  geom_errorbarh(aes(xmax = log(LMAp_hi), xmin = log(LMAp_lo)), 
+                 alpha = 0.3) +
+  geom_point() +
+  geom_abline(slope = moge$slope, intercept = moge$int, alpha = 0.02, col = "grey") +
+  geom_point(aes(y = mu1), col = "black") +
+  geom_point(aes(y = mu12), col = "orange") +
+  geom_abline(slope=GL_summary["alpha2", "mean"],
+  #geom_abline(slope= 0.6,
+  #            intercept = -.16) +
+              intercept= GL_summary["log_alpha", "mean"]) +
+  geom_abline(slope=l5[[1]][2], intercept=l5[[1]][1], lty = 2) +
+  geom_abline(slope=s5[[1]][[1]][2,1], 
+              intercept=s5[[1]][[1]][1,1], lty = 2, col = "red") +
+  theme_light()
+
+```
+
+
+### LL 
+
+```{r echo = FALSE}
+moge2 <- data_frame(int = extract(res, "log_beta") %>% unlist,
+  slope = extract(res, "beta2") %>% unlist)
+
+ggplot(GL, 
+       aes(x = log(LMAs_pot), y = log(LL), col = DE)) +
+  geom_errorbarh(aes(xmax = log(LMAs_hi), xmin = log(LMAs_lo)), 
+                 alpha = 0.3) +
+  geom_point() +
+  geom_point(aes(y = mu2), col = "black") +
+  #geom_abline(slope=0.23, intercept= 1.57) +
+  geom_abline(slope=GL_summary["beta2", "mean"],
+              intercept= GL_summary["log_beta", "mean"]) +
+  geom_abline(slope = moge2$slope, intercept = moge2$int, alpha = 0.02, col = "grey") +
+  geom_abline(slope=l6[[1]][2], intercept=l6[[1]][1], lty = 2) +
+  geom_abline(slope=s6[[1]][[1]][2,1], 
+              intercept=s6[[1]][[1]][1,1], lty = 2, col = "red") +
+  theme_light()
+
+```
+
+## Type 2 
+
+### Aarea + Rarea
+
+```{r echo = FALSE}
+load("./data/GL_potPL_type2_obs.rda")
+
+GL_summary <- data.frame(summary(res)$summary)
+GL <- dat
+#GL <- GL_sim_dat %>%
+#  mutate(DE = gr)
+P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
+
+trueLMA1 <- GL_summary %>%
+  filter(str_detect(rownames(.), "trueLMA1")) %>%
+  select(mean) %>%
+  unlist %>%
+  exp
+
+GL <- GL %>%
+  mutate(DE = ifelse(GL$DE == "", "U", as.character(DE))) %>%
+  mutate(LMAp_pot =  GL_summary[P_vec, "mean"] * LMA) %>%
+  mutate(LMAp_hi =  GL_summary[P_vec, "X97.5."] * LMA) %>%
+  mutate(LMAp_hi2 = LMAp_pot + GL_summary[P_vec, "sd"] * LMA) %>% 
+  mutate(LMAp_lo =  GL_summary[P_vec, "X2.5."] * LMA) %>%
+  mutate(LMAp_lo2 = LMAp_pot - GL_summary[P_vec, "sd"] * LMA) %>% 
+  mutate(LMAs_pot = LMA - LMAp_pot) %>%
+  mutate(LMAs_hi = LMA - LMAp_hi) %>%
+  mutate(LMAs_lo = LMA - LMAp_lo) %>%
+  mutate(mu1 = GL_summary[paste("mu[",1:nrow(GL),",1]",sep=""),"mean"]*2-2.5) %>%
+  mutate(mu1 = GL_summary[paste("mu[",1:nrow(GL),",1]",sep=""),"mean"]) %>%
+  mutate(mu2 = GL_summary[paste("mu[",1:nrow(GL),",2]",sep=""),"mean"]) %>%
+  mutate(mu3 = GL_summary[paste("mu[",1:nrow(GL),",3]",sep=""),"mean"]) %>%
+  mutate(res = Aarea + Rarea - exp(mu1)) %>%
+  mutate(f = LMAp_pot / LMA)
+
+l5 <- lm(log(Aarea+Rarea) ~ log(LMAp_pot), GL)
+s5 <- sma(log(Aarea+Rarea) ~ log(LMAp_pot), GL)
+
+l6 <- lm(log(LL) ~ log(LMAs_pot), GL)
+s6 <- sma(log(LL) ~ log(LMAs_pot), GL)
+
+l7 <- lm(log(Rarea) ~ log(LMAp_pot) + log(LMAs_pot), GL)
+
+moge <- data_frame(int = extract(res, "log_alpha") %>% unlist,
+  slope = extract(res, "alpha2") %>% unlist)
+
+ggplot(GL, 
+       aes(x = log(LMAp_pot), y = log(Aarea + Rarea), col = DE)) +
+  geom_errorbarh(aes(xmax = log(LMAp_hi), xmin = log(LMAp_lo)), 
+                 alpha = 0.3) +
+  geom_point() +
+  geom_abline(slope = moge$slope, intercept = moge$int, alpha = 0.02, col = "grey") +
+  geom_point(aes(y = mu1), col = "black") +
+  geom_abline(slope=GL_summary["alpha2", "mean"],
+              intercept= GL_summary["log_alpha", "mean"]) +
+  geom_abline(slope=l5[[1]][2], intercept=l5[[1]][1], lty = 2) +
+  geom_abline(slope=s5[[1]][[1]][2,1], 
+              intercept=s5[[1]][[1]][1,1], lty = 2, col = "red") +
+  theme_light()
+
+```
+
+
+### LL 
+
+```{r echo = FALSE}
+moge2 <- data_frame(int = extract(res, "log_beta") %>% unlist,
+  slope = extract(res, "beta2") %>% unlist)
+
+ggplot(GL, 
+       aes(x = log(LMAs_pot), y = log(LL), col = DE)) +
+  geom_errorbarh(aes(xmax = log(LMAs_hi), xmin = log(LMAs_lo)), 
+                 alpha = 0.3) +
+  geom_point() +
+  geom_point(aes(y = mu2), col = "black") +
+  #geom_abline(slope=0.23, intercept= 1.57) +
+  geom_abline(slope=GL_summary["beta2", "mean"],
+              intercept= GL_summary["log_beta", "mean"]) +
+  geom_abline(slope = moge2$slope, intercept = moge2$int, alpha = 0.02, col = "grey") +
+  geom_abline(slope=l6[[1]][2], intercept=l6[[1]][1], lty = 2) +
+  geom_abline(slope=s6[[1]][[1]][2,1], 
+              intercept=s6[[1]][[1]][1,1], lty = 2, col = "red") +
+  theme_light()
+
+```
+
+## Type 2 (LMA1, LMA2)
+
+### Aarea + Rarea
+
+```{r echo = FALSE}
+load("./data/GL_potPL_type22_obs.rda")
+
+GL_summary <- data.frame(summary(res)$summary)
+GL <- dat
+#GL <- GL_sim_dat %>%
+#  mutate(DE = gr)
+P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
+
+trueLMA1 <- GL_summary %>%
+  filter(str_detect(rownames(.), "trueLMA1")) %>%
+  select(mean) %>%
+  unlist %>%
+  exp
+
+GL <- GL %>%
+  mutate(DE = ifelse(GL$DE == "", "U", as.character(DE))) %>%
+  mutate(LMAp_pot =  GL_summary[P_vec, "mean"] * LMA) %>%
+  mutate(LMAp_hi =  GL_summary[P_vec, "X97.5."] * LMA) %>%
+  mutate(LMAp_hi2 = LMAp_pot + GL_summary[P_vec, "sd"] * LMA) %>% 
+  mutate(LMAp_lo =  GL_summary[P_vec, "X2.5."] * LMA) %>%
+  mutate(LMAp_lo2 = LMAp_pot - GL_summary[P_vec, "sd"] * LMA) %>% 
+  mutate(LMAs_pot = LMA - LMAp_pot) %>%
+  mutate(LMAs_hi = LMA - LMAp_hi) %>%
+  mutate(LMAs_lo = LMA - LMAp_lo) %>%
+  mutate(mu1 = GL_summary[paste("mu[",1:nrow(GL),",1]",sep=""),"mean"]*2-2.5) %>%
+  mutate(mu1 = GL_summary[paste("mu[",1:nrow(GL),",1]",sep=""),"mean"]) %>%
+  mutate(mu2 = GL_summary[paste("mu[",1:nrow(GL),",2]",sep=""),"mean"]) %>%
+  mutate(mu3 = GL_summary[paste("mu[",1:nrow(GL),",3]",sep=""),"mean"]) %>%
+  mutate(res = Aarea + Rarea - exp(mu1)) %>%
+  mutate(f = LMAp_pot / LMA)
+
+l5 <- lm(log(Aarea+Rarea) ~ log(LMAp_pot), GL)
+s5 <- sma(log(Aarea+Rarea) ~ log(LMAp_pot), GL)
+
+l6 <- lm(log(LL) ~ log(LMAs_pot), GL)
+s6 <- sma(log(LL) ~ log(LMAs_pot), GL)
+
+l7 <- lm(log(Rarea) ~ log(LMAp_pot) + log(LMAs_pot), GL)
+
+moge <- data_frame(int = extract(res, "log_alpha") %>% unlist,
+  slope = extract(res, "alpha2") %>% unlist)
+
+ggplot(GL, 
+       aes(x = log(LMAp_pot), y = log(Aarea + Rarea), col = DE)) +
+  geom_errorbarh(aes(xmax = log(LMAp_hi), xmin = log(LMAp_lo)), 
+                 alpha = 0.3) +
+  geom_point() +
+  geom_abline(slope = moge$slope, intercept = moge$int, alpha = 0.02, col = "grey") +
+  geom_point(aes(y = mu1), col = "black") +
+  geom_abline(slope=GL_summary["alpha2", "mean"],
+              intercept= GL_summary["log_alpha", "mean"]) +
+  geom_abline(slope=l5[[1]][2], intercept=l5[[1]][1], lty = 2) +
+  geom_abline(slope=s5[[1]][[1]][2,1], 
+              intercept=s5[[1]][[1]][1,1], lty = 2, col = "red") +
+  theme_light()
+
+```
+
+
+### LL 
+
+```{r echo = FALSE}
+moge2 <- data_frame(int = extract(res, "log_beta") %>% unlist,
+  slope = extract(res, "beta2") %>% unlist)
+
+ggplot(GL, 
+       aes(x = log(LMAs_pot), y = log(LL), col = DE)) +
+  geom_errorbarh(aes(xmax = log(LMAs_hi), xmin = log(LMAs_lo)), 
+                 alpha = 0.3) +
+  geom_point() +
+  geom_point(aes(y = mu2), col = "black") +
+  #geom_abline(slope=0.23, intercept= 1.57) +
+  geom_abline(slope=GL_summary["beta2", "mean"],
+              intercept= GL_summary["log_beta", "mean"]) +
+  geom_abline(slope = moge2$slope, intercept = moge2$int, alpha = 0.02, col = "grey") +
+  geom_abline(slope=l6[[1]][2], intercept=l6[[1]][1], lty = 2) +
+  geom_abline(slope=s6[[1]][[1]][2,1], 
+              intercept=s6[[1]][[1]][1,1], lty = 2, col = "red") +
+  theme_light()
+```

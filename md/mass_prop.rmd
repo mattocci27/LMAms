@@ -1,0 +1,378 @@
+---
+title: Mass-prop
+author: Masatoshi Katabuchi
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: true
+---
+
+# Data
+
+```{r}
+library(cowplot)
+source("../fig_theme.r")
+
+theme_LES2 <- function(base_size = 9, 
+                     base_family = "sans") {
+  # based on theme_bw which is based on theme_grey
+  ret <- theme_grey(base_size = base_size, base_family = base_family) %+replace%
+    theme(panel.background = element_rect(fill = "white", colour = NA), 
+          panel.border = element_rect(fill = NA, colour = "black", size = 0.25), 
+          #panel.grid.major = element_line(colour = "grey87"),
+         # panel.grid.minor = element_line(colour = "grey87", size = 0.25), 
+          panel.grid.major = element_line(colour = NA),
+          panel.grid.minor = element_line(colour = NA, size = 0.25), 
+          panel.spacing = unit(0, "lines"),
+          strip.background = element_blank(), 
+         # strip.background = element_rect(fill = "white"), 
+          legend.key = element_rect(fill = NA, colour = NA),
+         # legend.position = "top",
+          legend.margin = margin(t = 0, unit = "cm"),
+          legend.key.size = unit(0.2, "cm"),
+          legend.box = "horizontal",
+          legend.box.spacing = unit(0.1, "cm"),
+          #plot.background=element_rect(fill="red"), # fix 
+          #plot.background=element_rect(fill=NA), # fix 
+          plot.background = element_blank(),
+          strip.text = element_text(size = 9),
+          strip.placement = "outside",
+          strip.switch.pad.grid = unit(0, "cm"),
+          axis.ticks.length = unit(-0.15, "cm"),
+          axis.ticks = element_line(size = 0.25),
+          axis.title = element_text(size = 8),
+          axis.text.x = element_text(margin = margin(0.25, unit = "cm"),
+                                     size = unit(8, "pt"),
+                                     colour = "black"),
+          axis.text.y = element_text(hjust = 0.5,
+                                     margin = margin(r = 0.25, unit = "cm"),
+                                     debug = FALSE,
+                                     size = unit(8, "pt"),
+                                     colour = "black"),
+          legend.text = element_text(size = 8),
+          #legend.title = element_blank(),
+          axis.title.y = element_text(margin = margin(t = 0,
+                                                      b = 0,
+                                                      l = 0,
+                                                      r = 0),
+                                      angle = 90),
+          axis.title.x = element_text(margin = margin(t = 0,
+                                                      b = 0,
+                                                      l = 0,
+                                                      r = 0)),
+          complete = TRUE) 
+}
+
+
+theme_set(theme_LES2())
+set.seed(123)
+am <- seq(0, 1, by = 0.05)
+as <- seq(-1, 1, by = 0.05)
+
+dat <- expand.grid(am = am, as = as)
+
+N <- 100
+mass_prop <- NULL
+LMAs <- rlnorm(N, log(40), 1)
+LMAp <- sample(LMAs, N)
+LMAs2 <- rlnorm(N, log(40), 4)
+LMAp2 <- rlnorm(N, log(40), 4)
+#LMAp <- sample(LMAs, N)
+var(LMAs)
+var(LMAp2)
+var(LMAs %>% log)
+var(LMAp2 %>% log)
+
+LMA <- LMAp + LMAs
+LMA2p <- LMAp2 + LMAs
+LMA2s <- LMAp + LMAs2
+mass_prop <- NULL
+mass_prop2p <- NULL
+mass_prop2s <- NULL
+for (i in 1:nrow(dat)) {
+  A <- rlnorm(N, dat$am[i] * log(LMAp) + dat$as[i] * log(LMAs), 0)
+  fit <- lm(log(A) ~ log(LMA))
+  mass_prop[i] <- fit$coefficients[2]
+  
+  A <- rlnorm(N, dat$am[i] * log(LMAp2) + dat$as[i] * log(LMAs), 0)
+  fit <- lm(log(A) ~ log(LMA2p))
+  mass_prop2p[i] <- fit$coefficients[2]
+
+  A <- rlnorm(N, dat$am[i] * log(LMAp) + dat$as[i] * log(LMAs2), 0)
+  fit <- lm(log(A) ~ log(LMA2s))
+  mass_prop2s[i] <- fit$coefficients[2]
+}
+
+dat2 <- dat %>%
+  as_data_frame %>%
+  mutate('var(LMAm) = var(LMAs)' = mass_prop) %>%
+  mutate('var(LMAm) >> var(LMAs)' = mass_prop2p) %>%
+  mutate('var(LMAm) << var(LMAs)' = mass_prop2s) %>%
+  filter(am >= as) %>%
+  filter(am > 0 | as > 0)
+
+dat3 <- dat2 %>%
+  gather(type, val, 3:5) #%>%
+#  filter(val > -0.2 & val < 1.2)
+
+mass_plt <- ggplot(dat3, aes(x = am, y= as, fill = val)) +
+  geom_raster() +
+  facet_grid(~type) +
+  scale_fill_gradient2(midpoint = 0.5,
+                       name = "Mass \nproportionality") +
+  xlab(expression(alpha[m])) +
+  ylab(expression(alpha[s])) +
+  theme(legend.position = "none")
+
+print(mass_plt)
+
+my_ggsave("../figs/mass_prop2.png", mass_plt,
+          width = 20,
+          height = 6)
+
+```
+
+
+# based on the results
+
+```{r}
+
+GL <- read_csv("../data/GL_res.csv")
+PA <- read_csv("../data/PA_res.csv")
+
+Sun <- PA %>%
+  filter(strata == "CAN")
+
+Shade <- PA %>%
+  filter(strata != "CAN")
+
+GL_para <- read_csv("../data/GLpara.csv")
+PA_para <- read_csv("../data/PApara.csv")
+
+as1 <- GL_para %>%
+  dplyr::filter(para == "amas[1]") %>%
+  dplyr::select(X50., X2.5., X97.5.)
+
+am1 <- GL_para %>%
+  dplyr::filter(para == "amas[2]") %>%
+  dplyr::select(X50., X2.5., X97.5.)
+
+as2 <- PA_para %>%
+  dplyr::filter(para == "as") %>%
+  dplyr::select(X50., X2.5., X97.5.)
+
+am2 <- PA_para %>%
+  dplyr::filter(para == "am") %>%
+  dplyr::select(X50., X2.5., X97.5.)
+
+point_dat <- bind_rows(am1, am2, am2)
+point_dat2 <- bind_rows(as1, as2, as2)
+
+point_dat3 <- bind_cols(point_dat, point_dat2) 
+names(point_dat3) <- c("am_mid", "am_low", "am_upper",
+                      "as_mid", "as_low", "as_upper"
+                     ) 
+
+point_dat4 <- point_dat3 %>%
+  mutate(type = c("GLOPNET", "Panama Sun", "Panama Shade")) 
+
+PA2 <- PA %>%
+  group_by(site, strata) %>%
+  nest() %>%
+  mutate(n = map_dbl(data, function(x)nrow(x))) %>%
+  mutate(LMAp_sd = map_dbl(data, function(x)sd(log(x$LMAp)))) %>%
+  mutate(LMAs_sd = map_dbl(data, function(x)sd(log(x$LMAs)))) %>%
+  mutate(LMAp_mu = map_dbl(data, function(x)mean(log(x$LMAp)))) %>%
+  mutate(LMAs_mu = map_dbl(data, function(x)mean(log(x$LMAs)))) 
+
+my_rlnorm <- function(n, mu, sigma)rlnorm(n, mu-0.5*sigma^2, sigma)
+
+set.seed(123)
+am <- seq(-1, 1, by = 0.1)
+as <- seq(-1, 1, by = 0.1)
+dat <- expand.grid(am = am, as = as)
+N <- nrow(GL)
+N2 <- nrow(Sun)
+N3 <- nrow(Shade)
+mass_prop <- NULL
+mass_prop2 <- NULL
+mass_prop3 <- NULL
+mass_prop_ <- NULL
+mass_prop2_ <- NULL
+mass_prop3_ <- NULL
+
+LMA_dat <- PA2 %>%
+  mutate(LMAp2 = pmap(list(n, LMAp_mu, LMAp_sd), my_rlnorm)) %>%
+  mutate(LMAs2 = pmap(list(n, LMAs_mu, LMAs_sd), my_rlnorm)) %>%
+  select(-data) %>%
+  unnest
+
+LMA_dat
+
+#Sun <- LMA_dat %>%
+#  filter(strata == "CAN")
+#Shade <- LMA_dat %>%
+#  filter(strata != "CAN")
+
+for (j in 1:1) {
+  for (i in 1:nrow(dat)) {
+    A <- rlnorm(N, dat$am[i] * log(GL$LMAp) + dat$as[i] * log(GL$LMAs), 0)
+    fit <- lm(log(A) ~ log(GL$LMA))
+    mass_prop[i] <- fit$coefficients[2]
+    
+    A <- rlnorm(N2, dat$am[i] * log(Sun$LMAp) + dat$as[i] * log(Sun$LMAs), 0)
+    fit <- lm(log(A) ~ log(Sun$LMA))
+    mass_prop2[i] <- fit$coefficients[2]
+
+    A <- rlnorm(N3, dat$am[i] * log(Shade$LMAp) + dat$as[i] * log(Shade$LMAs), 0)
+    fit <- lm(log(A) ~ log(Shade$LMA))
+    mass_prop3[i] <- fit$coefficients[2]
+  }
+  mass_prop_ <- rbind(mass_prop_, mass_prop)
+  mass_prop2_ <- rbind(mass_prop2_, mass_prop2)
+  mass_prop3_ <- rbind(mass_prop3_, mass_prop3)
+}
+
+#mass_prop <- apply(mass_prop_, 2, mean)
+#mass_prop2 <- apply(mass_prop2_, 2, mean)
+#mass_prop3 <- apply(mass_prop3_, 2, mean)
+
+#LMAs <- rlnorm(N, mean(log(PA$LMAs)) - sd(log(PA$LMAs))^2, sd(log(PA$LMAs)))
+#LMAp <- rlnorm(N, mean(log(PA$LMAp)) - sd(log(PA$LMAp))^2, sd(log(PA$LMAp)))
+#LMA <- LMAs + LMAp
+#
+#LMAs2 <- rlnorm(N2, mean(log(Sun$LMAs)) - sd(log(Sun$LMAs))^2, sd(log(Sun$LMAs)))
+#LMAp2 <- rlnorm(N2, mean(log(Sun$LMAp)) - sd(log(Sun$LMAp))^2, sd(log(Sun$LMAp)))
+#LMA2 <- LMAs2 + LMAp2
+#
+#sd(LMAs2 %>% log)
+#sd(LMAp2 %>% log)
+#
+#LMAs3 <- rlnorm(N3, mean(log(Shade$LMAs)) - sd(log(Shade$LMAs))^2, sd(log(Shade$LMAs)))
+#LMAp3 <- rlnorm(N3, mean(log(Shade$LMAp)) - sd(log(Shade$LMAp))^2, sd(log(Shade$LMAp)))
+#LMA3 <- LMAs3 + LMAp3
+#
+
+#LMAs3 <- rlnorm(N3, mean(log(PA$LMAs)) - sd(log(PA$LMAs))^2, sd(log(PA$LMAs)))
+#LMAp3 <- rlnorm(N3, mean(log(PA$LMAp)) - sd(log(PA$LMAp))^2, sd(log(PA$LMAp)))
+#LMA3 <- LMAs3 + LMAp3
+#sd(LMAs3 %>% log)
+#sd(LMAp3 %>% log)
+
+
+#for (i in 1:nrow(dat)) {
+#  A <- rlnorm(N, dat$am[i] * log(LMAp) + dat$as[i] * log(LMAs), 0)
+#  fit <- lm(log(A) ~ log(LMA))
+#  mass_prop[i] <- fit$coefficients[2]
+#  
+#  A <- rlnorm(N2, dat$am[i] * log(LMAp2) + dat$as[i] * log(LMAs2), 0)
+#  fit <- lm(log(A) ~ log(LMA2))
+#  mass_prop2[i] <- fit$coefficients[2]
+#
+#  A <- rlnorm(N3, dat$am[i] * log(LMAp3) + dat$as[i] * log(LMAs3), 0)
+#  fit <- lm(log(A) ~ log(LMA3))
+#  mass_prop3[i] <- fit$coefficients[2]
+#}
+
+
+dat2 <- dat %>%
+  as_data_frame %>%
+  mutate('GLOPNET' = mass_prop) %>%
+  mutate('Panama Sun' = mass_prop2) %>%
+  mutate('Panama Shade' = mass_prop3) %>%
+  filter(am >= as) %>%
+  filter(am > 0 | as > 0)
+
+dat3 <- dat2 %>%
+  gather(type, val, 3:5) #%>%
+  #filter(val > -0.5 & val < 2)
+
+mass_plt2 <- ggplot(dat3) +
+  geom_raster(aes(x = am, y = as, fill = val)) +
+  facet_grid(~type) +
+  geom_point(data = point_dat4, aes(x = am_mid, y = as_mid)) +
+  geom_errorbar(data = point_dat4, aes(ymin = as_low, ymax = as_upper, 
+                                        x = am_mid), width = 0) +
+  geom_errorbarh(data = point_dat4, aes(xmin = am_low, xmax = am_upper, 
+                                        y = as_mid,
+                                        height = 0)) +
+  scale_fill_gradient2(midpoint = 0.5,
+                       name = "Mass \nproportionality") +
+  xlab(expression(alpha[m])) +
+  ylab(expression(alpha[s]))
+
+print(mass_plt2)
+
+```
+
+
+```{r}
+p <- plot_grid(mass_plt, mass_plt2, 
+          ncol = 1,
+          labels = c("(a)", "(b)"),
+          label_size = 9,
+          align = c("hv"))
+p
+
+my_ggsave("../figs/mass_prop3.png", p,
+          width = 12,
+          height = 8)
+```
+
+# sim for var 
+
+```{r}
+
+am <- 0.35
+am2 <- 0.6
+sigma1 <- c(0.1, 0.5, 1, 2)
+sigma2 <- sigma1 
+
+dat <- expand.grid(sigma1 = sigma1, sigma2 = sigma2, as = as)
+
+mass_prop <- NULL
+mass_prop2 <- NULL
+
+for (i in 1:nrow(dat)) {
+  LMAp <- rlnorm(N, log(40), dat$sigma1[i])
+  LMAs <- rlnorm(N, log(40), dat$sigma2[i])
+  LMA <- LMAp + LMAs
+  A <- rlnorm(N, am * log(LMAp) + dat$as[i] * log(LMAs), 0)
+  fit <- lm(log(A) ~ log(LMA))
+  mass_prop[i] <- fit$coefficients[2]
+  
+  A <- rlnorm(N, am2 * log(LMAp) + dat$as[i] * log(LMAs), 0)
+  fit2 <- lm(log(A) ~ log(LMA))
+  mass_prop2[i] <- fit2$coefficients[2]
+}
+
+dat2 <- dat %>%
+  as_data_frame %>%
+  mutate('am = 0.35' = mass_prop) %>%
+  mutate('am = 0.6' = mass_prop2) %>%
+  filter(am >= as) %>%
+  filter(am > 0 | as > 0) 
+
+dat3 <- dat2 %>%
+  gather(type, val, 4:5) %>%
+  filter(val < 1 & val > 0)
+
+mass_plt2 <- ggplot(dat3, aes(x = sigma1/sigma2, y= as, fill = val)) +
+  geom_raster() +
+  facet_grid(~type) +
+  scale_fill_gradient2(midpoint = 0.5,
+                       name = "Mass \nproportionality") +
+  xlab("var") +
+  ylab(expression(alpha[s]))
+
+mass_plt2
+
+```
+
+
+
+
+
+
+
+

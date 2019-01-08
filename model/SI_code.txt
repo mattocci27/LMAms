@@ -1,0 +1,254 @@
+# Stan codes for LMAp and LMAs model
+# Mastoshi Katabuchi
+# mattocci27@gmail.com
+# January 31, 2017
+#
+# Need to load data files.
+
+# GLOPNET - Potential LL
+model1 <- "
+  data{
+    int<lower=0> n_sample;
+    vector<lower=0>[n_sample] LMA;
+    row_vector[3] obs[n_sample]; //1st element = log(Aarea + Rarea), 2nd = log(LL), 3rd = log(Rarea)
+  }
+  parameters{
+    real log_alpha;
+    real log_beta;
+    real rp;
+    real rs;
+    vector<lower=0>[3] L_sigma;
+    cholesky_factor_corr[3] L_Omega;
+    vector<lower=0.001, upper=0.999>[n_sample] p;
+  }
+  transformed parameters{
+    row_vector[3] mu[n_sample];
+    real<lower=0> mu3;
+    for (i in 1:n_sample){
+      mu[i,1] = log_alpha + log(LMA[i]) + log(p[i])
+             - 0.5 * square(L_sigma[1]); //Eq. 8
+      mu[i,2] = log_beta + log(LMA[i]) + log(1-p[i])
+             - 0.5 * square(L_sigma[2]); //Eq. 9
+      mu3 = rp * LMA[i] * p[i] + rs * LMA[i] * (1 - p[i]);
+      mu[i,3]  = log(mu3) - 0.5 * square(L_sigma[3]); //Eq. 10
+    }
+  }
+  model{
+    obs ~ multi_normal_cholesky(mu, diag_pre_multiply(L_sigma, L_Omega));
+    p ~ uniform(0.001, 0.999);
+    log_alpha ~ normal(0, 1.0e+4);
+    log_beta ~ normal(0, 1.0e+4);
+    rp ~ normal(0, 1.0e+4);
+    rs ~ normal(0, 1.0e+4);
+    L_Omega ~ lkj_corr_cholesky(1); //uniform of L_Omega * L_Omega'
+    L_sigma ~ uniform(0, 1.0e+4);
+  }
+ generated quantities {
+    vector[n_sample] log_lik;
+    real<lower=-1, upper=1> rho12;
+    real<lower=-1, upper=1> rho23;
+    real<lower=-1, upper=1> rho13;
+    cov_matrix[3] Sigma;
+    Sigma = diag_pre_multiply(L_sigma, L_Omega)
+        * diag_post_multiply(L_Omega', L_sigma);
+    rho12 = Sigma[1, 2] * inv(L_sigma[1] * L_sigma[2]);
+    rho23 = Sigma[2, 3] * inv(L_sigma[2] * L_sigma[3]);
+    rho13 = Sigma[1, 3] * inv(L_sigma[1] * L_sigma[3]);
+    for (i in 1:n_sample)
+     log_lik[i] = multi_normal_cholesky_lpdf(obs[i]| mu[i], diag_pre_multiply(L_sigma, L_Omega));
+   }
+"
+
+# Panama - Potential LL
+model2 <- "
+  data{
+    int<lower=0> n_sample;
+    vector<lower=0>[n_sample] LMA;
+    row_vector[3] obs[n_sample];
+  }
+  parameters{
+    real log_alpha;
+    real log_beta;
+    real rp;
+    real rs;
+    vector<lower=0>[3] L_sigma;
+    cholesky_factor_corr[3] L_Omega;
+    vector<lower=0.001, upper=0.999>[n_sample] p;
+  }
+  transformed parameters{
+    row_vector[3] mu[n_sample];
+    real<lower=0> mu3;
+    for (i in 1:n_sample){
+      mu[i,1] = log_alpha + log(LMA[i]) + log(p[i])
+             - 0.5 * square(L_sigma[1]);
+      mu[i,2] = log_beta + log(LMA[i]) + log(1-p[i])
+             - 0.5 * square(L_sigma[2]);
+      mu3 = rp * LMA[i] * p[i] + rs * LMA[i] * (1 - p[i]);
+      mu[i,3]  = log(mu3) - 0.5 * square(L_sigma[3]);
+    }
+  }
+  model{
+    obs ~ multi_normal_cholesky(mu, diag_pre_multiply(L_sigma, L_Omega));
+    p ~ uniform(0.001, 0.999);
+    log_alpha ~ normal(0, 1.0e+4);
+    log_beta ~ normal(0, 1.0e+4);
+    rp ~ normal(0, 1.0e+4);
+    rs ~ normal(0, 1.0e+4);
+    L_Omega ~ lkj_corr_cholesky(1); //uniform Sigma
+    L_sigma ~ uniform(0, 1.0e+4);
+  }
+ generated quantities {
+    vector[n_sample] log_lik;
+    real<lower=-1, upper=1> rho12;
+    real<lower=-1, upper=1> rho23;
+    real<lower=-1, upper=1> rho13;
+    cov_matrix[3] Sigma;
+    Sigma = diag_pre_multiply(L_sigma, L_Omega)
+        * diag_post_multiply(L_Omega', L_sigma);
+    rho12 = Sigma[1, 2] * inv(L_sigma[1] * L_sigma[2]);
+    rho23 = Sigma[2, 3] * inv(L_sigma[2] * L_sigma[3]);
+    rho13 = Sigma[1, 3] * inv(L_sigma[1] * L_sigma[3]);
+    for (i in 1:n_sample)
+     log_lik[i] = multi_normal_cholesky_lpdf(obs[i]| mu[i], diag_pre_multiply(L_sigma, L_Omega));
+   }
+"
+
+# Panama - Optimal LL (without site effects)
+model3 <- "
+  data{
+    int<lower=0> n_sample;
+    vector<lower=0>[n_sample] LMA;
+    vector<lower=0>[n_sample] A;
+    vector<lower=0>[n_sample] R;
+    row_vector[3] obs[n_sample];
+    real<lower=0> q_lim;  //0.2477749 q * A - R > 0 in line 151 and 165
+    int<lower=0> leaf[n_sample];
+  }
+  parameters{
+    real log_alpha;
+    real log_beta;
+    real rp;
+    real rs;
+    real<lower=q_lim, upper=0.999> q;
+    vector<lower=0>[3] L_sigma;
+    cholesky_factor_corr[3] L_Omega;
+    vector<lower=0.001, upper=0.999>[n_sample] p;
+  }
+  transformed parameters{
+    row_vector[3] mu[n_sample];
+    real<lower=0> mu3;
+    for (i in 1:n_sample){
+      mu[i,1] = log_alpha + log(LMA[i]) + log(p[i]) - 0.5 * square(L_sigma[1]);
+
+    if (leaf[i]==1) // sun
+      mu[i,2] = log_beta + log(LMA[i])
+            + 0.5 * log(1 - p[i])
+            - 0.5 * log(A[i] - R[i])
+            - 0.5 * square(L_sigma[2]);
+    else
+      mu[i,2] = log_beta + log(LMA[i])
+            + 0.5 * log(1 - p[i])
+            - 0.5 * log(q * A[i] - R[i])
+            - 0.5 * square(L_sigma[2]);
+
+    mu3 = rp * LMA[i] * p[i] + rs * LMA[i] * (1 - p[i]);
+    mu[i,3]  = log(mu3) - 0.5 * square(L_sigma[3]);
+    }
+  }
+  model{
+    obs ~ multi_normal_cholesky(mu, diag_pre_multiply(L_sigma, L_Omega));
+    p ~ uniform(0.001, 0.999);
+    log_alpha ~ normal(0, 1.0e+4);
+    log_beta ~ normal(0, 1.0e+4);
+    rp ~ normal(0, 1.0e+4);
+    rs ~ normal(0, 1.0e+4);
+    q ~ uniform(q_lim, 0.999);
+    L_Omega ~ lkj_corr_cholesky(1); //0 < eta < 1 (Alvarez's guess)
+    L_sigma ~ uniform(0, 1.0e+4);
+  }
+  generated quantities {
+    vector[n_sample] log_lik;
+    real<lower=-1, upper=1> rho12;
+    real<lower=-1, upper=1> rho23;
+    real<lower=-1, upper=1> rho13;
+    cov_matrix[3] Sigma;
+    Sigma = diag_pre_multiply(L_sigma, L_Omega)
+       * diag_post_multiply(L_Omega', L_sigma);
+    rho12 = Sigma[1, 2] * inv(L_sigma[1] * L_sigma[2]);
+    rho23 = Sigma[2, 3] * inv(L_sigma[2] * L_sigma[3]);
+    rho13 = Sigma[1, 3] * inv(L_sigma[1] * L_sigma[3]);
+    for (i in 1:n_sample)
+      log_lik[i] = multi_normal_cholesky_lpdf(obs[i]| mu[i], diag_pre_multiply(L_sigma, L_Omega));
+   }
+"
+# Panama - Optimal LL with site effects
+model4 <- "
+  data{
+    int<lower=0> n_sample;
+    vector<lower=0>[n_sample] LMA;
+    vector<lower=0>[n_sample] A;
+    vector<lower=0>[n_sample] R;
+    row_vector[3] obs[n_sample];
+    real<lower=0> q_lim;
+    int<lower=0> leaf[n_sample];
+    int<lower=0> dry[n_sample];
+  }
+  parameters{
+    real log_alpha;
+    real log_beta;
+    real rp;
+    real rs;
+    real log_site;
+    real<lower=q_lim, upper=0.999> q;
+    vector<lower=0>[3] L_sigma;
+    cholesky_factor_corr[3] L_Omega;
+    vector<lower=0.001, upper=0.999>[n_sample] p;
+  }
+  transformed parameters{
+    row_vector[3] mu[n_sample];
+    real<lower=0> mu3;
+    for (i in 1:n_sample){
+      mu[i,1] = log_alpha + log(LMA[i]) + log(p[i]) - 0.5 * square(L_sigma[1]);
+
+    if (leaf[i]==1) // sun
+      mu[i,2] = log_beta + log_site * dry[i] + log(LMA[i])
+            + 0.5 * log(1 - p[i])
+            - 0.5 * log(A[i] - R[i])
+            - 0.5 * square(L_sigma[2]);
+    else
+      mu[i,2] = log_beta + log_site * dry[i] + log(LMA[i])
+            + 0.5 * log(1 - p[i])
+            - 0.5 * log(q * A[i] - R[i])
+            - 0.5 * square(L_sigma[2]);
+
+    mu3 = rp * LMA[i] * p[i] + rs * LMA[i] * (1 - p[i]);
+    mu[i,3]  = log(mu3) - 0.5 * square(L_sigma[3]);
+    }
+  }
+  model{
+    obs ~ multi_normal_cholesky(mu, diag_pre_multiply(L_sigma, L_Omega));
+    p ~ uniform(0.001, 0.999);
+    log_alpha ~ normal(0, 1.0e+4);
+    log_beta ~ normal(0, 1.0e+4);
+    rp ~ normal(0, 1.0e+4);
+    rs ~ normal(0, 1.0e+4);
+    log_site ~ normal(0, 1.0e+4);
+    q ~ uniform(q_lim, 0.999);
+    L_Omega ~ lkj_corr_cholesky(1);
+    L_sigma ~ uniform(0, 1.0e+4);
+  }
+  generated quantities {
+    vector[n_sample] log_lik;
+    real<lower=-1, upper=1> rho12;
+    real<lower=-1, upper=1> rho23;
+    real<lower=-1, upper=1> rho13;
+    cov_matrix[3] Sigma;
+    Sigma = diag_pre_multiply(L_sigma, L_Omega)
+       * diag_post_multiply(L_Omega', L_sigma);
+    rho12 = Sigma[1, 2] * inv(L_sigma[1] * L_sigma[2]);
+    rho23 = Sigma[2, 3] * inv(L_sigma[2] * L_sigma[3]);
+    rho13 = Sigma[1, 3] * inv(L_sigma[1] * L_sigma[3]);
+    for (i in 1:n_sample)
+      log_lik[i] = multi_normal_cholesky_lpdf(obs[i]| mu[i], diag_pre_multiply(L_sigma, L_Omega));
+   }
+"

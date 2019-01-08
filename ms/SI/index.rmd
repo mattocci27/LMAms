@@ -1,0 +1,20 @@
+---
+title: "SI"
+date: "`r Sys.Date()`"
+output: bookdown::word_document2
+fontsize: 12
+documentclass: book
+bibliography: ./../ref.bib
+link-citations: yes
+csl: ./../je.csl
+---
+
+```{r caching, include=FALSE}
+library(methods)
+library(knitr)
+library(kableExtra)
+library(png)
+library(grid)
+library(pander)
+source("../rmd_func.r")
+```

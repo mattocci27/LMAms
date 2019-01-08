@@ -1,0 +1,42 @@
+PA:
+  LMA:
+    Sun_Dry: a
+    Shade_Dry: b
+    Sun_Wet: c
+    Shade_Wet: b
+  LMAp:
+    Sun_Dry: a
+    Shade_Dry: b
+    Sun_Wet: a
+    Shade_Wet: b
+  LMAs:
+    Sun_Dry: a
+    Shade_Dry: b
+    Sun_Wet: c
+    Shade_Wet: a
+PA-SI:
+  LMA:
+    Sun_Dry: a
+    Shade_Dry: b
+    Sun_Wet: c
+    Shade_Wet: b
+  LMAp:
+    Sun_Dry: a
+    Shade_Dry: b
+    Sun_Wet: a
+    Shade_Wet: b
+  LMAs:
+    Sun_Dry: a
+    Shade_Dry: a
+    Sun_Wet: b
+    Shade_Wet: a
+GL:
+  LMA:
+    D: a
+    E: b
+  LMAp:
+    D: a
+    E: b
+  LMAs:
+    D: a
+    E: b

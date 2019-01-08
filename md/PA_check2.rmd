@@ -1,0 +1,845 @@
+
+---
+title: "Null model check for Panama"
+output:
+  bookdown::pdf_book:
+    fig_caption: true
+    keep_tex: yes
+    toc: no
+    number_sections: no
+    pandoc_args:
+      - "--filter"
+      - "pandoc-crossref"
+fontsize: 12pt
+sansfont: Times New Roman
+geometry: margin=1in
+link-citations: yes
+---
+
+## Optimal LL
+ According to optimal LL theory, the optimal leaf lifespan (LL~opt~) maximizes a leaf’s lifetime carbon gain per-unit time, which is determined by potential LL, net photosynthetic rate, and construction cost per unit leaf area:
+
+\begin{align}
+  &{\rm LL_{opt}} = \sqrt{2bC/(a-m)}(\#eq:kikuzawa)
+\end{align}
+
+where *a* is the realized (i.e., light-dependent) gross photosynthetic rate per unit leaf area, *m* is the realized daily respiration rate per unit leaf area, *b* is the rate of decline in photosynthetic capacity with leaf age (which determines potential LL in the Kikuzawa model), and *C* is the construction cost per unit leaf area. To implement this Optimal LL Model, we assumed that (i) potential LL is proportional to LMAs; and (ii) leaf construction cost per unit area (g glucose per unit leaf area) is proportional to LMA. Assumption (ii) is justified because leaf construction cost per unit mass (g glucose per unit leaf mass) is strongly conserved. Thus, Eq. \@ref(eq:kikuzawa) can be written in terms of the traits considered in our analysis as:
+
+### LMAsLMA (simple orginal version)
+
+\begin{align}
+  {\rm E[LL}_{i}] &=\beta_{2} \sqrt{{\rm LMAs}_{i}{\rm LMA}_{i}
+  / (\theta_{\rm L} A_{{\rm area} \; i} - R_{{\rm area} \; i})}(\#eq:simple)
+\end{align}
+
+where $\beta_{2}$ is a constant, and $\theta_{\rm L} (0 < \theta_{\rm L} < 1)$ is a scaling parameter that accounts for the effects of light availability on the realized photosynthetic rate. The expected value of the logarithm of LL for the Optimal LL Model is:
+
+- Potential LL is proportional to LMAs.
+
+### $LMAs^{\beta_2}LMA$ (power-law)
+
+\begin{align}
+  {\rm E[LL}_{i}] &=\beta_{2} \sqrt{{\rm LMAs^{\beta_3}}_{i}{\rm LMA}_{i}
+  / (\theta_{\rm L} A_{{\rm area} \; i} - R_{{\rm area} \; i})} \notag \\
+  (\#eq:power)
+\end{align}
+
+
+- Potential LL and LMAs have a power-law relationship
+
+### $LMAs^{\beta_2}$ (power-law, simple)
+
+\begin{align}
+  {\rm E[LL}_{i}] &=\beta_{2} \sqrt{{\rm LMAs^{\beta_3}}_{i}
+  / (\theta_{\rm L} A_{{\rm area} \; i} - R_{{\rm area} \; i})} \notag \\
+  (\#eq:power-simple)
+\end{align}
+
+- Model looks simple but no clear relationship between Kikuzawa model
+
+\newpage
+## LMAsLMA
+```{r, fig.width = 5, fig.height=5, echo = FALSE}
+setwd("~/Dropbox/MS/LES_MS/LMApsModel/data/")
+library(loo)
+# setwd("~/Dropbox/MS/LES_MS/LMApsModel/md/")
+# render("PA_check.rmd", "bookdown::pdf_book")
+# use null result 1
+null_n <- 3
+
+# PA data -------------------------------------------------------------------
+load("PA_model3r_2017-07-07_.RData")
+waic(extract_log_lik(res,"log_lik"))$waic
+loo(extract_log_lik(res,"log_lik"))
+s3r <- fit.summary
+PA <- data
+
+PA <- data %>%
+  mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
+  mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) %>%
+  mutate(site_strata = paste(site2, strata, sep = "_"))
+
+P_vec <- paste("p[", 1:nrow(PA), "]", sep = "")
+Mu_vec <- paste("mu[", 1:nrow(PA), ",2]", sep = "")
+temp_LMAp <- fit.summary[P_vec, "mean"] * PA$LMA
+temp_LMAs <- PA$LMA - temp_LMAp
+temp_LL <- exp(fit.summary[Mu_vec, "mean"])
+
+PA <- PA %>%
+  mutate(LMAp = temp_LMAp) %>%
+  mutate(LMAs = temp_LMAs) %>%
+  mutate(preLL = temp_LL)
+
+# rand LMA
+load("PA_model3r2_LMA.ra.data_2017-06-30_.RData")
+# waic(extract_log_lik(res,"log_lik"))$waic
+
+s3rLMA <- fit.summary.list[[null_n]]
+temp <- LMA.ra.data[,null_n]
+temp_LL <- exp(s3rLMA[Mu_vec, "mean"])
+
+PA <- PA %>%
+  mutate(LMA_ra = temp) %>%
+  mutate(LMAp_ra =  s3rLMA[P_vec, "mean"] * LMA_ra) %>%
+  mutate(LMAs_ra = LMA_ra - LMAp_ra) %>%
+  mutate(preLL_ra = exp(s3rLMA[Mu_vec, "mean"])
+         )
+
+write.csv(PA, "~/Dropbox/MS/LES_MS/LMApsModel/data/PA20170911.csv")
+
+Lim.func <- function(trait){
+  mid_len <- (log10(max(trait, na.rm = T)) - log10(min(trait, na.rm = T))) /2
+  max_lim <- log10(max(trait, na.rm = T)) + mid_len * 0.3
+  min_lim <- log10(min(trait, na.rm = T)) - mid_len * 0.3
+  return(10^(c(min_lim, max_lim)))
+}
+
+PA.each <- function(x, y, data, log = log, y_text = NULL, x_text = NULL, subscript = NULL){
+  sun.wet <- data %>% filter(strata == "CAN" & site == "PNSL")
+  sun.dry <- data %>% filter(strata == "CAN" & site == "PNM")
+  shade.wet <- data %>% filter(strata == "UNDER" & site == "PNSL")
+  shade.dry <- data %>% filter(strata == "UNDER" & site == "PNM")
+
+  rand.x <- paste(x, "rc", sep = "_")
+
+  plot(data[, x], data[, y],
+            log = log, axes = F, type = "n",
+            xlim = Lim.func(data[, x]), ylim = Lim.func(data[, y]))
+
+  mtext(subscript, side = 3, line = -1, adj = 0, cex = 0.65)
+  box()
+
+
+  points(sun.wet[, x], sun.wet[, y], col = "dodgerblue3",
+    pch = 21, bg = "white", lwd = 1.2)
+
+  points(sun.dry[, x], sun.dry[, y], col = "burlywood4",
+    pch = 21, bg = "white", lwd = 1.2)
+
+  points(shade.wet[, x], shade.wet[, y], bg = "dodgerblue3", col = "black",
+    pch = 21, lwd = 0.8)
+
+  points(shade.dry[, x], shade.dry[, y], bg = "burlywood4", col = "black",
+    pch = 21, lwd = 0.8)
+
+
+  if(is.null(y_text) != TRUE){
+    axis(2, tick = FALSE,line = -0.8, cex.axis = 0.9)
+    axis(2, tcl = 0.2, labels = FALSE)
+    mtext(y_text, side = 2, line = 1.2, cex = 0.8)
+  }
+
+  if(is.null(x_text) != TRUE){
+    axis(1, tick = FALSE, line = -0.8, cex.axis = 0.9)
+    axis(1, tcl = 0.2, labels = FALSE, cex = 0.8)
+    mtext(x_text, side = 1, line = 1.5, cex = 0.8)
+  }
+}
+
+PA.each2 <- function(x, y, data, log = log, y_text = NULL, x_text = NULL, subscript = NULL){
+  sun.wet <- data %>% filter(strata_all == "CAN" & site_all == "PNSL")
+  sun.dry <- data %>% filter(strata_all == "CAN" & site_all == "PNM")
+  shade.wet <- data %>% filter(strata_all == "UNDER" & site_all == "PNSL")
+  shade.dry <- data %>% filter(strata_all == "UNDER" & site_all == "PNM")
+
+  rand.x <- paste(x, "rc", sep = "_")
+
+  plot(data[, x], data[, y],
+            log = log, axes = F, type = "n",
+            xlim = Lim.func(data[, x]), ylim = Lim.func(data[, y]))
+
+  mtext(subscript, side = 3, line = -1, adj = 0, cex = 0.65)
+  box()
+
+
+  points(sun.wet[, x], sun.wet[, y], col = "dodgerblue3",
+    pch = 21, bg = "white", lwd = 1.2)
+
+  points(sun.dry[, x], sun.dry[, y], col = "burlywood4",
+    pch = 21, bg = "white", lwd = 1.2)
+
+  points(shade.wet[, x], shade.wet[, y], bg = "dodgerblue3", col = "black",
+    pch = 21, lwd = 0.8)
+
+  points(shade.dry[, x], shade.dry[, y], bg = "burlywood4", col = "black",
+    pch = 21, lwd = 0.8)
+
+
+  if(is.null(y_text) != TRUE){
+    axis(2, tick = FALSE,line = -0.8, cex.axis = 0.9)
+    axis(2, tcl = 0.2, labels = FALSE)
+    mtext(y_text, side = 2, line = 1.2, cex = 0.8)
+  }
+
+  if(is.null(x_text) != TRUE){
+    axis(1, tick = FALSE, line = -0.8, cex.axis = 0.9)
+    axis(1, tcl = 0.2, labels = FALSE, cex = 0.8)
+    mtext(x_text, side = 1, line = 1.5, cex = 0.8)
+  }
+}
+
+#head(fit.summary)
+```
+
+```{r, fig.width = 5, fig.height=5, echo = FALSE}
+moge_plt <- function() {
+  par(mfrow = c(3, 3))
+  par(mar = c(0, 0, 0, 0))
+  par(oma = c(3, 3, 2, 2))
+
+  PA.each(y = "Aarea", x = "LMA", data = PA, log = "xy",
+    subscript = " (a)",
+    y_text = expression(paste(italic(A)[area]," (", mu, "mol ", m^-2," ", s^-1, ")")))
+
+
+  par(xpd = NA)
+  legend(10, 85, c("Sun-Wet", "Sun-Dry", "Shade-Wet", "Shade-Dry", "Rand"),
+           pch = c(21, 21, 21, 21, 21),
+           col = c("dodgerblue3", "burlywood4", "black", "black", "gray"),
+           pt.bg = c("white", "white", "dodgerblue3", "burlywood4", "gray"),
+           bty = "n",
+           # lwd = 1,
+           cex = 0.9,
+           pt.cex = 1,
+           pt.lwd = 0.8,
+           ncol = 5)
+  par(xpd = TRUE)
+
+  PA.each(y = "Aarea", x = "LMAp",
+    data = PA, log = "xy", subscript = " (b)")
+
+  PA.each(y = "Aarea", x = "LMAs",
+    data = PA, log = "xy", subscript = " (c)")
+
+  PA.each(y = "Rarea", x = "LMA", data = PA, log = "xy",
+    subscript = " (d)",
+    y_text = expression(paste(italic(R)[area]," (", mu, "mol ", m^-2," ", s^-1, ")")))
+
+  PA.each(y = "Rarea", x = "LMAp",
+    data = PA, log = "xy", subscript = " (e)")
+
+  PA.each(y = "Rarea", x = "LMAs",
+    data = PA, log = "xy", subscript = " (f)",)
+
+  PA.each(y = "LL", x = "LMA", data = PA, log = "xy",
+    subscript = " (g)",
+    y_text = expression(paste("LL (months)")),
+    x_text = expression(paste("LMA (g ",m^-2,")")))
+
+  PA.each(y = "LL", x = "LMAp",
+    data = PA, log = "xy",
+    subscript = " (h)",
+    x_text = expression(paste("LMAp (g ",m^-2,")")))
+
+  PA.each(y = "LL", x = "LMAs",
+    data = PA, log = "xy",
+    subscript = " (i)",
+    x_text = expression(paste("LMAs (g ",m^-2,")")))
+
+par(mfrow = c(1,1))
+}
+
+moge_plt_ra <- function() {
+  par(mfrow = c(3, 3))
+  par(mar = c(0, 0, 0, 0))
+  par(oma = c(3, 3, 2, 2))
+
+  PA.each(y = "Aarea", x = "LMA_ra", data = PA, log = "xy",
+    subscript = " (a)",
+    y_text = expression(paste(italic(A)[area]," (", mu, "mol ", m^-2," ", s^-1, ")")))
+
+
+  par(xpd = NA)
+  legend(10, 85, c("Sun-Wet", "Sun-Dry", "Shade-Wet", "Shade-Dry", "Rand"),
+           pch = c(21, 21, 21, 21, 21),
+           col = c("dodgerblue3", "burlywood4", "black", "black", "gray"),
+           pt.bg = c("white", "white", "dodgerblue3", "burlywood4", "gray"),
+           bty = "n",
+           # lwd = 1,
+           cex = 0.9,
+           pt.cex = 1,
+           pt.lwd = 0.8,
+           ncol = 5)
+  par(xpd = TRUE)
+
+  PA.each(y = "Aarea", x = "LMAp_ra",
+    data = PA, log = "xy", subscript = " (b)")
+
+  PA.each(y = "Aarea", x = "LMAs_ra",
+    data = PA, log = "xy", subscript = " (c)")
+
+  PA.each(y = "Rarea", x = "LMA_ra", data = PA, log = "xy",
+    subscript = " (d)",
+    y_text = expression(paste(italic(R)[area]," (", mu, "mol ", m^-2," ", s^-1, ")")))
+
+  PA.each(y = "Rarea", x = "LMAp_ra",
+    data = PA, log = "xy", subscript = " (e)")
+
+  PA.each(y = "Rarea", x = "LMAs_ra",
+    data = PA, log = "xy", subscript = " (f)",)
+
+  PA.each(y = "LL", x = "LMA_ra", data = PA, log = "xy",
+    subscript = " (g)",
+    y_text = expression(paste("LL (months)")),
+    x_text = expression(paste("LMA (g ",m^-2,")")))
+
+  PA.each(y = "LL", x = "LMAp_ra",
+    data = PA, log = "xy",
+    subscript = " (h)",
+    x_text = expression(paste("LMAp (g ",m^-2,")")))
+
+  PA.each(y = "LL", x = "LMAs_ra",
+    data = PA, log = "xy",
+    subscript = " (i)",
+    x_text = expression(paste("LMAs (g ",m^-2,")")))
+
+  par(mfrow = c(1,1))
+}
+
+
+moge_plt_all <- function() {
+  par(mfrow = c(3, 3))
+  par(mar = c(0, 0, 0, 0))
+  par(oma = c(3, 3, 2, 2))
+
+  PA.each2(y = "Aarea_all", x = "LMA_all", data = PA, log = "xy",
+    subscript = " (a)",
+    y_text = expression(paste(italic(A)[area]," (", mu, "mol ", m^-2," ", s^-1, ")")))
+
+
+  par(xpd = NA)
+  legend(10, 85, c("Sun-Wet", "Sun-Dry", "Shade-Wet", "Shade-Dry", "Rand"),
+           pch = c(21, 21, 21, 21, 21),
+           col = c("dodgerblue3", "burlywood4", "black", "black", "gray"),
+           pt.bg = c("white", "white", "dodgerblue3", "burlywood4", "gray"),
+           bty = "n",
+           # lwd = 1,
+           cex = 0.9,
+           pt.cex = 1,
+           pt.lwd = 0.8,
+           ncol = 5)
+  par(xpd = TRUE)
+
+  PA.each2(y = "Aarea_all", x = "LMAp_all",
+    data = PA, log = "xy", subscript = " (b)")
+
+  PA.each2(y = "Aarea_all", x = "LMAs_all",
+    data = PA, log = "xy", subscript = " (c)")
+
+  PA.each2(y = "Rarea_all", x = "LMA_all", data = PA, log = "xy",
+    subscript = " (d)",
+    y_text = expression(paste(italic(R)[area]," (", mu, "mol ", m^-2," ", s^-1, ")")))
+
+  PA.each2(y = "Rarea_all", x = "LMAp_all",
+    data = PA, log = "xy", subscript = " (e)")
+
+  PA.each2(y = "Rarea_all", x = "LMAs_all",
+    data = PA, log = "xy", subscript = " (f)",)
+
+  PA.each2(y = "LL_all", x = "LMA_all", data = PA, log = "xy",
+    subscript = " (g)",
+    y_text = expression(paste("LL (months)")),
+    x_text = expression(paste("LMA (g ",m^-2,")")))
+
+  PA.each2(y = "LL_all", x = "LMAp_all",
+    data = PA, log = "xy",
+    subscript = " (h)",
+    x_text = expression(paste("LMAp (g ",m^-2,")")))
+
+  PA.each2(y = "LL_all", x = "LMAs_all",
+    data = PA, log = "xy",
+    subscript = " (i)",
+    x_text = expression(paste("LMAs (g ",m^-2,")")))
+
+  par(mfrow = c(1,1))
+}
+
+# NPC
+moge_plt2 <- function() {
+  par(mfrow = c(3, 3))
+  par(mar = c(0, 0, 0, 0))
+  par(oma = c(3, 3, 2, 2))
+  PA.each(y = "Narea", x = "LMA", data = PA2, log = "xy",
+  subscript = " (a)",
+  y_text = expression(paste(italic(N)[area]," (g ",m^-2,")")))
+  par(xpd = NA)
+  legend(10, 0.7, c("Sun-Wet", "Sun-Dry", "Shade-Wet", "Shade-Dry", "Rand"),
+           pch = c(21, 21, 21, 21, 21),
+           col = c("dodgerblue3", "burlywood4", "black", "black", "gray"),
+           pt.bg = c("white", "white", "dodgerblue3", "burlywood4", "gray"),
+           bty = "n",
+           # lwd = 1,
+           cex = 0.9,
+           pt.cex = 1,
+           pt.lwd = 0.8,
+           ncol = 5)
+  par(xpd = TRUE)
+
+  PA.each(y = "Narea", x = "LMAp",
+    data = PA2, log = "xy", subscript = " (b)")
+
+  PA.each(y = "Narea", x = "LMAs",
+    data = PA2, log = "xy", subscript = " (c)")
+
+  PA.each(y = "Parea", x = "LMA", data = PA2, log = "xy",
+    subscript = " (d)",
+    y_text = expression(paste(italic(P)[area]," (g ",m^-2,")")))
+
+  PA.each(y = "Parea", x = "LMAp",
+    data = PA2, log = "xy", subscript = " (e)")
+
+  PA.each(y = "Parea", x = "LMAs",
+    data = PA2, log = "xy", subscript = " (f)",)
+
+  PA.each(y = "cell_area", x = "LMA", data = PA2, log = "xy",
+    subscript = " (g)",
+    y_text = expression(paste(italic(CL)[area]," (g ",m^-2,")")),
+    x_text = expression(paste("LMA (g ",m^-2,")")))
+
+  PA.each(y = "cell_area", x = "LMAp",
+    data = PA2, log = "xy",
+    subscript = " (h)",
+    x_text = expression(paste("LMAp (g ",m^-2,")")))
+
+  PA.each(y = "cell_area", x = "LMAs",
+    data = PA2, log = "xy",
+    subscript = " (i)",
+    x_text = expression(paste("LMAs (g ",m^-2,")")))
+    par(mfrow = c(3, 3))
+    par(mar = c(0, 0, 0, 0))
+    par(oma = c(3, 3, 2, 2))
+
+}
+
+```
+
+```{r, fig.width = 4.33, fig.height=4.33, echo = FALSE}
+setwd("~/Dropbox/MS/LES_MS/LMApsModel/data/")
+load("PA_model3r_LMA.all.data2_2017-07-12_.RData")
+s3r_all <- fit.summary.list[[null_n]]
+
+temp <- LMA.all.data[[null_n]]
+
+#plot(Aarea ~ Rarea, log = "xy", temp)
+
+PA <- PA %>%
+  mutate(LMA_all = temp[ ,"LMA"]) %>%
+  mutate(LMAp_all =  s3r_all[P_vec, "mean"] * LMA_all) %>%
+  mutate(LMAs_all = LMA_all - LMAp_all) %>%
+  mutate(LL_all = temp[ ,"LL"]) %>%
+  mutate(Aarea_all = temp[, "Aarea"]) %>%
+  mutate(Rarea_all = temp[, "Rarea"]) %>%
+  mutate(site_all = temp[, "site"]) %>%
+  mutate(strata_all = temp[, "strata"])
+
+cat("\\newpage")
+print("LMAsLMA; obs")
+moge_plt()
+
+cat("\\newpage")
+print("LMAsLMA; LMA only")
+moge_plt_ra()
+
+cat("\\newpage")
+print("LMAsLMA; LMA all")
+moge_plt_all()
+
+print("LMAsLMA; obs")
+head(s3r, 10)
+
+print("LMAsLMA; LMA only")
+head(s3rLMA, 10)
+
+print("LMAsLMA; LMA all")
+head(s3r_all, 10)
+
+# fiber data -------------------------------------------------------------------
+fiber <- read.csv("~/Dropbox/LES/fiber_analysis.csv")
+trait <- read.csv("~/Dropbox/LES/LFTRAITS.csv")
+
+trait2 <- trait %>%
+  mutate(strata = ifelse(STRATA. == "CANOPY", "CAN", "UNDER")) %>%
+  mutate(site = ifelse(trait$SITE. == "PNM", "PNM", "PNLS")) %>%
+  mutate(site2 = ifelse(trait$SITE. == "PNM", "DRY", "WET")) %>%
+  mutate(sp_site_strata = paste(SP4., site2, strata, sep = "_")) %>%
+  mutate(LMA_LEAF = 1/SLA_LEAF * 10000) %>%
+  mutate(LMA = 1/SLA_DISC * 10000) %>%
+  mutate(Narea = LMA_LEAF * N_PCT / 1000) %>%
+  mutate(Parea = LMA_LEAF * P_PCT / 1000) %>%
+  mutate(LD = LMA / LFTHICK / 1000) %>%
+  mutate(LAMTUF = LAMTUF / 1000, MDRBTUF = MDRBTUF / 1000,
+      VEINTUF = VEINTUF / 1000)
+
+fiber2 <- fiber %>%
+  mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
+  mutate(sp_site_strata = paste(sp, site2, position, sep = "_"))
+
+fdata <- full_join(trait2, fiber2, by = "sp_site_strata") %>%
+  select(sp_site_strata, X.ADF, X.NPE, X.Lignin,
+     LFTHICK, LD, Narea, Parea, LAMTUF, MDRBTUF, VEINTUF) %>%
+  rename(ADF = X.ADF, NPE = X.NPE, Lig = X.Lignin, LT = LFTHICK)
+
+PA2 <- left_join(PA, fdata, by = "sp_site_strata") %>%
+  mutate(cell_mass = ADF - Lig) %>%
+  mutate(cell_area = cell_mass / 100 * LMA) %>%
+  mutate(cell_vol = cell_area / LT / 100 / 100 / 0.1) # g/cm3
+
+moge_plt2()
+
+````
+
+
+
+
+
+
+
+
+
+\newpage
+## $$LMAs^{\beta_2}LMA$$
+
+```{r, fig.width = 4.33, fig.height=4.33, echo = FALSE}
+setwd("~/Dropbox/MS/LES_MS/LMApsModel/data/")
+load("PA_model3r2_2017-07-07_.RData")
+waic(extract_log_lik(res,"log_lik"))$waic
+loo(extract_log_lik(res,"log_lik"))
+
+s3r <- fit.summary
+PA <- data
+
+PA <- data %>%
+  mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
+  mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) %>%
+  mutate(site_strata = paste(site2, strata, sep = "_"))
+
+P_vec <- paste("p[", 1:nrow(PA), "]", sep = "")
+Mu_vec <- paste("mu[", 1:nrow(PA), ",2]", sep = "")
+temp_LMAp <- fit.summary[P_vec, "mean"] * PA$LMA
+temp_LMAs <- PA$LMA - temp_LMAp
+temp_LL <- exp(fit.summary[Mu_vec, "mean"])
+
+PA <- PA %>%
+  mutate(LMAp = temp_LMAp) %>%
+  mutate(LMAs = temp_LMAs) %>%
+  mutate(preLL = temp_LL)
+
+moge_plt()
+
+
+cat("\\newpage")
+load("PA_model3r2_LMA.all.data2_2017-07-12_.RData")
+s3r_all <- fit.summary.list[[null_n]]
+
+temp <- LMA.all.data[[null_n]]
+
+#plot(Aarea ~ Rarea, log = "xy", temp)
+
+PA <- PA %>%
+  mutate(LMA_all = temp[ ,"LMA"]) %>%
+  mutate(LMAp_all =  s3r_all[P_vec, "mean"] * LMA_all) %>%
+  mutate(LMAs_all = LMA_all - LMAp_all) %>%
+  mutate(LL_all = temp[ ,"LL"]) %>%
+  mutate(Aarea_all = temp[, "Aarea"]) %>%
+  mutate(Rarea_all = temp[, "Rarea"]) %>%
+  mutate(site_all = temp[, "site"]) %>%
+  mutate(strata_all = temp[, "strata"])
+
+print("LMAs^beta2 LMA; LMA all")
+moge_plt_all()
+
+
+print("LMAs^betaLMA; obs")
+head(s3r, 12)
+
+
+print("LMAs^betaLMA; LMA all")
+head(s3r_all, 12)
+
+
+# fiber data -------------------------------------------------------------------
+fiber <- read.csv("~/Dropbox/LES/fiber_analysis.csv")
+trait <- read.csv("~/Dropbox/LES/LFTRAITS.csv")
+
+trait2 <- trait %>%
+  mutate(strata = ifelse(STRATA. == "CANOPY", "CAN", "UNDER")) %>%
+  mutate(site = ifelse(trait$SITE. == "PNM", "PNM", "PNLS")) %>%
+  mutate(site2 = ifelse(trait$SITE. == "PNM", "DRY", "WET")) %>%
+  mutate(sp_site_strata = paste(SP4., site2, strata, sep = "_")) %>%
+  mutate(LMA_LEAF = 1/SLA_LEAF * 10000) %>%
+  mutate(LMA = 1/SLA_DISC * 10000) %>%
+  mutate(Narea = LMA_LEAF * N_PCT / 1000) %>%
+  mutate(Parea = LMA_LEAF * P_PCT / 1000) %>%
+  mutate(LD = LMA / LFTHICK / 1000) %>%
+  mutate(LAMTUF = LAMTUF / 1000, MDRBTUF = MDRBTUF / 1000,
+      VEINTUF = VEINTUF / 1000)
+
+fiber2 <- fiber %>%
+  mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
+  mutate(sp_site_strata = paste(sp, site2, position, sep = "_"))
+
+fdata <- full_join(trait2, fiber2, by = "sp_site_strata") %>%
+  select(sp_site_strata, X.ADF, X.NPE, X.Lignin,
+     LFTHICK, LD, Narea, Parea, LAMTUF, MDRBTUF, VEINTUF) %>%
+  rename(ADF = X.ADF, NPE = X.NPE, Lig = X.Lignin, LT = LFTHICK)
+
+PA2 <- left_join(PA, fdata, by = "sp_site_strata") %>%
+  mutate(cell_mass = ADF - Lig) %>%
+  mutate(cell_area = cell_mass / 100 * LMA) %>%
+  mutate(cell_vol = cell_area / LT / 100 / 100 / 0.1) # g/cm3
+
+moge_plt2()
+
+
+
+```  
+
+
+
+
+
+
+
+
+
+\newpage
+## potential LL
+
+```{r, fig.width = 4.33, fig.height=4.33, echo = FALSE}
+setwd("~/Dropbox/MS/LES_MS/LMApsModel/data/")
+load("PA_model1r_2017-07-07_.RData")
+waic(extract_log_lik(res,"log_lik"))$waic
+loo(extract_log_lik(res,"log_lik"))
+
+s3r <- fit.summary
+PA <- data
+
+PA <- data %>%
+  mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
+  mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) %>%
+  mutate(site_strata = paste(site2, strata, sep = "_"))
+
+P_vec <- paste("p[", 1:nrow(PA), "]", sep = "")
+Mu_vec <- paste("mu[", 1:nrow(PA), ",2]", sep = "")
+temp_LMAp <- fit.summary[P_vec, "mean"] * PA$LMA
+temp_LMAs <- PA$LMA - temp_LMAp
+temp_LL <- exp(fit.summary[Mu_vec, "mean"])
+
+PA <- PA %>%
+  mutate(LMAp = temp_LMAp) %>%
+  mutate(LMAs = temp_LMAs) %>%
+  mutate(preLL = temp_LL)
+
+moge_plt()
+
+
+cat("\\newpage")
+load("PA_model1r_LMA.all.data2_2017-07-12_.RData")
+s3r_all <- fit.summary.list[[null_n]]
+
+temp <- LMA.all.data[[null_n]]
+
+#plot(Aarea ~ Rarea, log = "xy", temp)
+
+PA <- PA %>%
+  mutate(LMA_all = temp[ ,"LMA"]) %>%
+  mutate(LMAp_all =  s3r_all[P_vec, "mean"] * LMA_all) %>%
+  mutate(LMAs_all = LMA_all - LMAp_all) %>%
+  mutate(LL_all = temp[ ,"LL"]) %>%
+  mutate(Aarea_all = temp[, "Aarea"]) %>%
+  mutate(Rarea_all = temp[, "Rarea"]) %>%
+  mutate(site_all = temp[, "site"]) %>%
+  mutate(strata_all = temp[, "strata"])
+
+print("potential; LMA all")
+moge_plt_all()
+
+
+print("potential; obs")
+head(s3r, 12)
+
+
+print("poential; LMA all")
+head(s3r_all, 12)
+
+
+# fiber data -------------------------------------------------------------------
+fiber <- read.csv("~/Dropbox/LES/fiber_analysis.csv")
+trait <- read.csv("~/Dropbox/LES/LFTRAITS.csv")
+
+trait2 <- trait %>%
+  mutate(strata = ifelse(STRATA. == "CANOPY", "CAN", "UNDER")) %>%
+  mutate(site = ifelse(trait$SITE. == "PNM", "PNM", "PNLS")) %>%
+  mutate(site2 = ifelse(trait$SITE. == "PNM", "DRY", "WET")) %>%
+  mutate(sp_site_strata = paste(SP4., site2, strata, sep = "_")) %>%
+  mutate(LMA_LEAF = 1/SLA_LEAF * 10000) %>%
+  mutate(LMA = 1/SLA_DISC * 10000) %>%
+  mutate(Narea = LMA_LEAF * N_PCT / 1000) %>%
+  mutate(Parea = LMA_LEAF * P_PCT / 1000) %>%
+  mutate(LD = LMA / LFTHICK / 1000) %>%
+  mutate(LAMTUF = LAMTUF / 1000, MDRBTUF = MDRBTUF / 1000,
+      VEINTUF = VEINTUF / 1000)
+
+fiber2 <- fiber %>%
+  mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
+  mutate(sp_site_strata = paste(sp, site2, position, sep = "_"))
+
+fdata <- full_join(trait2, fiber2, by = "sp_site_strata") %>%
+  select(sp_site_strata, X.ADF, X.NPE, X.Lignin,
+     LFTHICK, LD, Narea, Parea, LAMTUF, MDRBTUF, VEINTUF) %>%
+  rename(ADF = X.ADF, NPE = X.NPE, Lig = X.Lignin, LT = LFTHICK)
+
+PA2 <- left_join(PA, fdata, by = "sp_site_strata") %>%
+  mutate(cell_mass = ADF - Lig) %>%
+  mutate(cell_area = cell_mass / 100 * LMA) %>%
+  mutate(cell_vol = cell_area / LT / 100 / 100 / 0.1) # g/cm3
+
+moge_plt2()
+
+
+```  
+
+
+
+
+## not root
+
+```{r, fig.width = 4.33, fig.height=4.33, echo = FALSE}
+setwd("~/Dropbox/MS/LES_MS/LMApsModel/data/")
+load("PA_model3r5_2017-07-11_.RData")
+waic(extract_log_lik(res,"log_lik"))$waic
+loo(extract_log_lik(res,"log_lik"))
+
+s3r <- fit.summary
+PA <- data
+
+PA <- data %>%
+  mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
+  mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) %>%
+  mutate(site_strata = paste(site2, strata, sep = "_"))
+
+P_vec <- paste("p[", 1:nrow(PA), "]", sep = "")
+Mu_vec <- paste("mu[", 1:nrow(PA), ",2]", sep = "")
+temp_LMAp <- fit.summary[P_vec, "mean"] * PA$LMA
+temp_LMAs <- PA$LMA - temp_LMAp
+temp_LL <- exp(fit.summary[Mu_vec, "mean"])
+
+PA <- PA %>%
+  mutate(LMAp = temp_LMAp) %>%
+  mutate(LMAs = temp_LMAs) %>%
+  mutate(preLL = temp_LL)
+
+moge_plt()
+
+
+cat("\\newpage")
+load("PA_model3r5_LMA.all.data2_2017-07-12_.RData")
+s3r_all <- fit.summary.list[[null_n]]
+
+temp <- LMA.all.data[[null_n]]
+
+#plot(Aarea ~ Rarea, log = "xy", temp)
+
+PA <- PA %>%
+  mutate(LMA_all = temp[ ,"LMA"]) %>%
+  mutate(LMAp_all =  s3r_all[P_vec, "mean"] * LMA_all) %>%
+  mutate(LMAs_all = LMA_all - LMAp_all) %>%
+  mutate(LL_all = temp[ ,"LL"]) %>%
+  mutate(Aarea_all = temp[, "Aarea"]) %>%
+  mutate(Rarea_all = temp[, "Rarea"]) %>%
+  mutate(site_all = temp[, "site"]) %>%
+  mutate(strata_all = temp[, "strata"])
+
+print("not root; LMA all")
+moge_plt_all()
+
+
+print("not root; obs")
+head(s3r, 12)
+
+
+print("not root; LMA all")
+head(s3r_all, 12)
+
+
+# fiber data -------------------------------------------------------------------
+fiber <- read.csv("~/Dropbox/LES/fiber_analysis.csv")
+trait <- read.csv("~/Dropbox/LES/LFTRAITS.csv")
+
+trait2 <- trait %>%
+  mutate(strata = ifelse(STRATA. == "CANOPY", "CAN", "UNDER")) %>%
+  mutate(site = ifelse(trait$SITE. == "PNM", "PNM", "PNLS")) %>%
+  mutate(site2 = ifelse(trait$SITE. == "PNM", "DRY", "WET")) %>%
+  mutate(sp_site_strata = paste(SP4., site2, strata, sep = "_")) %>%
+  mutate(LMA_LEAF = 1/SLA_LEAF * 10000) %>%
+  mutate(LMA = 1/SLA_DISC * 10000) %>%
+  mutate(Narea = LMA_LEAF * N_PCT / 1000) %>%
+  mutate(Parea = LMA_LEAF * P_PCT / 1000) %>%
+  mutate(LD = LMA / LFTHICK / 1000) %>%
+  mutate(LAMTUF = LAMTUF / 1000, MDRBTUF = MDRBTUF / 1000,
+      VEINTUF = VEINTUF / 1000)
+
+fiber2 <- fiber %>%
+  mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
+  mutate(sp_site_strata = paste(sp, site2, position, sep = "_"))
+
+fdata <- full_join(trait2, fiber2, by = "sp_site_strata") %>%
+  select(sp_site_strata, X.ADF, X.NPE, X.Lignin,
+     LFTHICK, LD, Narea, Parea, LAMTUF, MDRBTUF, VEINTUF) %>%
+  rename(ADF = X.ADF, NPE = X.NPE, Lig = X.Lignin, LT = LFTHICK)
+
+PA2 <- left_join(PA, fdata, by = "sp_site_strata") %>%
+  mutate(cell_mass = ADF - Lig) %>%
+  mutate(cell_area = cell_mass / 100 * LMA) %>%
+  mutate(cell_vol = cell_area / LT / 100 / 100 / 0.1) # g/cm3
+
+moge_plt2()
+
+cor.test(log(PA2$Rarea_all), log(PA2$LMAp_all))
+
+cor.test(log(PA2$LL), log(PA2$preLL))
+cor.test(log(PA2$LL), log(PA2$LMAs))
+
+cor.test(log(PA2$Narea), log(PA2$LMA))
+cor.test(log(PA2$Narea), log(PA2$LMAp))
+
+lm(log(Aarea + Rarea) ~log(LMAp), data = PA) %>% summary
+lm(log(Rarea) ~log(LMAp) + log(LMAs), data = PA) %>% summary
+
+cor.test(log(PA2$Parea), log(PA2$LMA))
+cor.test(log(PA2$Parea), log(PA2$LMAp))
+
+cor.test(log(PA2$cell_area), log(PA2$LMA))
+cor.test(log(PA2$cell_area), log(PA2$LMAp))
+cor.test(log(PA2$cell_area), log(PA2$LMAs))
+
+```  
+
+
+
+
+
+
+
+
+
