@@ -1,0 +1,1329 @@
+---
+title: Panama results using MVN (Kikuzawa model)
+author: Masatoshi Katabuchi
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+---
+
+More species than LT dataset
+
+- alpha_0 LMAp^alpha_p 
+- beta_0 {LMALMAs/(qA-R)}^0.5
+
+Those update include:
+
+- y = ax to y = ax^b^
+    - Originally we were using y = ax, which is simple but not biologically correct and could produce some degrees of correlations even in randomized dataset.
+    - The new model includes scaling parameters and now randomized dataset never produced correlations. We do not have to mention randomized dataset.
+- LMAs / LT (= leaf structural density)
+    - Leaf density is more relevant to LL compared to LMA, so using (LMAs/LT) is more straightforward. Leaves are now three-dimensional, which is also improvement of Osnas's PNAS.
+- Effect of LMAs/LT to photosynthesis
+    - The parameters $\alpha_s$ in Eq. 1 is the effect of leaf structural density to gross photosynthesis.
+    - Based on effects of cell-wall thickness on mesophyll conductance, we expect $\alpha_s$ < 0; i.e., leaves with higher LMAs and/or higher LD have lower Aarea for a given LMAp.
+
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE,
+                      warning=FALSE,
+                      message=FALSE)
+```
+
+
+```{r, echo = F, message = F}
+library(loo)
+library(rstan)
+library(dplyr)
+library(scales)
+library(memisc)
+
+theme_set(theme_light())
+
+```
+
+
+```{r, echo = F, message = F}
+
+#load("./data/PA_latent_model_light_more_obs.rda")
+load("../data/PA_latent_replusive_model_light2_more_obs.rda")
+
+#source("https://raw.githubusercontent.com/betanalpha/knitr_case_studies/master/rstan_workflow/stan_utility.R")
+
+
+#load("./data/PA_latent_model_more_obs.rda")
+#load("./data/PA_latent_model_site_more_obs.rda")
+#load("../data/PA_latent_model_site_more_obs.rda")
+
+#load("./data/PA_latent_model_light2_more_obs.rda")
+
+pairs(res, pars = c("Z[1,1]", "Z[2,1]", "Z[3,1]", "lp__"))
+pairs(res, pars = c("Z[1,2]", "Z[2,2]", "Z[3,2]", "lp__"))
+pairs(res, pars = c("Z[1,3]", "Z[2,3]", "Z[3,3]", "lp__"))
+
+traceplot(res, pars = "Z", ncol = 3)
+traceplot(res, pars = c("rho12", "rho13", "rho23"), ncol = 3)
+
+traceplot(res, pars = c("p[1]",
+                        "p[2]",
+                        "lp__"
+                        ))
+
+traceplot(res, pars = "L_Omega")
+
+summary_PA_LDL <- data.frame(summary(res)$summary)
+
+summary_PA_LDL %>%
+  round(3) %>%
+  DT::datatable(.)
+
+PA <- dat %>%
+  as_data_frame %>%
+  mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
+  mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) %>%
+  mutate(site_strata = paste(site2, strata, sep = "_"))
+
+P_vec <- paste("p[", 1:nrow(PA), "]", sep = "")
+#mu2_vec <- paste("mu2[", 1:nrow(PA), "]", sep = "")
+#Mu_vec <- paste("mu[", 1:nrow(PA), ",2]", sep = "")
+temp_LMAp <- summary_PA_LDL[P_vec, "mean"] * PA$LMA
+temp_LMAs <- PA$LMA - temp_LMAp
+#temp_LL <- exp(summary_PA_LDL[mu2_vec, "mean"])
+
+
+PA <- PA %>%
+  mutate(LMAp = temp_LMAp) %>%
+  mutate(LMAs = temp_LMAs) 
+
+
+```
+
+
+# Posterior distributions of $\alpha_s$ > 0
+
+
+# Paramters 
+
+```{r, echo = F, eval = T}
+
+plot(res)
+
+traceplot(res)
+
+```
+
+
+```{r, echo = F}
+
+var_p <- function(data)cov(data$LMA, data$LMAp)
+var_s <- function(data)cov(data$LMA, data$LMAs)
+var_t <- function(data)var(data$LMA)
+
+var_p <- function(data)var(data$LMAp)
+var_s <- function(data)var(data$LMAs)
+cov_ps <- function(data)cov(data$LMAp, data$LMAs)
+var_t <- function(data)var(data$LMA)
+
+var_dat <- PA %>%
+  group_by(strata) %>%
+  nest %>%
+  mutate(var_LMAm = map_dbl(data, var_p)) %>%
+  mutate(var_LMAs = map_dbl(data, var_s)) %>%
+  mutate(cov_ms = 2 * map_dbl(data, cov_ps)) %>%
+  mutate(var_total = map_dbl(data, var_t)) %>%
+  dplyr::select(-data)
+
+var_dat_s <- var_dat %>%
+  mutate(LMAm_variance = var_LMAm / (var_LMAm + var_LMAs) * 100) %>%
+  mutate(LMAs_variance = var_LMAs / (var_LMAm + var_LMAs) * 100) %>%
+  gather(var, val, c(LMAm_variance, LMAs_variance))
+
+var_dat_s2 <- var_dat %>%
+  mutate(LMAm_variance = var_LMAm / (var_total) * 100) %>%
+  mutate(LMAs_variance = var_LMAs / (var_total) * 100) %>%
+  mutate(cov_LMAm_LMAs = cov_ms / (var_total) * 100) %>%
+  gather(var, val, c(LMAm_variance, LMAs_variance, cov_LMAm_LMAs)) 
+
+
+```
+
+
+
+```{r, echo = F, eval = F}
+# R values
+
+#R values are based on posterior distributions of LMAs
+
+par(mfrow = c(1,2))
+apply(log_LMAs, 1, function(x)cor(x, log(PA$Aarea))) %>% hist(main = "LMAs vs Aarea, R")
+apply(log_LMAs, 1, function(x)cor(x, log(PA$Aarea))^2) %>% hist(main = "LMAs vs Aarea, R2")
+
+apply(log_LMAs, 1, function(x)cor(x, log(PA$Aarea + PA$Rarea))) %>% hist(main = "LMAs vs Aarea + Rarea, R")
+apply(log_LMAs, 1, function(x)cor(x, log(PA$Aarea + PA$Rarea))^2) %>% hist(main = "LMAs vs Aarea + Rarea, R2")
+
+
+apply(log_LDs, 1, function(x)cor(x, log(PA$Aarea))) %>% hist(main = "LMAs/LT vs Aarea, R")
+apply(log_LDs, 1, function(x)cor(x, log(PA$Aarea))^2) %>% hist(main = "LMAs/LT vs Aarea, R2")
+
+
+apply(log_LDs, 1, function(x)cor(x, log(PA$Aarea + PA$Rarea))) %>% hist(main = "LMAs/LT vs Aarea + Rarea, R")
+apply(log_LDs, 1, function(x)cor(x, log(PA$Aarea + PA$Rarea))^2) %>% hist(main = "LMAs/LT vs Aarea + Rarea, R2")
+```
+
+```{r}
+
+fit <-res
+
+#fit %>% as.array %>% dim
+
+params <- extract(fit)
+
+m <- 4000
+
+library(mvtnorm)
+
+Z_i <- params$Z[,1:4,1:3]
+
+
+plot(1:m, Z_i[,2,1], type = "l", col ="orange",ylim=c(0,0.8))
+points(1:m, Z_i[,3,1], type = "l", col ="violet")
+
+plot(1:m, Z_i[,2,2], type = "l", col ="orange",ylim=c(-1, 0.5))
+points(1:m, Z_i[,3,2], type = "l", col ="violet")
+
+plot(1:m, Z_i[,2,3], type = "l", col ="orange",ylim=c(-0.5,1.5))
+points(1:m, Z_i[,3,3], type = "l", col ="violet")
+
+plot(1:m, Z_i[,4,2], type = "l", col ="orange")
+
+lp_m <- params$lp__
+p_m <- params$p
+rho13 <- params$rho13
+
+plot(1:m, rho13, type = "l", col ="orange")
+plot(1:m, lp_m, type = "l", col ="orange")
+plot(1:m, p_m[,1], type = "l", col ="orange")
+
+
+Sigma_i <- params$Sigma[,1:3,1:3]
+L_sigma_i <- params$L_sigma[,]
+
+```
+
+# para fix
+
+```{r}
+mcmc_res <- extract(fit) %>% as.data.frame
+params1 <- as.data.frame(extract(fit, permuted=FALSE)[,1,])
+params2 <- as.data.frame(extract(fit, permuted=FALSE)[,2,])
+params3 <- as.data.frame(extract(fit, permuted=FALSE)[,3,])
+params4 <- as.data.frame(extract(fit, permuted=FALSE)[,4,])
+
+
+get_stancode(fit) %>% cat
+
+re_am <- c(params1$`Z[2,1]`,
+	 			 params2$`Z[2,1]`,
+	 			 params3$`Z[2,1]`,
+	 			 params4$`Z[2,1]`)
+
+re_as <- c(params1$`Z[3,1]`,
+	 			 params2$`Z[3,1]`,
+	 			 params3$`Z[3,1]`,
+	 			 params4$`Z[3,1]`)
+
+re_bm <- c(params1$`Z[2,2]`,
+	 			 params2$`Z[2,2]`,
+         params3$`Z[2,2]`,
+         params4$`Z[2,2]`)
+
+re_bs <- c(params1$`Z[3,2]`,
+           params2$`Z[3,2]`,
+           params3$`Z[3,2]`,
+           params4$`Z[3,2]`)
+
+re_rs <- c(params1$`Z[3,3]`,
+	 			 params2$`Z[3,3]`,
+         params3$`Z[3,3]`,
+         params4$`Z[3,3]`)
+
+re_rm <- c(params1$`Z[2,3]`,
+           params2$`Z[2,3]`,
+           params3$`Z[2,3]`,
+           params4$`Z[2,3]`)
+
+re_p1 <- c(params1$`p[1]` ,
+          params2$`p[1]` ,
+          params3$`p[1]` ,
+          params4$`p[1]` )
+
+re_p0 <- c(params1[,paste0("p[",1:130,"]")],
+  params2[,paste0("p[",1:130,"]")],
+  params3[,paste0("p[",1:130,"]")],
+  params4[,paste0("p[",1:130,"]")]) %>% unlist 
+
+re_p <- array(NA, 
+              dim = c(4000, 130))
+
+mpc <- fit@sim$iter-fit@sim$warmup
+
+tmp <- array(c(re_am,
+               re_as,
+               re_bm,
+               re_bs,
+               re_rm,
+               re_rs
+                  ),
+             dim = c(mpc * 4, 6))
+
+tmp2 <- tmp
+
+#par(mfrow=c(5,5))
+for (i in 1:130) {
+  re_p0 <- c(params1[,paste0("p[",i,"]")],
+    params2[,paste0("p[",i,"]")],
+    params3[,paste0("p[",i,"]")],
+    params4[,paste0("p[",i,"]")]) 
+ # hist(re_p0)
+  tmp2 <- cbind(tmp2, re_p0)
+}
+par(mfrow=c(1,1))
+
+amu <- array(NA,dim = c(mpc,fit@sim$chains,dim(tmp2)[2]))
+for (cc in 1:fit@sim$chains) amu[,cc,] = tmp2[(1:mpc)+(cc-1)*mpc,]
+mmu <- monitor(amu, print = F, warmup = 0)
+rownames(mmu) <- c("am", "as", "bm", "bs", "rm", "rs", 
+                   paste0("p",1:130))
+
+mmu %>% DT::datatable(.)
+
+mcmc_re <- data_frame(alpha_m = amu[,,1] %>% as.vector,
+             alpha_s = amu[,,2] %>% as.vector,
+             beta_m = amu[,,3] %>% as.vector,
+             beta_s = amu[,,4] %>% as.vector,
+             gamma_m = amu[,,5] %>% as.vector,
+             gamma_s = amu[,,6] %>% as.vector
+             ) %>%
+  mutate(iter = rep(1:1000, 4)) %>%
+  mutate(chain = rep(1:4, each = 1000) %>% as.factor)
+
+mcmc_re2 <- mcmc_re %>%
+  gather(para, val, 1:6)
+
+ggplot(mcmc_re2, aes(x = iter, y = val, col = chain)) +
+  geom_line() +
+  facet_wrap(~para, nrow = 3)
+
+```
+
+
+```{r}
+p_est<-NULL
+
+LMAp_mcmc <- list()
+LMAs_mcmc <- list()
+for (i in 1:130) {
+  re_p0 <- c(params1[,paste0("p[",i,"]")],
+    params2[,paste0("p[",i,"]")],
+    params3[,paste0("p[",i,"]")],
+    params4[,paste0("p[",i,"]")]) 
+  p_est[i] <- median(re_p0)
+  LMAp_mcmc[[i]] <- re_p0 * PA$LMA[i]
+  LMAs_mcmc[[i]] <- (1 - re_p0) * PA$LMA[i]
+}
+
+names(p_est) <- paste0("p",1:130)
+
+LMAps_cor <- NULL
+for (i in 1:4000){
+  LMAps_cor[i] <- cor(
+  sapply(LMAp_mcmc, "[[", i) %>% log,
+  sapply(LMAs_mcmc, "[[", i) %>% log)
+}
+
+
+Mu_mcmc <- extract(fit, pars = "Mu")[[1]] 
+
+preLL <- Mu_mcmc[,,2] %>% apply(., 2, median) %>% exp
+
+hist(LMAps_cor)
+#mu2_vec <- paste("mu2[", 1:nrow(PA), "]", sep = "")
+#Mu_vec <- paste("mu[", 1:nrow(PA), ",2]", sep = "")
+temp_LMAp <- p_est * PA$LMA
+temp_LMAs <- PA$LMA - temp_LMAp
+
+PA <- PA %>%
+  mutate(LMAp = temp_LMAp) %>%
+  mutate(LMAs = temp_LMAs)  %>%
+  mutate(preLL = preLL)
+
+```
+
+
+# Trait correlations
+
+## A~area~, R~area~, LL
+
+Open symbols indicate sun leaves and closed symbols indicate shade leaves. The results look nice and do not alter main conclusions.
+
+```{r, echo = F, message = F}
+PA2 <- PA %>%
+  gather(LMA, val, c("LMA", "LMAp", "LMAs")) %>%
+  gather(trait, val2, c("Aarea", "LL", "Rarea")) %>%
+  gather(trait2, val3, c("Narea","Parea","cell_area","cell_vol"))
+
+
+ggplot(PA2, aes(x = val, y = val2, fill = site2, col = site2, shape = strata)) +
+  geom_point() +
+  facet_grid(trait ~ LMA, scale = "free") +
+  xlab("LMA and LD") +
+  ylab("Traits") +
+  scale_shape_manual(values = c("CAN" = 1, "UNDER" = 21)) +
+  scale_fill_manual(values = c("DRY" = "#8B7355", "WET" = "#1874CD")) +
+  scale_colour_manual(values = c("DRY" = "#8B7355", "WET" = "#1874CD")) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x)))
+
+
+
+
+```
+
+## Observed LL vs predicted LL
+
+Note: Light and site effects were not included in this model.
+
+```{r, echo = F, message = F}
+
+
+my_breaks <- function(...){
+  c(0.002, 0.005, 0.02, 0.05, 0.1, 0.2,  0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500)
+}
+
+
+ggplot(PA, aes(x = LL, y = preLL, fill = site2, col = site2, shape = strata)) +
+  geom_point() +
+  xlab("obsLL") +
+  ylab("preLL") +
+  scale_shape_manual(values = c("CAN" = 1, "UNDER" = 21)) +
+  scale_fill_manual(values = c("DRY" = "#8B7355", "WET" = "#1874CD")) +
+  scale_colour_manual(values = c("DRY" = "#8B7355", "WET" = "#1874CD")) +
+  geom_abline(aes(slope = 1, intercept = 0), 
+              lty = 2, 
+              lwd = 0.25, 
+              col = "gray20") +
+  scale_x_log10(breaks = my_breaks(), expand = c(0.1, 0),
+                limits = c(min(PA$LL), max(PA$LL))) +
+  scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0), 
+                limits = c(min(PA$LL), max(PA$LL))) +
+  coord_fixed()
+cor.test(log(PA$LL), log(PA$preLL))
+
+
+
+```
+
+
+## Cell~area~, Cell~vol~ (= cellulose density), N~area~, P~area~
+
+```{r, echo = F, message = F}
+ggplot(PA2, aes(x = val, y = val3, fill = site2, col = site2, shape = strata)) +
+  geom_point() +
+  facet_grid(trait2 ~ LMA, scale = "free") +
+  xlab("LMA and LD") +
+  ylab("Traits") +
+  scale_shape_manual(values = c("CAN" = 1, "UNDER" = 21)) +
+  scale_fill_manual(values = c("DRY" = "#8B7355", "WET" = "#1874CD")) +
+  scale_colour_manual(values = c("DRY" = "#8B7355", "WET" = "#1874CD")) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x)))
+```
+
+## LMAp vs LMAs
+
+```{r, echo = F, message = F}
+ggplot(PA, aes(x = LMAp, y = LMAs, fill = site2, col = site2, shape = strata)) +
+  geom_point() +
+  xlab("LMAm") +
+  ylab("LMAs") +
+  scale_shape_manual(values = c("CAN" = 1, "UNDER" = 21)) +
+  scale_fill_manual(values = c("DRY" = "#8B7355", "WET" = "#1874CD")) +
+  scale_colour_manual(values = c("DRY" = "#8B7355", "WET" = "#1874CD")) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x)))
+```
+
+## Trait means
+
+The results look nice and do not alter main conclusions.
+
+```{r, echo = F, message = F}
+
+ggplot(PA2 %>% filter(LMA != "LDs"), aes(x = site_strata, y = val,
+                                         fill = site_strata,
+                                         col = site_strata)) +
+  geom_boxplot() +
+  facet_grid(.~LMA, scale = "free") +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_fill_manual(values = c("DRY_CAN" = "white",
+                               "WET_CAN" = "white",
+                               "DRY_UNDER" = "#8B7355",
+                               "WET_UNDER" = "#1874CD"
+                               )) +
+  scale_colour_manual(values = c("DRY_CAN" = "#8B7355",
+                               "WET_CAN" = "#1874CD",
+                               "DRY_UNDER" = "black",
+                               "WET_UNDER" = "black"
+                               ))
+
+
+```
+
+
+# Decomposition of LMA variation 
+
+1) var(LMAm) & var(LMAs) & 2*cov(LMAm, LMAs), 2)relative contribution: var(LMAm)/(var(LMAm) + var(LMAs)) & var(LMAs) /(var(LMAm) + var(LMAs))
+
+```{r, echo = F}
+
+ggplot(var_dat_s2, aes(x = strata, y = val, fill = var)) +
+  geom_col() +
+  ylab("val (%)") 
+
+
+ggplot(var_dat_s, aes(x = strata, y = val, fill = var)) +
+  geom_bar(position = "fill",stat = "identity") +
+  scale_y_continuous(labels = percent_format())
+
+```
+
+
+```{r, echo = F, message = F, eval = F}
+
+cor.test(log(PA$LMA), log(PA$cell_area))
+cor.test(log(PA$LMAs), log(PA$cell_area))
+
+cor.test(log(PA$LD), log(PA$cell_vol))
+cor.test(log(PA$LDs), log(PA$cell_vol))
+
+
+cor.test(log(PA$LMA), log(PA$Narea))
+cor.test(log(PA$LMAp), log(PA$Narea))
+
+cor.test(log(PA$LMA), log(PA$Parea))
+cor.test(log(PA$LMAp), log(PA$Parea))
+
+apply(log_LMAp, 1, function(x)cor(x, log(PA$Narea))) %>% hist(main = "LMAp vs Narea, R")
+apply(log_LMAp, 1, function(x)cor(x, log(PA$Parea))) %>% summary
+
+apply(log_LMAp, 1, function(x)cor(x, log(PA$Narea))) %>% hist(main = "LMAp vs Narea, R")
+
+apply(log_LMAp, 1, function(x)cor(x, log(PA$Rarea))) %>% quantile(0.025)
+cor.test(log(PA$LMA), log(PA$Rarea))
+
+apply(log_LMAs, 1, function(x)cor(x, log(PA$cell_area))) %>% hist(main = "LMAp vs Narea, R")
+
+```
+
+
+```{r, echo = F, message = F, eval = F}
+
+ggplot(tmp3, aes(x = LD_shade, y = LD_sun)) +
+  geom_point() +
+  facet_grid(~site) +
+  geom_abline(slope=1, lty = 2) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  coord_fixed()
+
+
+ggplot(tmp3, aes(x = cell_vol_shade, y = cell_vol_sun)) +
+  geom_point() +
+  facet_grid(~site) +
+  geom_abline(slope=1, lty = 2) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  coord_fixed()
+
+
+ggplot(PA, aes(x = site_strata, y = cell_vol,
+               fill = site_strata,
+               col = site_strata)) +
+  geom_boxplot() +
+  #geom_violin() +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_fill_manual(values = c("DRY_CAN" = "white",
+                               "WET_CAN" = "white",
+                               "DRY_UNDER" = "#8B7355",
+                               "WET_UNDER" = "#1874CD"
+                               )) +
+  scale_colour_manual(values = c("DRY_CAN" = "#8B7355",
+                               "WET_CAN" = "#1874CD",
+                               "DRY_UNDER" = "black",
+                               "WET_UNDER" = "black"
+                               ))
+
+ggplot(PA, aes(x = site_strata, y = LD,
+               fill = site_strata,
+               col = site_strata)) +
+  geom_boxplot() +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_fill_manual(values = c("DRY_CAN" = "white",
+                               "WET_CAN" = "white",
+                               "DRY_UNDER" = "#8B7355",
+                               "WET_UNDER" = "#1874CD"
+                               )) +
+  scale_colour_manual(values = c("DRY_CAN" = "#8B7355",
+                               "WET_CAN" = "#1874CD",
+                               "DRY_UNDER" = "black",
+                               "WET_UNDER" = "black"
+                               ))
+
+
+
+ggplot(PA, aes(x = site_strata, y = cell_area,
+               fill = site_strata,
+               col = site_strata)) +
+  #geom_violin() +
+  geom_boxplot() +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_fill_manual(values = c("DRY_CAN" = "white",
+                               "WET_CAN" = "white",
+                               "DRY_UNDER" = "#8B7355",
+                               "WET_UNDER" = "#1874CD"
+                               )) +
+  scale_colour_manual(values = c("DRY_CAN" = "#8B7355",
+                               "WET_CAN" = "#1874CD",
+                               "DRY_UNDER" = "black",
+                               "WET_UNDER" = "black"
+                               ))
+
+
+ggplot(PA, aes(x = LD, y = Aarea, fill = site, col = site, shape = strata)) +
+  geom_point()  +
+  facet_grid(site ~ strata)  +
+  scale_shape_manual(values = c("CAN" = 1, "UNDER" = 21)) +
+  scale_fill_manual(values = c("PNM" = "#8B7355", "PNSL" = "#1874CD")) +
+  scale_colour_manual(values = c("PNM" = "#8B7355", "PNSL" = "#1874CD")) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x)))
+
+ggplot(PA, aes(x = LD, y = Aarea, fill = site, col = site, shape = strata)) +
+  geom_point()  +
+  facet_grid( ~ strata)  +
+  scale_shape_manual(values = c("CAN" = 1, "UNDER" = 21)) +
+  scale_fill_manual(values = c("PNM" = "#8B7355", "PNSL" = "#1874CD")) +
+  scale_colour_manual(values = c("PNM" = "#8B7355", "PNSL" = "#1874CD")) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x)))
+
+
+ggplot(PA, aes(x = cell_vol, y = Aarea, fill = site, col = site, shape = strata)) +
+  geom_point()  +
+  facet_grid(site ~ strata)  +
+  scale_shape_manual(values = c("CAN" = 1, "UNDER" = 21)) +
+  scale_fill_manual(values = c("PNM" = "#8B7355", "PNSL" = "#1874CD")) +
+  scale_colour_manual(values = c("PNM" = "#8B7355", "PNSL" = "#1874CD")) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x)))
+
+
+ggplot(PA, aes(x = cell_vol, y = Aarea, fill = site, col = site, shape = strata)) +
+  geom_point()  +
+  facet_grid( ~ strata)  +
+  scale_shape_manual(values = c("CAN" = 1, "UNDER" = 21)) +
+  scale_fill_manual(values = c("PNM" = "#8B7355", "PNSL" = "#1874CD")) +
+  scale_colour_manual(values = c("PNM" = "#8B7355", "PNSL" = "#1874CD")) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x)))
+
+
+ggplot(PA, aes(x = cell_area, y = Aarea, fill = site, col = site, shape = strata)) +
+  geom_point()  +
+  facet_grid(site ~ strata)  +
+  scale_shape_manual(values = c("CAN" = 1, "UNDER" = 21)) +
+  scale_fill_manual(values = c("PNM" = "#8B7355", "PNSL" = "#1874CD")) +
+  scale_colour_manual(values = c("PNM" = "#8B7355", "PNSL" = "#1874CD")) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x)))
+
+
+ lm(log(Aarea) ~ log(LMAp) + log(LMAs/LT), PA) %>% summary
+
+
+PA %>%
+  filter(strata == "CAN") %>%
+  filter(site2 == "DRY") %>%
+  arrange(desc(cell_area)) %>%
+  dplyr::select(sp, cell_area, LMAs)
+
+
+```
+
+```{r, eval = F, echo = F}
+
+set.seed(3)
+fi <- rnorm(4)
+tau <- rep(1, 4)
+
+fi2 <- mapply(rnorm, 10, fi, tau)
+p <- 1 / (1+exp(-fi2))
+
+moge <- data_frame(p = as.numeric(p), gr = rep(letters[1:4], each = 10))
+
+ggplot(moge, aes(p, col = gr)) +
+  geom_density()
+
+```
+
+# PA LES plot ----------------------------------------------------------------0
+PA_dat1 <- PA_dat %>%
+  filter(Trait == "LL" |
+         Trait == "Aarea" |
+         Trait == "Rarea")
+
+lim_PA <- lim_func(PA_dat1 %>% filter(site_strata != "Rand"),
+                   trait = "Val")
+lim_PA2 <- lim_func(PA_dat1 %>% filter(site_strata != "Rand"),
+                    trait = "Val2", LMA = FALSE)
+
+lab1 <- data_frame(lab = paste("(", letters[1:9], ")", sep = ""),
+                   Val2 = lim_PA2$max_val %>% rep(each = 3),
+                   Val = lim_PA$min_val %>% rep(3),
+                   Val_max = lim_PA$max_val %>% rep(3),
+                   gr = "Sun-Dry",
+                   r_vals = r_vals$r_vals$PA %>% unlist,
+                   Trait2 = rep(lim_PA2$Trait2, each = 3),
+                   LMA = rep(lim_PA$LMA, 3)
+                   )
+
+fills <- c("Sun-Dry" = settings$fills$sun_dry,
+          "Sun-Wet" = settings$fills$sun_wet,
+          "Shade-Dry" = settings$fills$shade_dry,
+          "Shade-Wet" = settings$fills$shade_wet)
+
+cols <- c("Sun-Dry" = settings$colors$sun_dry,
+          "Sun-Wet" = settings$colors$sun_wet,
+          "Shade-Dry" = settings$colors$shade_dry,
+          "Shade-Wet" = settings$colors$shade_wet)
+
+PA_plot <- scatter_plt(PA_dat1)
+
+print(PA_plot)
+
+my_ggsave("./figs/PA.png", PA_plot)
+
+```
+
+## Observed LL vs predicted LL
+
+Looks OK but each group has less steep slope. Our model tend to under-and over-esimate LL for long- and short-LL leaves, respectively.
+
+```{r, echo = F, message = F}
+
+
+LL_dat <- PA %>%
+  mutate(site_strata = factor(site_strata,
+          levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) %>%
+  mutate(gr = factor(site_strata,
+    labels = c("Sun-Wet",
+               "Sun-Dry",
+               "Shade-Wet",
+               "Shade-Dry"
+                      )))
+
+labLL <- data_frame(
+                   LL = Inf,
+                   #Val = min(PA$LL),
+                   #Val_max = max(PA$LL),
+                   Val = min(PA$preLL_lo),
+                   Val_max = max(PA$preLL_up),
+                   gr = "Sun-Dry",
+                   r_vals = r_vals$r_vals$PA_LL$preLL_LL
+                   )
+
+
+LL_plot2 <- ggplot(LL_dat, aes(x = LL, y = preLL,
+                              fill = gr, col = gr)) +
+  geom_errorbar(aes(ymin = preLL_lo, ymax = preLL_up), alpha = 0.8, col = "gray") +
+  geom_point(shape = 21) +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols) +
+  scale_x_log10(breaks = my_breaks(), expand = c(0.1, 0),
+                limits = c(min(labLL$Val), max(labLL$Val_max))) +
+  scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0),
+                limits = c(min(labLL$Val), max(labLL$Val_max))) +
+  ylab("Predicted LL (months)") +
+  xlab("Observed LL (months)") +
+  geom_abline(aes(slope = 1, intercept = 0),
+              lty = 2,
+              lwd = 0.25,
+              col = "gray20") +
+  geom_text(data = labLL, aes(label = r_vals, x = Val_max, y = 2.5),
+            colour = "black",
+            hjust = 1,
+            vjust= 0,
+            parse = TRUE,
+            show.legend = FALSE) +
+  coord_fixed() +
+  theme_LES() +
+  theme(
+    legend.position = c(0.2, 0.85),
+    axis.title.x = element_text(margin = margin(t = 1,
+                                                b = 1,
+                                                l = 0,
+                                                r = 0)),
+    axis.title.y = element_text(margin = margin(t = 1,
+                                                b = 1,
+                                                l = 1,
+                                                r = 1))
+        )
+
+print(LL_plot2)
+
+my_ggsave("../figs/LL_plot.png", LL_plot2,
+          width = 6.7,
+          height = 6.7)
+
+cor.test(log(PA$LL), log(PA$preLL))
+
+```
+
+## A, R
+
+```{r}
+
+labA <- data_frame(
+                   LL = Inf,
+                   Val = min(PA$Aarea),
+                   Val_max = max(PA$Aarea),
+                   gr = "Sun-Dry",
+                   r_vals = r_vals$r_vals$PA_LL$preA_Aarea
+                   )
+
+A_plot2 <- ggplot(LL_dat, aes(x = Aarea, y = preA,
+                              fill = gr, col = gr)) +
+  geom_errorbar(aes(ymin = preA_lo, ymax = preA_up), alpha = 0.8, col = "gray") +
+  geom_point(shape = 21) +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols) +
+  scale_x_log10(breaks = my_breaks(), expand = c(0.1, 0),
+                limits = c(min(labA$Val), max(labA$Val_max))) +
+  scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0),
+                limits = c(min(labA$Val), max(labA$Val_max))) +
+  ylab("Predicted A (months)") +
+  xlab("Observed A (months)") +
+  geom_abline(aes(slope = 1, intercept = 0),
+              lty = 2,
+              lwd = 0.25,
+              col = "gray20") +
+  geom_text(data = labA, aes(label = r_vals, x = Val_max, y = 2.5),
+            colour = "black",
+            hjust = 1,
+            vjust= 0,
+            parse = TRUE,
+            show.legend = FALSE) +
+  coord_fixed() +
+  theme_LES() +
+  theme(
+    legend.position = c(0.2, 0.85),
+    axis.title.x = element_text(margin = margin(t = 1,
+                                                b = 1,
+                                                l = 0,
+                                                r = 0)),
+    axis.title.y = element_text(margin = margin(t = 1,
+                                                b = 1,
+                                                l = 1,
+                                                r = 1))
+        )
+
+print(A_plot2)
+
+my_ggsave("../figs/A_plot.png", A_plot2,
+          width = 6.7,
+          height = 6.7)
+
+labR <- data_frame(
+         LL = Inf,
+         Val = min(PA$Rarea),
+         Val_max = max(PA$Rarea),
+         gr = "Sun-Dry",
+         r_vals = r_vals$r_vals$PA_LL$preR_Rarea
+         )
+
+R_plot2 <- ggplot(LL_dat, aes(x = Rarea, y = preR,
+                              fill = gr, col = gr)) +
+  geom_errorbar(aes(ymin = preR_lo, ymax = preR_up), alpha = 0.8, col = "gray") +
+  geom_point(shape = 21) +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols) +
+  scale_x_log10(breaks = my_breaks(), expand = c(0.1, 0),
+                limits = c(min(labR$Val), max(labR$Val_max))) +
+  scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0),
+                limits = c(min(labR$Val), max(labR$Val_max))) +
+  ylab("Predicted R (months)") +
+  xlab("Observed R (months)") +
+  geom_abline(aes(slope = 1, intercept = 0),
+              lty = 2,
+              lwd = 0.25,
+              col = "gray20") +
+  geom_text(data = labR, aes(label = r_vals, x = Val_max, y = 2.5),
+            colour = "black",
+            hjust = 1,
+            vjust= 0,
+            parse = TRUE,
+            show.legend = FALSE) +
+  coord_fixed() +
+  theme_LES() +
+  theme(
+    legend.position = c(0.2, 0.85),
+    axis.title.x = element_text(margin = margin(t = 1,
+                                                b = 1,
+                                                l = 0,
+                                                r = 0)),
+    axis.title.y = element_text(margin = margin(t = 1,
+                                                b = 1,
+                                                l = 1,
+                                                r = 1))
+        )
+
+print(R_plot2)
+
+my_ggsave("../figs/R_plot.png", R_plot2,
+          width = 6.7,
+          height = 6.7)
+
+```
+
+## Cell~area~, Cell~vol~ (= cellulose density), N~area~, P~area~
+
+```{r, echo = F, message = F}
+
+
+PA_dat2 <- PA_dat %>%
+  filter(Trait == "Narea" |
+         Trait == "Parea" |
+         Trait == "cell_area")
+
+
+lim_PA <- lim_func(PA_dat2 %>% filter(site_strata != "Rand"),
+                   trait = "Val")
+lim_PA2 <- lim_func(PA_dat2 %>% filter(site_strata != "Rand"),
+                    trait = "Val2", LMA = FALSE)
+lab1 <- data_frame(lab = paste("(", letters[1:9], ")", sep = ""),
+                   Val2 = lim_PA2$max_val %>% rep(each = 3),
+                   Val = lim_PA$min_val %>% rep(3),
+                   Val_max = lim_PA$max_val %>% rep(3),
+                   gr = "Sun-Dry",
+                   r_vals = r_vals$r_vals$PA_NP %>% unlist,
+                   Trait2 = rep(lim_PA2$Trait2, each = 3),
+                   LMA = rep(lim_PA$LMA, 3)
+                   )
+
+PA_NPC_plot <- scatter_plt(PA_dat2)
+
+print(PA_NPC_plot)
+
+my_ggsave("../figs/PA_NPC.png", PA_NPC_plot)
+
+```
+
+## LMAp vs LMAs
+
+```{r, echo = F, message = F}
+ggplot(PA, aes(x = LMAp, y = LMAs, fill = site2, col = site2, shape = strata)) +
+  geom_point() +
+  xlab("LMAm") +
+  ylab("LMAs") +
+  scale_shape_manual(values = c("CAN" = 1, "UNDER" = 21)) +
+  scale_fill_manual(values = c("DRY" = "#8B7355", "WET" = "#1874CD")) +
+  scale_colour_manual(values = c("DRY" = "#8B7355", "WET" = "#1874CD")) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x)))
+```
+
+## Trait means
+
+The results look OK.
+
+```{r, echo = F, message = F, eval = T}
+
+ggplot(PA2, aes(x = site_strata, y = val,
+                                         fill = site_strata,
+                                         col = site_strata)) +
+  geom_boxplot() +
+  facet_grid(.~LMA, scale = "free") +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_fill_manual(values = c("DRY_CAN" = "white",
+                               "WET_CAN" = "white",
+                               "DRY_UNDER" = "#8B7355",
+                               "WET_UNDER" = "#1874CD"
+                               )) +
+  scale_colour_manual(values = c("DRY_CAN" = "#8B7355",
+                               "WET_CAN" = "#1874CD",
+                               "DRY_UNDER" = "black",
+                               "WET_UNDER" = "black"
+                               ))
+
+```
+
+
+## Decomposition of LMA variation
+
+```{r}
+
+var_p <- function(data)cov(data$LMA, data$LMAp)
+var_s <- function(data)cov(data$LMA, data$LMAs)
+var_t <- function(data)var(data$LMA)
+
+var_p <- function(data)var(data$LMAp)
+var_s <- function(data)var(data$LMAs)
+cov_ps <- function(data)cov(data$LMAp, data$LMAs)
+var_t <- function(data)var(data$LMA)
+
+var_dat <- PA %>%
+  group_by(strata) %>%
+  nest %>%
+  mutate(var_LMAm = map_dbl(data, var_p)) %>%
+  mutate(var_LMAs = map_dbl(data, var_s)) %>%
+  mutate(cov_ms = 2 * map_dbl(data, cov_ps)) %>%
+  mutate(var_total = map_dbl(data, var_t)) %>%
+  dplyr::select(-data)
+
+var_dat_s <- var_dat %>%
+  mutate(LMAm_variance = var_LMAm / (var_LMAm + var_LMAs) * 100) %>%
+  mutate(LMAs_variance = var_LMAs / (var_LMAm + var_LMAs) * 100) %>%
+  gather(var, val, c(LMAm_variance, LMAs_variance))
+
+var_dat_s2 <- var_dat %>%
+  mutate(LMAm_variance = var_LMAm / (var_total) * 100) %>%
+  mutate(LMAs_variance = var_LMAs / (var_total) * 100) %>%
+  mutate(cov_LMAm_LMAs = cov_ms / (var_total) * 100) %>%
+  gather(var, val, c(LMAm_variance, LMAs_variance, cov_LMAm_LMAs))
+
+```
+
+1) var(LMAm) & var(LMAs) & 2*cov(LMAm, LMAs), 2)relative contribution: var(LMAm)/(var(LMAm) + var(LMAs)) & var(LMAs) /(var(LMAm) + var(LMAs))
+
+```{r, echo = F, eval = T}
+
+ggplot(var_dat_s2, aes(x = strata, y = val, fill = var)) +
+  geom_col() +
+  ylab("val (%)")
+
+
+ggplot(var_dat_s, aes(x = strata, y = val, fill = var)) +
+  geom_bar(position = "fill",stat = "identity") +
+  scale_y_continuous(labels = percent_format())
+
+```
+
+# Randomized dataset
+
+```{r}
+
+load("../data/PA_latent_replusive_model_light2_more_rand.rda")
+
+res <- rand_res$model[[1]]
+tmp <- rand_res$data[[1]]
+
+PA <- dat %>%
+  as_data_frame %>%
+  mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
+  mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) %>%
+  mutate(site_strata = paste(site2, strata, sep = "_")) %>%
+  mutate(LMA = tmp$LMA) %>%
+  mutate(Aarea = tmp$A) %>%
+  mutate(LL = tmp$LL) %>%
+  mutate(Rarea = tmp$R)
+
+```
+
+## There are divergent transitions (fatal errors)
+
+This means the model cannot reliable posterior distributions.
+
+```{r}
+pairs(res, pars = c("Z[1,1]","Z[1,2]"))
+```
+
+## No label problems?
+
+It seems that MCMC tried to reduce the residuals for the expected LL and R~area~, which results in the failure for estimating A~area~.
+
+```{r}
+
+
+fit <- res
+params <- extract(fit)
+m <- 4000
+Z_i <- params$Z[,1:3,1:3]
+
+tmp <- data_frame(iter = 1:m,
+           alpha_m = Z_i[,2,1],
+           alpha_s = Z_i[,3,1]
+           ) %>%
+  gather(para, val, 2:3)
+
+tmp_text <- data_frame(x = c(0, 1000, 2000, 3000),
+                       y = 0.7,
+                       lab = c("chain1->", "chain2->", "chain3->", "chain4->"))
+
+ggplot(tmp, aes(x = iter, y = val)) +
+  geom_line(aes(col = para)) +
+  geom_vline(xintercept = c(0, 1000,2000,3000)) +
+  geom_text(data = tmp_text, aes(x = x, y =y , label = lab))
+
+traceplot(res, par = "Z", ncol = 3)
+
+summary_PA <- data.frame(summary(res)$summary)
+
+summary_PA %>%
+  round(3) %>%
+  DT::datatable(.)
+
+```
+
+add mean LMAm and LMAs
+
+```{r}
+
+mcmc_res <- extract(fit) %>% as.data.frame
+
+p_est <- mcmc_res[,paste0("p.",  1:130)] %>% apply(.,2,mean)
+
+Mu_mcmc <- extract(fit, pars = "Mu")[[1]]
+preLL <- Mu_mcmc[,,2] %>% apply(., 2, mean) %>% exp
+preA <- Mu_mcmc[,,1] %>% apply(., 2, mean) %>% exp
+preR <- Mu_mcmc[,,3] %>% apply(., 2, mean) %>% exp
+
+temp_LMAp <- p_est * PA$LMA
+temp_LMAs <- PA$LMA - temp_LMAp
+
+#PA <- PA %>%
+#  mutate(LMAp = temp_LMAp) %>%
+#  mutate(LMAs = temp_LMAs)  %>%
+#  mutate(preLL = preLL) %>%
+#  mutate(preR = preR) %>%
+#  mutate(preA = preA)
+#
+#plot(preR ~ Rarea, log = "xy", PA)
+#plot(preA ~ Aarea, log = "xy", PA)
+#plot(preLL ~ LL, log = "xy", PA)
+#
+#plot(LL ~ preLL, PA, log= "xy")
+preLL_lo <- Mu_mcmc[,,2] %>% apply(., 2, function(x)quantile(x, 0.025)) %>% exp
+preLL_up <- Mu_mcmc[,,2] %>% apply(., 2, function(x)quantile(x, 0.975)) %>% exp
+preA_lo <- Mu_mcmc[,,1] %>% apply(., 2, function(x)quantile(x, 0.025)) %>% exp
+preA_up <- Mu_mcmc[,,1] %>% apply(., 2, function(x)quantile(x, 0.975)) %>% exp
+preR_lo <- Mu_mcmc[,,3] %>% apply(., 2, function(x)quantile(x, 0.025)) %>% exp
+preR_up <- Mu_mcmc[,,3] %>% apply(., 2, function(x)quantile(x, 0.975)) %>% exp
+preLL1 <- Mu_mcmc[1,,2] %>% exp
+
+hist(LMAps_cor)
+#mu2_vec <- paste("mu2[", 1:nrow(PA), "]", sep = "")
+#Mu_vec <- paste("mu[", 1:nrow(PA), ",2]", sep = "")
+temp_LMAp <- p_est * PA$LMA
+temp_LMAs <- PA$LMA - temp_LMAp
+
+PA <- PA %>%
+  mutate(LMAp = temp_LMAp) %>%
+  mutate(LMAs = temp_LMAs)  %>%
+  mutate(preLL = preLL) %>%
+  mutate(preA = preA) %>%
+  mutate(preR = preR) %>%
+  mutate(preLL_lo = preLL_lo) %>%
+  mutate(preLL_up = preLL_up) %>%
+  mutate(preA_lo = preA_lo) %>%
+  mutate(preA_up = preA_up) %>%
+  mutate(preR_lo = preR_lo) %>%
+  mutate(preR_up = preR_up) %>%
+  mutate(preLL1 = preLL1)
+
+write.csv(PA,"../data/PA_res.csv", row.names = F)
+
+```
+
+## LMAm and LMAs vs N~area~, P~area~ and LL
+
+```{r, echo = F, message = F}
+
+setwd("..")
+
+settings <- yaml::yaml.load_file("./settings.yml")
+r_vals <- yaml::yaml.load_file("PA_r_val.yml")
+p_letters <- yaml::yaml.load_file("letters.yml")
+source("fig_theme.r")
+
+PA_dat <- PA %>%
+  gather(LMA, Val,
+         c(LMA, LMAs, LMAp)) %>%
+  gather(Trait, Val2, c(Aarea, Rarea, LL,
+                        Parea, Narea, cell_area)) %>%
+  mutate(LMA = factor(LMA,
+    labels = c("LMA", "LMAm", "LMAs"))) %>%
+  mutate(LMA = factor(LMA,
+    labels = c("LMA~(~g~m^{-2})", "LMAm~(~g~m^{-2})", "LMAs~(~g~m^{-2})"))) %>%
+  mutate(site_strata = factor(site_strata,
+          levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) %>%
+  mutate(Trait = factor(Trait,
+    levels = c("Aarea", "Rarea", "LL", "Narea", "Parea", "cell_area"))) %>%
+  mutate(Trait2 = factor(Trait,
+    labels = c("italic(A)[area]~(~mu~mol~m^{-2}~s^{-1})",
+               "italic(R)[area]~(~mu~mol~m^{-2}~s^{-1})",
+               "LL~(months)",
+               "italic(N)[area]~(~g~m^{-2})",
+               "italic(P)[area]~(~g~m^{-2})",
+               "italic(CL)[area]~(~g~m^{-2})"
+               ))) %>%
+  mutate(gr = factor(site_strata,
+    labels = c("Sun-Wet",
+               "Sun-Dry",
+               "Shade-Wet",
+               "Shade-Dry"
+                      ))) %>%
+  arrange(gr)
+
+# PA LES plot ----------------------------------------------------------------0
+PA_dat1 <- PA_dat %>%
+  filter(Trait == "LL" |
+         Trait == "Aarea" |
+         Trait == "Rarea")
+
+lim_PA <- lim_func(PA_dat1 %>% filter(site_strata != "Rand"),
+                   trait = "Val")
+lim_PA2 <- lim_func(PA_dat1 %>% filter(site_strata != "Rand"),
+                    trait = "Val2", LMA = FALSE)
+
+lab1 <- data_frame(lab = paste("(", letters[1:9], ")", sep = ""),
+                   Val2 = lim_PA2$max_val %>% rep(each = 3),
+                   Val = lim_PA$min_val %>% rep(3),
+                   Val_max = lim_PA$max_val %>% rep(3),
+                   gr = "Sun-Dry",
+                   r_vals = "",
+                   Trait2 = rep(lim_PA2$Trait2, each = 3),
+                   LMA = rep(lim_PA$LMA, 3)
+                   )
+
+fills <- c("Sun-Dry" = settings$fills$sun_dry,
+          "Sun-Wet" = settings$fills$sun_wet,
+          "Shade-Dry" = settings$fills$shade_dry,
+          "Shade-Wet" = settings$fills$shade_wet)
+
+cols <- c("Sun-Dry" = settings$colors$sun_dry,
+          "Sun-Wet" = settings$colors$sun_wet,
+          "Shade-Dry" = settings$colors$shade_dry,
+          "Shade-Wet" = settings$colors$shade_wet)
+
+PA_plot <- scatter_plt(PA_dat1)
+
+print(PA_plot)
+
+my_ggsave("./figs/PA_rand.png", PA_plot)
+
+```
+
+## Observed LL vs predicted LL
+
+
+```{r, echo = F, message = F}
+
+
+LL_dat <- PA %>%
+  mutate(site_strata = factor(site_strata,
+          levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) %>%
+  mutate(gr = factor(site_strata,
+    labels = c("Sun-Wet",
+               "Sun-Dry",
+               "Shade-Wet",
+               "Shade-Dry"
+                      )))
+
+labLL <- data_frame(
+                   LL = Inf,
+                   Val = min(PA$LL),
+                   Val_max = max(PA$LL),
+                   gr = "Sun-Dry",
+                   r_vals = ""
+                   )
+
+LL_plot <- ggplot(LL_dat, aes(x = preLL, y = LL,
+                              fill = gr, col = gr)) +
+  geom_point(shape = 21) +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols) +
+  scale_x_log10(breaks = my_breaks(), expand = c(0.1, 0),
+                limits = c(min(labLL$Val), max(labLL$Val_max))) +
+  scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0),
+                limits = c(min(labLL$Val), max(labLL$Val_max))) +
+  xlab("Predicted LL (months)") +
+  ylab("Observed LL (months)") +
+  geom_abline(aes(slope = 1, intercept = 0),
+              lty = 2,
+              lwd = 0.25,
+              col = "gray20") +
+  geom_text(data = labLL, aes(label = r_vals, x = Val_max, y = 2.5),
+            colour = "black",
+            hjust = 1,
+            vjust= 0,
+            parse = TRUE,
+            show.legend = FALSE) +
+  coord_fixed() +
+  theme_LES() +
+  theme(
+    legend.position = c(0.2, 0.85),
+    axis.title.x = element_text(margin = margin(t = 1,
+                                                b = 1,
+                                                l = 0,
+                                                r = 0)),
+    axis.title.y = element_text(margin = margin(t = 1,
+                                                b = 1,
+                                                l = 1,
+                                                r = 1))
+        )
+
+print(LL_plot)
+
+my_ggsave("../figs/LL_plot_rand.png", LL_plot,
+          width = 6.7,
+          height = 6.7)
+
+cor.test(log(LL_dat$preLL), log(LL_dat$LL))
+
+```
+
+# Model code
+
+```{r}
+get_stancode(res) %>% cat
+```
+
+# R info
+
+```{r}
+sessionInfo()
+```

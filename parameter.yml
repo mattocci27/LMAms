@@ -1,0 +1,62 @@
+# based on simple model
+GL:
+  # sigma1: 0.36
+  # sigma2: 0.54
+  # sigma3: 0.44
+  # rho12: -0.58
+  # rho23: -0.62
+  # rho13: 0.55
+  # log_alpha: 1.6
+  # alpha2: 0.23
+  # log_beta: -0.64
+  # beta2: 0.8
+  # rp: 0.25
+  # rs: 0.11
+  # log_r: -1.1
+  #rho12: 0
+  #rho23: 0
+  #rho13: 0.7
+  #sigma1: 0.3
+  #sigma2: 0.43
+  #sigma3: 0.34
+  #log_alpha: 1.43
+  #alpha2: 0.28
+  #log_beta: -1.0
+  #beta2: 0.88
+  #rp: 0.347
+  #rs: 0.00
+  #log_r: -0.955
+  # N-AR
+  sigma1: 0.29
+  sigma2: 0.42
+  sigma3: 0.34
+  log_alpha: 1.44
+  alpha2: 0.28
+  log_beta: -1.05
+  beta2: 0.88
+  log_r: -0.95
+  rp: 0.34
+  rs: 0.00
+PA:
+  sigma1: 0.32
+  sigma2: 0.41
+  sigma3: 0.6
+  log_alpha: 1.06
+  alpha2: 0.39
+  log_beta: -0.39
+  log_r: -2.08
+  rp: 0.61
+  rs: 0
+  log_site: -0.36 # log(0.7)
+  q : 0.33
+WC:
+  sigma1: 0.5
+  sigma2: 0.5
+  sigma3: 0.5
+  log_alpha: 2 # 1.7 = log(2) + 1
+  alpha2: 0
+  log_beta: 1
+  beta2: 0 
+  rp: 0
+  rs: 0
+  log_r: 0.2 # AR -R > 0

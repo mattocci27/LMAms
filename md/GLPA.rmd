@@ -1,0 +1,234 @@
+---
+title: GLOPNET-PA results
+author: Masatoshi Katabuchi
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+---
+
+- alpha_0 LMAm^alpha_p 
+- beta_0 LMAs^beta_s
+
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE,
+                      warning=FALSE,
+                      message=FALSE)
+```
+
+
+```{r, echo = F, message = F}
+library(loo)
+library(rstan)
+library(dplyr)
+library(scales)
+library(memisc)
+
+theme_set(theme_light())
+
+settings <- yaml::yaml.load_file("settings.yml")
+```
+
+
+```{r, echo = F, message = F}
+
+#load("./data/PA_sitePL_LD_L_MVN_obs.rda")
+load("./data/GLPA_m1q_more_obs.rda")
+
+
+summary_GL_LDL <- data.frame(summary(res)$summary)
+
+dat2 <- dat %>%
+  as_data_frame 
+
+
+P_vec <- paste("p[", 1:nrow(dat), "]", sep = "")
+mu2_vec <- paste("mu2[", 1:nrow(dat), "]", sep = "")
+#Mu_vec <- paste("mu[", 1:nrow(GL), ",2]", sep = "")
+temp_LMAp <- summary_GL_LDL[P_vec, "mean"] * dat2$LMA
+temp_LMAs <- dat2$LMA - temp_LMAp
+temp_LL <- exp(summary_GL_LDL[mu2_vec, "mean"])
+
+#ap <- rstan::extract(res, "beta[2]")[[1]]
+#temp_LMAp <- median(ap) * temp_LMAm
+
+dat2 <- dat2 %>%
+  mutate(LMAp = temp_LMAp) %>%
+  mutate(LMAs = temp_LMAs) %>%
+  mutate(preLL = temp_LL) 
+
+GL <- dat2 %>%
+  filter(site2 == "GL") 
+
+PA <- dat2 %>%
+  filter(site2 == "PA") %>%
+  mutate(strata = ifelse(leaf == 1, "CAN", "UNDER")) %>%
+  mutate(sp_site_strata = paste(sp, site, strata, sep = "_"))
+
+GL2 <- GL %>%
+  arrange(LMA) %>%
+  gather(LMA2, val, c("LMAp", "LMAs")) %>%
+  mutate(ordering = 1:nrow(.)) %>%
+  mutate(sp2 = fct_reorder(sp, ordering))
+
+PA2 <- PA %>%
+  arrange(LMA) %>%
+  gather(LMA2, val, c("LMAp", "LMAs")) %>%
+  mutate(ordering = 1:nrow(.)) %>%
+  mutate(sp2 = fct_reorder(sp, ordering)) 
+
+```
+
+# Paramters
+
+```{r, echo = F, eval = T}
+
+tail(summary_GL_LDL)
+
+plot(res)
+
+traceplot(res)
+
+```
+
+```{r, message = F}
+
+ggplot(GL2, aes(x = sp2, y = val, fill = LMA2)) +
+  geom_col() +
+  ylab("LMA value") +
+  xlab("GLOPNET species") 
+
+ggplot(PA2, aes(x = sp2, y = val, fill = LMA2)) +
+  geom_col() +
+  ylab("LMA value") +
+  xlab("Panama species") 
+
+ggplot(GL2, aes(x = sp2, y = val, fill = LMA2)) +
+  geom_col() +
+  ylab("LMA value") +
+  xlab("GLOPNET species") +
+  facet_grid(~DE)
+
+ggplot(PA2, aes(x = sp_site_strata, y = val, fill = LMA2)) +
+  geom_col() +
+  ylab("LMA value") +
+  xlab("Panama species")  +
+  facet_grid(site~strata)
+
+
+```
+
+# Trait correlations
+
+## A~area~, R~area~, LL
+
+Open symbols indicate sun leaves and closed symbols indicate shade leaves. The results look nice and do not alter main conclusions.
+
+```{r, echo = F, message = F}
+
+GL3 <- GL %>%
+  gather(LMA, val, c("LMA", "LMAp", "LMAs")) %>%
+  gather(trait, val2, c("Aarea", "LL", "Rarea")) %>%
+  mutate(gr = factor(DE,
+    labels = c("Deciduous",
+               "Evergreen",
+               "Unclassified"
+                      ))) 
+
+
+fills <- c("Deciduous" = settings$fills$D,
+          "Evergreen" = settings$fills$E,
+          "Unclassified" = settings$fills$U)
+
+cols <- c("Deciduous" = settings$colors$D,
+          "Evergreen" = settings$colors$E,
+          "Unclassified" = settings$colors$U)
+
+ggplot(GL3, aes(x = val, y = val2, fill = gr, col = gr)) +
+  geom_point(shape = 21) +
+  facet_grid(trait ~ LMA, scale = "free") +
+  xlab("LMA") +
+  ylab("Traits") +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x)))
+
+PA3 <- PA %>%
+  gather(LMA, val, c("LMA", "LMAp", "LMAs")) %>%
+  gather(trait, val2, c("Aarea", "LL", "Rarea")) 
+
+
+ggplot(PA3, aes(x = val, y = val2, fill = site, col = site, shape = strata)) +
+  geom_point() +
+  facet_grid(trait ~ LMA, scale = "free") +
+  xlab("LMA and LD") +
+  ylab("Traits") +
+  scale_shape_manual(values = c("CAN" = 1, "UNDER" = 21)) +
+  scale_fill_manual(values = c("DRY" = "#8B7355", "WET" = "#1874CD")) +
+  scale_colour_manual(values = c("DRY" = "#8B7355", "WET" = "#1874CD")) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x)))
+
+```
+
+```{r, echo = F}
+
+var_p <- function(data)cov(data$LMA, data$LMAp)
+var_s <- function(data)cov(data$LMA, data$LMAs)
+var_t <- function(data)var(data$LMA)
+
+var_p <- function(data)var(data$LMAp)
+var_s <- function(data)var(data$LMAs)
+cov_ps <- function(data)cov(data$LMAp, data$LMAs)
+var_t <- function(data)var(data$LMA)
+
+#var_dat <- GL %>%
+#  mutate(site = "GL") %>%
+#  group_by(site) %>%
+#  nest %>%
+#  mutate(var_LMAm = map_dbl(data, var_p)) %>%
+#  mutate(var_LMAs = map_dbl(data, var_s)) %>%
+#  mutate(cov_ms = 2 * map_dbl(data, cov_ps)) %>%
+#  mutate(var_total = map_dbl(data, var_t)) %>%
+#  dplyr::select(-data)
+#
+#var_dat_s <- var_dat %>%
+#  mutate(LMAm_variance = var_LMAm / (var_LMAm + var_LMAs) * 100) %>%
+#  mutate(LMAs_variance = var_LMAs / (var_LMAm + var_LMAs) * 100) %>%
+#  gather(var, val, c(LMAm_variance, LMAs_variance))
+#
+#var_dat_s2 <- var_dat %>%
+#  mutate(LMAm_variance = var_LMAm / (var_total) * 100) %>%
+#  mutate(LMAs_variance = var_LMAs / (var_total) * 100) %>%
+#  mutate(cov_LMAm_LMAs = cov_ms / (var_total) * 100) %>%
+#  gather(var, val, c(LMAm_variance, LMAs_variance, cov_LMAm_LMAs)) 
+
+
+```
+
+# Decomposition of LMA variation 
+
+1) var(LMAm) & var(LMAs) & 2*cov(LMAm, LMAs), 2)relative contribution: var(LMAm)/(var(LMAm) + var(LMAs)) & var(LMAs) /(var(LMAm) + var(LMAs))
+
+```{r, eval = F,echo = F}
+
+ggplot(var_dat_s2, aes(x = site, y = val, fill = var)) +
+  geom_col() +
+  ylab("val (%)") 
+
+ggplot(var_dat_s, aes(x = site, y = val, fill = var)) +
+  geom_bar(position = "fill",stat = "identity") +
+  scale_y_continuous(labels = percent_format())
+
+GL
+
+summary_GL_LDL %>% tail
+
+
+lm(log(Aarea) ~ log(LMA), GL) %>% summary
+
+```
+

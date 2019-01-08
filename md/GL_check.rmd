@@ -1,0 +1,938 @@
+---
+title: "Null model check for GLOPNET"
+output:
+  bookdown::pdf_book:
+    fig_caption: true
+    keep_tex: yes
+    toc: no
+    number_sections: no
+    pandoc_args:
+      - "--filter"
+      - "pandoc-crossref"
+fontsize: 12pt
+sansfont: Times New Roman
+geometry: margin=1in
+link-citations: yes
+---
+
+I have tested two statistical models and two null models.
+
+- Simple linear / Power-law
+- LMA shuffle / All shuffle
+
+## Summary
+- For simple model, all shuffle shows lower r^2^~rand~ values.
+- For power-law model, the pattern is not that clear but both null models tend to produce lower r^2^~rand~ than simple model does.
+- Estimated parameters (the last two figures) suggest that Power-law model seems to be better (or more suitable).
+    - Some of parameters in the simple model are not different from those estimated from randomized dataset, which seems to be problematic...
+
+
+## Simple model 
+
+\begin{align}
+  &E[{\rm gross \; photosynthesis}]
+  = E[A_{area_i} + R_{area_i}]
+  = \alpha{\rm LMAp}_{i}
+  = \alpha f_{i} {\rm LMA}_{i} (\#eq:E-AR)\\
+  &E[{\rm LL}_{i}] = \beta_{1} {\rm LMAs}_{i}
+  = \beta_{1} (1 - f_{i}) {\rm LMA}_{i} (\#eq:E-LL)\\
+  &E[R_{areai}] = r_{p}{\rm LMAp}_{i} + r_{s} {\rm LMAs}_{i}
+  = r_{p} f_{i} {\rm LMA}_{i} + r_{s} (1 - f_{i}) {\rm LMA}_{i}
+  (\#eq:E-R)
+\end{align}
+
+where, E[$\cdot$] is the expected value of the variable in brackets, *A*~area~~*i*~, *R*~area~~*i*~, and LL~*i*~, are, respectively, the net photosynthetic rate (*A*~max~) per unit area, dark respiration rate (*R*~dark~) per unit area, and leaf life span of leaf i; $\alpha$ is net photosynthetic rate per unit photosynthetic mass; $\beta_1$ is leaf lifespan per unit structural mass; and r~p~ and r~s~, are, respiration rates per unit photosynthetic and structural leaf mass, respectively. 
+
+## Power-law model 
+\begin{align}
+  &E[A_{area_i} + R_{area_i}]
+  = \alpha_1{\rm LMAp}_{i}^{\alpha_2} (\#eq:E-AR2)\\
+  &E[{\rm LL}_{i}] = \beta_{1} {\rm LMAs}_{i}^{\beta_2} (\#eq:E-LL2)\\
+  &E[R_{areai}] = r{\rm LMAp}_{i}^{r_p}{\rm LMAs}_{i}^{r_s} (\#eq:E-R2)
+\end{align}
+
+\begin{align}
+  &log[E[A_{area_i} + R_{area_i}]]
+  = log\alpha_1 + {\alpha_2}log{\rm LMAp}_{i}(\#eq:E-AR3)\\
+  &log[E[{\rm LL}_{i}]] =  log\beta_1 + {\beta_2}log{\rm LMAs}_{i} (\#eq:E-LL3)\\
+  &log[E[R_{areai}]] =  logr + r_p log{\rm LMAp}_i + r_s log{\rm LMAs}_i (\#eq:E-R3)
+\end{align}
+
+- $r_{p1} LMAp_{i}^{r_p2} + r_{s1} LMAs_{i}^{r_s2}$ did not work. Eq. (9) makes more sense for a power law function.
+- When LMAs does not play any role in determining R~area~, r~s~ will be zero.
+
+## LMA shuffle
+- We do not maintain covariance between LMA and other traits, but maintain covariances among A~area~, R~area~, and LL.
+- This null model is suitable to test if the observed LMA is more meaningful than expected LMA from the observed covariance structure among other traits.
+- This null model shows that covariances structure among other traits alone can provide reasonable expected values of LMAp and LMAs but those LMAp and LMAs do not have to explain divergent pattens in the datasets than LMA does.
+- This null model is not suitable to test if covariance structure (underlying trade-offs) among A~area~, R~area~ and LL can produce observed patterns that can be explained by LMAp and LMAs.
+
+## All shuffle 
+- We do not maintain covariance structure (or trade-off) among traits.
+- This null model is suitable to test if covariance structure (underlying trade-offs) can generate patterns that can be explained by LMAp and LMAs.
+- For example, we could test an assumption that LMAp is proportional to (or increasing with) A~area~ + R~area~ and LL.
+
+```{r include = FALSE}
+setwd("~/Dropbox/MS/LES_MS/LMApsModel/data/")
+# setwd("~/Dropbox/MS/LES_MS/LMApsModel/md/")
+# render("GL_check.rmd", "bookdown::pdf_book")
+# use null result 1
+null_n <- 3
+
+# GL data -------------------------------------------------------------------
+load("GL_model1_obs_2017-06-19_.RData")
+
+s1 <- fit.summary
+GL <- data.obs
+P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
+
+GL <- GL %>%
+  mutate(DE = ifelse(GL$DE == "", "U", as.character(DE))) %>%
+  mutate(LMAp1 =  fit.summary[P_vec, "mean"] * LMA) %>%
+  mutate(LMAs1 = LMA - LMAp1)
+
+
+load("GL_model1r4_obs_2017-06-19_.RData")
+s4 <- fit.summary
+
+GL <- GL %>%
+  mutate(LMAp4 =  fit.summary[P_vec, "mean"] * LMA) %>%
+  mutate(LMAs4 = LMA - LMAp4)
+
+head(GL)
+
+load("GL_model1_LMA_2017-06-19_.RData")
+s1LMA <- fit.summary.list[[null_n]]
+
+temp <- LMA.ra.data[,null_n]
+GL <- GL %>%
+  mutate(LMA_ra = temp) %>%
+  mutate(LMAp1_ra =  s1LMA[P_vec, "mean"] * LMA_ra) %>%
+  mutate(LMAs1_ra = LMA_ra - LMAp1_ra)
+
+head(GL)
+
+load("GL_model1_All_2017-06-19_.RData")
+
+# sp order
+s1ALL <- fit.summary.list[[null_n]]
+
+# sp order
+temp <- LMA.ra2.data[[null_n]]
+  #arrange(LMA)
+
+GL <- GL %>%
+  #arrange(LMA) %>%
+  mutate(LMA_all = temp[,"LMA"]) %>%
+  mutate(LMAp1_all =  s1ALL[P_vec, "mean"] * LMA_all) %>%
+  mutate(LMAs1_all = LMA_all - LMAp1_all) %>%
+  mutate(LL_all = temp[, "LL"]) %>%
+  mutate(Rarea_all = temp[, "Rarea"]) %>%
+  mutate(Aarea_all = temp[, "Aarea"])
+
+
+
+load("GL_model1r4_All_2017-06-19_.RData")
+s4ALL <- fit.summary.list[[null_n]]
+
+temp <- LMA.ra2.data[[null_n]]
+
+GL <- GL %>%
+  mutate(LMAp4_all =  s4ALL[P_vec, "mean"] * LMA_all) %>%
+  mutate(LMAs4_all = LMA_all - LMAp4_all)
+
+
+load("GL_model1r4_LMA_2017-06-19_.RData")
+s4LMA <- fit.summary.list[[null_n]]
+
+GL <- GL %>%
+  mutate(LMAp4_ra =  s1LMA[P_vec, "mean"] * LMA_ra) %>%
+  mutate(LMAs4_ra = LMA_ra - LMAp4_ra)
+
+head(GL)
+```
+
+
+```{r, include = FALSE}
+lim_func <- function(trait){
+  mid_len <- (log10(max(trait, na.rm = T)) - log10(min(trait, na.rm = T))) /2
+  max_lim <- log10(max(trait, na.rm = T)) + mid_len * 0.3
+  min_lim <- log10(min(trait, na.rm = T)) - mid_len * 0.3
+  return(10^(c(min_lim, max_lim)))
+}
+
+GL.each <- function(x, y, x_text = NULL, y_text = NULL, subscript = NULL){
+  dec <- GL %>%
+    filter(DE == "D")
+  ev <- GL %>%
+    filter(DE == "E")
+  un <- GL %>%
+    filter(DE == "U")
+
+  LMA_rand <- paste(x, "_ra", sep = "")
+
+  options("scipen" = 100)
+  if(x == "LMA") plot(GL[ , x], GL[ ,y],
+              log = "xy", axes = F,
+              xlim = lim_func(GL[ , x]), ylim = lim_func(GL[ ,y]),
+              type = "n") else {
+          plot(GL[ , x], GL[ ,y],
+              log = "xy", axes = F,
+              xlim = lim_func(GL[ , x]), ylim = lim_func(GL[ ,y]),
+              type = "n")
+    }
+  mtext(subscript, side = 3, line = -1, adj = 0, cex = 0.65)
+
+  box()
+
+  if (x != "LMA") points(GL[ , LMA_rand], GL[ ,y], col = "gray", pch = 19, cex = 0.8)
+
+  points(un[ , x], un[ ,y], col = "black", pch = 21, bg = "white")
+  points(ev[ , x], ev[ ,y], col = "black", pch = 21, bg = "green4")
+  points(dec[ , x], dec[ ,y], col = "black", pch = 21, bg = "dark orange")
+
+  if(is.null(y_text) != TRUE){
+    axis(2, tick = FALSE,line = -0.8, cex.axis = 0.9)
+    axis(2, tcl = 0.2, labels = FALSE)
+    mtext(y_text, side = 2, line = 1.2, cex = 0.8)
+  }
+
+  if(is.null(x_text) != TRUE){
+    axis(1, tick = FALSE, line = -0.8, cex.axis = 0.9)
+    axis(1, tcl = 0.2, labels = FALSE, cex = 0.8)
+    mtext(x_text, side = 1, line = 1.5, cex = 0.8)
+  }
+}
+
+```
+
+
+## Simple linear with LMA shuffle
+
+```{r, fig.width = 6, fig.height=6, echo = FALSE}
+par(mfrow = c(3, 3))
+par(mar = c(0, 0, 0, 0))
+par(oma = c(3, 3, 2, 2))
+
+GL.each(x = "LMA", y = "Aarea", subscript = " (a)",
+  y_text = expression(paste(italic(A)[area]," (", mu, "mol ", m^-2," ", s^-1, ")")))
+
+par(xpd=NA)
+legend(10, 80, c("Evergreen", "Deciduous", "Unclassfied", "Rand"),
+       pch = c(21, 24, 21, 21),
+       pt.bg = c("green4", "dark orange", "white", "gray"),
+       col = c("black", "black", "black", "gray"),
+       pt.lwd = c(0.8, 0.8, 0.8),
+       bty = "n",
+       # lwd=0.8,
+       cex = 0.9,
+       pt.cex = 1,
+       ncol = 4)
+par(xpd=TRUE)
+
+GL.each(x = "LMAp1", y = "Aarea", subscript = " (b)")
+
+GL.each(x = "LMAs1", y = "Aarea", subscript = " (c)")
+
+GL.each(x = "LMA", y = "Rarea", subscript = " (d)",
+    y_text = expression(paste(italic(R)[area]," (", mu, "mol ", m^-2," ", s^-1, ")")))
+
+GL.each(x = "LMAp1", y = "Rarea", subscript = " (e)")
+
+GL.each(x = "LMAs1", y = "Rarea", subscript = " (f)")
+
+
+GL.each(x = "LMA", y = "LL", subscript = " (g)",
+  y_text = expression(paste("LL (months)")),
+  x_text = expression(paste("LMA (g ",m^-2,")")))
+
+GL.each(x = "LMAp1", y = "LL", subscript = " (h)",
+  x_text = expression(paste("LMAp (g ",m^-2,")")))
+
+GL.each(x = "LMAs1", y = "LL", subscript = " (i)",
+  x_text = expression(paste("LMAs (g ",m^-2,")")))
+
+```
+
+## Power-law with LMA shuffle
+
+
+```{r, fig.width = 6, fig.height=6, echo = FALSE}
+par(mfrow = c(3, 3))
+par(mar = c(0, 0, 0, 0))
+par(oma = c(3, 3, 2, 2))
+
+GL.each(x = "LMA", y = "Aarea", subscript = " (a)",
+  y_text = expression(paste(italic(A)[area]," (", mu, "mol ", m^-2," ", s^-1, ")")))
+
+par(xpd=NA)
+legend(10, 80, c("Evergreen", "Deciduous", "Unclassfied", "Rand"),
+       pch = c(21, 24, 21, 21),
+       pt.bg = c("green4", "dark orange", "white", "gray"),
+       col = c("black", "black", "black", "gray"),
+       pt.lwd = c(0.8, 0.8, 0.8),
+       bty = "n",
+       # lwd=0.8,
+       cex = 0.9,
+       pt.cex = 1,
+       ncol = 4)
+par(xpd=TRUE)
+
+GL.each(x = "LMAp4", y = "Aarea", subscript = " (b)")
+
+GL.each(x = "LMAs4", y = "Aarea", subscript = " (c)")
+
+GL.each(x = "LMA", y = "Rarea", subscript = " (d)",
+    y_text = expression(paste(italic(R)[area]," (", mu, "mol ", m^-2," ", s^-1, ")")))
+
+GL.each(x = "LMAp4", y = "Rarea", subscript = " (e)")
+
+GL.each(x = "LMAs4", y = "Rarea", subscript = " (f)")
+
+
+GL.each(x = "LMA", y = "LL", subscript = " (g)",
+  y_text = expression(paste("LL (months)")),
+  x_text = expression(paste("LMA (g ",m^-2,")")))
+
+GL.each(x = "LMAp4", y = "LL", subscript = " (h)",
+  x_text = expression(paste("LMAp (g ",m^-2,")")))
+
+GL.each(x = "LMAs4", y = "LL", subscript = " (i)",
+  x_text = expression(paste("LMAs (g ",m^-2,")")))
+```
+
+## Simple linear with all shuffle
+
+```{r, fig.width = 6, fig.height=6, echo = FALSE}
+GL.each <- function(x, y, x_text = NULL, y_text = NULL, subscript = NULL){
+  dec <- GL %>%
+    filter(DE == "D")
+  ev <- GL %>%
+    filter(DE == "E")
+  un <- GL %>%
+    filter(DE == "U")
+
+  LMA_rand <- paste(x, "_all", sep = "")
+  y_rand <- paste(y, "_all", sep = "")
+
+  options("scipen" = 100)
+  if(x == "LMA") plot(GL[ , x], GL[ ,y],
+              log = "xy", axes = F,
+              xlim = lim_func(GL[ , x]), ylim = lim_func(GL[ ,y]),
+              type = "n") else {
+          plot(GL[ , x], GL[ ,y],
+              log = "xy", axes = F,
+              xlim = lim_func(GL[ , x]), ylim = lim_func(GL[ ,y]),
+              type = "n")
+    }
+  mtext(subscript, side = 3, line = -1, adj = 0, cex = 0.65)
+
+  box()
+
+  if (x != "LMA") points(GL[ , LMA_rand], GL[ ,y_rand], col = "gray", pch = 19, cex = 0.8)
+ # if (str_detect(x, "ra") == TRUE) points(GL[ , "LMA_ra"], GL[ ,y], col = "gray", pch = 19, cex = 0.8) else if (str_detect(x, "all") == TRUE) points(GL[ , "LMA_all"], GL[ ,y], col = "gray", pch = 19, cex = 0.8)
+
+  points(un[ , x], un[ ,y], col = "black", pch = 21, bg = "white")
+  points(ev[ , x], ev[ ,y], col = "black", pch = 21, bg = "green4")
+  points(dec[ , x], dec[ ,y], col = "black", pch = 21, bg = "dark orange")
+
+  if(is.null(y_text) != TRUE){
+    axis(2, tick = FALSE,line = -0.8, cex.axis = 0.9)
+    axis(2, tcl = 0.2, labels = FALSE)
+    mtext(y_text, side = 2, line = 1.2, cex = 0.8)
+  }
+
+  if(is.null(x_text) != TRUE){
+    axis(1, tick = FALSE, line = -0.8, cex.axis = 0.9)
+    axis(1, tcl = 0.2, labels = FALSE, cex = 0.8)
+    mtext(x_text, side = 1, line = 1.5, cex = 0.8)
+  }
+}
+```
+
+```{r, fig.width = 6, fig.height=6, echo = FALSE}
+
+par(mfrow = c(3, 3))
+par(mar = c(0, 0, 0, 0))
+par(oma = c(3, 3, 2, 2))
+
+GL.each(x = "LMA", y = "Aarea", subscript = " (a)",
+  y_text = expression(paste(italic(A)[area]," (", mu, "mol ", m^-2," ", s^-1, ")")))
+
+par(xpd=NA)
+legend(10, 80, c("Evergreen", "Deciduous", "Unclassfied", "Rand"),
+       pch = c(21, 24, 21, 21),
+       pt.bg = c("green4", "dark orange", "white", "gray"),
+       col = c("black", "black", "black", "gray"),
+       pt.lwd = c(0.8, 0.8, 0.8),
+       bty = "n",
+       # lwd=0.8,
+       cex = 0.9,
+       pt.cex = 1,
+       ncol = 4)
+par(xpd=TRUE)
+
+GL.each(x = "LMAp1", y = "Aarea", subscript = " (b)")
+
+GL.each(x = "LMAs1", y = "Aarea", subscript = " (c)")
+
+GL.each(x = "LMA", y = "Rarea", subscript = " (d)",
+    y_text = expression(paste(italic(R)[area]," (", mu, "mol ", m^-2," ", s^-1, ")")))
+
+GL.each(x = "LMAp1", y = "Rarea", subscript = " (e)")
+
+GL.each(x = "LMAs1", y = "Rarea", subscript = " (f)")
+
+
+GL.each(x = "LMA", y = "LL", subscript = " (g)",
+  y_text = expression(paste("LL (months)")),
+  x_text = expression(paste("LMA (g ",m^-2,")")))
+
+GL.each(x = "LMAp1", y = "LL", subscript = " (h)",
+  x_text = expression(paste("LMAp (g ",m^-2,")")))
+
+GL.each(x = "LMAs1", y = "LL", subscript = " (i)",
+  x_text = expression(paste("LMAs (g ",m^-2,")")))
+
+```
+
+
+## Power-law with all shuffle
+
+```{r, fig.width = 6, fig.height=6, echo = FALSE}
+par(mfrow = c(3, 3))
+par(mar = c(0, 0, 0, 0))
+par(oma = c(3, 3, 2, 2))
+
+GL.each(x = "LMA", y = "Aarea", subscript = " (a)",
+  y_text = expression(paste(italic(A)[area]," (", mu, "mol ", m^-2," ", s^-1, ")")))
+
+par(xpd=NA)
+legend(10, 80, c("Evergreen", "Deciduous", "Unclassfied", "Rand"),
+       pch = c(21, 24, 21, 21),
+       pt.bg = c("green4", "dark orange", "white", "gray"),
+       col = c("black", "black", "black", "gray"),
+       pt.lwd = c(0.8, 0.8, 0.8),
+       bty = "n",
+       # lwd=0.8,
+       cex = 0.9,
+       pt.cex = 1,
+       ncol = 4)
+par(xpd=TRUE)
+
+GL.each(x = "LMAp4", y = "Aarea", subscript = " (b)")
+
+GL.each(x = "LMAs4", y = "Aarea", subscript = " (c)")
+
+GL.each(x = "LMA", y = "Rarea", subscript = " (d)",
+    y_text = expression(paste(italic(R)[area]," (", mu, "mol ", m^-2," ", s^-1, ")")))
+
+GL.each(x = "LMAp4", y = "Rarea", subscript = " (e)")
+
+GL.each(x = "LMAs4", y = "Rarea", subscript = " (f)")
+
+
+GL.each(x = "LMA", y = "LL", subscript = " (g)",
+  y_text = expression(paste("LL (months)")),
+  x_text = expression(paste("LMA (g ",m^-2,")")))
+
+GL.each(x = "LMAp4", y = "LL", subscript = " (h)",
+  x_text = expression(paste("LMAp (g ",m^-2,")")))
+
+GL.each(x = "LMAs4", y = "LL", subscript = " (i)",
+  x_text = expression(paste("LMAs (g ",m^-2,")")))
+```
+
+```{r include = FALSE}
+# R value check
+rm(list = ls()) # This clears everything from memory.
+setwd("~/Dropbox/MS/LES_MS/LMApsModel/data/")
+
+load("GL_model1_obs_2017-06-19_.RData")
+
+GL <- data.obs
+P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
+
+GL <- GL %>%
+  mutate(DE = ifelse(GL$DE == "", "U", as.character(DE))) %>%
+  mutate(LMAp1 =  fit.summary[P_vec, "mean"] * LMA) %>%
+  mutate(LMAs1 = LMA - LMAp1)
+
+LMA_dat <- GL %>%
+  arrange(sp) %>%
+  select(LMA, LMAp1, LMAs1)
+
+trait_name <- c("Aarea", "Rarea", "LL")
+trait_name2 <- c("LMA", "LMAp", "LMAs")
+
+temp_cor_data <- NULL
+
+    for (l in 1:3){
+      for (m in 1:3){
+        temp_cor <- cor.test(log10(GL[ , trait_name[l]]),
+                log10(LMA_dat[, m]))$estimate
+        temp_cor_data <- c(temp_cor_data, temp_cor)
+      }
+    }
+
+moge2 <- NULL
+
+for (l in 1:3) {
+  if (trait_name[l] == "preLL") {
+    moge2 <- c(moge2, "preLL")
+} else { for (m in 1:3) moge2 <- c(moge2, paste(trait_name[l], trait_name2[m], sep = "_")) }
+}
+
+names(temp_cor_data) <- moge2
+
+GL1_obs_r <- temp_cor_data
+GL1_obs_r2 <- GL1_obs_r^2
+
+load("GL_model1_LMA_2017-06-19_.RData")
+
+GL <- GL %>% arrange(sp)
+
+
+moge <- list() # each data.frame comes from each model
+
+temp_data <- NULL
+for (k in 1:10){
+    temp_LMA_null <- LMA.ra.data[, k]
+    temp_LMAp <- fit.summary.list[[k]][P_vec, "mean"] * temp_LMA_null
+    temp_LMAs <- temp_LMA_null - temp_LMAp
+    LMA_dat <- data.frame(temp_LMA_null, temp_LMAp, temp_LMAs)
+    temp_cor_data <- NULL
+    for (l in 1:3){
+      for (m in 1:3){
+        temp_cor <- cor.test(log10(GL[ , trait_name[l]]),
+                log10(LMA_dat[, m]))$estimate
+        temp_cor_data <- c(temp_cor_data, temp_cor)
+      }
+    }
+    temp_data <- cbind(temp_data, temp_cor_data)
+    rownames(temp_data) <- moge2
+}
+
+GL1_ra_r2 <- apply(temp_data, 2, function(x) x^2 )
+GL1_ra_r_max <- apply(temp_data, 1, max)
+GL1_ra_r_min <- apply(temp_data, 1, min)
+
+GL1_ra_r_mean <- apply(temp_data, 1, mean)
+GL1_ra_r_sd <- apply(temp_data, 1, sd)
+GL1_ra_r2_mean <- apply(GL1_ra_r2, 1, mean)
+GL1_ra_r2_sd <- apply(GL1_ra_r2, 1, sd)
+
+GL1_ra_SES <- (GL1_obs_r - GL1_ra_r_mean) / GL1_ra_r_sd
+GL1_ra_SES
+
+GL1_ra_SES2 <- (GL1_obs_r2 - GL1_ra_r2_mean) / GL1_ra_r2_sd
+GL1_ra_SES2
+
+load("GL_model1_All_2017-06-19_.RData")
+
+moge <- list() # each data.frame comes from each model
+
+temp_data <- NULL
+for (k in 1:10){
+    temp <- LMA.ra2.data[[k]]
+    s1ALL <- fit.summary.list[[k]]
+
+    GL <- GL %>%
+      mutate(LL = temp[, "LL"]) %>%
+      mutate(Rarea = temp[, "Rarea"]) %>%
+      mutate(Aarea = temp[, "Aarea"])
+    temp_LMA_null <- temp$LMA
+    temp_LMAp <- fit.summary.list[[k]][P_vec, "mean"] * temp_LMA_null
+    temp_LMAs <- temp_LMA_null - temp_LMAp
+    LMA_dat <- data.frame(temp_LMA_null, temp_LMAp, temp_LMAs)
+    temp_cor_data <- NULL
+    for (l in 1:3){
+      for (m in 1:3){
+        temp_cor <- cor.test(log10(GL[ , trait_name[l]]),
+                log10(LMA_dat[, m]))$estimate
+        temp_cor_data <- c(temp_cor_data, temp_cor)
+      }
+    }
+    temp_data <- cbind(temp_data, temp_cor_data)
+    rownames(temp_data) <- moge2
+}
+
+GL1_all_r_max <- apply(temp_data, 1, max)
+GL1_all_r_min <- apply(temp_data, 1, min)
+GL1_all_r2 <- apply(temp_data, 2, function(x) x^2 )
+
+GL1_all_r_mean <- apply(temp_data, 1, mean)
+GL1_all_r_sd <- apply(temp_data, 1, sd)
+GL1_all_r2_mean <- apply(GL1_all_r2, 1, mean)
+GL1_all_r2_sd <- apply(GL1_all_r2, 1, sd)
+
+GL1_all_SES <- (GL1_obs_r - GL1_all_r_mean) / GL1_all_r_sd
+GL1_all_SES
+
+GL1_all_SES2 <- (GL1_obs_r2 - GL1_all_r2_mean) / GL1_all_r2_sd
+GL1_all_SES2
+
+#power-law
+setwd("~/Dropbox/MS/LES_MS/LMApsModel/data/")
+
+load("GL_model1r4_obs_2017-06-19_.RData")
+
+GL <- data.obs
+P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
+
+GL <- GL %>%
+  mutate(DE = ifelse(GL$DE == "", "U", as.character(DE))) %>%
+  mutate(LMAp4 =  fit.summary[P_vec, "mean"] * LMA) %>%
+  mutate(LMAs4 = LMA - LMAp4)
+
+LMA_dat <- GL %>%
+  arrange(sp) %>%
+  select(LMA, LMAp4, LMAs4)
+
+trait_name <- c("Aarea", "Rarea", "LL")
+trait_name2 <- c("LMA", "LMAp", "LMAs")
+
+temp_cor_data <- NULL
+
+    for (l in 1:3){
+      for (m in 1:3){
+        temp_cor <- cor.test(log10(GL[ , trait_name[l]]),
+                log10(LMA_dat[, m]))$estimate
+        temp_cor_data <- c(temp_cor_data, temp_cor)
+      }
+    }
+
+moge2 <- NULL
+
+for (l in 1:3) {
+  if (trait_name[l] == "preLL") {
+    moge2 <- c(moge2, "preLL")
+} else { for (m in 1:3) moge2 <- c(moge2, paste(trait_name[l], trait_name2[m], sep = "_")) }
+}
+
+names(temp_cor_data) <- moge2
+
+GL1r4_obs_r <- temp_cor_data
+GL1r4_obs_r2 <- GL1r4_obs_r^2
+
+load("GL_model1r4_LMA_2017-06-19_.RData")
+moge <- list() # each data.frame comes from each model
+
+temp_data <- NULL
+for (k in 1:10){
+    temp_LMA_null <- LMA.ra.data[, k]
+    temp_LMAp <- fit.summary.list[[k]][P_vec, "mean"] * temp_LMA_null
+    temp_LMAs <- temp_LMA_null - temp_LMAp
+    LMA_dat <- data.frame(temp_LMA_null, temp_LMAp, temp_LMAs)
+    temp_cor_data <- NULL
+    for (l in 1:3){
+      for (m in 1:3){
+        temp_cor <- cor.test(log10(GL[ , trait_name[l]]),
+                log10(LMA_dat[, m]))$estimate
+        temp_cor_data <- c(temp_cor_data, temp_cor)
+      }
+    }
+    temp_data <- cbind(temp_data, temp_cor_data)
+    rownames(temp_data) <- moge2
+}
+
+GL1r4_ra <- temp_data 
+
+GL1r4_ra_r_max <- apply(temp_data, 1, max)
+GL1r4_ra_r_min <- apply(temp_data, 1, min)
+
+
+GL1r4_ra_r2 <- apply(temp_data, 2, function(x) x^2 )
+
+GL1r4_ra_r_mean <- apply(temp_data, 1, mean)
+GL1r4_ra_r_sd <- apply(temp_data, 1, sd)
+GL1r4_ra_r2_mean <- apply(GL1r4_ra_r2, 1, mean)
+GL1r4_ra_r2_sd <- apply(GL1r4_ra_r2, 1, sd)
+
+GL1r4_ra_SES <- (GL1r4_obs_r - GL1r4_ra_r_mean) / GL1r4_ra_r_sd
+GL1r4_ra_SES
+
+GL1r4_ra_SES2 <- (GL1r4_obs_r2 - GL1r4_ra_r2_mean) / GL1r4_ra_r2_sd
+GL1r4_ra_SES2
+
+load("GL_model1r4_All_2017-06-19_.RData")
+
+moge <- list() # each data.frame comes from each model
+
+temp_data <- NULL
+for (k in 1:10){
+    temp <- LMA.ra2.data[[k]]
+    s1ALL <- fit.summary.list[[k]]
+
+    GL <- GL %>%
+      mutate(LL = temp[, "LL"]) %>%
+      mutate(Rarea = temp[, "Rarea"]) %>%
+      mutate(Aarea = temp[, "Aarea"])
+
+    temp_LMA_null <- temp$LMA
+    temp_LMAp <- fit.summary.list[[k]][P_vec, "mean"] * temp_LMA_null
+    temp_LMAs <- temp_LMA_null - temp_LMAp
+    LMA_dat <- data.frame(temp_LMA_null, temp_LMAp, temp_LMAs)
+    temp_cor_data <- NULL
+    for (l in 1:3){
+      for (m in 1:3){
+        temp_cor <- cor.test(log10(GL[ , trait_name[l]]),
+                log10(LMA_dat[, m]))$estimate
+        temp_cor_data <- c(temp_cor_data, temp_cor)
+      }
+    }
+    temp_data <- cbind(temp_data, temp_cor_data)
+    rownames(temp_data) <- moge2
+}
+
+GL1r4_all_r_max <- apply(temp_data, 1, max)
+GL1r4_all_r_min <- apply(temp_data, 1, min)
+
+GL1r4_all_r2 <- apply(temp_data, 2, function(x) x^2 )
+
+GL1r4_all_r_mean <- apply(temp_data, 1, mean)
+GL1r4_all_r_sd <- apply(temp_data, 1, sd)
+GL1r4_all_r2_mean <- apply(GL1r4_all_r2, 1, mean)
+GL1r4_all_r2_sd <- apply(GL1r4_all_r2, 1, sd)
+
+GL1r4_all_SES <- (GL1r4_obs_r - GL1r4_all_r_mean) / GL1r4_all_r_sd
+GL1r4_all_SES
+
+GL1r4_all_SES2 <- (GL1r4_obs_r2 - GL1r4_all_r2_mean) / GL1r4_all_r2_sd
+GL1r4_all_SES2
+
+```
+# r^2^~obs~ vs r^2^~rand~
+
+```{r, fig.width = 7, fig.height= 3.5, include = FALSE}
+library(stringr)
+setwd("~/Dropbox/MS/LES_MS/LMApsModel/data/")
+ls() %>% print
+
+## r2 version
+temp <- data_frame(r2 = c(GL1_obs_r2,
+                          GL1_ra_r2_mean,
+                          GL1_all_r2_mean,
+                          GL1r4_obs_r2,
+                          GL1r4_ra_r2_mean,
+                          GL1r4_all_r2_mean),
+                   obs = rep(c("obs", "rand_LMA", "rand_All"), each = 9) %>% rep(.,2),
+                   #obs = rep(c("obs", "rand", "rand"), each = 9) %>% rep(.,2),
+                   model = rep(c("simple", "power-law"), each = 27)
+                   ) %>%
+  mutate(trait = rep(rownames(temp_data), 6))
+
+
+temp2 <- temp %>% tidyr::spread(obs, r2) %>%
+  gather("obs2", "rand", 4:5)
+
+r2_dat <- temp2[str_detect(temp2$trait, "LMAp$|LMAs$"),]
+
+# r -version
+temp <- data_frame(r = c(GL1_obs_r,
+                          GL1_ra_r_min,
+                          GL1_all_r_min,
+                          GL1_ra_r_mean,
+                          GL1_all_r_mean,
+                          GL1_ra_r_max,
+                          GL1_all_r_max,
+                          GL1r4_obs_r,
+                          GL1r4_ra_r_min,
+                          GL1r4_all_r_min,
+                          GL1r4_ra_r_mean,
+                          GL1r4_all_r_mean,
+                          GL1r4_ra_r_max,
+                          GL1r4_all_r_max),
+                   obs = rep(c(rep("obs", 9),
+                               rep(rep(c("rand_LMA", "rand_All"),
+                                       each = 9), 3)), 2),
+                   model = rep(c("simple", "power-law"), each = 63)
+                   ) %>%
+  mutate(trait = rep(rownames(temp_data), 14)) %>%
+  mutate(val = rep(c(rep("mean", 9), 
+                 rep(c("min","mean","max"), each=18)), 2))
+
+temp <- data_frame(r = c(GL1_obs_r,
+                          GL1_ra_r_mean,
+                          GL1_all_r_mean,
+                          GL1r4_obs_r,
+                          GL1r4_ra_r_mean,
+                          GL1r4_all_r_mean),
+                   obs = rep(c("obs", "rand_LMA", "rand_All"), each = 9) %>% rep(.,2),
+                   #obs = rep(c("obs", "rand", "rand"), each = 9) %>% rep(.,2),
+                   model = rep(c("simple", "power-law"), each = 27)
+                   ) %>%
+  mutate(trait = rep(rownames(temp_data), 6))
+
+temp2 <- temp %>% tidyr::spread(obs, r) %>%
+  gather("obs2", "rand", 4:5) %>%
+  mutate(temp = paste(model, trait, obs2,sep ="_"))
+
+temp3 <- data_frame(r = c(
+                          GL1_ra_r_min,
+                          GL1_all_r_min,
+                          GL1_ra_r_max,
+                          GL1_all_r_max,
+                          GL1r4_ra_r_min,
+                          GL1r4_all_r_min,
+                          GL1r4_ra_r_max,
+                          GL1r4_all_r_max),
+                   obs2 = c("rand_LMA", "rand_All") %>% rep(each = 9) %>%
+                     rep(4),
+                   model = rep(c("simple", "power-law"), each = 36)
+                   ) %>%
+  mutate(trait = rep(rownames(temp_data), 8)) %>%
+  mutate(val = rep(c("min","max"), each=18) %>% rep(2))
+
+temp4 <- temp3 %>% spread(val, r) %>%
+  mutate(temp = paste(model, trait, obs2,sep ="_")) %>%
+  select(max, min, temp)
+
+
+temp5 <- full_join(temp2, temp4, by = "temp") 
+
+
+r_dat <- temp5[str_detect(temp5$trait, "LMAp$|LMAs$"),]
+
+```
+
+## r^2^ version
+```{r, fig.width = 7, fig.height= 3.5, echo = FALSE}
+
+ggplot(r2_dat, aes(x = obs, y = rand, label = trait, col = obs2)) +
+  geom_text(check_overlap = FALSE, size = 2.5) +
+  geom_point() +
+  facet_grid(.~model) +
+  geom_abline(aes(slope = 1, intercept = 0), lty = 2) +
+  xlim(0, 1) +
+  ylim(0, 1) +
+  theme_bw()
+
+ggplot(r2_dat, aes(x = obs, y = rand, label = trait, col = obs2)) +
+  geom_text(check_overlap = FALSE, size = 2.5) +
+  geom_point() +
+  facet_grid(.~model) +
+  geom_abline(aes(slope = 1, intercept = 0), lty = 2) +
+  theme_bw()
+```
+
+- r^2^~rand~ are mean of 10 randomized datasets.
+- Only apect ratio is different betwen above and below.
+- r^2^~rand_ALL~ of R~area~ - LMAs (and LMAp) for Power-law model is high because this includes some large negative r values.
+- The scaling parmater rp and rs for randomzed datasets included zero in their 95% CI.
+- For simple model, all shuffle shows lower r^2^~rand~ values.
+- For power-law model, the pattern is not that clear but both null models tend to produce lower r^2^~rand~ than simple model does.
+
+## r version
+```{r, fig.width = 7, fig.height= 3.5, echo = FALSE}
+
+ggplot(r_dat, aes(x = obs, y = rand, label = trait, col = obs2)) +
+  geom_point() +
+  geom_text(size = 2.5) +
+  geom_errorbar(aes(ymin = min, ymax = max)) + 
+  facet_grid(.~model) +
+  geom_abline(aes(slope = 1, intercept = 0), lty = 1) +
+  geom_vline(xintercept = 0, lty = 2) +
+  geom_hline(yintercept = 0, lty = 2) +
+  xlim(-1, 1) +
+  ylim(-1, 1) +
+  theme_bw()
+
+ggplot(r_dat, aes(x = obs, y = rand, label = trait, col = obs2)) +
+  geom_point() +
+  geom_text(size = 2.5) +
+  geom_errorbar(aes(ymin = min, ymax = max)) + 
+  facet_grid(.~model) +
+  geom_abline(aes(slope = 1, intercept = 0), lty = 1) +
+  geom_vline(xintercept = 0, lty = 2) +
+  geom_hline(yintercept = 0, lty = 2) +
+  theme_bw()
+```
+
+- Bars indicate maximum and minimum r~rand~ for 10 randomization.
+- Power-law model 
+    - r~rand~ are close to zero.
+- Simple model
+    - Although the trend is similar between r~rand~ and r~obs~ but r~rand~ are lower than r~obs~ 
+
+# Parameters
+
+```{r, fig.width = 8,  fig.height = 6, include = FALSE}
+setwd("~/Dropbox/MS/LES_MS/LMApsModel/data/")
+null_n <- 3
+load("GL_model1_obs_2017-06-19_.RData")
+s1 <- fit.summary
+load("GL_model1_All_2017-06-19_.RData")
+s1ALL <- fit.summary.list[[null_n]]
+load("GL_model1_LMA_2017-06-19_.RData")
+s1LMA <- fit.summary.list[[null_n]]
+
+load("GL_model1r4_obs_2017-06-19_.RData")
+s4 <- fit.summary
+load("GL_model1r4_All_2017-06-19_.RData")
+s4ALL <- fit.summary.list[[null_n]]
+load("GL_model1r4_LMA_2017-06-19_.RData")
+s4LMA <- fit.summary.list[[null_n]]
+
+
+
+temp1 <- head(s1, 7) %>%
+  mutate(var = rownames(.))
+temp1All <- head(s1ALL, 7) %>%
+  mutate(var = rownames(.))
+temp1LMA <- head(s1LMA, 7) %>%
+  mutate(var = rownames(.))
+
+
+temp1 <- rbind(temp1, temp1LMA, temp1All) %>%
+  mutate(rand = rep(c("obs", "LMA", "All"), each = 7)) %>%
+  arrange(var) %>%
+  mutate(var2 = as.factor(var) %>% as.numeric) %>%
+  mutate(var_temp = as.factor(rand) %>% as.numeric) %>%
+  mutate(var3 = var2 + var_temp * 0.1)
+
+temp4 <- head(s4, 10) %>%
+  mutate(var = rownames(.))
+temp4All <- head(s4ALL, 10) %>%
+  mutate(var = rownames(.))
+temp4LMA <- head(s4LMA, 10) %>%
+  mutate(var = rownames(.))
+
+temp4 <- rbind(temp4, temp4LMA, temp4All) %>%
+  mutate(rand = rep(c("obs", "LMA", "All"), each =10)) %>%
+  arrange(var) %>%
+  mutate(var2 = as.factor(var) %>% as.numeric) %>%
+  mutate(var_temp = as.factor(rand) %>% as.numeric) %>%
+  mutate(var3 = var2 + var_temp * 0.1)
+``` 
+## simple 
+```{r, fig.width = 8,  fig.height = 6, echo = FALSE}
+
+ggplot(temp1, aes(x = var3, y = mean, ymin = X2.5., ymax = X97.5., col = rand)) +
+  geom_pointrange() +
+  geom_hline(yintercept = 0, lty = 2) +
+  scale_x_continuous("Var", breaks = 1:7, labels = temp1$var %>% unique) +
+  ylab("Posterior distribution") +
+  coord_flip() +
+  theme_bw()
+```
+
+## Power-law
+```{r, fig.width = 8,  fig.height = 6, echo = FALSE}
+ggplot(temp4, aes(x = var3, y = mean, ymin = X2.5., ymax = X97.5., col = rand)) +
+  geom_pointrange() +
+  geom_hline(yintercept = 0, lty = 2) +
+  scale_x_continuous("Var", breaks = 1:10, labels = temp4$var %>% unique) +
+  ylab("Posterior distribution") +
+  coord_flip() +
+  theme_bw()
+
+save.image("GL20170911.rda")
+```
+
+- Green and blue bars show the result from 1 of 10 randomized datasets.
+- Mean and 95% CI.
+- Simple Model. Most of parameters estimated from the observed dataset is not different from those estimated from randomized datasets.
+- Power law model. Parameters look OK
+    - rp is just marginally larger than rs.
+    - alpha2 = 0.23 seems to be a little bit weak to explain LMAp vs A~area~.
