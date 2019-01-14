@@ -387,6 +387,7 @@ GL_dat_box <- GL_dat %>%
                      levels = c("D", "E"))) %>%
   unique
 
+
 theme_box <- function(base_size = 9,
                       base_family = "sans") {
   ret <- theme_LES() %+replace%
@@ -539,6 +540,38 @@ PA_box2 <- ggplot(PA_nontrim_dat, aes(x = gr, y = Val, fill = gr, col = gr)) +
 my_ggsave("./figs/box_SI.png", PA_box2,
           width = 11.7,
           height = 6)
+
+
+## box fraction
+
+GLFracDat <- GL %>%
+  mutate(LMAm_frac = LMAp / LMA) %>%
+  filter(gr != "Unclassified") %>%
+  mutate(gr = factor(DE,
+                     levels = c("D", "E"))) %>%
+  unique
+
+GLboxFrac <- ggplot(GLFracDat, aes(x = gr, y = LMAm_frac, fill = gr)) +
+  geom_boxplot(outlier.shape = 21, outlier.size = 1) +
+  scale_fill_manual(values = fills, guide = FALSE) 
+  #geom_text(data= lab1, aes(label = lab),
+  #          vjust = -1,
+  #          size = 8 * 5/14) 
+
+PAFracDat <- PA %>%
+  count(sp) %>% 
+  filter(n >= 2) %>%
+  inner_join(., PA, by = "sp") %>%
+  mutate(LMAm_frac = LMAp / LMA) %>%
+  mutate(DE = ifelse(site == "PNSL", "D", "E")) %>%
+  mutate(gr = factor(DE,
+                     levels = c("D", "E"))) %>%
+  unique
+
+PAboxFrac <- ggplot(PAFracDat, aes(x = gr, y = LMAm_frac, fill = gr)) +
+  geom_boxplot(outlier.shape = 21, outlier.size = 1) +
+  scale_fill_manual(values = fills, guide = FALSE) 
+
 
 ## LMAm vs LMAs =====================================
 
