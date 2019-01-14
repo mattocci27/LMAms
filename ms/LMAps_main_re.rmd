@@ -17,7 +17,6 @@ output:
 fontsize: 12pt
 geometry: margin=1in
 link-citations: yes
-#csl: je.csl
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/ecology.csl
 bibliography: [MyLibrary.bib]
 ---
@@ -72,7 +71,7 @@ In contrast, intraspecific LMA variation is due to changes in LMAm, which explai
 
 # Introduction
 
-Leaf functional traits play an important role in ecological and physiological tradeoffs [@Wright2004a; @Reich2014] and in carbon and nutrient cycling (references).
+Leaf functional traits play an important role in ecological and physiological tradeoffs [@Wright2004a; @Reich2014; @Onoda2017] and in carbon and nutrient cycling (references).
 Thus, understanding the causes and consequences of leaf trait variation is an important goal in ecology, plant physiology, and biogeochemistry (references).
 Different leaf assemblages exhibit markedly different patterns of trait variation.
 For example, across global species, whole-leaf values of traits related to photosynthesis and metabolism (e.g., the photosynthetic capacity, respiration rate, or nutrient content of an entire leaf) tend to increase with leaf area, but not leaf mass per area (LMA; @Osnas2013). In contrast, within species, these same whole-leaf trait values tend to increase with LMA from shade to full sunlight [@Osnas2013; @Osada2001].
@@ -182,24 +181,28 @@ See supplement X for more detail.
 The Stan code use to fit models are also available from Github at: [https://github.com/mattocci27/XXX](https://github.com/mattocci27/LMAmLMAs).
 Some parameters are exchangeable in our model.
 For example, $(f_i, \alpha_m, \alpha_s)$ = (0.2, 0.5, 1.0) and (0.8, 1.0, 0.5) yield the identical likelihood, which results in bimodal distributions of the posterior distributions of parameters (See X).
-To avoid this non-identifiability, we explore two methods based on our assumption that *A*~area~ depends more strongly on metabolic leaf mass (LMAm; parameter $\alpha_m$ in Eq. 4) than structural leaf mass (LMAs; parameter *\alpha_s* in Eq. 4).
-In the first method, we switched the $\alpha_m$ and $\alpha_s$ labels wihtin a chain when the posterior means for $\alpha_m$ was smaller than that for \alpha_s$ after the posterior distributions converged.
+To avoid this non-identifiability, we explore two methods based on our assumption that *A*~area~ depends more strongly on metabolic leaf mass (LMAm; parameter $\alpha_m$ in Eq. 4) than structural leaf mass (LMAs; parameter $\alpha_s$ in Eq. 4).
+In the first method, we switched the $\alpha_m$ and $\alpha_s$ labels wihtin a chain when the posterior means for $\alpha_m$ was smaller than that for $\alpha_s$ after the posterior distributions converged.
 In the second method, we constrained α_m > α_s.
 Both methods yielded qualitatively similar results; we report results from the second method.
 Convergence of the posterior distribution was assessed with the Gelman-Rubin statistic with a convergence threshold of 1.1 for all diagnostics [@Gelman2013].
 
 Because our statistical approach includes one latent variable *f~i~* to partition LMA into LMAm and LMAs for each leaf sample, one might expect a good match between predictions and observations simply due to the large number of free parameters, whether or not the model captured important biological mechanisms.
-However, the same models applied to randomly shuffled observe dataset did not produce any significant patterns (Supplement X).
+To evaluate model performance while controlling for the number of free parameters, we compared the fit of our model to observed and randomized datasets.
+Specifically, we generated randomized datasets by randomizing all the trait values (LMA, *A*~area~, *R*~area~ and LL) across species.
+Thus, the randomized datasets had zero epected covariance among traits.
+Model results obtained from the randomized datasets did not produce any significant patterns (Supplement X).
 Basically, the posterior distributions of $f_i$ were changed little from the prior (i.e., all the average $f_i$ tend to be 0.5 for all the samples).
 Thus, we assume that estimates of LMAm and LMAs reflect meaningful patterns in the data.
 
 ## Model selection
 
 We applied 10-fold cross- validation to determine the best model.
-Because our model does not estimate the prior distributions of the latent variable fi in the train datasets, it requires additional calculation to estimate the latent variable fi in the test datasets.
+Cross-validation can tell us wheter the performance on the train data is not a good indicators of predictive performance of unseen data due to the problem of over-fitting [@Bishop2006].
+Because our model does not estimate the prior distributions of the latent variable *f~i~* in the train datasets, it requires additional calculation to estimate the latent variable *f~i~* in the test datasets.
 Thus, less computationally intensive methods such as widely applicable information criterion (WAIC; @Watanabe2010), and Pareto-smoothed importance sampling leave-one-out cross-validation (PSIS-LOO; @Vehtari2014) are not appropriate.
-In order to estimate the latent variable fi, we assigned the prior distributions to the latent variable fi in the test datasets based on the mean and variance of fi for each functional group in the train datasets.
-Then, we calculated the expected log point-wise predictive density (ELPD) for each fold.
+In order to estimate the latent variable *f~i~*, we assigned the prior distributions to the latent variable *f~i~* in the test datasets based on the mean and variance of *f~i~* for each functional group in the train datasets.
+Then, we calculated the expected out-of-sample log point-wise predictive density (ELPD) for each fold.
 We select the best model based on the ELPD.
 
 ## Partitioning LMA variance into metabolic and structural components
@@ -216,7 +219,7 @@ Thus, the fractions of total LMA variance due to variance in LMAm and LMAs were 
 
 We applied our LMAm+LMAs model (Eq. 4) to simulated data to better understand relationships between photosynthetic capacity (*A*~max~) and LMA.
 The causes and interpretation of *A*~max~ vs. LMA relationships are controversial [@Westoby2013].
-Although *A*~max~ is often mass-normalized [REF], @Lloyd2013 argued that photosynthesis is an area-based process, and therefore *A*~max~ should be area-normalized rather than mass-normalized when exploring trait relationships.
+Although *A*~max~ is often mass-normalized (e.g., @Wright2005; @Shipley2006; @Blonder2011), @Lloyd2013 argued that photosynthesis is an area-based process, and therefore *A*~max~ should be area-normalized rather than mass-normalized when exploring trait relationships.
 Consistent with this argument, @Osnas2013 showed that across global species, *A*~max~ variation is strongly dependent on leaf area, but only weakly dependent on leaf mass (after controlling for interspecific variation in leaf area).
 
 To better understand the factors affecting *A*~max~ vs. LMA relationships, we created simulated datasets in which we varied the following factors: the sensitivity of *A*~area~ to variation in LMAm (parameter $\alpha_m$ in Eq. 4); the sensitivity of *A*~area~ to LMAs (parameter $\alpha_s$ in Eq. 4), and the degree to which LMAm and LMAs varied among leaves.
@@ -256,7 +259,6 @@ LL was not significantly correlated with LMA when all leaves were combined, but 
 There was an apparent negative correlation between LMAm and LL (Fig. 2h) but the effect of LMAm on LL was not significant (Table 2), implying that a weak covariance between LMAm and LMAs produced this negative correlation.
 There was a positive correlation between LL and LMAs (Fig. 2i and Table 2).
 Because the LL vs. LMAs relationship ignores important factors (i.e., effects of light on realized photosynthetic rates), the explained variance of LL from the model was higher (r^2^ = 0.51) than expected from the correlation between LMAs and LL.
-
 
 **3. Interspecific mass proportionality of *A*~max~ depended on both scaling slope and variance in LMA components.**
 Percent of interspecific variation in LMA explained by structural components were 45%, 90% and 66% for GLPNET, shade leaves in Panama and sun leaves in Panama, respectively.
