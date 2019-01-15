@@ -1,11 +1,15 @@
 library(tidyverse)
 library(multcompView)
 
-GL <- read_csv("./data/GL_res.csv")
-PA <- read_csv("./data/PA_res.csv")
+GL <- read_csv("./data/GL_res.csv") %>%
+  mutate(frac = LMAp / LMA)
+PA <- read_csv("./data/PA_res.csv") %>%
+  mutate(frac = LMAp / LMA) %>%
+  mutate(DE = ifelse(site == "PNSL", "E", "D"))
 
 GL2 <- GL %>% 
-  filter(DE != "U")
+  filter(DE != "U") 
+
 pairwise.t.test(log(GL2$LMA), GL2$DE)
 
 PA2 <- PA %>% 
@@ -22,6 +26,7 @@ PA2 <- PA %>%
                                           "Sun_Wet",
                                           "Shade_Wet")))
 
+# both sun and shade leaves are available
 PA3 <- PA2 %>% 
   count(sp) %>% 
   filter(n >= 2) %>%
@@ -52,7 +57,7 @@ p_group <- function(LMA, group) {
 
   pval <- moge %>% as.vector
 
-  p_dat <- data_frame(dif_name, pval) %>%
+  p_dat <- tibble(dif_name, pval) %>%
     na.omit
   p_vec <- p_dat$pval
   names(p_vec) <- p_dat$dif_name
@@ -71,6 +76,9 @@ PA2_LMAs <- p_group(PA2$LMAs, PA2$site_strata2)
 GL_LMA <- p_group(GL2$LMA, GL2$DE)
 GL_LMAp <- p_group(GL2$LMAp, GL2$DE)
 GL_LMAs <- p_group(GL2$LMAs, GL2$DE)
+
+GL_frac <- p_group(GL2$frac, GL2$DE)
+PA_frac <- p_group(PA3$frac, PA3$DE)
 
 output <- "letters.yml"
 out <- file(paste(output), "w") # write
@@ -120,6 +128,15 @@ writeLines(paste0("    Sun_Wet: ", PA_LMAs["Sun_Wet"]),
            out,
            sep = "\n")
 writeLines(paste0("    Shade_Wet: ", PA_LMAs["Shade_Wet"]),
+           out,
+           sep = "\n")
+writeLines(paste0("  Frac:"),
+           out,
+           sep = "\n")
+writeLines(paste0("    D: ", PA_frac["D"]),
+           out,
+           sep = "\n")
+writeLines(paste0("    E: ", PA_frac["E"]),
            out,
            sep = "\n")
 
@@ -204,4 +221,14 @@ writeLines(paste0("    D: ", GL_LMAs["D"]),
 writeLines(paste0("    E: ", GL_LMAs["E"]),
            out,
            sep = "\n")
+writeLines(paste0("  Frac:"),
+           out,
+           sep = "\n")
+writeLines(paste0("    D: ", GL_frac["D"]),
+           out,
+           sep = "\n")
+writeLines(paste0("    E: ", GL_frac["E"]),
+           out,
+           sep = "\n")
+
 close(out)
