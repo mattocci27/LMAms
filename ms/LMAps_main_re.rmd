@@ -272,6 +272,7 @@ Sun leaves in the Panama data showed weak mass proportionality (\@ref(fig:masspl
 **4. Evergreen leaves have both greater LMAm and LMAs than deciduous leaves, and sun leaves have both greater LMAm and LMAs than shade leaves.**
 In the GLOPNET dataset, altough evergreen leaves had higher both LMAm and LMAs than decidous leaves, differences in LMAs between the two groups were more aparent (Fig. 5).
 Thus, the higher total LMA in evergreen leaves in GLOPNET was primarily due to differences in LMAs (which comprised a greater fraction of LMA in evergreen than in deciduous leaves; Fig. S1a).
+Similar results were obtained for the Panama dataset (evergreen leaves have higher LMAs but similar LMAm compared to deciduous leaves; Fig. S1b).
 In the Panama dataset, sun leaves have both greater LMAm and LMAs than shade leaves, but the differcnes in LMAm were larger (Fig. 5).
 Thus, in contrast to interspecific variation in LMA (which is driven by variation in both LMAm and LMAs; Fig. 4), intraspecific variation in LMA reflects changes in LMAm.
 
@@ -280,7 +281,6 @@ In the GLOPNET dataset, *N*~area~ and *P*~area~ had strong positive correlations
 Similarly, in the Panama dataset, *N*~area~ and *P*~area~ had strong positive correlations with LMAm, but were not correlated with LMAs (Fig. 6).
 In contrast, cellulose per-unit leaf area (*CL*~area~), which was available for the Panama dataset but not for GLOPNET, had a strong positive correlation with LMAs, and a weak positive correlation with LMAm (Fig. 6).
 *CL*~area~ was more strongly correlated with LMA than with LMAm or LMAs, but sun and shade leaves aligned along a common *CL*~area~-LMAs relationship, as opposed to being offset for LMA and LMAm (Figs. 6g-i).
-
 
 # Discussion
 
@@ -502,7 +502,7 @@ if ("docx" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
 
 ```{r GLplt, echo = F, dpi = 300, fig.width = 6, fig.height = 6, fig.cap = "Observed and estimated leaf-trait relationships in the global GLOPNET dataset. Leaf life span (LL), net photosynthetic rate per unit leaf area (*A*~area~), and dark respiration rate per unit leaf area (*R*~area~) are plotted against observed LMA and estimates (posterior means) of photosynthetic and structural LMA components (LMAm and LMAs, respectively). Pearson correlation coefficients are for LMA (left column) and posterior distributions of LMAm (middle column) and LMAs (right column)."}
 
-img <- readPNG("../figs/GL.png", native = TRUE, info = TRUE)
+img <- readPNG("../figs/GL_2.png", native = TRUE, info = TRUE)
 grid.raster(img, interpolate=F)
 
 ```
@@ -511,7 +511,7 @@ grid.raster(img, interpolate=F)
 
 ```{r PAplt, echo = F, dpi = 300, fig.width = 6, fig.height = 6, fig.cap = "Observed and estimated leaf-trait relationships in the Panama dataset. Estimates are from the Optimal LL Model (Eq. 8). Details as in Fig. 1. Results for other LL models are summarized in Table SX."}
 
-img <- readPNG("../figs/PA.png", native = TRUE, info = TRUE)
+img <- readPNG("../figs/PA_2.png", native = TRUE, info = TRUE)
 grid.raster(img, interpolate=F)
 ```
 
@@ -526,7 +526,7 @@ grid.raster(img, interpolate=F)
 
 `r page_break()`
 
-```{r massplt, echo = F, dpi = 300, fig.width = 6, fig.height = 6, fig.cap = "The relationships among mass proportionality (*b~i~* in Eq. X), variance in LMAm and LMAs, and scaling slopes between LMAm and *A*~area~ ($\\alpha_m$) and LMAs and *A*~area~ ($\\alpha_s$). Blue colors indicate the photosynthetic rate is primarily mass proportional (*b~i~* is large) and red colors indicate the photosynthetic rate is primarily area proportional (*b~i~* is close to 0).**(a)** Simulated mass proportionality gradients for different degrees of LMA components and scaling slopes. **(b)** Simulated mass proportionality gradients based on the estimated LMA components and scaling slopes for the global GLOPNET dataset, sun leaves in Panama, and shade leaves in Panama."}
+```{r massplt, echo = F, dpi = 300, fig.width = 6, fig.height = 3, fig.cap = "The relationships among mass proportionality (*b~i~* in Eq. X), variance in LMAm and LMAs, and scaling slopes between LMAm and *A*~area~ ($\\alpha_m$) and LMAs and *A*~area~ ($\\alpha_s$). Blue colors indicate the photosynthetic rate is primarily mass proportional (*b~i~* is large) and red colors indicate the photosynthetic rate is primarily area proportional (*b~i~* is close to 0).**(a)** Simulated mass proportionality gradients for different degrees of LMA components and scaling slopes. **(b)** Simulated mass proportionality gradients based on the estimated LMA components and scaling slopes for the global GLOPNET dataset, sun leaves in Panama, and shade leaves in Panama."}
 
 img <- readPNG("../figs/mass_prop3.png", native = TRUE, info = TRUE)
 grid.raster(img, interpolate=F)
