@@ -130,15 +130,6 @@ writeLines(paste0("    Sun_Wet: ", PA_LMAs["Sun_Wet"]),
 writeLines(paste0("    Shade_Wet: ", PA_LMAs["Shade_Wet"]),
            out,
            sep = "\n")
-writeLines(paste0("  Frac:"),
-           out,
-           sep = "\n")
-writeLines(paste0("    D: ", PA_frac["D"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    E: ", PA_frac["E"]),
-           out,
-           sep = "\n")
 
 
 writeLines(paste0("PA-SI:"),
@@ -221,13 +212,26 @@ writeLines(paste0("    D: ", GL_LMAs["D"]),
 writeLines(paste0("    E: ", GL_LMAs["E"]),
            out,
            sep = "\n")
-writeLines(paste0("  Frac:"),
+
+writeLines(paste0("Frac:"),
+           out,
+           sep = "\n")
+writeLines(paste0("  GL:"),
            out,
            sep = "\n")
 writeLines(paste0("    D: ", GL_frac["D"]),
            out,
            sep = "\n")
 writeLines(paste0("    E: ", GL_frac["E"]),
+           out,
+           sep = "\n")
+writeLines(paste0("  PA:"),
+           out,
+           sep = "\n")
+writeLines(paste0("    D: ", PA_frac["D"]),
+           out,
+           sep = "\n")
+writeLines(paste0("    E: ", PA_frac["E"]),
            out,
            sep = "\n")
 

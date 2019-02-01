@@ -22,10 +22,9 @@ lim_func <- function(data, trait, LMA = TRUE) {
   trait <- as.name(trait)
   if (LMA) LMA <- as.name("LMA") else LMA <- as.name("Trait2")
   data %>%
-    select_(LMA, trait) %>% 
-    group_by_(LMA)  %>%
+    dplyr::select_(LMA, trait) %>%
+    dplyr::group_by_(LMA) %>%
     summarize_(min_val = interp(~log10(min(v, na.rm = TRUE)), v = as.name(trait)),
-              #mid_val = interp(~log10(median(v, na.rm = TRUE)), v = as.name(trait)),
               max_val = interp(~log10(max(v, na.rm = TRUE)), v = as.name(trait))) %>%
     mutate(mid_val = (max_val - min_val) / 2) %>%
     ungroup %>%

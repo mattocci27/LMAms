@@ -40,3 +40,10 @@ GL:
   LMAs:
     D: a
     E: b
+Frac:
+  GL:
+    D: a
+    E: b
+  PA:
+    D: a
+    E: b
