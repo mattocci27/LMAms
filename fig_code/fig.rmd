@@ -494,7 +494,7 @@ fig2
 fig3 <- plot_grid(GL_figA2, GL_figB,
                   labels = c("A", "B"),
                   label_size = 9,
-                  rel_widths = c(0.59, 1))
+                  rel_widths = c(0.6, 1))
 
 fig4 <- plot_grid(legend2, fig3,  ncol = 1,
                   rel_heights = c(.1, 2))
@@ -668,9 +668,9 @@ PA_fig_dat2 <- PA2 %>%
   mutate(resTrait2 = factor(resTrait2,
                             levels = c("Aarea", "Rarea", "LL"))) %>%
   mutate(resTrait2 = factor(resTrait2,
-    labels = c("italic(A)[area]~(~mu~mol~m^{-2}~s^{-1})",
-               "italic(R)[area]~(~mu~mol~m^{-2}~s^{-1})",
-               "LL~(months)")))
+    labels = c("italic(A)[area]~residuals",
+               "italic(R)[area]~residuals",
+               "LL~residuals")))
 
 
 fills <- c("Sun-Dry" = settings$fills$sun_dry,
@@ -729,8 +729,8 @@ legend2 <- get_legend(PA_figA)
 
 fig3 <- plot_grid(PA_figA2, PA_figB,
                   labels = c("A", "B"),
-                  label_size = 9,
-                  rel_widths = c(0.5, 1))
+                  label_size = 8,
+                  rel_widths = c(0.6, 1))
 
 fig4 <- plot_grid(legend2, fig3,  ncol = 1,
                   rel_heights = c(.1, 2))
@@ -793,8 +793,9 @@ PA_figA3 <- ggplot(PA_fig_dat3, aes(x = LMA_res, y = val2,
 
 PA_figA3
 
-
 ```
+
+![PA scatter](../figs/PA_2.png)
 
 ## Panama NPCL
 
@@ -857,7 +858,6 @@ my_ggsave("../figs/PA_NPC.png", PA_NPC_plot)
 ```
 
 ![PA-NPC](../figs/PA_NPC.png)
-
 
 # LL: Obs vs Pred
 
@@ -1161,7 +1161,7 @@ theme_set(theme_LES() +
 #                                         textstyle(In~the~equation~italic(A)[area]==LMA^italic(b))))
 
 legend_title <- expression(atop(NA, atop(textstyle(Value~of~scaling~parameter ~ (italic(b))),
-                                         textstyle(`in`~the~equation~italic(A)[area]==LMA^italic(b)))))
+                                         textstyle(`in`~the~equation~italic(A)[area]==italic(a)(LMA)^italic(b)))))
 
 mass_plt2 <- ggplot(dat3) +
   geom_raster(aes(x = am, y = as, fill = val)) +
@@ -1194,18 +1194,18 @@ mass_plt2 <- ggplot(dat3) +
                                   "#b2abd2",
                                   "#5e3c99"),
                        breaks = c(min(dat3$val), 0, 0.5, 1, 2),
-                      # labels = c("-1.5",
-                      #            " 0.0 - Whole-leaf Amax\n         proportional to leaf area",
-                      #            " ",
-                      #            " 1.0 - Whole-leaf Amax\n         proportional to leaf mass",
-                      #            " 2.0"))+
-                       labels = c(
-                                  expression((-1.5)),
-                                  expression(atop((~0.0~Whole~leaf~italic(A)[max]),
-                                                       (proportional~to~leaf~area))),
-                                  expression((~0.5)),
-                                  expression((~1.0~Whole~leaf~italic(A)[max])),
-                                  expression((~2.0)))) +
+                       labels = c("-1.5",
+                                  " 0.0 - Whole-leaf Amax\n         proportional to leaf area",
+                                  " ",
+                                  " 1.0 - Whole-leaf Amax\n         proportional to leaf mass",
+                                  " 2.0"))+
+                      # labels = c(
+                      #            expression((-1.5)),
+                      #            expression(atop((~0.0~Whole~leaf~italic(A)[max]),
+                      #                                 (proportional~to~leaf~area))),
+                      #            expression((~0.5)),
+                      #            expression((~1.0~Whole~leaf~italic(A)[max])),
+                      #            expression((~2.0)))) +
   xlab(expression(alpha[m])) +
   ylab(expression(alpha[s])) +
   theme(legend.position = "right",
@@ -1217,6 +1217,7 @@ my_ggsave("../figs/mass_prop3.png", mass_plt2,
           height = 4)
 
 ```
+
 
 ![Mass-proportionality](../figs/mass_prop3.png)
 

@@ -8,3 +8,4 @@ print(after - before)
 
 bookdown::render_book("./ms/SI/index.rmd", output_format = "bookdown::pdf_book")
 bookdown::render_book("./ms/SI/LMAps_SI.rmd", output_format = "bookdown::word_document2")
+
