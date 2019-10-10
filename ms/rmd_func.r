@@ -26,6 +26,7 @@ knit_hooks$set(output = function(x, options) {
   else
     default_output_hook(x,options)
 })
+
 # This is a knitr hook to enable figure and table captions
 # number figures
 # from http://stackoverflow.com/a/18672268/1036500
@@ -33,7 +34,7 @@ tn = local({
   i = 0
   function(x) {
     i <<- i + 1
-    paste("<table><caption>", '**Figure ****', i, '**: ', x, "</caption><colgroup><col width='100'></col></colgroup><thead><tr class='header'></tr></thead><tbody></tbody></table><p>", sep = '')
+    paste("<figure><figcaption>", '**Figure ****', i, '**: ', x, "</figcaption><colgroup><col width='100'></col></colgroup><thead><tr class='header'></tr></thead><tbody></tbody></figure><p>", sep = '')
   }
 })
 knit_hooks$set(fig.cap = function(before, options, envir) {

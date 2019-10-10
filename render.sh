@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cp ~/Dropbox/library.bib ./ms/ref.bib
+cp ~/Dropbox/MyLibrary.bib ./ms/MyLibrary.bib
 
 R -e 'system.time(render("./ms/LMAps_main_re.rmd", "bookdown::word_document2"))' && echo "word file completed!"
 
