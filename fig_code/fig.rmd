@@ -1,5 +1,5 @@
 ---
-title: Figs
+title: Figures for LMA paper
 author: Masatoshi Katabuchi
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
@@ -34,7 +34,7 @@ source("../fig_theme.r")
 
 # Load GL model result
 
-```{r, cache=TRUE, comment=NA}
+```{r GLdat, cache=TRUE, comment=NA}
 
 #load("./data/PA_latent_model_light_more_obs.rda")
 load("../data/GL_latent_model_orderd_obs.rda")
@@ -64,7 +64,7 @@ GL <- GL %>%
 
 This figure uses esimated LMAm and LMAs values from GL data.
 
-```{r, cache=TRUE, comment=NA}
+```{r GL-hypo, cache=TRUE, comment=NA}
 
 theme_set(theme_LES() +
           theme(axis.text.x = element_text(size = 6),
@@ -117,7 +117,7 @@ cor.test(log(GL$LMAp), log(GL$LMAs))
 
 This figure is based on a hypothetical data.  var(LMAs) >> var(LMAm) and Aarea is proportional to LMAm. Note that var(LMAm) needs to be very small to produce the above pattern.
 
-```{r, cache=TRUE, comment=NA}
+```{r h1, cache=TRUE, comment=NA}
 
 set.seed(12)
 N <- 200
@@ -163,7 +163,7 @@ my_ggsave("../figs/fig_h2.png", p4,
 This figure is based on a hypothetical data.  var(LMAm) > var(LMAs), alpha_m > 0 and alpha_s < 0. This parameter setting mimics GLOPNET values. All the values were generated from the following parameter setting. No covariance between LMAm and LMAs
 
 
-```{r, cache=TRUE, comment=NA}
+```{r h2, cache=TRUE, comment=NA}
 
 set.seed(12)
 N <- 200
@@ -207,7 +207,7 @@ my_ggsave("../figs/fig_h3.png", p4,
 
 This figure is based on a hypothetical data.  var(LMAm) > var(LMAs), alpha_m > 0 and alpha_s < 0. This parameter setting mimics GLOPNET values. All the values were generated from the following parameter setting. Positive covariance between LMAm and LMAs.
 
-```{r, cache=TRUE, comment=NA}
+```{r h3, cache=TRUE, comment=NA}
 set.seed(12)
 N <- 200
 LMAp <- rlnorm(N, log(80), 0.7)
@@ -249,7 +249,7 @@ my_ggsave("../figs/fig_h4.png", p4,
 
 ## GL
 
-```{r, cache=TRUE, comment=NA}
+```{r GL-scatter, cache=TRUE, comment=NA}
 before <- proc.time()
 N <- 4000
 pmat <- extract(res, "p")[[1]]
@@ -350,6 +350,7 @@ moge_fun3 <- function(i) {
 system.time(bb2 <- sapply(1:N, moge_fun3))
 
 system.time(aa2 <- moge_fun3(N))
+```
 
 
 ```{r, cache=TRUE, comment=NA}
@@ -388,7 +389,7 @@ GL2 <- GL %>%
 
 after <- proc.time()
 after - before
-
+```
 
 ```{r, cache=TRUE, comment=NA}
 
@@ -507,7 +508,7 @@ my_ggsave("../figs/GL_2.png", fig4)
 
 # Panama
 
-```{r, cache=TRUE, comment=NA}
+```{r PAdat, cache=TRUE, comment=NA}
 load("../data/PA_latent_replusive_model_light2_more_obs.rda")
 
 summary_PA_LDL <- data.frame(summary(res)$summary)
@@ -1025,6 +1026,8 @@ Sun <- PA %>%
 Shade <- PA %>%
   filter(strata != "CAN")
 
+
+
 GL_para <- read_csv("../data/GLpara.csv")
 PA_para <- read_csv("../data/PApara.csv")
 
@@ -1055,13 +1058,14 @@ names(point_dat3) <- c("am_mid", "am_low", "am_upper",
 point_dat4 <- point_dat3 %>%
   mutate(type = c("GLOPNET", "Panama Sun", "Panama Shade"))
 
-b_GL <- lm(log(Aarea) ~ log(LMA), GL)$coefficients[2]
-b_Sun <- lm(log(Aarea) ~ log(LMA), Sun)$coefficients[2]
-b_Shade <- lm(log(Aarea) ~ log(LMA), Shade)$coefficients[2]
+GLb <- lm(log(Aarea) ~ log(LMA), GL)$coefficients[2]
+Sunb <- lm(log(Aarea) ~ log(LMA), Sun)$coefficients[2]
+Shadeb <- lm(log(Aarea) ~ log(LMA), Shade)$coefficients[2]
+
+b_vec <- c(GLb, Sunb, Shadeb) %>% round(2)
 
 point_dat5 <- point_dat4 %>%
-  mutate(b = c(b_GL, b_Sun, b_Shade) %>% round(2))
-
+  mutate(b = paste("italic('b')==", b_vec))
 
 PA2 <- PA %>%
   group_by(site, strata) %>%
@@ -1143,6 +1147,58 @@ theme_set(theme_LES() +
                                                             r = -5)),
                 ))
 
+theme_LES2 <- function(base_size = 9, 
+                     base_family = "sans") {
+  # based on theme_bw which is based on theme_grey
+  ret <- theme_grey(base_size = base_size, base_family = base_family) %+replace%
+    theme(panel.background = element_rect(fill = "white", colour = NA),
+          panel.border = element_rect(fill = NA, colour = "black", size = 0.25), 
+          #panel.grid.major = element_line(colour = "grey87"),
+         # panel.grid.minor = element_line(colour = "grey87", size = 0.25), 
+          panel.grid.major = element_line(colour = NA),
+          panel.grid.minor = element_line(colour = NA, size = 0.25), 
+          panel.spacing = unit(0, "lines"),
+          strip.background = element_blank(), 
+         # strip.background = element_rect(fill = "white"), 
+          legend.key = element_rect(fill = NA, colour = NA),
+         # legend.position = "top",
+          legend.margin = margin(t = 0, unit = "cm"),
+          legend.key.size = unit(0.2, "cm"),
+          legend.box = "horizontal",
+          legend.box.spacing = unit(0.1, "cm"),
+          #plot.background=element_rect(fill="red"), # fix 
+          #plot.background=element_rect(fill=NA), # fix 
+          plot.background = element_blank(),
+          strip.text = element_text(size = 9),
+          strip.placement = "outside",
+          strip.switch.pad.grid = unit(0, "cm"),
+          axis.ticks.length = unit(-0.15, "cm"),
+          axis.ticks = element_line(size = 0.25),
+          axis.title = element_text(size = 8),
+          axis.text.x = element_text(margin = margin(0.25, unit = "cm"),
+                                     size = unit(8, "pt"),
+                                     colour = "black"),
+          axis.text.y = element_text(hjust = 0.5,
+                                     margin = margin(r = 0.25, unit = "cm"),
+                                     debug = FALSE,
+                                     size = unit(8, "pt"),
+                                     colour = "black"),
+          legend.text = element_text(size = 8),
+          #legend.title = element_blank(),
+          axis.title.y = element_text(margin = margin(t = 0,
+                                                      b = 0,
+                                                      l = -5,
+                                                      r = 0),
+                                      angle = 90),
+          axis.title.x = element_text(margin = margin(t = 0,
+                                                      b = -5,
+                                                      l = -5,
+                                                      r = -5)),
+          complete = TRUE) 
+}
+
+theme_set(theme_LES2())
+
 
 # these do not look good
 #legend_title <- bquote(atop("Value of scaling parameter ("*italic(b)*")",
@@ -1163,7 +1219,11 @@ theme_set(theme_LES() +
 legend_title <- expression(atop(NA, atop(textstyle(Value~of~scaling~parameter ~ (italic(b))),
                                          textstyle(`in`~the~equation~italic(A)[area]==italic(a)(LMA)^italic(b)))))
 
-mass_plt2 <- ggplot(dat3) +
+dat4 <- dat3 %>%
+  filter(as <= 0.75) %>%
+  filter(as >= -0.5)
+
+mass_plt2 <- ggplot(dat4) +
   geom_raster(aes(x = am, y = as, fill = val)) +
   facet_grid(~type) +
   geom_text_repel(data = point_dat5,
@@ -1178,6 +1238,7 @@ mass_plt2 <- ggplot(dat3) +
                   aes(x = am_mid,
                       y = as_mid,
                       label = b),
+                  parse = TRUE
                   ) +
   geom_point(data = point_dat5, aes(x = am_mid, y = as_mid)) +
   geom_errorbar(data = point_dat5, aes(ymin = as_low, ymax = as_upper,
@@ -1185,33 +1246,37 @@ mass_plt2 <- ggplot(dat3) +
   geom_errorbarh(data = point_dat5, aes(xmin = am_low, xmax = am_upper,
                                         y = as_mid,
                                         height = 0)) +
-  scale_fill_gradientn(
-                       name = legend_title,
-                       # colors from http://colorbrewer2.org/#type=diverging&scheme=PuOr&n=5
-                       colors = c("#e66101",
-                                  "#fdb863",
-                                  "#f7f7f7",
-                                  "#b2abd2",
-                                  "#5e3c99"),
-                       breaks = c(min(dat3$val), 0, 0.5, 1, 2),
-                       labels = c("-1.5",
-                                  " 0.0 - Whole-leaf Amax\n         proportional to leaf area",
-                                  " ",
-                                  " 1.0 - Whole-leaf Amax\n         proportional to leaf mass",
-                                  " 2.0"))+
-                      # labels = c(
-                      #            expression((-1.5)),
-                      #            expression(atop((~0.0~Whole~leaf~italic(A)[max]),
-                      #                                 (proportional~to~leaf~area))),
-                      #            expression((~0.5)),
-                      #            expression((~1.0~Whole~leaf~italic(A)[max])),
-                      #            expression((~2.0)))) +
+  scale_fill_gradient2(midpoint = 0.5,
+                       low = "#e66101",
+                       high = "#5e3c99") +
+  #scale_fill_gradientn(
+  #                     name = legend_title,
+  #                     # colors from http://colorbrewer2.org/#type=diverging&scheme=PuOr&n=5
+  #                     colors = c("#e66101",
+  #                                "#fdb863",
+  #                                "#f7f7f7",
+  #                                "#b2abd2",
+  #                                "#5e3c99"),
+  #                     breaks = c(min(dat4$val), 0, 0.5, 1, 2),
+  #                     labels = c("-1.5",
+  #                                " 0.0 - Whole-leaf Amax\n         proportional to leaf area",
+  #                                " ",
+  #                                " 1.0 - Whole-leaf Amax\n         proportional to leaf mass",
+  #                                " 2.0"))+
+  #                    # labels = c(
+  #                    #            expression((-1.5)),
+  #                    #            expression(atop((~0.0~Whole~leaf~italic(A)[max]),
+  #                    #                                 (proportional~to~leaf~area))),
+  #                    #            expression((~0.5)),
+  #                    #            expression((~1.0~Whole~leaf~italic(A)[max])),
+  #                    #            expression((~2.0)))) +
   xlab(expression(alpha[m])) +
   ylab(expression(alpha[s])) +
   theme(legend.position = "right",
         legend.key.height = unit(0.5, "cm"),
         legend.text = element_text(size = 7),
-        legend.title = element_text(hjust = 0, size = 7))
+        legend.title = element_text(hjust = 0, size = 7)) +
+  coord_cartesian(ylim = c(-0.5, 0.75))
 
 my_ggsave("../figs/mass_prop3.png", mass_plt2,
           height = 4)
@@ -1220,6 +1285,139 @@ my_ggsave("../figs/mass_prop3.png", mass_plt2,
 
 
 ![Mass-proportionality](../figs/mass_prop3.png)
+
+## Larger legend
+
+```{r mass-prop-big, cache=FALSE, comment=NA}
+
+mass_plt3 <- mass_plt2 +
+  theme(legend.position = "none")
+
+samp_df <- data.frame(parameter = "test",
+                   vals = seq(-1, 1, 0.01),
+                    x = 1)
+
+col_val <- c(-1, 0.5, 1)
+
+names(col_val) <- c("-1.0", 
+                      "0.5",
+                      "1.0")
+
+legend_plt <- ggplot(samp_df, aes(x = x, y = vals, fill = vals)) +
+  geom_raster() +
+  scale_fill_gradient2(midpoint = 0.5) +
+  geom_text(aes(x = 1.5, 
+                y =  -1,
+                label = "-1.0"),
+            vjust = 0.5) +
+  geom_text(aes(x = 1.5,
+                y =  0.5,
+                label = "0.5"),
+            vjust = 0.5) +
+  geom_text(aes(x = 1.5,
+                y =  0,
+                label = "0.0"),
+            vjust = 0.5) +
+  geom_segment(x = 4,
+                  xend = 2.5,
+                  y = 1.02,
+                  yend = 1.0,
+                  arrow = arrow(type = "closed",
+                                length = unit(2, "mm"))) +
+  annotate("text", x = 5, y = 1.02,
+    label = expression(atop(Whole~leaf~italic(A)[max]),
+                       proportional~to~leaf~mass),
+    parse = TRUE) +
+  geom_segment(x = 4,
+                  xend = 2.5,
+                  y = -0.5,
+                  yend = .0,
+                  arrow = arrow(type = "closed",
+                                length = unit(2, "mm"))) +
+  theme_minimal(base_size = 5, base_family = "serif") +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid = element_blank(),
+        aspect.ratio = 4/1,
+        legend.position = "none",
+        plot.title = element_text(hjust = 0.5, size = 10)) +
+   ylab("") + xlab("") +
+   coord_cartesian(xlim = c(0, 20)) +
+   #labs(title = expression(atop(Value~of~scaling~parameter~(italic(b)),
+   #                             `in`~the~equation~italic(A)[area])))
+   labs(title = expression(Value~of~scaling~parameter~(italic(b))~`in`~the~equation~italic(A)[area]==italic(a)~LMA^italic(b)))
+
+legend_plt
+
+legend_plt2 <- ggplot(samp_df, aes(y = x, x = vals, fill = vals)) +
+  geom_raster() +
+# colors from http://colorbrewer2.org/#type=diverging&scheme=PuOr&n=5
+  scale_fill_gradient2(midpoint = 0.5,
+                       low = "#e66101",
+                       high = "#5e3c99") +
+  geom_text(aes(y = -.2,
+                x =  -1,
+                label = "-1.0"),
+            vjust = 0.5) +
+  geom_text(aes(y = -.2,
+                x =  0.5,
+                label = "0.5"),
+            vjust = 0.5) +
+  geom_text(aes(y = -0.2,
+                x =  0,
+                label = "0.0"),
+            vjust = 0.5) +
+  geom_text(aes(y = -0.2,
+                x =  1,
+                label = "1.0"),
+            vjust = 0.5) +
+  geom_segment(y = 2.5,
+                  yend = 1.5,
+                  x = 0.8,
+                  xend = 1.0,
+                  arrow = arrow(type = "closed",
+                                length = unit(1, "mm"))) +
+  annotate("text", y = 3, x = 0.5, size = 3,
+    label = expression(atop(Whole~leaf~italic(A)[max]),
+                       proportional~to~leaf~mass),
+    parse = TRUE) +
+  geom_segment(y = 2,
+                  yend = 1.5,
+                  x = -0.25,
+                  xend = .0,
+                  arrow = arrow(type = "closed",
+                                length = unit(1, "mm"))) +
+  theme_minimal(base_size = 5, base_family = "sans") +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid = element_blank(),
+        aspect.ratio = 1/8,
+        legend.position = "none",
+        plot.title = element_text(hjust = 0, size = 10)) +
+   ylab("") + xlab("") +
+   coord_cartesian(ylim = c(-1, 5)) +
+  annotate("text", y = 3, x = -0.3, size = 3,
+    label = expression(atop(Whole~leaf~italic(A)[max]),
+                       proportional~to~leaf~area),
+    parse = TRUE) +
+   labs(title = expression(Value~of~scaling~parameter~(italic(b))~`in`~the~equation~italic(A)[area]==italic(a)~LMA^italic(b)))
+
+
+
+legend_plt2
+
+p <- plot_grid(mass_plt3,
+               legend_plt2,
+               nrow = 2,
+               rel_heights = c(.6, .4))
+
+my_ggsave("../figs/mass_prop4.png", p,
+          width = 12,
+          height = 8)
+```
+
+![Mass-proportionality2](../figs/mass_prop4.png)
+
 
 # Boxplot
 
