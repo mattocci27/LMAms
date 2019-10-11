@@ -113,13 +113,15 @@ cor.test(log(GL$LMAp), log(GL$LMAs))
 
 ```
 
+![H1](../figs/fig_h.png)
+
 ##  hypo. ver.
 
 This figure is based on a hypothetical data.  var(LMAs) >> var(LMAm) and Aarea is proportional to LMAm. Note that var(LMAm) needs to be very small to produce the above pattern.
 
 ```{r h1, cache=TRUE, comment=NA}
 
-set.seed(12)
+set.seed(123)
 N <- 200
 LMAp <- rlnorm(N, log(40), 0.1)
 LMAs <- rlnorm(N, log(80), 0.8)
@@ -127,6 +129,7 @@ LMA <- LMAp + LMAs
 #Aarea <- rlnorm(N, log(LMAp^0.8*LMAs^-0.2), 0.3)
 Aarea <-  LMAp
 tmp <- tibble(LMA, LMAp, LMAs, Aarea)
+cor.test(log(LMA), log(Aarea))
 
 p1 <- ggplot(tmp, aes(LMAp, LMAs)) +
   geom_point(alpha = 0.8) +
@@ -158,6 +161,8 @@ my_ggsave("../figs/fig_h2.png", p4,
 
 ```
 
+![H2](../figs/fig_h2.png)
+
 ##  hypo. ver.2
 
 This figure is based on a hypothetical data.  var(LMAm) > var(LMAs), alpha_m > 0 and alpha_s < 0. This parameter setting mimics GLOPNET values. All the values were generated from the following parameter setting. No covariance between LMAm and LMAs
@@ -165,13 +170,16 @@ This figure is based on a hypothetical data.  var(LMAm) > var(LMAs), alpha_m > 0
 
 ```{r h2, cache=TRUE, comment=NA}
 
-set.seed(12)
+set.seed(1)
 N <- 200
-LMAp <- rlnorm(N, log(80), 0.7)
-LMAs <- rlnorm(N, log(80), 0.8)
+LMAp <- rlnorm(N, log(80), 0.8)
+LMAs <- rlnorm(N, log(80), 0.7)
 LMA <- LMAp + LMAs
-Aarea <- rlnorm(N, log(1.9 * LMAp^0.35*LMAs^-0.24), 0.3)
+Aarea <- rlnorm(N, log(1.9 * LMAp^0.36*LMAs^-0.25), 0.3)
 tmp <- tibble(LMA, LMAp, LMAs, Aarea)
+
+cor.test(log(Aarea), log(LMA))
+cor.test(log(Aarea/LMA), log(LMA))
 
 p1 <- ggplot(tmp, aes(LMAp, LMAs)) +
   geom_point(alpha = 0.8) +
@@ -202,6 +210,8 @@ my_ggsave("../figs/fig_h3.png", p4,
           height = 4)
 
 ```
+
+![H3](../figs/fig_h3.png)
 
 ##  hypo. ver.3
 
@@ -244,6 +254,8 @@ p4 <- plot_grid(p1, p2, p3, ncol = 3,
 my_ggsave("../figs/fig_h4.png", p4,
           height = 4)
 ```
+
+![H4](../figs/fig_h4.png)
 
 # Scatter plots (estimated)
 
@@ -1846,3 +1858,30 @@ my_ggsave("../figs/LMAms.png", LMAms_plt,
 
 ![LMAms](../figs/LMAms.png)
 
+```{r}
+
+set.seed(123)
+N <- 100
+alpha <- 0.8
+
+one <- rlnorm(N)
+area <- one^2
+mass <- one^3
+
+A <- rlnorm(N, log(alpha * area), 0.1)
+LMA <- mass/area
+Aarea <- A/area
+Amass <- A/mass
+
+par(mfrow=c(2,3))
+plot(mass ~ area, log = "xy")
+plot(Aarea ~ area, log = "xy")
+plot(A ~ area, log = "xy")
+plot(Aarea ~ LMA, log = "xy")
+plot(Amass ~ LMA, log = "xy")
+plot(Amass ~ Aarea, log = "xy")
+par(mfrow=c(1,1))
+
+
+
+```
