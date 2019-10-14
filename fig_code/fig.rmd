@@ -7,7 +7,7 @@ output:
     toc: true
 ---
 
-```{r global_options, include=FALSE}
+``{r global_options, include=FALSE}
 knitr::opts_chunk$set(echo=TRUE,
                       warning=FALSE,
                       message=FALSE)
@@ -54,6 +54,8 @@ temp_LMAs <- GL$LMA - temp_LMAp
 GL <- GL %>%
   mutate(LMAp = temp_LMAp) %>%
   mutate(LMAs = temp_LMAs)
+
+write_csv(GL, "../data/GL_result.csv")
 
 ```
 
@@ -305,11 +307,12 @@ quant_fun <- function(x) c(quantile(x, 0.5), quantile(x, 0.025), quantile(x, 0.9
 GL_cor_tbl <- rbind(
   quant_fun(r_Am),
   quant_fun(r_As),
-  quant_fun(r_Rm),
-  quant_fun(r_Rs),
   quant_fun(r_Lm),
-  quant_fun(r_Ls)) %>%
-  as_tibble
+  quant_fun(r_Ls),
+  quant_fun(r_Rm),
+  quant_fun(r_Rs)
+  ) %>%
+  as_tibble 
 
 ```
 
@@ -414,6 +417,7 @@ cols <- c("Deciduous" = settings$colors$D,
           "Unclassified" = settings$colors$U)
 
 GL_fig_dat <- GL %>%
+  gather(LMA, val0, c(LMA, LMAs, LMAp)) %>%
   gather(Trait, val2, c(Aarea, Rarea, LL)) %>%
   mutate(DE = factor(DE,
           levels = c("D", "E", "U"))) %>%
@@ -453,8 +457,25 @@ GL_fig_dat2 <- GL2 %>%
                "italic(R)[area]~residuals",
                "LL~residuals")))
 
+lim_GL <- lim_func(GL_fig_dat,
+                    trait = "val0")
 
-GL_figA <- ggplot(GL_fig_dat, aes(x = LMA, y = val2,
+lim_GL2 <- lim_func(GL_fig_dat,
+                    trait = "val2", LMA = FALSE)
+
+lab1 <- tibble(lab = paste("(", letters[1:9], ")", sep = ""),
+                   val2 = lim_GL2$max_val %>% rep(each = 3),
+                  # Val2 = Inf,
+                   Val = lim_GL$min_val %>% rep(3),
+                   Val_max = lim_GL$max_val %>% rep(3),
+                   gr = "Evergreen",
+                   r_vals = r_vals$r_vals$GL %>% unlist,
+                   Trait2 = rep(lim_GL2$Trait2, each = 3),
+                   LMA = rep(lim_GL$LMA, 3)
+                   ) %>%
+  filter(LMA == "LMA")
+
+GL_figA <- ggplot(GL_fig_dat, aes(x = val0, y = val2,
                                   col = gr,
                                   fill = gr)) +
   geom_point(shape = 21) +
@@ -469,15 +490,59 @@ GL_figA <- ggplot(GL_fig_dat, aes(x = LMA, y = val2,
   scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
   xlab("") +
   ylab("") +
+  geom_text(data = lab1, aes(label = r_vals, x = Val_max), 
+            hjust = 1,
+            vjust= 0.25,
+            size = 8 * 5/14,
+            parse = TRUE,
+            color = "black",
+            show.legend = FALSE) +
   theme_LES()
 
 GL_figA2 <- GL_figA +
   theme(legend.position = "none")
+#  geom_text(data = lab1, aes(label = r_vals, x = Val_max), 
+#            hjust = 1,
+#            vjust= 0.25,
+#            size = 8 * 5/14,
+#            parse = TRUE,
+#            color = "black",
+#            show.legend = FALSE) +
+#  theme_LES() +
+#  theme(legend.position = "none")
   #theme(legend.text = element_blank(),
   #      legend.key = element_rect(fill = NULL, colour = NULL)
   #      )
 
 GL_figA2
+
+
+labGL0 <- GL_fig_dat2 %>%
+  group_by(resLMA, resTrait, resTrait2) %>%
+ # group_by(resTrait, resTrait2) %>%
+  summarize(x_max = max(val),
+            y_max = max(val2),
+            x_min = min(val),
+            y_min = min(val2),
+            ) %>%
+  ungroup %>%
+  # check line307-313
+  arrange(resTrait, desc(resLMA)) %>%
+  mutate(r_vals = GL_cor_tbl$`50%`) %>%
+  mutate(r_vals = paste0("italic(r) == ", round(r_vals, 2))) %>%
+  mutate(val = 1) %>%
+  mutate(val2 = 1) %>%
+  mutate(gr = "Evergreen") %>%
+  mutate(resTrait3 = sapply(str_split(resTrait, "_"), "[[", 1)) 
+
+tmp <- labGL0 %>%
+  group_by(resTrait3) %>%
+  summarize(x_max2 = max(x_max),
+            y_max2 = max(y_max),
+            x_min2 = min(x_min),
+            y_min2 = min(y_min))
+
+labGL <- full_join(labGL0, tmp, by = "resTrait3")
 
 GL_figB <- ggplot(GL_fig_dat2, aes(x = val, y = val2,
                        color = gr, fill = gr)) +
@@ -495,28 +560,47 @@ GL_figB <- ggplot(GL_fig_dat2, aes(x = val, y = val2,
   theme_LES() +
   theme(legend.position = "none")
 
+GL_figB2 <- GL_figB +
+#  geom_text(data = labGL , aes(label = lab), 
+#            hjust = 0.25,
+#            vjust = 0.25,
+#            size = 8 * 5/14,
+#            show.legend = FALSE,
+#            color = "black") +
+  geom_text(data = labGL, aes(label = r_vals,
+                              x = x_max * 1.2,
+                              y = y_max2 * 1.2),
+            hjust = 1,
+            vjust= 0.5,
+            size = 8 * 5/14,
+            parse = TRUE,
+            color = "black",
+            show.legend = FALSE) +
+  theme_LES() +
+  theme(legend.position = "none")
+
 legend2 <- get_legend(GL_figA)
 
 fig2 <- ggdraw() +
   draw_plot(GL_figA, 0, 0, 0.33, 1) +
   draw_plot(GL_figB, 0.33, 0, 0.66, 1) +
-  draw_plot_label(c("A", "B"), c(0, 0.33), c(1,1), size = 9)
+  draw_plot_label(c("A", "B"), c(0, 0.33), c(1, 1), size = 9)
 
 fig2
 
-fig3 <- plot_grid(GL_figA2, GL_figB,
+fig3 <- plot_grid(GL_figA2, GL_figB2,
                   labels = c("A", "B"),
                   label_size = 9,
                   rel_widths = c(0.6, 1))
 
 fig4 <- plot_grid(legend2, fig3,  ncol = 1,
                   rel_heights = c(.1, 2))
-fig4
 
 my_ggsave("../figs/GL_2.png", fig4)
 
-
 ```
+
+![GL1](../figs/GL_2.png)
 
 # Panama
 
@@ -541,6 +625,8 @@ temp_LMAs <- PA$LMA - temp_LMAp
 PA <- PA %>%
   mutate(LMAp = temp_LMAp) %>%
   mutate(LMAs = temp_LMAs)
+
+write_csv(PA, "../data/PA_result.csv")
 
 ```
 
@@ -704,7 +790,8 @@ PA_figA <- ggplot(PA_fig_dat, aes(x = LMA, y = val2,
              scales = "free",
              switch = "both",
              labeller = labeller(Trait2 = label_parsed,
-                                 LMA2 = label_parsed)) +
+                                 LMA2 = label_parsed
+                                 )) +
   scale_colour_manual(values = cols) +
   scale_fill_manual(values = fills) +
   scale_x_log10(breaks = my_breaks_x(), expand = c(0.1, 0)) +
@@ -730,8 +817,8 @@ PA_figB <- ggplot(PA_fig_dat2, aes(x = val, y = val2,
   facet_grid(resTrait2~resLMA,
              switch = "both",
              scale = "free",
-             labeller = labeller(resTrait2 = label_parsed,
-                                 resLMA = label_parsed
+             labeller = labeller(resTrait2 = label_parsed#,
+                                # resLMA = label_parsed
              )) +
   xlab("") +
   ylab("") +
