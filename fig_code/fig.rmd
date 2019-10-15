@@ -305,12 +305,12 @@ after - before
 quant_fun <- function(x) c(quantile(x, 0.5), quantile(x, 0.025), quantile(x, 0.975))
 
 GL_cor_tbl <- rbind(
-  quant_fun(r_Am),
   quant_fun(r_As),
-  quant_fun(r_Lm),
+  quant_fun(r_Am),
   quant_fun(r_Ls),
-  quant_fun(r_Rm),
-  quant_fun(r_Rs)
+  quant_fun(r_Lm),
+  quant_fun(r_Rs),
+  quant_fun(r_Rm)
   ) %>%
   as_tibble 
 
@@ -406,7 +406,7 @@ after <- proc.time()
 after - before
 ```
 
-```{r, cache=TRUE, comment=NA}
+```{r, cache=FALSE, comment=NA}
 
 fills <- c("Deciduous" = settings$fills$D,
           "Evergreen" = settings$fills$E,
@@ -429,7 +429,12 @@ GL_fig_dat <- GL %>%
     labels = c("italic(A)[area]~(~mu~mol~m^{-2}~s^{-1})",
                "italic(R)[area]~(~mu~mol~m^{-2}~s^{-1})",
                "LL~(months)"))) %>%
-  mutate(LMA2 = "LMA~(~g~m^{-2})")
+  mutate(LMA = factor(LMA,
+                      levels = c("LMA", "LMAp", "LMAs"))) %>%
+  mutate(LMA2 = factor(LMA,
+          labels = c("LMA~(~g~m^{-2})",
+                     "LMAm~(~g~m^{-2})",
+                     "LMAs~(~g~m^{-2})")))
 
 GL_fig_dat2 <- GL2 %>%
   gather(resLMA, val, c(res_m, res_s)) %>%
@@ -475,7 +480,8 @@ lab1 <- tibble(lab = paste("(", letters[1:9], ")", sep = ""),
                    ) %>%
   filter(LMA == "LMA")
 
-GL_figA <- ggplot(GL_fig_dat, aes(x = val0, y = val2,
+
+GL_figA <- ggplot(GL_fig_dat %>% filter(LMA == "LMA"), aes(x = val0, y = val2,
                                   col = gr,
                                   fill = gr)) +
   geom_point(shape = 21) +
@@ -497,8 +503,14 @@ GL_figA <- ggplot(GL_fig_dat, aes(x = val0, y = val2,
             parse = TRUE,
             color = "black",
             show.legend = FALSE) +
-  theme_LES()
-
+  theme_LES() #+
+#  theme(
+#          axis.title.y = element_text(margin = margin(t = 0,
+#                                                      b = 0,
+#                                                      l = -10,
+#                                                      r = 5),
+#                                      angle = 90))
+#
 GL_figA2 <- GL_figA +
   theme(legend.position = "none")
 #  geom_text(data = lab1, aes(label = r_vals, x = Val_max), 
@@ -577,7 +589,8 @@ GL_figB2 <- GL_figB +
             color = "black",
             show.legend = FALSE) +
   theme_LES() +
-  theme(legend.position = "none")
+  theme(legend.position = "none"
+        )
 
 legend2 <- get_legend(GL_figA)
 
@@ -590,7 +603,7 @@ fig2
 
 fig3 <- plot_grid(GL_figA2, GL_figB2,
                   labels = c("A", "B"),
-                  label_size = 9,
+                  label_size = 8,
                   rel_widths = c(0.6, 1))
 
 fig4 <- plot_grid(legend2, fig3,  ncol = 1,
@@ -669,13 +682,13 @@ for (i in 1:N) {
 after <- proc.time()
 after - before
 
-rbind(
-  quant_fun(r_Am),
+PA_cor_tbl <- rbind(
   quant_fun(r_As),
-  quant_fun(r_Rm),
-  quant_fun(r_Rs),
+  quant_fun(r_Am),
+  quant_fun(r_Ls),
   quant_fun(r_Lm),
-  quant_fun(r_Ls)) %>%
+  quant_fun(r_Rs),
+  quant_fun(r_Rm)) %>%
   as_tibble
 
 ```
@@ -727,6 +740,7 @@ plot(LL_m ~ res_m, PA2)
 par(mfrow = c(1,1))
 
 PA_fig_dat <- PA %>%
+  gather(LMA, val0, c(LMA, LMAs, LMAp)) %>%
   gather(Trait, val2, c(Aarea, Rarea, LL)) %>%
   mutate(site_strata = factor(site_strata,
           levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) %>%
@@ -742,7 +756,13 @@ PA_fig_dat <- PA %>%
     labels = c("italic(A)[area]~(~mu~mol~m^{-2}~s^{-1})",
                "italic(R)[area]~(~mu~mol~m^{-2}~s^{-1})",
                "LL~(months)"))) %>%
-  mutate(LMA2 = "LMA~(~g~m^{-2})")
+  #mutate(LMA2 = "LMA~(~g~m^{-2})")
+  mutate(LMA = factor(LMA,
+                      levels = c("LMA", "LMAp", "LMAs"))) %>%
+  mutate(LMA2 = factor(LMA,
+          labels = c("LMA~(~g~m^{-2})",
+                     "LMAm~(~g~m^{-2})",
+                     "LMAs~(~g~m^{-2})")))
 
 PA_fig_dat2 <- PA2 %>%
   gather(resLMA, val, c(res_m, res_s)) %>%
@@ -763,7 +783,7 @@ PA_fig_dat2 <- PA2 %>%
   mutate(resLMA = factor(resLMA,
          levels = c("res_s", "res_m"))) %>%
   mutate(resLMA = factor(resLMA,
-    labels = c("LMAm~(~g~m^{-2})", "LMAs~(~g~m^{-2})"))) %>%
+    labels = c("LMAm~residuals", "LMAs~residuals"))) %>%
   mutate(resTrait2 = factor(resTrait2,
                             levels = c("Aarea", "Rarea", "LL"))) %>%
   mutate(resTrait2 = factor(resTrait2,
@@ -782,7 +802,26 @@ cols <- c("Sun-Dry" = settings$colors$sun_dry,
           "Shade-Dry" = settings$colors$shade_dry,
           "Shade-Wet" = settings$colors$shade_wet)
 
-PA_figA <- ggplot(PA_fig_dat, aes(x = LMA, y = val2,
+
+lim_PA <- lim_func(PA_fig_dat,
+                    trait = "val0")
+
+lim_PA2 <- lim_func(PA_fig_dat,
+                    trait = "val2", LMA = FALSE)
+
+lab1 <- tibble(lab = paste("(", letters[1:9], ")", sep = ""),
+                   val2 = lim_PA2$max_val %>% rep(each = 3),
+                  # Val2 = Inf,
+                   Val = lim_PA$min_val %>% rep(3),
+                   Val_max = lim_PA$max_val %>% rep(3),
+                   gr = "Sun-Dry",
+                   r_vals = r_vals$r_vals$PA %>% unlist,
+                   Trait2 = rep(lim_PA2$Trait2, each = 3),
+                   LMA = rep(lim_PA$LMA, 3)
+                   ) %>%
+  filter(LMA == "LMA")
+
+PA_figA <- ggplot(PA_fig_dat %>% filter(LMA == "LMA"), aes(x = val0, y = val2,
                                   col = gr,
                                   fill = gr)) +
   geom_point(shape = 21) +
@@ -798,6 +837,13 @@ PA_figA <- ggplot(PA_fig_dat, aes(x = LMA, y = val2,
   scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
   xlab("") +
   ylab("") +
+  geom_text(data = lab1, aes(label = r_vals, x = Val_max), 
+            hjust = 1,
+            vjust= 0.25,
+            size = 8 * 5/14,
+            parse = TRUE,
+            color = "black",
+            show.legend = FALSE) +
   theme_LES()
 
 PA_figA2 <- PA_figA +
@@ -808,6 +854,33 @@ PA_figA2 <- PA_figA +
 
 PA_figA2
 
+labPA0 <- PA_fig_dat2 %>%
+  group_by(resLMA, resTrait, resTrait2) %>%
+ # group_by(resTrait, resTrait2) %>%
+  summarize(x_max = max(val),
+            y_max = max(val2),
+            x_min = min(val),
+            y_min = min(val2),
+            ) %>%
+  ungroup %>%
+  # check line307-313
+  arrange(resTrait, desc(resLMA)) %>%
+  mutate(r_vals = PA_cor_tbl$`50%`) %>%
+  mutate(r_vals = paste0("italic(r) == ", round(r_vals, 2))) %>%
+  mutate(val = 1) %>%
+  mutate(val2 = 1) %>%
+  mutate(gr = "Sun-Wet") %>%
+  mutate(resTrait3 = sapply(str_split(resTrait, "_"), "[[", 1)) 
+
+tmp <- labPA0 %>%
+  group_by(resTrait3) %>%
+  summarize(x_max2 = max(x_max),
+            y_max2 = max(y_max),
+            x_min2 = min(x_min),
+            y_min2 = min(y_min))
+
+labPA <- full_join(labPA0, tmp, by = "resTrait3")
+
 
 PA_figB <- ggplot(PA_fig_dat2, aes(x = val, y = val2,
                        color = gr, fill = gr)) +
@@ -817,17 +890,37 @@ PA_figB <- ggplot(PA_fig_dat2, aes(x = val, y = val2,
   facet_grid(resTrait2~resLMA,
              switch = "both",
              scale = "free",
-             labeller = labeller(resTrait2 = label_parsed#,
-                                # resLMA = label_parsed
+             labeller = labeller(resTrait2 = label_parsed,
+                                 resLMA = label_parsed
              )) +
   xlab("") +
   ylab("") +
   theme_LES() +
   theme(legend.position = "none")
 
+PA_figB2 <- PA_figB +
+#  geom_text(data = labPA , aes(label = lab), 
+#            hjust = 0.25,
+#            vjust = 0.25,
+#            size = 8 * 5/14,
+#            show.legend = FALSE,
+#            color = "black") +
+  geom_text(data = labPA, aes(label = r_vals,
+                              x = x_max * 1.2,
+                              y = y_max2 * 1.2),
+            hjust = 1,
+            vjust= 0.5,
+            size = 8 * 5/14,
+            parse = TRUE,
+            color = "black",
+            show.legend = FALSE) +
+  theme_LES() +
+  theme(legend.position = "none"
+        )
+
 legend2 <- get_legend(PA_figA)
 
-fig3 <- plot_grid(PA_figA2, PA_figB,
+fig3 <- plot_grid(PA_figA2, PA_figB2,
                   labels = c("A", "B"),
                   label_size = 8,
                   rel_widths = c(0.6, 1))
@@ -929,7 +1022,7 @@ PA_dat <- PA %>%
                "Shade-Dry"
                       ))) %>%
   #arrange(desc(gr))
-  arrange(gr) 
+  arrange(gr)
 
 PA_dat2 <- PA_dat %>%
   filter(Trait == "Narea" |
