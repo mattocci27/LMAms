@@ -52,7 +52,7 @@ model{
   z ~ normal(0, 10);
   amas ~ normal(0, 10);
   //p ~ normal(0.5, 0.5);
-  p ~ beta(2, 2);
+  p ~ beta(1, 1);
   L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
   L_sigma ~ cauchy(0, 5);
 

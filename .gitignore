@@ -21,5 +21,6 @@
 /ms/mylibrary.bib
 /archive/*
 /old/*
+/data_old/*
 *.bib
 *.DS_Store

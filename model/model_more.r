@@ -93,7 +93,7 @@ if (data_name == "GL") {
                    dry = ifelse(dat$site == "PNM", 1 , 0))
 }
 
-rand_dat <- data_frame(null_model = 1:3)
+rand_dat <- tibble(null_model = 1:3)
 
 rand_fun <- function(n){
   temp <- data.frame(dat[,1:3],

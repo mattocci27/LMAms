@@ -114,7 +114,7 @@ model{
   // model
   for (i in 1:N) {
     if(holdout[i] == 0) {
-      p[i] ~ beta(2, 2);
+      p[i] ~ beta(1, 1);
       target += multi_normal_cholesky_lpdf(obs[i,] | Mu[i,], diag_pre_multiply(L_sigma, L_Omega));
     }
   // need to estimate p for holdout[n] == 1
