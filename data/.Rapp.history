@@ -1,0 +1,2482 @@
+data_frame(xx, yy, mu) %>%#
+  arange(xx)
+data_frame(xx, yy, mu) %>%#
+  arrange(xx)
+moge <- data_frame(xx, yy, mu) %>%#
+  arrange(xx)
+plot(yy~ xx, ylim = c(-5, 5), col = "blue")#
+points(mu ~ xx, type = "l", moge)
+moge
+moge <- data_frame(xx, yy, mu) %>%#
+  arrange(xx)#
+#
+plot(yy~ xx, ylim = c(-5, 5), col = "blue")#
+points(mu ~ xx, type = "l", moge)
+moge <- data_frame(xx, yy, mu) %>%#
+  arrange(mu)#
+#
+plot(yy~ xx, ylim = c(-5, 5), col = "blue")#
+points(mu ~ xx, type = "l", moge)
+moge <- data_frame(xx, yy, mu) %>%#
+  arrange(xx)#
+#
+plot(yy~ xx, ylim = c(-5, 5), col = "blue")#
+points(mu ~ xx, type = "l", moge)
+set.seed(1)#
+n_sample <- 100#
+xx <- seq(-5, 5, length = n_sample)#
+mu <- 2 + sin(xx)#
+yy <- rnorm(n_sample, mu, 0.5)#
+#
+moge <- data_frame(xx, yy, mu) %>%#
+  arrange(xx)#
+#
+plot(yy~ xx, ylim = c(-5, 5), col = "blue")#
+points(mu ~ xx, type = "l", moge)
+set.seed(1)#
+n_sample <- 100#
+xx <- seq(-5, 5, length = n_sample)#
+mu <- 2 + sin(xx)#
+yy <- rnorm(n_sample, mu, 0.5)#
+#
+moge <- data_frame(xx, yy, mu) %>%#
+  arrange(xx)#
+#
+plot(yy~ xx, ylim = c(-5, 5), col = "blue")#
+points(mu ~ xx, type = "l")
+plot(yy~ xx, ylim = c(-5, 5), col = "blue")#
+points(mu ~ xx, type = "l")
+library(ggplot2)
+fig_dat <- data_frame(xx, yy, mu)
+fig_dat
+fig_dat <- data_frame(xx, yy, mu)#
+#
+ggplot(fig_dat) +#
+  geom_points(aes(x = xx, y =yy))
+ggplot(fig_dat) +#
+  geom_point(aes(x = xx, y =yy))
+ggplot(fig_dat) +#
+  geom_point(aes(x = xx, y =yy)) +#
+  ylim(-5,5)
+ggplot(fig_dat) +#
+  geom_point(aes(x = xx, y =yy), colour = "blue") +#
+  ylim(-5, 5)
+ggplot(fig_dat) +#
+  geom_point(aes(x = xx, y =yy), colour = "blue") +#
+  ylim(-5, 5) +#
+  theme_bw()
+ggplot(fig_dat) +#
+  geom_point(aes(x = xx, y = yy), colour = "blue") +#
+  geom_line(aes(x = xx, y = mu)) +#
+  ylim(-5, 5) +#
+  theme_bw() +
+ggplot(fig_dat) +#
+  geom_point(aes(x = xx, y = yy), colour = "blue") +#
+  geom_line(aes(x = xx, y = mu)) +#
+  ylim(-5, 5) +#
+  theme_bw()
+ggplot(fig_dat) +#
+  geom_point(aes(x = xx, y = yy), colour = "blue") +#
+  geom_line(aes(x = xx, y = mu), colour = "blue", lwd = 2) +#
+  ylim(-5, 5) +#
+  theme_bw()
+ggplot(fig_dat) +#
+  geom_point(aes(x = xx, y = yy), colour = "blue") +#
+  geom_line(aes(x = xx, y = mu), colour = "blue") +#
+  ylim(-5, 5) +#
+  theme_bw()
+ggplot(fig_dat) +#
+  geom_point(aes(x = xx, y = yy), colour = "blue") +#
+  geom_line(aes(x = xx, y = mu), colour = "blue", lwd = 1.5) +#
+  ylim(-5, 5) +#
+  theme_bw()
+preds
+preds <-  predict(model, data.matrix(xx), array.layout="rowmajor")
+preds <- yy - 1#
+#
+fig_dat <- data_frame(xx, yy, mu, preds = preds %>%#
+ tidyr::gather(val, cat, )#
+#
+ggplot(fig_dat) +#
+  geom_point(aes(x = xx, y = yy), colour = "blue") +#
+  geom_line(aes(x = xx, y = mu), colour = "blue") +#
+  geom_line(aes(x = xx, y = preds), colour = "green") +#
+  ylim(-5, 5) +#
+  theme_bw()
+fig_dat <- data_frame(xx, yy, mu, preds = preds %>%#
+ tidyr::gather(val, cat, 2:4)
+fig_dat
+fig_dat <- data_frame(xx, yy, mu, preds = preds %>%#
+ tidyr::gather(val, cat, 2:4)
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(val, cat, 2:4)
+fig_dat
+ggplot(fig_dat, aes(x = xx, y = val, colour = cat)) +#
+  geom_point() +#
+  geom_line() +#
+  ylim(-5, 5) +#
+  theme_bw()
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(val, cat, 2:4)
+ggplot(fig_dat, aes(x = xx, y = val, colour = cat)) +#
+  geom_point() +#
+  geom_line() +#
+  ylim(-5, 5) +#
+  theme_bw()
+fig_dat
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4)#
+#
+ggplot(fig_dat, aes(x = xx, y = val, colour = cat)) +#
+ geom_point() +#
+ geom_line() +#
+ ylim(-5, 5) +#
+ theme_bw()
+ggplot(fig_dat %>% arrange(xx), aes(x = xx, y = val, colour = cat)) +#
+ geom_point() +#
+ geom_line() +#
+ ylim(-5, 5) +#
+ theme_bw()
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat)) +#
+ geom_point() +#
+ geom_line() +#
+ ylim(-5, 5) +#
+ theme_bw()
+ggplot(fig_dat) +#
+  geom_point(aes(x = xx, y = yy), colour = "blue") +#
+  geom_line(aes(x = xx, y = mu), colour = "blue") +#
+  geom_line(aes(x = xx, y = preds), colour = "green") +#
+  ylim(-5, 5) +#
+  theme_bw()
+fig_dat <- data_frame(xx, yy, mu, preds = preds)#
+ggplot(fig_dat) +#
+  geom_point(aes(x = xx, y = yy), colour = "blue") +#
+  geom_line(aes(x = xx, y = mu), colour = "blue") +#
+  geom_line(aes(x = xx, y = preds), colour = "green") +#
+  ylim(-5, 5) +#
+  theme_bw()
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat)) +#
+ geom_point() +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ ylim(-5, 5) +#
+ theme_bw()
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4)#
+#
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat)) +#
+ geom_point() +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ ylim(-5, 5) +#
+ theme_bw()
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat)) +#
+ geom_point() +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ ylim(-5, 5) +#
+ theme_bw()
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat)) +#
+ geom_point(data = fig_dat %>% filter(cat != "mu")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ ylim(-5, 5) +#
+ theme_bw()
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("mu", "yy", "preds"))) %>% mutate(cat2 = factor(cat, lables = c("True relationship", "Observed data", "Network output")))#
+#
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat != "mu")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ ylim(-5, 5) +#
+ theme_bw()
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("mu", "yy", "preds"))) %>% mutate(cat2 = factor(cat, lables = c("True relationship", "Observed data", "Network output")))
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("mu", "yy", "preds"))) %>% mutate(cat2 = factor(cat, labels = c("True relationship", "Observed data", "Network output")))#
+#
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat != "mu")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ ylim(-5, 5) +#
+ theme_bw()
+fig_dat
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("preds", "yy", "mu"))) %>% mutate(cat2 = factor(cat, labels = c("True relationship", "Observed data", "Network output")))
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat != "mu")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ ylim(-5, 5) +#
+ theme_bw()
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("preds", "yy", "mu"))) %>% mutate(cat2 = factor(cat, labels = c("Network output", "Observed data", "True relationship")))#
+#
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat != "mu")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ ylim(-5, 5) +#
+ theme_bw()
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("mu", "yy", "preds"))) %>% mutate(cat2 = factor(cat, labels = c("True relationship", "Observed data", "Network output")))
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("mu", "yy", "preds"))) %>% mutate(cat2 = factor(cat, labels = c("True relationship", "Observed data", "Network output")))#
+#
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat != "mu")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ ylim(-5, 5) +#
+ theme_bw()
+fig_dat
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ ylim(-5, 5) +#
+ theme_bw()
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("mu", "yy", "preds"))) %>% mutate(cat2 = factor(cat, labels = c("True relationship", "Observed data", "Network output")))
+summary(fig_dat)
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ ylim(-5, 5) +#
+ xlab("X") + ylab("Y") +#
+ main("moge")#
+ theme_bw()
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ ylim(-5, 5) +#
+ xlab("X") + ylab("Y") +#
+ main("moge") +#
+ theme_bw()
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ ylim(-5, 5) +#
+ xlab("X") + ylab("Y") +#
+ title("moge") +#
+ theme_bw()
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ ylim(-5, 5) +#
+ labs(title = "moge", x = "x", y = "y") +#
+ theme_bw()
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = F) +#
+ ylim(-5, 5) +#
+ labs(title = "moge", x = "x", y = "y") +#
+ theme_bw()
+?guides
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = "none") +#
+ ylim(-5, 5) +#
+ labs(title = "moge", x = "x", y = "y") +#
+ theme_bw()
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL)) +#
+ ylim(-5, 5) +#
+ labs(title = "moge", x = "x", y = "y") +#
+ theme_bw()
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("mu", "yy", "preds"))) %>% mutate(cat2 = factor(cat, labels = c("True relationship", "Observed data", "Network output")))#
+#
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL)) +#
+ ylim(-5, 5) +#
+ labs(title = "moge", x = "x", y = "y") +#
+ theme(legend.position = "bottom") +#
+ theme_bw()
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL)) +#
+ ylim(-5, 5) +#
+ labs(title = "moge", x = "x", y = "y") +#
+ theme(legend.position = "bottom") +#
+ theme_bw()
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL)) +#
+ ylim(-5, 5) +#
+ labs(title = "moge", x = "x", y = "y") +#
+ theme(legend.position = "bottom")
+? theme
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL)) +#
+ ylim(-5, 5) +#
+ labs(title = "moge", x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("yy", "mu", "preds"))) %>% mutate(cat2 = factor(cat, labels = c("True relationship", "Observed data", "Network output")))#
+#
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL)) +#
+ ylim(-5, 5) +#
+ labs(title = "moge", x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")
+pdf(paste("~/Dropbox/Download/sin/", i, "_moge.pdf", sep = ""))#
+  #  plot(yy~ xx, ylim = c(-5, 5), col = "blue")#
+  #  points(mu ~ xx, type = "l", col = "blue", lwd = 2)#
+   ##
+  #  plot(yy~ xx, type = "l", ylim = c(-3, 3), col = "blue")#
+  #  points(preds[1,] ~ xx, type = "l", col = "red")#
+  fig_dat <- data_frame(xx, yy, mu, preds = preds[1,]) %>%#
+   tidyr::gather(cat, val, 2:4) %>%#
+   mutate(cat = factor(cat, levels = c("mu", "yy", "preds"))) %>% mutate(cat2 = factor(cat, labels = c("True relationship", "Observed data", "Network output")))#
+#
+  ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+   geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+   geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+   guides(colour = guide_legend(title = NULL)) +#
+   ylim(-5, 5) +#
+   labs(title = paste("n_round =", i), x = "x", y = "y") +#
+   theme_bw() +#
+   theme(legend.position = "bottom")#
+#
+   dev.off()
+i
+preds <- yy - 1#
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("mu", "yy", "preds"))) %>% mutate(cat2 = factor(cat, labels = c("True relationship", "Target", "Network output")))#
+#
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", i), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("mu", "yy", "preds"))) %>% mutate(cat2 = factor(cat, labels = c("True relationship", "Target", "Network output")))#
+#
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", i), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+n_sample <- 100#
+xx <- seq(-5, 5, length = n_sample)#
+mu <- 2 + sin(xx)#
+yy <- rnorm(n_sample, mu, 0.5)#
+# yy <- mu#
+preds <- yy - 1#
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("mu", "yy", "preds"))) %>% mutate(cat2 = factor(cat, labels = c("True relationship", "Target", "Network output")))#
+#
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", i), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", i), x = "x", y = "y") +#
+ theme_bw() +#
+ th
+fig_dat
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", i), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("mu", "yy", "preds"))) %>% mutate(cat2 = factor(cat, labels = c("True relationship", "Target", "Network output")))#
+#
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL),#
+   override.aes = list(colour = c("red", "blue", "blue")) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL),#
+   override.aes = list(colour = c("red", "blue", "blue"))) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL),#
+   override.aes = list(colour = c("red", "blue", "blue"),#
+   order = 1)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL),#
+   override.aes = list(colour = c("red", "blue", "blue"),#
+   order = 2)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL,#
+   override.aes = list(colour = c("red", "blue", "blue")),#
+   order = 1)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+n <- 3#
+hues <- seq(15, 375, length=n+1)#
+cols_hex <- sort(hcl(h=hues, l=65, c=100)[1:n])
+n <- 3#
+hues <- seq(15, 375, length=n+1)#
+cols_hex <- sort(hcl(h=hues, l=65, c=100)[1:n])#
+#
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL,#
+   override.aes = list(colour = c(cols_hex[1], cols_hex[2], cols_hex[2])),#
+   order = 1)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+n <- 2#
+hues <- seq(15, 375, length=n+1)#
+cols_hex <- sort(hcl(h=hues, l=65, c=100)[1:n])#
+#
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val, colour = cat2)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy")) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy")) +#
+ guides(colour = guide_legend(title = NULL,#
+   override.aes = list(colour = c(cols_hex[1], cols_hex[2], cols_hex[2])),#
+   order = 1)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("mu", "yy", "preds"))) %>% mutate(cat2 = factor(cat, labels = c("True relationship", "Target", "Network output")))
+fig_dat
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("mu", "yy", "preds"))) %>%#
+ mutate(cat = factor(cat, labels = c("True relationship", "Target", "Network output"))) %>%#
+ mutate(cat2 = ifelse(cat == "Network output", "Network output", "Target") %>% as.factor)
+fig_dat
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("mu", "yy", "preds"))) %>%#
+ mutate(cat = factor(cat, labels = c("True relationship", "Target", "Network output"))) %>%#
+ mutate(cat2 = ifelse(cat == "Network output", "Network output", "Target") %>% as.factor)#
+n <- 2#
+hues <- seq(15, 375, length=n+1)#
+cols_hex <- sort(hcl(h=hues, l=65, c=100)[1:n])#
+#
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy"), aes(colour = cat)) +#
+ geom_line(data = fig_dat %>% filter(cat != "yy"), aes(colour = cat2)) +#
+ # guides(colour = guide_legend(title = NULL,#
+ #   override.aes = list(colour = c(cols_hex[1], cols_hex[2], cols_hex[2])),#
+ #   order = 1)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+fig_dat
+ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val)) +#
+ geom_point(data = fig_dat %>% filter(cat == "yy"), aes(colour = cat))
+fig_dat %>% filter(cat == "yy")
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val)) +#
+ geom_point(data = fig_dat %>% filter(cat == "Target"), aes(colour = cat)) +#
+ geom_line(data = fig_dat %>% filter(cat != "Target"), aes(colour = cat2)) +#
+ # guides(colour = guide_legend(title = NULL,#
+ #   override.aes = list(colour = c(cols_hex[1], cols_hex[2], cols_hex[2])),#
+ #   order = 1)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val)) +#
+ geom_point(data = fig_dat %>% filter(cat == "Target"), aes(colour = cat)) +#
+ geom_line(data = fig_dat %>% filter(cat != "Target"), aes(colour = cat2)) +#
+ # guides(colour = guide_legend(title = NULL,#
+ #   override.aes = list(colour = c(cols_hex[1], cols_hex[2], cols_hex[2])),#
+ #   order = 1)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val)) +#
+ geom_point(data = fig_dat %>% filter(cat == "Target"), aes(colour = cat)) +#
+ geom_line(data = fig_dat %>% filter(cat != "Target"), aes(colour = cat2)) +#
+ guides(colour = guide_legend(title = NULL,#
+ order = 1)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val)) +#
+ geom_point(data = fig_dat %>% filter(cat == "Target"), aes(shape = cat)) +#
+ geom_line(data = fig_dat %>% filter(cat != "Target"), aes(colour = cat2)) +#
+ guides(colour = guide_legend(title = NULL,#
+ order = 1)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val)) +#
+ geom_point(data = fig_dat %>% filter(cat == "Target"), aes(shape = cat, colour = cat2)) +#
+ geom_line(data = fig_dat %>% filter(cat != "Target"), aes(colour = cat2)) +#
+ guides(colour = guide_legend(title = NULL,#
+ order = 1)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("mu", "yy", "preds"))) %>%#
+ mutate(cat = factor(cat, labels = c("True relationship", "Target", "Network output"))) %>%#
+ mutate(cat2 = ifelse(cat == "Network output", "Network output", "True relationship") %>% as.factor)#
+#
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val)) +#
+ geom_point(data = fig_dat %>% filter(cat == "Target"), aes(shape = cat, colour = cat2)) +#
+ geom_line(data = fig_dat %>% filter(cat != "Target"), aes(colour = cat2)) +#
+ guides(colour = guide_legend(title = NULL,#
+ order = 1)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val)) +#
+ geom_point(data = fig_dat %>% filter(cat == "Target"), aes(shape = cat)) +#
+ geom_line(data = fig_dat %>% filter(cat != "Target"), aes(colour = cat2)) +#
+ guides(colour = guide_legend(title = NULL,#
+ order = 1)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val)) +#
+ geom_point(data = fig_dat %>% filter(cat == "Target"), aes(colour = cat)) +#
+ geom_line(data = fig_dat %>% filter(cat != "Target"), aes(colour = cat2)) +#
+ guides(colour = guide_legend(title = NULL,#
+ order = 1)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val)) +#
+ geom_point(data = fig_dat %>% filter(cat == "Target"), aes(colour = cat2)) +#
+ geom_line(data = fig_dat %>% filter(cat != "Target"), aes(colour = cat2)) +#
+ guides(colour = guide_legend(title = NULL,#
+ order = 1)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+fig_dat <- data_frame(xx, yy, mu, preds = preds) %>%#
+ tidyr::gather(cat, val, 2:4) %>%#
+ mutate(cat = factor(cat, levels = c("mu", "yy", "preds"))) %>%#
+ mutate(cat = factor(cat, labels = c("True relationship", "Target", "Network output"))) %>%#
+ mutate(cat2 = ifelse(cat == "Network output", "Network output", "Target and True relationship") %>% as.factor)#
+#
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val)) +#
+ geom_point(data = fig_dat %>% filter(cat == "Target"), aes(colour = cat2)) +#
+ geom_line(data = fig_dat %>% filter(cat != "Target"), aes(colour = cat2)) +#
+ guides(colour = guide_legend(title = NULL,#
+ order = 1)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ theme(legend.position = "bottom")#
+#
+print(p)
+p <- ggplot(fig_dat %>% arrange(val), aes(x = xx, y = val)) +#
+ geom_point(data = fig_dat %>% filter(cat == "Target"), aes(colour = cat2)) +#
+ geom_line(data = fig_dat %>% filter(cat != "Target"), aes(colour = cat2)) +#
+ guides(colour = guide_legend(title = NULL,#
+ order = 1)) +#
+ ylim(-5, 5) +#
+ labs(title = paste("n_round =", 10), x = "x", y = "y") +#
+ theme_bw() +#
+ the
+library(dplyr)#
+library(vegan)#
+library(adespatial)#
+library(betapart)
+install.packages("adespatial")
+install.packages("betapart")
+library(adespatial)#
+library(betapart)
+beta.multi
+beta.pair
+?beta.multi
+data(ceram.s)#
+ceram.beta<-beta.multi(ceram.s, index.family="sor")
+data(ceram.s)#
+ceram.beta<-beta.multi(ceram.s)
+data(ceram.s)#
+moge<-beta.multi(ceram.s)
+?beta.multi
+moge
+data(ceram.s)#
+moge2<-beta.pair(ceram.s)
+moge2
+beta.multi
+data(ceram.s)#
+moge2<-beta.pair(ceram.s)
+betapart.core(ceram.s)
+beta.multi
+betapart.core
+x <- betapart.core(ceram.s)
+x
+maxbibj <- sum(x$max.not.shared[lower.tri(x$max.not.shared)])#
+  minbibj <- sum(x$min.not.shared[lower.tri(x$min.not.shared)])
+maxbibj
+minbibj
+x$max.not.shared
+x$max.not.shared %>% sum
+22468/2
+minbibj
+gamma.temp<-apply(ceram.s,1,sum)#
+  gamma.temp[gamma.temp>0]<-1#
+  gamma<- sum(gamma.temp)
+ceram.s
+gamma.temp
+gamma.temp<-apply(ceram.s,1,sum)
+gamma.temp
+library(dplyr)#
+library(vegan)#
+library(adespatial)#
+library(betapart)
+? betapart
+?beta.multi
+beta.multi
+samp <- ceram.s#
+#
+  x <- betapart.core(samp)#
+  maxbibj <- sum(x$max.not.shared[lower.tri(x$max.not.shared)])#
+  minbibj <- sum(x$min.not.shared[lower.tri(x$min.not.shared)])#
+  beta.sor <- (minbibj + maxbibj)/(minbibj + maxbibj + #
+          (2 * x$a))#
+#
+  gamma.temp<-apply(samp,1,sum)#
+  gamma.temp[gamma.temp>0]<-1#
+  gamma<- sum(gamma.temp)
+?beta.multi
+data(ceram.s)#
+#
+  samp <- ceram.s#
+#
+  x <- betapart.core(samp)#
+  maxbibj <- sum(x$max.not.shared[lower.tri(x$max.not.shared)])#
+  minbibj <- sum(x$min.not.shared[lower.tri(x$min.not.shared)])#
+  beta.sor <- (minbibj + maxbibj)/(minbibj + maxbibj + #
+          (2 * x$a))#
+#
+  gamma.temp<-apply(samp,1,sum)#
+  gamma.temp[gamma.temp>0]<-1#
+  gamma<- sum(gamma.temp)
+gamma
+str(samp)
+sp.number(samp)
+sp.number<-function (x, MARGIN = 2) #
+{	#
+  x2<-x/x	##converting the numbers into only 1 to count the number of species#
+  apply(x2 , MARGIN, sum, na.rm=T)#
+}
+sp.number(samp)
+samp
+gamma.temp<-apply(samp,1,sum)#
+  gamma.temp[gamma.temp>0]<-1#
+  gamma<- sum(gamma.temp)
+gamma
+samp
+t(samp)
+library(dplyr)#
+#
+atp.data <- read.csv ("https://raw.githubusercontent.com/JeffSackmann/tennis_atp/master/atp_matches_2015.csv")#
+#
+temp <- 1968:2015#
+atp.data <- NULL#
+#
+before <- proc.time()#
+for (i in 1:length(temp)) {#
+  temp.data <- read.csv(paste("https://raw.githubusercontent.com/JeffSackmann/tennis_atp/master/atp_matches_", temp[i], ".csv", sep = ""))#
+  atp.data <- bind_rows(atp.data, temp.data)#
+}#
+#
+after <- proc.time()#
+#
+after - before#
+#
+moge <- read.csv("https://raw.githubusercontent.com/JeffSackmann/tennis_pointbypoint/master/pbp_matches_atp_main_current.csv")#
+#
+moge$pbp <- as.character(moge$pbp)#
+#
+kei <- moge %>% #
+  filter(server1 == "Kei Nishikori" | server2 == "Kei Nishikori")#
+#
+strsplit(kei$pbp, "\\.")
+kei
+atp.data %>%#
+  filter(tourney_date > 10060101) %>%#
+  filter(tourney_level == "M") %>%#
+  filter(round == "F") %>%#
+  count(winner_name) %>%#
+  arrange(desc(n))
+library(ggplot2)
+library(tidyverse)#
+n <- 1000#
+gx <- runif(n, min=0, max=50)#
+gy <- runif(n, min=0, max=50)#
+samp_data<-data_frame(tag=1:n, gx, gy)#
+#
+# normal#
+countR <- function(gx, gy, r){#
+ n_length <- length(gx)#
+ temp <- NULL#
+ res <- NULL#
+ for (i in 1:n_length){#
+      for (j in 1:n_length){#
+        if ((gx[i]-gx[j])^2 + (gy[i]-gy[j])^2 <= r^2) temp[j] <- 1#
+      }#
+      res[i] <- sum(temp, na.rm = T)#
+      temp <- NULL#
+    }#
+  res - 1#
+}#
+#
+system.time(res <- countR(samp_data$gx, samp_data$gy, r = 5))#
+# optimzatoin#
+r <- 5#
+countR2 <- function(n){#
+    temp <- (gx[n] - gx)^2 + (gy[n] - gy)^2#
+    temp[temp <= r^2] %>% length - 1#
+}#
+#
+system.time(res2 <- mapply(countR2, n = 1:n))#
+#
+#C++#
+library(Rcpp)#
+#
+src <- '#
+  #include <stdio.h>#
+  #include <Rcpp.h>#
+  using namespace Rcpp;#
+  //[[Rcpp::export]]#
+  DataFrame countR3(NumericVector gx, NumericVector gy, int r){#
+    IntegerVector res;#
+    int trees = 0;#
+#
+    for (int i = 0; i < gx.length(); i++) {#
+      double gx_i = gx[i];#
+      double gy_i = gy[i];#
+      NumericVector dis2 = (gx_i - gx) * (gx_i - gx)#
+  + (gy_i - gy) * (gy_i - gy);#
+      for (int j = 0; j < gx.length(); j++){#
+        if (dis2[j] <= r*r) trees++;#
+      }#
+#
+      }#
+    }#
+'#
+#
+sourceCpp(code = src)#
+res3 <- countR3(samp_data$gx, samp_data$gy, 5)
+library(tidyverse)#
+n <- 1000#
+gx <- runif(n, min=0, max=50)#
+gy <- runif(n, min=0, max=50)#
+samp_data<-data_frame(tag=1:n, gx, gy)#
+#
+# normal#
+countR <- function(gx, gy, r){#
+ n_length <- length(gx)#
+ temp <- NULL#
+ res <- NULL#
+ for (i in 1:n_length){#
+      for (j in 1:n_length){#
+        if ((gx[i]-gx[j])^2 + (gy[i]-gy[j])^2 <= r^2) temp[j] <- 1#
+      }#
+      res[i] <- sum(temp, na.rm = T)#
+      temp <- NULL#
+    }#
+  res - 1#
+}#
+#
+# system.time(res <- countR(samp_data$gx, samp_data$gy, r = 5))#
+# optimzatoin#
+r <- 5#
+countR2 <- function(n){#
+    temp <- (gx[n] - gx)^2 + (gy[n] - gy)^2#
+    temp[temp <= r^2] %>% length - 1#
+}#
+#
+system.time(res2 <- mapply(countR2, n = 1:n))#
+#
+#C++#
+library(Rcpp)#
+src <- '#
+  #include <stdio.h>#
+  #include <Rcpp.h>#
+  using namespace Rcpp;#
+  //[[Rcpp::export]]#
+  NumericVector countR3(NumericVector gx, NumericVector gy, int r){#
+    NumericVector res;#
+    int trees;#
+    for (int i = 0; i < gx.length(); i++) {#
+      double gx_i = gx[i];#
+      double gy_i = gy[i];#
+      NumericVector dis2 = (gx_i - gx) * (gx_i - gx)#
+  + (gy_i - gy) * (gy_i - gy);#
+      for (int j = 0; j < gx.length(); j++)#
+        if (dis2[j] <= r*r) {#
+          trees++;#
+        }#
+      res.push_back(trees - 1);#
+      trees = 0;#
+      }#
+      return res;#
+    }#
+'#
+sourceCpp(code = src)#
+system.time(res3 <- countR3(samp_data$gx, samp_data$gy, 5))#
+#
+src <- '#
+  #include <stdio.h>#
+  #include <Rcpp.h>#
+  using namespace Rcpp;#
+  //[[Rcpp::export]]#
+  NumericVector countR3(NumericVector gx, NumericVector gy, int r){#
+    NumericVector res;#
+    int trees;#
+    double dis2 = 10;#
+#
+    for (int i = 0; i < gx.length(); i++) {#
+      for (int j = 0; j < gx.length(); j++){#
+        double dis2 = (gx[i]-gx[j]) * (gx[i]-gx[j]) + (gy[i]-gy[j]) * (gy[i]-gy[j]);#
+          if (dis2 <= r*r) {#
+            trees++;#
+          }#
+        }#
+        res.push_back(trees - 1);#
+        trees = 0;#
+      }#
+      return res;#
+    }#
+'#
+#
+sourceCpp(code = src)#
+system.time(res3 <- countR3(samp_data$gx, samp_data$gy, 5))#
+#
+# trait <- read.csv("~/Dropbox/Lambir/Lambir2013/LambirTrait_20131227.csv")
+res3
+library(tidyverse)#
+n <- 10000#
+gx <- runif(n, min=0, max=50)#
+gy <- runif(n, min=0, max=50)#
+samp_data<-data_frame(tag=1:n, gx, gy)#
+#
+# normal#
+countR <- function(gx, gy, r){#
+ n_length <- length(gx)#
+ temp <- NULL#
+ res <- NULL#
+ for (i in 1:n_length){#
+      for (j in 1:n_length){#
+        if ((gx[i]-gx[j])^2 + (gy[i]-gy[j])^2 <= r^2) temp[j] <- 1#
+      }#
+      res[i] <- sum(temp, na.rm = T)#
+      temp <- NULL#
+    }#
+  res - 1#
+}#
+#
+# system.time(res <- countR(samp_data$gx, samp_data$gy, r = 5))#
+# optimzatoin#
+r <- 5#
+countR2 <- function(n){#
+    temp <- (gx[n] - gx)^2 + (gy[n] - gy)^2#
+    temp[temp <= r^2] %>% length - 1#
+}#
+#
+system.time(res2 <- mapply(countR2, n = 1:n))#
+#
+#C++#
+library(Rcpp)#
+src <- '#
+  #include <stdio.h>#
+  #include <Rcpp.h>#
+  using namespace Rcpp;#
+  //[[Rcpp::export]]#
+  NumericVector countR3(NumericVector gx, NumericVector gy, int r){#
+    NumericVector res;#
+    int trees;#
+    for (int i = 0; i < gx.length(); i++) {#
+      double gx_i = gx[i];#
+      double gy_i = gy[i];#
+      NumericVector dis2 = (gx_i - gx) * (gx_i - gx)#
+  + (gy_i - gy) * (gy_i - gy);#
+      for (int j = 0; j < gx.length(); j++)#
+        if (dis2[j] <= r*r) {#
+          trees++;#
+        }#
+      res.push_back(trees - 1);#
+      trees = 0;#
+      }#
+      return res;#
+    }#
+'#
+sourceCpp(code = src)#
+system.time(res3 <- countR3(samp_data$gx, samp_data$gy, 5))#
+#
+src <- '#
+  #include <stdio.h>#
+  #include <Rcpp.h>#
+  using namespace Rcpp;#
+  //[[Rcpp::export]]#
+  NumericVector countR3(NumericVector gx, NumericVector gy, int r){#
+    NumericVector res;#
+    int trees;#
+    double dis2 = 10;#
+#
+    for (int i = 0; i < gx.length(); i++) {#
+      for (int j = 0; j < gx.length(); j++){#
+        double dis2 = (gx[i]-gx[j]) * (gx[i]-gx[j]) + (gy[i]-gy[j]) * (gy[i]-gy[j]);#
+          if (dis2 <= r*r) {#
+            trees++;#
+          }#
+        }#
+        res.push_back(trees - 1);#
+        trees = 0;#
+      }#
+      return res;#
+    }#
+'#
+#
+sourceCpp(code = src)#
+system.time(res3 <- countR3(samp_data$gx, samp_data$gy, 5))#
+#
+# trait <- read.csv("~/Dropbox/Lambir/Lambir2013/LambirTrait_20131227.csv")
+system.time(res3 <- countR3(samp_data$gx, samp_data$gy, 5))
+system.time(res4 <- countR3(samp_data$gx, samp_data$gy, 5))
+res3
+res4
+src <- '#
+  #include <stdio.h>#
+  #include <Rcpp.h>#
+  using namespace Rcpp;#
+  //[[Rcpp::export]]#
+  NumericVector countR3(NumericVector gx, NumericVector gy, int r){#
+    NumericVector res;#
+    int trees;#
+    for (int i = 0; i < gx.length(); i++) {#
+      double gx_i = gx[i];#
+      double gy_i = gy[i];#
+      NumericVector dis2 = (gx_i - gx) * (gx_i - gx)#
+  + (gy_i - gy) * (gy_i - gy);#
+      for (int j = 0; j < gx.length(); j++)#
+        if (dis2[j] <= r*r) {#
+          trees++;#
+        }#
+      res.push_back(trees - 1);#
+      trees = 0;#
+      }#
+      return res;#
+    }#
+'#
+sourceCpp(code = src)#
+system.time(res3 <- countR3(samp_data$gx, samp_data$gy, 5))#
+#
+src <- '#
+  #include <stdio.h>#
+  #include <Rcpp.h>#
+  using namespace Rcpp;#
+  //[[Rcpp::export]]#
+  NumericVector countR4(NumericVector gx, NumericVector gy, int r){#
+    NumericVector res;#
+    int trees;#
+    double dis2 = 10;#
+#
+    for (int i = 0; i < gx.length(); i++) {#
+      for (int j = 0; j < gx.length(); j++){#
+        double dis2 = (gx[i]-gx[j]) * (gx[i]-gx[j]) + (gy[i]-gy[j]) * (gy[i]-gy[j]);#
+          if (dis2 <= r*r) {#
+            trees++;#
+          }#
+        }#
+        res.push_back(trees - 1);#
+        trees = 0;#
+      }#
+      return res;#
+    }#
+'#
+#
+sourceCpp(code = src)#
+system.time(res4 <- countR4(samp_data$gx, samp_data$gy, 5))#
+#
+# trait <- read.csv("~/Dropbox/Lambir/Lambir2013/LambirTrait_20131227.csv")
+system.time(res3 <- countR3(samp_data$gx, samp_data$gy, 5))
+system.time(res4 <- countR4(samp_data$gx, samp_data$gy, 5))
+res4
+src <- '#
+  #include <stdio.h>#
+  #include <Rcpp.h>#
+  using namespace Rcpp;#
+  //[[Rcpp::export]]#
+  NumericVector countR3(NumericVector gx, NumericVector gy, int r){#
+    NumericVector res;#
+    int trees;#
+    for (int i = 0; i < gx.length(); i++) {#
+      for (int j = 0; j < gx.length(); j++){#
+        double dis2 = (gx[i]-gx[j]) * (gx[i]-gx[j]) + (gy[i]-gy[j]) * (gy[i]-gy[j]);#
+          if (dis2 <= r*r) {#
+            trees++;#
+          }#
+        }#
+        res.push_back(trees - 1);#
+        trees = 0;#
+      }#
+      return res;#
+    }#
+'#
+#
+sourceCpp(code = src)#
+system.time(res4 <- countR3(samp_data$gx, samp_data$gy, 5))#
+#
+# trait <- read.csv("
+res4
+n_run <- c(1000, 2000, 4000, 8000, 16000)#
+#
+for (i in 1:length(n_run)){#
+  n <- n_run[i]#
+  gx <- runif(n, min=0, max=50)#
+  gy <- runif(n, min=0, max=50)#
+  samp_data <- data_frame(tag=1:n, gx, gy)#
+  system.time(res4 <- countR3(samp_data$gx, samp_data$gy, 5)) %>% print#
+}
+n_run <- c(1000, 2000, 4000, 8000, 16000, 3200)#
+#
+for (i in 1:length(n_run)){#
+  n <- n_run[i]#
+  gx <- runif(n, min=0, max=50)#
+  gy <- runif(n, min=0, max=50)#
+  samp_data <- data_frame(tag=1:n, gx, gy)#
+  system.time(res4 <- countR3(samp_data$gx, samp_data$gy, 5)) %>% print#
+}
+src <- '#
+  #include <stdio.h>#
+  #include <Rcpp.h>#
+  using namespace Rcpp;#
+  //[[Rcpp::export]]#
+  NumericVector countR3(NumericVector gx, NumericVector gy, int r){#
+    NumericVector res;#
+    int trees;#
+    for (int i = 0; i < gx.length(); i++) {#
+      for (int j = 0; j < gx.length(); j++){#
+        double dis2 = (gx[i]-gx[j]) * (gx[i]-gx[j]) + (gy[i]-gy[j]) * (gy[i]-gy[j]);#
+          if (dis2 <= r*r) {#
+            trees++;#
+          }#
+        }#
+        res.push_back(trees - 1);#
+        trees = 0;#
+      }#
+      return res;#
+    }#
+'#
+#
+sourceCpp(code = src)#
+system.time(res4 <- countR3(samp_data$gx, samp_data$gy, 5))#
+#
+# trait <- read.csv("~/Dropbox/Lambir/Lambir2013/LambirTrait_20131227.csv")#
+#sim#
+#
+n_run <- c(1000, 2000, 4000, 8000, 16000, 3200)#
+#
+for (i in 1:length(n_run)){#
+  n <- n_run[i]#
+  gx <- runif(n, min=0, max=50)#
+  gy <- runif(n, min=0, max=50)#
+  samp_data <- data_frame(tag=1:n, gx, gy)#
+  system.time(res4 <- countR3(samp_data$gx, samp_data$gy, 5)) %>% print#
+}
+n_run
+n_run <- c(1000, 2000, 4000, 8000, 16000, 32000)#
+#
+for (i in 1:length(n_run)){#
+  n <- n_run[i]#
+  gx <- runif(n, min=0, max=50)#
+  gy <- runif(n, min=0, max=50)#
+  samp_data <- data_frame(tag=1:n, gx, gy)#
+  system.time(res4 <- countR3(samp_data$gx, samp_data$gy, 5)) %>% print#
+}
+for (i in 1:length(n_run)){#
+  n <- n_run[i]#
+  gx <- runif(n, min=0, max=50)#
+  gy <- runif(n, min=0, max=50)#
+  samp_data <- data_frame(tag=1:n, gx, gy)#
+  system.time(res2 <- mapply(countR2, n = 1:n)) %>% print#
+}
+data.frame(n = n_run, time = c(0.006,0.021,0.089,0.384,1.466,6.656))
+data.frame(n = n_run, time = c(0.006,0.021,0.089,0.384,1.466,6.656)) %>% plot(time ~ n)
+i <- 1
+n <- n_run[i]#
+  gx <- runif(n, min=0, max=50)#
+  gy <- runif(n, min=0, max=50)#
+  samp_data <- data_frame(tag=1:n, gx, gy)#
+  system.time(res4 <- countR3(samp_data$gx, samp_data$gy, 5)) %>% print
+moge <- system.time(res4 <- countR3(samp_data$gx, samp_data$gy, 5))
+moge
+str(moge)
+moge[1]
+moge[2]
+moge[3]
+moge[4]
+moge[5]
+using DataFrame#
+n = 1000#
+gx = randn(n)#
+gy = randn(n)#
+#
+tag = Array(Int64, n)#
+tag[1:n] = 1:n#
+samp_data = DataFrame(tag = tag, gx = gx, gy = gy)
+fit_summary[temp[temp %in% paste("gamma[",5:8,",3]",sep="")],]
+fit_summary %>% as_data_frame
+library(tidyverse)#
+LMAs <- 1:7#
+LMAp <- rep(1, 7)#
+LMA <- LMAs + LMAp#
+Aarea <- rep(1, 7)#
+Amass <- Aarea/LMA#
+#
+dat1 <- data_frame(LMAs, LMAp, LMA, Aarea, Amass) %>%#
+  tidyr::gather("val", "moge", Aarea, Amass)
+dat1
+dat1 <- data_frame(LMAs, LMAp, LMA, Aarea, Amass) %>%#
+  tidyr::gather("Amax", "val", Aarea, Amass)#
+ggplot(dat1, aes(x = LMA, y = val, col = Amax)) +#
+  geom_points()
+ggplot(dat1, aes(x = LMA, y = val, col = Amax)) +#
+  geom_points()
+geom_point
+ggplot(dat1, aes(x = LMA, y = val, col = Amax)) +#
+  geom_point()
+dat1
+4.8*22
+28*3
+1.5*22
+33*4
+# y: mass vs area (b: in PNAS)#
+# x: var(LMAp) / var(LMAs)#
+##
+# var(LMA) = var(LMAs) + var(LMAp) + 2Cov()#
+# LMA: approx. fixed:#
+##
+# Vp, Vs: low, med, high#
+# Cov: negative, zero, positive#
+##
+# basically 6 patterns + 3 (Vps, cov<0 , cov =0, cov >0)#
+##
+# Vtotal = Vp_hi + Vs_med , cov = 0...#
+library(MASS)#
+library(tidyverse)#
+library(cowplot)#
+library(latex2exp)#
+#library(composition)#
+rm(list = ls()) # This clears everything from memory.#
+# load("~/sim_var.RData")#
+load("~/Dropbox/MS/LES_MS/data/sim_var.RData")#
+#
+# use mean#
+# mean_func <- function(list_dat, x) {#
+#   sapply(list_dat, "[[", paste(x)) %>%#
+#     apply(., 1, mean)#
+# }#
+##
+# para_name <- names(GL_sim[[1]])#
+# GL_sim2 <- sapply(para_name, function(x)mean_func(GL_sim,x)) %>%#
+#   as_data_frame %>% mutate(ratio2 = Covs/Vtotal * 100)#
+# sun_sim2 <- sapply(para_name, function(x)mean_func(sun_sim,x)) %>%#
+#   as_data_frame %>% mutate(ratio2 = Covs/Vtotal * 100)#
+# shade_sim2 <- sapply(para_name, function(x)mean_func(shade_sim,x)) %>%#
+#   as_data_frame %>% mutate(ratio2 = Covs/Vtotal * 100)#
+#
+#raw#
+#
+my_breaks <- function(...){#
+  c(0.001, 0.01, 0.1, 1, 10, 100, 500)#
+}#
+#
+fmt_dcimals <- function(x) format(x, nsmall = 2, scientific = FALSE)#
+para3 <- para2 %>% filter(b < 1 & b > 0)#
+# p1 <- ggplot(para2, aes(x = ratio, y = b)) +#
+#   facet_grid(~rho, scale = "free_x") +#
+#   geom_point() +#
+#   scale_x_log10() +#
+#   xlab("Var(LMAs)/Var(LMAp)")#
+my_breaks <- function(...){#
+  c(0.001, 0.01, 0.1, 1, 10, 100, 500)#
+}#
+fmt_dcimals <- function(x) format(x, nsmall = 1, scientific = FALSE)#
+#
+# covs or covp < 0 is weird#
+plot_func <- function(data){#
+  data <- data %>% filter(Covs > 0 & Covp > 0)#
+  p1 <- ggplot(data, aes(x = ratio, y = b, col = rho)) +#
+    geom_point(alpha = 1, size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", guide = FALSE) +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("Mass-dependency (b)") +#
+    geom_point(data = obs, aes(x = ratio, y = b, col =0 ),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+    geom_text(data = obs, aes(x = ratio, y = b, label = site, col = 0), col = "black", vjust = 2)#
+#
+  p2 <- ggplot(data, aes(x = ratio, y = ratio2, col = rho)) +#
+    geom_point(size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", name = "Correlation \ncoeffcient") +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    ylim(0, 100) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("% of LMA variation due to LMAs") +#
+    theme(legend.justification=c(1,0), legend.position=c(0.95, 0)) +#
+    geom_point(data = obs, aes(x = ratio, y = ratio2, col = 0),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+    geom_text(data = obs, aes(x = ratio, y = ratio2, label = site, col = 0), col = "black", vjust = 1.2, hjust = 1.1)#
+#
+  plot_grid(p1, p2, labels = c("(a)", "(b)"), align = c("hv"))#
+}#
+#
+plot_func2 <- function(data){#
+  data <- data %>% filter(Covs > 0 & Covp > 0)#
+  p1 <- ggplot(data, aes(x = ratio, y = b, col = rho)) +#
+    geom_point(alpha = 1, size = 0.5) +#
+    facet_grid(mu1 ~ mu2, scale = "free") +#
+    # scale_colour_gradientn(colours = rainbow(7)) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", guide = FALSE) +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+   # geom_smooth() +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("Mass-dependency (b)") +#
+    geom_point(data = obs, aes(x = ratio, y = b, col =0),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+    geom_text(data = obs, aes(x = ratio, y = b, label = site, col = 0), col = "black", vjust = 2)#
+#
+    print(p1)#
+}
+# y: mass vs area (b: in PNAS)#
+# x: var(LMAp) / var(LMAs)#
+##
+# var(LMA) = var(LMAs) + var(LMAp) + 2Cov()#
+# LMA: approx. fixed:#
+##
+# Vp, Vs: low, med, high#
+# Cov: negative, zero, positive#
+##
+# basically 6 patterns + 3 (Vps, cov<0 , cov =0, cov >0)#
+##
+# Vtotal = Vp_hi + Vs_med , cov = 0...#
+library(MASS)#
+library(tidyverse)#
+library(cowplot)#
+library(latex2exp)#
+#library(composition)#
+rm(list = ls()) # This clears everything from memory.#
+# load("~/sim_var.RData")#
+load("~/Dropbox/MS/LES_MS/data/sim_var.RData")#
+#
+# use mean#
+# mean_func <- function(list_dat, x) {#
+#   sapply(list_dat, "[[", paste(x)) %>%#
+#     apply(., 1, mean)#
+# }#
+##
+# para_name <- names(GL_sim[[1]])#
+# GL_sim2 <- sapply(para_name, function(x)mean_func(GL_sim,x)) %>%#
+#   as_data_frame %>% mutate(ratio2 = Covs/Vtotal * 100)#
+# sun_sim2 <- sapply(para_name, function(x)mean_func(sun_sim,x)) %>%#
+#   as_data_frame %>% mutate(ratio2 = Covs/Vtotal * 100)#
+# shade_sim2 <- sapply(para_name, function(x)mean_func(shade_sim,x)) %>%#
+#   as_data_frame %>% mutate(ratio2 = Covs/Vtotal * 100)#
+#
+#raw#
+#
+my_breaks <- function(...){#
+  c(0.001, 0.01, 0.1, 1, 10, 100, 500)#
+}#
+#
+fmt_dcimals <- function(x) format(x, nsmall = 2, scientific = FALSE)#
+para3 <- para2 %>% filter(b < 1 & b > 0)#
+# p1 <- ggplot(para2, aes(x = ratio, y = b)) +#
+#   facet_grid(~rho, scale = "free_x") +#
+#   geom_point() +#
+#   scale_x_log10() +#
+#   xlab("Var(LMAs)/Var(LMAp)")#
+my_breaks <- function(...){#
+  c(0.001, 0.01, 0.1, 1, 10, 100, 500)#
+}#
+fmt_dcimals <- function(x) format(x, nsmall = 1, scientific = FALSE)#
+#
+# covs or covp < 0 is weird#
+plot_func <- function(data){#
+  data <- data %>% filter(Covs > 0 & Covp > 0)#
+  p1 <- ggplot(data, aes(x = ratio, y = b, col = rho)) +#
+    geom_point(alpha = 1, size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", guide = FALSE) +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("Mass-dependency (b)") +#
+    geom_point(data = obs, aes(x = ratio, y = b, col =0 ),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+    geom_text(data = obs, aes(x = ratio, y = b, label = site, col = 0), col = "black", vjust = 2)#
+#
+  p2 <- ggplot(data, aes(x = ratio, y = ratio2, col = rho)) +#
+    geom_point(size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", name = "Correlation \ncoeffcient") +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    ylim(0, 100) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("% of LMA variation due to LMAs") +#
+    theme(legend.justification=c(1,0), legend.position=c(0.95, 0)) +#
+    geom_point(data = obs, aes(x = ratio, y = ratio2, col = 0),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+    geom_text(data = obs, aes(x = ratio, y = ratio2, label = site, col = 0), col = "black", vjust = 1.2, hjust = 1.1)#
+#
+  plot_grid(p1, p2, labels = c("(a)", "(b)"), align = c("hv"))#
+}#
+#
+plot_func2 <- function(data){#
+  data <- data %>% filter(Covs > 0 & Covp > 0)#
+  p1 <- ggplot(data, aes(x = ratio, y = b, col = rho)) +#
+    geom_point(alpha = 1, size = 0.5) +#
+    facet_grid(mu1 ~ mu2, scale = "free") +#
+    # scale_colour_gradientn(colours = rainbow(7)) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", guide = FALSE) +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+   # geom_smooth() +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("Mass-dependency (b)") +#
+    geom_point(data = obs, aes(x = ratio, y = b, col =0),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+    geom_text(data = obs, aes(x = ratio, y = b, label = site, col = 0), col = "black", vjust = 2)#
+#
+    print(p1)#
+}#
+#
+plot_func3 <- function(data){#
+  # data <- data %>% filter(Covs > 0 & Covp > 0)#
+  p1 <- ggplot(data, aes(x = ratio, y = b, col = rho)) +#
+    geom_point(alpha = 1, size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", guide = FALSE) +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("Mass-dependency (b)") +#
+    geom_point(data = obs, aes(x = ratio, y = b, col =0 ),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+    geom_text(data = obs, aes(x = ratio, y = b, label = site, col = 0), col = "black", vjust = 2)#
+#
+  p2 <- ggplot(data, aes(x = ratio, y = ratio2, col = rho)) +#
+    geom_point(size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", name = "Correlation \ncoeffcient") +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    ylim(0, 100) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("% of LMA variation due to LMAs") +#
+    theme(legend.justification=c(1,0), legend.position=c(0.95, 0)) +#
+    geom_point(data = obs, aes(x = ratio, y = ratio2, col = 0),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+    geom_text(data = obs, aes(x = ratio, y = ratio2, label = site, col = 0), col = "black", vjust = 1.2, hjust = 1.1)#
+#
+  plot_grid(p1, p2, labels = c("(a)", "(b)"), align = c("hv"))#
+}#
+#
+plot_func3(sim_dat2)
+# y: mass vs area (b: in PNAS)#
+# x: var(LMAp) / var(LMAs)#
+##
+# var(LMA) = var(LMAs) + var(LMAp) + 2Cov()#
+# LMA: approx. fixed:#
+##
+# Vp, Vs: low, med, high#
+# Cov: negative, zero, positive#
+##
+# basically 6 patterns + 3 (Vps, cov<0 , cov =0, cov >0)#
+##
+# Vtotal = Vp_hi + Vs_med , cov = 0...#
+library(MASS)#
+library(tidyverse)#
+library(cowplot)#
+library(latex2exp)#
+#library(composition)#
+rm(list = ls()) # This clears everything from memory.#
+# load("~/sim_var.RData")#
+load("~/Dropbox/MS/LES_MS/data/sim_var.RData")#
+#
+# use mean#
+# mean_func <- function(list_dat, x) {#
+#   sapply(list_dat, "[[", paste(x)) %>%#
+#     apply(., 1, mean)#
+# }#
+##
+# para_name <- names(GL_sim[[1]])#
+# GL_sim2 <- sapply(para_name, function(x)mean_func(GL_sim,x)) %>%#
+#   as_data_frame %>% mutate(ratio2 = Covs/Vtotal * 100)#
+# sun_sim2 <- sapply(para_name, function(x)mean_func(sun_sim,x)) %>%#
+#   as_data_frame %>% mutate(ratio2 = Covs/Vtotal * 100)#
+# shade_sim2 <- sapply(para_name, function(x)mean_func(shade_sim,x)) %>%#
+#   as_data_frame %>% mutate(ratio2 = Covs/Vtotal * 100)#
+#
+#raw#
+#
+my_breaks <- function(...){#
+  c(0.001, 0.01, 0.1, 1, 10, 100, 500)#
+}#
+#
+fmt_dcimals <- function(x) format(x, nsmall = 2, scientific = FALSE)#
+# para3 <- para2 %>% filter(b < 1 & b > 0)#
+# p1 <- ggplot(para2, aes(x = ratio, y = b)) +#
+#   facet_grid(~rho, scale = "free_x") +#
+#   geom_point() +#
+#   scale_x_log10() +#
+#   xlab("Var(LMAs)/Var(LMAp)")#
+my_breaks <- function(...){#
+  c(0.001, 0.01, 0.1, 1, 10, 100, 500)#
+}#
+fmt_dcimals <- function(x) format(x, nsmall = 1, scientific = FALSE)#
+#
+# covs or covp < 0 is weird#
+plot_func <- function(data){#
+  data <- data %>% filter(Covs > 0 & Covp > 0)#
+  p1 <- ggplot(data, aes(x = ratio, y = b, col = rho)) +#
+    geom_point(alpha = 1, size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", guide = FALSE) +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("Mass-dependency (b)") +#
+    geom_point(data = obs, aes(x = ratio, y = b, col =0 ),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+    geom_text(data = obs, aes(x = ratio, y = b, label = site, col = 0), col = "black", vjust = 2)#
+#
+  p2 <- ggplot(data, aes(x = ratio, y = ratio2, col = rho)) +#
+    geom_point(size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", name = "Correlation \ncoeffcient") +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    ylim(0, 100) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("% of LMA variation due to LMAs") +#
+    theme(legend.justification=c(1,0), legend.position=c(0.95, 0)) +#
+    geom_point(data = obs, aes(x = ratio, y = ratio2, col = 0),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+    geom_text(data = obs, aes(x = ratio, y = ratio2, label = site, col = 0), col = "black", vjust = 1.2, hjust = 1.1)#
+#
+  plot_grid(p1, p2, labels = c("(a)", "(b)"), align = c("hv"))#
+}#
+#
+plot_func2 <- function(data){#
+  data <- data %>% filter(Covs > 0 & Covp > 0)#
+  p1 <- ggplot(data, aes(x = ratio, y = b, col = rho)) +#
+    geom_point(alpha = 1, size = 0.5) +#
+    facet_grid(mu1 ~ mu2, scale = "free") +#
+    # scale_colour_gradientn(colours = rainbow(7)) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", guide = FALSE) +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+   # geom_smooth() +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("Mass-dependency (b)") +#
+    geom_point(data = obs, aes(x = ratio, y = b, col =0),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+    geom_text(data = obs, aes(x = ratio, y = b, label = site, col = 0), col = "black", vjust = 2)#
+#
+    print(p1)#
+}#
+#
+plot_func3 <- function(data){#
+  # data <- data %>% filter(Covs > 0 & Covp > 0)#
+  p1 <- ggplot(data, aes(x = ratio, y = b, col = rho)) +#
+    geom_point(alpha = 1, size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", guide = FALSE) +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("Mass-dependency (b)") +#
+    geom_point(data = obs, aes(x = ratio, y = b, col =0 ),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+    geom_text(data = obs, aes(x = ratio, y = b, label = site, col = 0), col = "black", vjust = 2)#
+#
+  p2 <- ggplot(data, aes(x = ratio, y = ratio2, col = rho)) +#
+    geom_point(size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", name = "Correlation \ncoeffcient") +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    ylim(0, 100) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("% of LMA variation due to LMAs") +#
+    theme(legend.justification=c(1,0), legend.position=c(0.95, 0)) +#
+    geom_point(data = obs, aes(x = ratio, y = ratio2, col = 0),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+    geom_text(data = obs, aes(x = ratio, y = ratio2, label = site, col = 0), col = "black", vjust = 1.2, hjust = 1.1)#
+#
+  plot_grid(p1, p2, labels = c("(a)", "(b)"), align = c("hv"))#
+}#
+#
+plot_func3(sim_dat2)
+Sys.getenv("R_LIBS_USER")
+Sys.getenv("R_LIBS")
+# Vp, Vs: low, med, high#
+# Cov: negative, zero, positive#
+##
+# basically 6 patterns + 3 (Vps, cov<0 , cov =0, cov >0)#
+##
+# Vtotal = Vp_hi + Vs_med , cov = 0...#
+library(MASS)#
+library(tidyverse)#
+library(cowplot)#
+library(latex2exp)#
+rm(list = ls()) # This clears everything from memory.#
+load("~/Dropbox/MS/LES_MS/data/sim_var.RData")#
+#
+#raw#
+my_breaks <- function(...){#
+  c(0.001, 0.01, 0.1, 1, 10, 100, 500)#
+}#
+#
+fmt_dcimals <- function(x) format(x, nsmall = 1, scientific = FALSE)#
+#
+P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")#
+#
+P_vec2 <- paste("p[", 1:nrow(PA2), "]" ,sep = "")#
+GL <- GL %>%#
+  mutate(DE = ifelse(GL$DE == "", "U", as.character(DE))) %>%#
+  mutate(LMAp_up =  GL_summary[P_vec, "X97.5."] * LMA) %>%#
+  mutate(LMAs_lo = LMA - LMAp_up) %>%#
+  mutate(LMAp_lo =  GL_summary[P_vec, "X2.5."] * LMA) %>%#
+  mutate(LMAs_up = LMA - LMAp_lo)#
+PA2 <- PA2 %>%#
+  mutate(LMAp_up =  PA_summary_3[P_vec2, "X97.5."] * LMA) %>%#
+  mutate(LMAs_lo = LMA - LMAp_up) %>%#
+  mutate(LMAp_lo =  PA_summary_3[P_vec2, "X2.5."] * LMA) %>%#
+  mutate(LMAs_up = LMA - LMAp_lo)#
+#
+sun <- PA2 %>% filter(strata == "CAN")#
+shade <- PA2 %>% filter(strata == "UNDER")#
+#
+var(GL$LMAs_lo)/var(GL$LMAp_up)#
+var(GL$LMAs_up)/var(GL$LMAp_lo)#
+#
+var(sun$LMAs_lo)/var(sun$LMAp_up)#
+var(sun$LMAs_up)/var(sun$LMAp_lo)#
+#
+var(shade$LMAs_lo)/var(shade$LMAp_up)#
+var(shade$LMAs_up)/var(shade$LMAp_lo)#
+ratio_fn <- function(data, low = TRUE) {#
+  lo <- var(data$LMAs_lo) / var(data$LMAp_up)#
+  up <- var(data$LMAs_up) / var(data$LMAp_lo)#
+  if (low) lo  else  up#
+}#
+ratio_fn(GL)#
+#
+ratio2_fn <- function(data, low = TRUE) {#
+  lo <- cov(data$LMAs_lo, data$LMA) / var(data$LMA) * 100#
+  up <- cov(data$LMAs_up, data$LMA) / var(data$LMA) * 100#
+  if (low) lo  else  up#
+}#
+lm(log(Aarea) ~ log(LMA), GL) %>% summary#
+lm(log(Aarea) ~ log(LMA), sun) %>% summary#
+lm(log(Aarea) ~ log(LMA), shade) %>% summary#
+#
+obs <- obs %>%#
+  mutate(b_up = c(0.0667 + 1.96 * 0.0495,#
+                  0.322 + 1.96 * 0.1,#
+                  0.0878 + 1.96 * 0.209)) %>%#
+  mutate(b_lo = c(0.0667 - 1.96 * 0.0495,#
+                  0.322 - 1.96 * 0.1,#
+                  0.0878 - 1.96 * 0.209)) %>%#
+  mutate(ratio_up = c(ratio_fn(GL, low = F),#
+                      ratio_fn(sun, low = F),#
+                      ratio_fn(shade, low = F))) %>%#
+  mutate(ratio_lo = c(ratio_fn(GL, low = T),#
+                      ratio_fn(sun, low = T),#
+                      ratio_fn(shade, low = T))) %>%#
+  mutate(ratio2_up = c(ratio2_fn(GL, low = F),#
+                      ratio2_fn(sun, low = F),#
+                      ratio2_fn(shade, low = F))) %>%#
+  mutate(ratio2_lo = c(ratio2_fn(GL, low = T),#
+                      ratio2_fn(sun, low = T),#
+                      ratio2_fn(shade, low = T)))#
+# covs or covp < 0 is weird#
+plot_func <- function(data){#
+  data <- data %>% filter(Covs > 0 & Covp > 0)#
+  p1 <- ggplot(data, aes(x = ratio, y = b, col = rho)) +#
+    geom_point(alpha = 1, size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", guide = FALSE) +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("Mass-dependency (b)") +#
+    geom_point(data = obs, aes(x = ratio, y = b, col =0 ),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+    geom_text(data = obs, aes(x = ratio, y = b, label = site, col = 0),#
+              col = "black", vjust = 2, hjust = 1.2)#
+#
+  p2 <- ggplot(data, aes(x = ratio, y = ratio2, col = rho)) +#
+    geom_point(size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red",#
+                           name = "Correlation \ncoeffcient") +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    ylim(0, 100) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("% of LMA variation due to LMAs") +#
+    theme(legend.justification=c(1,0), legend.position=c(0.95, 0)) +#
+    geom_point(data = obs, aes(x = ratio, y = ratio2, col = 0),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+    geom_text(data = obs, aes(x = ratio, y = ratio2, label = site, col = 0), col = "black", vjust = 1.2, hjust = 1.1)#
+#
+  plot_grid(p1, p2, labels = c("(a)", "(b)"), align = c("hv"))#
+}#
+#
+# with bar#
+plot_fn_er <- function(data){#
+  data <- data %>% filter(Covs > 0 & Covp > 0)#
+  p1 <- ggplot(data, aes(x = ratio, y = b, col = rho)) +#
+    geom_point(alpha = 1, size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", guide = FALSE) +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("Mass-dependency (b)") +#
+    geom_errorbarh(data = obs, aes(xmin = ratio_lo, xmax = ratio_up, col = 0),#
+                   col = "black") +#
+    geom_errorbar(data = obs, aes(ymin = b_lo, ymax = b_up, col = 0),#
+                   col = "black") +#
+    geom_text(data = obs, aes(x = ratio, y = b, label = site, col = 0), col = "black", vjust = 2, hjust = 1.2) +#
+    geom_point(data = obs, aes(x = ratio, y = b, col =0),#
+           shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+  p2 <- ggplot(data, aes(x = ratio, y = ratio2, col = rho)) +#
+    geom_point(size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", name = "Correlation \ncoeffcient") +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    ylim(0, 100) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("% of LMA variation due to LMAs") +#
+    theme(legend.justification=c(1,0), legend.position=c(0.95, 0)) +#
+    geom_errorbarh(data = obs, aes(xmin = ratio_lo, xmax = ratio_up, col = 0),#
+                  col = "black") +#
+    geom_errorbar(data = obs, aes(ymin = ratio2_lo, ymax = ratio2_up, col = 0),#
+                  col = "black") +#
+    geom_text(data = obs, aes(x = ratio, y = ratio2, label = site, col = 0), col = "black", vjust = 1.2, hjust = 1.1) +#
+    geom_point(data = obs, aes(x = ratio, y = ratio2, col = 0),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5)#
+#
+    plot_grid(p1, p2, labels = c("(a)", "(b)"), align = c("hv"))#
+}#
+plot_fn_er(GL_sim2)
+# with bar#
+plot_fn_er <- function(data){#
+  data <- data %>% filter(Covs > 0 & Covp > 0)#
+  p1 <- ggplot(data, aes(x = ratio, y = b, col = rho)) +#
+    geom_point(alpha = 1, size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", guide = FALSE) +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("Mass-dependency (b)") +#
+    geom_errorbarh(data = obs, aes(xmin = ratio_lo, xmax = ratio_up, col = 0),#
+                   col = "black") +#
+    geom_errorbar(data = obs, aes(ymin = b_lo, ymax = b_up, col = 0),#
+                   col = "black") +#
+    geom_text(data = obs, aes(x = ratio, y = b, label = site, col = 0), col = "black", vjust = 2, hjust = 1.2) +#
+    geom_point(data = obs, aes(x = ratio, y = b, col =0),#
+           shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+#  p2 <- ggplot(data, aes(x = ratio, y = ratio2, col = rho)) +#
+#    geom_point(size = 0.5) +#
+#    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", name = "Correlation \ncoeffcient") +#
+#    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+#       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+#    ylim(0, 100) +#
+#    xlab("Var(LMAs)/Var(LMAp)") +#
+#    ylab("% of LMA variation due to LMAs") +#
+#    theme(legend.justification=c(1,0), legend.position=c(0.95, 0)) +#
+#    geom_errorbarh(data = obs, aes(xmin = ratio_lo, xmax = ratio_up, col = 0),#
+#                  col = "black") +#
+#    geom_errorbar(data = obs, aes(ymin = ratio2_lo, ymax = ratio2_up, col = 0),#
+#                  col = "black") +#
+#    geom_text(data = obs, aes(x = ratio, y = ratio2, label = site, col = 0), col = "black", vjust = 1.2, hjust = 1.1) +#
+#    geom_point(data = obs, aes(x = ratio, y = ratio2, col = 0),#
+#      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5)#
+##
+#    plot_grid(p1, p2, labels = c("(a)", "(b)"), align = c("hv"))#
+}#
+plot_fn_er(GL_sim2)
+# with bar#
+plot_fn_er <- function(data){#
+  data <- data %>% filter(Covs > 0 & Covp > 0)#
+  p1 <- ggplot(data, aes(x = ratio, y = b, col = rho)) +#
+    geom_point(alpha = 1, size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", guide = FALSE) +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("Mass-dependency (b)") +#
+    geom_errorbarh(data = obs, aes(xmin = ratio_lo, xmax = ratio_up, col = 0),#
+                   col = "black") +#
+    geom_errorbar(data = obs, aes(ymin = b_lo, ymax = b_up, col = 0),#
+                   col = "black") +#
+    geom_text(data = obs, aes(x = ratio, y = b, label = site, col = 0), col = "black", vjust = 2, hjust = 1.2) +#
+    geom_point(data = obs, aes(x = ratio, y = b, col =0),#
+           shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+#
+  p2 <- ggplot(data, aes(x = ratio, y = ratio2, col = rho)) +#
+    geom_point(size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", name = "Correlation \ncoeffcient") +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    ylim(0, 100) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("% of LMA variation due to LMAs") +#
+    theme(legend.justification=c(1,0), legend.position=c(0.95, 0)) +#
+    geom_errorbarh(data = obs, aes(xmin = ratio_lo, xmax = ratio_up, col = 0),#
+                  col = "black") +#
+    geom_errorbar(data = obs, aes(ymin = ratio2_lo, ymax = ratio2_up, col = 0),#
+                  col = "black") +#
+    geom_text(data = obs, aes(x = ratio, y = ratio2, label = site, col = 0), col = "black", vjust = 1.2, hjust = 1.1) +#
+    geom_point(data = obs, aes(x = ratio, y = ratio2, col = 0),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5)#
+#
+    plot_grid(p1, p2, labels = c("(a)", "(b)"), align = c("hv"))#
+}#
+plot_fn_er(GL_sim2)
+# Vp, Vs: low, med, high#
+# Cov: negative, zero, positive#
+##
+# basically 6 patterns + 3 (Vps, cov<0 , cov =0, cov >0)#
+##
+# Vtotal = Vp_hi + Vs_med , cov = 0...#
+library(MASS)#
+library(tidyverse)#
+library(cowplot)#
+library(latex2exp)#
+rm(list = ls()) # This clears everything from memory.#
+load("~/Dropbox/MS/LES_MS/data/sim_var.RData")#
+#
+#raw#
+my_breaks <- function(...){#
+  c(0.001, 0.01, 0.1, 1, 10, 100, 500)#
+}#
+#
+fmt_dcimals <- function(x) format(x, nsmall = 1, scientific = FALSE)#
+#
+P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")#
+#
+P_vec2 <- paste("p[", 1:nrow(PA2), "]" ,sep = "")#
+GL <- GL %>%#
+  mutate(DE = ifelse(GL$DE == "", "U", as.character(DE))) %>%#
+  mutate(LMAp_up =  GL_summary[P_vec, "X97.5."] * LMA) %>%#
+  mutate(LMAs_lo = LMA - LMAp_up) %>%#
+  mutate(LMAp_lo =  GL_summary[P_vec, "X2.5."] * LMA) %>%#
+  mutate(LMAs_up = LMA - LMAp_lo)#
+PA2 <- PA2 %>%#
+  mutate(LMAp_up =  PA_summary_3[P_vec2, "X97.5."] * LMA) %>%#
+  mutate(LMAs_lo = LMA - LMAp_up) %>%#
+  mutate(LMAp_lo =  PA_summary_3[P_vec2, "X2.5."] * LMA) %>%#
+  mutate(LMAs_up = LMA - LMAp_lo)#
+#
+sun <- PA2 %>% filter(strata == "CAN")#
+shade <- PA2 %>% filter(strata == "UNDER")#
+#
+var(GL$LMAs_lo)/var(GL$LMAp_up)#
+var(GL$LMAs_up)/var(GL$LMAp_lo)#
+#
+var(sun$LMAs_lo)/var(sun$LMAp_up)#
+var(sun$LMAs_up)/var(sun$LMAp_lo)#
+#
+var(shade$LMAs_lo)/var(shade$LMAp_up)#
+var(shade$LMAs_up)/var(shade$LMAp_lo)#
+ratio_fn <- function(data, low = TRUE) {#
+  lo <- var(data$LMAs_lo) / var(data$LMAp_up)#
+  up <- var(data$LMAs_up) / var(data$LMAp_lo)#
+  if (low) lo  else  up#
+}#
+ratio_fn(GL)#
+#
+ratio2_fn <- function(data, low = TRUE) {#
+  lo <- cov(data$LMAs_lo, data$LMA) / var(data$LMA) * 100#
+  up <- cov(data$LMAs_up, data$LMA) / var(data$LMA) * 100#
+  if (low) lo  else  up#
+}#
+lm(log(Aarea) ~ log(LMA), GL) %>% summary#
+lm(log(Aarea) ~ log(LMA), sun) %>% summary#
+lm(log(Aarea) ~ log(LMA), shade) %>% summary#
+#
+obs <- obs %>%#
+  mutate(b_up = c(0.0667 + 1.96 * 0.0495,#
+                  0.322 + 1.96 * 0.1,#
+                  0.0878 + 1.96 * 0.209)) %>%#
+  mutate(b_lo = c(0.0667 - 1.96 * 0.0495,#
+                  0.322 - 1.96 * 0.1,#
+                  0.0878 - 1.96 * 0.209)) %>%#
+  mutate(ratio_up = c(ratio_fn(GL, low = F),#
+                      ratio_fn(sun, low = F),#
+                      ratio_fn(shade, low = F))) %>%#
+  mutate(ratio_lo = c(ratio_fn(GL, low = T),#
+                      ratio_fn(sun, low = T),#
+                      ratio_fn(shade, low = T))) %>%#
+  mutate(ratio2_up = c(ratio2_fn(GL, low = F),#
+                      ratio2_fn(sun, low = F),#
+                      ratio2_fn(shade, low = F))) %>%#
+  mutate(ratio2_lo = c(ratio2_fn(GL, low = T),#
+                      ratio2_fn(sun, low = T),#
+                      ratio2_fn(shade, low = T)))#
+# covs or covp < 0 is weird#
+plot_func <- function(data){#
+  data <- data %>% filter(Covs > 0 & Covp > 0)#
+  p1 <- ggplot(data, aes(x = ratio, y = b, col = rho)) +#
+    geom_point(alpha = 1, size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", guide = FALSE) +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("Mass-dependency (b)") +#
+    geom_point(data = obs, aes(x = ratio, y = b, col =0 ),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+    geom_text(data = obs, aes(x = ratio, y = b, label = site, col = 0),#
+              col = "black", vjust = 2, hjust = 1.2)#
+#
+  p2 <- ggplot(data, aes(x = ratio, y = ratio2, col = rho)) +#
+    geom_point(size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red",#
+                           name = "Correlation \ncoeffcient") +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    ylim(0, 100) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("% of LMA variation due to LMAs") +#
+    theme(legend.justification=c(1,0), legend.position=c(0.95, 0)) +#
+    geom_point(data = obs, aes(x = ratio, y = ratio2, col = 0),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+    geom_text(data = obs, aes(x = ratio, y = ratio2, label = site, col = 0), col = "black", vjust = 1.2, hjust = 1.1)#
+#
+  plot_grid(p1, p2, labels = c("(a)", "(b)"), align = c("hv"))#
+}#
+#
+# with bar#
+plot_fn_er <- function(data){#
+  data <- data %>% filter(Covs > 0 & Covp > 0)#
+  p1 <- ggplot(data, aes(x = ratio, y = b, col = rho)) +#
+    geom_point(alpha = 1, size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", guide = FALSE) +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("Mass-dependency (b)") +#
+    geom_errorbarh(data = obs, aes(xmin = ratio_lo, xmax = ratio_up, col = 0),#
+                   col = "black") +#
+    geom_errorbar(data = obs, aes(ymin = b_lo, ymax = b_up, col = 0),#
+                   col = "black") +#
+    geom_text(data = obs, aes(x = ratio, y = b, label = site, col = 0), col = "black", vjust = 2, hjust = 1.2) +#
+    geom_point(data = obs, aes(x = ratio, y = b, col =0),#
+           shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5) +#
+  p2 <- ggplot(data, aes(x = ratio, y = ratio2, col = rho)) +#
+    geom_point(size = 0.5) +#
+    scale_colour_gradient2(low = "blue", mid = "gray", high = "red", name = "Correlation \ncoeffcient") +#
+    scale_x_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),#
+       labels = scales::trans_format("log10", scales::math_format(10^.x))) +#
+    ylim(0, 100) +#
+    xlab("Var(LMAs)/Var(LMAp)") +#
+    ylab("% of LMA variation due to LMAs") +#
+    theme(legend.justification=c(1,0), legend.position=c(0.95, 0)) +#
+    geom_errorbarh(data = obs, aes(xmin = ratio_lo, xmax = ratio_up, col = 0),#
+                  col = "black") +#
+    geom_errorbar(data = obs, aes(ymin = ratio2_lo, ymax = ratio2_up, col = 0),#
+                  col = "black") +#
+    geom_text(data = obs, aes(x = ratio, y = ratio2, label = site, col = 0), col = "black", vjust = 1.2, hjust = 1.1) +#
+    geom_point(data = obs, aes(x = ratio, y = ratio2, col = 0),#
+      shape = 21, col = "black", fill = "white", size = 4, stroke = 1.5)#
+#
+    plot_grid(p1, p2, labels = c("(a)", "(b)"), align = c("hv"))#
+}#
+plot_fn_er(GL_sim2)
+library(dplyr)#
+set.seed(4)#
+n <- 2000#
+gx <- runif(n, min=0, max=50)#
+gy <- runif(n, min=0, max=50)#
+samp_dat <- data_frame(ID = paste("ID", 1:n, sep = "_"), gx, gy)
+countR <- function(gx, gy, r){#
+ n_length <- length(gx)#
+ res <- numeric(n_length)#
+ for (i in 1:n_length){#
+  temp <- numeric(n_length)#
+   for (j in 1:n_length){#
+        if ((gx[i]-gx[j])^2 + (gy[i]-gy[j])^2 <= r^2) temp[j] <- 1#
+      }#
+      res[i] <- sum(temp)#
+      temp <- numeric(n_length)#
+    }#
+  res - 1#
+}
+system.time(res <- countR(samp_dat$gx, samp_dat$gy, r = 5))
+r <- 5#
+countR2 <- function(n){#
+    temp <- (gx[n] - gx)^2 + (gy[n] - gy)^2 # gx[n]-gxでベクトル化#
+    temp[temp <= r^2] %>% length - 1#
+}
+system.time(res2 <- mapply(countR2, n = 1:n))
+install.packages("ggtern")
+old.packages()
+library(MASS)
+library(sads)
+d <- read.csv("ranked species abundance.csv")
+d2 <- d %>%
+mutate(rank = 1:nrow(d)) %>%
+tidyr::gather("treatment", "abund", c(2,4,6,8,10,12)) %>%
+mutate(temp = sapply(strsplit(treatment, "X|\\."), "[", 2)) %>%
+mutate(rep = rep(1:2, each = nrow(d)) %>% rep(3))
+## remove zero
+d3 <- d2 %>%
+filter(abund > 0)
+library(dbFD)
+install.packages("dbFD")
+library(LeafArea)
+?LeafArea
+ex.dir <- eximg()#
+list.files(ex.dir)
+run.ij(set.directory = ex.dir, save.image = TRUE)
+run.ij <- function(path.imagej = NULL, set.memory = 4, set.directory, #
+                   distance.pixel = 826, known.distance = 21, trim.pixel = 20,#
+                   low.circ = 0, upper.circ = 1, low.size = 0.7, #
+                   upper.size = "Infinity", prefix="\\.|-", log = F,#
+                   check.image = F, save.image = F){#
+#
+  file.list <- list.files(set.directory)#
+  file.list <- file.list[grep(".jpeg$|.jpg$|.JPEG$|.JPG$|#
+                              .tif$|.tiff$|.Tif$|.Tiff$",file.list)]#
+#
+  if (length(file.list) == 0) return("No images in the directory")#
+#
+  temp.slash <- substr(set.directory, nchar(set.directory),#
+                       nchar(set.directory))#
+  if(temp.slash!="/" & temp.slash!="\\"){#
+    set.directory <- paste(set.directory,"/",sep="")#
+  }#
+#
+  circ.arg <- paste(low.circ,upper.circ,sep="-")#
+  size.arg <- paste(low.size,upper.size,sep="-")#
+  os <-.Platform$OS.type#
+  if (is.null(path.imagej) == T){#
+    imagej <- find.ij(ostype = .Platform$OS.type)#
+    if(imagej == "ImageJ not found"){#
+      return("ImageJ not found")#
+    }  else path.imagej <- imagej#
+  }#
+#
+  ##additional check#
+  if (os=="windows"){#
+    #slash is replaced by backslash because they don't work in batch#
+    path.imagej <- gsub("/","\\\\",path.imagej)#
+#
+    if(file.exists(paste(path.imagej,"ij.jar",sep=""))!=T & #
+       file.exists(paste(path.imagej,"ij.jar",sep="/"))!=T) {#
+      warning("ij.jar was not found. Specify the correct path to #
+              ImageJ directory or reinstall ImageJ bundled with Java")#
+              return("ImageJ not found")#
+    } else if (file.exists(paste(path.imagej,"jre/bin/java.exe",sep=""))!=T & #
+               file.exists(paste(path.imagej,"jre/bin/java.exe",sep="/"))!=T) {#
+      warning("java was not found. Specify the correct path to #
+              ImageJ directory or reinstall ImageJ bundled with Java")#
+              return("ImageJ not found")#
+    }#
+  } else {#
+    unix.check <- Sys.info()["sysname"]#
+    if(unix.check=="Linux") {look <- "ImageJ"#
+    if(file.exists(paste(path.imagej,look, "ij.jar",sep=""))!=T & #
+       file.exists(paste(path.imagej,look, "ij.jar", sep="/"))!=T) {#
+      warning("Specify the correct path to ImageJ")#
+    return("ImageJ not found")}} else if (unix.check == "Darwin"){#
+      if(file.exists(paste(path.imagej, #
+         "Contents/Resources/Java/ij.jar", sep = "")) != T & #
+         file.exists(paste(path.imagej, #
+         "Contents/Resources/Java/ij.jar", sep = "/")) != T) {#
+        warning("Specify the correct path to ImageJ.app")#
+      return("ImageJ not found")}#
+    }#
+  }#
+#
+  if (os == "windows"){temp <- paste(tempdir(),"\\",sep="")#
+  temp <- gsub("\\\\","\\\\\\\\",temp)} else {#
+    temp <- paste(tempdir(),"/",sep="")#
+  }#
+#
+  if(save.image == T) macro <- paste(#
+    'dir = getArgument;#
+    dir2 = "',temp,'";#
+    list = getFileList(dir); #
+    open(dir + list[0]); #
+    run("Set Scale...", "distance=',distance.pixel,#
+        ' known=',known.distance, ' pixel=1 unit=cm global"); #
+    for (i=0;\n i<list.length;\n i++) {#
+      open(dir + list[i]);\n #
+      width = getWidth() - ',trim.pixel, '; #
+      height = getHeight() -',trim.pixel,' ;#
+      run("Canvas Size...", #
+          "width=" + width + " height=" + height + "#
+          position=Bottom-Center");#
+      run("8-bit");#
+      run("Threshold...");#
+      setAutoThreshold("Minimum");#
+      run("Analyze Particles...", "size=',size.arg,#
+          ' circularity=',circ.arg,' show=Masks display clear record");#
+      saveAs("Measurements", dir2+list[i]+".txt");#
+      saveAs("tiff", dir+list[i]+ "_mask.tif");#
+    }',sep="") else #
+    macro <- paste(#
+     'dir = getArgument;\n #
+     dir2 = "',temp,'";\n #
+     list = getFileList(dir);\n #
+     open(dir + list[0]);\n #
+     run("Set Scale...", "distance=',distance.pixel, ' known=', known.distance,#
+         ' pixel=1 unit=cm global");\n#
+     for (i=0;\n i<list.length;\n i++) { open(dir + list[i]);\n#
+     width = getWidth() - ',trim.pixel, ';\n#
+     height = getHeight() -',trim.pixel,' ;\n#
+     run("Canvas Size...", "width=" + width + #
+         " height=" + height + " position=Bottom-Center");\n#
+     run("8-bit");\n#
+     run("Threshold...");\n#
+     setAutoThreshold("Minimum");\n#
+     run("Analyze Particles...", "size=',size.arg,#
+         ' circularity=',circ.arg,' show=Masks display clear record");\n#
+         saveAs("Measurements", dir2+list[i]+".txt");\n#
+     }',sep="")#
+  #prepare macro***.txt as tempfile#
+  tempmacro <- paste(tempfile('macro'),".txt",sep="")#
+#
+  write(macro, file=tempmacro)#
+  # write(macro, file="~/Desktop/moge.txt")#
+  # pathimagej <- system.file("java",package="LeafArea")#
+#
+  if(check.image==T) {#
+    exe <- "-macro "#
+    wait = FALSE} else {#
+      exe <- "-batch "#
+      wait = TRUE}#
+#
+  #use it in imageJ#
+  if (os == "windows"){#
+#
+    if (length(strsplit(set.directory," ")[[1]]) >1) {#
+      bat <- paste(#
+        "pushd ", path.imagej, "\n jre\\bin\\java -jar -Xmx", #
+        set.memory,"g ij.jar ", #
+        exe ,tempmacro, ' "',set.directory,'"\n pause\n exit',sep="")#
+    } else {#
+      bat <- paste(#
+        "pushd ", path.imagej, "\n jre\\bin\\java -jar -Xmx",#
+        set.memory,"g ij.jar ",#
+        exe ,tempmacro," ",set.directory,"\n pause\n exit",sep="")#
+    }#
+    tempbat <- paste(tempfile('bat'),".bat",sep="")#
+#
+    write(bat, file=tempbat)#
+#
+    shell(tempbat,wait=wait)#
+#
+  } else {#
+    temp.slash2 <- substr(path.imagej,nchar(path.imagej),nchar(path.imagej))#
+    if(temp.slash2!="/" ){#
+      path.imagej <- paste(path.imagej,"/",sep="")#
+    }#
+#
+    # this allows space in path#
+    set.directory <- gsub(" ", "\\ ", set.directory, fixed=TRUE)#
+#
+    unix.check <- Sys.info()["sysname"]#
+    if(unix.check == "Linux") {#
+      system(paste("java -Xmx", set.memory, "g -jar ",path.imagej,#
+        "ij.jar -ijpath ",path.imagej," ",exe,tempmacro," ", set.directory,#
+        sep = ""), wait = wait)#
+      } else {#
+      system(paste("java -Xmx", set.memory, "g -jar ", path.imagej,#
+       "Contents/Resources/Java/ij.jar -ijpath ", path.imagej, " ", exe,#
+       tempmacro, " ", set.directory, sep = ""), wait = wait)#
+    }#
+  }#
+#
+  #kill imageJ#
+  if(check.image == T){#
+    ans <- readline("Do you want to close ImageJ? #
+                    Press any keys when you finish cheking analyzed images.")#
+    if (os == "windows") suppressWarnings(shell('taskkill /f /im "java.exe"')) #
+    else {system("killall java")}#
+  }#
+#
+  # file managemanet#
+  res <- resmerge.ij(path = temp, prefix = prefix)#
+#
+  if (log == T) res2 <- readtext.ij(path = temp)#
+#
+  # unlink#
+  cd <- getwd()#
+  setwd(temp)#
+  unlink(list.files(temp))#
+  setwd(cd)#
+#
+  if (log == T) return(list(summary = res, each.image = res2)) else return(res)#
+#
+}#
+# moge <- "~/Desktop/LeafAreaDemo/" # Mac#
+#
+# # moge <- "..\\Desktop\\LeafAreaDemo\\" # Mac#
+#
+# res <- auto.run(set.directory=moge,log=T)#
+# system(paste("java -Xmx",set.memory,"g -jar /Applications/ImageJ/ImageJ64.app/Contents/Resources/Java/ij.jar -ijpath /Applications/ImageJ"," -macro ~/Desktop/moge.txt ",set.directory,sep=""))
+run.ij(set.directory = ex.dir, save.image = TRUE)
+run.ij <- function(path.imagej = NULL, set.memory = 4, set.directory, #
+                   distance.pixel = 826, known.distance = 21, trim.pixel = 20,#
+                   low.circ = 0, upper.circ = 1, low.size = 0.7, #
+                   upper.size = "Infinity", prefix="\\.|-", log = F,#
+                   check.image = F, save.image = F){#
+#
+  file.list <- list.files(set.directory)#
+  file.list <- file.list[grep(".jpeg$|.jpg$|.JPEG$|.JPG$|#
+                              .tif$|.tiff$|.Tif$|.Tiff$",file.list)]#
+#
+  if (length(file.list) == 0) return("No images in the directory")#
+#
+  temp.slash <- substr(set.directory, nchar(set.directory),#
+                       nchar(set.directory))#
+  if(temp.slash!="/" & temp.slash!="\\"){#
+    set.directory <- paste(set.directory,"/",sep="")#
+  }#
+#
+  circ.arg <- paste(low.circ,upper.circ,sep="-")#
+  size.arg <- paste(low.size,upper.size,sep="-")#
+  os <-.Platform$OS.type#
+  if (is.null(path.imagej) == T){#
+    imagej <- find.ij(ostype = .Platform$OS.type)#
+    if(imagej == "ImageJ not found"){#
+      return("ImageJ not found")#
+    }  else path.imagej <- imagej#
+  }#
+#
+  ##additional check#
+  if (os=="windows"){#
+    #slash is replaced by backslash because they don't work in batch#
+    path.imagej <- gsub("/","\\\\",path.imagej)#
+#
+    if(file.exists(paste(path.imagej,"ij.jar",sep=""))!=T & #
+       file.exists(paste(path.imagej,"ij.jar",sep="/"))!=T) {#
+      warning("ij.jar was not found. Specify the correct path to #
+              ImageJ directory or reinstall ImageJ bundled with Java")#
+              return("ImageJ not found")#
+    } else if (file.exists(paste(path.imagej,"jre/bin/java.exe",sep=""))!=T & #
+               file.exists(paste(path.imagej,"jre/bin/java.exe",sep="/"))!=T) {#
+      warning("java was not found. Specify the correct path to #
+              ImageJ directory or reinstall ImageJ bundled with Java")#
+              return("ImageJ not found")#
+    }#
+  } else {#
+    unix.check <- Sys.info()["sysname"]#
+    if(unix.check=="Linux") {look <- "ImageJ"#
+    if(file.exists(paste(path.imagej,look, "ij.jar",sep=""))!=T & #
+       file.exists(paste(path.imagej,look, "ij.jar", sep="/"))!=T) {#
+      warning("Specify the correct path to ImageJ")#
+    return("ImageJ not found")}} else if (unix.check == "Darwin"){#
+      if(file.exists(paste(path.imagej, #
+         "Contents/Resources/Java/ij.jar", sep = "")) != T & #
+         file.exists(paste(path.imagej, #
+         "Contents/Resources/Java/ij.jar", sep = "/")) != T) {#
+        warning("Specify the correct path to ImageJ.app")#
+      return("ImageJ not found")}#
+    }#
+  }#
+#
+  if (os == "windows"){temp <- paste(tempdir(),"\\",sep="")#
+  temp <- gsub("\\\\","\\\\\\\\",temp)} else {#
+    temp <- paste(tempdir(),"/",sep="")#
+  }#
+#
+  if(save.image == T) macro <- paste(#
+    'dir = getArgument;#
+    dir2 = "',temp,'";#
+    list = getFileList(dir); #
+    open(dir + list[0]); #
+    run("Set Scale...", "distance=',distance.pixel,#
+        ' known=',known.distance, ' pixel=1 unit=cm global"); #
+    for (i=0;\n i<list.length;\n i++) {#
+      open(dir + list[i]);\n #
+      width = getWidth() - ',trim.pixel, '; #
+      height = getHeight() -',trim.pixel,' ;#
+      run("Canvas Size...", #
+          "width=" + width + " height=" + height + "#
+          position=Bottom-Center");#
+      run("8-bit");#
+      run("Threshold...");#
+      setAutoThreshold("Minimum");#
+      run("Analyze Particles...", "size=',size.arg,#
+          ' circularity=',circ.arg,' show=Masks display clear record");#
+      saveAs("Measurements", dir2+list[i]+".txt");#
+      saveAs("tiff", dir+list[i]+ "_mask.tif");#
+    }',sep="") else #
+    macro <- paste(#
+     'dir = getArgument;\n #
+     dir2 = "',temp,'";\n #
+     list = getFileList(dir);\n #
+     open(dir + list[0]);\n #
+     run("Set Scale...", "distance=',distance.pixel, ' known=', known.distance,#
+         ' pixel=1 unit=cm global");\n#
+     for (i=0;\n i<list.length;\n i++) { open(dir + list[i]);\n#
+     width = getWidth() - ',trim.pixel, ';\n#
+     height = getHeight() -',trim.pixel,' ;\n#
+     run("Canvas Size...", "width=" + width + #
+         " height=" + height + " position=Bottom-Center");\n#
+     run("8-bit");\n#
+     run("Threshold...");\n#
+     setAutoThreshold("Minimum");\n#
+     run("Analyze Particles...", "size=',size.arg,#
+         ' circularity=',circ.arg,' show=Masks display clear record");\n#
+         saveAs("Measurements", dir2+list[i]+".txt");\n#
+     }',sep="")#
+  #prepare macro***.txt as tempfile#
+  tempmacro <- paste(tempfile('macro'),".txt",sep="")#
+#
+  write(macro, file=tempmacro)#
+  # write(macro, file="~/Desktop/moge.txt")#
+  # pathimagej <- system.file("java",package="LeafArea")#
+#
+  if(check.image==T) {#
+    exe <- "-macro "#
+    wait = FALSE} else {#
+      exe <- "-batch "#
+      wait = TRUE}#
+#
+  #use it in imageJ#
+  if (os == "windows"){#
+#
+    if (length(strsplit(set.directory," ")[[1]]) >1) {#
+      bat <- paste(#
+        "pushd ", path.imagej, "\n jre\\bin\\java -jar -Xmx", #
+        set.memory,"g ij.jar ", #
+        exe ,tempmacro, ' "',set.directory,'"\n pause\n exit',sep="")#
+    } else {#
+      bat <- paste(#
+        "pushd ", path.imagej, "\n jre\\bin\\java -jar -Xmx",#
+        set.memory,"g ij.jar ",#
+        exe ,tempmacro," ",set.directory,"\n pause\n exit",sep="")#
+    }#
+    tempbat <- paste(tempfile('bat'),".bat",sep="")#
+#
+    write(bat, file=tempbat)#
+#
+    shell(tempbat,wait=wait)#
+#
+  } else {#
+    temp.slash2 <- substr(path.imagej,nchar(path.imagej),nchar(path.imagej))#
+    if(temp.slash2!="/" ){#
+      path.imagej <- paste(path.imagej,"/",sep="")#
+    }#
+#
+    # this allows space in path#
+    set.directory <- gsub(" ", "\\ ", set.directory, fixed=TRUE)#
+#
+    unix.check <- Sys.info()["sysname"]#
+    if(unix.check == "Linux") {#
+      system(paste("java -Xmx", set.memory, "g -jar ",path.imagej,#
+        "ij.jar -ijpath ",path.imagej," ",exe,tempmacro," ", set.directory,#
+        sep = ""), wait = wait)#
+      } else {#
+      system(paste("java -Xmx", set.memory, "g -jar ", path.imagej,#
+       "Contents/Resources/Java/ij.jar -ijpath ", path.imagej, " ", exe,#
+       tempmacro, " ", set.directory, sep = ""), wait = wait)#
+    }#
+  }#
+#
+  #kill imageJ#
+  if(check.image == T){#
+    ans <- readline("Do you want to close ImageJ? #
+                    Press any keys when you finish cheking analyzed images.")#
+    if (os == "windows") suppressWarnings(shell('taskkill /f /im "java.exe"')) #
+    else {system("killall java")}#
+  }#
+#
+  # file managemanet#
+  res <- resmerge.ij(path = temp, prefix = prefix)#
+#
+  if (log == T) res2 <- readtext.ij(path = temp)#
+#
+  # unlink#
+  cd <- getwd()#
+  setwd(temp)#
+  unlink(list.files(temp))#
+  setwd(cd)#
+#
+  if (log == T) return(list(summary = res, each.image = res2)) else return(res)#
+#
+}#
+# moge <- "~/Desktop/LeafAreaDemo/" # Mac#
+#
+# # moge <- "..\\Desktop\\LeafAreaDemo\\" # Mac#
+#
+# res <- auto.run(set.directory=moge,log=T)#
+# system(paste("java -Xmx",set.memory,"g -jar /Applications/ImageJ/ImageJ64.app/Contents/Resources/Java/ij.jar -ijpath /Applications/ImageJ"," -macro ~/Desktop/moge.txt ",set.directory,sep=""))
+run.ij(set.directory = ex.dir, save.image = TRUE)
+setwd("./ECY")#
+render("LMAps_main_re.rmd", "bookdown::pdf_book")#
+render("LMAps_main_re.rmd", "bookdown::word_document2")
+rm(list = ls()) # This clears everything from memory.#
+setwd("~/Dropbox/MS/LES_MS/LMApsModel/data/")#
+#
+load("PA_model1_obs_2017-06-19_.RData")#
+#
+GL <- data.obs#
+P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")#
+#
+GL <- GL %>%#
+  mutate(DE = ifelse(GL$DE == "", "U", as.character(DE))) %>%#
+  mutate(LMAp1 =  fit.summary[P_vec, "mean"] * LMA) %>%#
+  mutate(LMAs1 = LMA - LMAp1)#
+#
+LMA_dat <- GL %>%#
+  arrange(sp) %>%#
+  select(LMA, LMAp1, LMAs1)#
+#
+trait_name <- c("Aarea", "Rarea", "LL")#
+trait_name2 <- c("LMA", "LMAp", "LMAs")#
+#
+temp_cor_data <- NULL#
+#
+    for (l in 1:3){#
+      for (m in 1:3){#
+        temp_cor <- cor.test(log10(GL[ , trait_name[l]]),#
+                log10(LMA_dat[, m]))$estimate#
+        temp_cor_data <- c(temp_cor_data, temp_cor)#
+      }#
+    }#
+#
+moge2 <- NULL#
+#
+for (l in 1:3) {#
+  if (trait_name[l] == "preLL") {#
+    moge2 <- c(moge2, "preLL")#
+} else { for (m in 1:3) moge2 <- c(moge2, paste(trait_name[l], trait_name2[m], sep = "_")) }#
+}#
+#
+names(temp_cor_data) <- moge2#
+#
+GL1_obs_r <- temp_cor_data#
+GL1_obs_r2 <- GL1_obs_r^2
+load("/Users/mattocci/Dropbox/MS/LES_MS/LMApsModel/data/PA_model3r6_2017-09-14_.RData")
+library(loo)
+waic(extract_log_lik(res,"log_lik"))$waic#
+loo(extract_log_lik(res,"log_lik"))

@@ -2,7 +2,7 @@
 DATA=GL
 OBS=obs
 
-for MODEL in GL_LMAms
+for MODEL in latent_model_orderd2
 do
   #
   echo "${MODEL}, ${DATA}, ${OBS}"

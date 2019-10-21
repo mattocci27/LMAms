@@ -1,6 +1,5 @@
-*.aux
-*.log
 *.sqlite3
+*.rdata
 *.rdata
 *.rds
 *.zip
@@ -13,13 +12,11 @@
 *.err
 *.out
 *.html
-*.docx*
+*.docx
+*.png
 *.ipynb*
 /ms/comments
-*_cache
-*_files
 /ms/mylibrary.bib
 /archive/*
 /old/*
 *.bib
-*.DS_Store
