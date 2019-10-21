@@ -6,7 +6,7 @@ for MODEL in GL_LMA GL_LMAms
 do
   for OBS in obs
   do
-R --vanilla --slave --args ${MODEL} ${DATA} 2 1 1 ${OBS} < ./model/model.r > ./log/${MODEL}_${OBS}.log
+R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/model.r > ./log/${MODEL}_${OBS}.log
 
   done
 done
@@ -16,7 +16,7 @@ for MODEL in GL_LMA_CV GL_LMAms_CV
 do
   for OBS in obs
   do
-R --vanilla --slave --args ${MODEL} ${DATA} 2 1 1 ${OBS} < ./model/k_fold.r > ./log/${MODEL}_${OBS}.log
+R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/k_fold.r > ./log/${MODEL}_${OBS}.log
 
   done
 done
@@ -27,7 +27,7 @@ for MODEL in PA_LMA_CV PA_LMA_L_CV
 do
   for OBS in obs
   do
-R --vanilla --slave --args ${MODEL} ${DATA} 2 1 1 ${OBS} < ./model/k_fold.r > ./log/${MODEL}_${OBS}.log
+R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/k_fold.r > ./log/${MODEL}_${OBS}.log
 
   done
 done
