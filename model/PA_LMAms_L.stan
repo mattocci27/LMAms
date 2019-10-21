@@ -72,7 +72,7 @@ model{
   a_sm ~ repulsive(tau, 2);
   z ~ normal(0, 10);
   tau ~ cauchy(0, 2.5);
-  p ~ beta(2, 2);
+  p ~ beta(1, 1);
   L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
   L_sigma ~ cauchy(0, 5);
   
