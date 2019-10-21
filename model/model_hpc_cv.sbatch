@@ -6,9 +6,9 @@
 #SBATCH --time=24:00:00
 date;hostname;pwd
 
-module load R/3.4.3
+module load R/3.6
 
 # sbatch
-R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/k_fold.r > ./log/${DATA}_${MODEL}_${OBS}.log
+R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/k_fold.r > ./log/${MODEL}_${OBS}.log
  
 date
