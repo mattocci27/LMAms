@@ -29,7 +29,6 @@ library(dplyr)
 library(scales)
 library(memisc)
 
-
 theme_set(theme_light())
 
 settings <- yaml::yaml.load_file("../settings.yml")
@@ -39,9 +38,11 @@ settings <- yaml::yaml.load_file("../settings.yml")
 ```{r, echo = F, message = F}
 
 #load("./data/GL_sitePL_LD_L_MVN_obs.rda")
-load("../data/GL_m0_beta_obs.rda")
+#list.files("../data")
+load("../data/GL_m0_beta0_obs.rda")
 #load("./data/PA_LMAm_LMAsLT2_obs.rda")
 #summary_GL_LDL <- data.frame(summary(res)$summary)
+get_stancode(res) %>% cat
 
 pairs(res, pars = c("beta[1]", "beta[2]", "lp__"))
 

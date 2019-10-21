@@ -622,6 +622,8 @@ load("../data/PA_latent_replusive_model_light2_more_obs.rda")
 
 summary_PA_LDL <- data.frame(summary(res)$summary)
 
+DT::datatable(summary_PA_LDL)
+
 PA <- dat %>%
   as_tibble %>%
   mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%

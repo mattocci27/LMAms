@@ -39,12 +39,12 @@ settings <- yaml::yaml.load_file("../settings.yml")
 ```{r, echo = F, message = F}
 
 #load("./data/GL_sitePL_LD_L_MVN_obs.rda")
-load("../data/GL_m0_latent4_obs.rda")
+load("../data/GL_m0_latent2_obs.rda")
 #load("./data/GL_m0_latent3_obs.rda")
 #load("./data/PA_LMAm_LMAsLT2_obs.rda")
 #summary_GL_LDL <- data.frame(summary(res)$summary)
 
-
+get_stancode(res) %>% cat
 #fit <- res
 #
 #df_of_draws <- as.data.frame(fit) %>%

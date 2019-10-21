@@ -15,7 +15,6 @@
 *.html
 *.docx*
 *.ipynb*
-/data/*
 /ms/comments
 *_cache
 *_files

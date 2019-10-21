@@ -42,6 +42,7 @@ settings <- yaml::yaml.load_file("../settings.yml")
 load("../data/GL_latent_model_orderd_obs.rda")
 #load("./data/GL_latent_repulsive_model_obs.rda")
 
+get_stancode(res) %>% cat
 
 s_GL <- data.frame(summary(res)$summary) %>%
   mutate(para = rownames(.)) %>%
@@ -52,7 +53,7 @@ s_GL <- data.frame(summary(res)$summary) %>%
          "sig",
          sig))
 
-write.csv(s_GL, "./data/GLpara.csv")
+#write.csv(s_GL, "../data/GLpara.csv")
 
 pairs(res, pars = c("Z[1,1]", "Z[2,1]", "Z[3,1]", "lp__"))
 pairs(res, pars = c("Z[1,2]", "Z[2,2]", "Z[3,2]", "lp__"))
@@ -406,6 +407,24 @@ ggplot(GL2, aes(x = gr, y = val,
 
 ```
 
+```{r, echo = F, message = F}
+
+ggplot(GL, aes(x = gr, y = LMAp / LMA,
+               fill = gr,
+               col = gr)) +
+  geom_boxplot() +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols) 
+
+hist(GL$LMAp/GL$LMA)
+
+mean(GL$LMAp/GL$LMA)
+sd(GL$LMAp/GL$LMA)
+
+```
+
 
 # Decomposition of LMA variation 
 
@@ -597,3 +616,4 @@ points(xx, rbf(xx + 0.6), type = "l")
 
 
 ```
+

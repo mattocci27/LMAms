@@ -1,0 +1,45 @@
+
+# Normal
+
+```{r}
+theme_grey
+```
+
+```{r}
+set.seed(123)
+N <- 100
+xx <- rnorm(N)
+yy <- rnorm(N, xx)
+
+dat <- tibble(xx, yy)
+```
+
+```{r}
+
+p1 <- ggplot(dat, aes(x = xx, y = yy)) +
+  geom_point() +
+  theme_grey()
+
+p1
+
+```
+
+
+```{r}
+p1 + theme(axis.title.x =  element_text(size = rel(2)))
+```
+
+
+
+# upload
+
+sudo scp -r -i ~/.ssh/id_rsa ~/Dropbox/MS/LMAms/data/nature02403-s2.csv mattocci@178.128.60.227:/home/mattocci/moge.csv
+
+
+# download
+
+sudo scp -r -i ~/.ssh/id_rsa mattocci@178.128.60.227:/home/mattocci/moge.csv ~/mogemoge.csv
+
+
+
+

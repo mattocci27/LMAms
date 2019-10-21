@@ -1,0 +1,7 @@
+"Data","Model","LT","n.obs","WAIC","elpd_loo"
+"GLOPNET","Potential","LMAs",198,636.1,-365.6
+"Panama","Potential","LMAs",130,609.1,-330
+"Panama","Optimal","LMAs",106,488.2,-260.3
+"Panama","Optimal S","LMAs",130,604.7,-326.9
+"Panama","Optimal","LMAs",130,602.4,-322.6
+"Panama","Optimal","LMAs/LT",106,497.1,-263.4
