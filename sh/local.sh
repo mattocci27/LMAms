@@ -5,7 +5,7 @@ OBS=obs
 #for MODEL in latent_model_ordered05 latent_model_ordered11
 #for MODEL in latent_replusive_model_light10 latent_ordered_model_light10
 #for model in latent_replusive_model_light11
-for MODEL in latent_model_ordered10_beta
+for MODEL in latent_model_ordered10
 
 do
   for OBS in obs
