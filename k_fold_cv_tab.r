@@ -10,14 +10,14 @@ get_elpd <- function(ss){
   kk$elpd_kfold
 }
 
-load("./data/GL_GL_LMAms_CV_obs_cv.rda")
+load("./data/GL_LMAms_CV_obs_cv.rda")
 
 
 ee2 <- get_elpd(ss)
 N2 <- N
 
 
-load("./data/GL_GL_LMA_CV_obs_cv.rda")
+load("./data/GL_LMA_CV_obs_cv.rda")
 
 ee <- get_elpd(ss)
 
