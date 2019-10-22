@@ -36,8 +36,7 @@ source("../fig_theme.r")
 
 ```{r GLdat, cache=TRUE, comment=NA}
 
-#load("./data/PA_latent_model_light_more_obs.rda")
-load("../data/GL_latent_model_orderd_obs.rda")
+load("../data/GL_LMAms_obs.rda")
 
 GL_summary <- data.frame(summary(res)$summary) %>%
   round(3)
@@ -618,7 +617,7 @@ my_ggsave("../figs/GL_2.png", fig4)
 # Panama
 
 ```{r PAdat, cache=TRUE, comment=NA}
-load("../data/PA_latent_replusive_model_light2_more_obs.rda")
+load("../data/PA_LMAms_L_more_obs.rda")
 
 summary_PA_LDL <- data.frame(summary(res)$summary)
 
