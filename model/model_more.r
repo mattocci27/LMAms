@@ -9,6 +9,7 @@ options(mc.cores = 4)
 set.seed(5)
 
 n_chains <- 4
+n_rand <- 10
 argv <- commandArgs(trailingOnly = TRUE)
 n_model <- argv[1]
 n_model2 <- paste0("./model/", n_model, ".stan")
@@ -18,13 +19,11 @@ n_warm <- as.numeric(argv[4])
 n_thin <- as.numeric(argv[5])
 obs <- argv[6]
 
-#n_model <- noquote("potLL")
-#n_model <- noquote("sitePL2")
-#n_model <- noquote("LMAm_LMAsLT2")
+#n_model <- noquote("PA_LMAms_L0")
 #n_model2 <- paste0("./model/", n_model, ".stan")
-#data_name <- "GL"
-#n_iter <- 200
-#n_warm <- 100
+#data_name <- "PA"
+#n_iter <- 4
+#n_warm <- 1
 #n_thin <- 1
 #obs <- "rand"
 
@@ -35,6 +34,7 @@ print(paste("n_iter =", n_iter))
 print(paste("n_warm =", n_warm))
 print(paste("n_thin =", n_thin))
 print(paste("n_chains =", n_chains))
+print(str_glue("{str_to_upper(obs)} data"))
 
 if (data_name == "GL") {
   dat <- read_csv("./data/GL_data.csv") %>%
@@ -93,7 +93,7 @@ if (data_name == "GL") {
                    dry = ifelse(dat$site == "PNM", 1 , 0))
 }
 
-rand_dat <- tibble(null_model = 1:3)
+rand_dat <- tibble(null_model = 1:n_rand)
 
 rand_fun <- function(n){
   temp <- data.frame(dat[,1:3],
@@ -127,7 +127,7 @@ rand_fun <- function(n){
 }
 
 rand_dat <- rand_dat %>%
-  mutate(data = map(1:3, rand_fun))
+  mutate(data = map(1:n_rand, rand_fun))
 
 # setwd("~/Dropbox/LES/")
 if (obs == "obs") {
@@ -183,3 +183,4 @@ if (obs == "rand") {
 }
 
 save.image(save_name)
+print(str_glue("Saved `{save_name}`!!"))
