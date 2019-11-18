@@ -9,6 +9,7 @@ options(mc.cores = 5)
 set.seed(123)
 
 n_chains <- 4
+n_rand <- 10
 argv <- commandArgs(trailingOnly = TRUE)
 n_model <- argv[1]
 n_model2 <- paste0("./model/", n_model, ".stan")
@@ -35,6 +36,7 @@ print(paste("n_iter =", n_iter))
 print(paste("n_warm =", n_warm))
 print(paste("n_thin =", n_thin))
 print(paste("n_chains =", n_chains))
+print(str_glue("{str_to_upper(obs)} data"))
 
 if (data_name == "GL") {
   dat <- read_csv("./data/GL_data.csv") %>%
@@ -96,7 +98,7 @@ if (data_name == "GL") {
                    dry = ifelse(dat$site == "PNM", 1 , 0))
 }
 
-rand_dat <- tibble(null_model = 1:3)
+rand_dat <- tibble(null_model = 1:n_rand)
 
 rand_fun <- function(n){
   temp <- data.frame(dat[,1:3],
@@ -133,7 +135,7 @@ rand_fun <- function(n){
 }
 
 rand_dat <- rand_dat %>%
-  mutate(data = map(1:3, rand_fun))
+  mutate(data = map(1:n_rand, rand_fun))
 
 # setwd("~/Dropbox/LES/")
 if (obs == "obs") {
@@ -189,3 +191,4 @@ if (obs == "rand") {
 }
 
 save.image(save_name)
+print(str_glue("Saved `{save_name}`!!"))
