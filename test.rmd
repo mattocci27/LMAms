@@ -1,0 +1,54 @@
+
+```{r, echo = T, message = F}
+library(loo)
+library(rstan)
+library(dplyr)
+library(scales)
+library(cowplot)
+library(ggrepel)
+library(png)
+library(grid)
+library(lazyeval)
+
+settings <- yaml::yaml.load_file("./settings.yml")
+r_vals <- yaml::yaml.load_file("./r_val.yml")
+p_letters <- yaml::yaml.load_file("./letters.yml")
+source("./fig_theme.r")
+
+```
+
+# beta(1, 1) without light
+```{r}
+load("./data/PA_LMAms0_more_obs.rda")
+summary_PA_LDL <- data.frame(summary(res)$summary)
+DT::datatable(summary_PA_LDL %>% round(2))
+```
+
+
+# beta(1, 1)
+```{r}
+load("./data/PA_LMAms_L0_more_obs.rda")
+summary_PA_LDL <- data.frame(summary(res)$summary)
+DT::datatable(summary_PA_LDL %>% round(2))
+```
+
+# beta(2, 2)
+```{r}
+load("./data/PA_LMAms_L02_more_obs.rda")
+summary_PA_LDL <- data.frame(summary(res)$summary)
+DT::datatable(summary_PA_LDL %>% round(2))
+```
+
+# beta(1, 1) and repulsive
+```{r}
+load("./data/PA_LMAms_L_more_obs.rda")
+summary_PA_LDL <- data.frame(summary(res)$summary)
+DT::datatable(summary_PA_LDL %>% round(2))
+```
+
+# beta(2, 2) and repulsive
+```{r}
+load("./data/PA_LMAms_L2_more_obs.rda")
+summary_PA_LDL <- data.frame(summary(res)$summary)
+DT::datatable(summary_PA_LDL %>% round(2))
+```

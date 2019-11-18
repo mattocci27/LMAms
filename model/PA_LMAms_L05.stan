@@ -32,8 +32,8 @@ transformed parameters{
   matrix[N,3] Mu;
   matrix[N,4] X;
   matrix[N,3] L_Sigma;
-  //vector[N] log_LMAp;
-  //vector[N] log_LMAs;
+  vector[N] log_LMAp;
+  vector[N] log_LMAs;
   Z[1,1] = z[1];
   Z[1,2] = z[2];
   Z[1,3] = z[3];
@@ -48,10 +48,9 @@ transformed parameters{
   Z[4,3] = 0;
 
   L_Sigma = rep_matrix(to_row_vector(0.5 * L_sigma .* L_sigma), N);
-  //log_LMAp = log(LMA) + log(p);
-  //log_LMAs = log(LMA) + log(1 - p);
-  //X = append_col(append_col(append_col(intercept, log_LMAp), log_LMAs), leaf);
-  X = append_col(append_col(append_col(intercept, log(LMA) + log(p)), log(LMA) + log(1 - p)), leaf);
+  log_LMAp = log(LMA) + log(p);
+  log_LMAs = log(LMA) + log(1 - p);
+  X = append_col(append_col(append_col(intercept, log_LMAp), log_LMAs), leaf);
   Mu = X * Z - L_Sigma;
 }
 model{
@@ -59,7 +58,7 @@ model{
   am ~ normal(0, 10);
   as ~ normal(0, 10);
   z ~ normal(0, 10);
-  p ~ beta(1, 1);
+  p ~ beta(0.5, 0.5);
   L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
   L_sigma ~ cauchy(0, 5);
   

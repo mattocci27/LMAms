@@ -35,11 +35,118 @@ p1 + theme(axis.title.x =  element_text(size = rel(2)))
 
 sudo scp -r -i ~/.ssh/id_rsa ~/Dropbox/MS/LMAms/data/nature02403-s2.csv mattocci@178.128.60.227:/home/mattocci/moge.csv
 
+sudo scp -r -i ~/.ssh/id_rsa ~/Dropbox/MS/LMAms/data/nature02403-s2.csv mattocci@178.128.60.227:/home/mattocci/moge2.csv
+
 
 # download
 
-sudo scp -r -i ~/.ssh/id_rsa mattocci@178.128.60.227:/home/mattocci/moge.csv ~/mogemoge.csv
+sudo scp -r -i ~/.ssh/id_rsa mattocci@178.128.60.227:/home/mattocci/moge.csv ~/Desktop/mogemoge.csv
+
+sudo scp -r -i ~/.ssh/id_rsa mattocci@178.128.60.227:/home/mattocci/LMAms/data/GLpara.csv ~/Desktop/GLpara.csv
+sudo scp -r -i ~/.ssh/id_rsa mattocci@178.128.60.227:/home/mattocci/LMAms/data/PApara.csv ~/Desktop/PApara.csv
+
+
+sudo scp -r -i ~/.ssh/id_rsa mattocci@178.128.60.227:/home/mattocci/LMAms/fig_code/fig.html ~/Desktop/fig.html
+
+sudo scp -r -i ~/.ssh/id_rsa mattocci@178.128.60.227:/home/mattocci/LMAms/data.zip ~/Desktop/data.zip
+
+
+sudo scp -r -i ~/.ssh/id_rsa mattocci@178.128.60.227:/home/mattocci/LMAms/data/GL_LMAms_obs.rda ~/Dropbox/MS/LMAms/data/GL_LMAms_obs_do.rda 
+
+sudo scp -r -i ~/.ssh/id_rsa mattocci@178.128.60.227:/home/mattocci/LMAms/data/PA_LMAms_L0_more_obs.rda ~/Dropbox/MS/LMAms/data/PA_LMAms_L0_more_obs_do.rda
 
 
 
+sudo scp -r -i ~/.ssh/id_rsa mattocci@206.189.155.122 'cat /home/mattocci/.ssh/id_rsa.pub' | pbcopy
+
+git clone git@github.com:mattocci27/LMAms.git ~/LMAms
+
+GL_LMA_CV_more_obs.rda
+GL_LMA_CV_obs.rda
+GL_LMA_CV_obs_cv.rda
+GL_LMA_more_obs.rda
+GL_LMA_obs.rda
+GL_LMAms_CV_obs.rda
+GL_LMAms_CV_obs_cv.rda
+GL_LMAms_more_obs.rda
+GL_LMAms_obs.rda
+PA_LD_L_CV_obs_cv.rda
+PA_LMA_CV_obs_cv.rda
+PA_LMA_L_CV_obs_cv.rda
+PA_LMAms_CV_obs_cv.rda
+PA_LMAms_L0_more_obs.rda
+PA_LMAms_L_CV_obs_cv.rda
+PA_LMAms_L_more_obs.rda
+PA_LMAms_more_obs.rda
+
+
+
+ssh -i ~/.ssh/id_rsa mattocci@178.128.60.227 'cat /home/mattocci/.ssh/id_rsa.pub' | pbcopy
+
+
+git clone git@github.com:mattocci27/LMAms.git ~/LMAms
+
+git clone git@github.com:mattocci27/LMAms.git ~/ufrc/LMAms
+
+ssh-keygen -t rsa -b 4096 -C "mattocci27@gmail.com"
+
+
+
+ssh -i ma@178.128.60.227 'cat /home/mattocci/.ssh/id_rsa.pub' | pbcopy
+
+```
+
+OBS=obs
+DATA=PA
+for MODEL in PA_LMAms0 PA_LMAms
+
+do
+  for OBS in obs
+  do
+R --vanilla --slave --args ${MODEL} ${DATA} 5000 4000 1 ${OBS} < ./model/model_more.r > ./log/${MODEL}_${OBS}.log
+  done
+done
+
+
+OBS=obs
+DATA=GL
+for MODEL in GL_LMAs
+do
+  for OBS in obs
+  do
+R --vanilla --slave --args ${MODEL} ${DATA} 5000 4000 1 ${OBS} < ./model/model.r > ./log/${MODEL}_${OBS}.log
+  done
+done
+```
+
+
+```{r}
+
+a1 <- 5
+a2 <- 2
+
+x <- seq(1,50, length = 100)
+y <- a1 * x / (a2 + x)
+
+par(mfrow = c(2,2))
+plot(x,y)
+plot(1/x,1/y)
+plot(x,y, log = "xy")
+par(mfrow = c(1,1))
+
+lm(y~x) %>% summary
+lm(log(y)~log(x)) %>% summary
+
+xx <- seq(0, 1, length = 1000)
+par(mfrow = c(2,2))
+yy <- dbeta(xx, 1, 1, log = F)
+plot(xx, yy, type = "l")
+yy <- dbeta(xx, 0.5, 0.5, log = F)
+plot(xx, yy, type = "l")
+yy <- dbeta(xx, 2, 2, log = F)
+plot(xx, yy, type = "l")
+yy <- dbeta(xx, 10, 5, log = F)
+plot(xx, yy, type = "l")
+
+```
 
