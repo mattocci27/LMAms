@@ -1,3 +1,13 @@
+functions{
+  real repulsive_lpdf(real[] gamma, real tau, real nu) {
+    real lik;
+    real tmp;
+    lik = normal_lpdf(gamma[1]| 0, 1) +
+          normal_lpdf(gamma[2]| 0, 1);
+    tmp = -tau * pow(fabs(gamma[2]-gamma[1]), -nu);
+    return lik + tmp;
+  }
+}
 data{
   int<lower=0> N;
   vector<lower=0>[N] LMA;
@@ -23,6 +33,7 @@ parameters{
   vector[8] z;
   real am;
   real<upper=am> as;
+  real<lower=0> tau;
   vector<lower=0, upper=1>[N] p;
   vector<lower=0>[3] L_sigma;
   cholesky_factor_corr[3] L_Omega;
@@ -32,8 +43,8 @@ transformed parameters{
   matrix[N,3] Mu;
   matrix[N,4] X;
   matrix[N,3] L_Sigma;
-  //vector[N] log_LMAp;
-  //vector[N] log_LMAs;
+  vector[N] log_LMAp;
+  vector[N] log_LMAs;
   Z[1,1] = z[1];
   Z[1,2] = z[2];
   Z[1,3] = z[3];
@@ -48,18 +59,20 @@ transformed parameters{
   Z[4,3] = 0;
 
   L_Sigma = rep_matrix(to_row_vector(0.5 * L_sigma .* L_sigma), N);
-  //log_LMAp = log(LMA) + log(p);
-  //log_LMAs = log(LMA) + log(1 - p);
-  //X = append_col(append_col(append_col(intercept, log_LMAp), log_LMAs), leaf);
-  X = append_col(append_col(append_col(intercept, log(LMA) + log(p)), log(LMA) + log(1 - p)), leaf);
+  log_LMAp = log(LMA) + log(p);
+  log_LMAs = log(LMA) + log(1 - p);
+  X = append_col(append_col(append_col(intercept, log_LMAp), log_LMAs), leaf);
   Mu = X * Z - L_Sigma;
 }
 model{
   // priors
-  am ~ normal(0, 10);
-  as ~ normal(0, 10);
+  real a_sm[2];
+  a_sm[1] = am;
+  a_sm[2] = as;
+  a_sm ~ repulsive(tau, 2);
   z ~ normal(0, 10);
-  p ~ beta(1, 1);
+  tau ~ cauchy(0, 2.5);
+  p ~ beta(5, 10);
   L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
   L_sigma ~ cauchy(0, 5);
   

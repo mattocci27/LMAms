@@ -37,12 +37,28 @@ source("../fig_theme.r")
 ```{r GLdat, cache=TRUE, comment=NA}
 
 load("../data/GL_LMAms_obs.rda")
+load("../data/GL_LMA3_obs.rda")
 
 GL_summary <- data.frame(summary(res)$summary) %>%
   round(3)
 DT::datatable(GL_summary)
 GL <- dat
 P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
+P_vec1 <- paste("p[", 1:nrow(GL), ",1]" ,sep = "")
+P_vec2 <- paste("p[", 1:nrow(GL), ",2]" ,sep = "")
+temp_LMAp <- GL_summary[P_vec1, "mean"] * GL$LMA
+temp_LMAs <- GL_summary[P_vec2, "mean"] * GL$LMA
+
+GL <- GL %>%
+  mutate(LMAp = temp_LMAp) %>%
+  mutate(LMAs = temp_LMAs)  %>%
+  mutate(LMAn = LMA - LMAp - LMAs)
+
+par(mfrow = c(3,3))
+plot(Aarea ~ LMAp,log = "xy" GL)
+plot(Aarea ~ LMAs, log = "xy", GL)
+plot(Aarea ~ LMAn, log = "xy", GL)
+
 GL <- GL %>%
   mutate(DE = ifelse(GL$DE == "", "U", as.character(DE)))
 
@@ -616,12 +632,11 @@ my_ggsave("../figs/GL_2.png", fig4)
 # Panama
 
 ```{r PAdat, cache=TRUE, comment=NA}
-#load("../data/PA_LMAms_L5_more_obs.rda")
-load("../data/PA_LMAms_L0_more_obs_do.rda")
+load("../data/PA_LMAms_L0_more_obs.rda")
 
 summary_PA_LDL <- data.frame(summary(res)$summary)
 
-DT::datatable(summary_PA_LDL %>% round(2))
+DT::datatable(summary_PA_LDL)
 
 PA <- dat %>%
   as_tibble %>%
@@ -646,51 +661,6 @@ write_csv(PA, "../data/PA_result.csv")
 
 ```
 
-# Same but purrr
-
-```{r, cache=TRUE, comment=NA, eval = F, echo = F}
-pmat <- extract(res, "p")[[1]]
-
-LMAp <- pmat * PA$LMA
-LMAp <- t(LMAp)
-LMAs <- (1 - pmat)  * PA$LMA
-LMAs <- t(LMAs)
-colnames(LMAp) <- str_c("mcmcLMAp", 1:ncol(LMAp))
-colnames(LMAs) <- str_c("mcmcLMAs", 1:ncol(LMAs))
-LMAp <- as_tibble(LMAp)
-LMAs <- as_tibble(LMAs)
-
-LMAp_tmp <- PA %>%
-  bind_cols(., LMAp) %>%
-  pivot_longer(cols = starts_with("mcmcLMAp"), names_to = "mcmcLMAp", values_to = "val1") 
-
-LMAs_tmp <- PA %>%
-  bind_cols(., LMAs) %>%
-  pivot_longer(cols = starts_with("mcmcLMAs"), names_to = "mcmcLMAs", values_to = "val2") 
-
-PA2 <- LMAp_tmp %>%
-  mutate(val2 = LMAs_tmp$val2) %>%
-  pivot_longer(cols = starts_with("val"), names_to = "LMAps", values_to = "val3") 
-
-LMAres_fun <- function(i, LMA = c("LMAm", "LMAs")) {
-  case_when(
-    LMA == "LMAm" ~  fit_m <- lm(log(LMAs_mat[i,]) ~ log(LMAp_mat[i,])),
-    LMA == "LMAs" ~  fit_m <- lm(log(LMAp_mat[i,]) ~ log(LMAs_mat[i,])),
-   )
-  residuals(fit_m)
-}
-
-GL2 <- GL %>%
-  mutate(res_m = sapply(1:N, LMA_m_fun) %>% apply(., 1, median)) %>%
-  mutate(res_s = sapply(1:N, LMA_s_fun) %>% apply(., 1, median))
-
-GL3 <- GL %>%
-  mutate(res_m = sapply(1:N, LMAres_fun, "LMAm") %>% apply(., 1, median)) %>%
-  mutate(res_s = sapply(1:N, LMAres_fun, "LMAs") %>% apply(., 1, median)) 
-
-
-```
-
 ```{r, cache=TRUE, comment=NA}
 pmat <- extract(res, "p")[[1]]
 before <- proc.time()
@@ -710,15 +680,6 @@ for (i in 1:N) {
   fit_Lm <- lm(log(PA$LL) ~ log(LMAp))
   fit_Ls <- lm(log(PA$LL) ~ log(LMAs))
 
-  #fit_sm <- lm(log(LMAs) ~ log(LMAp) + PA$strata)
-  #fit_ms <- lm(log(LMAp) ~ log(LMAs)+ PA$strata)
-  #fit_Am <- lm(log(PA$Aarea) ~ log(LMAp)+ PA$strata)
-  #fit_As <- lm(log(PA$Aarea) ~ log(LMAs)+ PA$strata)
-  #fit_Rm <- lm(log(PA$Rarea) ~ log(LMAp)+ PA$strata)
-  #fit_Rs <- lm(log(PA$Rarea) ~ log(LMAs)+ PA$strata)
-  #fit_Lm <- lm(log(PA$LL) ~ log(LMAp)+ PA$strata)
-  #fit_Ls <- lm(log(PA$LL) ~ log(LMAs)+ PA$strata)
-
   res_sm  <- residuals(fit_sm)
   res_ms  <- residuals(fit_ms)
   res_Am  <- residuals(fit_Am)
@@ -730,10 +691,10 @@ for (i in 1:N) {
 
   r_Am[i] <- cor(res_ms, res_As) # Aarea-LMAm
   r_As[i] <- cor(res_sm, res_Am) # Aarea-LMAs
-  r_Rm[i] <- cor(res_ms, res_Rs) # Rarea-LMAm
-  r_Rs[i] <- cor(res_sm, res_Rm) # Rarea-LMAs
-  r_Lm[i] <- cor(res_ms, res_Ls) # LL-LMAm
-  r_Ls[i] <- cor(res_sm, res_Lm) # LL-LMAs
+  r_Rm[i] <- cor(res_ms, res_Rs) #
+  r_Rs[i] <- cor(res_sm, res_Rm) #
+  r_Lm[i] <- cor(res_ms, res_Ls) #
+  r_Ls[i] <- cor(res_sm, res_Lm) #
 }
 
 after <- proc.time()
@@ -748,15 +709,6 @@ PA_cor_tbl <- rbind(
   quant_fun(r_Rm)) %>%
   as_tibble
 
-par(mfrow=c(3,2))
-hist(r_As, main = "Aarea-LMAs")
-hist(r_Am, main = "Aarea-LMAm")
-hist(r_Ls, main = "LL-LMAs")
-hist(r_Lm, main = "LL-LMAm")
-hist(r_Rs, main = "Rarea-LMAs")
-hist(r_Rm, main = "Rarea-LMAm")
-par(mfrow=c(1,1))
-
 ```
 
 
@@ -766,20 +718,19 @@ LMAp_mat <- apply(pmat, 1, function(x){PA$LMA * x}) %>% t
 LMAs_mat <- apply(LMAp_mat, 1, function(x){PA$LMA - x}) %>% t
 
 LMA_m_fun <- function(i) {
-    #fit_m <- lm(log(LMAs_mat[i,]) ~ log(LMAp_mat[i,]) + PA$strata)
-    fit_m <- lm(log(LMAs_mat[i,]) ~ log(LMAp_mat[i,]))
+    fit_m <- lm(log(LMAs_mat[i,]) ~ log(LMAp_mat[i,]) + PA$strata)
     residuals(fit_m)
 }
 
 LMA_s_fun <- function(i) {
-    #fit_m <- lm(log(LMAp_mat[i,]) ~ log(LMAs_mat[i,]) + PA$strata)
-    fit_m <- lm(log(LMAp_mat[i,]) ~ log(LMAs_mat[i,]))
+    fit_m <- lm(log(LMAp_mat[i,]) ~ log(LMAs_mat[i,]) + PA$strata)
+    #fit_m <- lm(log(LMAp_mat[i,]) ~ log(LMAs_mat[i,]))
     residuals(fit_m)
 }
 
 res_fun <- function(i, LMA, trait) {
-    #fit_m <- lm(log(trait) ~ log(LMA[i,]) + PA$strata)
-    fit_m <- lm(log(trait) ~ log(LMA[i,]))
+    fit_m <- lm(log(trait) ~ log(LMA[i,]) + PA$strata)
+    #fit_m <- lm(log(trait) ~ log(LMA[i,]))
     residuals(fit_m)
 }
 
