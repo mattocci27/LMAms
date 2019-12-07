@@ -1,0 +1,304 @@
+---
+title: test
+author: Masatoshi Katabuchi
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: true
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE,
+                      warning=FALSE,
+                      message=FALSE)
+```
+
+```{r}
+library(tidyverse)
+library(stringr)
+library(lazyeval)
+library(scales)
+library(cowplot)
+library(ggrepel)
+library(ggthemes)
+library(rstan)
+library(bayesplot)
+
+settings <- yaml::yaml.load_file("./settings.yml")
+r_vals <- yaml::yaml.load_file("./r_val.yml")
+p_letters <- yaml::yaml.load_file("./letters.yml")
+source("./fig_theme.r")
+
+scatter_plt <- function(data) {
+  ggplot(data, aes(x = Val, y = Val2, 
+                               fill = gr, 
+                               col = gr)) +
+  geom_point(shape = 21) +
+  facet_grid(Trait2 ~ LMA,
+             scales = "free",
+             switch = "both", 
+             labeller = labeller(Trait2 = label_parsed,
+                                 LMA = label_parsed
+                                 )) +
+  geom_text(data = lab1, aes(label = lab), 
+            hjust = 0.25,
+            vjust = 0.25,
+            size = 8 * 5/14,
+            show.legend = FALSE,
+            color = "black") +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols) +
+  scale_x_log10(breaks = my_breaks_x(), expand = c(0.1, 0)) +
+  scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
+  xlab("") +
+  ylab("") +
+  theme_LES()
+}
+
+
+
+```
+
+
+```{r GLdat, cache=TRUE, comment=NA}
+load("./data/GL_LMAms_rand.rda")
+GL <- dat
+rm(dat)
+
+get_stancode(rand_res$model[[1]]) %>% cat
+
+hist_dat <- rand_res %>%
+  mutate(rhat = map(summary, ~ .$Rhat)) %>%
+  dplyr::select(null_model, rhat) %>%
+  unnest(cols = c(rhat)) %>%
+  filter(!is.nan(rhat))
+
+
+hist_dat %>%
+  group_by(null_model) %>%
+  summarize(rhat_max = max(rhat))
+
+ggplot(hist_dat, aes(rhat)) +
+  geom_histogram(fill = "grey") +
+  geom_vline(xintercept = 1.1) +
+  facet_wrap(~ null_model, scale = "free") +
+  ggtitle("GLOPNET") +
+  theme_light()
+
+
+plt_fun1 <- function(data, model, summary){
+  GL_summary <- summary
+  dat_r <- data
+  tmp <- model
+
+  GL <- GL %>%
+    mutate(LMA = dat_r$LMA,
+           LL = dat_r$LL,
+           Aarea = dat_r$A,
+           Rarea = dat_r$R) %>%
+    as_tibble %>%
+    mutate(LMAp = GL_summary[str_detect(rownames(GL_summary),
+                              "log_LMAp"), "X50."] %>%  exp) %>%
+    mutate(LMAs = GL_summary[str_detect(rownames(GL_summary),
+                              "log_LMAs\\["), "X50."] %>%  exp)
+
+  GL_dat <- GL %>%
+    gather(LMA, Val,
+           c(LMA, LMAs, LMAp)) %>%
+    gather(Trait, Val2, c(Aarea, Rarea, LL)) %>%
+    as.data.frame %>%
+    mutate(LMA = factor(LMA,
+      labels = c("LMA", "LMAm", "LMAs"))) %>%
+    mutate(LMA = factor(LMA,
+      labels = c("LMA~(~g~m^{-2})", "LMAm~(~g~m^{-2})", "LMAs~(~g~m^{-2})"))) %>%
+    mutate(DE = factor(DE,
+            levels = c("D", "E", "U"))) %>%
+    mutate(gr = factor(DE,
+            labels = c("Deciduous", "Evergreen", "Unclassified"))) %>%
+    mutate(Trait = factor(Trait,
+      levels = c("Aarea", "Rarea", "LL"))) %>%
+    mutate(Trait2 = factor(Trait,
+      labels = c("italic(A)[area]~(~mu~mol~m^{-2}~s^{-1})",
+                 "italic(R)[area]~(~mu~mol~m^{-2}~s^{-1})",
+                 "LL~(months)"
+                 ))) %>%
+    #arrange(desc(gr))
+    arrange(gr) %>% as_tibble
+
+  GL_dat1 <- GL_dat %>%
+    filter(Trait == "LL" |
+           Trait == "Aarea" |
+           Trait == "Rarea")
+
+  lim_GL <- lim_func(GL_dat1 %>% filter(gr != "Rand"), 
+                     trait = "Val")
+  lim_GL2 <- lim_func(GL_dat1 %>% filter(gr != "Rand"),
+                      trait = "Val2", LMA = FALSE)
+
+  lab1 <- tibble(lab = paste("(", letters[1:9], ")", sep = ""),
+                     Val2 = lim_GL2$max_val %>% rep(each = 3),
+                     Val = lim_GL$min_val %>% rep(3),
+                     Val_max = lim_GL$max_val %>% rep(3),
+                     gr = "Evergreen",
+                     r_vals = r_vals$r_vals$GL %>% unlist,
+                     Trait2 = rep(lim_GL2$Trait2, each = 3),
+                     LMA = rep(lim_GL$LMA, 3)
+                     )
+
+  fills <- c("Deciduous" = settings$fills$D,
+            "Evergreen" = settings$fills$E,
+            "Unclassified" = settings$fills$U)
+
+  cols <- c("Deciduous" = settings$colors$D,
+            "Evergreen" = settings$colors$E,
+            "Unclassified" = settings$colors$U)
+
+  GL_plot <- scatter_plt(GL_dat1)
+  GL_plot
+}
+
+plots <- pmap(list(rand_res$data, rand_res$model, rand_res$summary), plt_fun1)
+
+plots %>% 
+  walk(print)
+
+plots[[6]] %>% print
+
+```
+
+
+```{r PAdat, cache=TRUE, comment=NA}
+load("./data/PA_LMAms_L0_more_rand.rda")
+PA <- dat
+rm(dat)
+
+rand_res2 <- rand_res
+
+get_stancode(rand_res2$model[[1]]) %>% cat
+
+hist_dat <- rand_res2 %>%
+  mutate(rhat = map(summary, ~ .$Rhat)) %>%
+  dplyr::select(null_model, rhat) %>%
+  unnest(cols = c(rhat)) %>%
+  filter(!is.nan(rhat))
+
+ggplot(hist_dat, aes(rhat)) +
+  geom_histogram(fill = "grey") +
+  geom_vline(xintercept = 1.1) +
+  facet_wrap(~ null_model, scale = "free") +
+  ggtitle("Panama") +
+  theme_light()
+
+plt_fun <- function(data, model, summary){
+  PA_summary <- summary
+  dat_r <- data
+  tmp <- model
+
+  PA <- PA %>%
+    mutate(LMA = dat_r$LMA,
+           LL = dat_r$LL,
+           Aarea = dat_r$A,
+           Rarea = dat_r$R) %>%
+    as_data_frame %>%
+    mutate(p = PA_summary[
+           str_detect(rownames(PA_summary), "^p"), "X50."]) %>%
+    mutate(LMAp = p * LMA) %>%
+    mutate(LMAs = (1 - p) * LMA) %>%
+    mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
+    mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) %>%
+    mutate(site_strata = paste(site2, strata, sep = "_"))
+
+  PA_dat <- PA %>%
+    gather(LMA, Val,
+           c(LMA, LMAs, LMAp)) %>%
+    gather(Trait, Val2, c(Aarea, Rarea, LL)) %>%
+    as.data.frame %>%
+    mutate(LMA = factor(LMA,
+      labels = c("LMA", "LMAm", "LMAs"))) %>%
+    mutate(LMA = factor(LMA,
+      labels = c("LMA~(~g~m^{-2})", "LMAm~(~g~m^{-2})", "LMAs~(~g~m^{-2})"))) %>%
+    mutate(site_strata = factor(site_strata,
+            levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) %>%
+    mutate(Trait = factor(Trait,
+      levels = c("Aarea", "Rarea", "LL"))) %>%
+    mutate(Trait2 = factor(Trait,
+      labels = c("italic(A)[area]~(~mu~mol~m^{-2}~s^{-1})",
+                 "italic(R)[area]~(~mu~mol~m^{-2}~s^{-1})",
+                 "LL~(months)"
+                 ))) %>%
+    mutate(gr = factor(site_strata,
+      labels = c("Sun-Wet",
+                 "Sun-Dry",
+                 "Shade-Wet",
+                 "Shade-Dry"
+                        ))) %>%
+    #arrange(desc(gr))
+    arrange(gr) %>% as_tibble
+
+  PA_dat1 <- PA_dat %>%
+    filter(Trait == "LL" |
+           Trait == "Aarea" |
+           Trait == "Rarea")
+
+  lim_PA <- lim_func(PA_dat1 %>% filter(site_strata != "Rand"), 
+                     trait = "Val")
+  lim_PA2 <- lim_func(PA_dat1 %>% filter(site_strata != "Rand"),
+                      trait = "Val2", LMA = FALSE)
+
+  lab1 <- tibble(lab = paste("(", letters[1:9], ")", sep = ""),
+                     Val2 = lim_PA2$max_val %>% rep(each = 3),
+                     Val = lim_PA$min_val %>% rep(3),
+                     Val_max = lim_PA$max_val %>% rep(3),
+                     gr = "Sun-Dry",
+                     r_vals = r_vals$r_vals$PA %>% unlist,
+                     Trait2 = rep(lim_PA2$Trait2, each = 3),
+                     LMA = rep(lim_PA$LMA, 3)
+                     )
+
+  fills <- c("Sun-Dry" = settings$fills$sun_dry,
+            "Sun-Wet" = settings$fills$sun_wet,
+            "Shade-Dry" = settings$fills$shade_dry,
+            "Shade-Wet" = settings$fills$shade_wet)
+
+  cols <- c("Sun-Dry" = settings$colors$sun_dry,
+            "Sun-Wet" = settings$colors$sun_wet,
+            "Shade-Dry" = settings$colors$shade_dry,
+            "Shade-Wet" = settings$colors$shade_wet)
+
+
+  scatter_plt <- function(data) {
+    ggplot(data, aes(x = Val, y = Val2, 
+                                 fill = gr, 
+                                 col = gr)) +
+    geom_point(shape = 21) +
+    facet_grid(Trait2 ~ LMA,
+               scales = "free",
+               switch = "both", 
+               labeller = labeller(Trait2 = label_parsed,
+                                   LMA = label_parsed
+                                   )) +
+    geom_text(data = lab1, aes(label = lab), 
+              hjust = 0.25,
+              vjust = 0.25,
+              size = 8 * 5/14,
+              show.legend = FALSE,
+              color = "black") +
+    scale_fill_manual(values = fills) +
+    scale_colour_manual(values = cols) +
+    scale_x_log10(breaks = my_breaks_x(), expand = c(0.1, 0)) +
+    scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
+    xlab("") +
+    ylab("") +
+    theme_LES()
+  }
+
+  PA_plot <- scatter_plt(PA_dat1)
+  PA_plot
+}
+
+plots2 <- pmap(list(rand_res2$data, rand_res2$model, rand_res2$summary), plt_fun)
+
+plots2 %>% 
+  walk(print)
+
+```

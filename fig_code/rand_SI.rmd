@@ -1,0 +1,109 @@
+---
+title: test
+author: Masatoshi Katabuchi
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: true
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE,
+                      warning=FALSE,
+                      message=FALSE)
+```
+
+```{r}
+library(tidyverse)
+library(stringr)
+library(lazyeval)
+library(scales)
+library(cowplot)
+library(ggrepel)
+library(ggthemes)
+library(rstan)
+library(bayesplot)
+
+settings <- yaml::yaml.load_file("../settings.yml")
+r_vals <- yaml::yaml.load_file("../r_val.yml")
+p_letters <- yaml::yaml.load_file("../letters.yml")
+source("../fig_theme.r")
+```
+# GLOPNET
+
+```{r GLdat, cache=TRUE, comment=NA}
+
+load("../data/GL_LMAms_rand.rda")
+GL <- dat
+GLres <- rand_res %>%
+  mutate(dataset = "GLOPNET")
+
+load("../data/PA_LMAms_L0_more_rand.rda")
+PA <- dat
+PAres <- rand_res %>%
+  mutate(dataset = "Panama")
+
+res <- bind_rows(GLres, PAres)
+
+```
+
+## Model
+
+### Data
+
+```{r}
+
+res %>%
+  filter(dataset == "GLOPNET") %>%
+  map(.$model, get_stancode) %>%
+  cat
+
+```
+
+### Panama
+
+```{r}
+get_stancode(rand_res$model[[1]]) %>% 
+  cat
+```
+
+
+## Rhat values
+
+```{r Rhat, cache=TRUE, comment=NA}
+
+hist_dat <- res %>%
+  mutate(rhat = map(summary, ~ .$Rhat)) %>%
+  dplyr::select(null_model, dataset, rhat) %>%
+  unnest(cols = c(rhat)) %>%
+  filter(!is.nan(rhat))
+
+max_rhat <- hist_dat %>%
+  group_by(null_model, dataset) %>%
+  summarize(rhat_max = max(rhat))
+
+hist_dat2 <- full_join(hist_dat, max_rhat, 
+                       by = c("null_model" = "null_model",
+                                     "dataset" = "dataset")) %>%
+  mutate(conv = ifelse(rhat_max > 1.1, "Not-convergent", "Convergent"))
+
+ggplot(hist_dat2, aes(rhat, fill = conv)) +
+  geom_histogram() +
+  geom_vline(xintercept = 1.1) +
+  facet_wrap(dataset ~ null_model, scale = "free") +
+  theme_light()
+
+```
+
+### Check GL result
+
+```{r}
+n <- 6
+GL_summary <- rand_res$summary[[n]]
+dat_r <- rand_res$data[[n]]
+
+tmp <- rand_res$model[[n]]
+
+
+
+```
