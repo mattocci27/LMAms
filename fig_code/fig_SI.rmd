@@ -69,11 +69,11 @@ scatter_plt <- function(data) {
 ```
 
 ```{r}
-load("../data/GL_latent_model_orderd_rand.rda")
+#load("../data/GL_latent_model_orderd_rand.rda")
+load("../data/GL_LMAms_rand.rda")
 
-#2, 3 not converged
-# 1 almost converged
-n <- 2
+# 6 converged
+n <- 6
 GL_summary <- rand_res$summary[[n]]
 dat_r <- rand_res$data[[n]]
 
@@ -186,11 +186,12 @@ my_ggsave("../figs/GL_rand.png", GL_plot)
 
 ![GL](../figs/GL_rand.png)
 
+# PA
 
 ```{r}
-load("../data/PA_latent_replusive_model_light2_more_rand.rda")
+#load("../data/PA_latent_replusive_model_light2_more_rand.rda")
 #load("../data/PA_latent_replusive_model_light2_more_obs.rda")
-#load("../data/PA_m1q_more_rand.rda")
+load("../data/PA_LMAms_L0_more_rand.rda")
 
 #1-3 not converged 1 is relatively ok
 n <- 2
