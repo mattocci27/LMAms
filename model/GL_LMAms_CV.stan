@@ -1,7 +1,5 @@
 data{
   int<lower=0> N;
-  int<lower=0> J;
-  int jj[N];
   vector<lower=0>[N] LMA;
   vector<lower=0>[N] A;
   vector<lower=0>[N] R;
@@ -35,33 +33,6 @@ transformed parameters{
   matrix[N,3] L_Sigma;
   vector[N] log_LMAp;
   vector[N] log_LMAs;
-  vector<lower=0>[J] var_p0;
-  vector<lower=0>[J] var_p;
-  vector<lower=0>[J] lambda;
-  vector<lower=0>[J] phi0;
-  vector<lower=0>[J] phi;
-  vector<lower=0>[J] alpha;
-  vector<lower=0>[J] beta;
-  vector<lower=0>[J] J2;
-  phi0 = [0,0,0]';
-  var_p0 = [0,0,0]';
-  J2 = [0,0,0]';
-  for (n in 1:N) {
-    if(holdout[n] == 0) {
-      phi0[jj[n]] += p[n];
-      J2[jj[n]] += 1;
-    }
-  }
-  phi = phi0 ./ J2;
-  for (n in 1:N) {
-    if(holdout[n] == 0) {
-      var_p0[jj[n]] += (phi[jj[n]] - p[n])^2;
-    }
-  }
-  var_p = var_p0 ./ J2;
-  lambda = phi .* (1 - phi) ./ var_p - 1;
-  alpha = lambda .* phi;
-  beta = lambda .* (1 - phi);
   Z[1,1] = z[1];
   Z[1,2] = z[2];
   Z[1,3] = z[3];
@@ -90,10 +61,6 @@ model{
     if(holdout[i] == 0) {
       p[i] ~ beta(1, 1);
       target += multi_normal_cholesky_lpdf(obs[i,] | Mu[i,], diag_pre_multiply(L_sigma, L_Omega));
-    }
-  // need to estimate p for holdout[n] == 1 
-    else {
-     p[i] ~ beta(alpha[jj[i]], beta[jj[i]]); // alpha and beta will be transformed data
     }
   }
 }

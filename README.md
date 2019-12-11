@@ -1,13 +1,59 @@
-### Codes
+# LMA
 
-#### Data cleaning  
-- `Rscript data_cleaning.r` to produce GL_data.csv and PA_data.csv
+## Codes
 
-#### Analysis
+To clone this repo,
+
+```
+git clone git://github.com/mattocci27/LMAms.git ~/LMAms
+```
+
+### docker
+
+To build docker image
+
+```
+sudo docker build -t mattocci/lma $(pwd)/docker
+```
+
+or pull docker image
+
+```
+sudo docker pull mattocci/docker-lma
+```
+
+```
+# shell
+sudo docker run --rm -it --user rstudio -e PASSWORD=test mattocci/rstan /bin/zsh
+
+# rstudio
+sudo docker run -v $(pwd):/home/rstudio -e PASSWORD=test -p 8787:8787 mattocci/lma
+```
+
+### Data cleaning  
+
+To produce GL_data.csv and PA_data.csv
+
+```
+Rscript data_cleaning.r
+```
+
+### Analysis
+
 - `sh ./model/model_hpc.sh` to run the main analysis on HPC
 - `sh ./sim/sim_hpc.sh` to run the simulation analysis on HPC
 
-#### Results
+
+```
+sh ./sh/model_cv_cloud.sh
+sh ./sh/model_obs_cloud.sh
+sh ./sh/model_rand_cloud.sh
+
+# or 
+sh ./sh/model_all_cloud.sh
+```
+
+### Results
 
 - r2_yml.r
 - res_para.r
@@ -26,43 +72,3 @@ sh render.sh
 
 ```
 
-*07092018*
-
-Problem:
-
-Randomized data still produce some patterns.
-
-Done:
-
-- Different mean for functional group and use Normal.
-- This worked for GL well but not for PA. PA produced clustered patterns.
-
-Doing:
-- Chinking Panama Normal null model again (n_inter = 2000) because the previous model did not converged well. 
-
-
-*07072018*
-
-Problem:
-Randomized data still produce some patterns.
-
-Done:
-
-- Checking the original null model (shuffling A, R and LL across species but maintaining LMA values)
-
-Doing:
-
-- Check Rarea model alone
-
-*07062018*
-
-Problem:
-Randomized data still produce some patterns.
-
-Done:
-
-- New Kikuzawa model. I added an additional scaling parameter (originally it is 0.5). This removed positive covariance between preLL and LL in the randomized datasets but still produced covariances in other trait combinations.
-
-Doing:
-
-- Checking the original null model (shuffling A, R and LL across species but maintaining LMA values)

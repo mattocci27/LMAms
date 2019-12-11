@@ -2,6 +2,7 @@
 *.log
 *.sqlite3
 *.rdata
+*.rstudio
 *.rds
 *.zip
 *.pptx
