@@ -1,7 +1,5 @@
 data{
   int<lower=0> N;
-  int<lower=0> J;
-  int jj[N];
   vector<lower=0>[N] LMA;
   vector<lower=0>[N] A;
   vector<lower=0>[N] R;
