@@ -5,7 +5,10 @@
 To clone this repo,
 
 ```
-git clone git://github.com/mattocci27/LMAms.git ~/LMAms
+
+git clone git@github.com:mattocci27/LMAms.git ~/LMAms
+git checkout -b CV origin/CV
+
 ```
 
 ### docker
@@ -14,6 +17,8 @@ To build docker image
 
 ```
 sudo docker build -t mattocci/lma $(pwd)/docker
+sudo docker run --rm -it --user rstudio -e PASSWORD=test mattocci/rstan /bin/bash
+
 ```
 
 or pull docker image
