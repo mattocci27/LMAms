@@ -42,12 +42,12 @@ transformed parameters{
   Z[2,1] = amas[2];
   Z[2,2] = z[4];
   Z[2,3] = z[5];
-  Z[3,1] = 0;
-  Z[3,2] = 0;
-  Z[3,3] = z[6];
   Z[3,1] = amas[1];
-  Z[4,2] = z[7];
-  Z[4,3] = 0;
+  Z[3,2] = z[6];
+  Z[3,3] = 0;
+  Z[4,1] = 0;
+  Z[4,2] = 0;
+  Z[4,3] = z[7];
   Z[5,1] = 0;
   Z[5,2] = z[8];
   Z[5,3] = 0;
@@ -62,13 +62,13 @@ model{
   // priors
   z ~ normal(0, 10);
   amas ~ normal(0, 10);
+  p ~ beta(1, 1);
   L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
   L_sigma ~ cauchy(0, 5);
 
   // model
   for (i in 1:N) {
     if(holdout[i] == 0) {
-      p[i] ~ beta(1, 1);
       target += multi_normal_cholesky_lpdf(obs[i,] | Mu[i,], diag_pre_multiply(L_sigma, L_Omega));
     }
   }
