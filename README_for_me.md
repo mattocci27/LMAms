@@ -6,11 +6,20 @@ To clone this repo,
 
 ```
 
+cat /var/log/daemon.log
+
+ssh-keygen -t rsa -b 4096 -C "mattocci"
 
 git clone --recurse-submodules git@github.com:mattocci27/LMAms.git ~/LMAms
-cd ~/LMAms
 git checkout -b CV origin/CV
 git submodule update --init --recursive
+
+
+cd ~/dotfiles
+sh dropbox.sh link
+sh dropbox.sh setup
+
+~/bin/dropbox.py status
 
 ```
 
@@ -66,8 +75,22 @@ sh ./sh/model_rand_cloud.sh
 sh ./sh/model_all_cloud.sh
 ```
 
+#### Outside of docker
+
+- move rda files to dropbox
+
+```
+sh ./sh/mv_dat.sh local_to_dropbox
+```
+
 
 ### Results
+
+- move rda files from dropbox to LMAms dir
+
+```
+sh ./sh/mv_dat.sh dropbox_to_local
+```
 
 - r2_yml.r
 - res_para.r
