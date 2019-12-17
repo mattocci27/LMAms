@@ -5,7 +5,7 @@
 To clone this repo,
 
 ```
-
+sudo docker container stats
 cat /var/log/daemon.log
 
 ssh-keygen -t rsa -b 4096 -C "mattocci"
@@ -30,7 +30,6 @@ To build docker image
 ```
 sudo docker build -t mattocci/docker-lma $(pwd)/docker
 sudo docker run --rm -it --user rstudio -e PASSWORD=test mattocci/rstan /bin/bash
-
 ```
 
 or pull docker image
@@ -44,6 +43,9 @@ sudo docker pull mattocci/docker-lma
 sudo docker run --rm -it --user rstudio -e PASSWORD=test mattocci/lma /bin/bash
 
 sudo docker run --rm -it -v $(pwd):/home/rstudio --user rstudio -e PASSWORD=test mattocci/docker-lma /bin/bash
+
+
+sudo docker run --rm -it -v $(pwd):/home/rstudio --user rstudio -e PASSWORD=test mattocci/test /bin/bash
 
 # rstudio
 sudo docker run -v $(pwd):/home/rstudio -e PASSWORD=test -p 8787:8787 mattocci/docker-lma
@@ -62,14 +64,13 @@ Rscript data_cleaning.r
 - `sh ./model/model_hpc.sh` to run the main analysis on HPC
 - `sh ./sim/sim_hpc.sh` to run the simulation analysis on HPC
 
-
 #### Docker
 
 ```
 
-sh ./sh/model_cv_cloud.sh
-sh ./sh/model_obs_cloud.sh
-sh ./sh/model_rand_cloud.sh
+sh nohup ./sh/model_cv_cloud.sh &
+sh nohup ./sh/model_obs_cloud.sh &
+sh nohup ./sh/model_rand_cloud.sh &
 
 # or 
 sh ./sh/model_all_cloud.sh
