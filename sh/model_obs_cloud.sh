@@ -11,3 +11,4 @@ for MODEL in PA_LMAms_L0 PA_LMAms0
 do
     nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/model_more.r > ./log/${DATA}_${MODEL}_${OBS}.log &
 done
+wait
