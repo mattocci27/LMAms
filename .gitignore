@@ -16,6 +16,7 @@
 *.html
 *.docx*
 *.ipynb*
+*.Rhistory
 /ms/comments
 *_cache
 *_files
@@ -26,5 +27,4 @@
 *.bib
 *.DS_Store
 README_for_me.md
-
-
+/gce
