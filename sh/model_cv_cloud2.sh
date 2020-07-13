@@ -6,14 +6,7 @@ do
   #
   echo "${MODEL}, ${DATA}, ${OBS}"
   export MODEL DATA OBS
-  nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/k_fold.r > ./log/${MODEL}_${OBS}.log &
+  nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/k_fold.r > ./log/${MODEL}_${OBS}.log && python line.py "$DATA $OBS $MODEL done!" &
 
   sleep 1 # pause to be kind to the scheduler
 done
-wait
-
-python line.py "host - ${HOSTNAME}: MCMC for CV done!"
-
-sh ./sh/mv_dat.sh local_to_dropbox
-
-python line.py "${HOSTNAME}: moved local files to Dropbox!"

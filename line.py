@@ -4,7 +4,7 @@ import requests
 
 def main():
     url = "https://notify-api.line.me/api/notify"
-    token = "PUT_YOUR_TOKEN"
+    token = "4bT71vw5VOD6zqALOLKU4TAkratb88uwLYZyTmL0NEC"
     headers = {"Authorization" : "Bearer "+ token}
 
     message =  sys.argv[1]

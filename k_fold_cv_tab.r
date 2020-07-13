@@ -3,6 +3,7 @@ library(rstan)
 library(stringr)
 library(loo)
 rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores())
 
 get_elpd <- function(ss){
   ee <- extract_log_lik_K(ss, holdout_10)
@@ -22,7 +23,7 @@ load("./data/GL_LMA_CV_obs_cv.rda")
 ee <- get_elpd(ss)
 
 
-GL_tb <- data_frame(LMA = c("LMA", "LMAms"),
+GL_tb <- tibble(LMA = c("LMA", "LMAms"),
            elpd = c(ee, ee2),
            N = c(N, N2)) %>%
   mutate(site = "GLOPNET")
@@ -32,6 +33,7 @@ write.csv(GL_tb, row.names = F, "./data/GL_elpd.csv")
 load("./data/PA_LMA_CV_obs_cv.rda")
 
 ee <- get_elpd(ss)
+N1 <- N
 
 load("./data/PA_LMA_L_CV_obs_cv.rda")
 
@@ -52,7 +54,7 @@ ee5 <- get_elpd(ss)
 N5 <- N
 
 
-PA_tb <- data_frame(LMA = c("LMA",
+PA_tb <- tibble(LMA = c("LMA",
                             "LMA_L",
                             "LMAms",
                             "LMAms_L",
@@ -62,7 +64,7 @@ PA_tb <- data_frame(LMA = c("LMA",
                     ee3,
                     ee4,
                     ee5),
-           N = c(N,
+           N = c(N1,
                     N2,
                     N3,
                     N4,

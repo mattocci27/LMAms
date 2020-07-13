@@ -10,7 +10,7 @@ dd <- data.frame(Narea = 10^d$`log Narea`,
         summarize(Narea = mean(Narea, na.omit = T),
             Parea = mean(Parea, na.omit = T))
 
-load("./data/GL_m0_obs.rda")
+load("./data/GL_LMAms_more_obs.rda")
 resGL <- res
 GL_summary <- data.frame(summary(res)$summary)
 GL <- dat
