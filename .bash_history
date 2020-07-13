@@ -14,3 +14,27 @@ ls
 time sh .sh/model_all_cloud2.sh
 time sh ./sh/model_all_cloud2.sh
 time sh ./sh/model_all_cloud.sh
+ls
+cd
+ls
+python line.py "thinkpad"
+python3 line.py "thinkpad"
+nvim line.py
+:q
+python line.py "hello"
+python line.py "hello" 
+python line.py "hello"
+ls
+cd
+ls
+python line.py "hello"
+npm install nodemailer     requestnpm install nodemailer  
+ls
+cd
+ls
+ls -l
+python line.py "hello"
+npm install nodemailer \
+ls
+cd
+ls
