@@ -66,8 +66,6 @@ To build docker image
 ```
 
 docker run --rm -it mattocci/lma:local /bin/bash
-
-
 time docker build -t mattocci/lma:local $(pwd)/test
 time docker build -t mattocci/lma:local $(pwd)/docker-local
 docker run --rm -it -v $(pwd):/home/rstudio/LMAms -u rstudio mattocci/lma:local /bin/bash
