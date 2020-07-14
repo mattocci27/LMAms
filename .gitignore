@@ -74,3 +74,4 @@ ms/cache/
 node_modules/
 *.aux
 *.pdf
+*.sif
