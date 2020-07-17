@@ -1,0 +1,175 @@
+[1] "Model: pot"
+[1] "Data: GL"
+[1] "n_iter = 2000"
+[1] "n_warm = 1000"
+[1] "n_thin = 2"
+[1] "n_chains = 3"
+In file included from file12e0012790c08.cpp:8:
+In file included from /usr/local/lib/R/3.4/site-library/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /usr/local/lib/R/3.4/site-library/StanHeaders/include/stan/math.hpp:4:
+In file included from /usr/local/lib/R/3.4/site-library/StanHeaders/include/stan/math/rev/mat.hpp:4:
+In file included from /usr/local/lib/R/3.4/site-library/StanHeaders/include/stan/math/rev/core.hpp:12:
+In file included from /usr/local/lib/R/3.4/site-library/StanHeaders/include/stan/math/rev/core/gevv_vvv_vari.hpp:5:
+In file included from /usr/local/lib/R/3.4/site-library/StanHeaders/include/stan/math/rev/core/var.hpp:7:
+In file included from /usr/local/lib/R/3.4/site-library/BH/include/boost/math/tools/config.hpp:13:
+In file included from /usr/local/lib/R/3.4/site-library/BH/include/boost/config.hpp:39:
+/usr/local/lib/R/3.4/site-library/BH/include/boost/config/compiler/clang.hpp:200:11: warning: 'BOOST_NO_CXX11_RVALUE_REFERENCES' macro redefined [-Wmacro-redefined]
+#  define BOOST_NO_CXX11_RVALUE_REFERENCES
+          ^
+<command line>:6:9: note: previous definition is here
+#define BOOST_NO_CXX11_RVALUE_REFERENCES 1
+        ^
+1 warning generated.
+
+SAMPLING FOR MODEL '8392291beafbbfd101e9397770772536' NOW (CHAIN 1).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: multi_normal_cholesky_lpdf: Location parameter[3] is nan, but must be finite!  (in 'model12e0018bad6ff_8392291beafbbfd101e9397770772536' at line 29)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+validate transformed params: mu3 is -28.756, but must be greater than or equal to 0
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: multi_normal_cholesky_lpdf: Location parameter[3] is nan, but must be finite!  (in 'model12e0018bad6ff_8392291beafbbfd101e9397770772536' at line 29)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: multi_normal_cholesky_lpdf: Location parameter[3] is nan, but must be finite!  (in 'model12e0018bad6ff_8392291beafbbfd101e9397770772536' at line 29)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+validate transformed params: mu3 is -78.3297, but must be greater than or equal to 0
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+validate transformed params: mu3 is -108.704, but must be greater than or equal to 0
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: multi_normal_cholesky_lpdf: Location parameter[3] is nan, but must be finite!  (in 'model12e0018bad6ff_8392291beafbbfd101e9397770772536' at line 29)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+validate transformed params: mu3 is -123.093, but must be greater than or equal to 0
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: multi_normal_cholesky_lpdf: Location parameter[3] is nan, but must be finite!  (in 'model12e0018bad6ff_8392291beafbbfd101e9397770772536' at line 29)
+
+
+Gradient evaluation took 0.00078 seconds
+1000 transitions using 10 leapfrog steps per transition would take 7.8 seconds.
+Adjust your expectations accordingly!
+
+
+WARNING: No variance estimation is
+         performed for num_warmup < 20
+
+Iteration: 1 / 1 [100%]  (Sampling)
+
+ Elapsed Time: 2e-06 seconds (Warm-up)
+               0.00212 seconds (Sampling)
+               0.002122 seconds (Total)
+
+
+SAMPLING FOR MODEL '8392291beafbbfd101e9397770772536' NOW (CHAIN 1).
+
+Gradient evaluation took 0.000947 seconds
+1000 transitions using 10 leapfrog steps per transition would take 9.47 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '8392291beafbbfd101e9397770772536' NOW (CHAIN 2).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+validate transformed params: mu3 is -209.106, but must be greater than or equal to 0
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+validate transformed params: mu3 is -209.263, but must be greater than or equal to 0
+
+Gradient evaluation took 0.000974 seconds
+1000 transitions using 10 leapfrog steps per transition would take 9.74 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '8392291beafbbfd101e9397770772536' NOW (CHAIN 3).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: multi_normal_cholesky_lpdf: Location parameter[3] is nan, but must be finite!  (in 'model12e0018bad6ff_8392291beafbbfd101e9397770772536' at line 29)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+validate transformed params: mu3 is -66.0351, but must be greater than or equal to 0
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+validate transformed params: mu3 is -71.949, but must be greater than or equal to 0
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+validate transformed params: mu3 is -177.696, but must be greater than or equal to 0
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: multi_normal_cholesky_lpdf: Location parameter[3] is nan, but must be finite!  (in 'model12e0018bad6ff_8392291beafbbfd101e9397770772536' at line 29)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+validate transformed params: mu3 is -88.0346, but must be greater than or equal to 0
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+validate transformed params: mu3 is -13.9806, but must be greater than or equal to 0
+
+Gradient evaluation took 0.000957 seconds
+1000 transitions using 10 leapfrog steps per transition would take 9.57 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 140.975 seconds (Warm-up)
+               40.7651 seconds (Sampling)
+               181.741 seconds (Total)
+
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 143.666 seconds (Warm-up)
+               41.1511 seconds (Sampling)
+               184.817 seconds (Total)
+
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 146.721 seconds (Warm-up)
+               44.4826 seconds (Sampling)
+               191.204 seconds (Total)
+

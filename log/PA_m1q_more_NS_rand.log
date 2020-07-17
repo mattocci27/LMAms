@@ -1,0 +1,2700 @@
+[1] "Model: m1q_more_NS"
+[1] "Model dir: ./model/m1q_more_NS.stan"
+[1] "Data: PA"
+[1] "n_iter = 1000"
+[1] "n_warm = 500"
+[1] "n_thin = 1"
+[1] "n_chains = 4"
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 1).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[118] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000427 seconds
+1000 transitions using 10 leapfrog steps per transition would take 4.27 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 2).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[69] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000474 seconds
+1000 transitions using 10 leapfrog steps per transition would take 4.74 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 3).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[19] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000984 seconds
+1000 transitions using 10 leapfrog steps per transition would take 9.84 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 4).
+
+Gradient evaluation took 0.000431 seconds
+1000 transitions using 10 leapfrog steps per transition would take 4.31 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 36.5936 seconds (Warm-up)
+               18.7748 seconds (Sampling)
+               55.3684 seconds (Total)
+
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 37.6413 seconds (Warm-up)
+               26.3906 seconds (Sampling)
+               64.0319 seconds (Total)
+
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 47.9345 seconds (Warm-up)
+               21.4833 seconds (Sampling)
+               69.4178 seconds (Total)
+
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 158.91 seconds (Warm-up)
+               11.4691 seconds (Sampling)
+               170.379 seconds (Total)
+
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 1).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[71] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000357 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.57 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 2).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[71] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[71] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[71] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[24] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.00036 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.6 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 3).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[71] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[71] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[24] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[71] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000378 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.78 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 4).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[71] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000348 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.48 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 54.551 seconds (Warm-up)
+               17.8374 seconds (Sampling)
+               72.3884 seconds (Total)
+
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 79.0986 seconds (Warm-up)
+               10.3008 seconds (Sampling)
+               89.3994 seconds (Total)
+
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 89.8946 seconds (Warm-up)
+               63.7056 seconds (Sampling)
+               153.6 seconds (Total)
+
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 122.963 seconds (Warm-up)
+               418.122 seconds (Sampling)
+               541.085 seconds (Total)
+
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 1).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[102] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000402 seconds
+1000 transitions using 10 leapfrog steps per transition would take 4.02 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 2).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[71] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[102] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[102] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000367 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.67 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 3).
+
+Gradient evaluation took 0.000396 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.96 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 4).
+
+Gradient evaluation took 0.000375 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.75 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 25.4331 seconds (Warm-up)
+               16.8509 seconds (Sampling)
+               42.2841 seconds (Total)
+
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 35.5152 seconds (Warm-up)
+               26.8071 seconds (Sampling)
+               62.3223 seconds (Total)
+
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 40.3551 seconds (Warm-up)
+               24.0394 seconds (Sampling)
+               64.3946 seconds (Total)
+
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 46.8735 seconds (Warm-up)
+               41.9545 seconds (Sampling)
+               88.828 seconds (Total)
+
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 1).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[105] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000362 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.62 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 2).
+
+Gradient evaluation took 0.000369 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.69 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 3).
+
+Gradient evaluation took 0.000338 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.38 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 4).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[105] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000353 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.53 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 38.0726 seconds (Warm-up)
+               13.1622 seconds (Sampling)
+               51.2348 seconds (Total)
+
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 27.9996 seconds (Warm-up)
+               32.2297 seconds (Sampling)
+               60.2293 seconds (Total)
+
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 51.1113 seconds (Warm-up)
+               11.669 seconds (Sampling)
+               62.7803 seconds (Total)
+
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 57.9773 seconds (Warm-up)
+               17.8395 seconds (Sampling)
+               75.8168 seconds (Total)
+
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 1).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[71] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[19] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000363 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.63 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 2).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[71] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[19] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[19] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000479 seconds
+1000 transitions using 10 leapfrog steps per transition would take 4.79 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 3).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[19] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[19] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[71] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000423 seconds
+1000 transitions using 10 leapfrog steps per transition would take 4.23 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 4).
+
+Gradient evaluation took 0.00034 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.4 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 38.6553 seconds (Warm-up)
+               14.0846 seconds (Sampling)
+               52.7399 seconds (Total)
+
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 34.8045 seconds (Warm-up)
+               40.8303 seconds (Sampling)
+               75.6348 seconds (Total)
+
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 55.6375 seconds (Warm-up)
+               52.3599 seconds (Sampling)
+               107.997 seconds (Total)
+
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 114.308 seconds (Warm-up)
+               19.6927 seconds (Sampling)
+               134.001 seconds (Total)
+
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 1).
+
+Gradient evaluation took 0.000398 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.98 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 2).
+
+Gradient evaluation took 0.000487 seconds
+1000 transitions using 10 leapfrog steps per transition would take 4.87 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 3).
+
+Gradient evaluation took 0.000367 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.67 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 4).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[34] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[34] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.00037 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.7 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 56.8153 seconds (Warm-up)
+               12.5728 seconds (Sampling)
+               69.388 seconds (Total)
+
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 43.6958 seconds (Warm-up)
+               25.0404 seconds (Sampling)
+               68.7361 seconds (Total)
+
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 47.4356 seconds (Warm-up)
+               26.7375 seconds (Sampling)
+               74.1731 seconds (Total)
+
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 62.9634 seconds (Warm-up)
+               19.3254 seconds (Sampling)
+               82.2888 seconds (Total)
+
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 1).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[41] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000454 seconds
+1000 transitions using 10 leapfrog steps per transition would take 4.54 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 2).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[28] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000601 seconds
+1000 transitions using 10 leapfrog steps per transition would take 6.01 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 3).
+
+Gradient evaluation took 0.000476 seconds
+1000 transitions using 10 leapfrog steps per transition would take 4.76 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 4).
+
+Gradient evaluation took 0.000447 seconds
+1000 transitions using 10 leapfrog steps per transition would take 4.47 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 83.9105 seconds (Warm-up)
+               15.5405 seconds (Sampling)
+               99.4509 seconds (Total)
+
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 55.1007 seconds (Warm-up)
+               126.998 seconds (Sampling)
+               182.099 seconds (Total)
+
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 83.6769 seconds (Warm-up)
+               134.026 seconds (Sampling)
+               217.702 seconds (Total)
+
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 375.6 seconds (Warm-up)
+               278.965 seconds (Sampling)
+               654.565 seconds (Total)
+
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 1).
+
+Gradient evaluation took 0.000314 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.14 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 2).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[65] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000303 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.03 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 3).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[65] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000314 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.14 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 4).
+
+Gradient evaluation took 0.000317 seconds
+1000 transitions using 10 leapfrog steps per transition would take 3.17 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 43.2777 seconds (Warm-up)
+               14.8649 seconds (Sampling)
+               58.1426 seconds (Total)
+
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 39.7817 seconds (Warm-up)
+               20.3412 seconds (Sampling)
+               60.1229 seconds (Total)
+
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 61.0645 seconds (Warm-up)
+               10.4961 seconds (Sampling)
+               71.5607 seconds (Total)
+
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 39.3034 seconds (Warm-up)
+               37.5804 seconds (Sampling)
+               76.8838 seconds (Total)
+
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 1).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[34] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.00058 seconds
+1000 transitions using 10 leapfrog steps per transition would take 5.8 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 2).
+
+Gradient evaluation took 0.000618 seconds
+1000 transitions using 10 leapfrog steps per transition would take 6.18 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 3).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[34] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[34] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000617 seconds
+1000 transitions using 10 leapfrog steps per transition would take 6.17 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 4).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[34] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[34] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000634 seconds
+1000 transitions using 10 leapfrog steps per transition would take 6.34 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 50.7388 seconds (Warm-up)
+               32.7491 seconds (Sampling)
+               83.4879 seconds (Total)
+
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 47.1691 seconds (Warm-up)
+               40.5977 seconds (Sampling)
+               87.7668 seconds (Total)
+
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 69.8742 seconds (Warm-up)
+               23.2083 seconds (Sampling)
+               93.0825 seconds (Total)
+
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 76.9109 seconds (Warm-up)
+               20.1186 seconds (Sampling)
+               97.0295 seconds (Total)
+
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 1).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[6] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[6] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[6] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[6] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Initialization between (-2, 2) failed after 100 attempts. 
+ Try specifying initial values, reducing ranges of constrained values, or reparameterizing the model.
+[1] "Error in sampler$call_sampler(args_list[[i]]) : Initialization failed."
+[2] "In addition: There were 27 warnings (use warnings() to see them)"      
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 2).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[6] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[6] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[6] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Initialization between (-2, 2) failed after 100 attempts. 
+ Try specifying initial values, reducing ranges of constrained values, or reparameterizing the model.
+[1] "Error in sampler$call_sampler(args_list[[i]]) : Initialization failed."
+[2] "In addition: There were 27 warnings (use warnings() to see them)"      
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 3).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[6] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[6] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[6] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Initialization between (-2, 2) failed after 100 attempts. 
+ Try specifying initial values, reducing ranges of constrained values, or reparameterizing the model.
+[1] "Error in sampler$call_sampler(args_list[[i]]) : Initialization failed."
+[2] "In addition: There were 27 warnings (use warnings() to see them)"      
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 4).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[6] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[6] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[6] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[6] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[45] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[17] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Initialization between (-2, 2) failed after 100 attempts. 
+ Try specifying initial values, reducing ranges of constrained values, or reparameterizing the model.
+[1] "Error in sampler$call_sampler(args_list[[i]]) : Initialization failed."
+[2] "In addition: There were 27 warnings (use warnings() to see them)"      
+[[1]]
+Stan model 'm1q_more_NS' does not contain samples.
+
+[[2]]
+Stan model 'm1q_more_NS' does not contain samples.
+
+[[3]]
+Stan model 'm1q_more_NS' does not contain samples.
+
+[[4]]
+Stan model 'm1q_more_NS' does not contain samples.
+
+Stan model 'm1q_more_NS' does not contain samples.

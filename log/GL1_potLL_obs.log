@@ -1,0 +1,116 @@
+[1] 8
+[1] "load sim_data.r"
+[1] "Model: potLL"
+[1] "Data: GL1"
+[1] "n_iter = 2000"
+[1] "n_warm = 1000"
+[1] "n_thin = 20"
+[1] "n_chains = 3"
+In file included from file9f6c1aaf66f2.cpp:8:
+In file included from /usr/local/lib/R/3.4/site-library/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /usr/local/lib/R/3.4/site-library/StanHeaders/include/stan/math.hpp:4:
+In file included from /usr/local/lib/R/3.4/site-library/StanHeaders/include/stan/math/rev/mat.hpp:4:
+In file included from /usr/local/lib/R/3.4/site-library/StanHeaders/include/stan/math/rev/core.hpp:12:
+In file included from /usr/local/lib/R/3.4/site-library/StanHeaders/include/stan/math/rev/core/gevv_vvv_vari.hpp:5:
+In file included from /usr/local/lib/R/3.4/site-library/StanHeaders/include/stan/math/rev/core/var.hpp:7:
+In file included from /usr/local/lib/R/3.4/site-library/BH/include/boost/math/tools/config.hpp:13:
+In file included from /usr/local/lib/R/3.4/site-library/BH/include/boost/config.hpp:39:
+/usr/local/lib/R/3.4/site-library/BH/include/boost/config/compiler/clang.hpp:200:11: warning: 'BOOST_NO_CXX11_RVALUE_REFERENCES' macro redefined [-Wmacro-redefined]
+#  define BOOST_NO_CXX11_RVALUE_REFERENCES
+          ^
+<command line>:6:9: note: previous definition is here
+#define BOOST_NO_CXX11_RVALUE_REFERENCES 1
+        ^
+1 warning generated.
+
+SAMPLING FOR MODEL 'e77f923bf7ee087035941827b1097afa' NOW (CHAIN 1).
+
+Gradient evaluation took 0.000401 seconds
+1000 transitions using 10 leapfrog steps per transition would take 4.01 seconds.
+Adjust your expectations accordingly!
+
+
+WARNING: No variance estimation is
+         performed for num_warmup < 20
+
+Iteration: 1 / 1 [100%]  (Sampling)
+
+ Elapsed Time: 1e-06 seconds (Warm-up)
+               0.000999 seconds (Sampling)
+               0.001 seconds (Total)
+
+
+SAMPLING FOR MODEL 'e77f923bf7ee087035941827b1097afa' NOW (CHAIN 1).
+
+Gradient evaluation took 0.000538 seconds
+1000 transitions using 10 leapfrog steps per transition would take 5.38 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'e77f923bf7ee087035941827b1097afa' NOW (CHAIN 2).
+
+Gradient evaluation took 0.000525 seconds
+1000 transitions using 10 leapfrog steps per transition would take 5.25 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'e77f923bf7ee087035941827b1097afa' NOW (CHAIN 3).
+
+Gradient evaluation took 0.000514 seconds
+1000 transitions using 10 leapfrog steps per transition would take 5.14 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 65.7995 seconds (Warm-up)
+               39.5857 seconds (Sampling)
+               105.385 seconds (Total)
+
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 65.9886 seconds (Warm-up)
+               42.792 seconds (Sampling)
+               108.781 seconds (Total)
+
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 68.55 seconds (Warm-up)
+               43.6638 seconds (Sampling)
+               112.214 seconds (Total)
+

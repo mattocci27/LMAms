@@ -1,0 +1,279 @@
+[1] "Model: m1q_more_NS"
+[1] "Model dir: ./model/m1q_more_NS.stan"
+[1] "Data: PA"
+[1] "n_iter = 2000"
+[1] "n_warm = 1000"
+[1] "n_thin = 1"
+[1] "n_chains = 4"
+clang: warning: argument unused during compilation: '-arch x86_64'
+In file included from file231a4aafc48.cpp:8:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core.hpp:14:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core/matrix_vari.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat/fun/Eigen_NumTraits.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Dense:1:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Core:531:
+/home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/src/Core/util/ReenableStupidWarnings.h:10:30: warning: pragma diagnostic pop could not pop, no matching push [-Wunknown-pragmas]
+    #pragma clang diagnostic pop
+                             ^
+In file included from file231a4aafc48.cpp:8:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core.hpp:14:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core/matrix_vari.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat/fun/Eigen_NumTraits.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Dense:2:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/LU:47:
+/home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/src/Core/util/ReenableStupidWarnings.h:10:30: warning: pragma diagnostic pop could not pop, no matching push [-Wunknown-pragmas]
+    #pragma clang diagnostic pop
+                             ^
+In file included from file231a4aafc48.cpp:8:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core.hpp:14:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core/matrix_vari.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat/fun/Eigen_NumTraits.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Dense:3:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Cholesky:12:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Jacobi:29:
+/home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/src/Core/util/ReenableStupidWarnings.h:10:30: warning: pragma diagnostic pop could not pop, no matching push [-Wunknown-pragmas]
+    #pragma clang diagnostic pop
+                             ^
+In file included from file231a4aafc48.cpp:8:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core.hpp:14:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core/matrix_vari.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat/fun/Eigen_NumTraits.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Dense:3:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Cholesky:43:
+/home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/src/Core/util/ReenableStupidWarnings.h:10:30: warning: pragma diagnostic pop could not pop, no matching push [-Wunknown-pragmas]
+    #pragma clang diagnostic pop
+                             ^
+In file included from file231a4aafc48.cpp:8:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core.hpp:14:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core/matrix_vari.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat/fun/Eigen_NumTraits.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Dense:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/QR:17:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Householder:27:
+/home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/src/Core/util/ReenableStupidWarnings.h:10:30: warning: pragma diagnostic pop could not pop, no matching push [-Wunknown-pragmas]
+    #pragma clang diagnostic pop
+                             ^
+In file included from file231a4aafc48.cpp:8:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core.hpp:14:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core/matrix_vari.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat/fun/Eigen_NumTraits.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Dense:5:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/SVD:48:
+/home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/src/Core/util/ReenableStupidWarnings.h:10:30: warning: pragma diagnostic pop could not pop, no matching push [-Wunknown-pragmas]
+    #pragma clang diagnostic pop
+                             ^
+In file included from file231a4aafc48.cpp:8:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core.hpp:14:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core/matrix_vari.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat/fun/Eigen_NumTraits.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Dense:6:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Geometry:58:
+/home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/src/Core/util/ReenableStupidWarnings.h:10:30: warning: pragma diagnostic pop could not pop, no matching push [-Wunknown-pragmas]
+    #pragma clang diagnostic pop
+                             ^
+In file included from file231a4aafc48.cpp:8:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core.hpp:14:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core/matrix_vari.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat/fun/Eigen_NumTraits.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/prim/mat/fun/Eigen.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Dense:7:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Eigenvalues:58:
+/home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/src/Core/util/ReenableStupidWarnings.h:10:30: warning: pragma diagnostic pop could not pop, no matching push [-Wunknown-pragmas]
+    #pragma clang diagnostic pop
+                             ^
+In file included from file231a4aafc48.cpp:8:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat.hpp:12:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/prim/mat.hpp:83:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/prim/mat/fun/csr_extract_u.hpp:6:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Sparse:26:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/SparseCore:66:
+/home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/src/Core/util/ReenableStupidWarnings.h:10:30: warning: pragma diagnostic pop could not pop, no matching push [-Wunknown-pragmas]
+    #pragma clang diagnostic pop
+                             ^
+In file included from file231a4aafc48.cpp:8:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat.hpp:12:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/prim/mat.hpp:83:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/prim/mat/fun/csr_extract_u.hpp:6:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Sparse:27:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/OrderingMethods:71:
+/home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/src/Core/util/ReenableStupidWarnings.h:10:30: warning: pragma diagnostic pop could not pop, no matching push [-Wunknown-pragmas]
+    #pragma clang diagnostic pop
+                             ^
+In file included from file231a4aafc48.cpp:8:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat.hpp:12:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/prim/mat.hpp:83:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/prim/mat/fun/csr_extract_u.hpp:6:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Sparse:29:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/SparseCholesky:43:
+/home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/src/Core/util/ReenableStupidWarnings.h:10:30: warning: pragma diagnostic pop could not pop, no matching push [-Wunknown-pragmas]
+    #pragma clang diagnostic pop
+                             ^
+In file included from file231a4aafc48.cpp:8:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat.hpp:12:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/prim/mat.hpp:83:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/prim/mat/fun/csr_extract_u.hpp:6:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Sparse:32:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/SparseQR:35:
+/home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/src/Core/util/ReenableStupidWarnings.h:10:30: warning: pragma diagnostic pop could not pop, no matching push [-Wunknown-pragmas]
+    #pragma clang diagnostic pop
+                             ^
+In file included from file231a4aafc48.cpp:8:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat.hpp:12:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/prim/mat.hpp:83:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/prim/mat/fun/csr_extract_u.hpp:6:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/Sparse:33:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/IterativeLinearSolvers:46:
+/home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/RcppEigen/include/Eigen/src/Core/util/ReenableStupidWarnings.h:10:30: warning: pragma diagnostic pop could not pop, no matching push [-Wunknown-pragmas]
+    #pragma clang diagnostic pop
+                             ^
+13 warnings generated.
+clang: warning: argument unused during compilation: '-arch x86_64'
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 1).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[43] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000275 seconds
+1000 transitions using 10 leapfrog steps per transition would take 2.75 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 2).
+
+Gradient evaluation took 0.000293 seconds
+1000 transitions using 10 leapfrog steps per transition would take 2.93 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 3).
+
+Gradient evaluation took 0.000264 seconds
+1000 transitions using 10 leapfrog steps per transition would take 2.64 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more_NS' NOW (CHAIN 4).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: normal_lpdf: Location parameter[43] is nan, but must be finite!  (in 'model231a3db33461_m1q_more_NS' at line 57)
+
+
+Gradient evaluation took 0.000274 seconds
+1000 transitions using 10 leapfrog steps per transition would take 2.74 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 92.3454 seconds (Warm-up)
+               46.5612 seconds (Sampling)
+               138.907 seconds (Total)
+
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 135.665 seconds (Warm-up)
+               26.9276 seconds (Sampling)
+               162.593 seconds (Total)
+
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 161.783 seconds (Warm-up)
+               17.7288 seconds (Sampling)
+               179.512 seconds (Total)
+
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 449.736 seconds (Warm-up)
+               16.7679 seconds (Sampling)
+               466.504 seconds (Total)
+

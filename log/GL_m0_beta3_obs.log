@@ -1,0 +1,719 @@
+[1] "Model: m0_beta3"
+[1] "Model dir: ./model/m0_beta3.stan"
+[1] "Data: GL"
+[1] "n_iter = 600"
+[1] "n_warm = 300"
+[1] "n_thin = 1"
+[1] "n_chains = 4"
+
+SAMPLING FOR MODEL 'm0_beta3' NOW (CHAIN 1).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.54019, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: Second shape parameter[1] is -1.45432, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.747044, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.978482, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.286177, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: Second shape parameter[1] is -1.96155, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.25062, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.72491, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -0.231612, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.1001, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.1655, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.88347, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.16435, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: Second shape parameter[11] is -1.08717, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: Second shape parameter[11] is -1.04849, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.57964, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.41951, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.771172, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -1.97919, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -1.4807, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.37632, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.91543, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.279678, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.0537706, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -0.548059, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.12062, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+
+Gradient evaluation took 0.002278 seconds
+1000 transitions using 10 leapfrog steps per transition would take 22.78 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 600 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm0_beta3' NOW (CHAIN 2).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.9864, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.76788, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -1.50822, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.1586, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.705762, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.69251, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.03464, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: Second shape parameter[1] is -0.082366, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.905915, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.68363, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.0496161, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.424897, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.893793, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -1.69308, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.787559, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.37527, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.10392, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: Second shape parameter[9] is -1.35518, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: Second shape parameter[1] is -1.63456, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.30317, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.87023, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.33164, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -1.38562, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -1.2961, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -1.85546, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -0.711409, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.182383, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.27105, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -1.90669, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.295752, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -1.11347, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.326609, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.917672, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.572399, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -1.11398, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.0678182, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.6533, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.71389, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.403093, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.50085, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.9317, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: Second shape parameter[9] is -0.859774, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.713231, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.600824, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.626443, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -1.84679, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -1.63596, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.0553894, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.942028, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -1.90828, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.360454, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -1.61205, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.704106, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.551664, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -0.66641, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.391444, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.59492, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -1.89459, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.51135, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -0.826992, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -0.483401, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: Second shape parameter[1] is -0.267368, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.144781, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -1.889, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -1.33752, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.634494, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -0.276766, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -1.18767, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.09418, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -1.95817, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.53489, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.18404, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.696677, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.671032, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+
+Gradient evaluation took 0.001527 seconds
+1000 transitions using 10 leapfrog steps per transition would take 15.27 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 600 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm0_beta3' NOW (CHAIN 3).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -1.7711, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -1.81287, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -1.15162, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: Second shape parameter[1] is -1.98934, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.602813, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.354183, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.857838, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.243213, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -1.62542, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.40781, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: Second shape parameter[1] is -1.66548, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.73049, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.611979, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -1.43129, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -1.78659, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -1.57514, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.12366, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -1.94185, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.87215, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.19502, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.52699, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.816146, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.388549, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.690875, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.429116, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -1.72547, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.09587, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -1.7186, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.78306, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -1.49895, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.678245, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.37175, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+
+Gradient evaluation took 0.001575 seconds
+1000 transitions using 10 leapfrog steps per transition would take 15.75 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 600 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm0_beta3' NOW (CHAIN 4).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.241169, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.918572, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.19663, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.678357, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -1.90728, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: Second shape parameter[1] is -1.51615, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.873264, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.0168112, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: Second shape parameter[1] is -0.4095, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.73365, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: Second shape parameter[1] is -1.87557, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -1.00162, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -1.18551, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.28477, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.420174, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.75139, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.62002, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[11] is -1.44932, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -1.93425, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[9] is -0.321045, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: beta_lpdf: First shape parameter[1] is -0.772341, but must be > 0!  (in 'modelba83de27ffb_m0_beta3' at line 52)
+
+
+Gradient evaluation took 0.002035 seconds
+1000 transitions using 10 leapfrog steps per transition would take 20.35 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 600 [  0%]  (Warmup)
+Iteration:  60 / 600 [ 10%]  (Warmup)
+Iteration:  60 / 600 [ 10%]  (Warmup)
+Iteration:  60 / 600 [ 10%]  (Warmup)
+Iteration:  60 / 600 [ 10%]  (Warmup)
+Iteration: 120 / 600 [ 20%]  (Warmup)
+Iteration: 180 / 600 [ 30%]  (Warmup)
+Iteration: 120 / 600 [ 20%]  (Warmup)
+Iteration: 240 / 600 [ 40%]  (Warmup)
+Iteration: 180 / 600 [ 30%]  (Warmup)
+Iteration: 120 / 600 [ 20%]  (Warmup)
+Iteration: 240 / 600 [ 40%]  (Warmup)
+Iteration: 120 / 600 [ 20%]  (Warmup)
+Iteration: 180 / 600 [ 30%]  (Warmup)
+Iteration: 300 / 600 [ 50%]  (Warmup)
+Iteration: 240 / 600 [ 40%]  (Warmup)
+Iteration: 301 / 600 [ 50%]  (Sampling)
+Iteration: 180 / 600 [ 30%]  (Warmup)
+Iteration: 300 / 600 [ 50%]  (Warmup)
+Iteration: 301 / 600 [ 50%]  (Sampling)
+Iteration: 240 / 600 [ 40%]  (Warmup)
+Iteration: 360 / 600 [ 60%]  (Sampling)
+Iteration: 360 / 600 [ 60%]  (Sampling)
+Iteration: 300 / 600 [ 50%]  (Warmup)
+Iteration: 301 / 600 [ 50%]  (Sampling)
+Iteration: 420 / 600 [ 70%]  (Sampling)
+Iteration: 360 / 600 [ 60%]  (Sampling)
+Iteration: 420 / 600 [ 70%]  (Sampling)
+Iteration: 480 / 600 [ 80%]  (Sampling)
+Iteration: 420 / 600 [ 70%]  (Sampling)
+Iteration: 540 / 600 [ 90%]  (Sampling)
+Iteration: 480 / 600 [ 80%]  (Sampling)
+Iteration: 600 / 600 [100%]  (Sampling)
+
+ Elapsed Time: 149.391 seconds (Warm-up)
+               43.3569 seconds (Sampling)
+               192.748 seconds (Total)
+
+Iteration: 480 / 600 [ 80%]  (Sampling)
+Iteration: 540 / 600 [ 90%]  (Sampling)
+Iteration: 540 / 600 [ 90%]  (Sampling)
+Iteration: 600 / 600 [100%]  (Sampling)
+
+ Elapsed Time: 161.35 seconds (Warm-up)
+               48.5985 seconds (Sampling)
+               209.949 seconds (Total)
+
+Iteration: 300 / 600 [ 50%]  (Warmup)
+Iteration: 301 / 600 [ 50%]  (Sampling)
+Iteration: 600 / 600 [100%]  (Sampling)
+
+ Elapsed Time: 137.822 seconds (Warm-up)
+               75.3777 seconds (Sampling)
+               213.2 seconds (Total)
+
+Iteration: 360 / 600 [ 60%]  (Sampling)
+Iteration: 420 / 600 [ 70%]  (Sampling)
+Iteration: 480 / 600 [ 80%]  (Sampling)
+Iteration: 540 / 600 [ 90%]  (Sampling)
+Iteration: 600 / 600 [100%]  (Sampling)
+
+ Elapsed Time: 209.507 seconds (Warm-up)
+               193.352 seconds (Sampling)
+               402.859 seconds (Total)
+

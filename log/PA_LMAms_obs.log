@@ -1,0 +1,784 @@
+[1] "Model: PA_LMAms"
+[1] "Model dir: ./model/PA_LMAms.stan"
+[1] "Data: PA"
+[1] "n_iter = 2"
+[1] "n_warm = 1"
+[1] "n_thin = 1"
+[1] "n_chains = 4"
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 1).
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 3).
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 2).
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 4).
+Chain 2: 
+Chain 2: Gradient evaluation took 0.000408 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 4.08 seconds.
+Chain 2: Adjust your expectations accordingly!
+Chain 2: 
+Chain 2: 
+Chain 2: WARNING: No variance estimation is
+Chain 2:          performed for num_warmup < 20
+Chain 2: 
+Chain 4: 
+Chain 4: Gradient evaluation took 0.000405 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 4.05 seconds.
+Chain 4: Adjust your expectations accordingly!
+Chain 4: 
+Chain 4: 
+Chain 4: WARNING: No variance estimation is
+Chain 4:          performed for num_warmup < 20
+Chain 4: 
+Chain 3: 
+Chain 3: Gradient evaluation took 0.000395 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 3.95 seconds.
+Chain 3: Adjust your expectations accordingly!
+Chain 3: 
+Chain 3: 
+Chain 3: WARNING: No variance estimation is
+Chain 3:          performed for num_warmup < 20
+Chain 3: 
+Chain 2: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 2: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 2: 
+Chain 2:  Elapsed Time: 0.001426 seconds (Warm-up)
+Chain 2:                0.000793 seconds (Sampling)
+Chain 2:                0.002219 seconds (Total)
+Chain 2: 
+Chain 1: 
+Chain 1: Gradient evaluation took 0.00049 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 4.9 seconds.
+Chain 1: Adjust your expectations accordingly!
+Chain 1: 
+Chain 1: 
+Chain 1: WARNING: No variance estimation is
+Chain 1:          performed for num_warmup < 20
+Chain 1: 
+Chain 4: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 4: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 3: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 4: 
+Chain 4:  Elapsed Time: 0.000881 seconds (Warm-up)
+Chain 4:                0.000856 seconds (Sampling)
+Chain 4:                0.001737 seconds (Total)
+Chain 4: 
+Chain 3: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 3: 
+Chain 3:  Elapsed Time: 0.004911 seconds (Warm-up)
+Chain 3:                0.000821 seconds (Sampling)
+Chain 3:                0.005732 seconds (Total)
+Chain 3: 
+Chain 1: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 1: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 1: 
+Chain 1:  Elapsed Time: 0.008021 seconds (Warm-up)
+Chain 1:                0.00133 seconds (Sampling)
+Chain 1:                0.009351 seconds (Total)
+Chain 1: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 8).
+Chain 8: 
+Chain 8: Gradient evaluation took 0.00033 seconds
+Chain 8: 1000 transitions using 10 leapfrog steps per transition would take 3.3 seconds.
+Chain 8: Adjust your expectations accordingly!
+Chain 8: 
+Chain 8: 
+Chain 8: WARNING: No variance estimation is
+Chain 8:          performed for num_warmup < 20
+Chain 8: 
+Chain 8: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 8: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 8: 
+Chain 8:  Elapsed Time: 0.001418 seconds (Warm-up)
+Chain 8:                0.000786 seconds (Sampling)
+Chain 8:                0.002204 seconds (Total)
+Chain 8: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 5).
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 6).
+Chain 5: 
+Chain 5: Gradient evaluation took 0.000308 seconds
+Chain 5: 1000 transitions using 10 leapfrog steps per transition would take 3.08 seconds.
+Chain 5: Adjust your expectations accordingly!
+Chain 5: 
+Chain 5: 
+Chain 5: WARNING: No variance estimation is
+Chain 5:          performed for num_warmup < 20
+Chain 5: 
+Chain 6: 
+Chain 6: Gradient evaluation took 0.000306 seconds
+Chain 6: 1000 transitions using 10 leapfrog steps per transition would take 3.06 seconds.
+Chain 6: Adjust your expectations accordingly!
+Chain 6: 
+Chain 6: 
+Chain 6: WARNING: No variance estimation is
+Chain 6:          performed for num_warmup < 20
+Chain 6: 
+Chain 5: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 6: Iteration: 1 / 2 [ 50%]  (Warmup)
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 7).
+Chain 5: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 5: 
+Chain 5:  Elapsed Time: 0.002653 seconds (Warm-up)
+Chain 5:                0.000813 seconds (Sampling)
+Chain 5:                0.003466 seconds (Total)
+Chain 5: 
+Chain 6: Chain 7: 
+Chain 7: Gradient evaluation took 0.00031 seconds
+Chain 7: 1000 transitions using 10 leapfrog steps per transition would take 3.1 seconds.
+Chain 7: Adjust your expectations accordingly!
+Chain 7: 
+Chain 7: 
+Chain 7: WARNING: No variance estimation is
+Chain 7:          performed for num_warmup < 20
+Chain 7: 
+Iteration: 2 / 2 [100%]  (Sampling)
+Chain 6: 
+Chain 6:  Elapsed Time: 0.00484 seconds (Warm-up)
+Chain 6:                0.000968 seconds (Sampling)
+Chain 6:                0.005808 seconds (Total)
+Chain 6: 
+Chain 7: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 7: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 7: 
+Chain 7:  Elapsed Time: 0.001514 seconds (Warm-up)
+Chain 7:                0.00084 seconds (Sampling)
+Chain 7:                0.002354 seconds (Total)
+Chain 7: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 12).
+Chain 12: 
+Chain 12: Gradient evaluation took 0.000297 seconds
+Chain 12: 1000 transitions using 10 leapfrog steps per transition would take 2.97 seconds.
+Chain 12: Adjust your expectations accordingly!
+Chain 12: 
+Chain 12: 
+Chain 12: WARNING: No variance estimation is
+Chain 12:          performed for num_warmup < 20
+Chain 12: 
+Chain 12: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 12: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 12: 
+Chain 12:  Elapsed Time: 0.004944 seconds (Warm-up)
+Chain 12:                0.000867 seconds (Sampling)
+Chain 12:                0.005811 seconds (Total)
+Chain 12: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 9).
+Chain 9: 
+Chain 9: Gradient evaluation took 0.000298 seconds
+Chain 9: 1000 transitions using 10 leapfrog steps per transition would take 2.98 seconds.
+Chain 9: Adjust your expectations accordingly!
+Chain 9: 
+Chain 9: 
+Chain 9: WARNING: No variance estimation is
+Chain 9:          performed for num_warmup < 20
+Chain 9: 
+Chain 9: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 9: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 9: 
+Chain 9:  Elapsed Time: 0.001366 seconds (Warm-up)
+Chain 9:                0.000788 seconds (Sampling)
+Chain 9:                0.002154 seconds (Total)
+Chain 9: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 10).
+Chain 10: 
+Chain 10: Gradient evaluation took 0.000283 seconds
+Chain 10: 1000 transitions using 10 leapfrog steps per transition would take 2.83 seconds.
+Chain 10: Adjust your expectations accordingly!
+Chain 10: 
+Chain 10: 
+Chain 10: WARNING: No variance estimation is
+Chain 10:          performed for num_warmup < 20
+Chain 10: 
+Chain 10: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 10: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 10: 
+Chain 10:  Elapsed Time: 0.001361 seconds (Warm-up)
+Chain 10:                0.000768 seconds (Sampling)
+Chain 10:                0.002129 seconds (Total)
+Chain 10: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 11).
+Chain 11: 
+Chain 11: Gradient evaluation took 0.000312 seconds
+Chain 11: 1000 transitions using 10 leapfrog steps per transition would take 3.12 seconds.
+Chain 11: Adjust your expectations accordingly!
+Chain 11: 
+Chain 11: 
+Chain 11: WARNING: No variance estimation is
+Chain 11:          performed for num_warmup < 20
+Chain 11: 
+Chain 11: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 11: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 11: 
+Chain 11:  Elapsed Time: 0.002884 seconds (Warm-up)
+Chain 11:                0.000878 seconds (Sampling)
+Chain 11:                0.003762 seconds (Total)
+Chain 11: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 14).
+Chain 14: 
+Chain 14: Gradient evaluation took 0.000297 seconds
+Chain 14: 1000 transitions using 10 leapfrog steps per transition would take 2.97 seconds.
+Chain 14: Adjust your expectations accordingly!
+Chain 14: 
+Chain 14: 
+Chain 14: WARNING: No variance estimation is
+Chain 14:          performed for num_warmup < 20
+Chain 14: 
+Chain 14: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 14: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 14: 
+Chain 14:  Elapsed Time: 0.002618 seconds (Warm-up)
+Chain 14:                0.000836 seconds (Sampling)
+Chain 14:                0.003454 seconds (Total)
+Chain 14: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 13).
+Chain 13: 
+Chain 13: Gradient evaluation took 0.000316 seconds
+Chain 13: 1000 transitions using 10 leapfrog steps per transition would take 3.16 seconds.
+Chain 13: Adjust your expectations accordingly!
+Chain 13: 
+Chain 13: 
+Chain 13: WARNING: No variance estimation is
+Chain 13:          performed for num_warmup < 20
+Chain 13: 
+Chain 13: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 13: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 13: 
+Chain 13:  Elapsed Time: 0.000909 seconds (Warm-up)
+Chain 13:                0.000801 seconds (Sampling)
+Chain 13:                0.00171 seconds (Total)
+Chain 13: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 16).
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 15).
+Chain 16: 
+Chain 16: Gradient evaluation took 0.000334 seconds
+Chain 16: 1000 transitions using 10 leapfrog steps per transition would take 3.34 seconds.
+Chain 16: Adjust your expectations accordingly!
+Chain 16: 
+Chain 16: 
+Chain 16: WARNING: No variance estimation is
+Chain 16:          performed for num_warmup < 20
+Chain 16: 
+Chain 15: 
+Chain 15: Gradient evaluation took 0.000371 seconds
+Chain 15: 1000 transitions using 10 leapfrog steps per transition would take 3.71 seconds.
+Chain 15: Adjust your expectations accordingly!
+Chain 15: 
+Chain 15: 
+Chain 15: WARNING: No variance estimation is
+Chain 15:          performed for num_warmup < 20
+Chain 15: 
+Chain Chain 15: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 15: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 15: 
+Chain 15:  Elapsed Time: 0.001542 seconds (Warm-up)
+Chain 15:                0.000855 seconds (Sampling)
+Chain 15:                0.002397 seconds (Total)
+Chain 15: 
+16: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 16: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 16: 
+Chain 16:  Elapsed Time: 0.001608 seconds (Warm-up)
+Chain 16:                0.00084 seconds (Sampling)
+Chain 16:                0.002448 seconds (Total)
+Chain 16: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 18).
+Chain 18: 
+Chain 18: Gradient evaluation took 0.000443 seconds
+Chain 18: 1000 transitions using 10 leapfrog steps per transition would take 4.43 seconds.
+Chain 18: Adjust your expectations accordingly!
+Chain 18: 
+Chain 18: 
+Chain 18: WARNING: No variance estimation is
+Chain 18:          performed for num_warmup < 20
+Chain 18: 
+Chain 18: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 18: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 18: 
+Chain 18:  Elapsed Time: 0.00682 seconds (Warm-up)
+Chain 18:                0.001122 seconds (Sampling)
+Chain 18:                0.007942 seconds (Total)
+Chain 18: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 17).
+Chain 17: 
+Chain 17: Gradient evaluation took 0.000435 seconds
+Chain 17: 1000 transitions using 10 leapfrog steps per transition would take 4.35 seconds.
+Chain 17: Adjust your expectations accordingly!
+Chain 17: 
+Chain 17: 
+Chain 17: WARNING: No variance estimation is
+Chain 17:          performed for num_warmup < 20
+Chain 17: 
+Chain 17: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 17: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 17: 
+Chain 17:  Elapsed Time: 0.003548 seconds (Warm-up)
+Chain 17:                0.001221 seconds (Sampling)
+Chain 17:                0.004769 seconds (Total)
+Chain 17: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 19).
+Chain 19: 
+Chain 19: Gradient evaluation took 0.000425 seconds
+Chain 19: 1000 transitions using 10 leapfrog steps per transition would take 4.25 seconds.
+Chain 19: Adjust your expectations accordingly!
+Chain 19: 
+Chain 19: 
+Chain 19: WARNING: No variance estimation is
+Chain 19:          performed for num_warmup < 20
+Chain 19: 
+Chain 19: Iteration: 1 / 2 [ 50%]  (Warmup)
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 20).
+Chain 19: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 19: 
+Chain 19:  Elapsed Time: 0.002835 seconds (Warm-up)
+Chain 19:                0.001148 seconds (Sampling)
+Chain 19:                0.003983 seconds (Total)
+Chain 19: 
+Chain 20: 
+Chain 20: Gradient evaluation took 0.000434 seconds
+Chain 20: 1000 transitions using 10 leapfrog steps per transition would take 4.34 seconds.
+Chain 20: Adjust your expectations accordingly!
+Chain 20: 
+Chain 20: 
+Chain 20: WARNING: No variance estimation is
+Chain 20:          performed for num_warmup < 20
+Chain 20: 
+Chain 20: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 20: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 20: 
+Chain 20:  Elapsed Time: 0.007005 seconds (Warm-up)
+Chain 20:                0.001177 seconds (Sampling)
+Chain 20:                0.008182 seconds (Total)
+Chain 20: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 22).
+Chain 22: 
+Chain 22: Gradient evaluation took 0.000385 seconds
+Chain 22: 1000 transitions using 10 leapfrog steps per transition would take 3.85 seconds.
+Chain 22: Adjust your expectations accordingly!
+Chain 22: 
+Chain 22: 
+Chain 22: WARNING: No variance estimation is
+Chain 22:          performed for num_warmup < 20
+Chain 22: 
+Chain 22: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 22: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 22: 
+Chain 22:  Elapsed Time: 0.001871 seconds (Warm-up)
+Chain 22:                0.001062 seconds (Sampling)
+Chain 22:                0.002933 seconds (Total)
+Chain 22: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 21).
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 23).
+Chain 21: 
+Chain 21: Gradient evaluation took 0.000387 seconds
+Chain 21: 1000 transitions using 10 leapfrog steps per transition would take 3.87 seconds.
+Chain 21: Adjust your expectations accordingly!
+Chain 21: 
+Chain 21: 
+Chain 21: WARNING: No variance estimation is
+Chain 21:          performed for num_warmup < 20
+Chain 21: 
+Chain 21: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 23: 
+Chain 23: Gradient evaluation took 0.000363 seconds
+Chain 23: 1000 transitions using 10 leapfrog steps per transition would take 3.63 seconds.
+Chain 23: Adjust your expectations accordingly!
+Chain 23: 
+Chain 23: 
+Chain 23: WARNING: No variance estimation is
+Chain 23:          performed for num_warmup < 20
+Chain 23: 
+Chain 21: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 21: 
+Chain 21:  Elapsed Time: 0.001894 seconds (Warm-up)
+Chain 21:                0.001048 seconds (Sampling)
+Chain 21:                0.002942 seconds (Total)
+Chain 21: 
+Chain 23: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 23: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 23: 
+Chain 23:  Elapsed Time: 0.003278 seconds (Warm-up)
+Chain 23:                0.00106 seconds (Sampling)
+Chain 23:                0.004338 seconds (Total)
+Chain 23: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 24).
+Chain 24: 
+Chain 24: Gradient evaluation took 0.000418 seconds
+Chain 24: 1000 transitions using 10 leapfrog steps per transition would take 4.18 seconds.
+Chain 24: Adjust your expectations accordingly!
+Chain 24: 
+Chain 24: 
+Chain 24: WARNING: No variance estimation is
+Chain 24:          performed for num_warmup < 20
+Chain 24: 
+Chain 24: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 24: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 24: 
+Chain 24:  Elapsed Time: 0.001979 seconds (Warm-up)
+Chain 24:                0.001095 seconds (Sampling)
+Chain 24:                0.003074 seconds (Total)
+Chain 24: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 26).
+Chain 26: 
+Chain 26: Gradient evaluation took 0.000472 seconds
+Chain 26: 1000 transitions using 10 leapfrog steps per transition would take 4.72 seconds.
+Chain 26: Adjust your expectations accordingly!
+Chain 26: 
+Chain 26: 
+Chain 26: WARNING: No variance estimation is
+Chain 26:          performed for num_warmup < 20
+Chain 26: 
+Chain 26: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 26: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 26: 
+Chain 26:  Elapsed Time: 0.003692 seconds (Warm-up)
+Chain 26:                0.001373 seconds (Sampling)
+Chain 26:                0.005065 seconds (Total)
+Chain 26: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 27).
+Chain 27: 
+Chain 27: Gradient evaluation took 0.000476 seconds
+Chain 27: 1000 transitions using 10 leapfrog steps per transition would take 4.76 seconds.
+Chain 27: Adjust your expectations accordingly!
+Chain 27: 
+Chain 27: 
+Chain 27: WARNING: No variance estimation is
+Chain 27:          performed for num_warmup < 20
+Chain 27: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 25).
+Chain 27: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 27: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 27: 
+Chain 27:  Elapsed Time: 0.002042 seconds (Warm-up)
+Chain 27:                0.001136 seconds (Sampling)
+Chain 27:                0.003178 seconds (Total)
+Chain 27: 
+Chain 25: 
+Chain 25: Gradient evaluation took 0.00049 seconds
+Chain 25: 1000 transitions using 10 leapfrog steps per transition would take 4.9 seconds.
+Chain 25: Adjust your expectations accordingly!
+Chain 25: 
+Chain 25: 
+Chain 25: WARNING: No variance estimation is
+Chain 25:          performed for num_warmup < 20
+Chain 25: 
+Chain 25: Iteration: 1 / 2 [ 50%]  (Warmup)
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 28).
+Chain 25: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 25: 
+Chain 25:  Elapsed Time: 0.00349 seconds (Warm-up)
+Chain 25:                0.001079 seconds (Sampling)
+Chain 25:                0.004569 seconds (Total)
+Chain 25: 
+Chain 28: 
+Chain 28: Gradient evaluation took 0.000489 seconds
+Chain 28: 1000 transitions using 10 leapfrog steps per transition would take 4.89 seconds.
+Chain 28: Adjust your expectations accordingly!
+Chain 28: 
+Chain 28: 
+Chain 28: WARNING: No variance estimation is
+Chain 28:          performed for num_warmup < 20
+Chain 28: 
+Chain 28: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 28: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 28: 
+Chain 28:  Elapsed Time: 0.002033 seconds (Warm-up)
+Chain 28:                0.001112 seconds (Sampling)
+Chain 28:                0.003145 seconds (Total)
+Chain 28: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 30).
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 31).
+Chain 30: 
+Chain 30: Gradient evaluation took 0.000467 seconds
+Chain 30: 1000 transitions using 10 leapfrog steps per transition would take 4.67 seconds.
+Chain 30: Adjust your expectations accordingly!
+Chain 30: 
+Chain 30: 
+Chain 30: WARNING: No variance estimation is
+Chain 30:          performed for num_warmup < 20
+Chain 30: 
+Chain 31: 
+Chain 31: Gradient evaluation took 0.000477 seconds
+Chain 31: 1000 transitions using 10 leapfrog steps per transition would take 4.77 seconds.
+Chain 31: Adjust your expectations accordingly!
+Chain 31: 
+Chain 31: 
+Chain 31: WARNING: No variance estimation is
+Chain 31:          performed for num_warmup < 20
+Chain 31: 
+Chain 30: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 30: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 30: 
+Chain 30:  Elapsed Time: 0.002156 seconds (Warm-up)
+Chain 30:                0.001105 seconds (Sampling)
+Chain 30:                0.003261 seconds (Total)
+Chain 30: 
+Chain 31: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 31: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 31: 
+Chain 31:  Elapsed Time: 0.001382 seconds (Warm-up)
+Chain 31:                0.001159 seconds (Sampling)
+Chain 31:                0.002541 seconds (Total)
+Chain 31: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 32).
+Chain 32: 
+Chain 32: Gradient evaluation took 0.000487 seconds
+Chain 32: 1000 transitions using 10 leapfrog steps per transition would take 4.87 seconds.
+Chain 32: Adjust your expectations accordingly!
+Chain 32: 
+Chain 32: 
+Chain 32: WARNING: No variance estimation is
+Chain 32:          performed for num_warmup < 20
+Chain 32: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 29).
+Chain 32: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 32: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 32: 
+Chain 32:  Elapsed Time: 0.001258 seconds (Warm-up)
+Chain 32:                0.001119 seconds (Sampling)
+Chain 32:                0.002377 seconds (Total)
+Chain 32: 
+Chain 29: 
+Chain 29: Gradient evaluation took 0.000481 seconds
+Chain 29: 1000 transitions using 10 leapfrog steps per transition would take 4.81 seconds.
+Chain 29: Adjust your expectations accordingly!
+Chain 29: 
+Chain 29: 
+Chain 29: WARNING: No variance estimation is
+Chain 29:          performed for num_warmup < 20
+Chain 29: 
+Chain 29: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 29: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 29: 
+Chain 29:  Elapsed Time: 0.00209 seconds (Warm-up)
+Chain 29:                0.00115 seconds (Sampling)
+Chain 29:                0.00324 seconds (Total)
+Chain 29: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 35).
+Chain 35: 
+Chain 35: Gradient evaluation took 0.00049 seconds
+Chain 35: 1000 transitions using 10 leapfrog steps per transition would take 4.9 seconds.
+Chain 35: Adjust your expectations accordingly!
+Chain 35: 
+Chain 35: 
+Chain 35: WARNING: No variance estimation is
+Chain 35:          performed for num_warmup < 20
+Chain 35: 
+Chain 35: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 35: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 35: 
+Chain 35:  Elapsed Time: 0.002096 seconds (Warm-up)
+Chain 35:                0.001126 seconds (Sampling)
+Chain 35:                0.003222 seconds (Total)
+Chain 35: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 36).
+Chain 36: 
+Chain 36: Gradient evaluation took 0.000491 seconds
+Chain 36: 1000 transitions using 10 leapfrog steps per transition would take 4.91 seconds.
+Chain 36: Adjust your expectations accordingly!
+Chain 36: 
+Chain 36: 
+Chain 36: WARNING: No variance estimation is
+Chain 36:          performed for num_warmup < 20
+Chain 36: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 34).
+Chain 36: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 36: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 36: 
+Chain 36:  Elapsed Time: 0.003377 seconds (Warm-up)
+Chain 36:                0.001063 seconds (Sampling)
+Chain 36:                0.00444 seconds (Total)
+Chain 36: 
+Chain 34: 
+Chain 34: Gradient evaluation took 0.000477 seconds
+Chain 34: 1000 transitions using 10 leapfrog steps per transition would take 4.77 seconds.
+Chain 34: Adjust your expectations accordingly!
+Chain 34: 
+Chain 34: 
+Chain 34: WARNING: No variance estimation is
+Chain 34:          performed for num_warmup < 20
+Chain 34: 
+Chain 34: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 34: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 34: 
+Chain 34:  Elapsed Time: 0.002022 seconds (Warm-up)
+Chain 34:                0.001148 seconds (Sampling)
+Chain 34:                0.00317 seconds (Total)
+Chain 34: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 33).
+Chain 33: 
+Chain 33: Gradient evaluation took 0.000483 seconds
+Chain 33: 1000 transitions using 10 leapfrog steps per transition would take 4.83 seconds.
+Chain 33: Adjust your expectations accordingly!
+Chain 33: 
+Chain 33: 
+Chain 33: WARNING: No variance estimation is
+Chain 33:          performed for num_warmup < 20
+Chain 33: 
+Chain 33: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 33: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 33: 
+Chain 33:  Elapsed Time: 0.003559 seconds (Warm-up)
+Chain 33:                0.001101 seconds (Sampling)
+Chain 33:                0.00466 seconds (Total)
+Chain 33: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 39).
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 40).
+Chain 39: 
+Chain 39: Gradient evaluation took 0.000534 seconds
+Chain 39: 1000 transitions using 10 leapfrog steps per transition would take 5.34 seconds.
+Chain 39: Adjust your expectations accordingly!
+Chain 39: 
+Chain 39: 
+Chain 39: WARNING: No variance estimation is
+Chain 39:          performed for num_warmup < 20
+Chain 39: 
+Chain 40: 
+Chain 40: Gradient evaluation took 0.000469 seconds
+Chain 40: 1000 transitions using 10 leapfrog steps per transition would take 4.69 seconds.
+Chain 40: Adjust your expectations accordingly!
+Chain 40: 
+Chain 40: 
+Chain 40: WARNING: No variance estimation is
+Chain 40:          performed for num_warmup < 20
+Chain 40: 
+Chain 39: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 39: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 39: 
+Chain 39:  Elapsed Time: 0.001983 seconds (Warm-up)
+Chain 39:                0.001127 seconds (Sampling)
+Chain 39:                0.00311 seconds (Total)
+Chain 39: 
+Chain 40: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 40: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 40: 
+Chain 40:  Elapsed Time: 0.003386 seconds (Warm-up)
+Chain 40:                0.001436 seconds (Sampling)
+Chain 40:                0.004822 seconds (Total)
+Chain 40: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 38).
+Chain 38: 
+Chain 38: Gradient evaluation took 0.00048 seconds
+Chain 38: 1000 transitions using 10 leapfrog steps per transition would take 4.8 seconds.
+Chain 38: Adjust your expectations accordingly!
+Chain 38: 
+Chain 38: 
+Chain 38: WARNING: No variance estimation is
+Chain 38:          performed for num_warmup < 20
+Chain 38: 
+Chain 38: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 38: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 38: 
+Chain 38:  Elapsed Time: 0.001469 seconds (Warm-up)
+Chain 38:                0.001264 seconds (Sampling)
+Chain 38:                0.002733 seconds (Total)
+Chain 38: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 37).
+Chain 37: 
+Chain 37: Gradient evaluation took 0.000703 seconds
+Chain 37: 1000 transitions using 10 leapfrog steps per transition would take 7.03 seconds.
+Chain 37: Adjust your expectations accordingly!
+Chain 37: 
+Chain 37: 
+Chain 37: WARNING: No variance estimation is
+Chain 37:          performed for num_warmup < 20
+Chain 37: 
+Chain 37: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 37: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 37: 
+Chain 37:  Elapsed Time: 0.001299 seconds (Warm-up)
+Chain 37:                0.001112 seconds (Sampling)
+Chain 37:                0.002411 seconds (Total)
+Chain 37: 
+in 40: 
+Chain 40:  Elapsed Time: 0.004511 seconds (Warm-up)
+Chain 40:                0.001126 seconds (Sampling)
+Chain 40:                0.005637 seconds (Total)
+Chain 40: 
+Chain 39: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 39: 
+Chain 39:  Elapsed Time: 0.007705 seconds (Warm-up)
+Chain 39:                0.001075 seconds (Sampling)
+Chain 39:                0.00878 seconds (Total)
+Chain 39: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 38).
+Chain 38: 
+Chain 38: Gradient evaluation took 0.000733 seconds
+Chain 38: 1000 transitions using 10 leapfrog steps per transition would take 7.33 seconds.
+Chain 38: Adjust your expectations accordingly!
+Chain 38: 
+Chain 38: 
+Chain 38: WARNING: No variance estimation is
+Chain 38:          performed for num_warmup < 20
+Chain 38: 
+Chain 38: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 38: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 38: 
+Chain 38:  Elapsed Time: 0.003799 seconds (Warm-up)
+Chain 38:                0.00175 seconds (Sampling)
+Chain 38:                0.005549 seconds (Total)
+Chain 38: 
+
+SAMPLING FOR MODEL 'PA_LMAms' NOW (CHAIN 37).
+Chain 37: 
+Chain 37: Gradient evaluation took 0.000464 seconds
+Chain 37: 1000 transitions using 10 leapfrog steps per transition would take 4.64 seconds.
+Chain 37: Adjust your expectations accordingly!
+Chain 37: 
+Chain 37: 
+Chain 37: WARNING: No variance estimation is
+Chain 37:          performed for num_warmup < 20
+Chain 37: 
+Chain 37: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 37: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 37: 
+Chain 37:  Elapsed Time: 0.00122 seconds (Warm-up)
+Chain 37:                0.001083 seconds (Sampling)
+Chain 37:                0.002303 seconds (Total)
+Chain 37: 
+
+Attaching package: ‘matrixStats’
+
+The following object is masked from ‘package:dplyr’:
+
+    count
+
+Warning: Not enough tail samples to fit the generalized Pareto distribution in some or all columns of matrix of log importance ratios. Skipping the following columns: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ... [96 more not printed].
+
+There were 18 warnings (use warnings() to see them)

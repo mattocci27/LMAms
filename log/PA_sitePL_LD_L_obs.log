@@ -1,0 +1,99 @@
+[1] "Model: sitePL_LD_L"
+[1] "Model dir: ./model/sitePL_LD_L.stan"
+[1] "Data: PA"
+[1] "n_iter = 2000"
+[1] "n_warm = 1000"
+[1] "n_thin = 1"
+[1] "n_chains = 3"
+
+SAMPLING FOR MODEL 'sitePL_LD_L' NOW (CHAIN 1).
+
+Gradient evaluation took 0.000137 seconds
+1000 transitions using 10 leapfrog steps per transition would take 1.37 seconds.
+Adjust your expectations accordingly!
+
+
+WARNING: No variance estimation is
+         performed for num_warmup < 20
+
+Iteration: 1 / 1 [100%]  (Sampling)
+
+ Elapsed Time: 2e-06 seconds (Warm-up)
+               0.000453 seconds (Sampling)
+               0.000455 seconds (Total)
+
+
+SAMPLING FOR MODEL 'sitePL_LD_L' NOW (CHAIN 1).
+
+Gradient evaluation took 0.000292 seconds
+1000 transitions using 10 leapfrog steps per transition would take 2.92 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'sitePL_LD_L' NOW (CHAIN 2).
+
+Gradient evaluation took 0.00028 seconds
+1000 transitions using 10 leapfrog steps per transition would take 2.8 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'sitePL_LD_L' NOW (CHAIN 3).
+
+Gradient evaluation took 0.000282 seconds
+1000 transitions using 10 leapfrog steps per transition would take 2.82 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration:  600 / 2000 [ 30%]  (Warmup)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration:  800 / 2000 [ 40%]  (Warmup)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 20.4083 seconds (Warm-up)
+               9.66594 seconds (Sampling)
+               30.0743 seconds (Total)
+
+Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 23.5928 seconds (Warm-up)
+               9.52783 seconds (Sampling)
+               33.1206 seconds (Total)
+
+Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Iteration: 2000 / 2000 [100%]  (Sampling)
+
+ Elapsed Time: 21.0396 seconds (Warm-up)
+               16.8876 seconds (Sampling)
+               37.9271 seconds (Total)
+

@@ -1,0 +1,7 @@
+[1] "Model: sitePL"
+[1] "Model dir: ./model/sitePL.stan"
+[1] "Data: OA"
+[1] "n_iter = 3000"
+[1] "n_warm = 2000"
+[1] "n_thin = 1"
+[1] "n_chains = 3"

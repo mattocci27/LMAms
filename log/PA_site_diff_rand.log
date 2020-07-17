@@ -1,0 +1,30 @@
+[1] 32
+[1] "load sim_data.r"
+[1] site_diff
+[1] "PA"
+[1] 20000
+[1] 10000
+[1] 20
+In file included from /apps/R/lib/gcc/5.2.0/3.2.2/BH/include/boost/config.hpp:39:0,
+                 from /apps/R/lib/gcc/5.2.0/3.2.2/BH/include/boost/math/tools/config.hpp:13,
+                 from /apps/R/lib/gcc/5.2.0/3.2.2/StanHeaders/include/stan/math/rev/core/var.hpp:7,
+                 from /apps/R/lib/gcc/5.2.0/3.2.2/StanHeaders/include/stan/math/rev/core/gevv_vvv_vari.hpp:5,
+                 from /apps/R/lib/gcc/5.2.0/3.2.2/StanHeaders/include/stan/math/rev/core.hpp:12,
+                 from /apps/R/lib/gcc/5.2.0/3.2.2/StanHeaders/include/stan/math/rev/mat.hpp:4,
+                 from /apps/R/lib/gcc/5.2.0/3.2.2/StanHeaders/include/stan/math.hpp:4,
+                 from /apps/R/lib/gcc/5.2.0/3.2.2/StanHeaders/include/src/stan/model/model_header.hpp:4,
+                 from file2a37240020a6.cpp:8:
+/apps/R/lib/gcc/5.2.0/3.2.2/BH/include/boost/config/compiler/gcc.hpp:186:0: warning: "BOOST_NO_CXX11_RVALUE_REFERENCES" redefined
+ #  define BOOST_NO_CXX11_RVALUE_REFERENCES
+ ^
+<command-line>:0:0: note: this is the location of the previous definition
+Stan model 'd843ba1cfdc79e77b35b407c374ba514' does not contain samples.
+Stan model 'd843ba1cfdc79e77b35b407c374ba514' does not contain samples.
+Stan model 'd843ba1cfdc79e77b35b407c374ba514' does not contain samples.
+Stan model 'd843ba1cfdc79e77b35b407c374ba514' does not contain samples.
+Stan model 'd843ba1cfdc79e77b35b407c374ba514' does not contain samples.
+Stan model 'd843ba1cfdc79e77b35b407c374ba514' does not contain samples.
+Stan model 'd843ba1cfdc79e77b35b407c374ba514' does not contain samples.
+Stan model 'd843ba1cfdc79e77b35b407c374ba514' does not contain samples.
+Stan model 'd843ba1cfdc79e77b35b407c374ba514' does not contain samples.
+Stan model 'd843ba1cfdc79e77b35b407c374ba514' does not contain samples.
