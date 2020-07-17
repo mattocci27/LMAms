@@ -1,7 +1,0 @@
-[1] "Model: latent_model_ordered011"
-[1] "Model dir: ./model/latent_model_ordered011.stan"
-[1] "Data: GL"
-[1] "n_iter = 4000"
-[1] "n_warm = 3000"
-[1] "n_thin = 1"
-[1] "n_chains = 4"

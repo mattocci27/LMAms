@@ -1,7 +1,0 @@
-[1] "Model: LMAm_LMAs_MVN2"
-[1] "Model dir: ./model/LMAm_LMAs_MVN2.stan"
-[1] "Data: 10000"
-[1] "n_iter = 5000"
-[1] "n_warm = 10"
-[1] "n_thin = NA"
-[1] "n_chains = 4"

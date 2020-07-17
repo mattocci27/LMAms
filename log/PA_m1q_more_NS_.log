@@ -1,7 +1,0 @@
-[1] "Model: m1q_more_NS"
-[1] "Model dir: ./model/m1q_more_NS.stan"
-[1] "Data: PA"
-[1] "n_iter = 2000"
-[1] "n_warm = 1000"
-[1] "n_thin = 1"
-[1] "n_chains = 4"
