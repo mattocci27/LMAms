@@ -1,7 +1,0 @@
-[1] "Model: m0_latent4"
-[1] "Model dir: ./model/m0_latent4.stan"
-[1] "Data: 600"
-[1] "n_iter = 300"
-[1] "n_warm = 1"
-[1] "n_thin = NA"
-[1] "n_chains = 4"
