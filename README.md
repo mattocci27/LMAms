@@ -5,8 +5,6 @@
 To clone this repo,
 
 ```
-
-
 git clone --recurse-submodules git@github.com:mattocci27/LMAms.git ~/LMAms
 cd ~/LMAms
 git checkout -b CV origin/CV
@@ -19,25 +17,17 @@ git submodule update --init --recursive
 To build docker image
 
 ```
-sudo docker build -t mattocci/docker-lma $(pwd)/docker
-sudo docker run --rm -it --user rstudio -e PASSWORD=test mattocci/rstan /bin/bash
-
+time docker build -f docker-local/Dockerfile -t mattocci/lma:3.6.3 .
+docker tag mattocci/lma:3.6.3 192.168.1.123:5000/mattocci/lma:3.6.3 
+docker push 192.168.1.123:5000/mattocci/lma:3.6.3 
 ```
 
-or pull docker image
+### Singularity
+
+To build singularity image
 
 ```
-sudo docker pull mattocci/docker-lma
-```
-
-```
-# shell
-sudo docker run --rm -it --user rstudio -e PASSWORD=test mattocci/lma /bin/bash
-
-sudo docker run --rm -it -v $(pwd):/home/rstudio --user rstudio -e PASSWORD=test mattocci/docker-lma /bin/bash
-
-# rstudio
-sudo docker run -v $(pwd):/home/rstudio -e PASSWORD=test -p 8787:8787 mattocci/docker-lma
+time sudo singularity build lma.sif docker-daemon://192.168.1.123:5000/mattocci/lma:3.6.3
 ```
 
 ### Data cleaning  
@@ -48,22 +38,17 @@ To produce GL_data.csv and PA_data.csv
 Rscript data_cleaning.r
 ```
 
-### Analysis
-
-- `sh ./model/model_hpc.sh` to run the main analysis on HPC
-- `sh ./sim/sim_hpc.sh` to run the simulation analysis on HPC
-
-
-#### Docker
+### Analysis (MCMC)
 
 ```
+time singularity exec lma.sif ./sh/run_model.sh
+```
 
-sh ./sh/model_cv_cloud.sh
-sh ./sh/model_obs_cloud.sh
-sh ./sh/model_rand_cloud.sh
+or 
 
-# or 
-sh ./sh/model_all_cloud.sh
+```
+singularity shell lma.sif
+time sh ./sh/run_model.sh
 ```
 
 
@@ -74,8 +59,31 @@ sh ./sh/model_all_cloud.sh
 - fig.r_
 - render.sh
 
+#### List of rda files
+
+note: L0 indicates model without repulsive priors 
+
+- obs
+  - `GL_LMAms_more_obs.rda`
+  - `PA_LMAms_L0_more_obs.rda` 
+  - `PA_LMAms_more_obs.rda`
+
+- rand
+  - `GL_LMAms_rand.rda`
+  - `PA_LMAms_L0_more_rand.rda`
+
+- CV
+  - `GL_LMA_CV`
+  - `GL_LMAms_CV_obs_cv.rda`
+  - `PA_LMA_CV_obs_cv.rda` 
+  - `PA_LMA_L_CV_obs_cv.rda` 
+  - `PA_LMAms_CV_obs_cv.rda` need to test this again
+  - `PA_LMAms_L_CV_obs_cv.rda` 
+  - `PA_LD_L_CV_obs_cv.rda`
+
 ```{r}
 
+Rscript k_fold_cv_tab.r
 Rscript res_rand.r
 Rscript util/res_para.r
 Rscript util/r2_yml.r

@@ -6,7 +6,6 @@ To clone this repo,
 
 ```
 
-
 mail -s "test mail 2" mattocci27@gmail.com <<< "hello 2"
 
 ./mhsendmail --from="admin@mailhog.local" mattocci27@gmail.com "test"
@@ -66,6 +65,7 @@ To build docker image
 
 ```
 
+docker run --rm -it mattocci/lma:local /bin/bash
 time docker build -t mattocci/lma:local $(pwd)/test
 time docker build -t mattocci/lma:local $(pwd)/docker-local
 docker run --rm -it -v $(pwd):/home/rstudio/LMAms -u rstudio mattocci/lma:local /bin/bash
@@ -80,6 +80,15 @@ sudo docker pull mattocci/lma:local
 
 ```
 
+time docker build -f docker-local/Dockerfile -t mattocci/lma:3.6.3 .
+docker tag mattocci/lma:3.6.3 192.168.1.123:5000/mattocci/lma:3.6.3 
+docker push 192.168.1.123:5000/mattocci/lma:3.6.3 
+time sudo singularity build lma.sif docker-daemon://192.168.1.123:5000/mattocci/lma:3.6.3
+
+#singularity shell ../dockerfiles/singularity/rstan-3.6.3.sif
+
+singularity shell lma.sif
+time sh ./sh/run_model.sh
 
 docker run --rm -it -v $(pwd):/home/rstudio/LMAms mattocci/lma:local /bin/bash
 
