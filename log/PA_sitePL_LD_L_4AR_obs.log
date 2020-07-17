@@ -1,0 +1,112 @@
+[1] "Model: sitePL_LD_L_4AR"
+[1] "Model dir: ./model/sitePL_LD_L_4AR.stan"
+[1] "Data: PA"
+[1] "n_iter = 3000"
+[1] "n_warm = 2000"
+[1] "n_thin = 1"
+[1] "n_chains = 3"
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/BH/include/boost/config.hpp:39:0,
+                 from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/BH/include/boost/math/tools/config.hpp:13,
+                 from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core/var.hpp:7,
+                 from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core/gevv_vvv_vari.hpp:5,
+                 from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core.hpp:12,
+                 from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat.hpp:4,
+                 from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math.hpp:4,
+                 from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/src/stan/model/model_header.hpp:4,
+                 from file624e2dfdd141.cpp:8:
+/home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/BH/include/boost/config/compiler/gcc.hpp:186:0: warning: "BOOST_NO_CXX11_RVALUE_REFERENCES" redefined
+ #  define BOOST_NO_CXX11_RVALUE_REFERENCES
+ ^
+<command-line>:0:0: note: this is the location of the previous definition
+
+SAMPLING FOR MODEL 'sitePL_LD_L_4AR' NOW (CHAIN 1).
+
+Gradient evaluation took 0.000223 seconds
+1000 transitions using 10 leapfrog steps per transition would take 2.23 seconds.
+Adjust your expectations accordingly!
+
+
+WARNING: No variance estimation is
+         performed for num_warmup < 20
+
+Iteration: 1 / 1 [100%]  (Sampling)
+
+ Elapsed Time: 2e-06 seconds (Warm-up)
+               0.000437 seconds (Sampling)
+               0.000439 seconds (Total)
+
+
+SAMPLING FOR MODEL 'sitePL_LD_L_4AR' NOW (CHAIN 1).
+
+Gradient evaluation took 0.000272 seconds
+1000 transitions using 10 leapfrog steps per transition would take 2.72 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 3000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'sitePL_LD_L_4AR' NOW (CHAIN 2).
+
+Gradient evaluation took 0.000255 seconds
+1000 transitions using 10 leapfrog steps per transition would take 2.55 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 3000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'sitePL_LD_L_4AR' NOW (CHAIN 3).
+
+Gradient evaluation took 0.000244 seconds
+1000 transitions using 10 leapfrog steps per transition would take 2.44 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 3000 [  0%]  (Warmup)
+Iteration:  300 / 3000 [ 10%]  (Warmup)
+Iteration:  300 / 3000 [ 10%]  (Warmup)
+Iteration:  600 / 3000 [ 20%]  (Warmup)
+Iteration:  600 / 3000 [ 20%]  (Warmup)
+Iteration:  900 / 3000 [ 30%]  (Warmup)
+Iteration:  900 / 3000 [ 30%]  (Warmup)
+Iteration:  300 / 3000 [ 10%]  (Warmup)
+Iteration: 1200 / 3000 [ 40%]  (Warmup)
+Iteration: 1200 / 3000 [ 40%]  (Warmup)
+Iteration: 1500 / 3000 [ 50%]  (Warmup)
+Iteration: 1500 / 3000 [ 50%]  (Warmup)
+Iteration:  600 / 3000 [ 20%]  (Warmup)
+Iteration: 1800 / 3000 [ 60%]  (Warmup)
+Iteration: 2001 / 3000 [ 66%]  (Sampling)
+Iteration:  900 / 3000 [ 30%]  (Warmup)
+Iteration: 1800 / 3000 [ 60%]  (Warmup)
+Iteration: 1200 / 3000 [ 40%]  (Warmup)
+Iteration: 2300 / 3000 [ 76%]  (Sampling)
+Iteration: 1500 / 3000 [ 50%]  (Warmup)
+Iteration: 2600 / 3000 [ 86%]  (Sampling)
+Iteration: 2001 / 3000 [ 66%]  (Sampling)
+Iteration: 2900 / 3000 [ 96%]  (Sampling)
+Iteration: 3000 / 3000 [100%]  (Sampling)
+
+ Elapsed Time: 46.1252 seconds (Warm-up)
+               12.6729 seconds (Sampling)
+               58.7981 seconds (Total)
+
+Iteration: 1800 / 3000 [ 60%]  (Warmup)
+Iteration: 2300 / 3000 [ 76%]  (Sampling)
+Iteration: 2001 / 3000 [ 66%]  (Sampling)
+Iteration: 2600 / 3000 [ 86%]  (Sampling)
+Iteration: 2900 / 3000 [ 96%]  (Sampling)
+Iteration: 3000 / 3000 [100%]  (Sampling)
+
+ Elapsed Time: 53.5662 seconds (Warm-up)
+               14.2044 seconds (Sampling)
+               67.7706 seconds (Total)
+
+Iteration: 2300 / 3000 [ 76%]  (Sampling)
+Iteration: 2600 / 3000 [ 86%]  (Sampling)
+Iteration: 2900 / 3000 [ 96%]  (Sampling)
+Iteration: 3000 / 3000 [100%]  (Sampling)
+
+ Elapsed Time: 62.12 seconds (Warm-up)
+               19.4172 seconds (Sampling)
+               81.5372 seconds (Total)
+

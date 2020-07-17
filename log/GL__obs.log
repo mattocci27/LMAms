@@ -1,0 +1,7 @@
+[1] "Model: GL"
+[1] "Model dir: ./model/GL.stan"
+[1] "Data: 4000"
+[1] "n_iter = 3000"
+[1] "n_warm = 1"
+[1] "n_thin = NA"
+[1] "n_chains = 4"

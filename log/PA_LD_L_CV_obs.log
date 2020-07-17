@@ -1,0 +1,1007 @@
+[1] "Model: PA_LD_L_CV"
+[1] "Model dir: ./model/PA_LD_L_CV.stan"
+[1] "Data: PA"
+[1] "n_iter = 4000"
+[1] "n_warm = 3000"
+[1] "n_thin = 1"
+[1] "n_chains = 4"
+
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 3).
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 2).
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 1).
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 4).
+Chain 4: 
+Chain 3: 
+Chain 2: 
+Chain 1: 
+Chain Chain Chain 4: Gradient evaluation took 0.003392 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 33.92 seconds.
+Chain 4: Adjust your expectations accordingly!
+Chain 4: 
+Chain 4: 
+Chain 321: : : Gradient evaluation took 0.00344 secondsGradient evaluation took 0.002398 secondsGradient evaluation took 0.004085 seconds
+
+
+Chain 2: Chain 1000 transitions using 10 leapfrog steps per transition would take 34.4 seconds.Chain 3
+1: Chain : 1000 transitions using 10 leapfrog steps per transition would take 23.98 seconds.21000 transitions using 10 leapfrog steps per transition would take 40.85 seconds.
+: 
+Chain Adjust your expectations accordingly!Chain 3
+1: Chain : Adjust your expectations accordingly!2Adjust your expectations accordingly!
+: 
+Chain 
+Chain 3Chain 1: 2: 
+: 
+Chain 
+Chain 31: : 
+
+Chain 1: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 3: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 2: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 4: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 1: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 3: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 2: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 1: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 4: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 3: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 2: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 4: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 1: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 3: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 2: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 4: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 1: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 3: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 2: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 4: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 1: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 3: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 2: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 4: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 1: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 3: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 2: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 4: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 1: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 3: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 2: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 1: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 3: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 2: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 4: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 4: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 1: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 3: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 2: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 4: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 1: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 2: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 3: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 1: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 1: 
+Chain 1:  Elapsed Time: 202.608 seconds (Warm-up)
+Chain 1:                50.4393 seconds (Sampling)
+Chain 1:                253.048 seconds (Total)
+Chain 1: 
+Chain 2: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 2: 
+Chain 2:  Elapsed Time: 206.069 seconds (Warm-up)
+Chain 2:                49.2748 seconds (Sampling)
+Chain 2:                255.344 seconds (Total)
+Chain 2: 
+Chain 3: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 3: 
+Chain 3:  Elapsed Time: 203.909 seconds (Warm-up)
+Chain 3:                52.9383 seconds (Sampling)
+Chain 3:                256.847 seconds (Total)
+Chain 3: 
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 5).
+Chain 5: 
+Chain 5: Gradient evaluation took 0.000219 seconds
+Chain 5: 1000 transitions using 10 leapfrog steps per transition would take 2.19 seconds.
+Chain 5: Adjust your expectations accordingly!
+Chain 5: 
+Chain 5: 
+Chain 5: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 4: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 6).
+Chain 6: 
+Chain 6: Gradient evaluation took 0.000218 seconds
+Chain 6: 1000 transitions using 10 leapfrog steps per transition would take 2.18 seconds.
+Chain 6: Adjust your expectations accordingly!
+Chain 6: 
+Chain 6: 
+Chain 6: Iteration:    1 / 4000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 7).
+Chain 7: 
+Chain 7: Gradient evaluation took 0.00021 seconds
+Chain 7: 1000 transitions using 10 leapfrog steps per transition would take 2.1 seconds.
+Chain 7: Adjust your expectations accordingly!
+Chain 7: 
+Chain 7: 
+Chain 7: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 4: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 4: 
+Chain 4:  Elapsed Time: 219.414 seconds (Warm-up)
+Chain 4:                49.4997 seconds (Sampling)
+Chain 4:                268.913 seconds (Total)
+Chain 4: 
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 8).
+Chain 8: 
+Chain 8: Gradient evaluation took 0.000219 seconds
+Chain 8: 1000 transitions using 10 leapfrog steps per transition would take 2.19 seconds.
+Chain 8: Adjust your expectations accordingly!
+Chain 8: 
+Chain 8: 
+Chain 8: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 5: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 6: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 7: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 5: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 8: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 6: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 7: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 5: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 8: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 8: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 6: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 7: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 5: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 8: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 7: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 6: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 5: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 8: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 7: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 5: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 6: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 8: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 7: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 5: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 6: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 8: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 5: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 7: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 8: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 7: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 6: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 5: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 8: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 6: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 7: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 8: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 5: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 6: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 8: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 8: 
+Chain 8:  Elapsed Time: 180.733 seconds (Warm-up)
+Chain 8:                51.3502 seconds (Sampling)
+Chain 8:                232.083 seconds (Total)
+Chain 8: 
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 12).
+Chain 12: 
+Chain 12: Gradient evaluation took 0.000206 seconds
+Chain 12: 1000 transitions using 10 leapfrog steps per transition would take 2.06 seconds.
+Chain 12: Adjust your expectations accordingly!
+Chain 12: 
+Chain 12: 
+Chain 12: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 5: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 5: 
+Chain 5:  Elapsed Time: 185.984 seconds (Warm-up)
+Chain 5:                69.2285 seconds (Sampling)
+Chain 5:                255.213 seconds (Total)
+Chain 5: 
+Chain 7: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 9).
+Chain 9: 
+Chain 9: Gradient evaluation took 0.0006 seconds
+Chain 9: 1000 transitions using 10 leapfrog steps per transition would take 6 seconds.
+Chain 9: Adjust your expectations accordingly!
+Chain 9: 
+Chain 9: 
+Chain 9: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 6: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 7: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 7: 
+Chain 7:  Elapsed Time: 197.854 seconds (Warm-up)
+Chain 7:                70.1057 seconds (Sampling)
+Chain 7:                267.96 seconds (Total)
+Chain 7: 
+Chain 6: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 6: 
+Chain 6:  Elapsed Time: 220.781 seconds (Warm-up)
+Chain 6:                52.6825 seconds (Sampling)
+Chain 6:                273.464 seconds (Total)
+Chain 6: 
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 11).
+Chain 11: 
+Chain 11: Gradient evaluation took 0.000204 seconds
+Chain 11: 1000 transitions using 10 leapfrog steps per transition would take 2.04 seconds.
+Chain 11: Adjust your expectations accordingly!
+Chain 11: 
+Chain 11: 
+Chain 11: Iteration:    1 / 4000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 10).
+Chain 10: 
+Chain 10: Gradient evaluation took 0.000171 seconds
+Chain 10: 1000 transitions using 10 leapfrog steps per transition would take 1.71 seconds.
+Chain 10: Adjust your expectations accordingly!
+Chain 10: 
+Chain 10: 
+Chain 10: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 9: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 12: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 9: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 11: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 12: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 9: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 11: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 10: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 12: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 9: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 11: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 10: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 12: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 11: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 9: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 10: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 12: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 10: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 9: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 11: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 12: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 10: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 9: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 11: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 9: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 12: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 10: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 12: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 11: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 11: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 9: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 10: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 12: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 10: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 11: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 9: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 12: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 10: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 12: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 12: 
+Chain 12:  Elapsed Time: 203.043 seconds (Warm-up)
+Chain 12:                50.239 seconds (Sampling)
+Chain 12:                253.282 seconds (Total)
+Chain 12: 
+Chain 11: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 9: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 9: 
+Chain 9:  Elapsed Time: 182.882 seconds (Warm-up)
+Chain 9:                64.5807 seconds (Sampling)
+Chain 9:                247.463 seconds (Total)
+Chain 9: 
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 16).
+Chain 16: 
+Chain 16: Gradient evaluation took 0.000216 seconds
+Chain 16: 1000 transitions using 10 leapfrog steps per transition would take 2.16 seconds.
+Chain 16: Adjust your expectations accordingly!
+Chain 16: 
+Chain 16: 
+Chain 16: Iteration:    1 / 4000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 13).
+Chain 13: 
+Chain 13: Gradient evaluation took 0.00021 seconds
+Chain 13: 1000 transitions using 10 leapfrog steps per transition would take 2.1 seconds.
+Chain 13: Adjust your expectations accordingly!
+Chain 13: 
+Chain 13: 
+Chain 13: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 11: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 11: 
+Chain 11:  Elapsed Time: 190.044 seconds (Warm-up)
+Chain 11:                50.3757 seconds (Sampling)
+Chain 11:                240.419 seconds (Total)
+Chain 11: 
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 15).
+Chain 15: 
+Chain 15: Gradient evaluation took 0.000201 seconds
+Chain 15: 1000 transitions using 10 leapfrog steps per transition would take 2.01 seconds.
+Chain 15: Adjust your expectations accordingly!
+Chain 15: 
+Chain 15: 
+Chain 15: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 10: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 10: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 10: 
+Chain 10:  Elapsed Time: 202.454 seconds (Warm-up)
+Chain 10:                51.5272 seconds (Sampling)
+Chain 10:                253.981 seconds (Total)
+Chain 10: 
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 14).
+Chain 14: 
+Chain 14: Gradient evaluation took 0.000218 seconds
+Chain 14: 1000 transitions using 10 leapfrog steps per transition would take 2.18 seconds.
+Chain 14: Adjust your expectations accordingly!
+Chain 14: 
+Chain 14: 
+Chain 14: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 13: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 16: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 13: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 15: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 16: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 14: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 13: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 14: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 16: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 13: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 15: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 16: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 14: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 13: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 15: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 14: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 16: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 13: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 15: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 14: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 16: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 13: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 15: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 13: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 14: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 16: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 15: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 13: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 16: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 14: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 15: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 13: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 14: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 15: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 13: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 13: 
+Chain 13:  Elapsed Time: 173.74 seconds (Warm-up)
+Chain 13:                50.0961 seconds (Sampling)
+Chain 13:                223.836 seconds (Total)
+Chain 13: 
+Chain 16: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 14: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 17).
+Chain 17: 
+Chain 17: Gradient evaluation took 0.000184 seconds
+Chain 17: 1000 transitions using 10 leapfrog steps per transition would take 1.84 seconds.
+Chain 17: Adjust your expectations accordingly!
+Chain 17: 
+Chain 17: 
+Chain 17: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 14: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 14: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 14: 
+Chain 14:  Elapsed Time: 187.355 seconds (Warm-up)
+Chain 14:                30.8267 seconds (Sampling)
+Chain 14:                218.182 seconds (Total)
+Chain 14: 
+Chain 15: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 16: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 16: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 16: 
+Chain 16:  Elapsed Time: 200.225 seconds (Warm-up)
+Chain 16:                70.1334 seconds (Sampling)
+Chain 16:                270.358 seconds (Total)
+Chain 16: 
+Chain 15: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 18).
+Chain 17: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 18: 
+Chain 18: Gradient evaluation took 0.000261 seconds
+Chain 18: 1000 transitions using 10 leapfrog steps per transition would take 2.61 seconds.
+Chain 18: Adjust your expectations accordingly!
+Chain 18: 
+Chain 18: 
+Chain 18: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 15: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 15: 
+Chain 15:  Elapsed Time: 213.886 seconds (Warm-up)
+Chain 15:                62.2374 seconds (Sampling)
+Chain 15:                276.124 seconds (Total)
+Chain 15: 
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 20).
+Chain 20: 
+Chain 20: Gradient evaluation took 0.000216 seconds
+Chain 20: 1000 transitions using 10 leapfrog steps per transition would take 2.16 seconds.
+Chain 20: Adjust your expectations accordingly!
+Chain 20: 
+Chain 20: 
+Chain 20: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 17: Iteration:  800 / 4000 [ 20%]  (Warmup)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 19).
+Chain 19: 
+Chain 19: Gradient evaluation took 0.000214 seconds
+Chain 19: 1000 transitions using 10 leapfrog steps per transition would take 2.14 seconds.
+Chain 19: Adjust your expectations accordingly!
+Chain 19: 
+Chain 19: 
+Chain 19: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 18: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 17: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 20: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 18: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 19: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 20: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 17: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 18: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 19: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 17: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 18: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 20: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 19: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 17: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 20: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 18: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 19: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 17: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 20: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 17: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 18: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 19: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 18: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 20: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 17: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 19: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 18: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 17: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 19: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 17: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 17: 
+Chain 17:  Elapsed Time: 214.749 seconds (Warm-up)
+Chain 17:                50.8166 seconds (Sampling)
+Chain 17:                265.566 seconds (Total)
+Chain 17: 
+Chain 19: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 20: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 21).
+Chain 21: 
+Chain 21: Gradient evaluation took 0.000278 seconds
+Chain 21: 1000 transitions using 10 leapfrog steps per transition would take 2.78 seconds.
+Chain 21: Adjust your expectations accordingly!
+Chain 21: 
+Chain 21: 
+Chain 21: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 18: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 19: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 20: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 19: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 19: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 19: 
+Chain 19:  Elapsed Time: 197.609 seconds (Warm-up)
+Chain 19:                53.0166 seconds (Sampling)
+Chain 19:                250.626 seconds (Total)
+Chain 19: 
+Chain 18: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 21: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 20: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 21: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 18: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 18: 
+Chain 18:  Elapsed Time: 203.035 seconds (Warm-up)
+Chain 18:                97.8365 seconds (Sampling)
+Chain 18:                300.871 seconds (Total)
+Chain 18: 
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 23).
+Chain 23: 
+Chain 23: Gradient evaluation took 0.000243 seconds
+Chain 23: 1000 transitions using 10 leapfrog steps per transition would take 2.43 seconds.
+Chain 23: Adjust your expectations accordingly!
+Chain 23: 
+Chain 23: 
+Chain 23: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 21: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 20: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 22).
+Chain 22: 
+Chain 22: Gradient evaluation took 0.000211 seconds
+Chain 22: 1000 transitions using 10 leapfrog steps per transition would take 2.11 seconds.
+Chain 22: Adjust your expectations accordingly!
+Chain 22: 
+Chain 22: 
+Chain 22: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 21: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 20: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 20: 
+Chain 20:  Elapsed Time: 234.198 seconds (Warm-up)
+Chain 20:                96.9092 seconds (Sampling)
+Chain 20:                331.107 seconds (Total)
+Chain 20: 
+Chain 21: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 23: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 21: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 22: Iteration:  400 / 4000 [ 10%]  (Warmup)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 24).
+Chain 24: 
+Chain 24: Gradient evaluation took 0.000228 seconds
+Chain 24: 1000 transitions using 10 leapfrog steps per transition would take 2.28 seconds.
+Chain 24: Adjust your expectations accordingly!
+Chain 24: 
+Chain 24: 
+Chain 24: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 23: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 21: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 22: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 21: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 23: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 22: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 21: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 23: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 24: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 22: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 21: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 23: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 24: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 21: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 21: 
+Chain 21:  Elapsed Time: 172.634 seconds (Warm-up)
+Chain 21:                51.6945 seconds (Sampling)
+Chain 21:                224.329 seconds (Total)
+Chain 21: 
+Chain 22: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 23: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 24: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 25).
+Chain 25: 
+Chain 25: Gradient evaluation took 0.000179 seconds
+Chain 25: 1000 transitions using 10 leapfrog steps per transition would take 1.79 seconds.
+Chain 25: Adjust your expectations accordingly!
+Chain 25: 
+Chain 25: 
+Chain 25: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 22: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 23: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 24: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 22: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 23: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 24: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 22: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 23: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 25: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 24: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 22: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 23: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 25: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 23: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 23: 
+Chain 23:  Elapsed Time: 192.143 seconds (Warm-up)
+Chain 23:                51.3108 seconds (Sampling)
+Chain 23:                243.454 seconds (Total)
+Chain 23: 
+Chain 24: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 22: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 22: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 22: 
+Chain 22:  Elapsed Time: 181.967 seconds (Warm-up)
+Chain 22:                54.2076 seconds (Sampling)
+Chain 22:                236.175 seconds (Total)
+Chain 22: 
+Chain 25: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 24: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 27).
+Chain 27: 
+Chain 27: Gradient evaluation took 0.000216 seconds
+Chain 27: 1000 transitions using 10 leapfrog steps per transition would take 2.16 seconds.
+Chain 27: Adjust your expectations accordingly!
+Chain 27: 
+Chain 27: 
+Chain 27: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 25: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 25: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 26).
+Chain 26: 
+Chain 26: Gradient evaluation took 0.000217 seconds
+Chain 26: 1000 transitions using 10 leapfrog steps per transition would take 2.17 seconds.
+Chain 26: Adjust your expectations accordingly!
+Chain 26: 
+Chain 26: 
+Chain 26: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 24: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 25: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 27: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 25: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 25: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 24: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 27: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 25: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 26: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 24: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 24: 
+Chain 24:  Elapsed Time: 198.022 seconds (Warm-up)
+Chain 24:                100.86 seconds (Sampling)
+Chain 24:                298.882 seconds (Total)
+Chain 24: 
+Chain 27: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 25: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 26: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 25: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 25: 
+Chain 25:  Elapsed Time: 183.634 seconds (Warm-up)
+Chain 25:                47.7516 seconds (Sampling)
+Chain 25:                231.386 seconds (Total)
+Chain 25: 
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 29).
+Chain 29: 
+Chain 29: Gradient evaluation took 0.000201 seconds
+Chain 29: 1000 transitions using 10 leapfrog steps per transition would take 2.01 seconds.
+Chain 29: Adjust your expectations accordingly!
+Chain 29: 
+Chain 29: 
+Chain 29: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 27: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 26: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 28).
+Chain 28: 
+Chain 28: Gradient evaluation took 0.00018 seconds
+Chain 28: 1000 transitions using 10 leapfrog steps per transition would take 1.8 seconds.
+Chain 28: Adjust your expectations accordingly!
+Chain 28: 
+Chain 28: 
+Chain 28: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 27: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 26: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 27: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 26: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 29: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 28: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 27: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 26: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 29: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 27: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 28: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 26: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 29: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 27: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 26: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 28: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 29: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 27: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 26: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 28: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 27: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 27: 
+Chain 27:  Elapsed Time: 202.123 seconds (Warm-up)
+Chain 27:                49.0644 seconds (Sampling)
+Chain 27:                251.187 seconds (Total)
+Chain 27: 
+Chain 29: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 26: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 31).
+Chain 31: 
+Chain 31: Gradient evaluation took 0.000218 seconds
+Chain 31: 1000 transitions using 10 leapfrog steps per transition would take 2.18 seconds.
+Chain 31: Adjust your expectations accordingly!
+Chain 31: 
+Chain 31: 
+Chain 31: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 28: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 26: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 26: 
+Chain 26:  Elapsed Time: 188.64 seconds (Warm-up)
+Chain 26:                48.4179 seconds (Sampling)
+Chain 26:                237.058 seconds (Total)
+Chain 26: 
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 30).
+Chain 30: 
+Chain 30: Gradient evaluation took 0.000217 seconds
+Chain 30: 1000 transitions using 10 leapfrog steps per transition would take 2.17 seconds.
+Chain 30: Adjust your expectations accordingly!
+Chain 30: 
+Chain 30: 
+Chain 30: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 29: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 28: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 29: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 29: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 28: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 31: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 28: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 29: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 30: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 31: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 28: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 29: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 30: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 31: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 29: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 29: 
+Chain 29:  Elapsed Time: 183.542 seconds (Warm-up)
+Chain 29:                48.9477 seconds (Sampling)
+Chain 29:                232.49 seconds (Total)
+Chain 29: 
+Chain 28: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 30: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 28: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 28: 
+Chain 28:  Elapsed Time: 183.479 seconds (Warm-up)
+Chain 28:                52.1678 seconds (Sampling)
+Chain 28:                235.647 seconds (Total)
+Chain 28: 
+Chain 31: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 33).
+Chain 33: 
+Chain 33: Gradient evaluation took 0.000208 seconds
+Chain 33: 1000 transitions using 10 leapfrog steps per transition would take 2.08 seconds.
+Chain 33: Adjust your expectations accordingly!
+Chain 33: 
+Chain 33: 
+Chain 33: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 30: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 32).
+Chain 32: 
+Chain 32: Gradient evaluation took 0.000214 seconds
+Chain 32: 1000 transitions using 10 leapfrog steps per transition would take 2.14 seconds.
+Chain 32: Adjust your expectations accordingly!
+Chain 32: 
+Chain 32: 
+Chain 32: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 31: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 30: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 31: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 30: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 33: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 31: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 32: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 30: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 33: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 31: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 30: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 32: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 33: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 30: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 32: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 31: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 33: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 30: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 32: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 30: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 30: 
+Chain 30:  Elapsed Time: 189.881 seconds (Warm-up)
+Chain 30:                47.375 seconds (Sampling)
+Chain 30:                237.256 seconds (Total)
+Chain 30: 
+Chain 33: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 32: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 31: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 33: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 32: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 31: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 31: 
+Chain 31:  Elapsed Time: 193.487 seconds (Warm-up)
+Chain 31:                92.175 seconds (Sampling)
+Chain 31:                285.662 seconds (Total)
+Chain 31: 
+Chain 33: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 34).
+Chain 34: 
+Chain 34: Gradient evaluation took 0.000236 seconds
+Chain 34: 1000 transitions using 10 leapfrog steps per transition would take 2.36 seconds.
+Chain 34: Adjust your expectations accordingly!
+Chain 34: 
+Chain 34: 
+Chain 34: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 32: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 33: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 35).
+Chain 35: 
+Chain 35: Gradient evaluation took 0.000214 seconds
+Chain 35: 1000 transitions using 10 leapfrog steps per transition would take 2.14 seconds.
+Chain 35: Adjust your expectations accordingly!
+Chain 35: 
+Chain 35: 
+Chain 35: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 32: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 33: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 34: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 32: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 35: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 34: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 33: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 34: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 35: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 32: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 33: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 33: 
+Chain 33:  Elapsed Time: 185.132 seconds (Warm-up)
+Chain 33:                97.544 seconds (Sampling)
+Chain 33:                282.676 seconds (Total)
+Chain 33: 
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 37).
+Chain 37: 
+Chain 37: Gradient evaluation took 0.000206 seconds
+Chain 37: 1000 transitions using 10 leapfrog steps per transition would take 2.06 seconds.
+Chain 37: Adjust your expectations accordingly!
+Chain 37: 
+Chain 37: 
+Chain 37: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 34: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 35: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 32: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 32: 
+Chain 32:  Elapsed Time: 184.248 seconds (Warm-up)
+Chain 32:                98.4819 seconds (Sampling)
+Chain 32:                282.73 seconds (Total)
+Chain 32: 
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 36).
+Chain 36: 
+Chain 36: Gradient evaluation took 0.000289 seconds
+Chain 36: 1000 transitions using 10 leapfrog steps per transition would take 2.89 seconds.
+Chain 36: Adjust your expectations accordingly!
+Chain 36: 
+Chain 36: 
+Chain 36: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 34: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 35: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 34: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 35: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 34: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 37: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 34: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 36: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 35: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 37: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 34: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 36: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 35: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 35: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 37: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 34: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 36: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 34: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 34: 
+Chain 34:  Elapsed Time: 181.008 seconds (Warm-up)
+Chain 34:                48.6415 seconds (Sampling)
+Chain 34:                229.65 seconds (Total)
+Chain 34: 
+Chain 37: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 38).
+Chain 38: 
+Chain 38: Gradient evaluation took 0.000206 seconds
+Chain 38: 1000 transitions using 10 leapfrog steps per transition would take 2.06 seconds.
+Chain 38: Adjust your expectations accordingly!
+Chain 38: 
+Chain 38: 
+Chain 38: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 35: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 36: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 37: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 36: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 35: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 37: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 35: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 35: 
+Chain 35:  Elapsed Time: 201.282 seconds (Warm-up)
+Chain 35:                60.695 seconds (Sampling)
+Chain 35:                261.977 seconds (Total)
+Chain 35: 
+Chain 36: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 37: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 36: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 37: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 36: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 37: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 36: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 38: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 37: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 39).
+Chain 39: 
+Chain 39: Gradient evaluation took 0.000422 seconds
+Chain 39: 1000 transitions using 10 leapfrog steps per transition would take 4.22 seconds.
+Chain 39: Adjust your expectations accordingly!
+Chain 39: 
+Chain 39: 
+Chain 39: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 37: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 36: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 37: 
+Chain 37:  Elapsed Time: 200.601 seconds (Warm-up)
+Chain 37:                49.3924 seconds (Sampling)
+Chain 37:                249.994 seconds (Total)
+Chain 37: 
+Chain 38: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 36: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 36: 
+Chain 36:  Elapsed Time: 185.526 seconds (Warm-up)
+Chain 36:                56.7843 seconds (Sampling)
+Chain 36:                242.311 seconds (Total)
+Chain 36: 
+Chain 38: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 39: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 38: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 39: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 38: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+
+SAMPLING FOR MODEL 'PA_LD_L_CV' NOW (CHAIN 40).
+Chain 40: 
+Chain 40: Gradient evaluation took 0.000209 seconds
+Chain 40: 1000 transitions using 10 leapfrog steps per transition would take 2.09 seconds.
+Chain 40: Adjust your expectations accordingly!
+Chain 40: 
+Chain 40: 
+Chain 40: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 39: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 38: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 39: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 39: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 40: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 38: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 39: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 40: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 38: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 39: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 40: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 39: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 40: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 38: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 39: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 40: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 39: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 39: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 39: 
+Chain 39:  Elapsed Time: 168.552 seconds (Warm-up)
+Chain 39:                42.8836 seconds (Sampling)
+Chain 39:                211.436 seconds (Total)
+Chain 39: 
+Chain 38: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 40: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 38: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 38: 
+Chain 38:  Elapsed Time: 246.6 seconds (Warm-up)
+Chain 38:                70.0169 seconds (Sampling)
+Chain 38:                316.617 seconds (Total)
+Chain 38: 
+Chain 40: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 40: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 40: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 40: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 40: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 40: 
+Chain 40:  Elapsed Time: 157.171 seconds (Warm-up)
+Chain 40:                38.2565 seconds (Sampling)
+Chain 40:                195.428 seconds (Total)
+Chain 40: 

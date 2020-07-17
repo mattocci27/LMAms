@@ -1,0 +1,63 @@
+[1] "Model: m1q_more"
+[1] "Model dir: ./model/m1q_more.stan"
+[1] "Data: PA"
+[1] "n_iter = 2000"
+[1] "n_warm = 1000"
+[1] "n_thin = 1"
+[1] "n_chains = 4"
+
+SAMPLING FOR MODEL 'm1q_more' NOW (CHAIN 1).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: multi_normal_cholesky_lpdf: Location parameter[2] is nan, but must be finite!  (in 'model97c3417b5694_m1q_more' at line 61)
+
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: multi_normal_cholesky_lpdf: Location parameter[2] is nan, but must be finite!  (in 'model97c3417b5694_m1q_more' at line 61)
+
+
+Gradient evaluation took 0.0012 seconds
+1000 transitions using 10 leapfrog steps per transition would take 12 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more' NOW (CHAIN 2).
+
+Gradient evaluation took 0.001603 seconds
+1000 transitions using 10 leapfrog steps per transition would take 16.03 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more' NOW (CHAIN 3).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: multi_normal_cholesky_lpdf: Location parameter[2] is nan, but must be finite!  (in 'model97c3417b5694_m1q_more' at line 61)
+
+
+Gradient evaluation took 0.000933 seconds
+1000 transitions using 10 leapfrog steps per transition would take 9.33 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL 'm1q_more' NOW (CHAIN 4).
+Rejecting initial value:
+  Error evaluating the log probability at the initial value.
+Exception: multi_normal_cholesky_lpdf: Location parameter[2] is nan, but must be finite!  (in 'model97c3417b5694_m1q_more' at line 61)
+
+
+Gradient evaluation took 0.00317 seconds
+1000 transitions using 10 leapfrog steps per transition would take 31.7 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 2000 [  0%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  400 / 2000 [ 20%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)
+Iteration:  200 / 2000 [ 10%]  (Warmup)

@@ -1,0 +1,62 @@
+[1] 32
+[1] "load sim_data.r"
+[1] pot_com
+[1] "GL1"
+[1] 20000
+[1] 10000
+[1] 20
+In file included from /apps/R/lib/gcc/5.2.0/3.2.2/BH/include/boost/config.hpp:39:0,
+                 from /apps/R/lib/gcc/5.2.0/3.2.2/BH/include/boost/math/tools/config.hpp:13,
+                 from /apps/R/lib/gcc/5.2.0/3.2.2/StanHeaders/include/stan/math/rev/core/var.hpp:7,
+                 from /apps/R/lib/gcc/5.2.0/3.2.2/StanHeaders/include/stan/math/rev/core/gevv_vvv_vari.hpp:5,
+                 from /apps/R/lib/gcc/5.2.0/3.2.2/StanHeaders/include/stan/math/rev/core.hpp:12,
+                 from /apps/R/lib/gcc/5.2.0/3.2.2/StanHeaders/include/stan/math/rev/mat.hpp:4,
+                 from /apps/R/lib/gcc/5.2.0/3.2.2/StanHeaders/include/stan/math.hpp:4,
+                 from /apps/R/lib/gcc/5.2.0/3.2.2/StanHeaders/include/src/stan/model/model_header.hpp:4,
+                 from file39364d6fb7a.cpp:8:
+/apps/R/lib/gcc/5.2.0/3.2.2/BH/include/boost/config/compiler/gcc.hpp:186:0: warning: "BOOST_NO_CXX11_RVALUE_REFERENCES" redefined
+ #  define BOOST_NO_CXX11_RVALUE_REFERENCES
+ ^
+<command-line>:0:0: note: this is the location of the previous definition
+
+SAMPLING FOR MODEL 'cefb3c1d8f45f5af42796559556889a1' NOW (CHAIN 1).
+
+Gradient evaluation took 0 seconds
+1000 transitions using 10 leapfrog steps per transition would take 0 seconds.
+Adjust your expectations accordingly!
+
+
+WARNING: No variance estimation is
+         performed for num_warmup < 20
+
+Iteration: 1 / 1 [100%]  (Sampling)
+
+ Elapsed Time: 0 seconds (Warm-up)
+               0 seconds (Sampling)
+               0 seconds (Total)
+
+
+SAMPLING FOR MODEL 'cefb3c1d8f45f5af42796559556889a1' NOW (CHAIN 1).
+
+Gradient evaluation took 0 seconds
+1000 transitions using 10 leapfrog steps per transition would take 0 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:     1 / 20000 [  0%]  (Warmup)
+Iteration:  2000 / 20000 [ 10%]  (Warmup)
+Iteration:  4000 / 20000 [ 20%]  (Warmup)
+Iteration:  6000 / 20000 [ 30%]  (Warmup)
+Iteration:  8000 / 20000 [ 40%]  (Warmup)
+Iteration: 10000 / 20000 [ 50%]  (Warmup)
+Iteration: 10001 / 20000 [ 50%]  (Sampling)
+Iteration: 12000 / 20000 [ 60%]  (Sampling)
+Iteration: 14000 / 20000 [ 70%]  (Sampling)
+Iteration: 16000 / 20000 [ 80%]  (Sampling)
+Iteration: 18000 / 20000 [ 90%]  (Sampling)
+Iteration: 20000 / 20000 [100%]  (Sampling)
+
+ Elapsed Time: 246.99 seconds (Warm-up)
+               239.9 seconds (Sampling)
+               486.89 seconds (Total)
+

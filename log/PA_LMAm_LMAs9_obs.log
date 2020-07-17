@@ -1,0 +1,7 @@
+[1] "Model: LMAm_LMAs9"
+[1] "Model dir: ./model/LMAm_LMAs9.stan"
+[1] "Data: PA"
+[1] "n_iter = 2000"
+[1] "n_warm = 1000"
+[1] "n_thin = 1"
+[1] "n_chains = 4"

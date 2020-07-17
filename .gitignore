@@ -6,7 +6,6 @@ core
 .bash_history
 .cache/
 .rstudio/
-log/*.log
 *_cache
 *_files
 nohup.out
@@ -64,7 +63,6 @@ vignettes/*.pdf
 *.pptx
 
 figs/
-*.log
 *.err
 *.out
 ms/cache/
