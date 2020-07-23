@@ -87,6 +87,7 @@ time sudo singularity build lma.sif docker-daemon://192.168.1.123:5000/mattocci/
 
 #singularity shell ../dockerfiles/singularity/rstan-3.6.3.sif
 
+singularity shell ../dockerfiles/singularity/myenv-3.6.3.sif
 singularity shell lma.sif
 time sh ./sh/run_model.sh
 
@@ -109,12 +110,14 @@ docker run --rm -it -v $(pwd):/home/rstudio -e PASSWORD=KS07L1yiNbXNf9APHxPx mat
 docker run -it -v $(pwd):/home/rstudio --user rstudio -e PASSWORD=te mattocci/rstan /bin/bash
 
 # rstudio
-sudo docker run -d -v $(pwd):/home/rstudio -e PASSWORD=KS07L1yiNbXNf9APHxPx -p 8787:8787 mattocci/lma:local
 
 
-#sudo docker image rm $(sudo docker image ls -a -q)
-sudo docker container stop $(sudo docker container ls -a -q)
-sudo docker container rm $(sudo docker container ls -a -q)
+docker run \
+  --rm \
+  -v $(pwd):/home/rstudio/LMAms \
+  -e PASSWORD=F85hPRItkcsaQ7lR6AHK \
+  -p 8787:8787 mattocci/myenv:4.0.2 
+
 ```
 
 ### Data cleaning  
