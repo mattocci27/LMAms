@@ -6,8 +6,8 @@ set -e
 # GL-obs
 DATA=GL
 OBS=obs
-N_ITER=2
-N_WARM=1
+N_ITER=4000
+N_WARM=3000
 
 for MODEL in GL_LMAms
 do
