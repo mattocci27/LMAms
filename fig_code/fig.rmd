@@ -617,7 +617,7 @@ my_ggsave("../figs/GL_2.png", fig4)
 
 ```{r PAdat, cache=TRUE, comment=NA}
 #load("../data/PA_LMAms_L5_more_obs.rda")
-load("../data/PA_LMAms_L0_more_obs_do.rda")
+load("../data/PA_LMAms_L0_more_obs.rda")
 
 summary_PA_LDL <- data.frame(summary(res)$summary)
 
