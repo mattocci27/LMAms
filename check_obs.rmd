@@ -1,0 +1,65 @@
+---
+title: Diagnostics for observed data 
+author: Masatoshi Katabuchi
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+#rmdformats::material
+  html_document:
+    fig_caption: yes
+    theme: spacelab #readable #sandstone #spacelab #flatly
+    highlight: pygments #tango #kate
+    toc: TRUE
+    toc_depth: 2
+    number_sections: TRUE
+    toc_float:
+      collapsed: TRUE
+      smooth_scroll: TRUE
+      toc: true
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE,
+                      warning=FALSE,
+                      cache=FALSE,
+                      message=FALSE)
+```
+
+```{r}
+
+library(tidyverse)
+library(rstan)
+library(scales)
+library(memisc)
+library(bayesplot)
+
+settings <- yaml::yaml.load_file("settings.yml")
+```
+
+```{r}
+obs_files <- list.files("rda") %>%
+  str_subset("obs.rda")
+
+obs_files <- list.files("rda") %>%
+  str_subset("obs")
+```
+
+# Diagnostics
+
+```{r}
+
+color_scheme_set("mix-brightblue-gray")
+
+check_trace <- function(x) {
+  load(str_c("rda/", obs_files[x]))
+  np_cp <- nuts_params(res)
+  mcmc_trace(res, pars = c("Z[2,3]", "lp__"), np = np_cp) +
+    ggtitle(obs_files[x])
+}
+
+p <- 1:length(obs_files)  %>%
+  map(check_trace)
+
+p %>%
+  walk(print)
+
+```
