@@ -10,7 +10,7 @@ dd <- data.frame(Narea = 10^d$`log Narea`,
         summarize(Narea = mean(Narea, na.omit = T),
             Parea = mean(Parea, na.omit = T))
 
-load("./data/GL_LMAms_more_obs.rda")
+load("./rda/GL_LMAms_more_obs.rda")
 resGL <- res
 GL_summary <- data.frame(summary(res)$summary)
 GL <- dat
@@ -37,53 +37,24 @@ GL <- left_join(GL, dd, by = "sp") %>%
                       ))) %>%
   arrange(sp)
 
-write.csv(GL, "./data/GL_m0.csv", row.names = FALSE)
+write.csv(GL, "./data/GL_LMAms_more_obs.csv", row.names = FALSE)
 
 
-load("./data/GL_m0_N_obs.rda")
-resGL <- res
-GL_summary <- data.frame(summary(res)$summary)
-GL <- dat
-P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
-
-GL <- GL %>%
-  mutate(DE = ifelse(GL$DE == "", "U", as.character(DE))) 
-
-mu2_vec <- paste("mu2[", 1:nrow(GL), "]", sep = "")
-temp_LMAp <- GL_summary[P_vec, "mean"] * GL$LMA
-temp_LMAs <- GL$LMA - temp_LMAp
-temp_LL <- exp(GL_summary[mu2_vec, "mean"])
-
-GL <- GL %>%
-  mutate(LMAp = temp_LMAp) %>%
-  mutate(LMAs = temp_LMAs) %>%
-  mutate(preLL = temp_LL) 
-
-GL <- left_join(GL, dd, by = "sp") %>%
-  mutate(gr = factor(DE,
-    labels = c("Deciduous",
-               "Evergreen",
-               "Unclassified"
-                      ))) %>%
-  arrange(sp)
-
-write.csv(GL, "./data/GL_m0_N.csv", row.names = FALSE)
-
-load("./data/PA_m1q_more_obs.rda")
+load("./rda/PA_LMAms0_more_obs.rda")
 resPA <- res
 #summary_PA_LDL <- data.frame(summary(res)$summary)
 
 summary_PA_LDL <- data.frame(summary(res)$summary)
 
 PA <- dat %>%
-  as_data_frame %>%
+  as_tibble %>%
   mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
   mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) %>%
   mutate(site_strata = paste(site2, strata, sep = "_"))
 
-
 P_vec <- paste("p[", 1:nrow(PA), "]", sep = "")
 mu2_vec <- paste("mu2[", 1:nrow(PA), "]", sep = "")
+
 #Mu_vec <- paste("mu[", 1:nrow(PA), ",2]", sep = "")
 temp_LMAp <- summary_PA_LDL[P_vec, "mean"] * PA$LMA
 temp_LMAs <- PA$LMA - temp_LMAp
@@ -96,27 +67,35 @@ PA <- PA %>%
   mutate(preLL = temp_LL) %>%
   mutate(LDs = LMAs/LT/1000)
 
-write.csv(PA, "./data/PA_m1q_more.csv", row.names = FALSE)
+write.csv(PA, "./data/PA_LMAms0_more.csv", row.names = FALSE)
 
-load("./data/PA_m1q_more_N_obs.rda")
+load("./rda/PA_LMAms_L0_more_obs.rda")
 resPA <- res
 #summary_PA_LDL <- data.frame(summary(res)$summary)
 
 summary_PA_LDL <- data.frame(summary(res)$summary)
 
 PA <- dat %>%
-  as_data_frame %>%
+  as_tibble %>%
   mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
   mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) %>%
   mutate(site_strata = paste(site2, strata, sep = "_"))
 
 
 P_vec <- paste("p[", 1:nrow(PA), "]", sep = "")
-mu2_vec <- paste("mu2[", 1:nrow(PA), "]", sep = "")
+
+ypred <- NULL
+for (i in 1:nrow(PA)) {
+ ypred <- cbind(ypred, rstan::extract(res, str_c("Mu[", i,",2]"))[[1]])
+}
+
+temp_LL <- apply(ypred, 2, mean) %>% exp
+
+#mu2_vec <- paste("mu2[", 1:nrow(PA), "]", sep = "")
 #Mu_vec <- paste("mu[", 1:nrow(PA), ",2]", sep = "")
 temp_LMAp <- summary_PA_LDL[P_vec, "mean"] * PA$LMA
 temp_LMAs <- PA$LMA - temp_LMAp
-temp_LL <- exp(summary_PA_LDL[mu2_vec, "mean"])
+#temp_LL <- exp(summary_PA_LDL[mu2_vec, "mean"])
 
 
 PA <- PA %>%
@@ -125,48 +104,24 @@ PA <- PA %>%
   mutate(preLL = temp_LL) %>%
   mutate(LDs = LMAs/LT/1000)
 
-write.csv(PA, "./data/PA_m1q_more_N.csv", row.names = FALSE)
+write.csv(PA, "./data/PA_LMAms_L0_more.csv", row.names = FALSE)
 
-load("./data/PA_m1q_more_NS_more_obs.rda")
-resPA <- res
-#summary_PA_LDL <- data.frame(summary(res)$summary)
-
-summary_PA_LDL <- data.frame(summary(res)$summary)
-
-PA <- dat %>%
-  as_data_frame %>%
-  mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
-  mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) %>%
-  mutate(site_strata = paste(site2, strata, sep = "_"))
-
-
-P_vec <- paste("p[", 1:nrow(PA), "]", sep = "")
-mu2_vec <- paste("mu2[", 1:nrow(PA), "]", sep = "")
-#Mu_vec <- paste("mu[", 1:nrow(PA), ",2]", sep = "")
-temp_LMAp <- summary_PA_LDL[P_vec, "mean"] * PA$LMA
-temp_LMAs <- PA$LMA - temp_LMAp
-temp_LL <- exp(summary_PA_LDL[mu2_vec, "mean"])
-
-
-PA <- PA %>%
-  mutate(LMAp = temp_LMAp) %>%
-  mutate(LMAs = temp_LMAs) %>%
-  mutate(preLL = temp_LL) %>%
-  mutate(LDs = LMAs/LT/1000)
-
-write.csv(PA, "./data/PA_m1q_more_NS.csv", row.names = FALSE)
 
 y <- PA$LL %>% log
-ypred <- rstan::extract(res, "mu2")[[1]]
+
+#ypred <- rstan::extract(res, "Mu[1,2]")[[1]]
+
+ypred <- NULL
+for (i in 1:nrow(PA)) {
+ ypred <- cbind(ypred, rstan::extract(res, str_c("Mu[", i,",2]"))[[1]])
+}
+
 plot(y ~ apply(ypred,2,mean))
 e <- -1 * sweep(ypred, 2, y)
 var_ypred <- apply(ypred, 1, var)
 var_e <- apply(e, 1, var)
 r2 <- var_ypred / (var_ypred + var_e) 
 hist(r2)
-
-log_LMAp <- rstan::extract(res, "log_LMAp")[[1]]
-log_LMAs <- rstan::extract(res, "log_LMAs")[[1]]
 
 my_cor <- function(x, y){
   lo <- apply(x, 1, function(x)cor(x, y)) %>%
