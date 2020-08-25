@@ -29,10 +29,10 @@ library(dplyr)
 library(scales)
 library(memisc)
 
-
 theme_set(theme_light())
 
 settings <- yaml::yaml.load_file("../settings.yml")
+
 ```
 
 
