@@ -42,8 +42,8 @@ obs_files <- list.files("rda") %>%
 obs_files <- list.files("rda") %>%
   str_subset("obs")
 
-obs_files_cv <- obs_files[str_detect(obs_files, "_CV")]
-obs_files_obs <- obs_files[!str_detect(obs_files, "_CV")]
+(obs_files_cv <- obs_files[str_detect(obs_files, "_CV")])
+(obs_files_obs <- obs_files[!str_detect(obs_files, "_CV")])
 
 ```
 
