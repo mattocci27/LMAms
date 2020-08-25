@@ -43,6 +43,8 @@ load("./rda/PA_LMAms_L0_more_rand.rda")
 
 # Diagnostics
 
+Check posterior distributions for 10 randomized datasets.
+
 ```{r}
 
 #color_scheme_set("darkgray")
@@ -63,6 +65,9 @@ p %>%
   walk(print)
 
 ```
+
+Divergent transitions indicate biased estimates for posterior
+distributions. All the models showed divergent transitions.
 
 
 ```{r}

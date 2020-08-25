@@ -88,6 +88,7 @@ time sudo singularity build lma.sif docker-daemon://192.168.1.123:5000/mattocci/
 #singularity shell ../dockerfiles/singularity/rstan-3.6.3.sif
 
 singularity shell ../dockerfiles/singularity/myenv-3.6.3.sif
+
 singularity shell lma.sif
 time sh ./sh/run_model.sh
 
