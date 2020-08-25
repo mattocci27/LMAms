@@ -28,7 +28,7 @@ output:
 fontsize: 12pt
 geometry: margin=1in
 link-citations: yes
-csl: https://raw.githubusercontent.com/citation-style-language/styles/master/ecology.csl
+csl: ecology.csl
 bibliography: [MyLibrary.bib]
 ---
 
@@ -51,19 +51,21 @@ source("rmd_func.r")
 
 **Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species**
 
-Masatoshi Katabuchi^1,2,6^, Kaoru Kitajima^1,3,4^, S. Joseph Wright^4^, Sunshine A. Van Bael^4,5^, Jeanne L. D. Osnas^1^ and Jeremy W. Lichstein^1^
+Masatoshi Katabuchi^1,2,3,7^, Kaoru Kitajima^3,4,5^, S. Joseph Wright^5^, Sunshine A. Van Bael^5,6^, Jeanne L. D. Osnas^3^ and Jeremy W. Lichstein^3^
 
-^1^ Department of Biology, University of Florida, Gainesville, FL 32611, USA
+^1^ Xishuangbanna Tropical Botanical Garden, Chinese Academy of Sciences, Menglun, Yunnan 666303 China
 
-^2^ Xishuangbanna Tropical Botanical Garden, Chinese Academy of Sciences, Menglun, Yunnan 666303 China
+^2^ Center of Plant Ecology, Core Botanical Gardens, Chinese Academy of Sciences, Menglun, Yunnan 666303 China
 
-^3^ Graduate School of Agriculture, Kyoto University, Kitashirakawa Oiwake-Cho, Kyoto 606-8502 Japan
+^3^ Department of Biology, University of Florida, Gainesville, FL 32611, USA
 
-^4^ Smithsonian Tropical Research Institute, 9100 Panama City Pl., Washington, DC 20521
+^4^ Graduate School of Agriculture, Kyoto University, Kitashirakawa Oiwake-Cho, Kyoto 606-8502 Japan
 
-^5^ Department of Ecology and Evolutionary Biology, Tulane University, New Orleans, LA 70118 USA
+^5^ Smithsonian Tropical Research Institute, 9100 Panama City Pl., Washington, DC 20521
 
-^6^**Corresponding Author**: E-mail: mattocci27@gmail.com
+^6^ Department of Ecology and Evolutionary Biology, Tulane University, New Orleans, LA 70118 USA
+
+^7^**Corresponding Author**: E-mail: mattocci27@gmail.com
 
 `r page_break("Abstract")`
 
@@ -203,10 +205,10 @@ Convergence of the posterior distribution was assessed with the Gelman-Rubin sta
 Because our statistical approach includes one latent variable *f~i~* to partition LMA into LMAm and LMAs for each leaf sample, one might expect a good match between predictions and observations simply due to the large number of free parameters, whether or not the model captured important biological mechanisms.
 To evaluate model performance while controlling for the number of free parameters, we compared the fit of our model to observed and randomized datasets.
 Specifically, we generated randomized datasets by randomizing all the trait values (LMA, *A*~area~, *R*~area~ and LL) across species.
-Thus, the randomized datasets had zero epected covariance among traits.
-Model results obtained from the randomized datasets did not produce any significant patterns or models did not converged (Supplement X).
+Thus, the randomized datasets had zero expected covariance among traits.
+Model results obtained from the randomized datasets did not produce any significant patterns for the GLOPNET data or models did not converged for the Panama data (Supplement X).
 Thus, the model is not guaranteed to work based on the assumptions alone.
-We assume that estimates of LMAm and LMAs reflect meaningful patterns in the data.
+We assume that estimates of LMAm and LMAs reflect meaningful patterns in the observed data.
 
 ## Model selection
 
@@ -357,7 +359,7 @@ MK, JWL and JLDO conceived of the study; KK, SJW and SAVB contributed data; MK d
 
 ```{r modeltab, anchor = "table", tab.cap = "Five model forms compared to predict *A*~area~, LL and *R*~area~."}
 
-tab1 <- data_frame(
+tab1 <- tibble(
   Model = c("LMA",
             "",
             "",
