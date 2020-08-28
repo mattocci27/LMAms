@@ -87,12 +87,15 @@ time sudo singularity build lma.sif docker-daemon://192.168.1.123:5000/mattocci/
 
 #singularity shell ../dockerfiles/singularity/rstan-3.6.3.sif
 
-singularity shell ../dockerfiles/singularity/myenv-3.6.3.sif
+singularity shell ../dockerfiles/singularity/myenv_4.0.2.sif
+
+singularity shell ../dockerfiles/singularity/rmd-crossref_4.0.2.sif
+time sh render.sh
 
 singularity shell lma.sif
 time sh ./sh/run_model.sh
 
-docker run --rm -it -v $(pwd):/home/rstudio/LMAms mattocci/lma:local /bin/bash
+docker run --rm -it -v $(pwd):/home/rstudio/LMAms -u rstudio mattocci/rmd-crossref:4.0.2 /bin/bash
 
 # shell
 docker run --rm -it --user rstudio -e PASSWORD=test mattocci/lma:local /bin/bash
@@ -117,7 +120,7 @@ docker run \
   --rm \
   -v $(pwd):/home/rstudio/LMAms \
   -e PASSWORD=F85hPRItkcsaQ7lR6AHK \
-  -p 8787:8787 mattocci/myenv:4.0.2 
+  -p 8787:8787 mattocci/rmd-crossref:4.0.2 
 
 ```
 
