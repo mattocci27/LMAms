@@ -11,14 +11,14 @@ get_elpd <- function(ss){
   kk$elpd_kfold
 }
 
-load("./data/GL_LMAms_CV_obs_cv.rda")
+load("./rda/GL_LMAms_CV_obs_cv.rda")
 
 
 ee2 <- get_elpd(ss)
 N2 <- N
 
 
-load("./data/GL_LMA_CV_obs_cv.rda")
+load("./rda/GL_LMA_CV_obs_cv.rda")
 
 ee <- get_elpd(ss)
 
@@ -30,26 +30,26 @@ GL_tb <- tibble(LMA = c("LMA", "LMAms"),
 
 write.csv(GL_tb, row.names = F, "./data/GL_elpd.csv")
 
-load("./data/PA_LMA_CV_obs_cv.rda")
+load("./rda/PA_LMA_CV_obs_cv.rda")
 
 ee <- get_elpd(ss)
 N1 <- N
 
-load("./data/PA_LMA_L_CV_obs_cv.rda")
+load("./rda/PA_LMA_L_CV_obs_cv.rda")
 
 ee2 <- get_elpd(ss)
 N2 <- N
 
-load("./data/PA_LMAms_CV_obs_cv.rda")
+load("./rda/PA_LMAms_CV_obs_cv.rda")
 
 ee3 <- get_elpd(ss)
 N3 <- N
 
-load("./data/PA_LMAms_L_CV_obs_cv.rda")
+load("./rda/PA_LMAms_L_CV_obs_cv.rda")
 ee4 <- get_elpd(ss)
 N4 <- N
 
-load("./data/PA_LD_L_CV_obs_cv.rda")
+load("./rda/PA_LD_L_CV_obs_cv.rda")
 ee5 <- get_elpd(ss)
 N5 <- N
 
