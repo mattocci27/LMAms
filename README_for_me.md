@@ -81,13 +81,13 @@ sudo docker pull mattocci/lma:local
 ```
 
 time docker build -f docker-local/Dockerfile -t mattocci/lma:3.6.3 .
-docker tag mattocci/lma:3.6.3 192.168.1.123:5000/mattocci/lma:3.6.3 
-docker push 192.168.1.123:5000/mattocci/lma:3.6.3 
+docker tag mattocci/lma:3.6.3 192.168.1.123:5000/mattocci/lma:3.6.3
+docker push 192.168.1.123:5000/mattocci/lma:3.6.3
 time sudo singularity build lma.sif docker-daemon://192.168.1.123:5000/mattocci/lma:3.6.3
 
-#singularity shell ../dockerfiles/singularity/rstan-3.6.3.sif
+singularity shell ../dockerfiles/singularity/rstan-3.6.3.sif
 
-singularity shell ../dockerfiles/singularity/myenv_4.0.2.sif
+singularity shell ../dockerfiles/singularity/myenv_3.6.3.sif
 
 singularity shell ../dockerfiles/singularity/rmd-crossref_4.0.2.sif
 time sh render.sh
@@ -120,11 +120,11 @@ docker run \
   --rm \
   -v $(pwd):/home/rstudio/LMAms \
   -e PASSWORD=F85hPRItkcsaQ7lR6AHK \
-  -p 8787:8787 mattocci/rmd-crossref:4.0.2 
+  -p 8787:8787 mattocci/rmd-crossref:4.0.2
 
 ```
 
-### Data cleaning  
+### Data cleaning
 
 To produce GL_data.csv and PA_data.csv
 
@@ -194,11 +194,11 @@ sh ./sh/mv_dat.sh local_to_dropbox
 
 #### List of rda files
 
-note: L0 indicates model without repulsive priors 
+note: L0 indicates model without repulsive priors
 
 - obs
   - `GL_LMAms_more_obs.rda`
-  - `PA_LMAms_L0_more_obs.rda` 
+  - `PA_LMAms_L0_more_obs.rda`
   - `PA_LMAms_more_obs.rda`
 
 - rand
@@ -208,10 +208,10 @@ note: L0 indicates model without repulsive priors
 - CV
   - `GL_LMA_CV`
   - `GL_LMAms_CV_obs_cv.rda`
-  - `PA_LMA_CV_obs_cv.rda` 
-  - `PA_LMA_L_CV_obs_cv.rda` 
+  - `PA_LMA_CV_obs_cv.rda`
+  - `PA_LMA_L_CV_obs_cv.rda`
   - `PA_LMAms_CV_obs_cv.rda` need to test this again
-  - `PA_LMAms_L_CV_obs_cv.rda` 
+  - `PA_LMAms_L_CV_obs_cv.rda`
   - `PA_LD_L_CV_obs_cv.rda`
 
 
@@ -246,5 +246,31 @@ sh render.sh
 
   load("./data/PA_LMAms_L0_more_obs.rda")
   load("./data/PA_LMAms_more_obs.rda")
+
+
+
+
+DATA=GL
+OBS=obs
+for MODEL in GL_LMAms_CV
+do
+  #
+  echo "${MODEL}, ${DATA}, ${OBS}"
+  export MODEL DATA OBS
+  nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/k_fold.r > ./log/${MODEL}_${OBS}.log &
+
+  sleep 1 # pause to be kind to the scheduler
+done
+
+#!/bin/bash
+
+DATA=GL
+OBS=obs
+for MODEL in GL_LMA
+do
+   nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/model_more.r > ./log/${DATA}_${MODEL}_${OBS}.log &&  python line.py "$DATA $OBS $MODEL done!"  &
+done
+
+
 ```
 

@@ -1,12 +1,10 @@
 data{
   int<lower=0> N;
   int<lower=0> J;
-  int jj[N];
   vector<lower=0>[N] LMA;
   vector<lower=0>[N] A;
   vector<lower=0>[N] R;
   vector<lower=0>[N] LL;
-  int<lower=0,upper=1> holdout[N]; //CV  
 }
 transformed data{
   vector[N] log_A;
@@ -43,7 +41,6 @@ model{
   
   // model
   for (i in 1:N)
-    if(holdout[i] == 0) 
       target += multi_normal_cholesky_lpdf(obs[i,] | Mu[i,], diag_pre_multiply(L_sigma, L_Omega));
 }
 generated quantities {

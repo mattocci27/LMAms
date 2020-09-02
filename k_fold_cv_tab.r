@@ -11,16 +11,31 @@ get_elpd <- function(ss){
   kk$elpd_kfold
 }
 
+load("./rda/GL_LMAms_more_obs.rda")
+fit_LMAms <- res
+load("./data/GL_LMA_more_obs.rda")
+fit_LMA <- res
+
+loo_LMAms <- loo(fit_LMAms)
+loo_LMA <- loo(fit_LMA)
+loo_compare(loo_LMAms, loo_LMA)
+
+log_lik_1 <- extract_log_lik(fit_LMAms, merge_chains = FALSE)
+r_eff <- relative_eff(exp(log_lik_1), cores = 16) 
+loo_1 <- loo(log_lik_1, r_eff = r_eff, cores = 16)
+
 load("./rda/GL_LMAms_CV_obs_cv.rda")
-
-
-ee2 <- get_elpd(ss)
+(ee1 <- get_elpd(ss))
 N2 <- N
 
+load("./rda/GL_LMAms_CV2_obs_cv.rda")
+(ee2 <- get_elpd(ss))
+
+load("./rda/GL_LMAms_CV3_obs_cv.rda")
+(ee3 <- get_elpd(ss))
 
 load("./rda/GL_LMA_CV_obs_cv.rda")
-
-ee <- get_elpd(ss)
+(ee <- get_elpd(ss))
 
 
 GL_tb <- tibble(LMA = c("LMA", "LMAms"),
