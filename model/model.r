@@ -155,7 +155,7 @@ if (obs == "obs") {
              chains = n_chains,
              control = list(adapt_delta = 0.99, max_treedepth = 20)))
 
-  save_name <- paste("./data/", n_model, "_obs.rda", sep = "")
+  save_name <- paste("./rda/", n_model, "_obs.rda", sep = "")
 }
 
 if (obs == "rand") {
@@ -187,7 +187,7 @@ if (obs == "rand") {
     mutate(model = map(data, mod_fun)) %>%
     mutate(summary = map(model, summary_fun)) 
 
-  save_name <- paste("./data/", n_model, "_rand.rda", sep = "")
+  save_name <- paste("./rda/", n_model, "_rand.rda", sep = "")
 }
 
 save.image(save_name)

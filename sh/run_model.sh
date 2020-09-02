@@ -1,73 +1,52 @@
 #!/bin/bash
 
-set -e
-
-## Obs
-# GL-obs
+# run up to 3 models for each time
+# model_more.r or model.r don't matter for GL data
+# LMA -----------------------------------------------------------------------
 DATA=GL
 OBS=obs
-N_ITER=4000
-N_WARM=3000
+MODEL=GL_LMA
+echo "${MODEL}, ${DATA}, ${OBS}"
+export MODEL DATA OBS
+nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/model.r > ./log/${MODEL}_${OBS}.log &
+sleep 1 # pause to be kind to the scheduler
 
-for MODEL in GL_LMAms
-do
-   nohup R --vanilla --slave --args ${MODEL} ${DATA} ${N_ITER} ${N_WARM} 1 ${OBS} < ./model/model_more.r > ./log/${DATA}_${MODEL}_${OBS}.log &
-done
-
-# PA-obs 2 models
+# small sample for model selection 
 DATA=PA
-for MODEL in PA_LMAms_L0 PA_LMAms0
+for MODEL in PA_LMA PA_LMA_L
 do
-    nohup R --vanilla --slave --args ${MODEL} ${DATA} ${N_ITER} ${N_WARM} 1 ${OBS} < ./model/model_more.r > ./log/${DATA}_${MODEL}_${OBS}.log &
+  #
+  echo "${MODEL}, ${DATA}, ${OBS}"
+  export MODEL DATA OBS
+  nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/model.r > ./log/${MODEL}_${OBS}.log &
+  sleep 1 # pause to be kind to the scheduler
 done
-wait #---------------------------------------------------------
+wait
 
-## rand
-OBS=rand
+# LMAms and LD --------------------------------------------------------------
+# small sample for model selection 
+DATA=PA
+for MODEL in PA_LMAms0 PA_LMAms_L0 PA_LD_L
+do
+  #
+  echo "${MODEL}, ${DATA}, ${OBS}"
+  export MODEL DATA OBS
+  nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/model.r > ./log/${MODEL}_${OBS}.log &
+  sleep 1 # pause to be kind to the scheduler
+done
+wait
+
+# for best models ---------------------------------------------------------------
 DATA=GL
 MODEL=GL_LMAms
-
-nohup R --vanilla --slave --args ${MODEL} ${DATA} ${N_ITER} ${N_WARM} 1 ${OBS} < ./model/model_more.r > ./log/${MODEL}_${OBS}.log &
-
-DATA=PA
-MODEL=PA_LMAms_L0
-
-nohup R --vanilla --slave --args ${MODEL} ${DATA} ${N_ITER} ${N_WARM} 1 ${OBS} < ./model/model_more.r > ./log/${MODEL}_${OBS}.log &
-wait #----------------------------------------------------------
-
-## CV
-DATA=GL
-OBS=obs
-for MODEL in GL_LMAms_CV GL_LMA_CV
-do
-  #
-  echo "${MODEL}, ${DATA}, ${OBS}"
-  export MODEL DATA OBS
-  nohup R --vanilla --slave --args ${MODEL} ${DATA} ${N_ITER} ${N_WARM} 1 ${OBS} < ./model/k_fold.r > ./log/${MODEL}_${OBS}.log &
-
-  sleep 1 # pause to be kind to the scheduler
-done
+echo "${MODEL}, ${DATA}, ${OBS}"
+export MODEL DATA OBS
+nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/model_more.r > ./log/${MODEL}_${OBS}.log &
+sleep 1 # pause to be kind to the scheduler
 
 DATA=PA
-for MODEL in PA_LMA_CV PA_LMA_L_CV 
-do
-  #
-  echo "${MODEL}, ${DATA}, ${OBS}"
-  export MODEL DATA OBS
-  nohup R --vanilla --slave --args ${MODEL} ${DATA} ${N_ITER} ${N_WARM} 1 ${OBS} < ./model/k_fold.r > ./log/${MODEL}_${OBS}.log &
-
-  sleep 1 # pause to be kind to the scheduler
-done
-wait #----------------------------------------------------------
-
-DATA=PA
-for MODEL in PA_LMAms_CV PA_LMAms_L_CV PA_LD_L_CV
-do
-  #
-  echo "${MODEL}, ${DATA}, ${OBS}"
-  export MODEL DATA OBS
-  nohup R --vanilla --slave --args ${MODEL} ${DATA} ${N_ITER} ${N_WARM} 1 ${OBS} < ./model/k_fold.r > ./log/${MODEL}_${OBS}.log &
-
-  sleep 1 # pause to be kind to the scheduler
-done
-wait #----------------------------------------------------------
+MODEL=PA_LMAms_L
+echo "${MODEL}, ${DATA}, ${OBS}"
+export MODEL DATA OBS
+nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/model_more.r > ./log/${MODEL}_${OBS}.log &
+sleep 1 # pause to be kind to the scheduler

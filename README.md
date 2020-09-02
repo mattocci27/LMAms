@@ -27,7 +27,7 @@ docker push 192.168.1.123:5000/mattocci/lma:3.6.3
 To build singularity image
 
 ```
-time sudo singularity build lma.sif docker-daemon://192.168.1.123:5000/mattocci/lma:3.6.3
+time sudo singularity build ../dockerfiles/singularity/rstan_3.6.3.sif docker-daemon://192.168.1.123:5000/mattocci/rstan:3.6.3
 ```
 
 ### Data cleaning  
@@ -41,13 +41,13 @@ Rscript data_cleaning.r
 ### Analysis (MCMC)
 
 ```
-time singularity exec lma.sif ./sh/run_model.sh
+singularity exec ../dockerfiles/singularity/rstan_3.6.3.sif ./sh/run_model.sh
 ```
 
 or 
 
 ```
-singularity shell lma.sif
+singularity ../dockerfiles/singularity/rstan_3.6.3.sif
 time sh ./sh/run_model.sh
 ```
 
@@ -69,23 +69,14 @@ note: L0 indicates model without repulsive priors
   - `PA_LMAms_more_obs.rda`
 
 - rand
-  - `GL_LMAms_rand.rda`
+  - `GL_LMAms_more_rand.rda`
   - `PA_LMAms_L0_more_rand.rda`
 
-- CV
-  - `GL_LMA_CV`
-  - `GL_LMAms_CV_obs_cv.rda`
-  - `PA_LMA_CV_obs_cv.rda` 
-  - `PA_LMA_L_CV_obs_cv.rda` 
-  - `PA_LMAms_CV_obs_cv.rda` need to test this again
-  - `PA_LMAms_L_CV_obs_cv.rda` 
-  - `PA_LD_L_CV_obs_cv.rda`
 
 ```{r}
 
 Rscript k_fold_cv_tab.r
 Rscript res_rand.r
-Rscript util/res_para.r
 Rscript util/r2_yml.r
 Rscript util/res_para.r
 Rscript fig_code/fig.r
