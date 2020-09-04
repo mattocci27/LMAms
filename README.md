@@ -47,10 +47,17 @@ singularity exec ../dockerfiles/singularity/rstan_3.6.3.sif ./sh/run_model.sh
 or 
 
 ```
-singularity ../dockerfiles/singularity/rstan_3.6.3.sif
+singularity shell ../dockerfiles/singularity/rstan_3.6.3.sif
 time sh ./sh/run_model.sh
 ```
 
+
+### Check MCMC
+
+```
+singularity exec ../dockerfiles/singularity/myenv_3.6.3.sif \
+  Rscript -e "library(rmarkdown); render('check_obs.rmd')"
+```
 
 ### Results
 
@@ -66,7 +73,7 @@ note: L0 indicates model without repulsive priors
 - obs
   - `GL_LMAms_more_obs.rda`
   - `PA_LMAms_L0_more_obs.rda` 
-  - `PA_LMAms_more_obs.rda`
+  - `PA_LMAms0_more_obs.rda`
 
 - rand
   - `GL_LMAms_more_rand.rda`
@@ -75,7 +82,8 @@ note: L0 indicates model without repulsive priors
 
 ```{r}
 
-Rscript k_fold_cv_tab.r
+singularity shell ../dockerfiles/singularity/myenv_3.6.3.sif
+
 Rscript res_rand.r
 Rscript util/r2_yml.r
 Rscript util/res_para.r

@@ -45,8 +45,11 @@ nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/m
 sleep 1 # pause to be kind to the scheduler
 
 DATA=PA
-MODEL=PA_LMAms_L
-echo "${MODEL}, ${DATA}, ${OBS}"
-export MODEL DATA OBS
-nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/model_more.r > ./log/${MODEL}_${OBS}.log &
-sleep 1 # pause to be kind to the scheduler
+for MODEL in PA_LMAms0 PA_LMAms_L0
+do
+  #
+  echo "${MODEL}, ${DATA}, ${OBS}"
+  export MODEL DATA OBS
+  nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/model_more.r > ./log/${MODEL}_${OBS}_more.log &
+  sleep 1 # pause to be kind to the scheduler
+done

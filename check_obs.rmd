@@ -41,10 +41,6 @@ obs_files <- list.files("rda") %>%
 
 obs_files <- list.files("rda") %>%
   str_subset("obs")
-
-(obs_files_cv <- obs_files[str_detect(obs_files, "_CV")])
-(obs_files_obs <- obs_files[!str_detect(obs_files, "_CV")])
-
 ```
 
 # Models
@@ -55,8 +51,7 @@ tmp <- obs_files %>%
 
 models <-str_split_fixed(tmp[,1], "_more", 2)[,1]
 
-models_cv <- models[str_detect(models, "_CV")]
-models_obs <- models[!str_detect(models, "_CV")]
+#models_obs <- models[!str_detect(models, "_CV")]
 
 #for (i in 1:length(models)) {
 #  print(models[i])
@@ -64,56 +59,55 @@ models_obs <- models[!str_detect(models, "_CV")]
 #}
 ```
 
-## `r models_obs[1]`
+## `r models[1]`
 ```{r}
-writeLines(readLines(str_c("model/", models_obs[1], ".stan")))
+writeLines(readLines(str_c("model/", models[1], ".stan")))
 ```
 
-## `r models_obs[2]`
+## `r models[2]`
 ```{r}
-writeLines(readLines(str_c("model/", models_obs[2], ".stan")))
+writeLines(readLines(str_c("model/", models[2], ".stan")))
 ```
 
-## `r models_obs[3]`
+## `r models[3]`
 ```{r}
-writeLines(readLines(str_c("model/", models_obs[3], ".stan")))
+writeLines(readLines(str_c("model/", models[3], ".stan")))
 ```
 
-## `r models_cv[1]`
+## `r models[4]`
 ```{r}
-writeLines(readLines(str_c("model/", models_cv[1], ".stan")))
+writeLines(readLines(str_c("model/", models[4], ".stan")))
 ```
 
-## `r models_cv[2]`
+## `r models[5]`
 ```{r}
-writeLines(readLines(str_c("model/", models_cv[2], ".stan")))
+writeLines(readLines(str_c("model/", models[5], ".stan")))
 ```
 
-## `r models_cv[3]`
+## `r models[6]`
 ```{r}
-writeLines(readLines(str_c("model/", models_cv[3], ".stan")))
+writeLines(readLines(str_c("model/", models[6], ".stan")))
 ```
 
-## `r models_cv[4]`
+## `r models[7]`
 ```{r}
-writeLines(readLines(str_c("model/", models_cv[4], ".stan")))
+writeLines(readLines(str_c("model/", models[7], ".stan")))
 ```
 
-## `r models_cv[5]`
+## `r models[8]`
 ```{r}
-writeLines(readLines(str_c("model/", models_cv[5], ".stan")))
+writeLines(readLines(str_c("model/", models[8], ".stan")))
 ```
 
-## `r models_cv[6]`
+## `r models[9]`
 ```{r}
-writeLines(readLines(str_c("model/", models_cv[6], ".stan")))
+writeLines(readLines(str_c("model/", models[9], ".stan")))
 ```
 
-## `r models_cv[7]`
+## `r models[10]`
 ```{r}
-writeLines(readLines(str_c("model/", models_cv[7], ".stan")))
+writeLines(readLines(str_c("model/", models[10], ".stan")))
 ```
-
 
 # Diagnostics
 
@@ -125,11 +119,11 @@ writeLines(readLines(str_c("model/", models_cv[7], ".stan")))
 color_scheme_set("mix-brightblue-gray")
 
 check_trace <- function(x) {
-  load(str_c("rda/", obs_files_obs[x]))
-  if (!str_detect(obs_files_obs[x], "CV")) {
+  load(str_c("rda/", obs_files[x]))
+  if (!str_detect(obs_files[x], "CV")) {
   np_cp <- nuts_params(res)
   mcmc_trace(res, pars = c("Z[2,3]", "lp__"), np = np_cp) +
-    ggtitle(obs_files_obs[x])
+    ggtitle(obs_files[x])
   } else {
     for (i in 1:10) {
       np_cp <- nuts_params(ss[[i]])
@@ -140,37 +134,7 @@ check_trace <- function(x) {
   }
 }
 
-p <- 1:length(obs_files_obs)  %>%
-  map(check_trace)
-
-p %>%
-  walk(print)
-
-```
-
-## cv
-
-```{r, eval=TRUE}
-
-color_scheme_set("mix-brightblue-gray")
-
-check_trace <- function(x) {
-  load(str_c("rda/", obs_files_cv[x]))
-  if (!str_detect(obs_files_cv[x], "CV")) {
-  np_cp <- nuts_params(res)
-  mcmc_trace(res, pars = c("Z[2,3]", "lp__"), np = np_cp) +
-    ggtitle(obs_files_cv[x])
-  } else {
-    for (i in 1:10) {
-      np_cp <- nuts_params(ss[[i]])
-      p <- mcmc_trace(ss[[i]], pars = c("Z[2,3]", "lp__"), np = np_cp) +
-      ggtitle(str_c(obs_files[x],"-fold ", i))
-      print(p)
-    }
-  }
-}
-
-p <- 1:length(obs_files_cv)  %>%
+p <- 1:length(obs_files)  %>%
   map(check_trace)
 
 p %>%
