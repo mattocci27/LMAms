@@ -8,8 +8,6 @@ options(mc.cores = parallel::detectCores())
 #load("./rda/GL_LMAms_more_obs.rda")
 #GL_LMAms <- res
 
-#load("./data/GL_LMA_more_obs.rda")
-#GL_LMA <- res
 obs_files <- list.files("rda") %>%
   str_subset("obs.rda") 
 
@@ -28,22 +26,26 @@ for (i in 1:length(models)) {
 }
 
 
-tmp2 <- models %>% str_split_fixed("_more", 2)
-models_clean <- tmp2[, 1]
+#tmp2 <- models %>% str_split_fixed("_more", 2)
+#models_clean <- tmp2[, 1]
 
-dat <- tibble(LMA = models_clean) %>%
+dat <- tibble(LMA = models) %>%
 # head(2) %>%
  mutate(N = n_samp) %>%
  mutate(elpd_list = map(LMA, ~ loo(get(.)))) %>%
  mutate(epld = map_dbl(elpd_list, ~ .$estimates[1, 1]))
 
-GL <- dat %>%
+GL_tb <- dat %>%
   dplyr::select(LMA, epld, N) %>%
   filter(str_detect(LMA, "GL")) %>%
-  arrange(desc(epld))
+  arrange(desc(epld)) %>%
+  # drop _more 
+  mutate(LMA = str_split_fixed(LMA, "_more", 2)[, 1])
 
-PA <- dat %>%
+PA_tb <- dat %>%
   dplyr::select(LMA, epld, N) %>%
   filter(str_detect(LMA, "PA")) %>%
-  filter(!str_detect(models, "more")) %>% 
   arrange(desc(epld))
+
+write_csv(GL_tb, "./data/GL_elpd.csv")
+write_csv(PA_tb, "./data/PA_elpd.csv")
