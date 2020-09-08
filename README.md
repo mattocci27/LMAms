@@ -84,9 +84,18 @@ note: L0 indicates model without repulsive priors
 
 singularity shell ../dockerfiles/singularity/myenv_3.6.3.sif
 
+docker run --rm -v $(pwd):/home/rstudio/LMAms  \
+  -p 8787:8787  \
+  -e PASSWORD=F85hPRItkcsaQ7lR6AHK \
+  mattocci/myenv:3.6.3
+
+singularity exec ../dockerfiles/singularity/myenv_3.6.3.sif \
+  Rscript -e "library(rmarkdown); render('fig_code/fig.rmd')"
+
 Rscript res_rand.r
 Rscript util/r2_yml.r
 Rscript util/res_para.r
+Rscript util/get_loo.r
 Rscript fig_code/fig.r
 Rscript fig_code/fig_SI.r
 sh render.sh
