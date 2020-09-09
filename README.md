@@ -79,6 +79,17 @@ note: L0 indicates model without repulsive priors
   - `GL_LMAms_more_rand.rda`
   - `PA_LMAms_L0_more_rand.rda`
 
+```{r}
+library(MakeR2)
+
+#source("~/Dropbox/src/github.com/mattocci27/makeR/R/make_make.r")
+make_fun(clean = TRUE)
+plan <- read_make("Makefile")
+vis_fun(plan)
+plan$nodes %>% DT::datatable(.)
+
+```
+
 
 ```{r}
 
