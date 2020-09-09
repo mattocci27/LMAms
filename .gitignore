@@ -77,3 +77,4 @@ rda/
 
 # For now
 *.png
+Makefile
