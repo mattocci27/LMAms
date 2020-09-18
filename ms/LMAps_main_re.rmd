@@ -419,7 +419,7 @@ GLtab2 <- GLtab %>%
   mutate(LMA = ifelse(LMA == "GL_LMAms",
          "LMAm and LMAs", "LMA")) %>%
   arrange(elpd %>% desc) %>%
-  mutate(elpd = round(elpd, 0)) %>%
+  mutate(elpd = round(elpd, 1)) %>%
   mutate(elpd = as.character(elpd)) %>%
   mutate(N = as.character(N)) %>%
   bind_rows(data.frame(LMA = "**GLOPNET**", elpd = "", N = "", site = ""),
@@ -437,7 +437,7 @@ PAtab2 <- PAtab %>%
   mutate(LMA = ifelse(LMA == "LD_L",
          "LMAm + LMAs/LT + light", LMA)) %>%
   arrange(elpd %>% desc) %>%
-  mutate(elpd = round(elpd, 0)) %>%
+  mutate(elpd = round(elpd, 1)) %>%
   mutate(elpd = as.character(elpd)) %>%
   mutate(N = as.character(N)) %>%
   bind_rows(data.frame(LMA = "**Panama**", elpd = "", N = "", site = ""),

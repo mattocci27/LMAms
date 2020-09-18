@@ -114,7 +114,7 @@ Rscript fig_code/fig_SI.r
 singularity shell ../r-containers/rmd-crossref_4.0.2.sif
 
 singularity exec ../r-containers/rmd-crossref_4.0.2.sif \
-  Rscript -e "library(rmarkdown); render('ms/LMAps_main_re.rmd')"
+  Rscript -e "library(rmarkdown); render('ms/LMAps_main_re.rmd', 'html_document')"
 
 sh render.sh
 
