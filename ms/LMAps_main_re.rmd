@@ -150,7 +150,7 @@ In our model, net photosynthetic capacity (*A*~area~) is determined by LMAm, LL 
 & \mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s}   = \beta_0 (f_i \mathrm{LMA}_{i})^{\beta_m} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\beta_s} (\#eq:E-LL) \\
 & \mathrm{E}[R_{\mathrm{area} \, i}]
 = \gamma_0\mathrm{LMAm}_{i}^{\gamma_m}ı \mathrm{LMAs}_{i}^{\gamma_s}
-= \gamma_0 (f_i \mathrm{LMA}_{i})^{\gamma_m}  \bigl\{(1-f_i)\mathrm{LMA}_{i}\bigr\}^{\gamma_s} (\#eq:E-R)
+= \gamma_0 (f_i \mathrm{LMA}_{i})^{\gamma_m} \bigl\{(1-f_i)\mathrm{LMA}_{i}\bigr\}^{\gamma_s} (\#eq:E-R)
 \end{align}
 
 where, *A*~area~ ~*i*~, *R*~area~ ~*i*~, and LL~*i*~, are, respectively, the net photosynthetic rate (*A*~max~) per unit area, dark respiration rate (*R*~dark~) per unit area, and leaf life span of leaf *i*; $\alpha_0$, $\beta_0$, and $\gamma_0$ are fitted constants; $\alpha_m$, $\beta_m$, and $\gamma_m$ are fitted exponents that quantify the sensitivities of *A*~area~, LL and *R*~area~, respectively, to variation in LMAm; $\alpha_s$, $\beta_s$, and $\gamma_s$ are fitted exponents that quantify the sensitivities of *A*~area~, LL and *R*~area~, respectively, to variation in LMAs.
@@ -196,7 +196,7 @@ Some parameters are exchangeable in our model.
 For example, $(f_i, \alpha_m, \alpha_s)$ = (0.2, 0.5, 1.0) and (0.8, 1.0, 0.5) yield the identical likelihood, which results in bimodal distributions of the posterior distributions of parameters (See X).
 To avoid this non-identifiability, we explore two methods based on our assumption that *A*~area~ depends more strongly on metabolic leaf mass (LMAm; parameter $\alpha_m$ in Eq. 4) than structural leaf mass (LMAs; parameter $\alpha_s$ in Eq. 4).
 In the first method, we switched the $\alpha_m$ and $\alpha_s$ labels wihtin a chain when the posterior means for $\alpha_m$ was smaller than that for $\alpha_s$ after the posterior distributions converged.
-In the second method, we constrained α_m > α_s.
+In the second method, we constrained $\alpha_m$ > $\alpha_s$.
 Both methods yielded qualitatively similar results; we report results from the second method.
 
 For Panama, we uesd repulsive priror
@@ -410,7 +410,6 @@ if ("docx" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
 ```
 
 
-
 ```{r elpdtab, anchor = "table", tab.cap = "Summary of the model comparison based on exact 10-fold cross-validation. Higher expected log point-wise predictive density (ELPD) indicates better predictive accuracy. N; number of samples."}
 
 GLtab <- read_csv("../data/GL_elpd.csv")
@@ -428,14 +427,16 @@ GLtab2 <- GLtab %>%
 PAtab <- read_csv("../data/PA_elpd.csv")
 
 PAtab2 <- PAtab %>%
-  mutate(LMA = ifelse(LMA == "LMAms",
+  mutate(LMA = ifelse(LMA == "PA_LMAms0",
          "LMAm + LMAs", LMA)) %>%
-  mutate(LMA = ifelse(LMA == "LMAms_L",
+  mutate(LMA = ifelse(LMA == "PA_LMAms_L0",
          "LMAm + LMAs + light", LMA)) %>%
-  mutate(LMA = ifelse(LMA == "LMA_L",
+  mutate(LMA = ifelse(LMA == "PA_LMA_L",
          "LMA + light", LMA)) %>%
-  mutate(LMA = ifelse(LMA == "LD_L",
+  mutate(LMA = ifelse(LMA == "PA_LD_L",
          "LMAm + LMAs/LT + light", LMA)) %>%
+  mutate(LMA = ifelse(LMA == "PA_LMA",
+         "LMA", LMA)) %>%
   arrange(elpd %>% desc) %>%
   mutate(elpd = round(elpd, 1)) %>%
   mutate(elpd = as.character(elpd)) %>%
@@ -453,7 +454,7 @@ colnames(tab3) <- c("",
                     "N")
 
 if ("docx" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
-  knitr::kable(tab3, format = "markdown") #%>%
+  knitr::kable(tab3, format = "markdown") 
 } else if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
   knitr::kable(tab3, format = "html", escape = FALSE)
 } else {
