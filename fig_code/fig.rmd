@@ -36,7 +36,7 @@ source("../fig_theme.r")
 
 ```{r GLdat, cache=TRUE, comment=NA}
 
-load("../data/GL_LMAms_obs.rda")
+load("../rda/GL_LMAms_more_obs.rda")
 
 GL_summary <- data.frame(summary(res)$summary) %>%
   round(3)
@@ -617,7 +617,7 @@ my_ggsave("../figs/GL_2.png", fig4)
 
 ```{r PAdat, cache=TRUE, comment=NA}
 #load("../data/PA_LMAms_L5_more_obs.rda")
-load("../data/PA_LMAms_L0_more_obs.rda")
+load("../rda/PA_LMAms_L0_more_obs.rda")
 
 summary_PA_LDL <- data.frame(summary(res)$summary)
 
