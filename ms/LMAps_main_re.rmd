@@ -416,8 +416,8 @@ if ("docx" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
 GLtab <- read_csv("../data/GL_elpd.csv")
 
 GLtab2 <- GLtab %>%
-  mutate(LMA = ifelse(LMA == "LMAms",
-         "LMAm and LMAs", LMA)) %>%
+  mutate(LMA = ifelse(LMA == "GL_LMAms",
+         "LMAm and LMAs", "LMA")) %>%
   arrange(elpd %>% desc) %>%
   mutate(elpd = round(elpd, 0)) %>%
   mutate(elpd = as.character(elpd)) %>%

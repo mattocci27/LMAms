@@ -80,6 +80,7 @@ note: L0 indicates model without repulsive priors
   - `PA_LMAms_L0_more_rand.rda`
 
 ```{r}
+
 library(MakeR2)
 
 #source("~/Dropbox/src/github.com/mattocci27/makeR/R/make_make.r")
@@ -100,7 +101,7 @@ docker run --rm -v $(pwd):/home/rstudio/LMAms  \
   -e PASSWORD=F85hPRItkcsaQ7lR6AHK \
   mattocci/myenv:3.6.3
 
-singularity exec ../dockerfiles/singularity/myenv_3.6.3.sif \
+singularity exec ../r-containers/myenv_3.6.3.sif \
   Rscript -e "library(rmarkdown); render('fig_code/fig.rmd')"
 
 Rscript res_rand.r
@@ -109,6 +110,12 @@ Rscript util/res_para.r
 Rscript util/get_loo.r
 Rscript fig_code/fig.r
 Rscript fig_code/fig_SI.r
+
+singularity shell ../r-containers/rmd-crossref_4.0.2.sif
+
+singularity exec ../r-containers/rmd-crossref_4.0.2.sif \
+  Rscript -e "library(rmarkdown); render('ms/LMAps_main_re.rmd')"
+
 sh render.sh
 
 ```

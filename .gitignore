@@ -62,7 +62,7 @@ vignettes/*.pdf
 *.html
 *.pptx
 
-figs/
+#figs/
 *.err
 *.out
 ms/cache/
@@ -76,5 +76,5 @@ node_modules/
 rda/
 
 # For now
-*.png
+#*.png
 Makefile
