@@ -216,7 +216,7 @@ In our model, net photosynthetic capacity (\emph{A}\textsubscript{area}) is dete
 & \mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s}   = \beta_0 (f_i \mathrm{LMA}_{i})^{\beta_m} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\beta_s} \label{eq:E-LL} \\
 & \mathrm{E}[R_{\mathrm{area} \, i}]
 = \gamma_0\mathrm{LMAm}_{i}^{\gamma_m}ı \mathrm{LMAs}_{i}^{\gamma_s}
-= \gamma_0 (f_i \mathrm{LMA}_{i})^{\gamma_m}  \bigl\{(1-f_i)\mathrm{LMA}_{i}\bigr\}^{\gamma_s} \label{eq:E-R}
+= \gamma_0 (f_i \mathrm{LMA}_{i})^{\gamma_m} \bigl\{(1-f_i)\mathrm{LMA}_{i}\bigr\}^{\gamma_s} \label{eq:E-R}
 \end{align}
 
 where, \emph{A}\textsubscript{area} \textsubscript{\emph{i}}, \emph{R}\textsubscript{area} \textsubscript{\emph{i}}, and LL\textsubscript{\emph{i}}, are, respectively, the net photosynthetic rate (\emph{A}\textsubscript{max}) per unit area, dark respiration rate (\emph{R}\textsubscript{dark}) per unit area, and leaf life span of leaf \emph{i}; \(\alpha_0\), \(\beta_0\), and \(\gamma_0\) are fitted constants; \(\alpha_m\), \(\beta_m\), and \(\gamma_m\) are fitted exponents that quantify the sensitivities of \emph{A}\textsubscript{area}, LL and \emph{R}\textsubscript{area}, respectively, to variation in LMAm; \(\alpha_s\), \(\beta_s\), and \(\gamma_s\) are fitted exponents that quantify the sensitivities of \emph{A}\textsubscript{area}, LL and \emph{R}\textsubscript{area}, respectively, to variation in LMAs.
@@ -264,7 +264,7 @@ Some parameters are exchangeable in our model.
 For example, \((f_i, \alpha_m, \alpha_s)\) = (0.2, 0.5, 1.0) and (0.8, 1.0, 0.5) yield the identical likelihood, which results in bimodal distributions of the posterior distributions of parameters (See X).
 To avoid this non-identifiability, we explore two methods based on our assumption that \emph{A}\textsubscript{area} depends more strongly on metabolic leaf mass (LMAm; parameter \(\alpha_m\) in Eq. 4) than structural leaf mass (LMAs; parameter \(\alpha_s\) in Eq. 4).
 In the first method, we switched the \(\alpha_m\) and \(\alpha_s\) labels wihtin a chain when the posterior means for \(\alpha_m\) was smaller than that for \(\alpha_s\) after the posterior distributions converged.
-In the second method, we constrained α\_m \textgreater{} α\_s.
+In the second method, we constrained \(\alpha_m\) \textgreater{} \(\alpha_s\).
 Both methods yielded qualitatively similar results; we report results from the second method.
 
 For Panama, we uesd repulsive priror
@@ -394,7 +394,7 @@ Lloyd et al. (\protect\hyperlink{ref-Lloyd2013}{2013}) argued that the apparent 
 Intraspecific patterns in trait variation, which contrast with interspecific patterns, pose additional challenges for a one-dimensional view of leaf functional diversity. Our analysis shows that considering two primary axes of leaf trait variation (photosynthesis and structure) provides improved quantitative predictions and insights compared to LES of a single dominant axis.
 Our results point to a simple two-dimensional framework for representing leaf functional diversity in global ecosystem models: a LMAm axis that determines \emph{A}\textsubscript{max}, accounts for nearly all \emph{R}\textsubscript{dark} (see rp and rs estimates in Table S1) and a LMAs axis that determines potential LL through its effects on leaf toughness (Kleyer et al. \protect\hyperlink{ref-Kleyer2012}{2012}).
 In the datasets we analyzed (the global flora and tropical trees in Panama), these two axes are only weakly correlated with each other (Fig. S5), which suggests that trait-based approaches to global ecosystem modeling (Scheiter et al. \protect\hyperlink{ref-Scheiter2013}{2013}, Wullschleger et al. \protect\hyperlink{ref-Wullschleger2014}{2014}) could consider these as independent axes.
-For example, to simulate individual competing trees which from diverse community of growth strategies ({\textbf{???}}, Sakschewski et al. \protect\hyperlink{ref-Sakschewski2015}{2015}), it would be possible to draw LMAm and LMAs values from distributions with realistic ranges instead of a single LMA distribution.
+For example, to simulate individual competing trees which from diverse community of growth strategies (Sakschewski et al. \protect\hyperlink{ref-Sakschewski2015}{2015}, \protect\hyperlink{ref-Sakschewski2016}{2016}), it would be possible to draw LMAm and LMAs values from distributions with realistic ranges instead of a single LMA distribution.
 
 Our statistical decomposition of LMA into metabolic and structural components provides important insights, but additional insights and accuracy could be gained by a more mechanistic modeling approach.
 For example, John et al. (\protect\hyperlink{ref-John2017}{2017}) decomposed interspecific LMA variation into anatomical components such as the size, number of layers, and mass density of cells in different leaf tissues.
@@ -517,6 +517,9 @@ Roderick, M. L., S. L. Berry, I. R. Noble, and G. D. Farquhar. 1999. A theoretic
 \leavevmode\hypertarget{ref-Russo2016}{}%
 Russo, S. E., and K. Kitajima. 2016. The Ecophysiology of Leaf Lifespan in Tropical Forests: Adaptive and Plastic Responses to Environmental Heterogeneity. Pages 357--383 \emph{in} G. Goldstein and S. L. Santiago, editors. Tropical Tree Physiology. Springer International Publishing, Cham.
 
+\leavevmode\hypertarget{ref-Sakschewski2016}{}%
+Sakschewski, B., W. von Bloh, A. Boit, L. Poorter, M. Peña-Claros, J. Heinke, J. Joshi, and K. Thonicke. 2016. Resilience of Amazon forests emerges from plant trait diversity. Nature Clim Change 6:1032--1036.
+
 \leavevmode\hypertarget{ref-Sakschewski2015}{}%
 Sakschewski, B., W. von Bloh, A. Boit, A. Rammig, J. Kattge, L. Poorter, J. Peñuelas, and K. Thonicke. 2015. Leaf and stem economics spectra drive diversity of functional plant traits in a dynamic global vegetation model. Glob. Change Biol. 21:2711--2725.
 
@@ -613,19 +616,19 @@ LMAm + LMA/LT + light & \$\textbackslash{}mathrm\{E\}[A\_\{\textbackslash{}mathr
 \hline
 LMAm and LMAs & -373 & 198\\
 \hline
-LMA & -383 & 198\\
+LMA & -383.1 & 198\\
 \hline
 **Panama** &  & \\
 \hline
-PA\_LMAms\_L0 & -251 & 106\\
+PA\_LMAms\_L0 & -250.6 & 106\\
 \hline
-PA\_LMA\_L & -251 & 106\\
+PA\_LMA\_L & -251.5 & 106\\
 \hline
-PA\_LD\_L & -252 & 106\\
+PA\_LD\_L & -251.7 & 106\\
 \hline
-PA\_LMAms0 & -259 & 106\\
+PA\_LMAms0 & -259.1 & 106\\
 \hline
-PA\_LMA & -264 & 106\\
+PA\_LMA & -264.1 & 106\\
 \hline
 \end{tabular}
 

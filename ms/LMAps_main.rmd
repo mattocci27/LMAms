@@ -6,6 +6,7 @@
 # keywords: "moge, hoge"
 output:
   bookdown::pdf_book:
+#    latex_engine: xelatex
     fig_caption: true
     keep_tex: yes
     toc: no

@@ -115,8 +115,14 @@ singularity shell ../r-containers/rmd-crossref_4.0.2.sif
 
 singularity exec ../r-containers/rmd-crossref_4.0.2.sif \
   Rscript -e "library(rmarkdown); render('ms/LMAps_main_re.rmd', 'html_document')"
+  
 
-sh render.sh
+Rscript -e "library(rmarkdown); render('ms/LMAps_main_re.rmd', 'html_document')"
+Rscript -e "library(rmarkdown); render('ms/LMAps_main_re.rmd', 'bookdown::word_document2')"
+Rscript -e "library(rmarkdown); render('ms/LMAps_main_re.rmd', 'bookdown::pdf_book')"
+
+singularity exec ../r-containers/rmd-crossref_4.0.2.sif \
+  sh render.sh
 
 ```
 
