@@ -33,19 +33,19 @@ dat <- tibble(LMA = models) %>%
 # head(2) %>%
  mutate(N = n_samp) %>%
  mutate(elpd_list = map(LMA, ~ loo(get(.)))) %>%
- mutate(elpd = map_dbl(elpd_list, ~ .$estimates[1, 1]))
+ mutate(looic = map_dbl(elpd_list, ~ .$estimates[3, 1]))
 
 GL_tb <- dat %>%
-  dplyr::select(LMA, elpd, N) %>%
+  dplyr::select(LMA, looic, N) %>%
   filter(str_detect(LMA, "GL")) %>%
-  arrange(desc(elpd)) %>%
+  arrange(looic) %>%
   # drop _more 
   mutate(LMA = str_split_fixed(LMA, "_more", 2)[, 1])
 
 PA_tb <- dat %>%
-  dplyr::select(LMA, elpd, N) %>%
+  dplyr::select(LMA, looic, N) %>%
   filter(str_detect(LMA, "PA")) %>%
-  arrange(desc(elpd))
+  arrange(looic)
 
 write_csv(GL_tb, "./data/GL_elpd.csv")
 write_csv(PA_tb, "./data/PA_elpd.csv")
