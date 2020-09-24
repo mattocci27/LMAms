@@ -102,7 +102,6 @@
 \usepackage{threeparttablex}
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
-\usepackage{xcolor}
 \ifluatex
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -112,6 +111,8 @@
   {\setlength{\parindent}{0pt}%
   \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
   {\par}
+
+
 
 \author{}
 \date{\vspace{-2.5em}}
@@ -337,19 +338,6 @@ Each simulation had a sample size of 100 leaves, where the values of LMAm and LM
 \textbf{1. Nearly all leaf dark respiration is associated with metabolic leaf tissue mass.}
 Metabolic leaf mass (LMAm) accounted for nearly all leaf dark respiration; i.e., estimated dark respiration rate per-unit structural mass (\(\gamma_s\)) was close to zero in analyses of both GLOPNET and Panama data (Table Table 1).
 Thus, although building costs are likely similar for different leaf chemical components and tissues (Williams et al. \protect\hyperlink{ref-Williams1989}{1989}, Villar and Merino \protect\hyperlink{ref-Villar2001}{2001}), our results suggest that leaf mass associated with photosynthetic function accounts for nearly all leaf maintenance respiration.
-
-\begin{itemize}
-\item
-  Table 1
-\item
-  Table 1, Table 1
-\item
-  Fig 1
-\item
-  Figs 1, Figure 1
-\item
-  \ref{fig:Hplt}
-\end{itemize}
 
 \textbf{2. Decomposing LMA into metabolic and structural components leads to improved predictions of \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and LL.}
 For both the GLOPNET global datasets and the Panama datasets, model including LMAm and LMAs showed better predictions than model including LMA based on cross-validation (Table \ref{tab:lootab}), suggesting that decompose LMA into metabolic and structural components leads improved predictions of \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and LL.
@@ -596,101 +584,207 @@ Xu, X., D. Medvigy, S. Joseph Wright, K. Kitajima, J. Wu, L. P. Albert, G. A. Ma
 \hypertarget{tables}{%
 \section{Tables}\label{tables}}
 
-Table: \label{tab:modeltab} Five model forms compared to predict \emph{A}\textsubscript{area}, LL and \emph{R}\textsubscript{area}.
-
-\begin{tabular}{l|l}
-\hline
-Model & Expected trait values\\
-\hline
-LMA & \$\textbackslash{}mathrm\{E\}[A\_\{\textbackslash{}mathrm\{area\} \textbackslash{}, i\}] = \textbackslash{}alpha\_0\textbackslash{}mathrm\{LMA\}\_\{i\}\textasciicircum{}\{\textbackslash{}alpha\}\$\\
-\hline
- & \$\textbackslash{}mathrm\{E\}[\textbackslash{}mathrm\{LL\}\_i] = \textbackslash{}beta\_0\textbackslash{}mathrm\{LMA\}\_\{i\}\textasciicircum{}\{\textbackslash{}beta\}\$\\
-\hline
- & \$\textbackslash{}mathrm\{E\}[R\_\{\textbackslash{}mathrm\{area\} \textbackslash{}, i\}] = \textbackslash{}gamma\_0\textbackslash{}mathrm\{LMA\}\_\{i\}\textasciicircum{}\{\textbackslash{}gamma\}\$\\
-\hline
-LMA + light & \$\textbackslash{}mathrm\{E\}[A\_\{\textbackslash{}mathrm\{area\} \textbackslash{}, i\}] = \textbackslash{}alpha\_0\textbackslash{}mathrm\{LMA\}\_\{i\}\textasciicircum{}\{\textbackslash{}alpha\}\$\\
-\hline
- & \$\textbackslash{}mathrm\{E\}[\textbackslash{}mathrm\{LL\}\_i] = \textbackslash{}beta\_0\textbackslash{}mathrm\{LMA\}\_\{i\}\textasciicircum{}\{\textbackslash{}beta\}exp(\textbackslash{}theta Light\_i)\$\\
-\hline
- & \$\textbackslash{}mathrm\{E\}[R\_\{\textbackslash{}mathrm\{area\} \textbackslash{}, i\}] = \textbackslash{}gamma\_0\textbackslash{}mathrm\{LMA\}\_\{i\}\textasciicircum{}\{\textbackslash{}gamma\}\$\\
-\hline
-LMAm + LMAs & \$\textbackslash{}mathrm\{E\}[A\_\{\textbackslash{}mathrm\{area\} \textbackslash{}, i\}] = \textbackslash{}alpha\_0\textbackslash{}mathrm\{LMAm\}\_\{i\}\textasciicircum{}\{\textbackslash{}alpha\_m\} \textbackslash{}mathrm\{LMAs\}\_\{i\}\textasciicircum{}\{\textbackslash{}alpha\_s\}\$\\
-\hline
- & \$\textbackslash{}mathrm\{E\}[\textbackslash{}mathrm\{LL\}\_i] = \textbackslash{}beta\_0\textbackslash{}mathrm\{LMAm\}\_\{i\}\textasciicircum{}\{\textbackslash{}beta\_m\} \textbackslash{}mathrm\{LMAs\}\_\{i\}\textasciicircum{}\{\textbackslash{}beta\_s\}\$\\
-\hline
- & \$\textbackslash{}mathrm\{E\}[R\_\{\textbackslash{}mathrm\{area\} \textbackslash{}, i\}] = \textbackslash{}gamma\_0\textbackslash{}mathrm\{LMAm\}\_\{i\}\textasciicircum{}\{\textbackslash{}gamma\_m\} \textbackslash{}mathrm\{LMAs\}\_\{i\}\textasciicircum{}\{\textbackslash{}gamma\_s\}\$\\
-\hline
-LMAm + LMAs + light & \$\textbackslash{}mathrm\{E\}[A\_\{\textbackslash{}mathrm\{area\} \textbackslash{}, i\}]= \textbackslash{}alpha\_0\textbackslash{}mathrm\{LMAm\}\_\{i\}\textasciicircum{}\{\textbackslash{}alpha\_m\} \textbackslash{}mathrm\{LMAs\}\_\{i\}\textasciicircum{}\{\textbackslash{}alpha\_s\}\$\\
-\hline
- & \$\textbackslash{}mathrm\{E\}[\textbackslash{}mathrm\{LL\}\_i] = \textbackslash{}beta\_0\textbackslash{}mathrm\{LMAm\}\_\{i\}\textasciicircum{}\{\textbackslash{}beta\_m\} \textbackslash{}mathrm\{LMAs\}\_\{i\}\textasciicircum{}\{\textbackslash{}beta\_s\}exp(\textbackslash{}theta Light\_i)\$\\
-\hline
- & \$\textbackslash{}mathrm\{E\}[R\_\{\textbackslash{}mathrm\{area\} \textbackslash{}, i\}] = \textbackslash{}gamma\_0\textbackslash{}mathrm\{LMAm\}\_\{i\}\textasciicircum{}\{\textbackslash{}gamma\_m\} \textbackslash{}mathrm\{LMAs\}\_\{i\}\textasciicircum{}\{\textbackslash{}gamma\_s\}\$\\
-\hline
-LMAm + LMA/LT + light & \$\textbackslash{}mathrm\{E\}[A\_\{\textbackslash{}mathrm\{area\} \textbackslash{}, i\}]= \textbackslash{}alpha\_0\textbackslash{}mathrm\{LMAm\}\_\{i\}\textasciicircum{}\{\textbackslash{}alpha\_m\} (\textbackslash{}mathrm\{LMAs\}\_\{i\}/\textbackslash{}mathrm\{LT\}\_\{i\})\textasciicircum{}\{\textbackslash{}alpha\_s\}\$\\
-\hline
- & \$\textbackslash{}mathrm\{E\}[\textbackslash{}mathrm\{LL\}\_i] = \textbackslash{}beta\_0\textbackslash{}mathrm\{LMAm\}\_\{i\}\textasciicircum{}\{\textbackslash{}beta\_m\} (\textbackslash{}mathrm\{LMAs\}\_\{i\}/\textbackslash{}mathrm\{LT\}\_\{i\})\textasciicircum{}\{\textbackslash{}beta\_s\}exp(\textbackslash{}theta Light\_i)\$\\
-\hline
- & \$\textbackslash{}mathrm\{E\}[R\_\{\textbackslash{}mathrm\{area\} \textbackslash{}, i\}] = \textbackslash{}gamma\_0\textbackslash{}mathrm\{LMAm\}\_\{i\}\textasciicircum{}\{\textbackslash{}gamma\_m\} \textbackslash{}mathrm\{LMAs\}\_\{i\}\textasciicircum{}\{\textbackslash{}gamma\_s\}\$\\
-\hline
-\end{tabular}
+\begin{longtable}[]{@{}ll@{}}
+\caption{\label{tab:modeltab} Five model forms compared to predict \emph{A}\textsubscript{area}, LL and \emph{R}\textsubscript{area}.}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.14\columnwidth}\raggedright
+Model\strut
+\end{minipage} & \begin{minipage}[b]{0.80\columnwidth}\raggedright
+Expected trait values\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.14\columnwidth}\raggedright
+Model\strut
+\end{minipage} & \begin{minipage}[b]{0.80\columnwidth}\raggedright
+Expected trait values\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+LMA\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+\(\mathrm{E}[A_{\mathrm{area} \, i}] = \alpha_0\mathrm{LMA}_{i}^{\alpha}\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+\(\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMA}_{i}^{\beta}\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+\(\mathrm{E}[R_{\mathrm{area} \, i}] = \gamma_0\mathrm{LMA}_{i}^{\gamma}\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+LMA + light\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+\(\mathrm{E}[A_{\mathrm{area} \, i}] = \alpha_0\mathrm{LMA}_{i}^{\alpha}\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+\(\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMA}_{i}^{\beta}exp(\theta Light_i)\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+\(\mathrm{E}[R_{\mathrm{area} \, i}] = \gamma_0\mathrm{LMA}_{i}^{\gamma}\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+LMAm + LMAs\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+\(\mathrm{E}[A_{\mathrm{area} \, i}] = \alpha_0\mathrm{LMAm}_{i}^{\alpha_m} \mathrm{LMAs}_{i}^{\alpha_s}\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+\(\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s}\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+\(\mathrm{E}[R_{\mathrm{area} \, i}] = \gamma_0\mathrm{LMAm}_{i}^{\gamma_m} \mathrm{LMAs}_{i}^{\gamma_s}\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+LMAm + LMAs + light\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+\(\mathrm{E}[A_{\mathrm{area} \, i}]= \alpha_0\mathrm{LMAm}_{i}^{\alpha_m} \mathrm{LMAs}_{i}^{\alpha_s}\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+\(\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s}exp(\theta Light_i)\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+\(\mathrm{E}[R_{\mathrm{area} \, i}] = \gamma_0\mathrm{LMAm}_{i}^{\gamma_m} \mathrm{LMAs}_{i}^{\gamma_s}\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+LMAm + LMA/LT + light\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+\(\mathrm{E}[A_{\mathrm{area} \, i}]= \alpha_0\mathrm{LMAm}_{i}^{\alpha_m} (\mathrm{LMAs}_{i}/\mathrm{LT}_{i})^{\alpha_s}\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+\(\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} (\mathrm{LMAs}_{i}/\mathrm{LT}_{i})^{\beta_s}exp(\theta Light_i)\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+\(\mathrm{E}[R_{\mathrm{area} \, i}] = \gamma_0\mathrm{LMAm}_{i}^{\gamma_m} \mathrm{LMAs}_{i}^{\gamma_s}\)\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
 
 \newpage
 
 \hypertarget{section}{%
 \section{}\label{section}}
 
-Table: \label{tab:lootab} Summary of the model comparison based on exact 10-fold cross-validation. Lower approximate leave-one-out cross-validation (LOOIC) indicates better predictive accuracy. N; number of samples.
-
-\begin{tabular}{l|l|l}
-\hline
- & LOOIC & N\\
-\hline
-**GLOPNET** &  & \\
-\hline
-LMAm and LMAs & 746 & 198\\
-\hline
-LMA & 766.2 & 198\\
-\hline
-**Panama** &  & \\
-\hline
-LMAm + LMAs + light & 501.1 & 106\\
-\hline
-LMA + light & 503 & 106\\
-\hline
-LMAm + LMAs/LT + light & 503.4 & 106\\
-\hline
-LMAm + LMAs & 518.2 & 106\\
-\hline
-LMA & 528.1 & 106\\
-\hline
-\end{tabular}
+\begin{longtable}[]{@{}lll@{}}
+\caption{\label{tab:lootab} Summary of the model comparison based on exact 10-fold cross-validation. Lower approximate leave-one-out cross-validation (LOOIC) indicates better predictive accuracy. N; number of samples.}\tabularnewline
+\toprule
+& LOOIC & N\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+& LOOIC & N\tabularnewline
+\midrule
+\endhead
+\textbf{GLOPNET} & &\tabularnewline
+LMAm and LMAs & 746 & 198\tabularnewline
+LMA & 766.2 & 198\tabularnewline
+\textbf{Panama} & &\tabularnewline
+LMAm + LMAs + light & 501.1 & 106\tabularnewline
+LMA + light & 503 & 106\tabularnewline
+LMAm + LMAs/LT + light & 503.4 & 106\tabularnewline
+LMAm + LMAs & 518.2 & 106\tabularnewline
+LMA & 528.1 & 106\tabularnewline
+\bottomrule
+\end{longtable}
 
 \newpage
 
 \hypertarget{section-1}{%
 \section{}\label{section-1}}
 
-Table: \label{tab:paratab} Posterior medians {[}95\% credible interval{]} of parameters for the best models. Bold values are significantly different from zero based on the 95\% credible interval.
-
-\begin{tabular}{l|l|l}
-\hline
-Parameters & GLOPNET & Panama\\
-\hline
-Effect of LMAm on *A*\textasciitilde{}area\textasciitilde{} (\$\textbackslash{}alpha\_m\$) & **0.206 [0.108, 0.294]** & **0.442 [0.338, 0.574]**\\
-\hline
-Effect of LMAs on *A*\textasciitilde{}area\textasciitilde{} (\$\textbackslash{}alpha\_s\$) & **-0.111 [-0.179, -0.037]** & **0.29 [0.16, 0.391]**\\
-\hline
-Effect of LMAm on LL (\$\textbackslash{}beta\_m\$) & **0.261 [0.097, 0.466]** & 0.086 [-0.119, 0.314]\\
-\hline
-Effect of LMAs on LL (\$\textbackslash{}beta\_s\$) & **0.218 [0.096, 0.316]** & **0.376 [0.172, 0.567]**\\
-\hline
-Effect of LMAm on *R*\textasciitilde{}area\textasciitilde{} (\$\textbackslash{}gamma\_m\$) & **0.785 [0.627, 0.93]** & **0.6 [0.345, 0.822]**\\
-\hline
-Effect of LMAs on *R*\textasciitilde{}area\textasciitilde{} (\$\textbackslash{}gamma\_s\$) & 0.049 [-0.033, 0.14] & 0.204 [-0.059, 0.469]\\
-\hline
-Effect of light on LL (\$\textbackslash{}theta\$) & - & **-1.046 [-1.471, -0.617]**\\
-\hline
-\end{tabular}
+\begin{longtable}[]{@{}lll@{}}
+\caption{\label{tab:paratab} Posterior medians {[}95\% credible interval{]} of parameters for the best models. Bold values are significantly different from zero based on the 95\% credible interval.}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.39\columnwidth}\raggedright
+Parameters\strut
+\end{minipage} & \begin{minipage}[b]{0.26\columnwidth}\raggedright
+GLOPNET\strut
+\end{minipage} & \begin{minipage}[b]{0.26\columnwidth}\raggedright
+Panama\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.39\columnwidth}\raggedright
+Parameters\strut
+\end{minipage} & \begin{minipage}[b]{0.26\columnwidth}\raggedright
+GLOPNET\strut
+\end{minipage} & \begin{minipage}[b]{0.26\columnwidth}\raggedright
+Panama\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.39\columnwidth}\raggedright
+Effect of LMAm on \emph{A}\textsubscript{area} (\(\alpha_m\))\strut
+\end{minipage} & \begin{minipage}[t]{0.26\columnwidth}\raggedright
+\textbf{0.206 {[}0.108, 0.294{]}}\strut
+\end{minipage} & \begin{minipage}[t]{0.26\columnwidth}\raggedright
+\textbf{0.442 {[}0.338, 0.574{]}}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.39\columnwidth}\raggedright
+Effect of LMAs on \emph{A}\textsubscript{area} (\(\alpha_s\))\strut
+\end{minipage} & \begin{minipage}[t]{0.26\columnwidth}\raggedright
+\textbf{-0.111 {[}-0.179, -0.037{]}}\strut
+\end{minipage} & \begin{minipage}[t]{0.26\columnwidth}\raggedright
+\textbf{0.29 {[}0.16, 0.391{]}}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.39\columnwidth}\raggedright
+Effect of LMAm on LL (\(\beta_m\))\strut
+\end{minipage} & \begin{minipage}[t]{0.26\columnwidth}\raggedright
+\textbf{0.261 {[}0.097, 0.466{]}}\strut
+\end{minipage} & \begin{minipage}[t]{0.26\columnwidth}\raggedright
+0.086 {[}-0.119, 0.314{]}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.39\columnwidth}\raggedright
+Effect of LMAs on LL (\(\beta_s\))\strut
+\end{minipage} & \begin{minipage}[t]{0.26\columnwidth}\raggedright
+\textbf{0.218 {[}0.096, 0.316{]}}\strut
+\end{minipage} & \begin{minipage}[t]{0.26\columnwidth}\raggedright
+\textbf{0.376 {[}0.172, 0.567{]}}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.39\columnwidth}\raggedright
+Effect of LMAm on \emph{R}\textsubscript{area} (\(\gamma_m\))\strut
+\end{minipage} & \begin{minipage}[t]{0.26\columnwidth}\raggedright
+\textbf{0.785 {[}0.627, 0.93{]}}\strut
+\end{minipage} & \begin{minipage}[t]{0.26\columnwidth}\raggedright
+\textbf{0.6 {[}0.345, 0.822{]}}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.39\columnwidth}\raggedright
+Effect of LMAs on \emph{R}\textsubscript{area} (\(\gamma_s\))\strut
+\end{minipage} & \begin{minipage}[t]{0.26\columnwidth}\raggedright
+0.049 {[}-0.033, 0.14{]}\strut
+\end{minipage} & \begin{minipage}[t]{0.26\columnwidth}\raggedright
+0.204 {[}-0.059, 0.469{]}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.39\columnwidth}\raggedright
+Effect of light on LL (\(\theta\))\strut
+\end{minipage} & \begin{minipage}[t]{0.26\columnwidth}\raggedright
+-\strut
+\end{minipage} & \begin{minipage}[t]{0.26\columnwidth}\raggedright
+\textbf{-1.046 {[}-1.471, -0.617{]}}\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
 
 \newpage
 
@@ -744,7 +838,7 @@ Effect of light on LL (\$\textbackslash{}theta\$) & - & **-1.046 [-1.471, -0.617
 \begin{figure}
 \centering
 \includegraphics{LMAps_main_re_files/figure-latex/massplt-1.pdf}
-\caption{\label{fig:massplt}\label{fig:massplt} The relationships among mass proportionality (\emph{b\textsubscript{i}} in Eq. X), variance in LMAm and LMAs, and scaling slopes between LMAm and \emph{A}\textsubscript{area} (\(\alpha_m\)) and LMAs and \emph{A}\textsubscript{area} (\(\alpha_s\)) for the global GLOPNET dataset, sun leaves in Panama, and shade leaves in Panama. The photosynthetic rate (\emph{A}\textsubscript{max}) is primarily mass-dependent (\emph{b\textsubscript{i}} \textgreater{} 0.5, white to blue), primarily area-dependent (0.5 \textgreater{} \emph{b\textsubscript{i}} \textgreater{} 0, white to orange) and purely area-proportional (\emph{b\textsubscript{i}} = 0, white) (Osnas et al.~2018). Note that when \emph{b\textsubscript{i}} is negative, \emph{A}\textsubscript{area} decreases with LMA, which is not realistic.}
+\caption{\label{fig:massplt}The relationships among mass proportionality (\emph{b\textsubscript{i}} in Eq. X), variance in LMAm and LMAs, and scaling slopes between LMAm and \emph{A}\textsubscript{area} (\(\alpha_m\)) and LMAs and \emph{A}\textsubscript{area} (\(\alpha_s\)) for the global GLOPNET dataset, sun leaves in Panama, and shade leaves in Panama. The photosynthetic rate (\emph{A}\textsubscript{max}) is primarily mass-dependent (\emph{b\textsubscript{i}} \textgreater{} 0.5, white to blue), primarily area-dependent (0.5 \textgreater{} \emph{b\textsubscript{i}} \textgreater{} 0, white to orange) and purely area-proportional (\emph{b\textsubscript{i}} = 0, white) (Osnas et al.~2018). Note that when \emph{b\textsubscript{i}} is negative, \emph{A}\textsubscript{area} decreases with LMA, which is not realistic.}
 \end{figure}
 
 \newpage
