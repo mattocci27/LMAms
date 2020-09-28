@@ -43,4 +43,4 @@ r_vals:
     LMAp_cell_area: 'italic(r) == 0.49'
     LMAs_cell_area: 'italic(r) == 0.78'
   PA_LL:
-    preLL_LL: 'italic(r) == 0.86'
+    preLL_LL: 'italic(r^2) == 0.45'
