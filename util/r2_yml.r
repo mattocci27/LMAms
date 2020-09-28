@@ -123,12 +123,12 @@ get_r2 <- function(ypred, y, median = TRUE) {
 }
 
 # we calcluate resis
-#my_cor <- function(x, y, median = TRUE){
-#  N <- nrow(x)
-#  r <- numeric(N)
-#  for (i in 1:N) r[i] <- cor(x[i, ], y[i, ]) 
-#  if (median) median(r) else r
-#}
+my_cor <- function(x, y, median = TRUE){
+  N <- nrow(x)
+  r <- numeric(N)
+  for (i in 1:N) r[i] <- cor(x[i, ], y[i, ]) 
+  if (median) median(r) else r
+}
 
 PA_p <- rstan::extract(resPA, P_vec) 
 PA_p_mat <- NULL
@@ -138,6 +138,7 @@ for (i in 1:length(PA_p)) {
 PA_LMAp <- t(t(PA_p_mat) * PA$LMA)
 PA_LMAs <- t(t(1 - PA_p_mat) * PA$LMA)
 
+my_cor(PA_LMAp, PA_LMAs, median = FALSE) %>% hist
 
 GL_P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
 GL_p <- rstan::extract(resGL, GL_P_vec) 
@@ -148,6 +149,9 @@ for (i in 1:length(GL_p)) {
 
 GL_LMAp <- t(t(GL_p_mat) * GL$LMA)
 GL_LMAs <- t(t(1 - GL_p_mat) * GL$LMA)
+
+#my_cor(GL_LMAp, GL_LMAs)
+my_cor(GL_LMAp, GL_LMAs, median = FALSE) %>% hist
 
 GL_LL <- get_pred(trait = "LL", resGL, log = TRUE)
 GL_Aarea <- get_pred(trait = "Aarea", resGL, log = TRUE)
@@ -187,18 +191,18 @@ PA <- PA %>%
 write.csv(PA, "./data/PA_LMAms_L0_more.csv", row.names = FALSE)
 
 
-my_cor <- function(x, y){
-  lo <- apply(x, 1, function(x)cor(x, y)) %>%
-    quantile(0.025) %>%
-    round(3)
-  mid <- apply(x, 1, function(x)cor(x, y)) %>%
-    quantile(0.5) %>%
-    round(3)
-  up <- apply(x, 1, function(x)cor(x, y)) %>%
-    quantile(0.975) %>%
-    round(3)
-  paste0(mid, " [", lo, ", ", up, "]")
-}
+#my_cor <- function(x, y){
+#  lo <- apply(x, 1, function(x)cor(x, y)) %>%
+#    quantile(0.025) %>%
+#    round(3)
+#  mid <- apply(x, 1, function(x)cor(x, y)) %>%
+#    quantile(0.5) %>%
+#    round(3)
+#  up <- apply(x, 1, function(x)cor(x, y)) %>%
+#    quantile(0.975) %>%
+#    round(3)
+#  paste0(mid, " [", lo, ", ", up, "]")
+#}
 
 #my_cor(log(PA_LMAp), log(PA$Aarea))
 #my_cor(log(PA_LMAs), log(PA$Aarea))
@@ -280,7 +284,7 @@ writeLines(paste0("    LMAs_Parea: 'italic(r) == ", cor.test(log(GL$Parea), log(
 writeLines(paste0("  GL_LMAms:"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_LMAm: ", cor.test(log(GL$LMAp), log(GL$LMAs))$estimate %>% round(2)),
+writeLines(paste0("    LMAs_LMAm: ", my_cor(GL_LMAp, GL_LMAs) %>% round(2)),
            out,
            sep = "\n")
 writeLines(paste0("    p_val: ", cor.test(log(GL$LMAp), log(GL$LMAs))$p.value %>% round(2)),
@@ -322,7 +326,7 @@ writeLines(paste0("    LMAs_LL: 'italic(r) == ", cor.test(log(PA$LL), log(PA$LMA
 writeLines(paste0("  PA_LMAms:"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_LMAm: ", cor.test(log(PA$LMAp), log(PA$LMAs))$estimate %>% round(2)),
+writeLines(paste0("    LMAs_LMAm: ", my_cor(PA_LMAp, PA_LMAs) %>% round(2)),
            out,
            sep = "\n")
 writeLines(paste0("    p_val: ", cor.test(log(PA$LMAp), log(PA$LMAs))$p.value %>% round(2)),

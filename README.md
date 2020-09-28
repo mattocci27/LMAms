@@ -105,7 +105,7 @@ singularity exec ../r-containers/myenv_3.6.3.sif \
   Rscript -e "library(rmarkdown); render('fig_code/fig.rmd')"
 
 Rscript res_rand.r
-Rscript util/r2_yml.r
+Rscript util/r2_yml_new.r
 Rscript util/res_para.r
 Rscript util/get_loo.r
 Rscript fig_code/fig.r
