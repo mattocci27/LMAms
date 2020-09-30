@@ -7,7 +7,7 @@ output:
     toc: true
 ---
 
-``{r global_options, include=FALSE}
+```{r global_options, include=FALSE}
 knitr::opts_chunk$set(echo=TRUE,
                       warning=FALSE,
                       message=FALSE)
@@ -45,6 +45,7 @@ DT::datatable(GL_summary)
 GL <- dat
 p_mat <- rstan::extract(GLres, "p")[[1]] 
 p_vec <- apply(p_mat, 2, median)
+
 p_vec_lo <- apply(p_mat, 2, function(x)quantile(x, 0.025))
 p_vec_up <- apply(p_mat, 2, function(x)quantile(x, 0.975))
 
@@ -1130,7 +1131,7 @@ my_ggsave("../figs/PA_NPC.png", PA_NPC_plot)
 
 # LL: Obs vs Pred
 
-```{r, cache=FALSE, comment=NA, eval = T}
+```{r LL-pre, cache=FALSE, comment=NA, eval = T}
 
 #LLpred_mat <- extract(res, "mu")[[1]]
 
@@ -1257,9 +1258,9 @@ LL_plot95 <- ggplot(LL_dat, aes(x = preLL, y = LL,
                                                 r = 1))
         )
 
-LL_plot_sd <- ggplot(LL_dat, aes(x = preLL, y = LL,
+LL_plot_sd <- ggplot(LL_dat, aes(x = LL, y = preLL,
                               fill = gr, col = gr)) +
-  geom_segment(aes(x = preLL_lo2, xend = preLL_up2, y = LL, yend = LL), col = "grey60", size = 0.25) +
+  geom_segment(aes(y = preLL_lo2, yend = preLL_up2, x = LL, xend = LL), col = "grey60", size = 0.25) +
   geom_point(shape = 21) +
   scale_fill_manual(values = fills) +
   scale_colour_manual(values = cols) +
@@ -1267,8 +1268,8 @@ LL_plot_sd <- ggplot(LL_dat, aes(x = preLL, y = LL,
                 limits = c(min(labLL$Val), max(labLL$Val_max))) +
   scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0),
                 limits = c(min(labLL$Val), max(labLL$Val_max))) +
-  xlab("Predicted LL (months)") +
-  ylab("Observed LL (months)") +
+  ylab("Predicted LL (months)") +
+  xlab("Observed LL (months)") +
   geom_abline(aes(slope = 1, intercept = 0),
               lty = 2,
               lwd = 0.25,
@@ -1788,7 +1789,7 @@ my_ggsave("../figs/mass_prop4.png", p,
 
 ## Main plot
 
-```{r, cache=FALSE, comment=NA}
+```{r box, cache=FALSE, comment=NA}
 
 fills <- c("D" = settings$fills$D,
           "E" = settings$fills$E)
@@ -1974,7 +1975,7 @@ grid.raster(img, interpolate=F)
 
 ## All Panama
 
-```{r, cache=FALSE, comment=NA}
+```{r PA-box, cache=FALSE, comment=NA}
 
 # PA all =================================
 PA_nontrim_dat <- PA_dat %>% 
@@ -2021,7 +2022,7 @@ my_ggsave("../figs/box_SI.png", PA_box2,
 
 ## Box fraction
 
-```{r, cache=FALSE, comment=NA}
+```{r fraction, cache=FALSE, comment=NA}
 
 GLFracDat <- GL %>%
   mutate(LMAm_frac = LMAp / LMA) %>%
@@ -2109,8 +2110,7 @@ my_ggsave("../figs/box_frac.png", FracBox,
 
 # LMAm vs LMAs 
 
-```{r, cache=FALSE, comment=NA}
-
+```{r LMAms, cache=FALSE, comment=NA}
 
 GL <- GL %>%
   mutate(LMAp = LMA * p_vec) %>%
@@ -2161,8 +2161,7 @@ GL_LMAms <- ggplot(GL, aes(x = LMAp, y = LMAs,
   ylab(expression(atop(
                 LMAs~(g~m^{-2})))) +
  labs(title = "GLOPNET \n",
-       subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$GL_LMAms$LMAs_LMAm)
-                         ~", "~italic("p")~"="~.(r_vals$r_vals$GL_LMAms$p_val))) +
+       subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$GL_LMAms$LMAs_LMAm))) +
   theme_LES() +
   theme(
           plot.title = element_text(margin=margin(b = -2, unit = "pt")),
@@ -2175,10 +2174,15 @@ GL_LMAms <- ggplot(GL, aes(x = LMAp, y = LMAs,
                                                       b = -10,
                                                       l = -5,
                                                       r = -5)))
+
+  plot(LMAs ~ LMAs_lo , GL, log = "xy")
+  abline(a = 0, b = 1)
+
 GL_LMAms95 <- ggplot(GL, aes(x = LMAp, y = LMAs, 
                                fill = gr, 
                                col = gr)) +
-  geom_segment(aes(x = LMAp_lo, xend = LMAp_up, y = LMAs_lo, yend = LMAp_up), col = "grey60", size = 0.25) +
+  geom_segment(aes(x = LMAp_lo, xend = LMAp_up, y = LMAs, yend = LMAs), col = "grey60", size = 0.25) +
+  geom_segment(aes(x = LMAp, xend = LMAp, y = LMAs_lo, yend = LMAs_up), col = "grey60", size = 0.25) +
   geom_point(shape = 21) +
   scale_fill_manual(values = fills1, guide = FALSE) +
   scale_colour_manual(values = cols1, guide = FALSE) +
@@ -2189,8 +2193,7 @@ GL_LMAms95 <- ggplot(GL, aes(x = LMAp, y = LMAs,
   ylab(expression(atop(
                 LMAs~(g~m^{-2})))) +
  labs(title = "GLOPNET \n",
-       subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$GL_LMAms$LMAs_LMAm)
-                         ~", "~italic("p")~"="~.(r_vals$r_vals$GL_LMAms$p_val))) +
+       subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$GL_LMAms$LMAs_LMAm))) +
   theme_LES() +
   theme(
           plot.title = element_text(margin=margin(b = -2, unit = "pt")),
@@ -2226,7 +2229,7 @@ PA_LMAms <- ggplot(PA_tmp,
   #                           italic("p")~"= 0.6",
   #                           )) +
  labs(title = "Panama \n",
-       subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$PA_LMAms$LMAs_LMAm)~", "~italic("p")~"="~.(r_vals$r_vals$PA_LMAms$p_val))) +
+       subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$PA_LMAms$LMAs_LMAm))) +
   xlab(expression(atop(
                 LMAm~(g~m^{-2})))) +
   ylab(expression(atop(
@@ -2244,11 +2247,15 @@ PA_LMAms <- ggplot(PA_tmp,
                                                     l = -5,
                                                     r = -5)))
 
+r_vals$r_vals$PA_LMAms$p_val
+r_vals$r_vals$GL_LMAms$p_val
+
 PA_LMAms95 <- ggplot(PA_tmp,
                    aes(x = LMAp, y = LMAs, 
                                fill = gr, 
                                col = gr)) +
-  geom_segment(aes(x = LMAp_lo, xend = LMAp_up, y = LMAs_lo, yend = LMAp_up), col = "grey60", size = 0.25) +
+  geom_segment(aes(x = LMAp_lo, xend = LMAp_up, y = LMAs, yend = LMAs), col = "grey60", size = 0.25) +
+  geom_segment(aes(x = LMAp, xend = LMAp, y = LMAs_lo, yend = LMAs_up), col = "grey60", size = 0.25) +
   geom_point(shape = 21) +
   scale_fill_manual(values = fills2, guide = FALSE) +
   scale_colour_manual(values = cols2, guide = FALSE) +
@@ -2259,7 +2266,7 @@ PA_LMAms95 <- ggplot(PA_tmp,
   #                           italic("p")~"= 0.6",
   #                           )) +
  labs(title = "Panama \n",
-       subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$PA_LMAms$LMAs_LMAm)~", "~italic("p")~"="~.(r_vals$r_vals$PA_LMAms$p_val))) +
+       subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$PA_LMAms$LMAs_LMAm))) +
   xlab(expression(atop(
                 LMAm~(g~m^{-2})))) +
   ylab(expression(atop(
