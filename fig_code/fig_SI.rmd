@@ -7,9 +7,10 @@ output:
     toc: true
 ---
 
-``{r global_options, include=FALSE}
+```{r global_options, include=FALSE}
 knitr::opts_chunk$set(echo=TRUE,
                       warning=FALSE,
+                      cache=FALSE,
                       message=FALSE)
 ```
 
@@ -69,8 +70,7 @@ scatter_plt <- function(data) {
 ```
 
 ```{r}
-#load("../data/GL_latent_model_orderd_rand.rda")
-load("../data/GL_LMAms_rand.rda")
+load("../rda/GL_LMAms_more_rand.rda")
 
 # 6 converged
 n <- 6
@@ -189,21 +189,33 @@ my_ggsave("../figs/GL_rand.png", GL_plot)
 # PA
 
 ```{r}
-#load("../data/PA_latent_replusive_model_light2_more_rand.rda")
-#load("../data/PA_latent_replusive_model_light2_more_obs.rda")
-load("../data/PA_LMAms_L0_more_rand.rda")
+load("../rda/PA_LMAms_L0_more_rand.rda")
 
 #1-3 not converged 1 is relatively ok
 n <- 2
+PAres <- rand_res$model[[n]]
 PA_summary <- rand_res$summary[[n]]
 dat_r <- rand_res$data[[n]]
 
 tmp <- rand_res$model[[n]]
 mcmc_trace(tmp, pars = c("am", "as", "lp__"))
-
 mcmc_trace(tmp, pars = c("p[68]", "p[5]", "p[3]", "p[4]"))
 
 DT::datatable(PA_summary %>% round(2))
+
+PA_p_mat <- rstan::extract(PAres, "p")[[1]] 
+PA_p_vec <- apply(PA_p_mat, 2, median)
+PA_p_vec_lo <- apply(PA_p_mat, 2, function(x)quantile(x, 0.025))
+PA_p_vec_up <- apply(PA_p_mat, 2, function(x)quantile(x, 0.975))
+
+
+LLpred_mat <- as.data.frame(PAres) %>%
+  as_tibble %>%
+  select(contains("Mu")) %>%
+  select(contains(",2]")) %>%
+  as.matrix
+
+preLL <- apply(LLpred_mat, 2, function(x) median(exp(x)))
 
 PA <- dat %>%
   mutate(LMA = dat_r$LMA,
@@ -211,12 +223,9 @@ PA <- dat %>%
          Aarea = dat_r$A,
          Rarea = dat_r$R) %>%
   as_data_frame %>%
-  mutate(LMAp = PA_summary[str_detect(rownames(PA_summary),
-                            "log_LMAp"), "X50."] %>%  exp) %>%
-  mutate(LMAs = PA_summary[str_detect(rownames(PA_summary),
-                            "log_LMAs\\["), "X50."] %>%  exp) %>%
-  #mutate(preLL = PA_summary[str_detect(rownames(PA_summary),
-  #                          "mu2"), "X50."] %>%  exp) %>%
+  mutate(LMAp = LMA * PA_p_vec) %>%
+  mutate(LMAs = LMA - LMAp)  %>%
+  #mutate(preLL = preLL) %>%
   mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
   mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) %>%
   mutate(site_strata = paste(site2, strata, sep = "_"))
@@ -328,7 +337,7 @@ LL_dat <- PA %>%
                "Shade-Dry"
                       )))
 
-labLL <- data_frame(
+labLL <- tibble(
                    LL = Inf,
                    Val = min(PA$LL),
                    Val_max = max(PA$LL),
