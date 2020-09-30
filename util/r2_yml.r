@@ -122,6 +122,24 @@ get_r2 <- function(ypred, y, median = TRUE) {
   if (median) median(r2) else r2
 }
 
+get_r2_2 <- function(ypred, y, median = TRUE) {
+  #e <- -1 * sweep(ypred, 2, y)
+  var_ypred <- apply(ypred, 1, var)
+  var_e <- apply(y - ypred, 1, var)
+  r2 <- var_ypred / (var_ypred + var_e) 
+  if (median) median(r2) else r2
+}
+
+
+#get_r2_2(log(PA_LMAp), log(PA_LMAs), median = TRUE) %>% round(2)
+#get_r2_2(log(PA_LMAp), log(PA_LMAs), median = FALSE) %>% quantile(., 0.025) %>% round(2)
+#get_r2_2(log(PA_LMAp), log(PA_LMAs), median = FALSE) %>% quantile(., 0.975) %>% round(2)
+#
+#get_r2_2(log(GL_LMAp), log(GL_LMAs), median = TRUE) %>% round(2)
+#get_r2_2(log(GL_LMAp), log(GL_LMAs), median = FALSE) %>% quantile(., 0.025) %>% round(2)
+#get_r2_2(log(GL_LMAp), log(GL_LMAs), median = FALSE) %>% quantile(., 0.975) %>% round(2)
+
+
 # we calcluate resis
 my_cor <- function(x, y, median = TRUE){
   N <- nrow(x)
@@ -138,7 +156,10 @@ for (i in 1:length(PA_p)) {
 PA_LMAp <- t(t(PA_p_mat) * PA$LMA)
 PA_LMAs <- t(t(1 - PA_p_mat) * PA$LMA)
 
-my_cor(PA_LMAp, PA_LMAs, median = FALSE) %>% hist
+r1 <- my_cor(log(PA_LMAp), log(PA_LMAs), median = TRUE) %>% round(2)
+r2 <- my_cor(log(PA_LMAp), log(PA_LMAs), median = FALSE) %>% quantile(., 0.025) %>% round(2)
+r3 <- my_cor(log(PA_LMAp), log(PA_LMAs), median = FALSE) %>% quantile(., 0.975) %>% round(2)
+PA_LMAps_r <- str_c(r1, " [", r2, ", ", r3, "]")
 
 GL_P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
 GL_p <- rstan::extract(resGL, GL_P_vec) 
@@ -152,6 +173,11 @@ GL_LMAs <- t(t(1 - GL_p_mat) * GL$LMA)
 
 #my_cor(GL_LMAp, GL_LMAs)
 my_cor(GL_LMAp, GL_LMAs, median = FALSE) %>% hist
+
+r1 <- my_cor(log(GL_LMAp), log(GL_LMAs), median = TRUE) %>% round(2)
+r2 <- my_cor(log(GL_LMAp), log(GL_LMAs), median = FALSE) %>% quantile(., 0.025) %>% round(2)
+r3 <- my_cor(log(GL_LMAp), log(GL_LMAs), median = FALSE) %>% quantile(., 0.975) %>% round(2)
+GL_LMAps_r <- str_c(r1, " [", r2, ", ", r3, "]")
 
 GL_LL <- get_pred(trait = "LL", resGL, log = TRUE)
 GL_Aarea <- get_pred(trait = "Aarea", resGL, log = TRUE)
@@ -220,6 +246,7 @@ write.csv(PA, "./data/PA_LMAms_L0_more.csv", row.names = FALSE)
 #moge <- apply(log_LMAs, 2, median)
 #cor.test(moge, log(GL$Rarea))
 
+
 # R values
 output <- "r_val.yml"
 out <- file(paste(output), "w") # write
@@ -284,10 +311,7 @@ writeLines(paste0("    LMAs_Parea: 'italic(r) == ", cor.test(log(GL$Parea), log(
 writeLines(paste0("  GL_LMAms:"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_LMAm: ", my_cor(GL_LMAp, GL_LMAs) %>% round(2)),
-           out,
-           sep = "\n")
-writeLines(paste0("    p_val: ", cor.test(log(GL$LMAp), log(GL$LMAs))$p.value %>% round(2)),
+writeLines(paste0("    LMAs_LMAm: ", "'", GL_LMAps_r, "'"),
            out,
            sep = "\n")
 
@@ -326,10 +350,7 @@ writeLines(paste0("    LMAs_LL: 'italic(r) == ", cor.test(log(PA$LL), log(PA$LMA
 writeLines(paste0("  PA_LMAms:"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_LMAm: ", my_cor(PA_LMAp, PA_LMAs) %>% round(2)),
-           out,
-           sep = "\n")
-writeLines(paste0("    p_val: ", cor.test(log(PA$LMAp), log(PA$LMAs))$p.value %>% round(2)),
+writeLines(paste0("    LMAs_LMAm: ", "'", PA_LMAps_r, "'"),
            out,
            sep = "\n")
 
