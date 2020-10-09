@@ -1212,6 +1212,45 @@ my_ggsave("../figs/LL_plot.png", LL_plot,
           width = 6.7,
           height = 6.7)
 
+LL_plot2 <- ggplot(LL_dat, aes(x = LL, y = preLL,
+                              fill = gr, col = gr)) +
+  geom_point(shape = 21) +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols) +
+  scale_x_log10(breaks = my_breaks(), expand = c(0.1, 0),
+                limits = c(min(labLL$Val), max(labLL$Val_max))) +
+  scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0),
+                limits = c(min(labLL$Val), max(labLL$Val_max))) +
+  xlab("Observed LL (months)") +
+  ylab("Predicted LL (months)") +
+  geom_abline(aes(slope = 1, intercept = 0),
+              lty = 2,
+              lwd = 0.25,
+              col = "gray20") +
+  geom_text(data = labLL, aes(label = r_vals, x = Val_max, y = 2.5),
+            colour = "black",
+            hjust = 1,
+            vjust= 0,
+            parse = TRUE,
+            show.legend = FALSE) +
+  coord_fixed() +
+  theme_LES() +
+  theme(
+    legend.position = c(0.2, 0.85),
+    axis.title.x = element_text(margin = margin(t = 1,
+                                                b = 1,
+                                                l = 0,
+                                                r = 0)),
+    axis.title.y = element_text(margin = margin(t = 1,
+                                                b = 1,
+                                                l = 1,
+                                                r = 1))
+        )
+
+my_ggsave("../figs/LL_plot2.png", LL_plot2,
+        width = 6.7,
+        height = 6.7)
+
 fills <- c("Sun-Dry" = settings$fills$sun_dry,
           "Sun-Wet" = settings$fills$sun_wet,
           "Shade-Dry" = settings$fills$shade_dry,
@@ -1301,9 +1340,19 @@ my_ggsave("../figs/LL_plot_sd.png", LL_plot_sd,
 
 ```
 
+## LL
+
 ![LL plot](../figs/LL_plot.png)
 
+## LL2
+
+![LL plot2](../figs/LL_plot2.png)
+
+## LL 95% CI
+
 ![LL plot95](../figs/LL_plot95.png)
+
+## LL sd
 
 ![LL plot_sd](../figs/LL_plot_sd.png)
 
