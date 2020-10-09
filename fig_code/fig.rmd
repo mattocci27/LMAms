@@ -622,6 +622,33 @@ my_ggsave("../figs/GL_2.png", fig4)
 
 ![GL1](../figs/GL_2.png)
 
+## with letters
+
+```{r GL-letters, cache=FALSE, comment=NA}
+
+
+GL_dat <- GL %>% 
+  gather(LMA, Val, c(LMA, LMAs, LMAp)) %>%
+  gather(Trait, Val2, c(Aarea, Rarea, LL)) %>%
+  mutate(DE = factor(DE,
+          levels = c("D", "E", "U"))) %>%
+  mutate(LMA = factor(LMA,
+    labels = c("LMA", "LMAm", "LMAs"))) %>%
+  mutate(Trait = factor(Trait,
+    levels = c("Aarea", "Rarea", "LL"))) %>%
+  mutate(Trait2 = factor(Trait,
+    labels = c("italic(A)[area]~(~mu~mol~m^{-2}~s^{-1})",
+               "italic(R)[area]~(~mu~mol~m^{-2}~s^{-1})",
+               "LL~(months)")))
+
+lim_GL <- lim_func(GL_fig_dat, trait = "val0")
+lim_GL2 <- lim_func(GL_fig_dat, trait = "val0", LMA = FALSE)
+
+
+```
+
+
+
 # Panama
 
 ```{r PAdat, cache=FALSE, comment=NA}
