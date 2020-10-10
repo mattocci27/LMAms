@@ -703,7 +703,7 @@ GL_figB3 <-  GL_figB2 +
 fig5 <- plot_grid(GL_figA3, GL_figB3,
                   #labels = c("A", "B"),
                   #label_size = 8,
-                  vjust = 0.5,
+                  #vjust = 3.5,
                   rel_widths = c(0.6, 1))
 
 fig6 <- plot_grid(legend2, fig5,  ncol = 1,
@@ -1160,6 +1160,70 @@ PA_figA3
 ```
 
 ![PA scatter](../figs/PA_2.png)
+
+## with letters
+
+```{r PA-letters, cache=FALSE, comment=NA}
+
+(lim_PA <- lim_func2(PA_fig_dat, LMA2, val0))
+(lim_PA2 <- lim_func2(PA_fig_dat, Trait2, val2))
+(lim_PA_par <- lim_func2(PA_fig_dat2, resLMA, val, log = FALSE))
+(lim_PA_par2 <- lim_func2(PA_fig_dat2, resTrait2, val2, log = FALSE))
+
+lab1 <- tibble(
+  lab = paste0("(", c("a", "d", "g"), ")"),
+  Val = lim_PA[1, "min_val"] %>% unlist %>% rep(3),
+  Val2 = lim_PA2$max_val,
+  LMA = lim_PA[1, "LMA2"] %>% unlist %>% rep(3),
+  Trait2 = lim_PA2$Trait2,
+  gr = "Sun-Dry")
+
+
+PA_figA3 <-  PA_figA2 +
+  geom_text(
+    data = lab1,
+    aes(label = lab, x = Val, y = Val2),
+    hjust = 0.25,
+    vjust = 0.25,
+    size = 8 * 5/14,
+    show.legend = FALSE,
+    color = "black"
+  )
+
+lab2 <- tibble(
+  lab = paste0("(", c("b", "c", "e", "f", "h", "i"), ")"),
+  Val = lim_PA_par$min_val %>% rep(3),
+  Val2 = lim_PA_par2$max_val %>% rep(each = 2),
+  resLMA = lim_PA_par$resLMA %>% rep(3),
+  resTrait2 = lim_PA_par2$resTrait2 %>% rep(each = 2),
+  gr = "Sun-Dry")
+
+PA_figB3 <-  PA_figB2 +
+  geom_text(
+    data = lab2,
+    aes(label = lab, x = Val + 0.4 , y = Val2),
+    hjust = 0.25,
+    vjust = 0.25,
+    size = 8 * 5/14,
+    show.legend = FALSE,
+    color = "black"
+  )
+
+fig7 <- plot_grid(PA_figA3, PA_figB3,
+                  #labels = c("A", "B"),
+                  #label_size = 8,
+                  vjust = 0.5,
+                  rel_widths = c(0.6, 1))
+
+fig8 <- plot_grid(legend2, fig7,  ncol = 1,
+                  rel_heights = c(.1, 2))
+
+my_ggsave("../figs/PA_3.png", fig8)
+
+```
+
+![PA3](../figs/PA_3.png)
+
 
 ## Panama NPCL
 
