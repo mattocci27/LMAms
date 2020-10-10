@@ -1,0 +1,128 @@
+---
+title: Var para
+author: Masatoshi Katabuchi
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: true
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE,
+                      warning=FALSE,
+                      message=FALSE)
+```
+
+
+```{r, echo = T, message = F}
+rm(list = ls())
+library(rstan)
+library(tidyverse)
+```
+
+# GL
+
+```{r}
+load("../rda/GL_LMAms_more_obs.rda")
+GL <- dat
+GLres <- res
+pmat <- extract(res, "p")[[1]]
+n <- 4000
+
+LMAp_var <- numeric(n)
+LMAs_var <- numeric(n)
+
+for (i in 1:n) {
+  LMAp <- pmat[i,] * GL$LMA
+  LMAs <- (1 - pmat[i,]) * GL$LMA
+  LMAp_var[i] <- cov(LMAp, GL$LMA)
+  LMAs_var[i] <- cov(LMAs, GL$LMA)
+}
+
+hist(LMAs_var / var(GL$LMA) * 100)
+hist(LMAp_var / var(GL$LMA) * 100)
+
+summary(LMAs_var / var(GL$LMA) * 100)
+summary(LMAp_var / var(GL$LMA) * 100)
+
+```
+
+# wet
+
+```{r}
+load("../rda/PA_LMAms_L0_more_obs.rda")
+PA <- dat %>%
+  mutate(tmp = 1:n())
+PAres <- res
+pmat <- extract(res, "p")[[1]]
+n <- 4000
+
+wet <- PA %>% filter(site2 == "WET")
+dry <- PA %>% filter(site2 != "WET")
+
+LMAp_wet_var <- numeric(n)
+LMAs_wet_var <- numeric(n)
+
+for (i in 1:n) {
+  LMAp_wet <- pmat[i, wet$tmp] * wet$LMA
+  LMAs_wet <- (1 - pmat[i, wet$tmp]) * wet$LMA
+  LMAp_wet_var[i] <- cov(LMAp_wet, wet$LMA)
+  LMAs_wet_var[i] <- cov(LMAs_wet, wet$LMA)
+}
+
+hist(LMAs_wet_var / var(wet$LMA) * 100)
+hist(LMAp_wet_var / var(wet$LMA) * 100)
+
+summary(LMAs_wet_var / var(wet$LMA) * 100)
+summary(LMAp_wet_var / var(wet$LMA) * 100)
+
+LMAp_wet <- apply(1 - pmat[, wet$tmp], 2, median) * wet$LMA 
+cov(LMAp_wet, wet$LMA) / var(wet$LMA)
+
+```
+
+# dry
+
+```{r}
+LMAp_dry_var <- numeric(n)
+LMAs_dry_var <- numeric(n)
+
+for (i in 1:n) {
+  LMAp_dry <- pmat[i, dry$tmp] * dry$LMA
+  LMAs_dry <- (1 - pmat[i, dry$tmp]) * dry$LMA
+  LMAp_dry_var[i] <- cov(LMAp_dry, dry$LMA)
+  LMAs_dry_var[i] <- cov(LMAs_dry, dry$LMA)
+}
+
+hist(LMAs_dry_var / var(dry$LMA) * 100)
+hist(LMAp_dry_var / var(dry$LMA) * 100)
+
+summary(LMAs_dry_var / var(dry$LMA) * 100)
+summary(LMAp_dry_var / var(dry$LMA) * 100)
+```
+
+## yml
+
+```{r}
+# R values
+
+output <- "../var_val.yml"
+out <- file(paste(output), "w") # write
+writeLines(paste0("var_vals:"),
+           out,
+           sep = "\n")
+writeLines(paste0("  GL: ",
+  median(LMAs_var / var(GL$LMA) * 100) %>% round(0)),
+           out,
+           sep = "\n")
+writeLines(paste0("  wet: ",
+  median(LMAs_wet_var / var(wet$LMA) * 100) %>% round(0)),
+           out,
+           sep = "\n")
+writeLines(paste0("  dry: ",
+  median(LMAs_dry_var / var(dry$LMA) * 100) %>% round(0)),
+           out,
+           sep = "\n")
+close(out)
+
+```
