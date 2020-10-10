@@ -1565,15 +1565,16 @@ dat2 <- dat %>%
   filter(am >= as) %>%
   filter(am > 0 | as > 0)
 
-dat3 <- dat2 %>%
+dat_ex <- dat2 %>%
   gather(type, val, 3:5) #%>%
 #  filter(val > -0.2 & val < 1.2)
 
-mass_plt <- ggplot(dat3, aes(x = am, y= as, fill = val)) +
+mass_plt <- ggplot(dat_ex, aes(x = am, y= as, fill = val)) +
   geom_raster() +
   facet_grid(~type) +
   scale_fill_gradient2(midpoint = 0.5,
                        name = "Mass \nproportionality") +
+
   xlab(expression(alpha[m])) +
   ylab(expression(alpha[s])) +
   theme(legend.position = "none")
@@ -1991,6 +1992,31 @@ my_ggsave("../figs/mass_prop4.png", p,
 
 ![Mass-proportionality2](../figs/mass_prop4.png)
 
+## example data
+
+```{r mass-prop-ex, cache=FALSE, comment=NA}
+
+mass_plt_SI <- ggplot(dat_ex %>% filter(am >= 0.1), aes(x = am, y= as, fill = val)) +
+  geom_raster() +
+  facet_grid(~type) +
+  scale_fill_gradient2(midpoint = 0.5,
+                         low = "#e66101",
+                         high = "#5e3c99") +
+  xlab(expression(alpha[m])) +
+  ylab(expression(alpha[s])) +
+  theme(legend.position = "none")
+
+p <- plot_grid(mass_plt_SI,
+               legend_plt2,
+               nrow = 2,
+               rel_heights = c(.6, .4))
+
+my_ggsave("../figs/mass_prop_SI.png", p,
+          width = 12,
+          height = 8)
+```
+
+![Mass-proportionality3](../figs/mass_prop_SI.png)
 
 # Boxplot
 
