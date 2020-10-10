@@ -62,7 +62,7 @@ sigma1 <- seq(0.1, 1, length = 10)
 var(log(GL$LMAp)) /var(log(GL$LMAs))
 var((GL$LMAp)) /var((GL$LMAs))
 
-log_mu_inv(log_var_inv(), log(median(GL$LMAp)))
+#log_mu_inv(log_var_inv(), log(median(GL$LMAp)))
 
 para1 <- expand.grid(sigma1, sigma1) %>%
   mutate(ratio1 = Var1/Var2)

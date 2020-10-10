@@ -1,6 +1,4 @@
-PA Sun-LMAm: 49.46
-PA Shade-LMAm: 22.41
-GL-LMAm: 55.88
-PA Sun-LMAs: 50.54
-PA Shade-LMAs: 77.59
-GL-LMAs: 44.12
+var_vals:
+  GL: 46
+  wet: 55
+  dry: 35
