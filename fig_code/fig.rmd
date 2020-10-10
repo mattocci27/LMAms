@@ -15,6 +15,7 @@ knitr::opts_chunk$set(echo=TRUE,
 
 
 ```{r, echo = T, message = F}
+rm(list = ls())
 library(loo)
 library(rstan)
 library(dplyr)
@@ -627,26 +628,92 @@ my_ggsave("../figs/GL_2.png", fig4)
 ```{r GL-letters, cache=FALSE, comment=NA}
 
 
-GL_dat <- GL %>% 
-  gather(LMA, Val, c(LMA, LMAs, LMAp)) %>%
-  gather(Trait, Val2, c(Aarea, Rarea, LL)) %>%
-  mutate(DE = factor(DE,
-          levels = c("D", "E", "U"))) %>%
-  mutate(LMA = factor(LMA,
-    labels = c("LMA", "LMAm", "LMAs"))) %>%
-  mutate(Trait = factor(Trait,
-    levels = c("Aarea", "Rarea", "LL"))) %>%
-  mutate(Trait2 = factor(Trait,
-    labels = c("italic(A)[area]~(~mu~mol~m^{-2}~s^{-1})",
-               "italic(R)[area]~(~mu~mol~m^{-2}~s^{-1})",
-               "LL~(months)")))
+lim_func2 <- function(data, trait, val, log = TRUE) {
+    data2 <- data %>% 
+      dplyr::select({{trait}}, {{val}}) %>%
+      group_by({{trait}})
+    if (log) {
+      data2 %>%
+        summarize(
+          min_val = min({{val}}, na.rm = TRUE) %>% log10,
+          max_val = max({{val}}, na.rm = TRUE) %>% log10
+        ) %>%
+        mutate(mid_val = (max_val - min_val) / 2) %>%
+        ungroup %>%
+        mutate(min_val = 10^(min_val - mid_val * 0.1)) %>%
+        mutate(max_val = 10^(max_val + mid_val * 0.1))
+    } else {
+      data2 %>%
+        summarize(
+          min_val = min({{val}}, na.rm = TRUE),
+          max_val = max({{val}}, na.rm = TRUE)
+        ) %>%
+        mutate(mid_val = (max_val - min_val) / 2) %>%
+        ungroup %>%
+        mutate(min_val = (min_val - mid_val * 0.1)) %>%
+        mutate(max_val = (max_val + mid_val * 0.1))
+    }
+  }
 
-lim_GL <- lim_func(GL_fig_dat, trait = "val0")
-lim_GL2 <- lim_func(GL_fig_dat, trait = "val0", LMA = FALSE)
+(lim_GL <- lim_func2(GL_fig_dat, LMA2, val0))
+(lim_GL2 <- lim_func2(GL_fig_dat, Trait2, val2))
+(lim_GL_par <- lim_func2(GL_fig_dat2, resLMA, val, log = FALSE))
+(lim_GL_par2 <- lim_func2(GL_fig_dat2, resTrait2, val2, log = FALSE))
 
+lab1 <- tibble(
+  lab = paste0("(", c("a", "d", "g"), ")"),
+  Val = lim_GL[1, "min_val"] %>% unlist %>% rep(3),
+  Val2 = lim_GL2$max_val,
+  LMA = lim_GL[1, "LMA2"] %>% unlist %>% rep(3),
+  Trait2 = lim_GL2$Trait2,
+  gr = "Evergreen")
+
+
+GL_figA3 <-  GL_figA2 +
+  geom_text(
+    data = lab1,
+    aes(label = lab, x = Val, y = Val2),
+    hjust = 0.25,
+    vjust = 0.25,
+    size = 8 * 5/14,
+    show.legend = FALSE,
+    color = "black"
+  )
+
+lab2 <- tibble(
+  lab = paste0("(", c("b", "c", "e", "f", "h", "i"), ")"),
+  Val = lim_GL_par$min_val %>% rep(3),
+  Val2 = lim_GL_par2$max_val %>% rep(each = 2),
+  resLMA = lim_GL_par$resLMA %>% rep(3),
+  resTrait2 = lim_GL_par2$resTrait2 %>% rep(each = 2),
+  gr = "Evergreen")
+
+GL_figB3 <-  GL_figB2 +
+  geom_text(
+    data = lab2,
+    aes(label = lab, x = Val, y = Val2),
+    hjust = 0.25,
+    vjust = 0.25,
+    size = 8 * 5/14,
+    show.legend = FALSE,
+    color = "black"
+  )
+
+
+fig5 <- plot_grid(GL_figA3, GL_figB3,
+                  #labels = c("A", "B"),
+                  #label_size = 8,
+                  vjust = 0.5,
+                  rel_widths = c(0.6, 1))
+
+fig6 <- plot_grid(legend2, fig5,  ncol = 1,
+                  rel_heights = c(.1, 2))
+
+my_ggsave("../figs/GL_3.png", fig6)
 
 ```
 
+![GL3](../figs/GL_3.png)
 
 
 # Panama
@@ -1166,8 +1233,8 @@ sd2 <- extract(res, "Sigma[2, 2]")[[1]]
 
 LLpred_mat <- as.data.frame(res) %>%
   as_tibble %>%
-  select(contains("Mu")) %>%
-  select(contains(",2]")) %>%
+  dplyr::select(contains("Mu")) %>%
+  dplyr::select(contains(",2]")) %>%
   as.matrix
 
 preLL <- apply(LLpred_mat, 2, function(x) median(exp(x)))
