@@ -1,4 +1,3 @@
-var_vals:
-  GL: 46
-  wet: 55
-  dry: 35
+GL: 46
+wet: 55
+dry: 35

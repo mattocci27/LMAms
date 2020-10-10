@@ -108,18 +108,15 @@ summary(LMAp_dry_var / var(dry$LMA) * 100)
 
 output <- "../var_val.yml"
 out <- file(paste(output), "w") # write
-writeLines(paste0("var_vals:"),
-           out,
-           sep = "\n")
-writeLines(paste0("  GL: ",
+writeLines(paste0("GL: ",
   median(LMAs_var / var(GL$LMA) * 100) %>% round(0)),
            out,
            sep = "\n")
-writeLines(paste0("  wet: ",
+writeLines(paste0("wet: ",
   median(LMAs_wet_var / var(wet$LMA) * 100) %>% round(0)),
            out,
            sep = "\n")
-writeLines(paste0("  dry: ",
+writeLines(paste0("dry: ",
   median(LMAs_dry_var / var(dry$LMA) * 100) %>% round(0)),
            out,
            sep = "\n")
