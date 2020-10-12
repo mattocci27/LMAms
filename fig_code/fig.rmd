@@ -2425,7 +2425,7 @@ FracBox2 <- ggplot(FracDat3, aes(x = gr, y = LMAm_frac, fill = gr, col = gr)) +
    # strip.text.x = element_text(colour = NA) # invinsible strip
         ) # +
 
-my_ggsave("./figs/box_frac2.png", FracBox2,
+my_ggsave("../figs/box_frac2.png", FracBox2,
           width = 6,
           height = 6)
 
