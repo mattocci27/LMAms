@@ -1674,25 +1674,20 @@ LMA_dat <- PA2 %>%
 
 LMA_dat
 
+for (i in 1:nrow(dat)) {
+  A <- rlnorm(N, dat$am[i] * log(GL$LMAp) + dat$as[i] * log(GL$LMAs), 0)
+  fit <- lm(log(A) ~ log(GL$LMA))
+  mass_prop[i] <- fit$coefficients[2]
 
-for (j in 1:1) {
-  for (i in 1:nrow(dat)) {
-    A <- rlnorm(N, dat$am[i] * log(GL$LMAp) + dat$as[i] * log(GL$LMAs), 0)
-    fit <- lm(log(A) ~ log(GL$LMA))
-    mass_prop[i] <- fit$coefficients[2]
+  A <- rlnorm(N2, dat$am[i] * log(Sun$LMAp) + dat$as[i] * log(Sun$LMAs), 0)
+  fit <- lm(log(A) ~ log(Sun$LMA))
+  mass_prop2[i] <- fit$coefficients[2]
 
-    A <- rlnorm(N2, dat$am[i] * log(Sun$LMAp) + dat$as[i] * log(Sun$LMAs), 0)
-    fit <- lm(log(A) ~ log(Sun$LMA))
-    mass_prop2[i] <- fit$coefficients[2]
-
-    A <- rlnorm(N3, dat$am[i] * log(Shade$LMAp) + dat$as[i] * log(Shade$LMAs), 0)
-    fit <- lm(log(A) ~ log(Shade$LMA))
-    mass_prop3[i] <- fit$coefficients[2]
-  }
-  mass_prop_ <- rbind(mass_prop_, mass_prop)
-  mass_prop2_ <- rbind(mass_prop2_, mass_prop2)
-  mass_prop3_ <- rbind(mass_prop3_, mass_prop3)
+  A <- rlnorm(N3, dat$am[i] * log(Shade$LMAp) + dat$as[i] * log(Shade$LMAs), 0)
+  fit <- lm(log(A) ~ log(Shade$LMA))
+  mass_prop3[i] <- fit$coefficients[2]
 }
+#}
 
 dat2 <- dat %>%
   as_tibble %>%

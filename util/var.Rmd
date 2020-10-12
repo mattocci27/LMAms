@@ -58,7 +58,7 @@ pmat <- extract(res, "p")[[1]]
 n <- 4000
 
 sun <- PA %>% filter(strata == "CAN")
-shade <- PA %>% filter(site2 != "CAN")
+shade <- PA %>% filter(strata != "CAN")
 
 LMAp_sun_var <- numeric(n)
 LMAs_sun_var <- numeric(n)

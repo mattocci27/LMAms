@@ -92,7 +92,8 @@ plan$nodes %>% DT::datatable(.)
 ```
 
 
-```{r}
+
+```
 
 singularity shell ../dockerfiles/singularity/myenv_3.6.3.sif
 
@@ -100,16 +101,20 @@ docker run --rm -v $(pwd):/home/rstudio/LMAms  \
   -p 8787:8787  \
   -e PASSWORD=F85hPRItkcsaQ7lR6AHK \
   mattocci/myenv:3.6.3
+```
 
-singularity exec ../r-containers/myenv_3.6.3.sif \
-  Rscript -e "library(rmarkdown); render('fig_code/fig.rmd')"
-
+```{r}
 Rscript res_rand.r
 Rscript util/r2_yml.r
 Rscript util/res_para.r
 Rscript util/get_loo.r
-Rscript fig_code/fig.r
-Rscript fig_code/fig_SI.r
+#Rscript fig_code/fig.r
+#Rscript fig_code/fig_SI.r
+```
+
+```
+singularity exec ../r-containers/myenv_3.6.3.sif \
+  Rscript -e "library(rmarkdown); render('fig_code/fig.rmd')"
 
 singularity shell ../r-containers/rmd-crossref_4.0.2.sif
 
