@@ -70,7 +70,9 @@ GL_LMAs <- p_group(GL2$LMAs, GL2$DE)
 
 GL_frac <- p_group(GL2$frac, GL2$DE)
 PA_frac <- p_group(PA3$frac, PA3$DE)
+# all
 PA_frac2 <- p_group(PA2$frac, PA2$site_strata2)
+# intra
 PA_frac3 <- p_group(PA3$frac, PA3$site_strata2)
 
 output <- "letters.yml"
@@ -227,22 +229,7 @@ writeLines(paste0("    D: ", PA_frac["D"]),
 writeLines(paste0("    E: ", PA_frac["E"]),
            out,
            sep = "\n")
-writeLines(paste0("  PA2:"),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Dry: ", PA_frac2["Sun_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Dry: ", PA_frac2["Shade_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Wet: ", PA_frac2["Sun_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Wet: ", PA_frac2["Shade_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("  PA3:"),
+writeLines(paste0("  PA-intra:"),
            out,
            sep = "\n")
 writeLines(paste0("    Sun_Dry: ", PA_frac3["Sun_Dry"]),
@@ -255,6 +242,21 @@ writeLines(paste0("    Sun_Wet: ", PA_frac3["Sun_Wet"]),
            out,
            sep = "\n")
 writeLines(paste0("    Shade_Wet: ", PA_frac3["Shade_Wet"]),
+           out,
+           sep = "\n")
+writeLines(paste0("  PA-all:"),
+           out,
+           sep = "\n")
+writeLines(paste0("    Sun_Dry: ", PA_frac2["Sun_Dry"]),
+           out,
+           sep = "\n")
+writeLines(paste0("    Shade_Dry: ", PA_frac2["Shade_Dry"]),
+           out,
+           sep = "\n")
+writeLines(paste0("    Sun_Wet: ", PA_frac2["Sun_Wet"]),
+           out,
+           sep = "\n")
+writeLines(paste0("    Shade_Wet: ", PA_frac2["Shade_Wet"]),
            out,
            sep = "\n")
 close(out)
