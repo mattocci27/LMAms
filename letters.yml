@@ -47,13 +47,13 @@ Frac:
   PA:
     D: a
     E: b
-  PA2:
-    Sun_Dry: a
-    Shade_Dry: a
-    Sun_Wet: b
-    Shade_Wet: c
-  PA3:
+  PA-intra:
     Sun_Dry: a
     Shade_Dry: a
     Sun_Wet: b
     Shade_Wet: b
+  PA-all:
+    Sun_Dry: a
+    Shade_Dry: a
+    Sun_Wet: b
+    Shade_Wet: c
