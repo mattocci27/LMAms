@@ -2278,6 +2278,7 @@ PAFracDat <- PA %>%
                      levels = c("D", "E"))) %>%
   unique
 
+
 PAboxFrac <- ggplot(PAFracDat, aes(x = gr, y = LMAm_frac, fill = gr)) +
   geom_boxplot(outlier.shape = 21, outlier.size = 1) +
   scale_fill_manual(values = fills, guide = FALSE) 
@@ -2299,19 +2300,19 @@ FracDat <- bind_rows(GLFracDat2, PAFracDat2)
 my_y_title <- bquote(atop("The fraction of total LMA",
                            "comprised by LMAm ("*italic(f)*")"))
 
-lab3 <- FracDat %>%
-  group_by(gr, data) %>%
-  summarize(LMAm_frac = max(LMAm_frac)) %>%
-  ungroup %>%
-  arrange(data) %>%
-  mutate(lab = p_letters$Frac %>% unlist)
+#lab3 <- FracDat %>%
+#  group_by(gr, data) %>%
+#  summarize(LMAm_frac = max(LMAm_frac)) %>%
+#  ungroup %>%
+#  arrange(data) %>%
+#  mutate(lab = p_letters$Frac %>% unlist)
 
 FracBox <- ggplot(FracDat, aes(x = gr, y = LMAm_frac, fill = gr, col = gr)) +
   geom_boxplot(outlier.shape = 21, outlier.size = 1) +
-  geom_text(data= lab3, aes(label = lab),
-            colour = "black",
-            vjust = -1,
-            size = 8 * 5/14) +
+#  geom_text(data= lab3, aes(label = lab),
+#            colour = "black",
+#            vjust = -1,
+#            size = 8 * 5/14) +
   facet_grid(.~ data) +
   #ylab("The fraction of total LMA\n
   #     comprised by LMAm (f)") +
@@ -2335,6 +2336,102 @@ my_ggsave("../figs/box_frac.png", FracBox,
 ```
 
 ![Fraction](../figs/box_frac.png)
+
+```{r frac2, cache=FALSE, comment=NA}
+
+fills2 <- c("Sun\nDry" = settings$fills$sun_dry,
+          "Sun\nWet" = settings$fills$sun_wet,
+          "Shade\nDry" = settings$fills$shade_dry,
+          "Shade\nWet" = settings$fills$shade_wet)
+
+cols2 <- c("Sun\nDry" = settings$colors$sun_dry,
+          "Sun\nWet" = settings$colors$sun_wet,
+          "Shade\nDry" = settings$colors$shade_dry,
+          "Shade\nWet" = settings$colors$shade_wet)
+
+fills3 <- c(fills, fills2)
+cols3 <- c(cols, cols2)
+
+
+PAFracDat3 <- PA %>%
+  count(sp) %>% 
+  filter(n >= 2) %>%
+  inner_join(., PA, by = "sp") %>%
+  mutate(LMAm_frac = LMAp / LMA) %>%
+  mutate(site_strata = factor(site_strata,
+          levels = c("DRY_CAN", 
+                     "DRY_UNDER",
+                     "WET_CAN", 
+                     "WET_UNDER"))) %>%
+  mutate(gr = factor(site_strata,
+    labels = c("Sun\nDry",
+               "Shade\nDry",
+               "Sun\nWet",
+               "Shade\nWet"
+                      ))) %>%
+  #dplyr::select(sp, gr, LMAm_frac) %>%
+  mutate(data = "(c) Panama")
+
+data.frame(PAFracDat3$site_strata, PAFracDat3$gr) %>% unique
+
+FracDat2 <- bind_rows(FracDat, PAFracDat3)
+
+PAFracDat4 <- PA %>%
+  count(sp) %>% 
+  inner_join(., PA, by = "sp") %>%
+  mutate(LMAm_frac = LMAp / LMA) %>%
+  mutate(site_strata = factor(site_strata,
+          levels = c("DRY_CAN", 
+                     "DRY_UNDER",
+                     "WET_CAN", 
+                     "WET_UNDER"))) %>%
+  mutate(gr = factor(site_strata,
+    labels = c("Sun\nDry",
+               "Shade\nDry",
+               "Sun\nWet",
+               "Shade\nWet"
+                      ))) %>%
+  mutate(data = "(d) Panama")
+
+FracDat3 <- bind_rows(FracDat2, PAFracDat4)
+
+lab4 <- FracDat3 %>%
+  group_by(gr, data) %>%
+  summarize(LMAm_frac = max(LMAm_frac)) %>%
+  ungroup %>%
+  arrange(data) %>%
+  mutate(lab = p_letters$Frac %>% unlist)
+
+FracBox2 <- ggplot(FracDat3, aes(x = gr, y = LMAm_frac, fill = gr, col = gr)) +
+  geom_boxplot(outlier.shape = 21, outlier.size = 1) +
+  geom_text(data= lab4, aes(label = lab),
+            colour = "black",
+            vjust = -1,
+            size = 8 * 5/14) +
+  #facet_grid(.~ data,scale = "free_x") +
+  facet_wrap(.~ data, nrow = 2, scale = "free_x") +
+  #ylab("The fraction of total LMA\n
+  #     comprised by LMAm (f)") +
+  ylab(my_y_title) +
+  #ylab(expression(atop("Panama",
+  #              LMA~(g~m^{-2})))) +
+  xlab("") +
+  scale_fill_manual(values = fills3, guide = FALSE) +
+  scale_colour_manual(values = cols3, guide = FALSE) +
+  scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
+  theme_box() +
+  theme(
+    strip.background = element_blank()
+   # strip.text.x = element_text(colour = NA) # invinsible strip
+        ) # +
+
+my_ggsave("./figs/box_frac2.png", FracBox2,
+          width = 6,
+          height = 6)
+
+```
+
+![Fraction2](../figs/box_frac2.png)
 
 # LMAm vs LMAs 
 

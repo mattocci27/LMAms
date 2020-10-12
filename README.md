@@ -116,6 +116,9 @@ Rscript util/get_loo.r
 singularity exec ../r-containers/myenv_3.6.3.sif \
   Rscript -e "library(rmarkdown); render('fig_code/fig.rmd')"
 
+singularity exec ../r-containers/myenv_3.6.3.sif \
+  Rscript t_yml.r 
+
 singularity shell ../r-containers/rmd-crossref_4.0.2.sif
 
 singularity exec ../r-containers/rmd-crossref_4.0.2.sif \
