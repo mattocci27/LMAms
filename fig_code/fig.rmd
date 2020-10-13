@@ -795,7 +795,7 @@ GL3 <- GL %>%
 
 ```
 
-```{r, cache=FALSE, comment=NA}
+```{r PA-part, cache=FALSE, comment=NA}
 pmat <- extract(res, "p")[[1]]
 before <- proc.time()
 N <- 4000
@@ -864,7 +864,7 @@ par(mfrow=c(1,1))
 ```
 
 
-```{r, cache=FALSE, comment=NA}
+```{r PA-part-plt, cache=FALSE, comment=NA}
 
 LMAp_mat <- apply(pmat, 1, function(x){PA$LMA * x}) %>% t
 LMAs_mat <- apply(LMAp_mat, 1, function(x){PA$LMA - x}) %>% t
@@ -2292,7 +2292,7 @@ GLFracDat2 <- GLFracDat %>%
 
 PAFracDat2 <- PAFracDat %>%
   dplyr::select(sp, gr, LMAm_frac) %>%
-  mutate(data = "(b) Panama")
+  mutate(data = "(b) Panama: leaf habit")
 
 
 FracDat <- bind_rows(GLFracDat2, PAFracDat2)
@@ -2370,7 +2370,7 @@ PAFracDat3 <- PA %>%
                "Shade\nWet"
                       ))) %>%
   #dplyr::select(sp, gr, LMAm_frac) %>%
-  mutate(data = "(c) Panama")
+  mutate(data = "(c) Panama: intra")
 
 data.frame(PAFracDat3$site_strata, PAFracDat3$gr) %>% unique
 
@@ -2391,7 +2391,7 @@ PAFracDat4 <- PA %>%
                "Sun\nWet",
                "Shade\nWet"
                       ))) %>%
-  mutate(data = "(d) Panama")
+  mutate(data = "(d) Panama: all")
 
 FracDat3 <- bind_rows(FracDat2, PAFracDat4)
 
@@ -2426,8 +2426,8 @@ FracBox2 <- ggplot(FracDat3, aes(x = gr, y = LMAm_frac, fill = gr, col = gr)) +
         ) # +
 
 my_ggsave("../figs/box_frac2.png", FracBox2,
-          width = 6,
-          height = 6)
+          width = 11.7,
+          height = 11.7)
 
 ```
 
