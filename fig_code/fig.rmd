@@ -2433,6 +2433,62 @@ my_ggsave("../figs/box_frac2.png", FracBox2,
 
 ![Fraction2](../figs/box_frac2.png)
 
+
+## paired
+
+```{r Frac-pair, cache=FALSE, comment=NA}
+
+p <- PAFracDat3 %>%
+  dplyr::select(sp, strata, site2, LMAm_frac) %>%
+  mutate(strata = ifelse(strata == "CAN", "Sun", "Shade")) %>%
+  mutate(strata = factor(strata, levels = c("Sun", "Shade"))) %>%
+  mutate(site2 = ifelse(site2 == "DRY", "Dry", "Wet")) %>%
+  ggplot(., aes(gr = sp)) +
+  geom_line(aes(group = sp, x = strata, y = LMAm_frac)) +
+  geom_point(aes(x = strata, y = LMAm_frac)) +
+  ylab(my_y_title) +
+  xlab("") +
+  facet_wrap(~ site2) +
+  guides(col = FALSE)
+
+my_ggsave("../figs/frac_paired.png", p,
+          width = 6,
+          height = 6)
+
+```
+
+![Fraction3](../figs/frac_paired.png)
+
+```{r mid-pair, cache=FALSE, comment=NA}
+
+p <- PAFracDat3 %>%
+  dplyr::select(sp, strata, site2, LMA, LMAp, LMAs) %>%
+  pivot_longer(cols = 4:6, names_to = "LMA", values_to = "val") %>%
+  mutate(strata = ifelse(strata == "CAN", "Sun", "Shade")) %>%
+  mutate(strata = factor(strata, levels = c("Sun", "Shade"))) %>%
+  mutate(site2 = ifelse(site2 == "DRY", "Dry", "Wet")) %>%
+  mutate(LMA = ifelse(LMA == "LMAp", "LMAm", LMA)) %>%
+  ggplot(., aes(gr = sp)) +
+  geom_line(aes(group = sp, x = strata, y = val)) +
+  geom_point(aes(x = strata, y = val)) +
+  #ylab(my_y_title) +
+  xlab("") +
+  #facet_grid(LMA ~ site2) +
+  facet_grid(site2 ~ LMA) +
+  guides(col = FALSE) +
+  scale_y_log10() +
+  ylab(expression(atop(LMA~(g~m^{-2})))) 
+
+my_ggsave("../figs/LMAm_paired.png", p,
+          width = 11.7,
+          height = 11.7)
+
+```
+
+![LMA-paired](../figs/LMAm_paired.png)
+
+
+
 # LMAm vs LMAs 
 
 ```{r LMAms, cache=FALSE, comment=NA}
