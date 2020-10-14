@@ -304,12 +304,18 @@ Below, we elaborate on the insights gained from our analysis and the implication
 Decomposing LMA into LMAm and LMAs provides insights into why interspecific variation in leaf traits related to photosynthesis and metabolism are primarily area-dependent (i.e., primarily independent of LMA when expressed per-unit area rather than mass-dependent [@Osnas2013; @Osnas2018]).
 We expected that leaf metabolic traits tend to be area-depend when variance in LMAm is larger than variance in LMAs.
 However, our results suggest that the scaling slopes ($\alpha_m$ and $\alpha_s$) between LMAm, LMAs and *A*~area~ also affect trait area proportionality.
-Leaf metabolic traits tend to be area-dependent when (i) variance in LMAm is small or similar to variance in LMAs, (ii) the effects of LMAm and LMAs on *A*~area~ are small or combinations of those (Fig. \@ref(fig:massplt)).
+Leaf metabolic traits tend to be area-dependent when (i) variance in LMAm is small or similar to variance in LMAs, (ii) the effects of LMAm and LMAs on *A*~area~ ($\alpha_m$ and $\alpha_s$) are small, (iii) or combinations of those (Fig. \@ref(fig:massplt)).
 Consistent with this explanation, the assemblage we examined where LMAs counted for the highest fraction of total LMA variation (`r var_val$shade`% for Panama shade leaves) is also the assembled with the highest degree of trait area-dependence [@Osnas2018].
 Our results also suggest that high degree of trait area-dependence in GLOPNET is due to the negative effect of LMAs on *A*~area~.
 
+The scaling slope $\alpha_m$ less than 1 (Table \@ref(tab:paratab)) suggest a diminishing return on addition LMAm (i.e., doubling LMAm does not simply result in doubling *A*~max~).
+
+1. High LMAm might cause lower mesophyll conductance
+1. High LMAm (thinck leaves) might cause chloroplast self-shading within a leaf
+1. LMAm = (purely) metabolic active leaf mass + something we couldn't estimate in our analysis. All the leaf mass need to be allocated to LMAm or LMAs in our model. However, variation in non-structural carbohydrates in leaves, which is not estimated in our model, is relatively large [@Martinez-Vilalta2016]. Simply partitioning leaf mass into two functions might underestimate how much *A*~max~ depending on the metabolic leaf mass .     
+
 Decomposing LMA also provides insights as to why intraspecific patterns of trait variation differ from those observed across species.
-In contrast to interspecific LMA variation, our analysis suggests that LMAm contributes half or more of the intraspecific increase in LMA from shade to sun (Figs. \@ref(fig:massplt) and SX).
+In contrast to interspecific LMA variation, our analysis suggests that LMAm contributes half or more of the intraspecific increase in LMA from shade to sun (Figs. \@ref(fig:massplt) andhSX).
 The increase in LMAm from shade to sun – which likely reflects an increase in the size and number of palisade mesophyll cells with increasing light availability [@Onoda2008; @Terashima2011] – is also associated with an increase in LMAs from shade to sun (Fig. \@ref(fig:boxplt)).
 This positive covariance between LMAm and LMAs within species means that per-area values of LMAm-proportional traits (e.g., *A*~area~) have a strong, positive relationship with total LMA, which implies trait mass-proportionality [@Osnas2018].
 
