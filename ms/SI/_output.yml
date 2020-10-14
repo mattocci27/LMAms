@@ -1,6 +1,0 @@
-bookdown::word_document2:
-  fig_width: 6
-  fig_caption: true
-  reference_docx: ./../rmd_style.docx
-fontsize: 12pt
-geometry: margin=1in
