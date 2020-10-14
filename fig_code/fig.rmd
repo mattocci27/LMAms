@@ -61,6 +61,21 @@ GL <- GL %>%
   mutate(LMAs_lo = LMA - LMAp_up) %>%
   mutate(LMAs_up = LMA - LMAp_lo) 
 
+d <- read_csv("../data/nature02403-s2.csv", skip = 10)
+dd <- tibble(Narea = 10^d$`log Narea`,
+        Parea = 10^d$`log Parea`,
+        sp = d$Species) %>%
+        group_by(sp) %>%
+        summarize(Narea = mean(Narea, na.omit = T),
+            Parea = mean(Parea, na.omit = T))
+GL <- left_join(GL, dd, by = "sp") %>%
+  mutate(gr = factor(DE,
+    labels = c("Deciduous",
+               "Evergreen",
+               "Unclassified"
+                      ))) 
+write_csv(GL, "../data/GL_res.csv")
+
 #write_csv(GL, "../data/GL_result.csv")
 
 ```
@@ -715,6 +730,56 @@ my_ggsave("../figs/GL_3.png", fig6)
 
 ![GL3](../figs/GL_3.png)
 
+## NP
+
+```{r GL-NP, cache=FALSE, comment=NA}
+
+GL_dat <- GL %>% 
+  gather(LMA, Val, c(LMA, LMAs, LMAp)) %>%
+  gather(Trait, Val2, c(Aarea, Rarea, LL, 
+                        Parea, Narea)) %>%
+  mutate(DE = factor(DE,
+          levels = c("D", "E", "U"))) %>%
+  mutate(LMA = factor(LMA,
+    labels = c("LMA", "LMAm", "LMAs"))) %>%
+  mutate(LMA = factor(LMA,
+    labels = c("LMA~(~g~m^{-2})", "LMAm~(~g~m^{-2})", "LMAs~(~g~m^{-2})"))) %>%
+  mutate(Trait = factor(Trait,
+    levels = c("Aarea", "Rarea", "LL", "Narea", "Parea"))) %>%
+  mutate(Trait2 = factor(Trait,
+    labels = c("italic(A)[area]~(~mu~mol~m^{-2}~s^{-1})",
+               "italic(R)[area]~(~mu~mol~m^{-2}~s^{-1})",
+               "LL~(months)",
+               "italic(N)[area]~(~g~m^{-2})",
+               "italic(P)[area]~(~g~m^{-2})"))) 
+
+GL_dat2 <- GL_dat %>%
+  filter(Trait == "Narea" |
+         Trait == "Parea")
+
+lim_GL <- lim_func(GL_dat2 %>% filter(DE != "Rand"), 
+                   trait = "Val")
+lim_GL2 <- lim_func(GL_dat2 %>% filter(DE != "Rand"),
+                    trait = "Val2", LMA = FALSE)
+
+lab1 <- tibble(lab = paste("(", letters[1:6], ")", sep = ""),
+                   Val2 = lim_GL2$max_val %>% rep(each = 3),
+                   Val = lim_GL$min_val %>% rep(2),
+                   Val_max = lim_GL$max_val %>% rep(2),
+                   gr = "Evergreen",
+                   r_vals = r_vals$r_vals$GL_NP %>% unlist,
+                   Trait2 = rep(lim_GL2$Trait2, each = 3),
+                   LMA = rep(lim_GL$LMA, 2)
+                   )
+
+GL_NP_plot <- scatter_plt(GL_dat2)
+
+my_ggsave("../figs/GL_NP.png", GL_NP_plot)
+
+```
+
+![GL-NP](../figs/GL_NP.png)
+
 
 # Panama
 
@@ -746,7 +811,7 @@ PA <- PA %>%
   mutate(LMAs_lo = LMA - LMAp_up) %>%
   mutate(LMAs_up = LMA - LMAp_lo) 
 
-write_csv(PA, "../data/PA_result.csv")
+write_csv(PA, "../data/PA_res.csv")
 
 ```
 
@@ -2268,12 +2333,18 @@ GLboxFrac <- ggplot(GLFracDat, aes(x = gr, y = LMAm_frac, fill = gr)) +
 
 print(GLboxFrac)
 
-PAFracDat <- PA %>%
+tmp <- read_csv("../data/PA_LH.csv") %>%
+  rename(DE = LeafHabit)
+
+PA2 <- full_join(PA, tmp, by = "sp")
+
+PAFracDat <- PA2 %>%
   count(sp) %>% 
   filter(n >= 2) %>%
-  inner_join(., PA, by = "sp") %>%
+  inner_join(., PA2, by = "sp") %>%
   mutate(LMAm_frac = LMAp / LMA) %>%
-  mutate(DE = ifelse(site == "PNSL", "E", "D")) %>%
+  mutate(DE = ifelse(DE == "evergreen", "E", DE)) %>%
+  mutate(DE = ifelse(DE == "deciduous", "D", DE)) %>%
   mutate(gr = factor(DE,
                      levels = c("D", "E"))) %>%
   unique
@@ -2418,7 +2489,8 @@ FracBox2 <- ggplot(FracDat3, aes(x = gr, y = LMAm_frac, fill = gr, col = gr)) +
   xlab("") +
   scale_fill_manual(values = fills3, guide = FALSE) +
   scale_colour_manual(values = cols3, guide = FALSE) +
-  scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
+  #scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
+  coord_cartesian(ylim = c(0, 1)) +
   theme_box() +
   theme(
     strip.background = element_blank()
@@ -2460,6 +2532,10 @@ my_ggsave("../figs/frac_paired.png", p,
 ![Fraction3](../figs/frac_paired.png)
 
 ```{r mid-pair, cache=FALSE, comment=NA}
+
+PAFracDat3 %>%
+  dplyr::select(sp, strata, site2) %>% as.data.frame %>%
+  arrange(sp) %>% arrange(site2)
 
 p <- PAFracDat3 %>%
   dplyr::select(sp, strata, site2, LMA, LMAp, LMAs) %>%

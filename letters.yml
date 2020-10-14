@@ -36,14 +36,14 @@ GL:
     E: b
   LMAp:
     D: a
-    E: a
+    E: b
   LMAs:
     D: a
     E: b
 Frac:
   GL:
     D: a
-    E: b
+    E: a
   PA:
     D: a
     E: b
