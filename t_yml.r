@@ -80,8 +80,10 @@ GL_frac <- p_group(GL2$frac, GL2$DE)
 PA_frac <- p_group(PA3$frac, PA3$DE)
 # all
 PA_frac2 <- p_group(PA2$frac, PA2$site_strata2)
+PA_cell2 <- p_group(PA2$cell_mass, PA2$site_strata2)
 # intra
 PA_frac3 <- p_group(PA3$frac, PA3$site_strata2)
+PA_cell3 <- p_group(PA3$cell_mass, PA3$site_strata2)
 
 PA4 <- PA3 %>%
   dplyr::select(sp, frac, site_strata2) %>%
@@ -273,6 +275,39 @@ writeLines(paste0("    Sun_Wet: ", PA_frac2["Sun_Wet"]),
            out,
            sep = "\n")
 writeLines(paste0("    Shade_Wet: ", PA_frac2["Shade_Wet"]),
+           out,
+           sep = "\n")
+writeLines(paste0("Cell:"),
+           out,
+           sep = "\n")
+writeLines(paste0("  PA-intra:"),
+           out,
+           sep = "\n")
+writeLines(paste0("    Sun_Dry: ", PA_cell3["Sun_Dry"]),
+           out,
+           sep = "\n")
+writeLines(paste0("    Shade_Dry: ", PA_cell3["Shade_Dry"]),
+           out,
+           sep = "\n")
+writeLines(paste0("    Sun_Wet: ", PA_cell3["Sun_Wet"]),
+           out,
+           sep = "\n")
+writeLines(paste0("    Shade_Wet: ", PA_cell3["Shade_Wet"]),
+           out,
+           sep = "\n")
+writeLines(paste0("  PA-all:"),
+           out,
+           sep = "\n")
+writeLines(paste0("    Sun_Dry: ", PA_cell2["Sun_Dry"]),
+           out,
+           sep = "\n")
+writeLines(paste0("    Shade_Dry: ", PA_cell2["Shade_Dry"]),
+           out,
+           sep = "\n")
+writeLines(paste0("    Sun_Wet: ", PA_cell2["Sun_Wet"]),
+           out,
+           sep = "\n")
+writeLines(paste0("    Shade_Wet: ", PA_cell2["Shade_Wet"]),
            out,
            sep = "\n")
 close(out)

@@ -57,3 +57,14 @@ Frac:
     Shade_Dry: ab
     Sun_Wet: b
     Shade_Wet: c
+Cell:
+  PA-intra:
+    Sun_Dry: a
+    Shade_Dry: ab
+    Sun_Wet: ab
+    Shade_Wet: b
+  PA-all:
+    Sun_Dry: a
+    Shade_Dry: ab
+    Sun_Wet: a
+    Shade_Wet: b
