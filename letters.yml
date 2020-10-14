@@ -1,4 +1,4 @@
-PA:
+PA_SI:
   LMA:
     Sun_Dry: a
     Shade_Dry: b
@@ -14,7 +14,7 @@ PA:
     Shade_Dry: b
     Sun_Wet: c
     Shade_Wet: a
-PA-SI:
+PA:
   LMA:
     Sun_Dry: a
     Shade_Dry: b

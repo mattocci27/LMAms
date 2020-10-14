@@ -2284,7 +2284,7 @@ lab2 <- PA_nontrim_dat %>%
   summarize(Val = max(Val)) %>%
   ungroup %>%
   arrange(LMA) %>%
-  mutate(lab = p_letters$PA 
+  mutate(lab = p_letters$PA_SI
          %>% unlist)
 
 PA_box2 <- ggplot(PA_nontrim_dat, aes(x = gr, y = Val, fill = gr, col = gr)) +

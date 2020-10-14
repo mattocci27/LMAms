@@ -95,7 +95,7 @@ t.test(PA4$Sun_Wet, PA4$Shade_Wet, pair = TRUE)
 
 output <- "letters.yml"
 out <- file(paste(output), "w") # write
-writeLines(paste0("PA:"),
+writeLines(paste0("PA_SI:"),
            out,
            sep = "\n")
 writeLines(paste0("  LMA:"),
@@ -145,7 +145,7 @@ writeLines(paste0("    Shade_Wet: ", PA_LMAs["Shade_Wet"]),
            sep = "\n")
 
 
-writeLines(paste0("PA-SI:"),
+writeLines(paste0("PA:"),
            out,
            sep = "\n")
 writeLines(paste0("  LMA:"),
