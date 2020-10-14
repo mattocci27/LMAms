@@ -40,7 +40,8 @@ PA2 <- PA1 %>%
 PA3 <- PA2 %>% 
   filter(n >= 2) 
 
-p_group <- function(LMA, group) {
+p_group <- function(LMA, group, log = TRUE) {
+  if (log) LMA <- log(LMA)
   moge <- pairwise.t.test(LMA, group)$p.value
 
   dif_name <- NULL
