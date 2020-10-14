@@ -1,21 +1,28 @@
 library(tidyverse)
 library(multcompView)
 
-GL <- read_csv("./data/GL_result.csv") %>%
+GL <- read_csv("./data/GL_res.csv") %>%
   mutate(frac = LMAp / LMA)
-PA <- read_csv("./data/PA_result.csv") %>%
-  mutate(frac = LMAp / LMA) %>%
-  mutate(DE = ifelse(site == "PNSL", "E", "D"))
+PA <- read_csv("./data/PA_res.csv") %>%
+  mutate(frac = LMAp / LMA) 
+
+tmp <- read_csv("./data/PA_LH.csv") %>%
+  rename(DE = LeafHabit) %>%
+  mutate(DE = ifelse(DE == "evergreen", "E", DE)) %>%
+  mutate(DE = ifelse(DE == "deciduous", "D", DE)) %>%
+  dplyr::select(sp, DE)
+
+PA1 <- full_join(PA, tmp, by = "sp")
 
 GL2 <- GL %>% 
   filter(DE != "U") 
 
 pairwise.t.test(log(GL2$LMA), GL2$DE)
 
-PA2 <- PA %>% 
+PA2 <- PA1 %>% 
   count(sp) %>% 
  # filter(n >= 2) %>%
-  inner_join(., PA, by = "sp") %>%
+  inner_join(., PA1, by = "sp") %>%
   mutate(site_strata2 = "Shade_Wet") %>%
   mutate(site_strata2 = ifelse(site_strata == "DRY_CAN",
                                "Sun_Dry", site_strata2)) %>%
