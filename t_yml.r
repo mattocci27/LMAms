@@ -75,6 +75,14 @@ PA_frac2 <- p_group(PA2$frac, PA2$site_strata2)
 # intra
 PA_frac3 <- p_group(PA3$frac, PA3$site_strata2)
 
+PA4 <- PA3 %>%
+  dplyr::select(sp, frac, site_strata2) %>%
+  spread(site_strata2, frac)
+
+t.test(PA4$Sun_Dry, PA4$Shade_Dry, pair = TRUE)
+t.test(PA4$Sun_Wet, PA4$Shade_Wet, pair = TRUE)
+
+
 output <- "letters.yml"
 out <- file(paste(output), "w") # write
 writeLines(paste0("PA:"),
