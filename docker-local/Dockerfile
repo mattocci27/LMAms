@@ -10,4 +10,5 @@ RUN install2.r -n -1 --skipinstalled --error \
     grid \
     lazyeval \
     latex2exp \
-    kableExtra
+    kableExtra \
+    multcompView
