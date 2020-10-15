@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cp ~/MyLibrary.bib ./ms/MyLibrary.bib
+cp ~/LMA.bib ./ms/LMA.bib
 
 R -e 'system.time(render("./ms/LMAms_main_re.rmd", "bookdown::word_document2"))' && echo "word file completed!"
 
