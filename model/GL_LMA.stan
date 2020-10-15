@@ -22,7 +22,6 @@ transformed data{
 }
 parameters{
   matrix[2,3] Z;
-  vector<lower=0, upper=1>[N] p;
   vector<lower=0>[3] L_sigma;
   cholesky_factor_corr[3] L_Omega;
 }

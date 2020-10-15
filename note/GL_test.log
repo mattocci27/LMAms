@@ -1,0 +1,1390 @@
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 2.2.1     ✔ purrr   0.2.4
+✔ tibble  1.3.4     ✔ dplyr   0.7.4
+✔ tidyr   0.7.2     ✔ stringr 1.2.0
+✔ readr   1.1.1     ✔ forcats 0.2.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Loading required package: StanHeaders
+rstan (Version 2.17.2, GitRev: 2e1f913d3ca3)
+For execution on a local, multicore CPU with excess RAM we recommend calling
+options(mc.cores = parallel::detectCores()).
+To avoid recompilation of unchanged Stan programs, we recommend calling
+rstan_options(auto_write = TRUE)
+
+Attaching package: ‘rstan’
+
+The following object is masked from ‘package:tidyr’:
+
+    extract
+
+This is loo version 1.1.0
+Parsed with column specification:
+cols(
+  sp = col_character(),
+  DE = col_character(),
+  GF = col_character(),
+  LL = col_double(),
+  LMA = col_double(),
+  Aarea = col_double(),
+  Rarea = col_double()
+)
+clang: warning: argument unused during compilation: '-arch x86_64'
+In file included from file3dd154023f28.cpp:8:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core.hpp:12:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core/gevv_vvv_vari.hpp:5:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core/var.hpp:7:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/BH/include/boost/math/tools/config.hpp:13:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/BH/include/boost/config.hpp:39:
+/home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/BH/include/boost/config/compiler/clang.hpp:200:11: warning: 'BOOST_NO_CXX11_RVALUE_REFERENCES' macro redefined [-Wmacro-redefined]
+#  define BOOST_NO_CXX11_RVALUE_REFERENCES
+          ^
+<command line>:6:9: note: previous definition is here
+#define BOOST_NO_CXX11_RVALUE_REFERENCES 1
+        ^
+1 warning generated.
+clang: warning: argument unused during compilation: '-arch x86_64'
+
+SAMPLING FOR MODEL '1698b521870da71ee5578ae156ed05b7' NOW (CHAIN 1).
+
+Gradient evaluation took 0.000958 seconds
+1000 transitions using 10 leapfrog steps per transition would take 9.58 seconds.
+Adjust your expectations accordingly!
+
+
+WARNING: No variance estimation is
+         performed for num_warmup < 20
+
+Iteration: 1 / 1 [100%]  (Sampling)
+
+ Elapsed Time: 1e-06 seconds (Warm-up)
+               0.001669 seconds (Sampling)
+               0.00167 seconds (Total)
+
+   user  system elapsed 
+ 47.836   0.988  48.481 
+Warning messages:
+1: There were 1 divergent transitions after warmup. Increasing adapt_delta above 0.8 may help. See
+http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup 
+2: Examine the pairs() plot to diagnose sampling problems
+ 
+
+SAMPLING FOR MODEL '1698b521870da71ee5578ae156ed05b7' NOW (CHAIN 1).
+
+Gradient evaluation took 0.001031 seconds
+1000 transitions using 10 leapfrog steps per transition would take 10.31 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '1698b521870da71ee5578ae156ed05b7' NOW (CHAIN 2).
+
+Gradient evaluation took 0.001061 seconds
+1000 transitions using 10 leapfrog steps per transition would take 10.61 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '1698b521870da71ee5578ae156ed05b7' NOW (CHAIN 3).
+
+Gradient evaluation took 0.001179 seconds
+1000 transitions using 10 leapfrog steps per transition would take 11.79 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 92.8248 seconds (Warm-up)
+               26.2392 seconds (Sampling)
+               119.064 seconds (Total)
+
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 97.9077 seconds (Warm-up)
+               24.2755 seconds (Sampling)
+               122.183 seconds (Total)
+
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 108.724 seconds (Warm-up)
+               37.1313 seconds (Sampling)
+               145.855 seconds (Total)
+
+   user  system elapsed 
+242.952   0.504 147.712 
+               mean     se_mean         sd       X2.5.       X25.       X50.
+beta[1]   1.5711040 0.016217147 0.17080751  1.23408164  1.4552170  1.5681543
+beta[2]   0.2184971 0.004050767 0.04151982  0.13740434  0.1895226  0.2184694
+beta[3]  -0.6286184 0.022964394 0.27810472 -1.21265136 -0.8089172 -0.6254111
+beta[4]   0.8018978 0.005073018 0.05913303  0.69086685  0.7611961  0.8024392
+beta[5]  -1.0636369 0.010330946 0.18087608 -1.42174479 -1.1863118 -1.0565904
+beta[6]   0.2486157 0.002895975 0.04317530  0.16547859  0.2183407  0.2472572
+beta[7]   0.1155352 0.002109189 0.03651228  0.04215856  0.0908371  0.1153464
+sigma[1]  0.3923067 0.001822335 0.02665042  0.34312967  0.3746464  0.3911805
+sigma[2]  0.5446725 0.003528705 0.04956249  0.45608516  0.5091809  0.5437816
+sigma[3]  0.4505004 0.001411605 0.02846766  0.39701070  0.4304741  0.4497778
+               X75.     X97.5.    n_eff      Rhat
+beta[1]   1.6914570  1.9081316 110.9341 0.9984937
+beta[2]   0.2473996  0.2964103 105.0598 0.9984544
+beta[3]  -0.4326157 -0.1117921 146.6583 1.0069203
+beta[4]   0.8397192  0.9235539 135.8712 1.0066581
+beta[5]  -0.9370762 -0.7136343 306.5364 1.0046372
+beta[6]   0.2762231  0.3365888 222.2702 1.0146243
+beta[7]   0.1406814  0.1878694 299.6726 1.0157032
+sigma[1]  0.4099669  0.4455656 213.8710 1.0043044
+sigma[2]  0.5767541  0.6443657 197.2766 1.0265695
+sigma[3]  0.4691574  0.5104728 406.7030 1.0121455
+                    mean     se_mean          sd         X2.5.          X25.
+Sigma[1,1]    0.15461434 0.001435225  0.02105139    0.11773799    0.14035991
+Sigma[1,2]   -0.11930142 0.001484943  0.02726337   -0.17649441   -0.13646266
+Sigma[1,3]    0.07909799 0.001023457  0.01923786    0.04467814    0.06598355
+Sigma[2,1]   -0.11930142 0.001484943  0.02726337   -0.17649441   -0.13646266
+Sigma[2,2]    0.29912298 0.003888332  0.05473442    0.20801368    0.25926516
+Sigma[2,3]   -0.15453759 0.002014215  0.03336736   -0.22281634   -0.17602596
+Sigma[3,1]    0.07909799 0.001023457  0.01923786    0.04467814    0.06598355
+Sigma[3,2]   -0.15453759 0.002014215  0.03336736   -0.22281634   -0.17602596
+Sigma[3,3]    0.20376050 0.001273951  0.02579738    0.15761751    0.18530798
+lp__       -114.09401312 1.857901564 16.94651518 -148.66587350 -125.08998447
+                    X50.          X75.       X97.5.     n_eff     Rhat
+Sigma[1,1]    0.15302216    0.16807284   0.19852875 215.14023 1.004216
+Sigma[1,2]   -0.11783081   -0.09997487  -0.06918461 337.08501 1.016814
+Sigma[1,3]    0.07742987    0.09078317   0.12041605 353.32533 1.013596
+Sigma[2,1]   -0.11783081   -0.09997487  -0.06918461 337.08501 1.016814
+Sigma[2,2]    0.29569840    0.33264531   0.41520732 198.15015 1.026627
+Sigma[2,3]   -0.15354174   -0.13167920  -0.09125429 274.43032 1.019403
+Sigma[3,1]    0.07742987    0.09078317   0.12041605 353.32533 1.013596
+Sigma[3,2]   -0.15354174   -0.13167920  -0.09125429 274.43032 1.019403
+Sigma[3,3]    0.20230006    0.22010866   0.26058248 410.05817 1.011579
+lp__       -113.82415059 -103.29188520 -80.91790393  83.19848 1.033436
+
+SAMPLING FOR MODEL '1698b521870da71ee5578ae156ed05b7' NOW (CHAIN 1).
+
+Gradient evaluation took 0.000983 seconds
+1000 transitions using 10 leapfrog steps per transition would take 9.83 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '1698b521870da71ee5578ae156ed05b7' NOW (CHAIN 2).
+
+Gradient evaluation took 0.000952 seconds
+1000 transitions using 10 leapfrog steps per transition would take 9.52 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '1698b521870da71ee5578ae156ed05b7' NOW (CHAIN 3).
+
+Gradient evaluation took 0.000982 seconds
+1000 transitions using 10 leapfrog steps per transition would take 9.82 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 103.936 seconds (Warm-up)
+               25.3213 seconds (Sampling)
+               129.258 seconds (Total)
+
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 106.026 seconds (Warm-up)
+               24.5301 seconds (Sampling)
+               130.556 seconds (Total)
+
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 94.4239 seconds (Warm-up)
+               43.7261 seconds (Sampling)
+               138.15 seconds (Total)
+
+   user  system elapsed 
+406.368   0.428 140.682 
+               mean     se_mean         sd       X2.5.        X25.       X50.
+beta[1]   1.6517712 0.013737504 0.16477675  1.33389139  1.53988534  1.6496919
+beta[2]   0.2290257 0.003285615 0.03925993  0.14933712  0.20490109  0.2290191
+beta[3]  -0.6739249 0.021597828 0.28423245 -1.24648331 -0.86193946 -0.6684709
+beta[4]   0.8103905 0.004445570 0.05867898  0.69780022  0.77034917  0.8091815
+beta[5]  -1.0603033 0.015427896 0.19796281 -1.43004761 -1.20472047 -1.0631211
+beta[6]   0.2457725 0.005185963 0.04812623  0.15019323  0.21547524  0.2465471
+beta[7]   0.1178132 0.002203065 0.03458215  0.05000776  0.09493939  0.1180397
+sigma[1]  0.3645005 0.001204163 0.02467768  0.31916461  0.34864877  0.3634757
+sigma[2]  0.5392109 0.003634666 0.05009415  0.44641525  0.50546285  0.5375469
+sigma[3]  0.4498434 0.001940210 0.02935287  0.39712879  0.42909227  0.4484415
+               X75.     X97.5.     n_eff     Rhat
+beta[1]   1.7550299  1.9828650 143.87196 1.010924
+beta[2]   0.2557931  0.3031682 142.77948 1.012569
+beta[3]  -0.4771934 -0.1267579 173.19173 1.004674
+beta[4]   0.8484348  0.9298903 174.22490 1.005016
+beta[5]  -0.9235466 -0.6861494 164.64700 1.013452
+beta[6]   0.2769866  0.3366487  86.12016 1.035081
+beta[7]   0.1412799  0.1823431 246.40496 1.009799
+sigma[1]  0.3804847  0.4173698 419.98944 1.002454
+sigma[2]  0.5712974  0.6417266 189.95246 1.013636
+sigma[3]  0.4693713  0.5107287 228.87772 1.010714
+                   mean      se_mean          sd         X2.5.         X25.
+Sigma[1,1]   0.13346917 0.0008868019  0.01810231    0.10186605   0.12155597
+Sigma[1,2]  -0.11539599 0.0013529111  0.02614312   -0.17160558  -0.13078050
+Sigma[1,3]   0.09265519 0.0014309627  0.01832523    0.06002553   0.07993872
+Sigma[2,1]  -0.11539599 0.0013529111  0.02614312   -0.17160558  -0.13078050
+Sigma[2,2]   0.29325618 0.0039216550  0.05474861    0.19928663   0.25549269
+Sigma[2,3]  -0.15294733 0.0021854226  0.03249843   -0.21985597  -0.17398551
+Sigma[3,1]   0.09265519 0.0014309627  0.01832523    0.06002553   0.07993872
+Sigma[3,2]  -0.15294733 0.0021854226  0.03249843   -0.21985597  -0.17398551
+Sigma[3,3]   0.20322006 0.0017535103  0.02669485    0.15771143   0.18412018
+lp__       -85.30091819 1.4853355789 17.47646535 -119.22464732 -97.11898033
+                   X50.         X75.       X97.5.    n_eff     Rhat
+Sigma[1,1]   0.13211461   0.14476858   0.17419761 416.6915 1.002615
+Sigma[1,2]  -0.11323637  -0.09730822  -0.06953537 373.4017 1.006155
+Sigma[1,3]   0.09167433   0.10385621   0.12927298 163.9994 1.012744
+Sigma[2,1]  -0.11323637  -0.09730822  -0.06953537 373.4017 1.006155
+Sigma[2,2]   0.28895670   0.32638076   0.41181304 194.8980 1.013498
+Sigma[2,3]  -0.15077631  -0.13065961  -0.09571401 221.1331 1.007149
+Sigma[3,1]   0.09167433   0.10385621   0.12927298 163.9994 1.012744
+Sigma[3,2]  -0.15077631  -0.13065961  -0.09571401 221.1331 1.007149
+Sigma[3,3]   0.20109981   0.22030941   0.26084386 231.7598 1.009987
+lp__       -85.18721136 -73.23853888 -51.24454602 138.4389 1.014511
+clang: warning: argument unused during compilation: '-arch x86_64'
+In file included from file3dd1205c35cc.cpp:8:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core.hpp:12:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core/gevv_vvv_vari.hpp:5:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core/var.hpp:7:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/BH/include/boost/math/tools/config.hpp:13:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/BH/include/boost/config.hpp:39:
+/home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/BH/include/boost/config/compiler/clang.hpp:200:11: warning: 'BOOST_NO_CXX11_RVALUE_REFERENCES' macro redefined [-Wmacro-redefined]
+#  define BOOST_NO_CXX11_RVALUE_REFERENCES
+          ^
+<command line>:6:9: note: previous definition is here
+#define BOOST_NO_CXX11_RVALUE_REFERENCES 1
+        ^
+1 warning generated.
+clang: warning: argument unused during compilation: '-arch x86_64'
+
+SAMPLING FOR MODEL '26816008da8a29471d9261f05c7763ed' NOW (CHAIN 1).
+
+Gradient evaluation took 0.000514 seconds
+1000 transitions using 10 leapfrog steps per transition would take 5.14 seconds.
+Adjust your expectations accordingly!
+
+
+WARNING: No variance estimation is
+         performed for num_warmup < 20
+
+Iteration: 1 / 1 [100%]  (Sampling)
+
+ Elapsed Time: 2e-06 seconds (Warm-up)
+               0.001355 seconds (Sampling)
+               0.001357 seconds (Total)
+
+   user  system elapsed 
+ 44.812   0.984  45.444 
+Warning messages:
+1: There were 1 divergent transitions after warmup. Increasing adapt_delta above 0.8 may help. See
+http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup 
+2: Examine the pairs() plot to diagnose sampling problems
+ 
+
+SAMPLING FOR MODEL '26816008da8a29471d9261f05c7763ed' NOW (CHAIN 1).
+
+Gradient evaluation took 0.000706 seconds
+1000 transitions using 10 leapfrog steps per transition would take 7.06 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '26816008da8a29471d9261f05c7763ed' NOW (CHAIN 2).
+
+Gradient evaluation took 0.000661 seconds
+1000 transitions using 10 leapfrog steps per transition would take 6.61 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '26816008da8a29471d9261f05c7763ed' NOW (CHAIN 3).
+
+Gradient evaluation took 0.000778 seconds
+1000 transitions using 10 leapfrog steps per transition would take 7.78 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 45.4526 seconds (Warm-up)
+               13.1237 seconds (Sampling)
+               58.5763 seconds (Total)
+
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 47.2926 seconds (Warm-up)
+               13.2011 seconds (Sampling)
+               60.4937 seconds (Total)
+
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 49.2816 seconds (Warm-up)
+               12.4364 seconds (Sampling)
+               61.718 seconds (Total)
+
+   user  system elapsed 
+257.760   0.456  63.501 
+                mean      se_mean         sd       X2.5.        X25.
+beta[1]   1.37674948 0.0057797198 0.12624879  1.12956218  1.29571472
+beta[2]   0.26529196 0.0013515200 0.03024075  0.20527187  0.24641465
+beta[3]  -1.07473386 0.0203271480 0.28199637 -1.61222522 -1.27873264
+beta[4]   0.89659224 0.0042725904 0.06097407  0.78384343  0.85294828
+beta[5]  -0.93176047 0.0073413390 0.17732646 -1.27761272 -1.04801900
+beta[6]   0.33957359 0.0016175133 0.03466168  0.26934265  0.31695572
+beta[7]  -0.01070732 0.0010498611 0.02951660 -0.07108801 -0.03073849
+sigma[1]  0.33798543 0.0005504774 0.02131990  0.29786070  0.32282108
+sigma[2]  0.41901055 0.0015221814 0.03430218  0.35629946  0.39441856
+sigma[3]  0.35351182 0.0006361661 0.02153762  0.31323359  0.33898192
+                 X50.         X75.      X97.5.     n_eff      Rhat
+beta[1]   1.375534006  1.462588028  1.63306491  477.1346 1.0017598
+beta[2]   0.266259090  0.283833940  0.32327523  500.6568 1.0022806
+beta[3]  -1.070224195 -0.872516310 -0.52931920  192.4572 1.0046368
+beta[4]   0.896518797  0.938631728  1.01335197  203.6610 1.0038548
+beta[5]  -0.934028826 -0.811258949 -0.58922352  583.4405 0.9991119
+beta[6]   0.340215249  0.361880451  0.40733981  459.2018 1.0021027
+beta[7]  -0.009551267  0.008910603  0.04353551  790.4401 1.0013850
+sigma[1]  0.337401527  0.351815185  0.38122916 1500.0000 1.0046149
+sigma[2]  0.417049696  0.441579096  0.49023502  507.8208 1.0100907
+sigma[3]  0.353004535  0.367647696  0.39644029 1146.1837 1.0012779
+                      mean     se_mean          sd        X2.5.          X25.
+log_lik3[190]  -0.45481491 0.014907985  0.57738379   -1.8267739 -8.046358e-01
+log_lik3[191]   0.01067978 0.007120245  0.20594423   -0.5839425 -1.647503e-02
+log_lik3[192]  -1.21611673 0.019658146  0.76135672   -2.5139053 -1.812743e+00
+log_lik3[193]  -0.18954929 0.012152371  0.35441130   -0.9941697 -3.453006e-01
+log_lik3[194]   0.05198276 0.002405257  0.09315519   -0.1611413  9.520539e-04
+log_lik3[195]  -0.61335188 0.009869577  0.38224706   -1.3117713 -8.874760e-01
+log_lik3[196]  -0.54429004 0.007052932  0.27315888   -1.1048762 -7.209008e-01
+log_lik3[197]  -0.15804869 0.005674553  0.20126564   -0.6432867 -2.694384e-01
+log_lik3[198]  -0.64615643 0.017466441  0.67647234   -2.3625678 -1.011737e+00
+lp__          -82.52227930 0.932133774 15.37744430 -114.8774810 -9.246741e+01
+                      X50.          X75.       X97.5.     n_eff      Rhat
+log_lik3[190]  -0.26588036   0.014923933   0.17683760 1500.0000 0.9983741
+log_lik3[191]   0.05567283   0.111847520   0.20778138  836.5837 1.0017376
+log_lik3[192]  -1.30318732  -0.614271076   0.15677860 1500.0000 0.9997818
+log_lik3[193]  -0.08794671   0.057886910   0.18329969  850.5367 0.9992364
+log_lik3[194]   0.06110601   0.115321872   0.20369642 1500.0000 1.0008892
+log_lik3[195]  -0.62847503  -0.341689192   0.09769338 1500.0000 0.9993750
+log_lik3[196]  -0.55219776  -0.380422131   0.03475886 1500.0000 1.0006760
+log_lik3[197]  -0.12208401  -0.006833962   0.13258029 1257.9866 1.0008010
+log_lik3[198]  -0.51301414  -0.090644712   0.16043719 1500.0000 1.0000277
+lp__          -82.27357696 -72.154336269 -52.04658860  272.1522 1.0111363
+
+SAMPLING FOR MODEL '26816008da8a29471d9261f05c7763ed' NOW (CHAIN 1).
+
+Gradient evaluation took 0.000708 seconds
+1000 transitions using 10 leapfrog steps per transition would take 7.08 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '26816008da8a29471d9261f05c7763ed' NOW (CHAIN 2).
+
+Gradient evaluation took 0.000888 seconds
+1000 transitions using 10 leapfrog steps per transition would take 8.88 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '26816008da8a29471d9261f05c7763ed' NOW (CHAIN 3).
+
+Gradient evaluation took 0.001006 seconds
+1000 transitions using 10 leapfrog steps per transition would take 10.06 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 44.0399 seconds (Warm-up)
+               13.031 seconds (Sampling)
+               57.0709 seconds (Total)
+
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 46.3539 seconds (Warm-up)
+               12.4472 seconds (Sampling)
+               58.8011 seconds (Total)
+
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 45.8473 seconds (Warm-up)
+               14.747 seconds (Sampling)
+               60.5943 seconds (Total)
+
+   user  system elapsed 
+178.160   0.408  62.944 
+                 mean      se_mean         sd       X2.5.       X25.
+beta[1]   1.441057048 0.0059685678 0.11006971  1.21884491  1.3701996
+beta[2]   0.281435702 0.0013107470 0.02608996  0.23072836  0.2634084
+beta[3]  -1.059131430 0.0171957312 0.29011498 -1.63204971 -1.2581532
+beta[4]   0.889702238 0.0035168122 0.06094146  0.77523429  0.8470312
+beta[5]  -0.958192361 0.0081848510 0.17290818 -1.29354228 -1.0773945
+beta[6]   0.346128981 0.0016840379 0.03304839  0.28410075  0.3218932
+beta[7]  -0.008534411 0.0008488197 0.02610673 -0.05797277 -0.0257248
+sigma[1]  0.295191098 0.0006281916 0.01951167  0.26133697  0.2817475
+sigma[2]  0.426644987 0.0014248289 0.03392375  0.36310239  0.4043802
+sigma[3]  0.340978588 0.0007545466 0.02169361  0.30026286  0.3262295
+                 X50.         X75.     X97.5.    n_eff     Rhat
+beta[1]   1.440900219  1.513202451  1.6497365 340.0912 1.019206
+beta[2]   0.281137567  0.299157287  0.3335078 396.1950 1.013901
+beta[3]  -1.062863315 -0.857763507 -0.5066619 284.6420 1.008392
+beta[4]   0.889110135  0.930326775  1.0099287 300.2806 1.006389
+beta[5]  -0.962360034 -0.837344984 -0.6231433 446.2821 1.013502
+beta[6]   0.345601950  0.369151250  0.4132391 385.1206 1.025097
+beta[7]  -0.009023446  0.008597108  0.0428066 945.9625 1.001099
+sigma[1]  0.294220539  0.307441041  0.3366570 964.7281 1.004413
+sigma[2]  0.425071258  0.449196577  0.4986771 566.8685 1.000012
+sigma[3]  0.340005764  0.354392288  0.3881035 826.5930 1.005128
+                      mean     se_mean         sd       X2.5.          X25.
+log_lik3[190]  -0.32639524 0.016324726  0.5401176  -1.7905242  -0.563855925
+log_lik3[191]   0.03294070 0.006904219  0.2061852  -0.5636965  -0.002343583
+log_lik3[192]  -1.00918320 0.021436877  0.8302467  -2.5776498  -1.665629056
+log_lik3[193]  -0.12688463 0.011466520  0.3458006  -0.9807619  -0.259421541
+log_lik3[194]   0.06569639 0.002643930  0.1023990  -0.1583228   0.004980679
+log_lik3[195]  -0.63107407 0.010761789  0.4168023  -1.4534475  -0.916182520
+log_lik3[196]  -0.58684983 0.007917316  0.3066363  -1.2113007  -0.790667365
+log_lik3[197]  -0.18910648 0.007022935  0.2404718  -0.7597592  -0.319094532
+log_lik3[198]  -0.65377968 0.017961116  0.6956310  -2.3248465  -1.056648166
+lp__          -56.50720669 0.892922673 15.5743179 -86.7364169 -67.281936383
+                      X50.         X75.       X97.5.     n_eff      Rhat
+log_lik3[190]  -0.13724253   0.08091993   0.21549062 1094.6742 0.9998352
+log_lik3[191]   0.07971451   0.14461943   0.24066468  891.8378 0.9998900
+log_lik3[192]  -0.98909670  -0.25714185   0.19258974 1500.0000 1.0002081
+log_lik3[193]  -0.01648467   0.11215492   0.23027773  909.4698 1.0003313
+log_lik3[194]   0.07524225   0.13682065   0.23232180 1500.0000 1.0005571
+log_lik3[195]  -0.64086437  -0.32426181   0.13655923 1500.0000 1.0015234
+log_lik3[196]  -0.59214737  -0.39629159   0.03836186 1500.0000 0.9988222
+log_lik3[197]  -0.14421887  -0.01432754   0.16319436 1172.4415 1.0037909
+log_lik3[198]  -0.49446354  -0.08837847   0.19492008 1500.0000 0.9990341
+lp__          -55.61195115 -46.07317737 -26.43258300  304.2218 1.0021870
+clang: warning: argument unused during compilation: '-arch x86_64'
+In file included from file3dd121972b74.cpp:8:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core.hpp:12:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core/gevv_vvv_vari.hpp:5:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core/var.hpp:7:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/BH/include/boost/math/tools/config.hpp:13:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/BH/include/boost/config.hpp:39:
+/home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/BH/include/boost/config/compiler/clang.hpp:200:11: warning: 'BOOST_NO_CXX11_RVALUE_REFERENCES' macro redefined [-Wmacro-redefined]
+#  define BOOST_NO_CXX11_RVALUE_REFERENCES
+          ^
+<command line>:6:9: note: previous definition is here
+#define BOOST_NO_CXX11_RVALUE_REFERENCES 1
+        ^
+1 warning generated.
+clang: warning: argument unused during compilation: '-arch x86_64'
+
+SAMPLING FOR MODEL '520ac2d0c3b540847f317b718fc6a9d4' NOW (CHAIN 1).
+
+Gradient evaluation took 0.000773 seconds
+1000 transitions using 10 leapfrog steps per transition would take 7.73 seconds.
+Adjust your expectations accordingly!
+
+
+WARNING: No variance estimation is
+         performed for num_warmup < 20
+
+Iteration: 1 / 1 [100%]  (Sampling)
+
+ Elapsed Time: 1e-06 seconds (Warm-up)
+               0.001761 seconds (Sampling)
+               0.001762 seconds (Total)
+
+   user  system elapsed 
+ 47.648   0.972  48.268 
+Warning messages:
+1: There were 1 divergent transitions after warmup. Increasing adapt_delta above 0.8 may help. See
+http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup 
+2: Examine the pairs() plot to diagnose sampling problems
+ 
+
+SAMPLING FOR MODEL '520ac2d0c3b540847f317b718fc6a9d4' NOW (CHAIN 1).
+
+Gradient evaluation took 0.001178 seconds
+1000 transitions using 10 leapfrog steps per transition would take 11.78 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '520ac2d0c3b540847f317b718fc6a9d4' NOW (CHAIN 2).
+
+Gradient evaluation took 0.001366 seconds
+1000 transitions using 10 leapfrog steps per transition would take 13.66 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '520ac2d0c3b540847f317b718fc6a9d4' NOW (CHAIN 3).
+
+Gradient evaluation took 0.001055 seconds
+1000 transitions using 10 leapfrog steps per transition would take 10.55 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+
+ Elapsed Time: 120.983 seconds (Warm-up)
+               62.0948 seconds (Sampling)
+               183.077 seconds (Total)
+
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 142.557 seconds (Warm-up)
+               49.1369 seconds (Sampling)
+               191.694 seconds (Total)
+
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 168.262 seconds (Warm-up)
+               80.348 seconds (Sampling)
+               248.61 seconds (Total)
+
+   user  system elapsed 
+435.884   0.392 251.152 
+Warning messages:
+1: There were 39 divergent transitions after warmup. Increasing adapt_delta above 0.95 may help. See
+http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup 
+2: Examine the pairs() plot to diagnose sampling problems
+ 
+                 mean     se_mean         sd       X2.5.         X25.
+beta[1,1]  1.36993130 0.023024995 0.29230385  0.77335871  1.178639566
+beta[1,2]  0.32074988 0.005960461 0.07945312  0.16647613  0.266607448
+beta[1,3]  0.63340926 0.051851370 0.48635390 -0.22329577  0.266569196
+beta[1,4]  0.28540134 0.012807234 0.12681988  0.02879434  0.194754637
+beta[1,5] -1.27626449 0.027738251 0.37748118 -2.06031695 -1.513660676
+beta[1,6]  0.40679610 0.011988870 0.12246432  0.15935409  0.324274337
+beta[1,7]  0.06580836 0.007335733 0.10297700 -0.12890230 -0.007215774
+beta[2,1]  1.22364504 0.016213361 0.21940985  0.77264029  1.074932253
+beta[2,2]  0.26379892 0.003584568 0.04829198  0.17260080  0.229206427
+beta[2,3]  0.92723888 0.039953897 0.39358092  0.18229054  0.653616084
+                 X50.       X75.     X97.5.     n_eff     Rhat
+beta[1,1]  1.38455254  1.5696534  1.9172124 161.16473 1.007322
+beta[1,2]  0.32061032  0.3726098  0.4834585 177.68970 1.004416
+beta[1,3]  0.61468736  0.9859303  1.5839116  87.98007 1.031531
+beta[1,4]  0.29545889  0.3810278  0.5071348  98.05369 1.024472
+beta[1,5] -1.25428360 -1.0346311 -0.5724914 185.19637 1.007766
+beta[1,6]  0.41101799  0.4835230  0.6447994 104.34284 1.016440
+beta[1,7]  0.07184116  0.1395929  0.2566581 197.05773 1.011066
+beta[2,1]  1.23042439  1.3777033  1.6412547 183.13278 1.010625
+beta[2,2]  0.26248892  0.2972789  0.3607850 181.49990 1.009564
+beta[2,3]  0.93523250  1.2108224  1.6892122  97.03977 1.033292
+                   mean      se_mean          sd        X2.5.         X25.
+Sigma[1,1]   0.11684755 0.0011085648  0.01851403   0.08258321   0.10342479
+Sigma[1,2]  -0.06631139 0.0010243934  0.01927979  -0.10769788  -0.07881948
+Sigma[1,3]   0.04788495 0.0009231551  0.01554973   0.01958447   0.03682875
+Sigma[2,1]  -0.06631139 0.0010243934  0.01927979  -0.10769788  -0.07881948
+Sigma[2,2]   0.20936154 0.0017143737  0.03212520   0.15380725   0.18676149
+Sigma[2,3]  -0.10314128 0.0017801748  0.02428988  -0.15035030  -0.11862207
+Sigma[3,1]   0.04788495 0.0009231551  0.01554973   0.01958447   0.03682875
+Sigma[3,2]  -0.10314128 0.0017801748  0.02428988  -0.15035030  -0.11862207
+Sigma[3,3]   0.17221106 0.0010909974  0.02235493   0.13155410   0.15685377
+lp__       -37.88152765 1.9992138754 19.25333869 -75.77345020 -50.63102528
+                   X50.         X75.      X97.5.     n_eff      Rhat
+Sigma[1,1]   0.11536620   0.12993334  0.15468607 278.92004 0.9998285
+Sigma[1,2]  -0.06612262  -0.05254576 -0.03258855 354.21834 1.0071008
+Sigma[1,3]   0.04748535   0.05770113  0.07957123 283.72424 1.0150839
+Sigma[2,1]  -0.06612262  -0.05254576 -0.03258855 354.21834 1.0071008
+Sigma[2,2]   0.20689486   0.22839440  0.28205430 351.14025 1.0128572
+Sigma[2,3]  -0.10313232  -0.08653493 -0.05703035 186.17673 1.0305553
+Sigma[3,1]   0.04748535   0.05770113  0.07957123 283.72424 1.0150839
+Sigma[3,2]  -0.10313232  -0.08653493 -0.05703035 186.17673 1.0305553
+Sigma[3,3]   0.17187720   0.18667892  0.21728923 419.85471 1.0194588
+lp__       -36.95275146 -24.60296371 -1.69162260  92.74566 1.0300007
+
+SAMPLING FOR MODEL '520ac2d0c3b540847f317b718fc6a9d4' NOW (CHAIN 1).
+
+Gradient evaluation took 0.001102 seconds
+1000 transitions using 10 leapfrog steps per transition would take 11.02 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '520ac2d0c3b540847f317b718fc6a9d4' NOW (CHAIN 2).
+
+Gradient evaluation took 0.000999 seconds
+1000 transitions using 10 leapfrog steps per transition would take 9.99 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '520ac2d0c3b540847f317b718fc6a9d4' NOW (CHAIN 3).
+
+Gradient evaluation took 0.00133 seconds
+1000 transitions using 10 leapfrog steps per transition would take 13.3 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 154.377 seconds (Warm-up)
+               50.6223 seconds (Sampling)
+               205 seconds (Total)
+
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 167.591 seconds (Warm-up)
+               160.1 seconds (Sampling)
+               327.691 seconds (Total)
+
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 186.419 seconds (Warm-up)
+               312.423 seconds (Sampling)
+               498.842 seconds (Total)
+
+   user  system elapsed 
+781.900   0.440 501.276 
+Warning messages:
+1: There were 26 divergent transitions after warmup. Increasing adapt_delta above 0.95 may help. See
+http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup 
+2: There were 493 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
+http://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded 
+3: Examine the pairs() plot to diagnose sampling problems
+ 
+                 mean     se_mean         sd       X2.5.        X25.
+beta[1,1]  1.46230888 0.021521273 0.28332708  0.85572538  1.28011484
+beta[1,2]  0.32874645 0.005246071 0.07508110  0.18878538  0.27968572
+beta[1,3]  0.53131333 0.047850921 0.44959265 -0.23770782  0.20630189
+beta[1,4]  0.30959891 0.011369986 0.11486258  0.07226082  0.23299300
+beta[1,5] -1.18911452 0.024182923 0.36069400 -1.92622451 -1.42039211
+beta[1,6]  0.40337871 0.009980106 0.11339209  0.18530400  0.32802933
+beta[1,7]  0.04491393 0.007831284 0.10077595 -0.16399664 -0.02301208
+beta[2,1]  1.32679579 0.015451604 0.19734344  0.93079493  1.19540764
+beta[2,2]  0.27066779 0.003331253 0.04326452  0.18459601  0.24187141
+beta[2,3]  0.82512377 0.034864698 0.35726087  0.15814068  0.57114873
+                 X50.       X75.     X97.5.     n_eff     Rhat
+beta[1,1]  1.47942118  1.6530368  1.9814768 173.31664 1.004487
+beta[1,2]  0.32664275  0.3774543  0.4858890 204.82974 1.004104
+beta[1,3]  0.47545208  0.8378350  1.4788104  88.27908 1.012850
+beta[1,4]  0.32311572  0.3893292  0.4991799 102.05571 1.009438
+beta[1,5] -1.18744454 -0.9618597 -0.4347788 222.46427 1.020049
+beta[1,6]  0.40383762  0.4822807  0.6205130 129.09079 1.007530
+beta[1,7]  0.05357555  0.1174912  0.2115380 165.59521 1.004206
+beta[2,1]  1.32707926  1.4642636  1.7109828 163.11663 1.010082
+beta[2,2]  0.27036241  0.3006350  0.3526915 168.67415 1.010913
+beta[2,3]  0.83215277  1.0601403  1.5421438 105.00237 1.008327
+                  mean      se_mean          sd        X2.5.         X25.
+Sigma[1,1]  0.10027764 0.0009296798  0.01653751   0.07067469   0.08874224
+Sigma[1,2] -0.06531145 0.0009789998  0.01751961  -0.10013870  -0.07671536
+Sigma[1,3]  0.06034623 0.0010411238  0.01592776   0.03019733   0.04920670
+Sigma[2,1] -0.06531145 0.0009789998  0.01751961  -0.10013870  -0.07671536
+Sigma[2,2]  0.20302523 0.0018384895  0.02947586   0.14722765   0.18296200
+Sigma[2,3] -0.09670623 0.0015827880  0.02307765  -0.14254088  -0.11137604
+Sigma[3,1]  0.06034623 0.0010411238  0.01592776   0.03019733   0.04920670
+Sigma[3,2] -0.09670623 0.0015827880  0.02307765  -0.14254088  -0.11137604
+Sigma[3,3]  0.16927065 0.0014005645  0.02273448   0.12766769   0.15347815
+lp__       -8.18391954 2.1792731466 19.50751091 -44.28988369 -21.74508799
+                  X50.        X75.      X97.5.     n_eff     Rhat
+Sigma[1,1]  0.09953736  0.11029955  0.13582784 316.42702 1.006070
+Sigma[1,2] -0.06481787 -0.05340481 -0.03267150 320.24586 1.000542
+Sigma[1,3]  0.05987262  0.07063116  0.09326646 234.04776 1.024453
+Sigma[2,1] -0.06481787 -0.05340481 -0.03267150 320.24586 1.000542
+Sigma[2,2]  0.20137100  0.22183092  0.26301545 257.04581 1.007852
+Sigma[2,3] -0.09659664 -0.08157443 -0.05242123 212.58747 1.024838
+Sigma[3,1]  0.05987262  0.07063116  0.09326646 234.04776 1.024453
+Sigma[3,2] -0.09659664 -0.08157443 -0.05242123 212.58747 1.024838
+Sigma[3,3]  0.16783713  0.18278814  0.21566904 263.48977 1.020641
+lp__       -8.68655350  4.45959650 32.83076158  80.12728 1.021884
+clang: warning: argument unused during compilation: '-arch x86_64'
+In file included from file3dd1475d3fb.cpp:8:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/src/stan/model/model_header.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/mat.hpp:4:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core.hpp:12:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core/gevv_vvv_vari.hpp:5:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/StanHeaders/include/stan/math/rev/core/var.hpp:7:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/BH/include/boost/math/tools/config.hpp:13:
+In file included from /home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/BH/include/boost/config.hpp:39:
+/home/mattocci/R/x86_64-pc-linux-gnu-library/3.4/BH/include/boost/config/compiler/clang.hpp:200:11: warning: 'BOOST_NO_CXX11_RVALUE_REFERENCES' macro redefined [-Wmacro-redefined]
+#  define BOOST_NO_CXX11_RVALUE_REFERENCES
+          ^
+<command line>:6:9: note: previous definition is here
+#define BOOST_NO_CXX11_RVALUE_REFERENCES 1
+        ^
+1 warning generated.
+clang: warning: argument unused during compilation: '-arch x86_64'
+
+SAMPLING FOR MODEL '71b6a8b444b6d1a4b4d17722f0561d87' NOW (CHAIN 1).
+
+Gradient evaluation took 0.00049 seconds
+1000 transitions using 10 leapfrog steps per transition would take 4.9 seconds.
+Adjust your expectations accordingly!
+
+
+WARNING: No variance estimation is
+         performed for num_warmup < 20
+
+Iteration: 1 / 1 [100%]  (Sampling)
+
+ Elapsed Time: 1e-06 seconds (Warm-up)
+               0.001042 seconds (Sampling)
+               0.001043 seconds (Total)
+
+   user  system elapsed 
+ 45.436   0.948  46.036 
+Warning messages:
+1: There were 1 divergent transitions after warmup. Increasing adapt_delta above 0.8 may help. See
+http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup 
+2: Examine the pairs() plot to diagnose sampling problems
+ 
+
+SAMPLING FOR MODEL '71b6a8b444b6d1a4b4d17722f0561d87' NOW (CHAIN 1).
+
+Gradient evaluation took 0.000761 seconds
+1000 transitions using 10 leapfrog steps per transition would take 7.61 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '71b6a8b444b6d1a4b4d17722f0561d87' NOW (CHAIN 2).
+
+Gradient evaluation took 0.000705 seconds
+1000 transitions using 10 leapfrog steps per transition would take 7.05 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '71b6a8b444b6d1a4b4d17722f0561d87' NOW (CHAIN 3).
+
+Gradient evaluation took 0.000696 seconds
+1000 transitions using 10 leapfrog steps per transition would take 6.96 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 71.5662 seconds (Warm-up)
+               27.4313 seconds (Sampling)
+               98.9975 seconds (Total)
+
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 89.4174 seconds (Warm-up)
+               23.6036 seconds (Sampling)
+               113.021 seconds (Total)
+
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 77.1243 seconds (Warm-up)
+               78.9545 seconds (Sampling)
+               156.079 seconds (Total)
+
+   user  system elapsed 
+711.300   0.456 158.405 
+Warning messages:
+1: There were 47 divergent transitions after warmup. Increasing adapt_delta above 0.95 may help. See
+http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup 
+2: Examine the pairs() plot to diagnose sampling problems
+ 
+                   mean     se_mean         sd       X2.5.        X25.
+beta[1,1]    1.27811633 0.015879185 0.22429071  0.80056566  1.14522479
+beta[1,2]    0.35184024 0.003688463 0.06097017  0.23191973  0.31297039
+beta[1,3]    0.16560730 0.073120561 0.34834216 -0.42789760 -0.05149509
+beta[1,4]    0.39793135 0.011427290 0.08963476  0.19149891  0.35097297
+beta[1,5]   -1.11421736 0.015213360 0.29716615 -1.71963766 -1.29856827
+beta[1,6]    0.41016764 0.008384126 0.08874260  0.26096605  0.34687156
+beta[1,7]    0.01492206 0.006213523 0.08428198 -0.17173057 -0.03519790
+beta[2,1]    1.10613374 0.010536031 0.16289369  0.76499442  1.00606099
+beta[2,2]    0.28778651 0.002152371 0.03565604  0.22484258  0.26320261
+beta[2,3]    0.55990061 0.035237449 0.32564308 -0.05016694  0.33637963
+beta[2,4]    0.59514185 0.007705407 0.06865230  0.45796179  0.54818426
+beta[2,5]   -1.17157305 0.011014512 0.24520801 -1.66854030 -1.33870827
+beta[2,6]    0.38234179 0.001928786 0.04373552  0.30236629  0.35303421
+beta[2,7]   -0.02295724 0.001724619 0.04430924 -0.10866477 -0.05321737
+beta[3,1]    1.33398030 0.014258961 0.21166206  0.91053896  1.20541228
+beta[3,2]    0.35140842 0.003459903 0.05384343  0.24726002  0.31503370
+beta[3,3]   -0.04060809 0.016012404 0.25244988 -0.56104632 -0.19403945
+beta[3,4]    0.41081603 0.004028400 0.06733516  0.28454568  0.36440850
+beta[3,5]   -1.05324330 0.013766133 0.27118459 -1.56643249 -1.23512766
+beta[3,6]    0.33215205 0.003857593 0.06364629  0.20398209  0.28904655
+beta[3,7]    0.07059377 0.001963119 0.05016370 -0.03000411  0.03801715
+beta_hat[1]  1.27161770 0.015632607 0.21092647  0.85040760  1.13218232
+                   X50.        X75.      X97.5.     n_eff     Rhat
+beta[1,1]    1.28225897  1.42335130  1.70449976 199.51068 1.010840
+beta[1,2]    0.35128619  0.38920871  0.47536182 273.23975 1.005882
+beta[1,3]    0.13249060  0.34702503  0.95859739  22.69515 1.084355
+beta[1,4]    0.40744309  0.45342718  0.55653480  61.52710 1.058779
+beta[1,5]   -1.10239913 -0.91668041 -0.58033358 381.54731 1.003856
+beta[1,6]    0.39884461  0.46556831  0.60959212 112.03372 1.026911
+beta[1,7]    0.02501268  0.07465123  0.15489655 183.98972 1.022180
+beta[2,1]    1.11717774  1.21485026  1.39355128 239.03109 1.009294
+beta[2,2]    0.28563249  0.30929703  0.36467896 274.43027 1.007412
+beta[2,3]    0.54532976  0.78570807  1.21327765  85.40333 1.032452
+beta[2,4]    0.59610313  0.64235976  0.72426219  79.38145 1.029586
+beta[2,5]   -1.16327643 -1.00010875 -0.71433732 495.60855 1.008380
+beta[2,6]    0.37993146  0.40978003  0.47640683 514.16254 1.002343
+beta[2,7]   -0.02407430  0.00741756  0.06587296 660.08900 1.008213
+beta[3,1]    1.33297217  1.47493117  1.73991939 220.34859 1.014186
+beta[3,2]    0.35107939  0.38519121  0.45846275 242.17961 1.013949
+beta[3,3]   -0.01711236  0.12754360  0.40507272 248.56344 1.002565
+beta[3,4]    0.40764145  0.45129529  0.54589927 279.39499 1.000983
+beta[3,5]   -1.05452344 -0.86957018 -0.51953421 388.06644 1.009894
+beta[3,6]    0.33335709  0.37584121  0.45209580 272.21584 1.013124
+beta[3,7]    0.07185134  0.10399180  0.16550726 652.95882 1.001684
+beta_hat[1]  1.27570656  1.40872529  1.67903699 182.05363 1.015117
+                     mean     se_mean         sd       X2.5.        X25.
+log_lik3[190] -0.14796383 0.017031248  0.4143054  -1.2171980 -0.24669244
+log_lik3[191] -0.22322883 0.012687843  0.4913980  -1.6047669 -0.37314629
+log_lik3[192] -0.32514949 0.018581120  0.5585773  -1.7771772 -0.55815088
+log_lik3[193] -0.07993886 0.011780915  0.3158563  -0.9003204 -0.17810038
+log_lik3[194]  0.06575764 0.003185268  0.1090342  -0.1878877  0.01556841
+log_lik3[195] -0.56616527 0.013486431  0.5223272  -1.7003047 -0.91742942
+log_lik3[196] -0.52381100 0.011321505  0.4384800  -1.4411498 -0.80781316
+log_lik3[197] -0.12003565 0.005732268  0.2220098  -0.6472231 -0.23559907
+log_lik3[198] -0.76354314 0.019182706  0.7429430  -2.4286328 -1.22104844
+lp__           5.06788647 2.655770341 19.0180618 -31.7927944 -7.83611307
+                     X50.        X75.     X97.5.      n_eff      Rhat
+log_lik3[190] -0.01852416  0.10438294  0.2336157  591.76366 1.0034246
+log_lik3[191] -0.04750721  0.08972662  0.2220787 1500.00000 1.0002167
+log_lik3[192] -0.11651264  0.06302788  0.2111009  903.69675 1.0033595
+log_lik3[193]  0.01179106  0.11338284  0.2264159  718.82172 1.0006114
+log_lik3[194]  0.07597329  0.13604325  0.2287074 1171.74701 1.0016064
+log_lik3[195] -0.48699108 -0.14517206  0.1783301 1500.00000 1.0047587
+log_lik3[196] -0.48747049 -0.18647611  0.1597119 1500.00000 1.0021336
+log_lik3[197] -0.07692462  0.03929748  0.2003303 1500.00000 0.9985144
+log_lik3[198] -0.61391960 -0.14589126  0.1747904 1500.00000 0.9990524
+lp__           5.28558814 17.43200060 40.7393308   51.28041 1.0676356
+
+SAMPLING FOR MODEL '71b6a8b444b6d1a4b4d17722f0561d87' NOW (CHAIN 1).
+
+Gradient evaluation took 0.000713 seconds
+1000 transitions using 10 leapfrog steps per transition would take 7.13 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '71b6a8b444b6d1a4b4d17722f0561d87' NOW (CHAIN 2).
+
+Gradient evaluation took 0.000822 seconds
+1000 transitions using 10 leapfrog steps per transition would take 8.22 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '71b6a8b444b6d1a4b4d17722f0561d87' NOW (CHAIN 3).
+
+Gradient evaluation took 0.000972 seconds
+1000 transitions using 10 leapfrog steps per transition would take 9.72 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+
+ Elapsed Time: 64.3244 seconds (Warm-up)
+               49.5669 seconds (Sampling)
+               113.891 seconds (Total)
+
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 92.2171 seconds (Warm-up)
+               46.1931 seconds (Sampling)
+               138.41 seconds (Total)
+
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 116.505 seconds (Warm-up)
+               40.7066 seconds (Sampling)
+               157.212 seconds (Total)
+
+   user  system elapsed 
+408.816   0.536 159.506 
+Warning messages:
+1: There were 59 divergent transitions after warmup. Increasing adapt_delta above 0.95 may help. See
+http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup 
+2: Examine the pairs() plot to diagnose sampling problems
+ 
+                    mean     se_mean         sd       X2.5.        X25.
+beta[1,1]    1.340549919 0.015465556 0.22587698  0.88664050  1.19579631
+beta[1,2]    0.364200515 0.003768012 0.06073279  0.25395027  0.32209825
+beta[1,3]    0.176636811 0.038727262 0.36948362 -0.42188859 -0.06627543
+beta[1,4]    0.393624304 0.009152488 0.09582957  0.16621515  0.34753185
+beta[1,5]   -1.125411973 0.019163515 0.28913622 -1.68140556 -1.32311054
+beta[1,6]    0.422017158 0.006136760 0.08054983  0.28071362  0.36413677
+beta[1,7]    0.007238613 0.004678982 0.07778243 -0.16110288 -0.03690411
+beta[2,1]    1.137983107 0.009269208 0.14920127  0.83406447  1.03981665
+beta[2,2]    0.311319263 0.001910783 0.03217561  0.25177028  0.28955517
+beta[2,3]    0.581842876 0.022281603 0.32192479 -0.04080043  0.35712441
+beta[2,4]    0.588528292 0.004495468 0.06681635  0.46073714  0.54151916
+beta[2,5]   -1.189678805 0.012449550 0.23843290 -1.66615436 -1.34857638
+beta[2,6]    0.396534898 0.002006134 0.03974573  0.32157301  0.36818397
+beta[2,7]   -0.032088123 0.001880564 0.04326438 -0.10714262 -0.06265073
+beta[3,1]    1.412972100 0.013399512 0.21205116  0.98173381  1.26849543
+beta[3,2]    0.356844016 0.003306999 0.05425586  0.25710518  0.31858563
+beta[3,3]   -0.038214096 0.012545547 0.24660155 -0.53077644 -0.20036662
+beta[3,4]    0.409498889 0.003316826 0.06608992  0.28356907  0.36543832
+beta[3,5]   -1.073935546 0.015465212 0.26805706 -1.58915575 -1.26707881
+beta[3,6]    0.345812785 0.003472132 0.06032509  0.22926764  0.30283087
+beta[3,7]    0.059941391 0.002166265 0.04861396 -0.03359336  0.02771738
+beta_hat[1]  1.341937290 0.015313767 0.21713414  0.92781536  1.19263814
+                   X50.         X75.      X97.5.     n_eff     Rhat
+beta[1,1]    1.35253260  1.493735230  1.75845828 213.31081 1.024805
+beta[1,2]    0.36220054  0.404471075  0.48554950 259.78976 1.017324
+beta[1,3]    0.13621164  0.353677400  1.05439944  91.02419 1.023879
+beta[1,4]    0.40498359  0.455254141  0.55677340 109.62781 1.018399
+beta[1,5]   -1.12134316 -0.932383463 -0.55901264 227.64319 1.007940
+beta[1,6]    0.41569099  0.468969282  0.59286382 172.28640 1.023296
+beta[1,7]    0.01398636  0.060405988  0.13845322 276.35051 1.007131
+beta[2,1]    1.14429725  1.243855442  1.41649579 259.09544 1.002645
+beta[2,2]    0.31039768  0.332002149  0.37584432 283.55075 1.002753
+beta[2,3]    0.57477797  0.801462735  1.20375811 208.74495 1.003528
+beta[2,4]    0.59064877  0.636680228  0.71194128 220.91019 1.003226
+beta[2,5]   -1.19291370 -1.021276207 -0.74018440 366.79638 1.003808
+beta[2,6]    0.39643067  0.423275701  0.47540367 392.51934 1.001698
+beta[2,7]   -0.03343452 -0.002758702  0.05633752 529.27888 1.003270
+beta[3,1]    1.42274350  1.560120173  1.80348252 250.43979 1.002423
+beta[3,2]    0.35492080  0.392734233  0.46823196 269.16915 1.002707
+beta[3,3]   -0.02365033  0.134744794  0.39386712 386.37800 1.000062
+beta[3,4]    0.40882050  0.451229305  0.54504363 397.03151 1.000621
+beta[3,5]   -1.07272967 -0.890032853 -0.54734111 300.42964 1.002743
+beta[3,6]    0.34585572  0.386146275  0.46385750 301.85848 1.000122
+beta[3,7]    0.05962317  0.092542727  0.15797709 503.61515 1.003442
+beta_hat[1]  1.34673803  1.497204247  1.73701567 201.04447 1.026405
+                     mean     se_mean         sd      X2.5.        X25.
+log_lik3[190] -0.05623614 0.012686114  0.3317154 -0.9536520 -0.15865614
+log_lik3[191] -0.19181201 0.011325601  0.4386386 -1.2927451 -0.36800742
+log_lik3[192] -0.18970277 0.016397757  0.4618245 -1.5228554 -0.36195521
+log_lik3[193] -0.02147881 0.013037708  0.3259447 -0.9496241 -0.07907244
+log_lik3[194]  0.07650790 0.003213144  0.1244445 -0.2074924  0.01369577
+log_lik3[195] -0.49343807 0.013336558  0.5165227 -1.6413890 -0.82971622
+log_lik3[196] -0.47229538 0.011291377  0.4373132 -1.3848259 -0.78269002
+log_lik3[197] -0.14406954 0.006789578  0.2629592 -0.7647219 -0.28886648
+log_lik3[198] -0.73057041 0.018648496  0.7222531 -2.4154338 -1.17102749
+lp__          42.12453491 2.059460592 20.6901958  0.2737415 29.08730934
+                     X50.        X75.     X97.5.     n_eff      Rhat
+log_lik3[190]  0.05827925  0.14992136  0.2667312  683.7132 0.9995395
+log_lik3[191] -0.05112636  0.11019115  0.2561348 1500.0000 0.9986302
+log_lik3[192] -0.02107817  0.13066528  0.2594613  793.2044 1.0012322
+log_lik3[193]  0.07548658  0.15478222  0.2739584  625.0078 1.0003852
+log_lik3[194]  0.09582813  0.15622371  0.2618456 1500.0000 1.0009905
+log_lik3[195] -0.41792208 -0.06984783  0.2167608 1500.0000 1.0002394
+log_lik3[196] -0.43674769 -0.11099013  0.2102574 1500.0000 1.0011203
+log_lik3[197] -0.09865026  0.05812481  0.2336473 1500.0000 1.0019978
+log_lik3[198] -0.58908615 -0.15157198  0.2076717 1500.0000 1.0009906
+lp__          42.86464860 56.37014074 80.8537578  100.9305 1.0164306
+
+SAMPLING FOR MODEL '71b6a8b444b6d1a4b4d17722f0561d87' NOW (CHAIN 1).
+
+Gradient evaluation took 0.000939 seconds
+1000 transitions using 10 leapfrog steps per transition would take 9.39 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '71b6a8b444b6d1a4b4d17722f0561d87' NOW (CHAIN 2).
+
+Gradient evaluation took 0.001491 seconds
+1000 transitions using 10 leapfrog steps per transition would take 14.91 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+
+SAMPLING FOR MODEL '71b6a8b444b6d1a4b4d17722f0561d87' NOW (CHAIN 3).
+
+Gradient evaluation took 0.000695 seconds
+1000 transitions using 10 leapfrog steps per transition would take 6.95 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:   1 / 1000 [  0%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 100 / 1000 [ 10%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 200 / 1000 [ 20%]  (Warmup)
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 300 / 1000 [ 30%]  (Warmup)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 93.5367 seconds (Warm-up)
+               26.8446 seconds (Sampling)
+               120.381 seconds (Total)
+
+Iteration: 400 / 1000 [ 40%]  (Warmup)
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 500 / 1000 [ 50%]  (Warmup)
+Iteration: 501 / 1000 [ 50%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 600 / 1000 [ 60%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 88.1588 seconds (Warm-up)
+               115.671 seconds (Sampling)
+               203.83 seconds (Total)
+
+Iteration: 700 / 1000 [ 70%]  (Sampling)
+Iteration: 800 / 1000 [ 80%]  (Sampling)
+Iteration: 900 / 1000 [ 90%]  (Sampling)
+Iteration: 1000 / 1000 [100%]  (Sampling)
+
+ Elapsed Time: 148.824 seconds (Warm-up)
+               131.269 seconds (Sampling)
+               280.092 seconds (Total)
+
+   user  system elapsed 
+481.552   0.988 286.775 
+Warning messages:
+1: There were 27 divergent transitions after warmup. Increasing adapt_delta above 0.95 may help. See
+http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup 
+2: There were 305 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
+http://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded 
+3: Examine the pairs() plot to diagnose sampling problems
+ 
+                    mean     se_mean         sd       X2.5.        X25.
+beta[1,1]    1.291026859 0.018354594 0.23388739  0.78701277  1.15704666
+beta[1,2]    0.375379794 0.004377675 0.06219964  0.26177336  0.33450771
+beta[1,3]    0.250541327 0.051899981 0.39017924 -0.39124728 -0.02635921
+beta[1,4]    0.377737535 0.011726399 0.10043235  0.14257782  0.32403982
+beta[1,5]   -1.130000736 0.017215741 0.32840539 -1.75518132 -1.32717373
+beta[1,6]    0.436397154 0.009852465 0.09085515  0.27638657  0.37270379
+beta[1,7]   -0.009006729 0.007393712 0.08946680 -0.20235338 -0.06285379
+beta[2,1]    1.134920545 0.010489605 0.14773526  0.82408390  1.03792835
+beta[2,2]    0.311971695 0.002126302 0.03171463  0.25274468  0.29133725
+beta[2,3]    0.604250137 0.038812930 0.33804175 -0.01396764  0.36493945
+beta[2,4]    0.584113442 0.007831697 0.07029290  0.44841241  0.53797219
+beta[2,5]   -1.175703277 0.012774808 0.23432005 -1.64546312 -1.33380600
+beta[2,6]    0.394582347 0.002185925 0.03994197  0.32358157  0.36651815
+beta[2,7]   -0.033413709 0.001721677 0.04223516 -0.11613062 -0.06243910
+beta[3,1]    1.403854989 0.013495086 0.19801140  1.01835960  1.27681703
+beta[3,2]    0.360203185 0.003226567 0.05026001  0.25839827  0.32651219
+beta[3,3]   -0.036733941 0.015093742 0.25394305 -0.55522873 -0.20430910
+beta[3,4]    0.408241792 0.003637883 0.06762019  0.28348738  0.35812691
+beta[3,5]   -1.058847066 0.014329638 0.26662898 -1.56976699 -1.23355031
+beta[3,6]    0.342717729 0.003710996 0.06206989  0.22060064  0.29997357
+beta[3,7]    0.059551478 0.001924135 0.05094879 -0.04049926  0.02436728
+beta_hat[1]  1.292247312 0.017593294 0.21397666  0.85636270  1.15519270
+                    X50.         X75.      X97.5.     n_eff     Rhat
+beta[1,1]    1.304478541  1.439714060  1.70749587 162.37684 1.016806
+beta[1,2]    0.373810497  0.412735662  0.50427355 201.87790 1.016058
+beta[1,3]    0.213472947  0.461217597  1.16115341  56.51893 1.029300
+beta[1,4]    0.388217614  0.447665456  0.54702306  73.35300 1.020301
+beta[1,5]   -1.133573192 -0.939407394 -0.49505584 363.88914 1.009122
+beta[1,6]    0.430789798  0.493465952  0.64069210  85.03726 1.032803
+beta[1,7]    0.001699699  0.051942978  0.13819630 146.41947 1.024319
+beta[2,1]    1.138970568  1.235978447  1.40974368 198.35815 1.022671
+beta[2,2]    0.311077912  0.332598383  0.37523338 222.46887 1.019454
+beta[2,3]    0.602010887  0.835779739  1.27262605  75.85563 1.016252
+beta[2,4]    0.584544276  0.633325059  0.71260525  80.55846 1.015760
+beta[2,5]   -1.170665548 -1.020676909 -0.72279613 336.44195 1.014433
+beta[2,6]    0.393500047  0.422182351  0.47496249 333.87861 1.013105
+beta[2,7]   -0.033126436 -0.004984446  0.04758999 601.78977 1.006085
+beta[3,1]    1.398740674  1.537609850  1.81036266 215.29261 1.021464
+beta[3,2]    0.361651007  0.393181741  0.45960096 242.64078 1.017594
+beta[3,3]   -0.022925901  0.143815000  0.41125754 283.06020 1.013328
+beta[3,4]    0.405454786  0.453867051  0.53904910 345.50590 1.007779
+beta[3,5]   -1.062894973 -0.891315471 -0.51712998 346.21371 1.010923
+beta[3,6]    0.342449232  0.384225947  0.46905530 279.75702 1.025849
+beta[3,7]    0.060257196  0.093196140  0.16217164 701.12709 1.010337
+beta_hat[1]  1.303123239  1.434119089  1.71053060 147.92396 1.014992
+                     mean     se_mean         sd       X2.5.        X25.
+log_lik3[190] -0.05232331 0.011614551  0.3254926 -0.89826811 -0.14369565
+log_lik3[191] -0.21279267 0.012446854  0.4820646 -1.54108056 -0.37115163
+log_lik3[192] -0.20275210 0.015817477  0.5020929 -1.62072720 -0.35479175
+log_lik3[193] -0.03555885 0.011521031  0.3093048 -0.89425819 -0.11941164
+log_lik3[194]  0.07350407 0.003325739  0.1288053 -0.23819740  0.01364639
+log_lik3[195] -0.51309516 0.014434185  0.5590336 -1.83908341 -0.86103924
+log_lik3[196] -0.50757342 0.012238945  0.4740123 -1.47224051 -0.84155752
+log_lik3[197] -0.13663545 0.008165450  0.2668962 -0.77524292 -0.28250819
+log_lik3[198] -0.74953781 0.019421263  0.7521823 -2.55781288 -1.17476631
+lp__          39.67621312 3.050067777 20.7664534  0.09807156 25.80747633
+                     X50.        X75.     X97.5.      n_eff      Rhat
+log_lik3[190]  0.05157378  0.14635136  0.2610775  785.37569 0.9999192
+log_lik3[191] -0.04763489  0.11137415  0.2493636 1500.00000 0.9982152
+log_lik3[192] -0.02135726  0.12390288  0.2563290 1007.61290 0.9997101
+log_lik3[193]  0.07179317  0.15180154  0.2630490  720.76013 1.0025970
+log_lik3[194]  0.09444293  0.15795044  0.2593087 1500.00000 0.9996771
+log_lik3[195] -0.41695651 -0.05555916  0.2200180 1500.00000 0.9985046
+log_lik3[196] -0.47958488 -0.11960789  0.2004830 1500.00000 0.9992318
+log_lik3[197] -0.08530315  0.06176859  0.2233831 1068.37732 1.0011353
+log_lik3[198] -0.61043610 -0.16797142  0.2038855 1500.00000 1.0001600
+lp__          39.40401133 53.63126128 82.4589082   46.35597 1.0609504

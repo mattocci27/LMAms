@@ -1,0 +1,12 @@
+book_filename: "LMAms_SI"
+#chapter_name: "ch: "
+new_session: false
+delete_merged_file: true
+
+rmd_files: [
+  "index.rmd",
+  #  "01_model.rmd",
+  "01_est.rmd",
+  "02_sim.rmd",
+  "03_figs.rmd",
+]

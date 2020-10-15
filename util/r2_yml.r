@@ -1,5 +1,5 @@
 library(rstan)
-library(dplyr)
+library(tidyverse)
 
 d <- read_csv("./data/nature02403-s2.csv", skip = 10)
 
@@ -10,7 +10,7 @@ dd <- data.frame(Narea = 10^d$`log Narea`,
         summarize(Narea = mean(Narea, na.omit = T),
             Parea = mean(Parea, na.omit = T))
 
-load("./data/GL_m0_obs.rda")
+load("./rda/GL_LMAms_more_obs.rda")
 resGL <- res
 GL_summary <- data.frame(summary(res)$summary)
 GL <- dat
@@ -37,53 +37,23 @@ GL <- left_join(GL, dd, by = "sp") %>%
                       ))) %>%
   arrange(sp)
 
-write.csv(GL, "./data/GL_m0.csv", row.names = FALSE)
+write.csv(GL, "./data/GL_LMAms_more_obs.csv", row.names = FALSE)
 
-
-load("./data/GL_m0_N_obs.rda")
-resGL <- res
-GL_summary <- data.frame(summary(res)$summary)
-GL <- dat
-P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
-
-GL <- GL %>%
-  mutate(DE = ifelse(GL$DE == "", "U", as.character(DE))) 
-
-mu2_vec <- paste("mu2[", 1:nrow(GL), "]", sep = "")
-temp_LMAp <- GL_summary[P_vec, "mean"] * GL$LMA
-temp_LMAs <- GL$LMA - temp_LMAp
-temp_LL <- exp(GL_summary[mu2_vec, "mean"])
-
-GL <- GL %>%
-  mutate(LMAp = temp_LMAp) %>%
-  mutate(LMAs = temp_LMAs) %>%
-  mutate(preLL = temp_LL) 
-
-GL <- left_join(GL, dd, by = "sp") %>%
-  mutate(gr = factor(DE,
-    labels = c("Deciduous",
-               "Evergreen",
-               "Unclassified"
-                      ))) %>%
-  arrange(sp)
-
-write.csv(GL, "./data/GL_m0_N.csv", row.names = FALSE)
-
-load("./data/PA_m1q_more_obs.rda")
+load("./rda/PA_LMAms0_more_obs.rda")
 resPA <- res
 #summary_PA_LDL <- data.frame(summary(res)$summary)
 
 summary_PA_LDL <- data.frame(summary(res)$summary)
 
 PA <- dat %>%
-  as_data_frame %>%
+  as_tibble %>%
   mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
   mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) %>%
   mutate(site_strata = paste(site2, strata, sep = "_"))
 
-
 P_vec <- paste("p[", 1:nrow(PA), "]", sep = "")
 mu2_vec <- paste("mu2[", 1:nrow(PA), "]", sep = "")
+
 #Mu_vec <- paste("mu[", 1:nrow(PA), ",2]", sep = "")
 temp_LMAp <- summary_PA_LDL[P_vec, "mean"] * PA$LMA
 temp_LMAs <- PA$LMA - temp_LMAp
@@ -96,23 +66,23 @@ PA <- PA %>%
   mutate(preLL = temp_LL) %>%
   mutate(LDs = LMAs/LT/1000)
 
-write.csv(PA, "./data/PA_m1q_more.csv", row.names = FALSE)
+write.csv(PA, "./data/PA_LMAms0_more.csv", row.names = FALSE)
 
-load("./data/PA_m1q_more_N_obs.rda")
+load("./rda/PA_LMAms_L0_more_obs.rda")
 resPA <- res
 #summary_PA_LDL <- data.frame(summary(res)$summary)
 
 summary_PA_LDL <- data.frame(summary(res)$summary)
 
 PA <- dat %>%
-  as_data_frame %>%
+  as_tibble %>%
   mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
   mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) %>%
   mutate(site_strata = paste(site2, strata, sep = "_"))
 
-
 P_vec <- paste("p[", 1:nrow(PA), "]", sep = "")
 mu2_vec <- paste("mu2[", 1:nrow(PA), "]", sep = "")
+
 #Mu_vec <- paste("mu[", 1:nrow(PA), ",2]", sep = "")
 temp_LMAp <- summary_PA_LDL[P_vec, "mean"] * PA$LMA
 temp_LMAs <- PA$LMA - temp_LMAp
@@ -125,62 +95,149 @@ PA <- PA %>%
   mutate(preLL = temp_LL) %>%
   mutate(LDs = LMAs/LT/1000)
 
-write.csv(PA, "./data/PA_m1q_more_N.csv", row.names = FALSE)
-
-load("./data/PA_m1q_more_NS_more_obs.rda")
-resPA <- res
-#summary_PA_LDL <- data.frame(summary(res)$summary)
-
-summary_PA_LDL <- data.frame(summary(res)$summary)
-
-PA <- dat %>%
-  as_data_frame %>%
-  mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
-  mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) %>%
-  mutate(site_strata = paste(site2, strata, sep = "_"))
+write.csv(PA, "./data/PA_LMAms_L0_more.csv", row.names = FALSE)
 
 
-P_vec <- paste("p[", 1:nrow(PA), "]", sep = "")
-mu2_vec <- paste("mu2[", 1:nrow(PA), "]", sep = "")
-#Mu_vec <- paste("mu[", 1:nrow(PA), ",2]", sep = "")
-temp_LMAp <- summary_PA_LDL[P_vec, "mean"] * PA$LMA
-temp_LMAs <- PA$LMA - temp_LMAp
-temp_LL <- exp(summary_PA_LDL[mu2_vec, "mean"])
-
-
-PA <- PA %>%
-  mutate(LMAp = temp_LMAp) %>%
-  mutate(LMAs = temp_LMAs) %>%
-  mutate(preLL = temp_LL) %>%
-  mutate(LDs = LMAs/LT/1000)
-
-write.csv(PA, "./data/PA_m1q_more_NS.csv", row.names = FALSE)
-
-y <- PA$LL %>% log
-ypred <- rstan::extract(res, "mu2")[[1]]
-plot(y ~ apply(ypred,2,mean))
-e <- -1 * sweep(ypred, 2, y)
-var_ypred <- apply(ypred, 1, var)
-var_e <- apply(e, 1, var)
-r2 <- var_ypred / (var_ypred + var_e) 
-hist(r2)
-
-log_LMAp <- rstan::extract(res, "log_LMAp")[[1]]
-log_LMAs <- rstan::extract(res, "log_LMAs")[[1]]
-
-my_cor <- function(x, y){
-  lo <- apply(x, 1, function(x)cor(x, y)) %>%
-    quantile(0.025) %>%
-    round(3)
-  mid <- apply(x, 1, function(x)cor(x, y)) %>%
-    quantile(0.5) %>%
-    round(3)
-  up <- apply(x, 1, function(x)cor(x, y)) %>%
-    quantile(0.975) %>%
-    round(3)
-  paste0(mid, " [", lo, ", ", up, "]")
+get_pred <- function(trait = c("Aarea", "Rarea", "LL"), data, log = TRUE) {
+  ypred <- NULL
+  if (trait == "Aarea") {
+    x <- 1
+  } else if (trait == "Rarea") {
+    x <- 3
+  } else if (trait == "LL") { 
+    x <- 2
+  }
+  N <- length(data@inits[[1]]$log_lik)
+  for (i in 1:N) {
+  ypred <- cbind(ypred, rstan::extract(data, str_c("Mu[", i,"," ,x, "]"))[[1]])
+  }
+  if (log) ypred else exp(ypred)
 }
 
+get_r2 <- function(ypred, y, median = TRUE) {
+  e <- -1 * sweep(ypred, 2, y)
+  var_ypred <- apply(ypred, 1, var)
+  var_e <- apply(e, 1, var)
+  r2 <- var_ypred / (var_ypred + var_e) 
+  if (median) median(r2) else r2
+}
+
+get_r2_2 <- function(ypred, y, median = TRUE) {
+  #e <- -1 * sweep(ypred, 2, y)
+  var_ypred <- apply(ypred, 1, var)
+  var_e <- apply(y - ypred, 1, var)
+  r2 <- var_ypred / (var_ypred + var_e) 
+  if (median) median(r2) else r2
+}
+
+
+#get_r2_2(log(PA_LMAp), log(PA_LMAs), median = TRUE) %>% round(2)
+#get_r2_2(log(PA_LMAp), log(PA_LMAs), median = FALSE) %>% quantile(., 0.025) %>% round(2)
+#get_r2_2(log(PA_LMAp), log(PA_LMAs), median = FALSE) %>% quantile(., 0.975) %>% round(2)
+#
+#get_r2_2(log(GL_LMAp), log(GL_LMAs), median = TRUE) %>% round(2)
+#get_r2_2(log(GL_LMAp), log(GL_LMAs), median = FALSE) %>% quantile(., 0.025) %>% round(2)
+#get_r2_2(log(GL_LMAp), log(GL_LMAs), median = FALSE) %>% quantile(., 0.975) %>% round(2)
+
+
+# we calcluate resis
+my_cor <- function(x, y, median = TRUE){
+  N <- nrow(x)
+  r <- numeric(N)
+  for (i in 1:N) r[i] <- cor(x[i, ], y[i, ]) 
+  if (median) median(r) else r
+}
+
+PA_p <- rstan::extract(resPA, P_vec) 
+PA_p_mat <- NULL
+for (i in 1:length(PA_p)) {
+  PA_p_mat <- cbind(PA_p_mat, PA_p[[i]])
+}
+PA_LMAp <- t(t(PA_p_mat) * PA$LMA)
+PA_LMAs <- t(t(1 - PA_p_mat) * PA$LMA)
+
+r1 <- my_cor(log(PA_LMAp), log(PA_LMAs), median = TRUE) %>% round(2)
+r2 <- my_cor(log(PA_LMAp), log(PA_LMAs), median = FALSE) %>% quantile(., 0.025) %>% round(2)
+r3 <- my_cor(log(PA_LMAp), log(PA_LMAs), median = FALSE) %>% quantile(., 0.975) %>% round(2)
+PA_LMAps_r <- str_c(r1, " [", r2, ", ", r3, "]")
+
+GL_P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
+GL_p <- rstan::extract(resGL, GL_P_vec) 
+GL_p_mat <- NULL
+for (i in 1:length(GL_p)) {
+  GL_p_mat <- cbind(GL_p_mat, GL_p[[i]])
+}
+
+GL_LMAp <- t(t(GL_p_mat) * GL$LMA)
+GL_LMAs <- t(t(1 - GL_p_mat) * GL$LMA)
+
+#my_cor(GL_LMAp, GL_LMAs)
+my_cor(GL_LMAp, GL_LMAs, median = FALSE) %>% hist
+
+r1 <- my_cor(log(GL_LMAp), log(GL_LMAs), median = TRUE) %>% round(2)
+r2 <- my_cor(log(GL_LMAp), log(GL_LMAs), median = FALSE) %>% quantile(., 0.025) %>% round(2)
+r3 <- my_cor(log(GL_LMAp), log(GL_LMAs), median = FALSE) %>% quantile(., 0.975) %>% round(2)
+GL_LMAps_r <- str_c(r1, " [", r2, ", ", r3, "]")
+
+GL_LL <- get_pred(trait = "LL", resGL, log = TRUE)
+GL_Aarea <- get_pred(trait = "Aarea", resGL, log = TRUE)
+GL_Rarea <- get_pred(trait = "Rarea", resGL, log = TRUE)
+
+#my_cor(log(GL_LMAp), GL_Aarea)
+
+PA_LL <- get_pred(trait = "LL", resPA, log = TRUE)
+PA_Aarea <- get_pred(trait = "Aarea", resPA, log = TRUE)
+PA_Rarea <- get_pred(trait = "Rarea", resPA, log = TRUE)
+
+#par(mfrow=c(2,1))
+#plot(PA_Aarea[3003,], PA_Aarea[3001,])
+#abline(a = 0, b = 1)
+#plot(PA_Aarea[3003,], PA_Aarea[3002,])
+#abline(a = 0, b = 1)
+#par(mfrow=c(1,1))
+#my_cor(log(PA_LMAs), PA_LL)
+
+#plot(log(PA$LL) ~ apply(PA_LL,2,mean))
+get_r2(PA_LL, log(PA$LL))
+cor.test(apply(PA_LL, 2, mean), log(PA$LL))
+
+temp_LL <- apply(PA_LL, 2, mean) %>% exp
+#mu2_vec <- paste("mu2[", 1:nrow(PA), "]", sep = "")
+#Mu_vec <- paste("mu[", 1:nrow(PA), ",2]", sep = "")
+temp_LMAp <- summary_PA_LDL[P_vec, "mean"] * PA$LMA
+temp_LMAs <- PA$LMA - temp_LMAp
+#temp_LL <- exp(summary_PA_LDL[mu2_vec, "mean"])
+
+PA <- PA %>%
+  mutate(LMAp = temp_LMAp) %>%
+  mutate(LMAs = temp_LMAs) %>%
+  mutate(preLL = temp_LL) %>%
+  mutate(LDs = LMAs/LT/1000)
+
+write.csv(PA, "./data/PA_LMAms_L0_more.csv", row.names = FALSE)
+
+
+#my_cor <- function(x, y){
+#  lo <- apply(x, 1, function(x)cor(x, y)) %>%
+#    quantile(0.025) %>%
+#    round(3)
+#  mid <- apply(x, 1, function(x)cor(x, y)) %>%
+#    quantile(0.5) %>%
+#    round(3)
+#  up <- apply(x, 1, function(x)cor(x, y)) %>%
+#    quantile(0.975) %>%
+#    round(3)
+#  paste0(mid, " [", lo, ", ", up, "]")
+#}
+
+#my_cor(log(PA_LMAp), log(PA$Aarea))
+#my_cor(log(PA_LMAs), log(PA$Aarea))
+#
+#my_cor(log(PA_LMAp), log(PA$Rarea))
+#my_cor(log(PA_LMAs), log(PA$Rarea))
+#
+#my_cor(log(PA_LMAp), log(PA$LL))
+#my_cor(log(PA_LMAs), log(PA$LL))
 
 #cor.test(log_LMAs[2,], log(GL$Rarea))
 #
@@ -188,6 +245,7 @@ my_cor <- function(x, y){
 #
 #moge <- apply(log_LMAs, 2, median)
 #cor.test(moge, log(GL$Rarea))
+
 
 # R values
 output <- "r_val.yml"
@@ -253,10 +311,7 @@ writeLines(paste0("    LMAs_Parea: 'italic(r) == ", cor.test(log(GL$Parea), log(
 writeLines(paste0("  GL_LMAms:"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_LMAm: ", cor.test(log(GL$LMAp), log(GL$LMAs))$estimate %>% round(2)),
-           out,
-           sep = "\n")
-writeLines(paste0("    p_val: ", cor.test(log(GL$LMAp), log(GL$LMAs))$p.value %>% round(2)),
+writeLines(paste0("    LMAs_LMAm: ", "'", GL_LMAps_r, "'"),
            out,
            sep = "\n")
 
@@ -295,10 +350,7 @@ writeLines(paste0("    LMAs_LL: 'italic(r) == ", cor.test(log(PA$LL), log(PA$LMA
 writeLines(paste0("  PA_LMAms:"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_LMAm: ", cor.test(log(PA$LMAp), log(PA$LMAs))$estimate %>% round(2)),
-           out,
-           sep = "\n")
-writeLines(paste0("    p_val: ", cor.test(log(PA$LMAp), log(PA$LMAs))$p.value %>% round(2)),
+writeLines(paste0("    LMAs_LMAm: ", "'", PA_LMAps_r, "'"),
            out,
            sep = "\n")
 
@@ -337,7 +389,8 @@ writeLines(paste0("    LMAs_cell_area: 'italic(r) == ", cor.test(log(PA$cell_are
 writeLines(paste0("  PA_LL:"),
            out,
            sep = "\n")
-writeLines(paste0("    preLL_LL: 'italic(r) == ", cor.test(log(PA$LL), log(PA$preLL))$estimate %>% round(2),"'"),
+writeLines(paste0("    preLL_LL: 'italic(r^2) == ", 
+                  get_r2(PA_LL, log(PA$LL)) %>% round(2),"'"),
            out,
            sep = "\n")
 

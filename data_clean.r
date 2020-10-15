@@ -100,3 +100,35 @@ xlsx_file <- file.path(tmp, "onoda_et_al.xlsx")
 xlsx_dir <- file.path(tmp)
 download.file(onoda_url, xlsx_file)
 
+# Panama taxa
+
+d <- read_csv("./data/LFTRAITS.csv")
+
+d2 <- d %>%
+  dplyr::select(sp = "SP4$", #"SITE$", "STRATA$", 
+                genus = "GENUS$", 
+                genus1 = "GENUS1$", 
+                species = "SPECIES$",
+                species1 = "SPECIES1$"
+                ) %>%
+  mutate(name = str_c(genus, "_", species)) %>%
+  mutate(name1 = str_c(genus1, "_", species1)) %>%
+  unique %>%
+  mutate(name = ifelse(is.na(name), name1, name)) %>%
+  dplyr::select(sp, genus, species, name)
+
+habit <- read_csv("./data/Osnas2018_S1.csv") %>%
+ # dplyr::select(Genus, Species, LeafHabit, Site, Stratum)
+  dplyr::select(genus = Genus, species = Species, LeafHabit) %>%
+  mutate(name = str_c(genus, "_", species)) %>% 
+  select(name, LeafHabit) %>%
+  unique
+
+d3 <- full_join(d2, habit, by = "name")
+
+taxa <- d3 %>%
+  filter(!is.na(sp)) %>%
+  filter(!is.na(genus)) %>%
+  filter(!is.na(LeafHabit)) 
+
+write_csv(taxa, "./data/PA_LH.csv")
