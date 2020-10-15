@@ -15,7 +15,7 @@ source("fig_theme.r")
 # GL data ---------------------------------------------------------------------
 
 #GL <- read_csv("./data/GL_m0_N.csv")
-GL <- read_csv("./data/GL_m0.csv")
+GL <- read_csv("./data/GL_LMAms_more_obs.csv")
 
 GL_dat <- GL %>% 
   gather(LMA, Val, c(LMA, LMAs, LMAp)) %>%
@@ -49,7 +49,7 @@ lim_GL <- lim_func(GL_dat1,
 lim_GL2 <- lim_func(GL_dat1,
                     trait = "Val2", LMA = FALSE)
 
-lab1 <- data_frame(lab = paste("(", letters[1:9], ")", sep = ""),
+lab1 <- tibble(lab = paste("(", letters[1:9], ")", sep = ""),
                    Val2 = lim_GL2$max_val %>% rep(each = 3),
                   # Val2 = Inf,
                    Val = lim_GL$min_val %>% rep(3),
@@ -116,7 +116,7 @@ lim_GL <- lim_func(GL_dat2 %>% filter(DE != "Rand"),
 lim_GL2 <- lim_func(GL_dat2 %>% filter(DE != "Rand"),
                     trait = "Val2", LMA = FALSE)
 
-lab1 <- data_frame(lab = paste("(", letters[1:6], ")", sep = ""),
+lab1 <- tibble(lab = paste("(", letters[1:6], ")", sep = ""),
                    Val2 = lim_GL2$max_val %>% rep(each = 3),
                    Val = lim_GL$min_val %>% rep(2),
                    Val_max = lim_GL$max_val %>% rep(2),
@@ -134,7 +134,7 @@ my_ggsave("./figs/GL_NP.pdf", GL_NP_plot, height = 8.1)
 
 # PA data ---------------------------------------------------------------------
 #PA <- read_csv("./data/PA_m1q_more_N.csv")
-PA <- read_csv("./data/PA_m1q_more_NS.csv")
+PA <- read_csv("./data/PA_LMAms_L0_more.csv")
 
 PA_dat <- PA %>% 
   gather(LMA, Val, 
@@ -178,7 +178,7 @@ lim_PA <- lim_func(PA_dat1 %>% filter(site_strata != "Rand"),
 lim_PA2 <- lim_func(PA_dat1 %>% filter(site_strata != "Rand"),
                     trait = "Val2", LMA = FALSE)
 
-lab1 <- data_frame(lab = paste("(", letters[1:9], ")", sep = ""),
+lab1 <- tibble(lab = paste("(", letters[1:9], ")", sep = ""),
                    Val2 = lim_PA2$max_val %>% rep(each = 3),
                    Val = lim_PA$min_val %>% rep(3),
                    Val_max = lim_PA$max_val %>% rep(3),
@@ -214,7 +214,7 @@ lim_PA <- lim_func(PA_dat2 %>% filter(site_strata != "Rand"),
 lim_PA2 <- lim_func(PA_dat2 %>% filter(site_strata != "Rand"),
                     trait = "Val2", LMA = FALSE)
 
-lab1 <- data_frame(lab = paste("(", letters[1:9], ")", sep = ""),
+lab1 <- tibble(lab = paste("(", letters[1:9], ")", sep = ""),
                    Val2 = lim_PA2$max_val %>% rep(each = 3),
                    Val = lim_PA$min_val %>% rep(3),
                    Val_max = lim_PA$max_val %>% rep(3),
@@ -240,7 +240,7 @@ LL_dat <- PA %>%
                "Shade-Dry"
                       )))
 
-labLL <- data_frame(
+labLL <- tibble(
                    LL = Inf,
                    Val = min(PA$LL),
                    Val_max = max(PA$LL),
@@ -314,6 +314,7 @@ GL_cov <- GL %>%
 var_dat <- bind_rows(PA_cov, GL_cov) %>%
   group_by(gr) %>%
   nest %>%
+  ungroup %>%
   mutate(var_LMAm = map_dbl(data, var_p)) %>%
   mutate(var_LMAs = map_dbl(data, var_s)) %>%
   mutate(cov_ms = 2 * map_dbl(data, cov_ps)) %>%
@@ -343,35 +344,6 @@ var_dat_s2 <- var_dat_s %>%
 write.csv(var_dat_s2, "./data/var_val.csv", row.names = F)
 
 
-
-#my_gray <- gray.colors(2, start = 0.5, end = 0.8, gamma = 2.2, alpha = NULL)
-#
-#cov_plot <- ggplot(var_dat_s, aes(x = gr, y = val, fill = var)) +
-#  geom_bar(position = "fill",stat = "identity") +
-#  scale_fill_manual(values = rev(my_gray)) +
-#  scale_y_continuous(labels = percent_format()) +
-#  theme_LES()  +
-#  theme(
-#    #panel.border = element_rect(fill = NA, colour = "white")
-#    axis.line = element_line(size = 0.25, colour = "black"),
-#    #axis.line=element_blank(),
-#    panel.border = element_blank(),
-#    axis.title.y = element_text(margin = margin(t = 0,
-#                                                b = 0,
-#                                                l = 0,
-#                                                r = 5),
-#                                angle = 90),
-#    axis.title.x = element_text(margin = margin(t = 0,
-#                                                b = 0,
-#                                                l = 0,
-#                                                r = 0))
-#        ) +
-#  ylab("% interspecific LMA variation") +
-#  xlab("")
-#
-#my_ggsave("./figs/cov_plot.png", cov_plot,
-#          width = 8.1,
-#          height = 8.1)
 #
 # boxplot ---------------------------------------------------------------------
 fills <- c("D" = settings$fills$D,

@@ -6,12 +6,13 @@ library(stringr)
 library(loo)
 rstan_options(auto_write = TRUE)
 
-load("./data/GL_GL_LMAms_CV_obs_cv.rda")
+load("./data/GL_LMAms_obs_cv.rda")
 ss2 <- ss
 ee2 <- extract_log_lik_K(ss, holdout_10)
 kk2 <- kfold(ee2)
 ll2 <- loo(ee2)
 
+load("./data/GL_GL_LMA_CV_obs_cv.rda")
 load("./data/GL_GL_LMA_CV_obs_cv.rda")
 
 ee <- extract_log_lik_K(ss, holdout_10)

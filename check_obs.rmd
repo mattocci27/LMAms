@@ -1,0 +1,143 @@
+---
+title: Diagnostics for observed data 
+author: Masatoshi Katabuchi
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+#rmdformats::material
+  html_document:
+    fig_caption: yes
+    theme: spacelab #readable #sandstone #spacelab #flatly
+    highlight: pygments #tango #kate
+    toc: TRUE
+    toc_depth: 2
+    number_sections: TRUE
+    toc_float:
+      collapsed: TRUE
+      smooth_scroll: TRUE
+      toc: true
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE,
+                      warning=FALSE,
+                      cache=FALSE,
+                      message=FALSE)
+```
+
+```{r}
+
+library(tidyverse)
+library(rstan)
+library(scales)
+library(memisc)
+library(bayesplot)
+
+settings <- yaml::yaml.load_file("settings.yml")
+```
+
+```{r}
+obs_files <- list.files("rda") %>%
+  str_subset("obs.rda")
+
+obs_files <- list.files("rda") %>%
+  str_subset("obs")
+```
+
+# Models
+
+```{r}
+tmp <- obs_files %>%
+  str_split_fixed("_obs", 2)
+
+models <-str_split_fixed(tmp[,1], "_more", 2)[,1]
+
+#models_obs <- models[!str_detect(models, "_CV")]
+
+#for (i in 1:length(models)) {
+#  print(models[i])
+#  writeLines(readLines(str_c("model/", models[i], ".stan")))
+#}
+```
+
+## `r models[1]`
+```{r}
+writeLines(readLines(str_c("model/", models[1], ".stan")))
+```
+
+## `r models[2]`
+```{r}
+writeLines(readLines(str_c("model/", models[2], ".stan")))
+```
+
+## `r models[3]`
+```{r}
+writeLines(readLines(str_c("model/", models[3], ".stan")))
+```
+
+## `r models[4]`
+```{r}
+writeLines(readLines(str_c("model/", models[4], ".stan")))
+```
+
+## `r models[5]`
+```{r}
+writeLines(readLines(str_c("model/", models[5], ".stan")))
+```
+
+## `r models[6]`
+```{r}
+writeLines(readLines(str_c("model/", models[6], ".stan")))
+```
+
+## `r models[7]`
+```{r}
+writeLines(readLines(str_c("model/", models[7], ".stan")))
+```
+
+## `r models[8]`
+```{r}
+writeLines(readLines(str_c("model/", models[8], ".stan")))
+```
+
+## `r models[9]`
+```{r}
+writeLines(readLines(str_c("model/", models[9], ".stan")))
+```
+
+## `r models[10]`
+```{r}
+writeLines(readLines(str_c("model/", models[10], ".stan")))
+```
+
+# Diagnostics
+
+
+## obs
+
+```{r, eval=TRUE}
+
+color_scheme_set("mix-brightblue-gray")
+
+check_trace <- function(x) {
+  load(str_c("rda/", obs_files[x]))
+  if (!str_detect(obs_files[x], "CV")) {
+  np_cp <- nuts_params(res)
+  mcmc_trace(res, pars = c("Z[2,3]", "lp__"), np = np_cp) +
+    ggtitle(obs_files[x])
+  } else {
+    for (i in 1:10) {
+      np_cp <- nuts_params(ss[[i]])
+      p <- mcmc_trace(ss[[i]], pars = c("Z[2,3]", "lp__"), np = np_cp) +
+      ggtitle(str_c(obs_files[x],"-fold ", i))
+      print(p)
+    }
+  }
+}
+
+p <- 1:length(obs_files)  %>%
+  map(check_trace)
+
+p %>%
+  walk(print)
+
+```

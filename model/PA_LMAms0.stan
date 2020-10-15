@@ -22,7 +22,6 @@ parameters{
   real am;
   vector[7] z;
   real<upper=am> as;
-  real<lower=0> tau;
   vector<lower=0, upper=1>[N] p;
   vector<lower=0>[3] L_sigma;
   cholesky_factor_corr[3] L_Omega;
@@ -54,8 +53,7 @@ model{
   am ~ normal(0, 10);
   as ~ normal(0, 10);
   z ~ normal(0, 10);
-  tau ~ cauchy(0, 2.5);
-  p ~ beta(2, 2);
+  p ~ beta(1, 1);
   L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
   L_sigma ~ cauchy(0, 5);
   // model

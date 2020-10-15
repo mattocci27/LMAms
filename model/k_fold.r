@@ -183,7 +183,7 @@ ss <- stan_kfold(file = n_model2,
                  cores = 4,
                  control = list(adapt_delta = 0.99, max_treedepth = 20))
 
-save_name <- paste("./data/", n_model, "_obs_cv.rda", sep = "")
+save_name <- paste("./rda/", n_model, "_obs_cv.rda", sep = "")
 save.image(save_name)
 
 #ss <- stan(file = "model/GL_LMA_CV.stan",

@@ -1,0 +1,65 @@
+# Note S1 Models
+
+Here, we describe five alternative models of (1) LMA, (2) LMAm and LMAs, (3) LMA and light, (4) LMAm, LMAs and light, and (5) LMAm, LMAs, LT and light.
+First model simply uses LMA as predictors of the three leaf economic specturm traits,
+
+## LMA model
+
+$$
+\begin{array}{c}
+\mathrm{(Model \; 1)}\; \; \; \;  A_{\mathrm{area} \; i}
+= \alpha_0 \mathrm{LMA}_{i}^{\alpha_1} \epsilon_{1i}\\
+\mathrm{(Model \; 1)}\; \; \; \; LL_i = \beta_0 \mathrm{LMA}_{i}^{\beta_1} \epsilon_{2i}\\
+\mathrm{(Model \; 1)}\; \; \; \;R_{\mathrm{area} \; i}
+= \gamma_0 \mathrm{LMA}_{i}^{\gamma_3} \epsilon_{3i}\\
+\end{array}
+$$
+
+## LMAm and LMAs
+
+$$
+\begin{array}{c}
+\mathrm{(Model \; 2)}\; \; \; \;  A_{\mathrm{area} \; i}
+= \alpha_0\mathrm{LMAm}_{i}^{\alpha_m} \mathrm{LMAs}_{i}^{\alpha_s}\epsilon_{1i}\\
+\mathrm{(Model \; 2)}\; \; \; \; LL_i = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s}\epsilon_{2i}\\
+\mathrm{(Model \; 2)}\; \; \; \;  R_{\mathrm{area} \; i}
+= \gamma_0\mathrm{LMAm}_{i}^{\gamma_m} \mathrm{LMAs}_{i}^{\gamma_s}\epsilon_{3i}\\
+\end{array}
+$$
+
+## LMA and light
+
+$$
+\begin{array}{c}
+\mathrm{(Model \; 3)}\; \; \; \;  A_{\mathrm{area} \; i}
+= \alpha_0\mathrm{LMA}_{i}^{\alpha_1} exp(\theta L_i)\epsilon_{1i}\\
+\mathrm{(Model \; 3)}\; \; \; \; LL_i = \beta_0\mathrm{LMA}_{i}^{\beta_1} exp(\theta L_i)\epsilon_{2i}\\
+\mathrm{(Model \; 3)}\; \; \; \;R_{\mathrm{area} \; i}
+= \gamma_0\mathrm{LMA}_{i}^{\gamma_3} exp(\theta L_i)\epsilon_{3i}\\
+\end{array}
+$$
+
+## LMAm, LMAs and light
+
+$$
+\begin{array}{c}
+\mathrm{(Model \; 4)}\; \; \; \;  A_{\mathrm{area} \; i}
+= \alpha_0\mathrm{LMAm}_{i}^{\alpha_m} \mathrm{LMAs}_{i}^{\alpha_s} exp(\theta L_i)\epsilon_{1i}\\
+\mathrm{(Model \; 4)}\; \; \; \; LL_i = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s}exp(\theta L_i)\epsilon_{2i}\\
+\mathrm{(Model \; 4)}\; \; \; \;  R_{\mathrm{area} \; i}
+= \gamma_0\mathrm{LMAm}_{i}^{\gamma_m} \mathrm{LMAs}_{i}^{\gamma_s}exp(\theta L_i)\epsilon_{3i}\\
+\end{array}
+$$
+
+## LMAm, LMAs, LT and light
+
+$$
+\begin{array}{c}
+\mathrm{(Model \; 5)}\; \; \; \;  A_{\mathrm{area} \; i}
+= \alpha_0\mathrm{LMAm}_{i}^{\alpha_m} \mathrm{LMAs}_{i}^{\alpha_s} exp(\theta L_i)\epsilon_{1i}\\
+\mathrm{(Model \; 5)}\; \; \; \; LL_i = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{(LMAs_i/LT_i)}^{\beta_s}exp(\theta L_i)\epsilon_{2i}\\
+\mathrm{(Model \; 5)}\; \; \; \;  R_{\mathrm{area} \; i}
+= \gamma_0\mathrm{LMAm}_{i}^{\gamma_m} \mathrm{LMAs}_{i}^{\gamma_s}exp(\theta L_i)\epsilon_{3i}\\
+\end{array}
+$$
+
