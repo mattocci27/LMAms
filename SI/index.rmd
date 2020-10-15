@@ -3,7 +3,7 @@ title: "SI"
 date: "`r Sys.Date()`"
 fontsize: 12
 geometry: margin=1in
-bibliography: ../ms/MyLibrary.bib
+bibliography: ../ms/LMA.bib
 csl: ../ms/ecology.csl
 documentclass: book
 link-citations: true
