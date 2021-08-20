@@ -40,6 +40,7 @@ knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
 ```
 
 ```{r}
+library(tidyverse)
 library(methods)
 library(knitr)
 library(kableExtra)
@@ -55,21 +56,19 @@ var_val <- yaml::yaml.load_file("../var_val.yml")
 
 **Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species**
 
-Masatoshi Katabuchi^1,2,3,7^, Kaoru Kitajima^3,4,5^, S. Joseph Wright^5^, Sunshine A. Van Bael^5,6^, Jeanne L. D. Osnas^3^ and Jeremy W. Lichstein^3^
+Masatoshi Katabuchi^1,2,6^, Kaoru Kitajima^2,3,4^, S. Joseph Wright^4^, Sunshine A. Van Bael^4,5^, Jeanne L. D. Osnas^2^ and Jeremy W. Lichstein^2^
 
 ^1^ Xishuangbanna Tropical Botanical Garden, Chinese Academy of Sciences, Menglun, Yunnan 666303 China
 
-^2^ Center of Plant Ecology, Core Botanical Gardens, Chinese Academy of Sciences, Menglun, Yunnan 666303 China
+^2^ Department of Biology, University of Florida, Gainesville, FL 32611, USA
 
-^3^ Department of Biology, University of Florida, Gainesville, FL 32611, USA
+^3^ Graduate School of Agriculture, Kyoto University, Kitashirakawa Oiwake-Cho, Kyoto 606-8502 Japan
 
-^4^ Graduate School of Agriculture, Kyoto University, Kitashirakawa Oiwake-Cho, Kyoto 606-8502 Japan
+^4^ Smithsonian Tropical Research Institute, 9100 Panama City Pl., Washington, DC 20521
 
-^5^ Smithsonian Tropical Research Institute, 9100 Panama City Pl., Washington, DC 20521
+^5^ Department of Ecology and Evolutionary Biology, Tulane University, New Orleans, LA 70118 USA
 
-^6^ Department of Ecology and Evolutionary Biology, Tulane University, New Orleans, LA 70118 USA
-
-^7^ **Corresponding Author**: E-mail: mattocci27@gmail.com
+^6^ **Corresponding Author**: E-mail: mattocci27@gmail.com
 
 `r page_break("Abstract")`
 
@@ -124,7 +123,7 @@ For sample *i* (e.g., sun or shade leaves of a given species; see Datasets below
 The latent variables *f~i~* are not directly observed, but they can be constrained by available data using Bayesian methods [@Bishop2006; @Gelman2006].
 For example, we would expect high values of *f~i~* (high LMAm~*i*~) for leaves with high *A*~area~, and low values of *f~i~* (high LMAs~*i*~) for leaves with high LL.
 Given the large number of free parameters (i.e., one latent variable per leaf sample), it is possible for the model to over-fit the data, which could lead to spurious inferences.
-Therefore, we performed tests with randomized data (see below) to evaluate model performance (Supplement SX). 
+Therefore, we performed tests with randomized data (see below) to evaluate model performance (Supplement SX).
 Tests with randomized data suggest that our modeling approach reflect meaningful patterns in the observed trait data.
 
 ## Modeling leaf lifespan, photosynthetic capacity, and dark respiration rate
@@ -154,7 +153,7 @@ In our model, net photosynthetic capacity (*A*~area~) is determined by LMAm, LL 
 = \alpha_0\mathrm{LMAm}_{i}^{\alpha_m}\mathrm{LMAs}_i^{\alpha_s}  =  \alpha_0 (f_i \mathrm{LMA}_{i})^{\alpha_m} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\alpha_s} (\#eq:E-A) \\
 & \mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s}   = \beta_0 (f_i \mathrm{LMA}_{i})^{\beta_m} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\beta_s} (\#eq:E-LL) \\
 & \mathrm{E}[R_{\mathrm{area} \, i}]
-= \gamma_0\mathrm{LMAm}_{i}^{\gamma_m}ı \mathrm{LMAs}_{i}^{\gamma_s}
+= \gamma_0\mathrm{LMAm}_{i}^{\gamma_m} \mathrm{LMAs}_{i}^{\gamma_s}
 = \gamma_0 (f_i \mathrm{LMA}_{i})^{\gamma_m} \bigl\{(1-f_i)\mathrm{LMA}_{i}\bigr\}^{\gamma_s} (\#eq:E-R)
 \end{align}
 
@@ -284,7 +283,7 @@ pattern is weaker than the rest of two because of the balance among $\alpha_m$, 
 
 **4. Evergreen leaves have both greater LMAm and LMAs than deciduous leaves, and sun leaves have both greater LMAm and LMAs than shade leaves.**
 In the GLOPNET dataset, although evergreen leaves had higher both LMAm and LMAs than deciduous leaves, differences in LMAs between the two groups were more apparent (Fig. \@ref(fig:boxplt)).
-Thus, the higher total LMA in evergreen leaves in GLOPNET was primarily due to differences in LMAs. 
+Thus, the higher total LMA in evergreen leaves in GLOPNET was primarily due to differences in LMAs.
 Evergreen leaves have higher fraction of LMAs compared to deciduous leaves in the Panama dataset but that pattern was weak in the GLOPNET (Fig. SX).
 In the Panama dataset, sun leaves have both greater LMAm and LMAs than shade leaves, but the differences in LMAm were more apparent (Fig. \@ref(fig:boxplt)).
 Thus, variation in LMAm plays a more important role within species than among species.
@@ -312,7 +311,7 @@ The scaling slope $\alpha_m$ less than 1 (Table \@ref(tab:paratab)) suggests a d
 
 1. High LMAm might cause lower mesophyll conductance
 1. High LMAm (thick leaves) might cause chloroplast self-shading within a leaf
-1. LMAm = (purely) metabolic active leaf mass + something we couldn't estimate in our analysis. All the leaf mass needs to be allocated to LMAm or LMAs in our model. However, variation in non-structural carbohydrates in leaves, which is not estimated in our model, is relatively large [@Martinez-Vilalta2016]. Simply partitioning leaf mass into two functions might underestimate how much *A*~max~ depending on the metabolic leaf mass .     
+1. LMAm = (purely) metabolic active leaf mass + something we couldn't estimate in our analysis. All the leaf mass needs to be allocated to LMAm or LMAs in our model. However, variation in non-structural carbohydrates in leaves, which is not estimated in our model, is relatively large [@Martinez-Vilalta2016]. Simply partitioning leaf mass into two functions might underestimate how much *A*~max~ depending on the metabolic leaf mass .
 
 Decomposing LMA also provides insights as to why intraspecific patterns of trait variation differ from those observed across species.
 In contrast to interspecific LMA variation, our analysis suggests that LMAm contributes half or more of the intraspecific increase in LMA from shade to sun (Figs. \@ref(fig:massplt) and SX).
