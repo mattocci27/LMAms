@@ -78,3 +78,9 @@ rda/
 # For now
 #*.png
 Makefile
+
+*.log
+*.fdb*
+*.gz
+*.fls
+*.fdb_latexmk

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.8.20)  20 AUG 2021 18:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.8.20)  23 AUG 2021 17:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -861,1182 +861,161 @@ Underfull \hbox (badness 1152) in paragraph at lines 748--750
 []   [][]|   []
  []
 
-[23] [24] [25]
-! Misplaced \noalign.
-\caption ->\noalign 
-                    \bgroup \@ifnextchar [{\egroup \LT@c@ption \@firstofone ...
-l.813 \DIFaddend \caption
-                         {\label{tab:modeltab} Five model forms compared to ...
+[23] [24] [25] [26]
+Underfull \hbox (badness 1062) in paragraph at lines 852--852
+[]\T1/ptm/m/n/12 Table 2: [][]|   []   |   []   |   []   |   []   |   []   |   
+[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 852--852
+|   []   |   []   |   []   |   []
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 2 on input line 871.
+
+[27]
+Underfull \hbox (badness 1237) in paragraph at lines 882--882
+[]\T1/ptm/m/n/12 Table 3: [][]|   []   |   []   [][[]|   []   |   []   |   [][]
+] []|   []
+ []
+
+
+Underfull \hbox (badness 2027) in paragraph at lines 882--882
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
+  |   []
+ []
+
+[28]
+<LMAms_main_files/figure-latex/Hplt-1.pdf, id=361, 433.62pt x 433.62pt>
+File: LMAms_main_files/figure-latex/Hplt-1.pdf Graphic file (type pdf)
+<use LMAms_main_files/figure-latex/Hplt-1.pdf>
+Package pdftex.def Info: LMAms_main_files/figure-latex/Hplt-1.pdf  used on inpu
+t line 920.
+(pdftex.def)             Requested size: 433.63878pt x 433.63878pt.
+ [29] [30pdfTeX warning (ext4): destination with the same identifier (name{figu
+re.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.924 \newpage
+               <./LMAms_main_files/figure-latex/Hplt-1.pdf>]
+<LMAms_main_files/figure-latex/GLplt-1.pdf, id=378, 433.62pt x 433.62pt>
+File: LMAms_main_files/figure-latex/GLplt-1.pdf Graphic file (type pdf)
+<use LMAms_main_files/figure-latex/GLplt-1.pdf>
+Package pdftex.def Info: LMAms_main_files/figure-latex/GLplt-1.pdf  used on inp
+ut line 931.
+(pdftex.def)             Requested size: 433.63878pt x 433.63878pt.
+ [31] [32pdfTeX warning (ext4): destination with the same identifier (name{figu
+re.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.935 \newpage
+               <./LMAms_main_files/figure-latex/GLplt-1.pdf>]
+<LMAms_main_files/figure-latex/PAplt-1.pdf, id=395, 433.62pt x 433.62pt>
+File: LMAms_main_files/figure-latex/PAplt-1.pdf Graphic file (type pdf)
+<use LMAms_main_files/figure-latex/PAplt-1.pdf>
+Package pdftex.def Info: LMAms_main_files/figure-latex/PAplt-1.pdf  used on inp
+ut line 942.
+(pdftex.def)             Requested size: 433.63878pt x 433.63878pt.
+ [33pdfTeX warning (ext4): destination with the same identifier (name{figure.3}
+) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.946 \newpage
+               <./LMAms_main_files/figure-latex/PAplt-1.pdf>]
+<LMAms_main_files/figure-latex/LLplt-1.pdf, id=407, 433.62pt x 433.62pt>
+File: LMAms_main_files/figure-latex/LLplt-1.pdf Graphic file (type pdf)
+<use LMAms_main_files/figure-latex/LLplt-1.pdf>
+Package pdftex.def Info: LMAms_main_files/figure-latex/LLplt-1.pdf  used on inp
+ut line 953.
+(pdftex.def)             Requested size: 433.63878pt x 433.63878pt.
+ [34pdfTeX warning (ext4): destination with the same identifier (name{figure.4}
+) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.957 \newpage
+               <./LMAms_main_files/figure-latex/LLplt-1.pdf>]
+<LMAms_main_files/figure-latex/massplt-1.pdf, id=419, 433.62pt x 216.81pt>
+File: LMAms_main_files/figure-latex/massplt-1.pdf Graphic file (type pdf)
+<use LMAms_main_files/figure-latex/massplt-1.pdf>
+Package pdftex.def Info: LMAms_main_files/figure-latex/massplt-1.pdf  used on i
+nput line 964.
+(pdftex.def)             Requested size: 433.63878pt x 216.81938pt.
+ [35pdfTeX warning (ext4): destination with the same identifier (name{figure.5}
+) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.968 \newpage
+               <./LMAms_main_files/figure-latex/massplt-1.pdf>]
+<LMAms_main_files/figure-latex/boxplt-1.pdf, id=433, 433.62pt x 433.62pt>
+File: LMAms_main_files/figure-latex/boxplt-1.pdf Graphic file (type pdf)
+<use LMAms_main_files/figure-latex/boxplt-1.pdf>
+Package pdftex.def Info: LMAms_main_files/figure-latex/boxplt-1.pdf  used on in
+put line 975.
+(pdftex.def)             Requested size: 433.63878pt x 433.63878pt.
+ [36] [37pdfTeX warning (ext4): destination with the same identifier (name{figu
+re.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.979 \newpage
+               <./LMAms_main_files/figure-latex/boxplt-1.pdf>]
+<LMAms_main_files/figure-latex/PA-NPC-1.pdf, id=450, 433.62pt x 433.62pt>
+File: LMAms_main_files/figure-latex/PA-NPC-1.pdf Graphic file (type pdf)
+<use LMAms_main_files/figure-latex/PA-NPC-1.pdf>
+Package pdftex.def Info: LMAms_main_files/figure-latex/PA-NPC-1.pdf  used on in
+put line 986.
+(pdftex.def)             Requested size: 433.63878pt x 433.63878pt.
 
-? 
-! Misplaced \omit.
-\multispan ->\omit 
-                   \@multispan 
-l.813 ...a}, LL and \emph{R}\textsubscript{area}.}
-                                                  \tabularnewline
-? 
-! Misplaced \noalign.
-\midrule ->\noalign 
-                    {\ifnum 0=`}\fi \@aboverulesep =\aboverulesep \global \@...
-l.828 \DIFaddend \midrule
-                         
-? 
-! Misplaced \omit.
-\multispan ->\omit 
-                   \@multispan 
-l.829 \endfirsthead
-                   
-? 
-! Misplaced \noalign.
-\midrule ->\noalign 
-                    {\ifnum 0=`}\fi \@aboverulesep =\aboverulesep \global \@...
-l.844 \DIFaddend \midrule
-                         
-? 
-! Misplaced \omit.
-\multispan ->\omit 
-                   \@multispan 
-l.845 \endhead
-              
-? 
-! Misplaced \noalign.
-\bottomrule ->\noalign 
-                       {\ifnum 0=`}\fi \@aboverulesep =\aboverulesep \global...
-l.972 \DIFaddend \bottomrule
-                            
-? 
-! Misplaced \omit.
-\multispan ->\omit 
-                   \@multispan 
-l.973 \end
-          {longtable}
-? 
-[26] [27]
-! Misplaced \noalign.
-\midrule ->\noalign 
-                    {\ifnum 0=`}\fi \@aboverulesep =\aboverulesep \global \@...
-l.986 \DIFaddend \midrule
-                         
-? 
-! Missing } inserted.
-<inserted text> 
-                }
-l.987 \endfirsthead
-                   
-? 
-! Missing \endgroup inserted.
-<inserted text> 
-                \endgroup 
-l.987 \endfirsthead
-                   
-? 
-! Missing } inserted.
-<inserted text> 
-                }
-l.987 \endfirsthead
-                   
-? 
-! Missing } inserted.
-<inserted text> 
-                }
-l.987 \endfirsthead
-                   
-? 
-! Missing } inserted.
-<inserted text> 
-                }
-l.987 \endfirsthead
-                   
-? 
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-? 
-! Missing { inserted.
-<inserted text> 
-                {
-l.987 \endfirsthead
-                   
-? 
-! Missing { inserted.
-<inserted text> 
-                {
-l.987 \endfirsthead
-                   
-? 
-! Missing } inserted.
-<inserted text> 
-                }
-l.987 \endfirsthead
-                   
-? 
-! Missing } inserted.
-<inserted text> 
-                }
-l.987 \endfirsthead
-                   
-? 
-! Missing } inserted.
-<inserted text> 
-                }
-l.987 \endfirsthead
-                   
-? 
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-? 
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-? 
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-? 
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-? 
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-? 
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-? 
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-? 
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-? 
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-? 
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-? 
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-? 
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-? 
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-? 
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-? 
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-? 
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-? 
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-? 
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-? 
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-? 
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-? 
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-? 
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-? q
-OK, entering \batchmode...
 
-! Interruption.
-<to be read again> 
-                   }
-l.987 \endfirsthead
-                   
-? 
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-? q
-OK, entering \batchmode...
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
+Package longtable Warning: Table widths have changed. Rerun LaTeX.
 
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
+[38] [39pdfTeX warning (ext4): destination with the same identifier (name{figur
+e.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.991 \end{document}
+                     <./LMAms_main_files/figure-latex/PA-NPC-1.pdf>]
+(./diff.aux)
 
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
+LaTeX Warning: There were undefined references.
 
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
 
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-I'm guessing that you meant to end an alignment here.
-
-! Misplaced \cr.
-<inserted text> \cr 
-                    
-l.987 \endfirsthead
-                   
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.987 \endfirsthead
-                   
-(That makes 100 errors; please try again.) 
+ ) 
 Here is how much of TeX's memory you used:
- 14169 strings out of 480502
- 206269 string characters out of 5898668
- 529093 words of memory out of 5000000
- 31458 multiletter control sequences out of 15000+600000
+ 14281 strings out of 480502
+ 209035 string characters out of 5898668
+ 550221 words of memory out of 5000000
+ 31521 multiletter control sequences out of 15000+600000
  452349 words of font info for 70 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 74i,12n,80p,892b,452s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 74i,12n,80p,1788b,443s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/Users/mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}
+{/Users/mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}{/Users
+/mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/Users/m
+attocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/mat
+tocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}</Users/mattocci/
+Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/latxfont/lasy6.pfb></Use
+rs/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users
+/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></Users/m
+attocci/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></Users/matt
+occi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/mattocc
+i/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/mattocci/L
+ibrary/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/mattocci/Libra
+ry/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/mattocci/Library
+/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></Users/mattocci/Library/Ti
+nyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></Users/mattocci/Library/T
+inyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></Users/mattocci/Library/Tin
+yTeX/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></Users/mattocci/Library/Tiny
+TeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></Users/mattocci/Library/TinyTe
+X/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on diff.pdf (39 pages, 2378193 bytes).
+PDF statistics:
+ 644 PDF objects out of 1000 (max. 8388607)
+ 547 compressed objects within 6 object streams
+ 161 named destinations out of 1000 (max. 500000)
+ 236 words of extra memory for PDF output out of 10000 (max. 10000000)
 
-!  ==> Fatal error occurred, no output PDF file produced!

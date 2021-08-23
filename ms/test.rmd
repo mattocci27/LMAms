@@ -1,59 +1,10 @@
----
-output:
-  bookdown::pdf_book:
-    fig_caption: true
-    keep_tex: yes
-    toc: no
-    number_sections: no
-    includes:
-        in_header: format.sty
-    pandoc_args:
-      - "--filter"
-      - "pandoc-crossref"
-  bookdown::word_document2:
-    fig_width: 6
-    fig_caption: true
-    reference_docx: rmd_style.docx
-    #pandoc_args:
-    #- "--filter"
-    #- "pandoc-crossref"
-    #- "--mathml"
-fontsize: 12pt
-geometry: margin=1in
-link-citations: yes
-csl: je.csl
-bibliography: ref_LES.bib
----
 
-```{r global_options, include=FALSE}
-knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
-```
+# hoge
+
+- hoge
+- hoge
+
 
 ```{r}
-library(methods)
-library(knitr)
-library(kableExtra)
-library(png)
-library(grid)
-library(pander)
-source("rmd_func.r")
-
-```
-
-`r page_break("moge")`
-
-```{r varplt, echo = F, dpi = 300, fig.width = 6, fig.height = 6, fig.cap = "The relationships among mass proportionality (0 < b < 1), variance in LMA components (0.1 < Var(LMAm) / Var(LMAs) < 10), and scaling slope (0.1 < $\\alpha_m$ < 1.0) between LMAm and *A*~area~. Blue colors indicate the photosynthetic rate is primarily mass proportional (b is close to 1) and red colors indicate the photosynthetic rate is primarily area proportional (b is close to 0)."}
-
-img <- readPNG("../figs/simvar.png", native = TRUE, info = TRUE)
-grid.raster(img, interpolate=F)
-```
-
-system.time(render("./ms/test.rmd", "bookdown::word_document2"))
-
-`r page_break()`
-
-```{r boxplt, echo = F, dpi = 300, fig.width = 6, fig.height = 6, fig.cap = "Boxplots comparing leaf mass"}
-
-img <- readPNG("../figs/box_main.png", native = TRUE, info = TRUE)
-grid.raster(img, interpolate=F)
+hist(rnorm(100))
 ```
