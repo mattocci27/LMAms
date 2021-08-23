@@ -89,8 +89,9 @@ In contrast, intraspecific LMA variation is due to changes in LMAm, which explai
 Leaf functional traits play an important role in ecological and physiological tradeoffs [@Wright2004a; @Reich2014; @Onoda2017] and in carbon and nutrient cycling [e.g., @Huntingford2017; @Tcherkez2017].
 Thus, understanding the causes and consequences of leaf trait variation is an important goal in ecology, plant physiology, and biogeochemistry (references).
 Different leaf assemblages exhibit markedly different patterns of trait variation.
-For example, across global species, whole-leaf values of traits related to photosynthesis and metabolism (e.g., the photosynthetic capacity, respiration rate, or nutrient content of an entire leaf) tend to increase with leaf area, but not leaf mass per area (LMA; @Osnas2013). In contrast, within species, these same whole-leaf trait values tend to increase with LMA from shade to full sunlight [@Osnas2013; @Osada2001].
-Functional groups (e.g., deciduous vs. evergreen angiosperms) also differ from each other in terms of how interspecific trait variation depends on leaf mass and area [@Osnas2018].
+For example, across global species, whole-leaf values of traits related to photosynthesis and metabolism (e.g., the photosynthetic capacity, respiration rate, or nutrient content of an entire leaf) tend to increase with leaf area, but not leaf mass per area (LMA; @Osnas2013).
+In contrast, within species, these same whole-leaf trait values tend to increase with LMA from shade to full sunlight [@Osnas2018; @Osada2001].
+Functional groups (e.g., deciduous vs. evergreen angiosperms) also differ from each other in terms of how photosynthetic and metabolic traits variation depend on leaf mass and area [@Osnas2018].
 These divergent patterns suggest the presence of multiple drivers of trait variation.
 
 Strong interspecific correlations among LMA, leaf lifespan (LL), and mass-normalized leaf traits related to photosynthesis and metabolism have been interpreted as evidence for a single dominant axis of leaf functional variation [@Wright2004a].
