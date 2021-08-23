@@ -95,25 +95,30 @@ Functional groups (e.g., deciduous vs. evergreen angiosperms) also differ from e
 These divergent patterns suggest the presence of multiple drivers of trait variation.
 
 Strong interspecific correlations among LMA, leaf lifespan (LL), and mass-normalized leaf traits related to photosynthesis and metabolism have been interpreted as evidence for a single dominant axis of leaf functional variation [@Wright2004a].
-However, several studies suggest that these strong correlations result from mass-normalization of area-dependent traits [@Lloyd2013; @Osnas2013].
-Thus, although mass-normalization and the LES can be justified from economic principles [@Westoby2013], the evidence for a single dominant axis is controversial.
+However, the interpretation of these strong correlations, which result from mass-normalization of area-dependent traits [@Lloyd103; @Osnas2013], is controversial.
+On the one hand, mass-normalization has been justified based on economic principles alone [@Westoby2013], because leaf mass provides a simple index of investment that underlies the leaf economics spectrum (LES), ranging from cheap, low-LMA leaves with a fast rate of return per-unit investment to expensive, high-LMA leaves with a slow rate of return [@Wright2004a].
+On the other hand, because the lifetime return on investment depends on LL [@Westoby2000; @Falster2012], it has been argued that annualized construction costs (or mass/LL) should be used as a normalizer in leaf economics analyses [@Osnas2013].
+In global analyses, normalizing leaf traits by mass/LL yields similarly weak correlations as area-normalization, because leaf area is roughly proportional to mass/LL across global species [@Osnas2013].
+Area-dependence of metabolic traits and the inconsistent correlation strengths obtained from different normalizers [@Lloyd103; @Osnas2013] do not invalidate mass-normalization or the LES [@Westoby2013]
+These considerations should, however, lead us to question the strong correlations cited as evidence for a single dominant axis of leaf functional diversity, which has important implications for how trait variation is represented in global models [@Bonan2002; @Sakscheski].
 
-To understand why the same data can be interpreted as either supporting or opposing the existence of a single dominant axis of leaf trait variation, consider the conceptual model proposed by @Osnas2018, in which LMA is comprised of two additive components: structural leaf mass per area (LMAs) and photosynthetic (hereafter ‘metabolic’) leaf mass per area (LMAm).
-Suppose that these two LMA components are independent axes of functional variation (Fig. \@ref(fig:Hplt)a).
+To understand why the same data can be interpreted as either supporting or opposing the existence of a single dominant axis of leaf trait variation, consider the conceptual model proposed by @Osnas2018, in which LMA is comprised of two additive components:
+photosynthetic LMA (LMAp) -- the mass per area of chloroplasts and other metabolically active leaf components that contribute directly to photosynthesis -- and structural LMA (LMAs) -- the mass per area of structural leaf components that contribute to toughness and durability [@Kitajima2012; @Kitajima2016; @Onoda2017].
+Consider the scenario where these two LMA components are independent axes of functional variation, so that LMAp and LMAs are uncorrelated across species (Fig. \@ref(fig:Hplt)a).
 These two independent axes can be translated into either a two-dimensional trait space (if metabolic traits are area-normalized; Fig. \@ref(fig:Hplt)b) or a one-dimensional trait space (if metabolic traits are mass-normalized; Fig. \@ref(fig:Hplt)c).
-Essentially, mass-normalization can collapse one of the functional dimensions, because leaves that differ substantially in their metabolic investment per-unit area can have similar values of mass-normalized metabolic traits (Fig. \@ref(fig:Hplt)bc).
+While both Fig. \@ref(fig:Hplt)b and Fig. \@ref(fig:Hplt)c are both ‘correct’ representations of the same data, they lead to different perceptions about the dimensionality of leaf functional variation.
+If LMAp, LMAs, and/or other axes are largely independent and have distinct functional consequences, then it would not be possible to accurately represent functional variation with a single axis.
 
 The hypothetical example in Fig. \@ref(fig:Hplt) shows how mass-normalization can, in principle, make a two-dimensional trait space appear one-dimensional, but this example does not resolve the dimensionality of functional variation in real leaf assemblages.
 One way to better understand the dimensionality of leaf trait variation is to compare models with different numbers of dimensions, and to ask if models with multiple dimensions provide improved statistical fits and conceptual insights compared to a single axis.
-For example, the two-dimensional ‘LMAm + LMAs’ model proposed by @Osnas2018 could be compared to a one-dimensional LMA model in terms of their capacities to explain variation in other traits.
-Doing so would require implementing the ‘LMAm + LMAs’ model in a quantitative framework.
-Implementing this model is challenging, because although certain leaf mass components can be neatly classified as ‘metabolic’ or ‘structural’ [@Poorter2009; @Osnas2018], other leaf mass components cannot.
+For example, the two-dimensional ‘LMAp + LMAs’ model proposed by @Osnas2018 could be compared to a one-dimensional LMA model in terms of their capacities to explain variation in other traits.
+However, implementing the ‘LMAp + LMAs’ model is challenging, because although certain leaf mass components can be neatly classified as ‘metabolic’ or ‘structural’ [@Poorter2009; @Osnas2018], other leaf mass components cannot.
 For example, thick cell walls contribute to structural toughness [@Onoda2015], but at least some cell wall mass is required for the biomechanical support that enables photosynthesis.
-One way forward is to use statistical methods to partition LMA into different components, rather than relying on direct measurements of morphological components (e.g., @John2017).
+Thus, partitioning LMA into different functional components requires novel empirical or modeling approaches.
 
-In this paper, we present a statistical modeling framework to partition LMA into metabolic and structural components: LMAm and LMAs.
+In this paper, we present a statistical modeling framework to partition LMA into metabolic and structural components: LMAp and LMAs.
 We develop and test the model using leaf trait data from two tropical forest sites (sun and shade leaves from wet and dry sites in Panama) and the GLOPNET global leaf traits database [@Wright2004a].
-We use the model to address the following questions: (1) How does variation in LMA components related with mass and area proportionality of leaf traits? (2) Do LMAm and LMAs differ between evergreen and deciduous species, and between sun and shade leaves? and (3) How are measurable leaf photosynthetic and structural traits (e.g., concentrations of nitrogen and cellulose) related to LMAm and LMAs?
+We use the model to address the following questions: (1) How does variation in LMA components related with mass and area proportionality of leaf traits? (2) Do LMAp and LMAs differ between evergreen and deciduous species, and between sun and shade leaves? and (3) How are measurable leaf photosynthetic and structural traits (e.g., concentrations of nitrogen and cellulose) related to LMAp and LMAs?
 
 # Material and Methods
 
