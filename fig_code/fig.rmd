@@ -16,6 +16,7 @@ knitr::opts_chunk$set(echo=TRUE,
 
 ```{r, echo = T, message = F}
 rm(list = ls())
+library(tidyverse)
 library(loo)
 library(rstan)
 library(dplyr)
@@ -24,6 +25,7 @@ library(cowplot)
 library(ggrepel)
 library(png)
 library(grid)
+library(patchwork)
 library(lazyeval)
 
 settings <- yaml::yaml.load_file("../settings.yml")
@@ -103,7 +105,6 @@ theme_set(theme_LES() +
                                                             l = -5,
                                                             r = -5)),
                 ))
-
 p1 <- ggplot(GL, aes(LMAp, LMAs)) +
   geom_point(alpha = 0.8) +
   scale_x_log10() +
@@ -225,10 +226,15 @@ p3 <- ggplot(tmp, aes(LMA, y = Aarea / LMA)) +
   xlab(expression(Total~LMA~(g~m^{-2}))) +
   ylab(expression(italic(A)[mass]~(~mu~mol~g^{-1}~s^{-1})))
 
-p4 <- plot_grid(p1, p2, p3, ncol = 3,
-          labels = c("A", "B", "C"),
-          hjust = -0.25,
-          label_size = 9)
+#p4 <- plot_grid(p1, p2, p3, ncol = 3,
+#          labels = c("A", "B", "C"),
+#          hjust = -0.25,
+#          label_size = 9)
+
+p4 <- p1 + p2  + p3 +
+  plot_annotation(tag_levels = "A") &
+  theme(plot.tag = element_text(face = "bold"),
+        legend.background =  element_blank())
 
 my_ggsave("../figs/fig_h3.png", p4,
           height = 4)
@@ -1602,8 +1608,13 @@ var(LMAp2)
 var(LMAs %>% log)
 var(LMAp2 %>% log)
 
+# low varaiance LMAp and LMAs
 LMA <- LMAp + LMAs
+
+# high var LMAp and low var LMAs
 LMA2p <- LMAp2 + LMAs
+
+# low var LMAp and high var LMAs
 LMA2s <- LMAp + LMAs2
 mass_prop <- NULL
 mass_prop2p <- NULL

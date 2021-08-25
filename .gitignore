@@ -82,5 +82,8 @@ Makefile
 *.log
 *.fdb*
 *.gz
-*.fls
-*.fdb_latexmk
+ms/*.fls
+ms/*.fdb_latexmk
+
+ms/LMAms_main.fdb_latexmk
+ms/LMAms_main.fls
