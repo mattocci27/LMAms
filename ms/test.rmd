@@ -1,3 +1,18 @@
+---
+output:
+  bookdown::html_document2:
+    fig_width: 6
+    fig_caption: yes
+    number_sections: no
+    pandoc_args:
+        - "--filter"
+        - "pandoc-crossref"
+        - "--mathml"
+figPrefix: Fig.
+figureTitle: '**Figure**'
+tabPrefix: Table
+tableTitle: '**Table**'
+---
 
 # hoge
 
@@ -5,6 +20,12 @@
 - hoge
 
 
-```{r}
-hist(rnorm(100))
-```
+Consider the scenario where these two LMA components are independent axes of functional variation, so that LMAp and LMAs are uncorrelated across species ([@fig:Hplt]a).
+
+![
+hoge hoge 
+hello
+mohoge
+aaa
+](../figs/fig_h3.png){#fig:Hplt}
+

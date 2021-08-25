@@ -10,9 +10,9 @@ R -e 'system.time(rmarkdown::render("./ms/LMAms_main.rmd", "bookdown::pdf_docume
 
 cd ms
 
-pdflatex LMAms_main_old.tex
+#pdflatex LMAms_main_old.tex
 
-latexdiff LMAms_main_old.tex LMAms_main.tex > diff.tex
+latexdiff --flatten LMAms_main_old.tex LMAms_main.tex > diff.tex
 
 #
 pdflatex -halt-on-error diff.tex
