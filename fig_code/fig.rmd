@@ -37,7 +37,7 @@ source("../fig_theme.r")
 
 # Load GL model result
 
-```{r GLdat, cache=FALSE, comment=NA}
+```{r GLdat, cache=TRUE, comment=NA}
 
 load("../rda/GL_LMAms_more_obs.rda")
 GLres <- res
@@ -89,7 +89,7 @@ write_csv(GL, "../data/GL_res.csv")
 
 This figure uses esimated LMAm and LMAs values from GL data.
 
-```{r GL-hypo, cache=FALSE, comment=NA}
+```{r GL-hypo, cache=TRUE, comment=NA}
 
 theme_set(theme_LES() +
           theme(axis.text.x = element_text(size = 6),
@@ -143,7 +143,7 @@ cor.test(log(GL$LMAp), log(GL$LMAs))
 
 This figure is based on a hypothetical data.  var(LMAs) >> var(LMAm) and Aarea is proportional to LMAm. Note that var(LMAm) needs to be very small to produce the above pattern.
 
-```{r h1, cache=FALSE, comment=NA}
+```{r h1, cache=TRUE, comment=NA}
 
 set.seed(123)
 N <- 200
@@ -192,7 +192,7 @@ my_ggsave("../figs/fig_h2.png", p4,
 This figure is based on a hypothetical data.  var(LMAm) > var(LMAs), alpha_m > 0 and alpha_s < 0. This parameter setting mimics GLOPNET values. All the values were generated from the following parameter setting. No covariance between LMAm and LMAs
 
 
-```{r h2, cache=FALSE, comment=NA}
+```{r h2, cache=TRUE, comment=NA}
 
 set.seed(1)
 N <- 200
@@ -205,39 +205,53 @@ tmp <- tibble(LMA, LMAp, LMAs, Aarea)
 cor.test(log(Aarea), log(LMA))
 cor.test(log(Aarea/LMA), log(LMA))
 
-p1 <- ggplot(tmp, aes(LMAp, LMAs)) +
-  geom_point(alpha = 0.8) +
+p1 <- ggplot(tmp, aes(LMAp, LMAs, color = LMA)) +
+  geom_point(alpha = 0.9) +
   scale_x_log10() +
   scale_y_log10() +
+  scale_color_viridis_c(trans = "log10",
+                        breaks = c(50, 100, 200 ,500)
+                        ) +
+  #scale_color_gradient2(midpoint = median(LMA),
+  #                     low = "#e66101",
+  #                     high = "#5e3c99") +
   xlab(expression(LMAm~(g~m^{-2}))) +
-  ylab(expression(LMAs~(g~m^{-2})))
+  ylab(expression(LMAs~(g~m^{-2}))) +
+  theme(legend.position = "none")
 
-p2 <- ggplot(tmp, aes(LMA, Aarea)) +
-  geom_point(alpha = 0.8) +
+p2 <- ggplot(tmp, aes(LMA, Aarea, color = LMA)) +
+  geom_point(alpha = 0.9) +
   scale_x_log10() +
   scale_y_log10() +
+  scale_color_viridis_c(trans = "log10") +
   xlab(expression(Total~LMA~(g~m^{-2}))) +
-  ylab(expression(italic(A)[area]~(~mu~mol~m^{-2}~s^{-1})))
+  ylab(expression(italic(A)[area]~(~mu~mol~m^{-2}~s^{-1}))) +
+  theme(legend.position = "none")
 
-p3 <- ggplot(tmp, aes(LMA, y = Aarea / LMA)) +
-  geom_point(alpha = 0.8) +
+p3 <- ggplot(tmp, aes(LMA, y = Aarea / LMA, color = LMA)) +
+  geom_point(alpha = 0.9) +
   scale_x_log10() +
   scale_y_log10() +
+  scale_color_viridis_c(trans = "log10",
+                        breaks = c(50, 100, 300, 500),
+                        name = "Total LMA"
+                        ) +
   xlab(expression(Total~LMA~(g~m^{-2}))) +
-  ylab(expression(italic(A)[mass]~(~mu~mol~g^{-1}~s^{-1})))
+  ylab(expression(italic(A)[mass]~(~mu~mol~g^{-1}~s^{-1}))) +
+  theme(legend.position = "right",
+        legend.key.size = unit(0.3, "cm"),
+        legend.spacing.y = unit(0.1, "cm"),
+        legend.text = element_text(size = 8),
+        legend.title = element_text(size = 8))
 
-#p4 <- plot_grid(p1, p2, p3, ncol = 3,
-#          labels = c("A", "B", "C"),
-#          hjust = -0.25,
-#          label_size = 9)
 
 p4 <- p1 + p2  + p3 +
-  plot_annotation(tag_levels = "A") &
+  plot_annotation(tag_levels = "a") &
   theme(plot.tag = element_text(face = "bold"),
         legend.background =  element_blank())
 
 my_ggsave("../figs/fig_h3.png", p4,
-          height = 4)
+          height = 5, width = 16)
 
 ```
 
@@ -247,7 +261,7 @@ my_ggsave("../figs/fig_h3.png", p4,
 
 This figure is based on a hypothetical data.  var(LMAm) > var(LMAs), alpha_m > 0 and alpha_s < 0. This parameter setting mimics GLOPNET values. All the values were generated from the following parameter setting. Positive covariance between LMAm and LMAs.
 
-```{r h3, cache=FALSE, comment=NA}
+```{r h3, cache=TRUE, comment=NA}
 set.seed(12)
 N <- 200
 LMAp <- rlnorm(N, log(80), 0.7)
@@ -291,7 +305,7 @@ my_ggsave("../figs/fig_h4.png", p4,
 
 ## GL
 
-```{r GL-scatter, cache=FALSE, comment=NA}
+```{r GL-scatter, cache=TRUE, comment=NA}
 before <- proc.time()
 N <- 4000
 pmat <- extract(res, "p")[[1]]
@@ -344,7 +358,7 @@ GL_cor_tbl <- rbind(
 
 ```
 
-```{r, cache=FALSE, comment=NA, eval = T}
+```{r, cache=TRUE, comment=NA, eval = T}
 N <- 4000
 
 moge_fun <- function(i) {
@@ -396,7 +410,7 @@ system.time(aa2 <- moge_fun3(N))
 ```
 
 
-```{r, cache=FALSE, comment=NA}
+```{r, cache=TRUE, comment=NA}
 
 LMA_m_fun <- function(i) {
     fit_m <- lm(log(LMAs_mat[i,]) ~ log(LMAp_mat[i,]))
@@ -434,7 +448,7 @@ after <- proc.time()
 after - before
 ```
 
-```{r, cache=FALSE, comment=NA}
+```{r, cache=TRUE, comment=NA}
 
 fills <- c("Deciduous" = settings$fills$D,
           "Evergreen" = settings$fills$E,
@@ -646,7 +660,7 @@ my_ggsave("../figs/GL_2.png", fig4)
 
 ## with letters
 
-```{r GL-letters, cache=FALSE, comment=NA}
+```{r GL-letters, cache=TRUE, comment=NA}
 
 
 lim_func2 <- function(data, trait, val, log = TRUE) {
@@ -738,7 +752,7 @@ my_ggsave("../figs/GL_3.png", fig6)
 
 ## NP
 
-```{r GL-NP, cache=FALSE, comment=NA}
+```{r GL-NP, cache=TRUE, comment=NA}
 
 GL_dat <- GL %>% 
   gather(LMA, Val, c(LMA, LMAs, LMAp)) %>%
@@ -789,7 +803,7 @@ my_ggsave("../figs/GL_NP.png", GL_NP_plot)
 
 # Panama
 
-```{r PAdat, cache=FALSE, comment=NA}
+```{r PAdat, cache=TRUE, comment=NA}
 #load("../data/PA_LMAms_L5_more_obs.rda")
 load("../rda/PA_LMAms_L0_more_obs.rda")
 PAres <- res
@@ -823,7 +837,7 @@ write_csv(PA, "../data/PA_res.csv")
 
 # Same but purrr
 
-```{r, cache=FALSE, comment=NA, eval = F, echo = F}
+```{r, cache=TRUE, comment=NA, eval = F, echo = F}
 pmat <- extract(res, "p")[[1]]
 
 LMAp <- pmat * PA$LMA
@@ -866,7 +880,7 @@ GL3 <- GL %>%
 
 ```
 
-```{r PA-part, cache=FALSE, comment=NA}
+```{r PA-part, cache=TRUE, comment=NA}
 pmat <- extract(res, "p")[[1]]
 before <- proc.time()
 N <- 4000
@@ -935,7 +949,7 @@ par(mfrow=c(1,1))
 ```
 
 
-```{r PA-part-plt, cache=FALSE, comment=NA}
+```{r PA-part-plt, cache=TRUE, comment=NA}
 
 LMAp_mat <- apply(pmat, 1, function(x){PA$LMA * x}) %>% t
 LMAs_mat <- apply(LMAp_mat, 1, function(x){PA$LMA - x}) %>% t
@@ -1234,7 +1248,7 @@ PA_figA3
 
 ## with letters
 
-```{r PA-letters, cache=FALSE, comment=NA}
+```{r PA-letters, cache=TRUE, comment=NA}
 
 (lim_PA <- lim_func2(PA_fig_dat, LMA2, val0))
 (lim_PA2 <- lim_func2(PA_fig_dat, Trait2, val2))
@@ -1298,7 +1312,7 @@ my_ggsave("../figs/PA_3.png", fig8)
 
 ## Panama NPCL
 
-```{r, cache=FALSE, comment=NA, eval = TRUE}
+```{r, cache=TRUE, comment=NA, eval = TRUE}
 
 PA_dat <- PA %>% 
   gather(LMA, Val, 
@@ -1360,7 +1374,7 @@ my_ggsave("../figs/PA_NPC.png", PA_NPC_plot)
 
 # LL: Obs vs Pred
 
-```{r LL-pre, cache=FALSE, comment=NA, eval = T}
+```{r LL-pre, cache=TRUE, comment=NA, eval = T}
 
 #LLpred_mat <- extract(res, "mu")[[1]]
 
@@ -1933,7 +1947,7 @@ my_ggsave("../figs/mass_prop3.png", mass_plt2,
 
 ## Larger legend
 
-```{r mass-prop-big, cache=FALSE, comment=NA}
+```{r mass-prop-big, cache=TRUE, comment=NA}
 
 mass_plt3 <- mass_plt2 +
   theme(legend.position = "none")
@@ -2065,7 +2079,7 @@ my_ggsave("../figs/mass_prop4.png", p,
 
 ## example data
 
-```{r mass-prop-ex, cache=FALSE, comment=NA}
+```{r mass-prop-ex, cache=TRUE, comment=NA}
 
 mass_plt_SI <- ggplot(dat_ex %>% filter(am >= 0.1), aes(x = am, y= as, fill = val)) +
   geom_raster() +
@@ -2093,7 +2107,7 @@ my_ggsave("../figs/mass_prop_SI.png", p,
 
 ## Main plot
 
-```{r box, cache=FALSE, comment=NA}
+```{r box, cache=TRUE, comment=NA}
 
 fills <- c("D" = settings$fills$D,
           "E" = settings$fills$E)
@@ -2279,7 +2293,7 @@ grid.raster(img, interpolate=F)
 
 ## All Panama
 
-```{r PA-box, cache=FALSE, comment=NA}
+```{r PA-box, cache=TRUE, comment=NA}
 
 # PA all =================================
 PA_nontrim_dat <- PA_dat %>% 
@@ -2326,7 +2340,7 @@ my_ggsave("../figs/box_SI.png", PA_box2,
 
 ## Box fraction
 
-```{r fraction, cache=FALSE, comment=NA}
+```{r fraction, cache=TRUE, comment=NA}
 
 GLFracDat <- GL %>%
   mutate(LMAm_frac = LMAp / LMA) %>%
@@ -2419,7 +2433,7 @@ my_ggsave("../figs/box_frac.png", FracBox,
 
 ![Fraction](../figs/box_frac.png)
 
-```{r frac2, cache=FALSE, comment=NA}
+```{r frac2, cache=TRUE, comment=NA}
 
 fills2 <- c("Sun\nDry" = settings$fills$sun_dry,
           "Sun\nWet" = settings$fills$sun_wet,
@@ -2518,7 +2532,7 @@ my_ggsave("../figs/box_frac2.png", FracBox2,
 
 ## celluose
 
-```{r box-cell, cache=FALSE, comment=NA}
+```{r box-cell, cache=TRUE, comment=NA}
 
 lab5<- FracDat3 %>%
   group_by(gr, data) %>%
@@ -2567,7 +2581,7 @@ my_ggsave("../figs/box_cell.png", CellBox,
 
 ## paired
 
-```{r Frac-pair, cache=FALSE, comment=NA}
+```{r Frac-pair, cache=TRUE, comment=NA}
 
 p <- PAFracDat3 %>%
   dplyr::select(sp, strata, site2, LMAm_frac) %>%
@@ -2590,7 +2604,7 @@ my_ggsave("../figs/frac_paired.png", p,
 
 ![Fraction3](../figs/frac_paired.png)
 
-```{r mid-pair, cache=FALSE, comment=NA}
+```{r mid-pair, cache=TRUE, comment=NA}
 
 PAFracDat3 %>%
   dplyr::select(sp, strata, site2) %>% as.data.frame %>%
@@ -2626,7 +2640,7 @@ my_ggsave("../figs/LMAm_paired.png", p,
 
 # LMAm vs LMAs 
 
-```{r LMAms, cache=FALSE, comment=NA}
+```{r LMAms, cache=TRUE, comment=NA}
 
 GL <- GL %>%
   mutate(LMAp = LMA * p_vec) %>%
