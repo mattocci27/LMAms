@@ -1,0 +1,16 @@
+﻿Model,Name,Expected trait values
+1,LMA,"$\mathrm{E}[A_{\mathrm{area} , i}] = \alpha_0\mathrm{LMA}_{i}^{\alpha}$"
+,,$\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMA}{i}^{\beta}$
+,,"$\mathrm{E}[R_{\mathrm{area} , i}] = \gamma_0\mathrm{LMA}_{i}^{\gamma}$"
+2,LMA + light,"$\mathrm{E}[A_{\mathrm{area} , i}] = \alpha_0\mathrm{LMA}_{i}^{\alpha}$"
+,,$\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMA}{i}^{\beta}exp(\theta Light_i)$
+,,"$\mathrm{E}[R_{\mathrm{area} , i}] = \gamma_0\mathrm{LMA}_{i}^{\gamma}$"""
+3,LMAp + LMAs,"$\mathrm{E}[A_{\mathrm{area} , i}] = \alpha_0\mathrm{LMAp}_{i}^{\alpha_p} \mathrm{LMAs}_{i}^{\alpha_s}$"
+,,$\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAp}_{i}^{\beta_p} \mathrm{LMAs}_{i}^{\beta_s}$
+,,"$\mathrm{E}[R_{\mathrm{area} , i}] = \gamma_0\mathrm{LMAp}_{i}^{\gamma_p} \mathrm{LMAs}_{i}^{\gamma_s}$"
+4,LMAp + LMAs + light,"$\mathrm{E}[A_{\mathrm{area} , i}]= \alpha_0\mathrm{LMAp}_{i}^{\alpha_p} \mathrm{LMAs}_{i}^{\alpha_s}$"
+,,"$\mathrm{E}[R_{\mathrm{area} , i}] = \gamma_0\mathrm{LMAp}_{i}^{\gamma_p} \mathrm{LMAs}_{i}^{\gamma_s}$"
+,,$\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAp}_{i}^{\beta_p} \mathrm{LMAs}_{i}^{\beta_s}exp(\theta Light_i)$
+5,LMAp + LMAs/LT + light,"$\mathrm{E}[A_{\mathrm{area} , i}]= \alpha_0\mathrm{LMAp}_{i}^{\alpha_p} (\mathrm{LMAs}_{i}/\mathrm{LT}_{i})^{\alpha_s}$"
+,,$\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAp}_{i}^{\beta_p} (\mathrm{LMAs}_{i}/\mathrm{LT}{i})^{\beta_s}exp(\theta Light_i)$
+,,"$\mathrm{E}[R_{\mathrm{area} , i}] = \gamma_0\mathrm{LMAp}_{i}^{\gamma_p} \mathrm{LMAs}_{i}^{\gamma_s}$"
