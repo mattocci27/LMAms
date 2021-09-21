@@ -135,6 +135,7 @@ my_ggsave("../figs/fig_h.png", p4,
 
 cor.test(log(GL$LMAp), log(GL$LMAs))
 
+
 ```
 
 ![H1](../figs/fig_h.png)
@@ -194,6 +195,21 @@ This figure is based on a hypothetical data.  var(LMAm) > var(LMAs), alpha_m > 0
 
 ```{r h2, cache=TRUE, comment=NA}
 
+theme_set(theme_LES() +
+          theme(axis.text.x = element_text(size = 8),
+                axis.text.y = element_text(size = 8),
+                axis.title = element_text(size = 8),
+                axis.ticks.length = unit(-0.1, "cm"),
+                axis.title.y = element_text(margin = margin(t = 0,
+                                                            b = 0,
+                                                            l = -5,
+                                                            r = 0)),
+                axis.title.x = element_text(margin = margin(t = 0,
+                                                            b = -5,
+                                                            l = -5,
+                                                            r = -5)),
+                ))
+
 set.seed(1)
 N <- 200
 LMAp <- rlnorm(N, log(80), 0.8)
@@ -215,7 +231,7 @@ p1 <- ggplot(tmp, aes(LMAp, LMAs, color = LMA)) +
   #scale_color_gradient2(midpoint = median(LMA),
   #                     low = "#e66101",
   #                     high = "#5e3c99") +
-  xlab(expression(LMAm~(g~m^{-2}))) +
+  xlab(expression(LMAp~(g~m^{-2}))) +
   ylab(expression(LMAs~(g~m^{-2}))) +
   theme(legend.position = "none")
 
@@ -1679,6 +1695,318 @@ my_ggsave("../figs/mass_prop2.png", mass_plt,
 
 
 ## Based on the results
+
+```{r}
+
+GL <- read_csv("../data/GL_res.csv")
+PA <- read_csv("../data/PA_res.csv")
+
+Sun <- PA %>%
+  filter(strata == "CAN")
+
+Shade <- PA %>%
+  filter(strata != "CAN")
+
+GL_para <- read_csv("../data/GLpara.csv")
+PA_para <- read_csv("../data/PApara.csv")
+
+as1 <- GL_para %>%
+  dplyr::filter(para == "amas[1]") %>%
+  dplyr::select(X50., X2.5., X97.5.)
+
+am1 <- GL_para %>%
+  dplyr::filter(para == "amas[2]") %>%
+  dplyr::select(X50., X2.5., X97.5.)
+
+as2 <- PA_para %>%
+  dplyr::filter(para == "as") %>%
+  dplyr::select(X50., X2.5., X97.5.)
+
+am2 <- PA_para %>%
+  dplyr::filter(para == "am") %>%
+  dplyr::select(X50., X2.5., X97.5.)
+
+point_dat <- bind_rows(am1, am2, am2)
+point_dat2 <- bind_rows(as1, as2, as2)
+
+point_dat3 <- bind_cols(point_dat, point_dat2)
+names(point_dat3) <- c("am_mid", "am_low", "am_upper",
+                      "as_mid", "as_low", "as_upper"
+                     )
+
+point_dat4 <- point_dat3 %>%
+  mutate(type = c("GLOPNET", "Panama Sun", "Panama Shade"))
+
+GLb <- lm(log(Aarea) ~ log(LMA), GL)$coefficients[2]
+Sunb <- lm(log(Aarea) ~ log(LMA), Sun)$coefficients[2]
+Shadeb <- lm(log(Aarea) ~ log(LMA), Shade)$coefficients[2]
+
+b_vec <- c(GLb, Sunb, Shadeb) %>% round(2)
+
+GL_para |> 
+  filter(str_detect(para, "^Sigma"))
+
+point_dat5 <- point_dat4 %>%
+  mutate(b = paste("italic('b')==", b_vec))
+
+my_rlnorm <- function(n, mu, sigma)rlnorm(n, mu - 0.5 * sigma^2, sigma)
+
+GL_sim <- \(LMAs) {
+  A <- exp(log(2) +  
+           GL_para$`X50.`[2] * log(LMAp) +
+           #0.4 * log(LMAp) +
+           GL_para$`X50.`[1] * log(LMAs)
+  )
+#  A <- rlnorm(N, log(2) +  
+#           GL_para$`X50.`[2] * log(LMAp) +
+#           GL_para$`X50.`[1] * log(LMAs), 0.13)
+  fit <- lm(log(A) ~ log(LMAp + LMAs))
+  fit$coefficients[2]
+}
+
+PA_sim <- \(LMAs) {
+  A <- exp(log(1) +  
+           PA_para$`X50.`[2] * log(LMAp) +
+           PA_para$`X50.`[1] * log(LMAs)
+  )
+  fit <- lm(log(A) ~ log(LMAp + LMAs))
+  fit$coefficients[2]
+}
+
+
+var_fun <- \(LMAs) {
+  LMA <- LMAp + LMAs
+  cov(LMA, LMAs) / var(LMA) * 100
+}
+
+#cov(log(GL$LMAp), log(GL$LMAs))
+#cor(log(GL$LMAp), log(GL$LMAs))
+#cor(log(GL$LMAp), log(GL$LMAs)) * sd(log(GL$LMAs)) * sd(log(GL$LMAp))
+#
+#
+#N <- 100
+#tmp <- seq(log(1.01), log(10), length = 10)
+#LMAs_var_mat <- NULL
+#b_mat <- NULL
+#for (i in 1:100) {
+#  b_val <- NULL
+#  LMAs_var <- NULL
+#  for (j in 1:10) {
+#    S <- matrix(c(0.8^2, 0.18 * 0.8 * tmp[j],
+#     0.18 * 0.8 * tmp[j], tmp[j]^2), ncol = 2)
+#    LMA_mat <- mvtnorm::rmvnorm(100, c(log(80), log(80)), S)
+#    LMAp <- exp(LMA_mat[,1])
+#    LMAs <- exp(LMA_mat[,2])
+#    LMA <- LMAp + LMAs
+#    LMAs_var <- c(LMAs_var, cov(LMA, LMAs) / var(LMA)) 
+#    b_val <- c(b_val, GL_sim(LMAs))
+#  }
+#  LMAs_var_mat <- cbind(LMAs_var_mat, LMAs_var)
+#  b_mat <- cbind(b_mat, b_val)
+#}
+#
+#
+#LMAs_var_mean <- apply(LMAs_var_mat, 1, mean)
+#mean_ <- apply(b_mat, 1, mean)
+#upr_ <- apply(b_mat, 1, \(x)(quantile(x, 0.975)))
+#lwr_ <- apply(b_mat, 1, \(x)(quantile(x, 0.025)))
+#
+#b_dat <- tibble(mean_, upr_, lwr_, LMAs_var_mean = LMAs_var_mean * 100)
+#
+##plot(c(LMAs_var_mat), c(b_mat))
+#
+##mass_plt_simple <- ggplot(b_dat2, aes(x = exp(var_)^2)) +
+#ggplot(b_dat) +
+##mass_plt_simple <- ggplot(b_dat2, aes(x = var_)) +
+#  geom_ribbon(aes(ymin = lwr_, ymax = upr_, x = LMAs_var_mean), fill = "grey70")  +
+#  geom_line(aes(y = mean_, x = LMAs_var_mean)) +
+#  geom_point(aes(x = GL_varS, y = GLb)) +
+#  ylab(expression(Mass~proportionality~(italic(b)))) +
+#  xlab("Relative variance of LMAs (%)")
+#  #xlab("Shape parameter of LMAs")
+#
+
+GL_varS <- cov(GL$LMA, GL$LMAs) / var(GL$LMA) * 100
+
+log(GL$LMAp) |> sd()
+
+set.seed(123)
+N <- 100
+b_GL <- NULL
+b_PA <- NULL
+LMAs_var <- NULL
+for (i in 1:1000) {
+  LMAp <- rlnorm(N, log(40), 1)
+  tmp <- seq(log(1.01), log(10), length = 10)
+  LMAs <- map(tmp, \(x) rlnorm(N, log(40), x))
+  LMAs_var <- cbind(LMAs_var, map_dbl(LMAs, var_fun))
+  b_GL <- cbind(b_val, map_dbl(LMAs, GL_sim))
+  b_PA <- cbind(b_val, map_dbl(LMAs, PA_sim))
+}
+
+
+b_dat <- as.data.frame(b_val)
+LMAs_var_mean <- apply(LMAs_var, 1, mean)
+mean_ <- apply(b_dat, 1, mean)
+upr_ <- apply(b_dat, 1, \(x)(quantile(x, 0.975)))
+lwr_ <- apply(b_dat, 1, \(x)(quantile(x, 0.025)))
+
+log_mu <- log(40)
+log_sig <- tmp
+tmp2 <- (exp(log_sig^2) - 1) * exp(2 * log_mu + log_sig^2)
+var_LMAp <- (exp(1^2) - 1) * exp(2 * log_mu + 1^2)
+
+b_dat2 <- tibble(mean_, upr_, lwr_, var_ = tmp, var2 = tmp2, LMAs_var_mean)
+
+#mass_plt_simple <- ggplot(b_dat2, aes(x = exp(var_)^2)) +
+mass_plt_simple <- ggplot(b_dat2) +
+#mass_plt_simple <- ggplot(b_dat2, aes(x = var_)) +
+  geom_ribbon(aes(ymin = lwr_, ymax = upr_, x = LMAs_var_mean), fill = "grey70")  +
+  geom_line(aes(y = mean_, x = LMAs_var_mean)) +
+  geom_point(aes(x = GL_varS, y = GLb)) +
+  ylab(expression(Mass~proportionality~(italic(b)))) +
+  xlab("Relative variance of LMAs (%)")
+  #xlab("Shape parameter of LMAs")
+mass_plt_simple
+
+my_ggsave("../figs/mass_prop_simple.png", mass_plt_simple,
+          height = 6, width = 6)
+
+
+PA_sim <- \(LMAs) {
+  A <- rlnorm(N, 1 * PA_para$`X50.`[9] * log(LMAp) + 
+              PA_para$`X50.`[10] * log(LMAs), 0)
+  fit <- lm(log(A) ~ log(LMAp + LMAs))
+  fit$coefficients[2]
+}
+
+
+Sun_varS <- cov(Sun$LMA, Sun$LMAs) / var(Sun$LMA) * 100
+Shade_varS <- cov(Shade$LMA, Shade$LMAs) / var(Shade$LMA) * 100
+
+(Sun$LMAp) |> mean() 
+(Shade$LMAp) |> mean() 
+
+(Sun$LMAs) |> mean() 
+(Shade$LMAs) |> mean() 
+
+set.seed(123)
+N <- 100
+b_val <- NULL
+LMAs_var <- NULL
+for (i in 1:1000) {
+  LMAp <- rlnorm(N, log(40), 1)
+  tmp <- seq(log(1.01), log(10), length = 10)
+  LMAs <- map(tmp, \(x) rlnorm(N, log(40), x))
+  LMAs_var <- cbind(LMAs_var, map_dbl(LMAs, var_fun))
+  b_val <- cbind(b_val, map_dbl(LMAs, PA_sim))
+}
+
+b_dat <- as.data.frame(b_val)
+LMAs_var_mean <- apply(LMAs_var, 1, mean)
+mean_ <- apply(b_dat, 1, mean)
+upr_ <- apply(b_dat, 1, \(x)(quantile(x, 0.975)))
+lwr_ <- apply(b_dat, 1, \(x)(quantile(x, 0.025)))
+
+log_mu <- log(40)
+log_sig <- tmp
+tmp2 <- (exp(log_sig^2) - 1) * exp(2 * log_mu + log_sig^2)
+var_LMAp <- (exp(1^2) - 1) * exp(2 * log_mu + 1^2)
+
+b_dat2 <- tibble(mean_, upr_, lwr_, var_ = tmp, var2 = tmp2, LMAs_var_mean)
+
+#mass_plt_simple <- ggplot(b_dat2, aes(x = exp(var_)^2)) +
+mass_plt_simple2 <- ggplot(b_dat2) +
+#mass_plt_simple <- ggplot(b_dat2, aes(x = var_)) +
+  geom_ribbon(aes(ymin = lwr_, ymax = upr_, x = LMAs_var_mean), fill = "grey70")  +
+  geom_line(aes(y = mean_, x = LMAs_var_mean)) +
+  geom_point(aes(x = Sun_varS, y = Sunb)) +
+  geom_point(aes(x = Shade_varS, y = Shadeb)) +
+  ylab(expression(Mass~proportionality~(italic(b)))) +
+  xlab("Relative variance of LMAs (%)")
+  #xlab("Shape parameter of LMAs")
+mass_plt_simple2
+
+
+
+
+
+
+
+
+
+set.seed(123)
+N <- 100
+b_val <- NULL
+tmp1 <- seq(log(1.01), log(2), length = 20)
+tmp2 <- seq(log(2), log(10), length = 20)
+tmp <- c(tmp1, tmp2)
+for (i in 1:1000) {
+  LMAp <- rlnorm(N, log(40), 1)
+#  tmp <- seq(1.01, 10, length = 20) |> log()
+  LMAs <- map(tmp, \(x) rlnorm(N, log(40), x))
+  b_val <- cbind(b_val, map_dbl(LMAs, hoge))
+}
+
+b_dat <- as.data.frame(b_val)
+mean_ <- apply(b_dat, 1, mean)
+upr_ <- apply(b_dat, 1, \(x)(quantile(x, 0.975)))
+lwr_ <- apply(b_dat, 1, \(x)(quantile(x, 0.025)))
+
+log_mu <- log(40)
+log_sig <- tmp
+tmp2 <- (exp(log_sig^2) - 1) * exp(2 * log_mu + log_sig^2)
+
+b_dat2 <- tibble(mean_, upr_, lwr_, var_ = tmp, var2 = tmp2)
+
+mass_plt_simple2 <- ggplot(b_dat2, aes(x = var2)) +
+  geom_vline(xintercept = var_LMAp, lty = 2) +
+  geom_ribbon(aes(ymin = lwr_, ymax = upr_), fill = "grey70")  +
+  geom_line(aes(y = mean_)) +
+#  geom_point(aes(y = mean_)) +
+  scale_x_log10(
+    breaks = trans_breaks("log10", function(x) 10^x),
+    labels = trans_format("log10", math_format(10^.x))
+                ) +
+  ylab(expression(Mass~proportionality~(italic(b)))) +
+  xlab(expression(Variance~of~LMAs))
+  #xlab("Shape parameter of LMAs")
+mass_plt_simple2
+
+my_ggsave("../figs/mass_prop_simple2.png", mass_plt_simple2,
+          height = 6, width = 6)
+
+```
+
+![Mass-proportionality-simple](../figs/mass_prop_simple.png)
+
+![Mass-proportionality-simple2](../figs/mass_prop_simple2.png)
+
+
+
+```{r}
+
+log_sig <- 0.5
+log_mu <- 2
+mean_ <- NULL
+var_ <- NULL
+for (i in 1:1000) {
+  y <- rlnorm(100, log_mu, log_sig)
+  mean_[i] <- mean(y)
+  var_[i] <- var(y)
+}
+
+exp(log_mu + log_sig^2 / 2)
+(exp(log_sig^2) - 1) * exp(2 * log_mu + log_sig^2)
+
+mean(mean_)
+mean(var_)
+
+exp(log_sig^2)
+
+
+```
+
 
 ```{r}
 
