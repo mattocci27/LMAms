@@ -79,7 +79,6 @@ rda/
 #*.png
 Makefile
 
-*.log
 *.fdb*
 *.gz
 ms/*.fls

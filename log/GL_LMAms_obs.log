@@ -1,13 +1,13 @@
-── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
-✔ ggplot2 3.3.0     ✔ purrr   0.3.4
-✔ tibble  3.0.1     ✔ dplyr   0.8.5
-✔ tidyr   1.0.2     ✔ stringr 1.4.0
-✔ readr   1.3.1     ✔ forcats 0.5.0
+── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+✔ tibble  3.1.3     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   2.0.0     ✔ forcats 0.5.1
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 Loading required package: StanHeaders
-rstan (Version 2.19.3, GitRev: 2e1f913d3ca3)
+rstan (Version 2.21.2, GitRev: 2e1f913d3ca3)
 For execution on a local, multicore CPU with excess RAM we recommend calling
 options(mc.cores = parallel::detectCores()).
 To avoid recompilation of unchanged Stan programs, we recommend calling
@@ -19,7 +19,7 @@ The following object is masked from ‘package:tidyr’:
 
     extract
 
-This is loo version 2.2.0
+This is loo version 2.4.1
 - Online documentation and vignettes at mc-stan.org/loo
 - As of v2.0.0 loo defaults to 1 core but we recommend using as many as possible. Use the 'cores' argument or set options(mc.cores = NUM_CORES) for an entire session. 
 
@@ -37,16 +37,15 @@ The following object is masked from ‘package:rstan’:
 [1] "n_thin = 1"
 [1] "n_chains = 4"
 OBS data
-Parsed with column specification:
-cols(
-  sp = col_character(),
-  DE = col_character(),
-  GF = col_character(),
-  LL = col_double(),
-  LMA = col_double(),
-  Aarea = col_double(),
-  Rarea = col_double()
-)
+Rows: 198 Columns: 7
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (3): sp, DE, GF
+dbl (4): LL, LMA, Aarea, Rarea
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+hash mismatch so recompiling; make sure Stan code ends with a blank line
 
 SAMPLING FOR MODEL 'GL_LMAms' NOW (CHAIN 1).
 
@@ -56,105 +55,99 @@ SAMPLING FOR MODEL 'GL_LMAms' NOW (CHAIN 3).
 
 SAMPLING FOR MODEL 'GL_LMAms' NOW (CHAIN 4).
 Chain 1: 
-Chain 1: Gradient evaluation took 0.000338 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 3.38 seconds.
+Chain 1: Gradient evaluation took 0.000365 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 3.65 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
 Chain 2: 
-Chain 2: Gradient evaluation took 0.000328 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 3.28 seconds.
+Chain 2: Gradient evaluation took 0.00034 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 3.4 seconds.
 Chain 2: Adjust your expectations accordingly!
 Chain 2: 
 Chain 2: 
 Chain 1: Iteration:    1 / 4000 [  0%]  (Warmup)
-Chain 2: Iteration:    1 / 4000 [  0%]  (Warmup)
 Chain 3: 
-Chain 3: Gradient evaluation took 0.000331 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 3.31 seconds.
+Chain 3: Gradient evaluation took 0.000334 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 3.34 seconds.
 Chain 3: Adjust your expectations accordingly!
 Chain 3: 
 Chain 3: 
-Chain 3: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 2: Iteration:    1 / 4000 [  0%]  (Warmup)
 Chain 4: 
-Chain 4: Gradient evaluation took 0.000345 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 3.45 seconds.
+Chain 4: Gradient evaluation took 0.000324 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 3.24 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
+Chain 3: Iteration:    1 / 4000 [  0%]  (Warmup)
 Chain 4: Iteration:    1 / 4000 [  0%]  (Warmup)
-Chain 4: Iteration:  400 / 4000 [ 10%]  (Warmup)
-Chain 4: Iteration:  800 / 4000 [ 20%]  (Warmup)
-Chain 1: Iteration:  400 / 4000 [ 10%]  (Warmup)
-Chain 4: Iteration: 1200 / 4000 [ 30%]  (Warmup)
 Chain 2: Iteration:  400 / 4000 [ 10%]  (Warmup)
-Chain 1: Iteration:  800 / 4000 [ 20%]  (Warmup)
-Chain 4: Iteration: 1600 / 4000 [ 40%]  (Warmup)
-Chain 2: Iteration:  800 / 4000 [ 20%]  (Warmup)
-Chain 1: Iteration: 1200 / 4000 [ 30%]  (Warmup)
-Chain 4: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 1: Iteration:  400 / 4000 [ 10%]  (Warmup)
 Chain 3: Iteration:  400 / 4000 [ 10%]  (Warmup)
-Chain 2: Iteration: 1200 / 4000 [ 30%]  (Warmup)
-Chain 1: Iteration: 1600 / 4000 [ 40%]  (Warmup)
-Chain 4: Iteration: 2400 / 4000 [ 60%]  (Warmup)
-Chain 2: Iteration: 1600 / 4000 [ 40%]  (Warmup)
-Chain 1: Iteration: 2000 / 4000 [ 50%]  (Warmup)
-Chain 4: Iteration: 2800 / 4000 [ 70%]  (Warmup)
-Chain 4: Iteration: 3001 / 4000 [ 75%]  (Sampling)
-Chain 2: Iteration: 2000 / 4000 [ 50%]  (Warmup)
-Chain 1: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 4: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 2: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 1: Iteration:  800 / 4000 [ 20%]  (Warmup)
 Chain 3: Iteration:  800 / 4000 [ 20%]  (Warmup)
-Chain 4: Iteration: 3400 / 4000 [ 85%]  (Sampling)
-Chain 2: Iteration: 2400 / 4000 [ 60%]  (Warmup)
-Chain 1: Iteration: 2800 / 4000 [ 70%]  (Warmup)
-Chain 4: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 4: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 2: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 1: Iteration: 1200 / 4000 [ 30%]  (Warmup)
 Chain 3: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 4: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 2: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 1: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 3: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 4: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 2: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 1: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 3: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 1: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 4: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 2: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 3: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 1: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 4: Iteration: 2400 / 4000 [ 60%]  (Warmup)
 Chain 2: Iteration: 2800 / 4000 [ 70%]  (Warmup)
 Chain 1: Iteration: 3001 / 4000 [ 75%]  (Sampling)
-Chain 4: Iteration: 4000 / 4000 [100%]  (Sampling)
-Chain 4: 
-Chain 4:  Elapsed Time: 223.955 seconds (Warm-up)
-Chain 4:                53.8468 seconds (Sampling)
-Chain 4:                277.802 seconds (Total)
-Chain 4: 
-Chain 2: Iteration: 3001 / 4000 [ 75%]  (Sampling)
-Chain 3: Iteration: 1600 / 4000 [ 40%]  (Warmup)
-Chain 3: Iteration: 2000 / 4000 [ 50%]  (Warmup)
-Chain 1: Iteration: 3400 / 4000 [ 85%]  (Sampling)
-Chain 2: Iteration: 3400 / 4000 [ 85%]  (Sampling)
-Chain 3: Iteration: 2400 / 4000 [ 60%]  (Warmup)
-Chain 2: Iteration: 3800 / 4000 [ 95%]  (Sampling)
 Chain 3: Iteration: 2800 / 4000 [ 70%]  (Warmup)
-Chain 1: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 2: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 3: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 4: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 2: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 1: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 3: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 4: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 2: Iteration: 3800 / 4000 [ 95%]  (Sampling)
 Chain 2: Iteration: 4000 / 4000 [100%]  (Sampling)
 Chain 2: 
-Chain 2:  Elapsed Time: 288.947 seconds (Warm-up)
-Chain 2:                86.8757 seconds (Sampling)
-Chain 2:                375.822 seconds (Total)
+Chain 2:  Elapsed Time: 161.214 seconds (Warm-up)
+Chain 2:                29.2565 seconds (Sampling)
+Chain 2:                190.47 seconds (Total)
 Chain 2: 
-Chain 3: Iteration: 3001 / 4000 [ 75%]  (Sampling)
-Chain 1: Iteration: 4000 / 4000 [100%]  (Sampling)
-Chain 1: 
-Chain 1:  Elapsed Time: 275.16 seconds (Warm-up)
-Chain 1:                109.04 seconds (Sampling)
-Chain 1:                384.2 seconds (Total)
-Chain 1: 
-Chain 3: Iteration: 3400 / 4000 [ 85%]  (Sampling)
 Chain 3: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 1: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 4: Iteration: 3400 / 4000 [ 85%]  (Sampling)
 Chain 3: Iteration: 4000 / 4000 [100%]  (Sampling)
 Chain 3: 
-Chain 3:  Elapsed Time: 376.395 seconds (Warm-up)
-Chain 3:                56.1334 seconds (Sampling)
-Chain 3:                432.528 seconds (Total)
+Chain 3:  Elapsed Time: 165.174 seconds (Warm-up)
+Chain 3:                42.2559 seconds (Sampling)
+Chain 3:                207.429 seconds (Total)
 Chain 3: 
-Warning messages:
-1: The largest R-hat is NA, indicating chains have not mixed.
-Running the chains for more iterations may help. See
-http://mc-stan.org/misc/warnings.html#r-hat 
-2: Bulk Effective Samples Size (ESS) is too low, indicating posterior means and medians may be unreliable.
+Chain 1: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 1: 
+Chain 1:  Elapsed Time: 157.137 seconds (Warm-up)
+Chain 1:                56.7103 seconds (Sampling)
+Chain 1:                213.847 seconds (Total)
+Chain 1: 
+Chain 4: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 4: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 4: 
+Chain 4:  Elapsed Time: 184.005 seconds (Warm-up)
+Chain 4:                53.8616 seconds (Sampling)
+Chain 4:                237.867 seconds (Total)
+Chain 4: 
+Warning message:
+Bulk Effective Samples Size (ESS) is too low, indicating posterior means and medians may be unreliable.
 Running the chains for more iterations may help. See
 http://mc-stan.org/misc/warnings.html#bulk-ess 
-3: Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.
-Running the chains for more iterations may help. See
-http://mc-stan.org/misc/warnings.html#tail-ess 
-Saved `./rda/GL_LMAms_more_obs.rda`!!
+Saved `./rda/GL_LMAms_obs.rda`!!
