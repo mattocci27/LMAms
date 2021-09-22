@@ -19,8 +19,13 @@ transformed data{
   obs = append_col(append_col(log_A, log_LL), log_R);
 }
 parameters{
-  ordered[2] amas;
-  vector[7] z;
+  real alpha_0;
+  real alpha_p;
+  real beta_0;
+  real beta_s;
+  real gamma_0;
+  real gamma_p;
+  real gamma_s;
   vector<lower=0, upper=1>[N] p;
   vector<lower=0>[3] L_sigma;
   cholesky_factor_corr[3] L_Omega;
@@ -32,25 +37,30 @@ transformed parameters{
   matrix[N,3] L_Sigma;
   vector[N] log_LMAp;
   vector[N] log_LMAs;
-  Z[1,1] = z[1];
-  Z[1,2] = z[2];
-  Z[1,3] = z[3];
-  Z[2,1] = amas[2];
-  Z[2,2] = z[4];
-  Z[2,3] = z[5];
-  Z[3,1] = amas[1];
-  Z[3,2] = z[6];
-  Z[3,3] = z[7];
+  Z[1,1] = alpha_0;
+  Z[1,2] = beta_0;
+  Z[1,3] = gamma_0;
+  Z[2,1] = alpha_p;
+  Z[2,2] = 0;
+  Z[2,3] = gamma_p;
+  Z[3,1] = 0;
+  Z[3,2] = beta_s;
+  Z[3,3] = gamma_s;
   L_Sigma = rep_matrix(to_row_vector(0.5 * L_sigma .* L_sigma), N);
   log_LMAp = log(LMA) + log(p);
   log_LMAs = log(LMA) + log(1 - p);
   X = append_col(append_col(intercept, log_LMAp), log_LMAs);
   Mu = X * Z - L_Sigma;
 }
-model{
+ odel{
   // priors
-  z ~ normal(0, 10);
-  amas ~ normal(0, 10);
+  alpha_0 ~ normal(0, 10);
+  alpha_p ~ normal(0, 10);
+  beta_0 ~ normal(0, 10);
+  beta_s ~ normal(0, 10);
+  gamma_0 ~ normal(0, 10);
+  gamma_p ~ normal(0, 10);
+  gamma_s ~ normal(0, 10);
   //p ~ normal(0.5, 0.5);
   p ~ beta(1, 1);
   L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
