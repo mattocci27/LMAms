@@ -1740,6 +1740,7 @@ point_dat4 <- point_dat3 %>%
 GLb <- lm(log(Aarea) ~ log(LMA), GL)$coefficients[2]
 Sunb <- lm(log(Aarea) ~ log(LMA), Sun)$coefficients[2]
 Shadeb <- lm(log(Aarea) ~ log(LMA), Shade)$coefficients[2]
+PAb <- lm(log(Aarea) ~ log(LMA), PA)$coefficients[2]
 
 b_vec <- c(GLb, Sunb, Shadeb) %>% round(2)
 
@@ -1751,10 +1752,19 @@ point_dat5 <- point_dat4 %>%
 
 my_rlnorm <- function(n, mu, sigma)rlnorm(n, mu - 0.5 * sigma^2, sigma)
 
+var_fun <- \(LMAs) {
+  LMA <- LMAp + LMAs
+  cov(LMA, LMAs) / var(LMA) * 100
+}
+
+PA_varS <- cov(PA$LMA, PA$LMAs) / var(PA$LMA) * 100
+GL_varS <- cov(GL$LMA, GL$LMAs) / var(GL$LMA) * 100
+Sun_varS <- cov(Sun$LMA, Sun$LMAs) / var(Sun$LMA) * 100
+Shade_varS <- cov(Shade$LMA, Shade$LMAs) / var(Shade$LMA) * 100
+
 GL_sim <- \(LMAs) {
   A <- exp(log(2) +  
            GL_para$`X50.`[2] * log(LMAp) +
-           #0.4 * log(LMAp) +
            GL_para$`X50.`[1] * log(LMAs)
   )
 #  A <- rlnorm(N, log(2) +  
@@ -1766,69 +1776,15 @@ GL_sim <- \(LMAs) {
 
 PA_sim <- \(LMAs) {
   A <- exp(log(1) +  
-           PA_para$`X50.`[2] * log(LMAp) +
-           PA_para$`X50.`[1] * log(LMAs)
-  )
+           PA_para$`X50.`[9] * log(LMAp) +
+           PA_para$`X50.`[10] * log(LMAs))
+  A <- exp(log(1) +  
+           0.56 * log(LMAp))
   fit <- lm(log(A) ~ log(LMAp + LMAs))
   fit$coefficients[2]
 }
 
 
-var_fun <- \(LMAs) {
-  LMA <- LMAp + LMAs
-  cov(LMA, LMAs) / var(LMA) * 100
-}
-
-#cov(log(GL$LMAp), log(GL$LMAs))
-#cor(log(GL$LMAp), log(GL$LMAs))
-#cor(log(GL$LMAp), log(GL$LMAs)) * sd(log(GL$LMAs)) * sd(log(GL$LMAp))
-#
-#
-#N <- 100
-#tmp <- seq(log(1.01), log(10), length = 10)
-#LMAs_var_mat <- NULL
-#b_mat <- NULL
-#for (i in 1:100) {
-#  b_val <- NULL
-#  LMAs_var <- NULL
-#  for (j in 1:10) {
-#    S <- matrix(c(0.8^2, 0.18 * 0.8 * tmp[j],
-#     0.18 * 0.8 * tmp[j], tmp[j]^2), ncol = 2)
-#    LMA_mat <- mvtnorm::rmvnorm(100, c(log(80), log(80)), S)
-#    LMAp <- exp(LMA_mat[,1])
-#    LMAs <- exp(LMA_mat[,2])
-#    LMA <- LMAp + LMAs
-#    LMAs_var <- c(LMAs_var, cov(LMA, LMAs) / var(LMA)) 
-#    b_val <- c(b_val, GL_sim(LMAs))
-#  }
-#  LMAs_var_mat <- cbind(LMAs_var_mat, LMAs_var)
-#  b_mat <- cbind(b_mat, b_val)
-#}
-#
-#
-#LMAs_var_mean <- apply(LMAs_var_mat, 1, mean)
-#mean_ <- apply(b_mat, 1, mean)
-#upr_ <- apply(b_mat, 1, \(x)(quantile(x, 0.975)))
-#lwr_ <- apply(b_mat, 1, \(x)(quantile(x, 0.025)))
-#
-#b_dat <- tibble(mean_, upr_, lwr_, LMAs_var_mean = LMAs_var_mean * 100)
-#
-##plot(c(LMAs_var_mat), c(b_mat))
-#
-##mass_plt_simple <- ggplot(b_dat2, aes(x = exp(var_)^2)) +
-#ggplot(b_dat) +
-##mass_plt_simple <- ggplot(b_dat2, aes(x = var_)) +
-#  geom_ribbon(aes(ymin = lwr_, ymax = upr_, x = LMAs_var_mean), fill = "grey70")  +
-#  geom_line(aes(y = mean_, x = LMAs_var_mean)) +
-#  geom_point(aes(x = GL_varS, y = GLb)) +
-#  ylab(expression(Mass~proportionality~(italic(b)))) +
-#  xlab("Relative variance of LMAs (%)")
-#  #xlab("Shape parameter of LMAs")
-#
-
-GL_varS <- cov(GL$LMA, GL$LMAs) / var(GL$LMA) * 100
-
-log(GL$LMAp) |> sd()
 
 set.seed(123)
 N <- 100
@@ -1836,20 +1792,48 @@ b_GL <- NULL
 b_PA <- NULL
 LMAs_var <- NULL
 for (i in 1:1000) {
-  LMAp <- rlnorm(N, log(40), 1)
+  LMAp <- rlnorm(N, log(60), 1)
   tmp <- seq(log(1.01), log(10), length = 10)
-  LMAs <- map(tmp, \(x) rlnorm(N, log(40), x))
+  LMAs <- map(tmp, \(x) rlnorm(N, log(60), x))
   LMAs_var <- cbind(LMAs_var, map_dbl(LMAs, var_fun))
-  b_GL <- cbind(b_val, map_dbl(LMAs, GL_sim))
-  b_PA <- cbind(b_val, map_dbl(LMAs, PA_sim))
+  b_GL <- cbind(b_GL, map_dbl(LMAs, GL_sim))
+  b_PA <- cbind(b_PA, map_dbl(LMAs, PA_sim))
 }
 
-
-b_dat <- as.data.frame(b_val)
 LMAs_var_mean <- apply(LMAs_var, 1, mean)
-mean_ <- apply(b_dat, 1, mean)
-upr_ <- apply(b_dat, 1, \(x)(quantile(x, 0.975)))
-lwr_ <- apply(b_dat, 1, \(x)(quantile(x, 0.025)))
+mean_GL <- apply(b_GL, 1, mean)
+upr_GL <- apply(b_GL, 1, \(x)(quantile(x, 0.975)))
+lwr_GL <- apply(b_GL, 1, \(x)(quantile(x, 0.025)))
+mean_PA <- apply(b_PA, 1, mean)
+upr_PA <- apply(b_PA, 1, \(x)(quantile(x, 0.975)))
+lwr_PA <- apply(b_PA, 1, \(x)(quantile(x, 0.025)))
+
+
+b_dat <- tribble(~mean, ~upr,  ~lwr, ~LMAs_var, ~site,
+  c(mean_GL, mean_PA),
+  c(upr_GL, upr_PA),
+  c(lwr_GL, lwr_PA),
+  rep(LMAs_var_mean, 2),
+  rep(c("GL", "PA"), each = 10)
+  ) |>
+  unnest(cols = c(mean, upr, lwr, LMAs_var, site))
+
+mass_plt_simple <- ggplot(b_dat) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, 
+                  x = LMAs_var, group = site),
+              fill = "grey70",
+              alpha = 0.6)  +
+  geom_line(aes(y = mean, x = LMAs_var, col = site)) +
+  geom_point(aes(x = GL_varS, y = GLb)) +
+  geom_point(aes(x = Sun_varS, y = Sunb)) +
+  geom_point(aes(x = Shade_varS, y = Shadeb)) +
+  ylab(expression(Mass~proportionality~(italic(b)))) +
+  xlab("Relative variance of LMAs (%)")
+mass_plt_simple
+
+my_ggsave("./figs/mass_prop_simple.png", mass_plt_simple,
+          height = 6, width = 6)
+
 
 log_mu <- log(40)
 log_sig <- tmp
@@ -1864,6 +1848,8 @@ mass_plt_simple <- ggplot(b_dat2) +
   geom_ribbon(aes(ymin = lwr_, ymax = upr_, x = LMAs_var_mean), fill = "grey70")  +
   geom_line(aes(y = mean_, x = LMAs_var_mean)) +
   geom_point(aes(x = GL_varS, y = GLb)) +
+  geom_point(aes(x = Sun_varS, y = Sunb)) +
+  geom_point(aes(x = Shade_varS, y = Shadeb)) +
   ylab(expression(Mass~proportionality~(italic(b)))) +
   xlab("Relative variance of LMAs (%)")
   #xlab("Shape parameter of LMAs")
@@ -1881,8 +1867,6 @@ PA_sim <- \(LMAs) {
 }
 
 
-Sun_varS <- cov(Sun$LMA, Sun$LMAs) / var(Sun$LMA) * 100
-Shade_varS <- cov(Shade$LMA, Shade$LMAs) / var(Shade$LMA) * 100
 
 (Sun$LMAp) |> mean() 
 (Shade$LMAp) |> mean() 
@@ -1924,52 +1908,6 @@ mass_plt_simple2 <- ggplot(b_dat2) +
   geom_point(aes(x = Shade_varS, y = Shadeb)) +
   ylab(expression(Mass~proportionality~(italic(b)))) +
   xlab("Relative variance of LMAs (%)")
-  #xlab("Shape parameter of LMAs")
-mass_plt_simple2
-
-
-
-
-
-
-
-
-
-set.seed(123)
-N <- 100
-b_val <- NULL
-tmp1 <- seq(log(1.01), log(2), length = 20)
-tmp2 <- seq(log(2), log(10), length = 20)
-tmp <- c(tmp1, tmp2)
-for (i in 1:1000) {
-  LMAp <- rlnorm(N, log(40), 1)
-#  tmp <- seq(1.01, 10, length = 20) |> log()
-  LMAs <- map(tmp, \(x) rlnorm(N, log(40), x))
-  b_val <- cbind(b_val, map_dbl(LMAs, hoge))
-}
-
-b_dat <- as.data.frame(b_val)
-mean_ <- apply(b_dat, 1, mean)
-upr_ <- apply(b_dat, 1, \(x)(quantile(x, 0.975)))
-lwr_ <- apply(b_dat, 1, \(x)(quantile(x, 0.025)))
-
-log_mu <- log(40)
-log_sig <- tmp
-tmp2 <- (exp(log_sig^2) - 1) * exp(2 * log_mu + log_sig^2)
-
-b_dat2 <- tibble(mean_, upr_, lwr_, var_ = tmp, var2 = tmp2)
-
-mass_plt_simple2 <- ggplot(b_dat2, aes(x = var2)) +
-  geom_vline(xintercept = var_LMAp, lty = 2) +
-  geom_ribbon(aes(ymin = lwr_, ymax = upr_), fill = "grey70")  +
-  geom_line(aes(y = mean_)) +
-#  geom_point(aes(y = mean_)) +
-  scale_x_log10(
-    breaks = trans_breaks("log10", function(x) 10^x),
-    labels = trans_format("log10", math_format(10^.x))
-                ) +
-  ylab(expression(Mass~proportionality~(italic(b)))) +
-  xlab(expression(Variance~of~LMAs))
   #xlab("Shape parameter of LMAs")
 mass_plt_simple2
 
