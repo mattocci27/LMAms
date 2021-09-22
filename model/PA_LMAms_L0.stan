@@ -17,12 +17,18 @@ transformed data{
   log_A = log(A);
   log_LL = log(LL);
   log_R = log(R);
+  // use net photosynthesis (A) instead of gross (A + R)
   obs = append_col(append_col(log_A, log_LL), log_R);
 }
 parameters{
-  vector[8] z;
-  real am;
-  real<upper=am> as;
+  real alpha_0;
+  real alpha_p;
+  real beta_0;
+  real beta_s;
+  real gamma_0;
+  real gamma_p;
+  real gamma_s;
+  real theta;
   vector<lower=0, upper=1>[N] p;
   vector<lower=0>[3] L_sigma;
   cholesky_factor_corr[3] L_Omega;
@@ -34,17 +40,17 @@ transformed parameters{
   matrix[N,3] L_Sigma;
   //vector[N] log_LMAp;
   //vector[N] log_LMAs;
-  Z[1,1] = z[1];
-  Z[1,2] = z[2];
-  Z[1,3] = z[3];
-  Z[2,1] = am;
-  Z[2,2] = z[4];
-  Z[2,3] = z[5];
-  Z[3,1] = as;
-  Z[3,2] = z[6];
-  Z[3,3] = z[7];
+  Z[1,1] = alpha_0;
+  Z[1,2] = beta_0;
+  Z[1,3] = gamma_0;
+  Z[2,1] = alpha_p;
+  Z[2,2] = 0;
+  Z[2,3] = gamma_p;
+  Z[3,1] = 0;
+  Z[3,2] = beta_s;
+  Z[3,3] = gamma_s;
   Z[4,1] = 0;
-  Z[4,2] = z[8];
+  Z[4,2] = theta;
   Z[4,3] = 0;
 
   L_Sigma = rep_matrix(to_row_vector(0.5 * L_sigma .* L_sigma), N);
@@ -56,9 +62,14 @@ transformed parameters{
 }
 model{
   // priors
-  am ~ normal(0, 10);
-  as ~ normal(0, 10);
-  z ~ normal(0, 10);
+  alpha_0 ~ normal(0, 10);
+  alpha_p ~ normal(0, 10);
+  beta_0 ~ normal(0, 10);
+  beta_s ~ normal(0, 10);
+  gamma_0 ~ normal(0, 10);
+  gamma_p ~ normal(0, 10);
+  gamma_s ~ normal(0, 10);
+  theta ~ normal(0, 10);
   p ~ beta(1, 1);
   L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
   L_sigma ~ cauchy(0, 5);
