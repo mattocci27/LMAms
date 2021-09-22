@@ -10,6 +10,7 @@ transformed data{
   vector[N] log_A;
   vector[N] log_LL;
   vector[N] log_R;
+  vector[N] log_AR;
   matrix[N,3] obs;
   vector[N] intercept;
   for (n in 1:N)
@@ -17,17 +18,19 @@ transformed data{
   log_A = log(A);
   log_LL = log(LL);
   log_R = log(R);
+  log_AR = log(A + R);
   // use net photosynthesis (A) instead of gross (A + R)
-  obs = append_col(append_col(log_A, log_LL), log_R);
+  //obs = append_col(append_col(log_A, log_LL), log_R);
+  obs = append_col(append_col(log_AR, log_LL), log_R);
 }
 parameters{
-  real alpha_0;
-  real alpha_p;
-  real beta_0;
-  real beta_s;
-  real gamma_0;
-  real gamma_p;
-  real gamma_s;
+  real a0;
+  real ap;
+  real b0;
+  real bs;
+  real g0;
+  real gp;
+  real gs;
   real theta;
   vector<lower=0, upper=1>[N] p;
   vector<lower=0>[3] L_sigma;
@@ -40,15 +43,15 @@ transformed parameters{
   matrix[N,3] L_Sigma;
   //vector[N] log_LMAp;
   //vector[N] log_LMAs;
-  Z[1,1] = alpha_0;
-  Z[1,2] = beta_0;
-  Z[1,3] = gamma_0;
-  Z[2,1] = alpha_p;
+  Z[1,1] = a0;
+  Z[1,2] = b0;
+  Z[1,3] = g0;
+  Z[2,1] = ap;
   Z[2,2] = 0;
-  Z[2,3] = gamma_p;
+  Z[2,3] = gp;
   Z[3,1] = 0;
-  Z[3,2] = beta_s;
-  Z[3,3] = gamma_s;
+  Z[3,2] = bs;
+  Z[3,3] = gs;
   Z[4,1] = 0;
   Z[4,2] = theta;
   Z[4,3] = 0;
@@ -62,13 +65,13 @@ transformed parameters{
 }
 model{
   // priors
-  alpha_0 ~ normal(0, 10);
-  alpha_p ~ normal(0, 10);
-  beta_0 ~ normal(0, 10);
-  beta_s ~ normal(0, 10);
-  gamma_0 ~ normal(0, 10);
-  gamma_p ~ normal(0, 10);
-  gamma_s ~ normal(0, 10);
+  a0 ~ normal(0, 10);
+  ap ~ normal(0, 10);
+  b0 ~ normal(0, 10);
+  bs ~ normal(0, 10);
+  g0 ~ normal(0, 10);
+  gp ~ normal(0, 10);
+  gs ~ normal(0, 10);
   theta ~ normal(0, 10);
   p ~ beta(1, 1);
   L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
