@@ -276,40 +276,40 @@ Thus, although building costs are likely similar for different leaf chemical com
 **2. Decomposing LMA into metabolic and structural components leads to improved predictions of *A*~area~, *R*~area~ and LL.**
 For both the GLOPNET global datasets and the Panama datasets, model including LMAp and LMAs showed better predictions than model including LMA based on approximate cross-validation (Table \@ref(tab:lootab)), suggesting that decompose LMA into metabolic and structural components leads improved predictions of *A*~area~, *R*~area~ and LL.
 
-For the GLOPNET global dataset, *A*~area~ had a strong positive correlation with LMAp, a weak negative correlation with LMAs, and a non-significant correlation with total LMA . [@fig:GLplt]a-c; Table \@ref(tab:lootab)).
+For the GLOPNET global dataset, *A*~area~ had a strong positive correlation with LMAp, a weak negative correlation with LMAs, and a non-significant correlation with total LMA ([@fig:GLplt]a-c; Table \@ref(tab:lootab)).
 *R*~area~ in GLOPNET also had a strong positive correlation with LMAp, which was stronger than the correlation between *R*~area~ and either LMA or LMAs ([@fig:GLplt]d-f).
 Finally, LL in GLOPNET had a strong positive correlation with LMAs, which was stronger than the correlation between LL and either LMA or LMAp ([@fig:GLplt]g-i).
 
 For the Panama dataset, we evaluated multiple models due to the availability of both sun and shade leaves.
 The model including the light effects fit the data better than the model without the light effects (Table \@ref(tab:lootab)).
 All Panama results we report are for the model including the light effects unless stated otherwise.
-*A*~area~ and *R*~area~ had stronger and more positive correlations with LMAp than with LMA or LMAs (Figs. \@ref(fig:PAplt)a-f and Table \@ref(tab:paratab)).
-LL was not significantly correlated with LMA when all leaves were combined, but was strongly correlated with LMA for shade leaves at the dry site (Fig. \@ref(fig:PAplt)g).
-There was an apparent negative correlation between LMAp and LL (Fig. \@ref(fig:PAplt)h) but the effect of LMAp on LL was not significant (Table \@ref(tab:paratab)), implying that a weak covariance between LMAp and LMAs produced this negative correlation.
-There was a positive correlation between LL and LMAs (Fig. \@ref(fig:PAplt)i and Table \@ref(tab:paratab)).
-Because the LL vs. LMAs relationship ignores important factors (i.e., effects of light on realized photosynthetic rates), the explained variance of LL from the model was higher (r^2^ = 0.45) than expected from the correlation between LMAs and LL (Fig. \@ref(fig:PAplt)g, [@fig:LLplt]).
+*A*~area~ and *R*~area~ had stronger and more positive correlations with LMAp than with LMA or LMAs ([@fig:PAplt]a-f and Table \@ref(tab:paratab)).
+LL was not significantly correlated with LMA when all leaves were combined, but was strongly correlated with LMA for shade leaves at the dry site ([@fig:PAplt]g).
+There was an apparent negative correlation between LMAp and LL ([@fig:PAplt]h) but the effect of LMAp on LL was not significant (Table \@ref(tab:paratab)), implying that a weak covariance between LMAp and LMAs produced this negative correlation.
+There was a positive correlation between LL and LMAs ([@fig:PAplt]i and Table \@ref(tab:paratab)).
+Because the LL vs. LMAs relationship ignores important factors (i.e., effects of light on realized photosynthetic rates), the explained variance of LL from the model was higher (r^2^ = 0.45) than expected from the correlation between LMAs and LL ([@fig:PAplt]g, [@fig:LLplt]).
 
 **3. Interspecific mass proportionality of *A*~max~ depended on both scaling slope and variance in LMA components.**
 Percent of interspecific variation in LMA explained by structural components were `r var_val$GL`%, `r var_val$shade`% and `r var_val$sun`% for GLOPNET, shade leaves in Panama and sun leaves in Panama, respectively.
-Large variance in LMAp and LMAs among leaves leads to mass and area proportionality of *A*~max~, respectively (Fig. SX). Additionally, increasing the effects of LMAp on *A*~area~ ($\alpha_p$) leads to mass proportionality and increasing the effects of LMAs on *A*~area~ ($\alpha_s$) leads to area proportionality (Fig. [@fig:massplt]).
+Large variance in LMAp and LMAs among leaves leads to mass and area proportionality of *A*~max~, respectively (Fig. SX). Additionally, increasing the effects of LMAp on *A*~area~ ($\alpha_p$) leads to mass proportionality and increasing the effects of LMAs on *A*~area~ ($\alpha_s$) leads to area proportionality ([@fig:massplt]).
 
-Interspecific variation in *A*~max~ among leaves in GLOPNET tended to be area proportional because of their negative $\alpha_s$ and small $\alpha_p$ values (Fig. [@fig:massplt]).
-Interspecific variation in LMA in shade leaves in the Panama data was area depend because of their large variance in LMAs (Fig. [@fig:massplt], Fig. SX).
+Interspecific variation in *A*~max~ among leaves in GLOPNET tended to be area proportional because of their negative $\alpha_s$ and small $\alpha_p$ values ([@fig:massplt]).
+Interspecific variation in LMA in shade leaves in the Panama data was area depend because of their large variance in LMAs ([@fig:massplt], Fig. SX).
 Although sun leaves in the Panama data showed area proportionality, the
-pattern is weaker than the rest of two because of the balance among $\alpha_p$, $\alpha_s$ and variance in LMAs (Fig. [@fig:massplt]).
+pattern is weaker than the rest of two because of the balance among $\alpha_p$, $\alpha_s$ and variance in LMAs ([@fig:massplt]).
 
 **4. Evergreen leaves have both greater LMAp and LMAs than deciduous leaves, and sun leaves have both greater LMAp and LMAs than shade leaves.**
-In the GLOPNET dataset, although evergreen leaves had higher both LMAp and LMAs than deciduous leaves, differences in LMAs between the two groups were more apparent (Fig. [@fig:boxplt]).
+In the GLOPNET dataset, although evergreen leaves had higher both LMAp and LMAs than deciduous leaves, differences in LMAs between the two groups were more apparent ([@fig:boxplt]).
 Thus, the higher total LMA in evergreen leaves in GLOPNET was primarily due to differences in LMAs.
 Evergreen leaves have higher fraction of LMAs compared to deciduous leaves in the Panama dataset but that pattern was weak in the GLOPNET (Fig. SX).
-In the Panama dataset, sun leaves have both greater LMAp and LMAs than shade leaves, but the differences in LMAp were more apparent (Fig. [@fig:boxplt]).
+In the Panama dataset, sun leaves have both greater LMAp and LMAs than shade leaves, but the differences in LMAp were more apparent ([@fig:boxplt]).
 Thus, variation in LMAp plays a more important role within species than among species.
 
 **5. Nitrogen and phosphorus per-unit leaf area are strongly correlated with LMAp, and cellulose per-unit leaf area is strongly correlated with LMAs.**
 In the GLOPNET dataset, *N*~area~ and *P*~area~ had strong positive correlations with LMAp, but only weak correlations with LMAs (Fig. SX).
-Similarly, in the Panama dataset, *N*~area~ and *P*~area~ had strong positive correlations with LMAp, but were not correlated with LMAs (Fig. [@fig:PA-NPC]).
-In contrast, cellulose per-unit leaf area (*CL*~area~), which was available for the Panama dataset but not for GLOPNET, had a strong positive correlation with LMAs, and a weak positive correlation with LMAp (Fig. [@fig:PA-NPC]).
-*CL*~area~ was more strongly correlated with LMA than with LMAp or LMAs, but sun and shade leaves aligned along a common *CL*~area~-LMAs relationship, as opposed to being offset for LMA and LMAp (Figs. [@fig:PA-NPC]g-i).
+Similarly, in the Panama dataset, *N*~area~ and *P*~area~ had strong positive correlations with LMAp, but were not correlated with LMAs ([@fig:PA-NPC]).
+In contrast, cellulose per-unit leaf area (*CL*~area~), which was available for the Panama dataset but not for GLOPNET, had a strong positive correlation with LMAs, and a weak positive correlation with LMAp (F[@fig:PA-NPC]).
+*CL*~area~ was more strongly correlated with LMA than with LMAp or LMAs, but sun and shade leaves aligned along a common *CL*~area~-LMAs relationship, as opposed to being offset for LMA and LMAp ([@fig:PA-NPC]g-i).
 
 # Discussion
 
@@ -374,17 +374,14 @@ MK, JWL and JLDO conceived of the study; KK, SJW and SAVB contributed data; MK d
 
 <div id="refs"></div>
 
-`#r page_break("Tables")`
-
 \newpage
 
 # Tables
 
-Table: (\#tab:modeltab) Five model forms compared to predict *A*~area~, LL and *R*~area~.
 
 ```{r modeltab}
 
-tab1 <- read_csv("tab1.csv")
+tab1 <- read_csv("../data/tab1.csv")
 tab1 <- tab1 |>
   dplyr::select(`Expected trait values`)
 
@@ -394,7 +391,11 @@ if ("docx" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
   knitr::kable(tab1, format = "markdown") #%>%
 } else {
   #knitr::kable(tab1, format = "markdown") #%>%
-  kbl(tab1, escape = FALSE, booktabs = TRUE, longtable = TRUE) |>
+  kbl(tab1, escape = FALSE,
+      caption = "
+        Five model forms compared to predict $A_{area}$, *A*~area~, LL and *R*~area~.
+      ",
+      booktabs = TRUE, longtable = TRUE) |>
     kable_paper() |>
     pack_rows("Model 1: LMA", 1, 3) |>
     pack_rows("Model 2: LMA + light", 4, 6) |>
@@ -407,8 +408,6 @@ if ("docx" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
 
 `r page_break("")`
 
-Table: (\#tab:lootab) Summary of the model comparison. Lower approximate leave-one-out cross-validation (LOOIC) indicates better predictive accuracy. N; number of samples.
-
 ```{r lootab}
 tab3 <- read_csv("../data/LOO.csv") |>
   dplyr::select(-site)
@@ -419,7 +418,12 @@ if ("docx" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
   knitr::kable(tab3, format = "html", escape = FALSE)
 } else {
   #knitr::kable(tab3, format = "markdown")
-  kbl(tab3, escape = FALSE, booktabs = TRUE, longtable = TRUE) |>
+  kbl(tab3, escape = FALSE,
+      caption = "
+      Summary of the model comparison.
+      Lower approximate leave-one-out cross-validation (LOOIC) indicates better predictive accuracy.
+      N; number of samples.",
+      booktabs = TRUE, longtable = TRUE) |>
     kable_paper() |>
     pack_rows("GLOPNET", 1, 2) |>
     pack_rows("Panama", 3, 7)
