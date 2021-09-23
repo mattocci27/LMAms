@@ -15,7 +15,6 @@ knitr::opts_chunk$set(echo=TRUE,
 
 
 ```{r, echo = T, message = F}
-rm(list = ls())
 library(tidyverse)
 library(loo)
 library(rstan)
@@ -39,7 +38,7 @@ source("../fig_theme.r")
 
 ```{r GLdat, cache=TRUE, comment=NA}
 
-load("../rda/GL_LMAms_more_obs.rda")
+load("../rda/GL_LMAms2_obs.rda")
 GLres <- res
 
 GL_summary <- data.frame(summary(res)$summary) %>%
@@ -821,7 +820,7 @@ my_ggsave("../figs/GL_NP.png", GL_NP_plot)
 
 ```{r PAdat, cache=TRUE, comment=NA}
 #load("../data/PA_LMAms_L5_more_obs.rda")
-load("../rda/PA_LMAms_L0_more_obs.rda")
+load("../rda/PA_LMAms_L3_more_obs.rda")
 PAres <- res
 
 summary_PA_LDL <- data.frame(summary(res)$summary)
@@ -1696,7 +1695,7 @@ my_ggsave("../figs/mass_prop2.png", mass_plt,
 
 ## Based on the results
 
-```{r}
+```{r, eval=FALSE}
 
 GL <- read_csv("../data/GL_res.csv")
 PA <- read_csv("../data/PA_res.csv")
@@ -1767,9 +1766,14 @@ GL_sim <- \(LMAs) {
            GL_para$`X50.`[2] * log(LMAp) +
            GL_para$`X50.`[1] * log(LMAs)
   )
-#  A <- rlnorm(N, log(2) +  
-#           GL_para$`X50.`[2] * log(LMAp) +
-#           GL_para$`X50.`[1] * log(LMAs), 0.13)
+  A <- exp(log(1.56) +  
+           0.22 * log(LMAp) 
+          -0.1 * log(LMAs)
+  )
+  A <- exp(log(1.56) +  
+           0.5 * log(LMAp) 
+          -0.1 * log(LMAs)
+  )
   fit <- lm(log(A) ~ log(LMAp + LMAs))
   fit$coefficients[2]
 }
@@ -1778,8 +1782,8 @@ PA_sim <- \(LMAs) {
   A <- exp(log(1) +  
            PA_para$`X50.`[9] * log(LMAp) +
            PA_para$`X50.`[10] * log(LMAs))
-  A <- exp(log(1) +  
-           0.56 * log(LMAp))
+ # A <- exp(log(1) +  
+ #          0.56 * log(LMAp))
   fit <- lm(log(A) ~ log(LMAp + LMAs))
   fit$coefficients[2]
 }
@@ -1831,7 +1835,7 @@ mass_plt_simple <- ggplot(b_dat) +
   xlab("Relative variance of LMAs (%)")
 mass_plt_simple
 
-my_ggsave("./figs/mass_prop_simple.png", mass_plt_simple,
+my_ggsave("../figs/mass_prop_simple.png", mass_plt_simple,
           height = 6, width = 6)
 
 
