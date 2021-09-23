@@ -1,0 +1,70 @@
+---
+title: LOOIC
+author: Masatoshi Katabuchi
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: true
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE,
+                      warning=FALSE,
+                      message=FALSE)
+```
+
+
+```{r, include=FALSE}
+library(tidyverse)
+library(loo)
+library(rstan)
+library(patchwork)
+library(kableExtra)
+```
+
+```{r}
+
+#file_name <- list.files("rda")
+
+file_name <- c("GL_LMAms1_obs.rda",
+  "GL_LMAms2_obs.rda",
+  "GL_LMAms3_obs.rda",
+  "GL_LMAms4_obs.rda",
+  "PA_LMAms_L1_obs.rda",
+  "PA_LMAms_L2_obs.rda",
+  "PA_LMAms_L3_obs.rda",
+  "PA_LMAms_L4_obs.rda")
+
+n_samp <- NULL
+for (i in 1:length(file_name)) {
+  load(str_c("../rda/", file_name[i]))
+  assign(file_name[i], res)
+  n_samp[i] <- nrow(dat)
+}
+
+dat <- tibble(LMA = file_name[1:length(file_name)]) %>%
+ mutate(N = n_samp) %>%
+ mutate(elpd_list = map(LMA, ~ loo(get(.)))) %>%
+ mutate(looic = map_dbl(elpd_list, ~ .$estimates[3, 1])) %>%
+ dplyr::select(-elpd_list)
+
+
+dat |>
+  kable() |>
+  kable_styling()
+
+```
+
+```{r}
+
+load("../rda/GL_LMAms2_obs.rda")
+GL_summary <- data.frame(summary(res)$summary) |>
+   round(3)
+load("../rda/PA_LMAms_L3_obs.rda")
+PA_summary <- data.frame(summary(res)$summary) |>
+   round(3)
+
+head(GL_summary, 10)
+head(PA_summary, 10)
+
+```

@@ -145,6 +145,7 @@ if (obs == "obs") {
              warmup = n_warm,
              thin = n_thin,
              chains = n_chains,
+             seed = 123,
              control = list(adapt_delta = 0.99, max_treedepth = 20)))
 
   save_name <- paste("./rda/", n_model, "_more_obs.rda", sep = "")
