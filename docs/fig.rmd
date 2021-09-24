@@ -41,6 +41,7 @@ source("../fig_theme.r")
 load("../rda/GL_LMAms2_obs.rda")
 GLres <- res
 
+
 GL_summary <- data.frame(summary(res)$summary) %>%
   round(3)
 DT::datatable(GL_summary)
@@ -992,6 +993,26 @@ res_fun2 <- function(N, LMA, trait){
     apply(., 1, median)
 }
 
+
+tmp <- as.data.frame(PAres) %>%
+  as_tibble %>%
+  dplyr::select(contains("Mu"))
+Apred_mat <- tmp %>%
+  dplyr::select(contains(",1]")) %>%
+  as.matrix
+A_mat <- NULL
+for (i in 1:4000) A_mat <- rbind(A_mat, log(PA$Aarea))
+A_res_mat <- Apred_mat - A_mat
+
+
+Rpred_mat <- tmp %>%
+  dplyr::select(contains(",3]")) %>%
+  as.matrix
+R_mat <- NULL
+for (i in 1:4000) R_mat <- rbind(R_mat, log(PA$Rarea))
+R_res_mat <- Rpred_mat - R_mat
+
+
 before <- proc.time()
 PA2 <- PA %>%
   mutate(res_m = sapply(1:N, LMA_m_fun) %>% apply(., 1, median)) %>%
@@ -1009,6 +1030,9 @@ par(mfrow = c(2,2))
 plot(LL_s ~ res_s, PA2)
 plot(LL_m ~ res_m, PA2)
 par(mfrow = c(1,1))
+
+plot(LL_s ~ LL, PA2)
+plot(LL_m ~ LL, PA2)
 
 PA_fig_dat <- PA %>%
   gather(LMA, val0, c(LMA, LMAs, LMAp)) %>%
