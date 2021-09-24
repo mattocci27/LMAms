@@ -1,3 +1,4 @@
+//NOTE: THIS STAN CODE IS GENERATED VIA "update.py"
 data{
   int<lower=0> N;
   vector<lower=0>[N] LMA;
@@ -10,7 +11,6 @@ transformed data{
   vector[N] log_A;
   vector[N] log_LL;
   vector[N] log_R;
-  vector[N] log_AR;
   matrix[N,3] obs;
   vector[N] intercept;
   for (n in 1:N)
@@ -18,15 +18,13 @@ transformed data{
   log_A = log(A);
   log_LL = log(LL);
   log_R = log(R);
-  log_AR = log(A + R);
   // use net photosynthesis (A) instead of gross (A + R)
-  //obs = append_col(append_col(log_A, log_LL), log_R);
-  obs = append_col(append_col(log_AR, log_LL), log_R);
+  obs = append_col(append_col(log_A, log_LL), log_R);
 }
+
 parameters{
   real a0;
   real ap;
-  real as;
   real b0;
   real bs;
   real g0;
@@ -39,18 +37,15 @@ parameters{
 }
 transformed parameters{
   matrix[4,3] Z;
-  matrix[N,3] Mu;
   matrix[N,4] X;
   matrix[N,3] L_Sigma;
-  //vector[N] log_LMAp;
-  //vector[N] log_LMAs;
   Z[1,1] = a0;
   Z[1,2] = b0;
   Z[1,3] = g0;
   Z[2,1] = ap;
   Z[2,2] = 0;
   Z[2,3] = gp;
-  Z[3,1] = as;
+  Z[3,1] = 0;
   Z[3,2] = bs;
   Z[3,3] = gs;
   Z[4,1] = 0;
@@ -67,11 +62,10 @@ transformed parameters{
 model{
   // priors
   a0 ~ normal(0, 2.5);
-  ap ~ normal(0, 2.5);
-  as ~ normal(0, 2.5);
   b0 ~ normal(0, 2.5);
-  bs ~ normal(0, 2.5);
   g0 ~ normal(0, 2.5);
+  ap ~ normal(0, 2.5);
+  bs ~ normal(0, 2.5);
   gp ~ normal(0, 2.5);
   gs ~ normal(0, 2.5);
   theta ~ normal(0, 2.5);

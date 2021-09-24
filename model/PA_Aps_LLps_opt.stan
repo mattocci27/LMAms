@@ -1,10 +1,10 @@
+//NOTE: THIS STAN CODE IS GENERATED VIA "update.py"
 data{
   int<lower=0> N;
   vector<lower=0>[N] LMA;
   vector<lower=0>[N] A;
   vector<lower=0>[N] R;
   vector<lower=0>[N] LL;
-  vector<lower=0>[N] LT;
   vector<lower=0>[N] leaf;
 }
 transformed data{
@@ -18,59 +18,69 @@ transformed data{
   log_A = log(A);
   log_LL = log(LL);
   log_R = log(R);
+  // use net photosynthesis (A) instead of gross (A + R)
   obs = append_col(append_col(log_A, log_LL), log_R);
 }
+
 parameters{
-  vector[8] z;
-  ordered[2] amas;
+  real a0;
+  real ap;
+  real as;
+  real b0;
+  real bp;
+  real bs;
+  real g0;
+  real gp;
+  real gs;
+  real theta;
   vector<lower=0, upper=1>[N] p;
   vector<lower=0>[3] L_sigma;
   cholesky_factor_corr[3] L_Omega;
 }
 transformed parameters{
-  matrix[5,3] Z;
-  matrix[N,3] Mu;
-  matrix[N,5] X;
+  matrix[4,3] Z;
+  matrix[N,4] X;
   matrix[N,3] L_Sigma;
-  vector[N] log_LMAp;
-  vector[N] log_LMAs;
-  vector[N] log_LMAs_LT;
-  Z[1,1] = z[1];
-  Z[1,2] = z[2];
-  Z[1,3] = z[3];
-  Z[2,1] = amas[2];
-  Z[2,2] = z[4];
-  Z[2,3] = z[5];
-  Z[3,1] = amas[1];
-  Z[3,2] = z[6];
-  Z[3,3] = 0;
+  Z[1,1] = a0;
+  Z[1,2] = b0;
+  Z[1,3] = g0;
+  Z[2,1] = ap;
+  Z[2,2] = bp;
+  Z[2,3] = gp;
+  Z[3,1] = as;
+  Z[3,2] = bs;
+  Z[3,3] = gs;
   Z[4,1] = 0;
-  Z[4,2] = 0;
-  Z[4,3] = z[7];
-  Z[5,1] = 0;
-  Z[5,2] = z[8];
-  Z[5,3] = 0;
+  Z[4,2] = theta;
+  Z[4,3] = 0;
+
   L_Sigma = rep_matrix(to_row_vector(0.5 * L_sigma .* L_sigma), N);
-  log_LMAp = log(LMA) + log(p);
-  log_LMAs = log(LMA) + log(1 - p);
-  log_LMAs_LT = log_LMAs - log(LT);
-  X = append_col(append_col(append_col(append_col(intercept, log_LMAp), log_LMAs), log_LMAs_LT), leaf);
+  //log_LMAp = log(LMA) + log(p);
+  //log_LMAs = log(LMA) + log(1 - p);
+  //X = append_col(append_col(append_col(intercept, log_LMAp), log_LMAs), leaf);
+  X = append_col(append_col(append_col(intercept, log(LMA) + log(p)), log(LMA) + log(1 - p)), leaf);
   Mu = X * Z - L_Sigma;
 }
 model{
   // priors
-  z ~ normal(0, 10);
-  amas ~ normal(0, 10);
+  a0 ~ normal(0, 2.5);
+  b0 ~ normal(0, 2.5);
+  g0 ~ normal(0, 2.5);
+  ap ~ normal(0, 2.5);
+  bs ~ normal(0, 2.5);
+  gp ~ normal(0, 2.5);
+  gs ~ normal(0, 2.5);
+  as ~ normal(0, 2.5);
+  bp ~ normal(0, 2.5);
+  theta ~ normal(0, 2.5);
   p ~ beta(1, 1);
   L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
   L_sigma ~ cauchy(0, 5);
-
+  
   // model
-  for (i in 1:N) {
-      target += multi_normal_cholesky_lpdf(obs[i,] | Mu[i,], diag_pre_multiply(L_sigma, L_Omega));
-  }
+  for (i in 1:N)
+     target += multi_normal_cholesky_lpdf(obs[i,] | Mu[i,], diag_pre_multiply(L_sigma, L_Omega));
 }
-
 generated quantities {
   vector[N] log_lik;
   real<lower=-1, upper=1> rho12;
