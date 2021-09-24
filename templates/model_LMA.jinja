@@ -5,7 +5,9 @@ data{
   vector<lower=0>[N] A;
   vector<lower=0>[N] R;
   vector<lower=0>[N] LL;
+{% if opt %}
   vector<lower=0>[N] leaf;
+{% endif %}
 }
 transformed data{
   vector[N] log_A;

@@ -26,7 +26,7 @@ transformed data{
 parameters{
   real a0;
   real ap;
-  real as;
+  real<upper=0> as;
   real b0;
   real bs;
   real g0;
@@ -38,6 +38,7 @@ parameters{
   cholesky_factor_corr[3] L_Omega;
 }
 transformed parameters{
+  matrix[N,3] Mu;
   matrix[4,3] Z;
   matrix[N,4] X;
   matrix[N,3] L_Sigma;
