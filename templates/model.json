@@ -26,12 +26,6 @@
       "LL": "LMAs"
     },
     {
-      "model": "hoge",
-      "site": "PA",
-      "A": "LMA",
-      "LL": "LMA"
-    },
-    {
       "model": "PA_Ap_LLs",
       "site": "PA",
       "A": "LMAp",

@@ -5,7 +5,6 @@ data{
   vector<lower=0>[N] A;
   vector<lower=0>[N] R;
   vector<lower=0>[N] LL;
-  vector<lower=0>[N] leaf;
 }
 transformed data{
   vector[N] log_A;
@@ -25,7 +24,7 @@ transformed data{
 parameters{
   real a0;
   real ap;
-  real as;
+  real<upper=0> as;
   real b0;
   real bs;
   real g0;
@@ -36,6 +35,7 @@ parameters{
   cholesky_factor_corr[3] L_Omega;
 }
 transformed parameters{
+  matrix[N,3] Mu;
   matrix[3,3] Z;
   matrix[N,3] X;
   matrix[N,3] L_Sigma;
@@ -53,7 +53,7 @@ transformed parameters{
   //log_LMAp = log(LMA) + log(p);
   //log_LMAs = log(LMA) + log(1 - p);
   //X = append_col(append_col(append_col(intercept, log_LMAp), log_LMAs), leaf);
-  X = append_col(append_col(append_col(intercept, log(LMA) + log(p)), log(LMA) + log(1 - p)), leaf);
+  X = append_col(append_col(intercept, log(LMA) + log(p)), log(LMA) + log(1 - p));
   Mu = X * Z - L_Sigma;
 }
 model{

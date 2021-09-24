@@ -1,0 +1,72 @@
+── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+✔ tibble  3.1.3     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   2.0.0     ✔ forcats 0.5.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Loading required package: StanHeaders
+rstan (Version 2.21.2, GitRev: 2e1f913d3ca3)
+For execution on a local, multicore CPU with excess RAM we recommend calling
+options(mc.cores = parallel::detectCores()).
+To avoid recompilation of unchanged Stan programs, we recommend calling
+rstan_options(auto_write = TRUE)
+
+Attaching package: ‘rstan’
+
+The following object is masked from ‘package:tidyr’:
+
+    extract
+
+This is loo version 2.4.1
+- Online documentation and vignettes at mc-stan.org/loo
+- As of v2.0.0 loo defaults to 1 core but we recommend using as many as possible. Use the 'cores' argument or set options(mc.cores = NUM_CORES) for an entire session. 
+
+Attaching package: ‘loo’
+
+The following object is masked from ‘package:rstan’:
+
+    loo
+
+[1] "Model: PA_Aps_LDs_opt"
+[1] "Model dir: ./model/PA_Aps_LDs_opt.stan"
+[1] "Data: PA"
+[1] "n_iter = 2"
+[1] "n_warm = 1"
+[1] "n_thin = 1"
+[1] "n_chains = 1"
+OBS data
+Rows: 107 Columns: 40
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (6): sp, site, strata, sp_site_strata, SampleID, site2
+dbl (34): SLA_LEAF, SLA_DISC, LIFETIME, Amass, Rmass, Amax, N_PCT, P_PCT, LT...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+SAMPLING FOR MODEL 'PA_Aps_LDs_opt' NOW (CHAIN 1).
+Chain 1: 
+Chain 1: Gradient evaluation took 0.000302 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 3.02 seconds.
+Chain 1: Adjust your expectations accordingly!
+Chain 1: 
+Chain 1: 
+Chain 1: WARNING: No variance estimation is
+Chain 1:          performed for num_warmup < 20
+Chain 1: 
+Chain 1: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 1: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 1: 
+Chain 1:  Elapsed Time: 0.002293 seconds (Warm-up)
+Chain 1:                0.000575 seconds (Sampling)
+Chain 1:                0.002868 seconds (Total)
+Chain 1: 
+Warning messages:
+1: There were 1 divergent transitions after warmup. See
+http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup
+to find out why this is a problem and how to eliminate them. 
+2: Examine the pairs() plot to diagnose sampling problems
+ 
+Saved `./rda/PA_Aps_LDs_opt_obs.rda`!!

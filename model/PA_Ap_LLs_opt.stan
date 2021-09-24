@@ -36,6 +36,7 @@ parameters{
   cholesky_factor_corr[3] L_Omega;
 }
 transformed parameters{
+  matrix[N,3] Mu;
   matrix[4,3] Z;
   matrix[N,4] X;
   matrix[N,3] L_Sigma;

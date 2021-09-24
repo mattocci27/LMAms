@@ -27,7 +27,7 @@ parameters{
   real a0;
   real ap;
   real b0;
-  real bp;
+  real<upper=0> bp;
   real bs;
   real g0;
   real gp;
@@ -38,6 +38,7 @@ parameters{
   cholesky_factor_corr[3] L_Omega;
 }
 transformed parameters{
+  matrix[N,3] Mu;
   matrix[4,3] Z;
   matrix[N,4] X;
   matrix[N,3] L_Sigma;

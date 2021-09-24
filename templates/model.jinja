@@ -8,7 +8,9 @@ data{
 {% if LD %}
   vector<lower=0>[N] LT;
 {% endif %}
+{% if opt %}
   vector<lower=0>[N] leaf;
+{% endif %}
 }
 transformed data{
   vector[N] log_A;
@@ -29,11 +31,11 @@ parameters{
   real a0;
   real ap;
 {% if A == 'LMApLMAs' %}
-  real as;
+  real<upper=0> as;
 {% endif %}
   real b0;
 {% if LL == 'LMApLMAs' %}
-  real bp;
+  real<upper=0> bp;
 {% endif %}
   real bs;
   real g0;
@@ -47,6 +49,7 @@ parameters{
   cholesky_factor_corr[3] L_Omega;
 }
 transformed parameters{
+  matrix[N,3] Mu;
 {% if opt %}
   matrix[4,3] Z;
   matrix[N,4] X;
@@ -82,10 +85,14 @@ transformed parameters{
   //log_LMAp = log(LMA) + log(p);
   //log_LMAs = log(LMA) + log(1 - p);
   //X = append_col(append_col(append_col(intercept, log_LMAp), log_LMAs), leaf);
+{% if opt %}
 {% if LD %}
   X = append_col(append_col(append_col(intercept, log(LMA) + log(p)), log(LMA) + log(1 - p) - log(LT) - 3 * log(10)), leaf);
 {% else %}
   X = append_col(append_col(append_col(intercept, log(LMA) + log(p)), log(LMA) + log(1 - p)), leaf);
+{% endif %}
+{% else %}
+  X = append_col(append_col(intercept, log(LMA) + log(p)), log(LMA) + log(1 - p));
 {% endif %}
   Mu = X * Z - L_Sigma;
 }
@@ -129,3 +136,4 @@ generated quantities {
   for (i in 1:N)
    log_lik[i] = multi_normal_cholesky_lpdf(obs[i,] | Mu[i,], diag_pre_multiply(L_sigma, L_Omega));
  }
+

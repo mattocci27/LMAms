@@ -5,7 +5,6 @@ data{
   vector<lower=0>[N] A;
   vector<lower=0>[N] R;
   vector<lower=0>[N] LL;
-  vector<lower=0>[N] leaf;
 }
 transformed data{
   vector[N] log_A;
