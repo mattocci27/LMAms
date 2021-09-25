@@ -91,40 +91,12 @@
       "opt": "opt"
     },
     {
-      "model": "PA_Ap_LDs",
-      "LD": "LD",
-      "site": "PA",
-      "A": "LMAp",
-      "LL": "LMAs"
-    },
-    {
-      "model": "PA_Aps_LDps",
-      "site": "PA",
-      "LD": "LD",
-      "A": "LMApLMAs",
-      "LL": "LMApLMAs"
-    },
-    {
-      "model": "PA_Ap_LDps",
-      "site": "PA",
-      "LD": "LD",
-      "A": "LMAp",
-      "LL": "LMApLMAs"
-    },
-    {
-      "model": "PA_Aps_LDs",
-      "site": "PA",
-      "LD": "LD",
-      "A": "LMApLMAs",
-      "LL": "LMAs"
-    },
-    {
       "model": "PA_Ap_LDs_opt",
       "site": "PA",
       "LD": "LD",
       "A": "LMAp",
       "LL": "LMAs",
-      "opt": "opt"
+      "opt": "LDopt"
     },
     {
       "model": "PA_Aps_LDps_opt",
@@ -132,7 +104,7 @@
       "LD": "LD",
       "A": "LMApLMAs",
       "LL": "LMApLMAs",
-      "opt": "opt"
+      "opt": "LDopt"
     },
     {
       "model": "PA_Ap_LDps_opt",
@@ -140,7 +112,7 @@
       "LD": "LD",
       "A": "LMAp",
       "LL": "LMApLMAs",
-      "opt": "opt"
+      "opt": "LDopt"
     },
     {
       "model": "PA_Aps_LDs_opt",
@@ -148,7 +120,7 @@
       "LD": "LD",
       "A": "LMApLMAs",
       "LL": "LMAs",
-      "opt": "opt"
+      "opt": "LDopt"
     }
     ]
 }

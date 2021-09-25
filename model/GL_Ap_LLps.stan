@@ -58,14 +58,14 @@ transformed parameters{
 }
 model{
   // priors
-  a0 ~ normal(0, 2.5);
-  b0 ~ normal(0, 2.5);
-  g0 ~ normal(0, 2.5);
-  ap ~ normal(0, 2.5);
-  bs ~ normal(0, 2.5);
-  gp ~ normal(0, 2.5);
-  gs ~ normal(0, 2.5);
-  bp ~ normal(0, 2.5);
+  a0 ~ normal(0, 5);
+  b0 ~ normal(0, 5);
+  g0 ~ normal(0, 5);
+  ap ~ normal(0, 5);
+  bs ~ normal(0, 5);
+  gp ~ normal(0, 5);
+  gs ~ normal(0, 5);
+  bp ~ normal(0, 5);
   p ~ beta(1, 1);
   L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
   L_sigma ~ cauchy(0, 5);

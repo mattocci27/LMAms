@@ -11,8 +11,8 @@ options(mc.cores = parallel::detectCores())
 obs_files <- list.files("rda") %>%
   str_subset("obs.rda")
 
-obs_files <- obs_files[!str_detect(obs_files, "_more") |
-                 !str_detect(obs_files, "PA")]
+#obs_files <- obs_files[!str_detect(obs_files, "_more") |
+#                 !str_detect(obs_files, "PA")]
 
 tmp <- obs_files %>%
   str_split_fixed("_obs", 2)
@@ -39,25 +39,35 @@ for (i in 1:length(files)) {
 	} else div[i] <- "divergent"
 }
 
-
 dat <- tibble(LMA = models) %>%
 # head(2) %>%
  mutate(N = n_samp) %>%
  mutate(elpd_list = map(LMA, ~ loo(get(.)))) %>%
  mutate(looic = map_dbl(elpd_list, ~ .$estimates[3, 1])) %>%
+ mutate(lp = map_dbl(LMA, \(x) get(x) |>
+  extract("lp__") |>
+  unlist() |>
+  mean())) |>
  mutate(div)
 
 GL_tb <- dat %>%
-  dplyr::select(LMA, looic, N, div) %>%
+  dplyr::select(LMA, looic, lp, N, div) %>%
   filter(str_detect(LMA, "GL")) %>%
   arrange(looic) %>%
   # drop _more
   mutate(LMA = str_split_fixed(LMA, "_more", 2)[, 1])
 
 PA_tb <- dat %>%
-  dplyr::select(LMA, looic, N, div) %>%
+  dplyr::select(LMA, looic, lp, N, div) %>%
   filter(str_detect(LMA, "PA")) %>%
   arrange(looic)
 
 write_csv(GL_tb, "./data/GL_elpd.csv")
 write_csv(PA_tb, "./data/PA_elpd.csv")
+
+
+PA_tb |>
+  filter(div == "OK")
+
+PA_tb |>
+  filter(str_detect(obs_files, "more"))

@@ -29,15 +29,15 @@ The following object is masked from ‘package:rstan’:
 
     loo
 
-[1] "Model: PA_Ap_LDs"
-[1] "Model dir: ./model/PA_Ap_LDs.stan"
+[1] "Model: PA_Ap_LLps_opt"
+[1] "Model dir: ./model/PA_Ap_LLps_opt.stan"
 [1] "Data: PA"
 [1] "n_iter = 4000"
 [1] "n_warm = 3000"
 [1] "n_thin = 1"
 [1] "n_chains = 4"
 OBS data
-Rows: 107 Columns: 40
+Rows: 132 Columns: 40
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: ","
 chr  (6): sp, site, strata, sp_site_strata, SampleID, site2
@@ -45,116 +45,118 @@ dbl (34): SLA_LEAF, SLA_DISC, LIFETIME, Amass, Rmass, Amax, N_PCT, P_PCT, LT...
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-hash mismatch so recompiling; make sure Stan code ends with a blank line
 
-SAMPLING FOR MODEL 'PA_Ap_LDs' NOW (CHAIN 1).
+SAMPLING FOR MODEL 'PA_Ap_LLps_opt' NOW (CHAIN 1).
 
-SAMPLING FOR MODEL 'PA_Ap_LDs' NOW (CHAIN 2).
+SAMPLING FOR MODEL 'PA_Ap_LLps_opt' NOW (CHAIN 2).
+
+SAMPLING FOR MODEL 'PA_Ap_LLps_opt' NOW (CHAIN 3).
+
+SAMPLING FOR MODEL 'PA_Ap_LLps_opt' NOW (CHAIN 4).
 Chain 1: 
-Chain 1: Gradient evaluation took 0.000288 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 2.88 seconds.
+Chain 1: Gradient evaluation took 0.000269 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 2.69 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
-Chain 1: Iteration:    1 / 4000 [  0%]  (Warmup)
-
-SAMPLING FOR MODEL 'PA_Ap_LDs' NOW (CHAIN 3).
 Chain 2: 
-Chain 2: Gradient evaluation took 0.000343 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 3.43 seconds.
+Chain 2: Gradient evaluation took 0.000256 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 2.56 seconds.
 Chain 2: Adjust your expectations accordingly!
 Chain 2: 
 Chain 2: 
-
-SAMPLING FOR MODEL 'PA_Ap_LDs' NOW (CHAIN 4).
 Chain 2: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 1: Iteration:    1 / 4000 [  0%]  (Warmup)
 Chain 3: 
-Chain 3: Gradient evaluation took 0.000329 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 3.29 seconds.
+Chain 3: Gradient evaluation took 0.000259 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 2.59 seconds.
 Chain 3: Adjust your expectations accordingly!
 Chain 3: 
 Chain 3: 
 Chain 3: Iteration:    1 / 4000 [  0%]  (Warmup)
 Chain 4: 
-Chain 4: Gradient evaluation took 0.000335 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 3.35 seconds.
+Chain 4: Gradient evaluation took 0.000247 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 2.47 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
 Chain 4: Iteration:    1 / 4000 [  0%]  (Warmup)
-Chain 3: Iteration:  400 / 4000 [ 10%]  (Warmup)
 Chain 1: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 3: Iteration:  400 / 4000 [ 10%]  (Warmup)
 Chain 4: Iteration:  400 / 4000 [ 10%]  (Warmup)
-Chain 3: Iteration:  800 / 4000 [ 20%]  (Warmup)
 Chain 2: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 3: Iteration:  800 / 4000 [ 20%]  (Warmup)
 Chain 1: Iteration:  800 / 4000 [ 20%]  (Warmup)
 Chain 4: Iteration:  800 / 4000 [ 20%]  (Warmup)
 Chain 3: Iteration: 1200 / 4000 [ 30%]  (Warmup)
 Chain 1: Iteration: 1200 / 4000 [ 30%]  (Warmup)
 Chain 2: Iteration:  800 / 4000 [ 20%]  (Warmup)
 Chain 4: Iteration: 1200 / 4000 [ 30%]  (Warmup)
-Chain 3: Iteration: 1600 / 4000 [ 40%]  (Warmup)
 Chain 1: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 3: Iteration: 1600 / 4000 [ 40%]  (Warmup)
 Chain 2: Iteration: 1200 / 4000 [ 30%]  (Warmup)
-Chain 3: Iteration: 2000 / 4000 [ 50%]  (Warmup)
-Chain 4: Iteration: 1600 / 4000 [ 40%]  (Warmup)
 Chain 1: Iteration: 2000 / 4000 [ 50%]  (Warmup)
+Chain 4: Iteration: 1600 / 4000 [ 40%]  (Warmup)
+Chain 3: Iteration: 2000 / 4000 [ 50%]  (Warmup)
 Chain 2: Iteration: 1600 / 4000 [ 40%]  (Warmup)
-Chain 3: Iteration: 2400 / 4000 [ 60%]  (Warmup)
 Chain 1: Iteration: 2400 / 4000 [ 60%]  (Warmup)
-Chain 2: Iteration: 2000 / 4000 [ 50%]  (Warmup)
 Chain 4: Iteration: 2000 / 4000 [ 50%]  (Warmup)
-Chain 3: Iteration: 2800 / 4000 [ 70%]  (Warmup)
-Chain 3: Iteration: 3001 / 4000 [ 75%]  (Sampling)
-Chain 2: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 3: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 2: Iteration: 2000 / 4000 [ 50%]  (Warmup)
 Chain 1: Iteration: 2800 / 4000 [ 70%]  (Warmup)
 Chain 4: Iteration: 2400 / 4000 [ 60%]  (Warmup)
-Chain 3: Iteration: 3400 / 4000 [ 85%]  (Sampling)
-Chain 2: Iteration: 2800 / 4000 [ 70%]  (Warmup)
+Chain 3: Iteration: 2800 / 4000 [ 70%]  (Warmup)
 Chain 1: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 2: Iteration: 2400 / 4000 [ 60%]  (Warmup)
+Chain 3: Iteration: 3001 / 4000 [ 75%]  (Sampling)
 Chain 4: Iteration: 2800 / 4000 [ 70%]  (Warmup)
-Chain 2: Iteration: 3001 / 4000 [ 75%]  (Sampling)
-Chain 3: Iteration: 3800 / 4000 [ 95%]  (Sampling)
-Chain 4: Iteration: 3001 / 4000 [ 75%]  (Sampling)
-Chain 3: Iteration: 4000 / 4000 [100%]  (Sampling)
-Chain 3: 
-Chain 3:  Elapsed Time: 119.796 seconds (Warm-up)
-Chain 3:                36.7162 seconds (Sampling)
-Chain 3:                156.512 seconds (Total)
-Chain 3: 
-Chain 4: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 2: Iteration: 2800 / 4000 [ 70%]  (Warmup)
 Chain 1: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 4: Iteration: 3001 / 4000 [ 75%]  (Sampling)
+Chain 2: Iteration: 3001 / 4000 [ 75%]  (Sampling)
 Chain 2: Iteration: 3400 / 4000 [ 85%]  (Sampling)
-Chain 4: Iteration: 3800 / 4000 [ 95%]  (Sampling)
-Chain 4: Iteration: 4000 / 4000 [100%]  (Sampling)
-Chain 4: 
-Chain 4:  Elapsed Time: 152.74 seconds (Warm-up)
-Chain 4:                28.6506 seconds (Sampling)
-Chain 4:                181.39 seconds (Total)
-Chain 4: 
+Chain 3: Iteration: 3400 / 4000 [ 85%]  (Sampling)
 Chain 1: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 4: Iteration: 3400 / 4000 [ 85%]  (Sampling)
 Chain 2: Iteration: 3800 / 4000 [ 95%]  (Sampling)
 Chain 1: Iteration: 4000 / 4000 [100%]  (Sampling)
 Chain 1: 
-Chain 1:  Elapsed Time: 137.868 seconds (Warm-up)
-Chain 1:                58.414 seconds (Sampling)
-Chain 1:                196.282 seconds (Total)
+Chain 1:  Elapsed Time: 172.376 seconds (Warm-up)
+Chain 1:                67.0971 seconds (Sampling)
+Chain 1:                239.473 seconds (Total)
 Chain 1: 
 Chain 2: Iteration: 4000 / 4000 [100%]  (Sampling)
 Chain 2: 
-Chain 2:  Elapsed Time: 147.492 seconds (Warm-up)
-Chain 2:                53.7241 seconds (Sampling)
-Chain 2:                201.216 seconds (Total)
+Chain 2:  Elapsed Time: 205.332 seconds (Warm-up)
+Chain 2:                32.6744 seconds (Sampling)
+Chain 2:                238.007 seconds (Total)
 Chain 2: 
+Chain 4: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 4: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 4: 
+Chain 4:  Elapsed Time: 202.896 seconds (Warm-up)
+Chain 4:                61.9028 seconds (Sampling)
+Chain 4:                264.799 seconds (Total)
+Chain 4: 
+Chain 3: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 3: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 3: 
+Chain 3:  Elapsed Time: 186.743 seconds (Warm-up)
+Chain 3:                91.8726 seconds (Sampling)
+Chain 3:                278.616 seconds (Total)
+Chain 3: 
 Warning messages:
-1: There were 1 chains where the estimated Bayesian Fraction of Missing Information was low. See
+1: There were 4 chains where the estimated Bayesian Fraction of Missing Information was low. See
 http://mc-stan.org/misc/warnings.html#bfmi-low 
 2: Examine the pairs() plot to diagnose sampling problems
  
-3: Bulk Effective Samples Size (ESS) is too low, indicating posterior means and medians may be unreliable.
+3: The largest R-hat is NA, indicating chains have not mixed.
+Running the chains for more iterations may help. See
+http://mc-stan.org/misc/warnings.html#r-hat 
+4: Bulk Effective Samples Size (ESS) is too low, indicating posterior means and medians may be unreliable.
 Running the chains for more iterations may help. See
 http://mc-stan.org/misc/warnings.html#bulk-ess 
-4: Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.
+5: Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.
 Running the chains for more iterations may help. See
 http://mc-stan.org/misc/warnings.html#tail-ess 
-Saved `./rda/PA_Ap_LDs_obs.rda`!!
+Saved `./rda/PA_Ap_LLps_opt_more_obs.rda`!!

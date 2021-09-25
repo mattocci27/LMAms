@@ -4,7 +4,7 @@ library(stringr)
 library(loo)
 rstan_options(auto_write = TRUE)
 # options(mc.cores = parallel::detectCores())
-options(mc.cores = 5)
+options(mc.cores = 4)
 
 set.seed(123)
 
@@ -153,8 +153,8 @@ if (obs == "obs") {
              warmup = n_warm,
              thin = n_thin,
              chains = n_chains,
-             seed = 12345,
-             control = list(adapt_delta = 0.99, max_treedepth = 20)))
+             seed = 123,
+             control = list(adapt_delta = 0.99, max_treedepth = 15)))
 
   save_name <- paste("./rda/", n_model, "_obs.rda", sep = "")
 }
