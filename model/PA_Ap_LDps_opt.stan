@@ -39,8 +39,8 @@ parameters{
 }
 transformed parameters{
   matrix[N,3] Mu;
-  matrix[4,3] Z;
-  matrix[N,4] X;
+  matrix[5,3] Z;
+  matrix[N,5] X;
   matrix[N,3] L_Sigma;
   Z[1,1] = a0;
   Z[1,2] = b0;
@@ -49,30 +49,37 @@ transformed parameters{
   Z[2,2] = bp;
   Z[2,3] = gp;
   Z[3,1] = 0;
-  Z[3,2] = bs;
+  Z[3,2] = 0;
   Z[3,3] = gs;
   Z[4,1] = 0;
-  Z[4,2] = theta;
+  Z[4,2] = bs;
   Z[4,3] = 0;
+  Z[5,1] = 0;
+  Z[5,2] = theta;
+  Z[5,3] = 0;
 
   L_Sigma = rep_matrix(to_row_vector(0.5 * L_sigma .* L_sigma), N);
   //log_LMAp = log(LMA) + log(p);
   //log_LMAs = log(LMA) + log(1 - p);
   //X = append_col(append_col(append_col(intercept, log_LMAp), log_LMAs), leaf);
-  X = append_col(append_col(append_col(intercept, log(LMA) + log(p)), log(LMA) + log(1 - p) - log(LT) - 3 * log(10)), leaf);
+  X = append_col(append_col(append_col(append_col(intercept,
+    log(LMA) + log(p)),
+    log(LMA) + log(1 - p)),
+    log(LMA) + log(1 - p) - log(LT) - 3 * log(10)),
+    leaf);
   Mu = X * Z - L_Sigma;
 }
 model{
   // priors
-  a0 ~ normal(0, 2.5);
-  b0 ~ normal(0, 2.5);
-  g0 ~ normal(0, 2.5);
-  ap ~ normal(0, 2.5);
-  bs ~ normal(0, 2.5);
-  gp ~ normal(0, 2.5);
-  gs ~ normal(0, 2.5);
-  bp ~ normal(0, 2.5);
-  theta ~ normal(0, 2.5);
+  a0 ~ normal(0, 5);
+  b0 ~ normal(0, 5);
+  g0 ~ normal(0, 5);
+  ap ~ normal(0, 5);
+  bs ~ normal(0, 5);
+  gp ~ normal(0, 5);
+  gs ~ normal(0, 5);
+  bp ~ normal(0, 5);
+  theta ~ normal(0, 5);
   p ~ beta(1, 1);
   L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
   L_sigma ~ cauchy(0, 5);

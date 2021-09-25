@@ -57,19 +57,22 @@ transformed parameters{
   //log_LMAp = log(LMA) + log(p);
   //log_LMAs = log(LMA) + log(1 - p);
   //X = append_col(append_col(append_col(intercept, log_LMAp), log_LMAs), leaf);
-  X = append_col(append_col(append_col(intercept, log(LMA) + log(p)), log(LMA) + log(1 - p)), leaf);
+  X = append_col(append_col(append_col(intercept,
+    log(LMA) + log(p)),
+    log(LMA) + log(1 - p)),
+     leaf);
   Mu = X * Z - L_Sigma;
 }
 model{
   // priors
-  a0 ~ normal(0, 2.5);
-  b0 ~ normal(0, 2.5);
-  g0 ~ normal(0, 2.5);
-  ap ~ normal(0, 2.5);
-  bs ~ normal(0, 2.5);
-  gp ~ normal(0, 2.5);
-  gs ~ normal(0, 2.5);
-  theta ~ normal(0, 2.5);
+  a0 ~ normal(0, 5);
+  b0 ~ normal(0, 5);
+  g0 ~ normal(0, 5);
+  ap ~ normal(0, 5);
+  bs ~ normal(0, 5);
+  gp ~ normal(0, 5);
+  gs ~ normal(0, 5);
+  theta ~ normal(0, 5);
   p ~ beta(1, 1);
   L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
   L_sigma ~ cauchy(0, 5);

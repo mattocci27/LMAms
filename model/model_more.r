@@ -42,9 +42,6 @@ if (data_name == "GL") {
     as.data.frame
 
   list_dat <- list(N = nrow(dat),
-                   obs = cbind(log(dat[ , "Aarea"] + dat[ , "Rarea"]),
-                               log(dat[ , "LL"]),
-                               log(dat[ , "Rarea"])),
                    LMA = dat[ , "LMA"],
                    A = dat[ , "Aarea"],
                    LL = dat[ , "LL"],
@@ -64,7 +61,7 @@ if (data_name == "GL") {
     filter(!is.na(Rarea)) %>%
     filter(!is.na(LL)) %>%
     as.data.frame %>%
-    mutate(gr = paste(site, strata) %>% 
+    mutate(gr = paste(site, strata) %>%
            as.factor %>%
            as.numeric)
 
@@ -75,9 +72,6 @@ if (data_name == "GL") {
     as.numeric()
 
   list_dat <- list(N = nrow(dat),
-                   obs = cbind(log(dat[ , "Aarea"] + dat[ , "Rarea"]),
-                               log(dat[ , "LL"]),
-                               log(dat[ , "Rarea"])),
                    LMA = dat[ , "LMA"],
                    #LT = dat[ , "LT"],
                    A = dat[ , "Aarea"],
@@ -102,7 +96,7 @@ rand_fun <- function(n){
            LL = sample(dat$LL),
            Aarea = sample(dat$Aarea),
            Rarea = sample(dat$Rarea)
-           ) 
+           )
   while (min(temp$Aarea - temp$Rarea) < 0){
   temp <- data.frame(dat[,1:3],
            LMA = sample(dat$LMA),
@@ -110,7 +104,7 @@ rand_fun <- function(n){
            LL = sample(dat$LL),
            Aarea = sample(dat$Aarea),
            Rarea = sample(dat$Rarea)
-           ) 
+           )
   }
 
   temp$A_R <- temp$A - temp$R
@@ -145,7 +139,7 @@ if (obs == "obs") {
              warmup = n_warm,
              thin = n_thin,
              chains = n_chains,
-             control = list(adapt_delta = 0.99, max_treedepth = 20)))
+             control = list(adapt_delta = 0.99, max_treedepth = 15)))
 
   save_name <- paste("./rda/", n_model, "_more_obs.rda", sep = "")
 }
@@ -170,14 +164,14 @@ if (obs == "rand") {
             control = list(adapt_delta = 0.99, max_treedepth = 20))
     res
   }
-  
+
   summary_fun <- function(model) {
      data.frame(summary(model)$summary)
   }
 
   rand_res <- rand_dat %>%
     mutate(model = map(data, mod_fun)) %>%
-    mutate(summary = map(model, summary_fun)) 
+    mutate(summary = map(model, summary_fun))
 
   save_name <- paste("./rda/", n_model, "_more_rand.rda", sep = "")
 }
