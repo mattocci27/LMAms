@@ -31,18 +31,16 @@ parameters{
   real a0;
   real ap;
 {% if A == 'LMApLMAs' %}
-  real<upper=0> as;
-{% endif %}
-{% if A == 'LMApLMAs2' %}
   real<upper=ap> as;
 {% endif %}
   real b0;
 {% if LL == 'LMApLMAs' %}
-  real<upper=0> bp;
+  real bp;
 {% endif %}
+{% if LL == 'LMApLMAs' %}
+  real <lower=bp> bs;
+{% else %}
   real bs;
-{% if LL == 'LMApLMAs2' %}
-  real<upper=bs> bp;
 {% endif %}
   real g0;
   real gp;

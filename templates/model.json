@@ -14,12 +14,6 @@
       "LL": "LMApLMAs"
     },
     {
-      "model": "GL_Aps_LLps2",
-      "site": "GL",
-      "A": "LMApLMAs2",
-      "LL": "LMApLMAs2"
-    },
-    {
       "model": "GL_Ap_LLps",
       "site": "GL",
       "A": "LMAp",
@@ -67,13 +61,6 @@
       "site": "PA",
       "A": "LMApLMAs",
       "LL": "LMApLMAs",
-      "opt": "opt"
-    },
-    {
-      "model": "PA_Aps_LLps_opt2",
-      "site": "PA",
-      "A": "LMApLMAs2",
-      "LL": "LMApLMAs2",
       "opt": "opt"
     },
     {

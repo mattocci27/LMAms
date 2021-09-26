@@ -24,7 +24,7 @@ transformed data{
 parameters{
   real a0;
   real ap;
-  real<upper=0> as;
+  real<upper=ap> as;
   real b0;
   real bs;
   real g0;

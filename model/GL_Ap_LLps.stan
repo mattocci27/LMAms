@@ -25,8 +25,8 @@ parameters{
   real a0;
   real ap;
   real b0;
-  real<upper=0> bp;
-  real bs;
+  real bp;
+  real <lower=bp> bs;
   real g0;
   real gp;
   real gs;
