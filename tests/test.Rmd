@@ -18,27 +18,61 @@ options(mc.cores = parallel::detectCores())
 load("rda/GL_Aps_LLps_obs.rda")
 GL_summary <- data.frame(summary(res)$summary) %>%
   round(3)
+res1 <- res
 load("rda/GL_Aps_LLs_obs.rda")
 GL_summary2 <- data.frame(summary(res)$summary) %>%
   round(3)
+res2 <- res
+loo1 <- loo(res1)
+loo2 <- loo(res2)
 
 load("rda/GL_Aps_LLps_obs2.rda")
 GL_summary <- data.frame(summary(res)$summary) %>%
   round(3)
 
-load("rda/PA_Aps_LDs_opt_obs.rda")
-#load("rda/PA_Aps_LLs_opt_obs.rda")
+load("rda/PA_Ap_LLps_opt_more_obs.rda")
+res1 <- res
 PA_summary <- data.frame(summary(res)$summary) %>%
   round(3)
-
-load("rda/PA_Ap_LLs_opt_obs.rda")
+load("rda/PA_Ap_LLs_opt_more_obs.rda")
 PA_summary2 <- data.frame(summary(res)$summary) %>%
   round(3)
+res2 <- res
+
+
+load("rda/PA_LMA_opt_obs.rda")
+PA_summary3 <- data.frame(summary(res)$summary) %>%
+  round(3)
+res3 <- res
+
+loo1 <- loo(res1)
+loo2 <- loo(res2)
+loo3 <- loo(res3)
+
+head(PA_summary, 10)
 head(PA_summary2, 10)
+
+waic(res)
+waic(res2)
+
+PA_summary$n_eff %>% mean(na.rm=T)
+PA_summary2$n_eff %>% mean(na.rm=T)
 
 load("rda/PA_Aps_LLps_opt2_obs.rda")
 PA_summary3 <- data.frame(summary(res)$summary) %>%
   round(3)
+
+load("rda/PA_Ap_LLps_opt_obs_cv.rda")
+ee <- extract_log_lik_K(ss, holdout_10)
+kk <- kfold(ee)
+#compare with official loo results
+ll <- loo(ee)
+
+load("rda/PA_Ap_LLs_opt_obs_cv.rda")
+ee2 <- extract_log_lik_K(ss, holdout_10)
+kk2 <- kfold(ee2)
+#compare with official loo results
+ll2 <- loo(ee2)
 
 
 PA_tb |>
