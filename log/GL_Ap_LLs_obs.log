@@ -53,34 +53,34 @@ SAMPLING FOR MODEL 'GL_Ap_LLs' NOW (CHAIN 2).
 SAMPLING FOR MODEL 'GL_Ap_LLs' NOW (CHAIN 3).
 
 SAMPLING FOR MODEL 'GL_Ap_LLs' NOW (CHAIN 4).
-Chain 2: 
-Chain 2: Gradient evaluation took 0.00036 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 3.6 seconds.
-Chain 2: Adjust your expectations accordingly!
-Chain 2: 
-Chain 2: 
-Chain 2: Iteration:    1 / 4000 [  0%]  (Warmup)
-Chain 1: 
-Chain 1: Gradient evaluation took 0.000434 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 4.34 seconds.
-Chain 1: Adjust your expectations accordingly!
-Chain 1: 
-Chain 1: 
-Chain 1: Iteration:    1 / 4000 [  0%]  (Warmup)
-Chain 3: 
-Chain 3: Gradient evaluation took 0.000542 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 5.42 seconds.
-Chain 3: Adjust your expectations accordingly!
-Chain 3: 
-Chain 3: 
 Chain 4: 
-Chain 4: Gradient evaluation took 0.000503 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 5.03 seconds.
+Chain 4: Gradient evaluation took 0.000417 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 4.17 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
-Chain 3: Iteration:    1 / 4000 [  0%]  (Warmup)
 Chain 4: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 1: 
+Chain 1: Gradient evaluation took 0.000583 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 5.83 seconds.
+Chain 1: Adjust your expectations accordingly!
+Chain 1: 
+Chain 1: 
+Chain 2: 
+Chain 2: Gradient evaluation took 0.000572 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 5.72 seconds.
+Chain 2: Adjust your expectations accordingly!
+Chain 2: 
+Chain 2: 
+Chain 3: 
+Chain 3: Gradient evaluation took 0.000568 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 5.68 seconds.
+Chain 3: Adjust your expectations accordingly!
+Chain 3: 
+Chain 3: 
+Chain 1: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 2: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 3: Iteration:    1 / 4000 [  0%]  (Warmup)
 Chain 1: Iteration:  400 / 4000 [ 10%]  (Warmup)
 Chain 4: Iteration:  400 / 4000 [ 10%]  (Warmup)
 Chain 3: Iteration:  400 / 4000 [ 10%]  (Warmup)
@@ -90,8 +90,8 @@ Chain 4: Iteration:  800 / 4000 [ 20%]  (Warmup)
 Chain 2: Iteration:  800 / 4000 [ 20%]  (Warmup)
 Chain 3: Iteration:  800 / 4000 [ 20%]  (Warmup)
 Chain 1: Iteration: 1200 / 4000 [ 30%]  (Warmup)
-Chain 3: Iteration: 1200 / 4000 [ 30%]  (Warmup)
 Chain 4: Iteration: 1200 / 4000 [ 30%]  (Warmup)
+Chain 3: Iteration: 1200 / 4000 [ 30%]  (Warmup)
 Chain 2: Iteration: 1200 / 4000 [ 30%]  (Warmup)
 Chain 1: Iteration: 1600 / 4000 [ 40%]  (Warmup)
 Chain 4: Iteration: 1600 / 4000 [ 40%]  (Warmup)
@@ -121,29 +121,29 @@ Chain 4: Iteration: 3800 / 4000 [ 95%]  (Sampling)
 Chain 3: Iteration: 3800 / 4000 [ 95%]  (Sampling)
 Chain 1: Iteration: 4000 / 4000 [100%]  (Sampling)
 Chain 1: 
-Chain 1:  Elapsed Time: 239.679 seconds (Warm-up)
-Chain 1:                51.3614 seconds (Sampling)
-Chain 1:                291.04 seconds (Total)
+Chain 1:  Elapsed Time: 258.332 seconds (Warm-up)
+Chain 1:                56.1355 seconds (Sampling)
+Chain 1:                314.467 seconds (Total)
 Chain 1: 
 Chain 4: Iteration: 4000 / 4000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 241.057 seconds (Warm-up)
-Chain 4:                50.9287 seconds (Sampling)
-Chain 4:                291.985 seconds (Total)
+Chain 4:  Elapsed Time: 260.385 seconds (Warm-up)
+Chain 4:                54.9337 seconds (Sampling)
+Chain 4:                315.319 seconds (Total)
 Chain 4: 
 Chain 2: Iteration: 3400 / 4000 [ 85%]  (Sampling)
 Chain 3: Iteration: 4000 / 4000 [100%]  (Sampling)
 Chain 3: 
-Chain 3:  Elapsed Time: 246.141 seconds (Warm-up)
-Chain 3:                50.3378 seconds (Sampling)
-Chain 3:                296.479 seconds (Total)
+Chain 3:  Elapsed Time: 267.128 seconds (Warm-up)
+Chain 3:                55.2244 seconds (Sampling)
+Chain 3:                322.353 seconds (Total)
 Chain 3: 
 Chain 2: Iteration: 3800 / 4000 [ 95%]  (Sampling)
 Chain 2: Iteration: 4000 / 4000 [100%]  (Sampling)
 Chain 2: 
-Chain 2:  Elapsed Time: 253.358 seconds (Warm-up)
-Chain 2:                98.6075 seconds (Sampling)
-Chain 2:                351.966 seconds (Total)
+Chain 2:  Elapsed Time: 274.886 seconds (Warm-up)
+Chain 2:                77.712 seconds (Sampling)
+Chain 2:                352.598 seconds (Total)
 Chain 2: 
 Warning messages:
 1: Bulk Effective Samples Size (ESS) is too low, indicating posterior means and medians may be unreliable.
