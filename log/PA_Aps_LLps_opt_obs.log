@@ -32,10 +32,10 @@ The following object is masked from ‘package:rstan’:
 [1] "Model: PA_Aps_LLps_opt"
 [1] "Model dir: ./model/PA_Aps_LLps_opt.stan"
 [1] "Data: PA"
-[1] "n_iter = 4000"
-[1] "n_warm = 3000"
+[1] "n_iter = 2"
+[1] "n_warm = 1"
 [1] "n_thin = 1"
-[1] "n_chains = 4"
+[1] "n_chains = 1"
 OBS data
 Rows: 107 Columns: 40
 ── Column specification ────────────────────────────────────────────────────────
@@ -47,40 +47,26 @@ dbl (34): SLA_LEAF, SLA_DISC, LIFETIME, Amass, Rmass, Amax, N_PCT, P_PCT, LT...
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
 SAMPLING FOR MODEL 'PA_Aps_LLps_opt' NOW (CHAIN 1).
-
-SAMPLING FOR MODEL 'PA_Aps_LLps_opt' NOW (CHAIN 2).
-
-SAMPLING FOR MODEL 'PA_Aps_LLps_opt' NOW (CHAIN 3).
-
-SAMPLING FOR MODEL 'PA_Aps_LLps_opt' NOW (CHAIN 4).
 Chain 1: 
-Chain 1: Gradient evaluation took 0.00025 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 2.5 seconds.
+Chain 1: Gradient evaluation took 0.000148 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 1.48 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
-Chain 1: Iteration:    1 / 4000 [  0%]  (Warmup)
-Chain 2: 
-Chain 2: Gradient evaluation took 0.000226 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 2.26 seconds.
-Chain 2: Adjust your expectations accordingly!
-Chain 2: 
-Chain 2: 
-Chain 2: Iteration:    1 / 4000 [  0%]  (Warmup)
-Chain 3: 
-Chain 3: Gradient evaluation took 0.000221 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 2.21 seconds.
-Chain 3: Adjust your expectations accordingly!
-Chain 3: 
-Chain 3: 
-Chain 4: 
-Chain 4: Gradient evaluation took 0.000207 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 2.07 seconds.
-Chain 4: Adjust your expectations accordingly!
-Chain 4: 
-Chain 4: 
-Chain 4: Iteration:    1 / 4000 [  0%]  (Warmup)
-Chain 3: Iteration:    1 / 4000 [  0%]  (Warmup)
-
-Timing stopped at: 2.256 0.164 1.775
-Execution halted
+Chain 1: WARNING: No variance estimation is
+Chain 1:          performed for num_warmup < 20
+Chain 1: 
+Chain 1: Iteration: 1 / 2 [ 50%]  (Warmup)
+Chain 1: Iteration: 2 / 2 [100%]  (Sampling)
+Chain 1: 
+Chain 1:  Elapsed Time: 0.001113 seconds (Warm-up)
+Chain 1:                0.000335 seconds (Sampling)
+Chain 1:                0.001448 seconds (Total)
+Chain 1: 
+Warning messages:
+1: There were 1 divergent transitions after warmup. See
+http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup
+to find out why this is a problem and how to eliminate them. 
+2: Examine the pairs() plot to diagnose sampling problems
+ 
+Saved `./rda/PA_Aps_LLps_opt_obs.rda`!!
