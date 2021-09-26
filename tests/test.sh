@@ -17,14 +17,30 @@ OBS=obs
 #done
 
 
+#i=1
+#DATA=PA
+#for MODEL in  PA_Aps_LLps_opt PA_Aps_LLs_opt PA_Aps_LDps_opt PA_Aps_LDs_opt
+#do
+#  #
+#  echo "${MODEL}, ${DATA}, ${OBS}"
+#  export MODEL DATA OBS
+#  nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/model.r > ./log/${MODEL}_${OBS}.log &
+#  if [ $((i % 4)) = 0 ]; then
+#    wait
+#  fi
+#  ((i+=1))
+#  sleep 1 # pause to be kind to the scheduler
+#done
+
+
 i=1
 DATA=PA
-for MODEL in  PA_Aps_LLps_opt PA_Aps_LLs_opt PA_Aps_LDps_opt PA_Aps_LDs_opt
+for MODEL in  PA_Ap_LLps_opt PA_Ap_LLs_opt
 do
   #
   echo "${MODEL}, ${DATA}, ${OBS}"
   export MODEL DATA OBS
-  nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/model.r > ./log/${MODEL}_${OBS}.log &
+  nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/k_fold.r > ./log/${MODEL}_${OBS}_CV.log &
   if [ $((i % 4)) = 0 ]; then
     wait
   fi
