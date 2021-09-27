@@ -53,9 +53,7 @@ dat <- tibble(LMA = models) %>%
 GL_tb <- dat %>%
   dplyr::select(LMA, looic, lp, N, div) %>%
   filter(str_detect(LMA, "GL")) %>%
-  arrange(looic) %>%
-  # drop _more
-  mutate(LMA = str_split_fixed(LMA, "_more", 2)[, 1])
+  arrange(looic)
 
 PA_tb <- dat %>%
   dplyr::select(LMA, looic, lp, N, div) %>%
@@ -64,10 +62,3 @@ PA_tb <- dat %>%
 
 write_csv(GL_tb, "./data/GL_elpd.csv")
 write_csv(PA_tb, "./data/PA_elpd.csv")
-
-
-PA_tb |>
-  filter(div == "OK")
-
-PA_tb |>
-  filter(str_detect(obs_files, "more"))
