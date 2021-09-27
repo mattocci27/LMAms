@@ -59,7 +59,7 @@ write_csv(GL, "./data/GL_res.csv")
 ## PA ----------------------------------------------
 ## summary table
 
-load("./rda/PA_Ap_LLs_opt_obs.rda")
+load("./rda/PA_Ap_LLs_opt_more_obs.rda")
 
 s_PA <- data.frame(summary(res)$summary) %>%
   mutate(para = rownames(.)) %>%
