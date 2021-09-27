@@ -37,49 +37,7 @@ source("../fig_theme.r")
 # Load GL model result
 
 ```{r GLdat, cache=TRUE, comment=NA}
-
-load("../rda/GL_LMAms2_obs.rda")
-GLres <- res
-
-
-GL_summary <- data.frame(summary(res)$summary) %>%
-  round(3)
-DT::datatable(GL_summary)
-GL <- dat
-p_mat <- rstan::extract(GLres, "p")[[1]] 
-p_vec <- apply(p_mat, 2, median)
-
-p_vec_lo <- apply(p_mat, 2, function(x)quantile(x, 0.025))
-p_vec_up <- apply(p_mat, 2, function(x)quantile(x, 0.975))
-
-GL <- GL %>%
-  mutate(DE = ifelse(GL$DE == "", "U", as.character(DE)))
-
-GL <- GL %>%
-  mutate(LMAp = LMA * p_vec) %>%
-  mutate(LMAs = LMA - LMAp)  %>%
-  mutate(LMAp_lo = LMA * p_vec_lo) %>%
-  mutate(LMAp_up = LMA * p_vec_up) %>%
-  mutate(LMAs_lo = LMA - LMAp_up) %>%
-  mutate(LMAs_up = LMA - LMAp_lo) 
-
-d <- read_csv("../data/nature02403-s2.csv", skip = 10)
-dd <- tibble(Narea = 10^d$`log Narea`,
-        Parea = 10^d$`log Parea`,
-        sp = d$Species) %>%
-        group_by(sp) %>%
-        summarize(Narea = mean(Narea, na.omit = T),
-            Parea = mean(Parea, na.omit = T))
-GL <- left_join(GL, dd, by = "sp") %>%
-  mutate(gr = factor(DE,
-    labels = c("Deciduous",
-               "Evergreen",
-               "Unclassified"
-                      ))) 
-write_csv(GL, "../data/GL_res.csv")
-
-#write_csv(GL, "../data/GL_result.csv")
-
+GL <- read_csv("../data/GL_res.csv")
 ```
 
 
@@ -820,83 +778,13 @@ my_ggsave("../figs/GL_NP.png", GL_NP_plot)
 # Panama
 
 ```{r PAdat, cache=TRUE, comment=NA}
-#load("../data/PA_LMAms_L5_more_obs.rda")
-load("../rda/PA_LMAms_L3_more_obs.rda")
-PAres <- res
 
-summary_PA_LDL <- data.frame(summary(res)$summary)
-
-DT::datatable(summary_PA_LDL %>% round(2))
-
-PA <- dat %>%
-  as_tibble %>%
-  mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
-  mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) %>%
-  mutate(site_strata = paste(site2, strata, sep = "_"))
-
-PA_p_mat <- rstan::extract(PAres, "p")[[1]] 
-PA_p_vec <- apply(PA_p_mat, 2, median)
-PA_p_vec_lo <- apply(PA_p_mat, 2, function(x)quantile(x, 0.025))
-PA_p_vec_up <- apply(PA_p_mat, 2, function(x)quantile(x, 0.975))
-
-PA <- PA %>%
-  mutate(LMAp = LMA * PA_p_vec) %>%
-  mutate(LMAs = LMA - LMAp)  %>%
-  mutate(LMAp_lo = LMA * PA_p_vec_lo) %>%
-  mutate(LMAp_up = LMA * PA_p_vec_up) %>%
-  mutate(LMAs_lo = LMA - LMAp_up) %>%
-  mutate(LMAs_up = LMA - LMAp_lo) 
-
-write_csv(PA, "../data/PA_res.csv")
+PA <- read_csv("../data/PA_res.csv")
 
 ```
 
-# Same but purrr
 
-```{r, cache=TRUE, comment=NA, eval = F, echo = F}
-pmat <- extract(res, "p")[[1]]
-
-LMAp <- pmat * PA$LMA
-LMAp <- t(LMAp)
-LMAs <- (1 - pmat)  * PA$LMA
-LMAs <- t(LMAs)
-colnames(LMAp) <- str_c("mcmcLMAp", 1:ncol(LMAp))
-colnames(LMAs) <- str_c("mcmcLMAs", 1:ncol(LMAs))
-LMAp <- as_tibble(LMAp)
-LMAs <- as_tibble(LMAs)
-
-LMAp_tmp <- PA %>%
-  bind_cols(., LMAp) %>%
-  pivot_longer(cols = starts_with("mcmcLMAp"), names_to = "mcmcLMAp", values_to = "val1") 
-
-LMAs_tmp <- PA %>%
-  bind_cols(., LMAs) %>%
-  pivot_longer(cols = starts_with("mcmcLMAs"), names_to = "mcmcLMAs", values_to = "val2") 
-
-PA2 <- LMAp_tmp %>%
-  mutate(val2 = LMAs_tmp$val2) %>%
-  pivot_longer(cols = starts_with("val"), names_to = "LMAps", values_to = "val3") 
-
-LMAres_fun <- function(i, LMA = c("LMAm", "LMAs")) {
-  case_when(
-    LMA == "LMAm" ~  fit_m <- lm(log(LMAs_mat[i,]) ~ log(LMAp_mat[i,])),
-    LMA == "LMAs" ~  fit_m <- lm(log(LMAp_mat[i,]) ~ log(LMAs_mat[i,])),
-   )
-  residuals(fit_m)
-}
-
-GL2 <- GL %>%
-  mutate(res_m = sapply(1:N, LMA_m_fun) %>% apply(., 1, median)) %>%
-  mutate(res_s = sapply(1:N, LMA_s_fun) %>% apply(., 1, median))
-
-GL3 <- GL %>%
-  mutate(res_m = sapply(1:N, LMAres_fun, "LMAm") %>% apply(., 1, median)) %>%
-  mutate(res_s = sapply(1:N, LMAres_fun, "LMAs") %>% apply(., 1, median)) 
-
-
-```
-
-```{r PA-part, cache=TRUE, comment=NA}
+```{r PA-part, eval=FALSE, comment=NA}
 pmat <- extract(res, "p")[[1]]
 before <- proc.time()
 N <- 4000
@@ -965,7 +853,7 @@ par(mfrow=c(1,1))
 ```
 
 
-```{r PA-part-plt, cache=TRUE, comment=NA}
+```{r PA-part-plt, eval = FALSE, comment=NA}
 
 LMAp_mat <- apply(pmat, 1, function(x){PA$LMA * x}) %>% t
 LMAs_mat <- apply(LMAp_mat, 1, function(x){PA$LMA - x}) %>% t
@@ -1985,36 +1873,25 @@ Sun <- PA %>%
 Shade <- PA %>%
   filter(strata != "CAN")
 
-
 GL_para <- read_csv("../data/GLpara.csv")
 PA_para <- read_csv("../data/PApara.csv")
 
-as1 <- GL_para %>%
-  dplyr::filter(para == "amas[1]") %>%
-  dplyr::select(X50., X2.5., X97.5.)
+point_dat <- bind_rows(
+  GL_para |>
+    filter(para %in% c("ap", "as")) |> 
+    mutate(site = "GL"), 
+  PA_para |>
+    filter(para %in% c("ap", "as")) |> 
+    mutate(site = "PA")
+) |>
+  dplyr::select(site, para, mean, lwr = X2.5., upr = X97.5.)
 
-am1 <- GL_para %>%
-  dplyr::filter(para == "amas[2]") %>%
-  dplyr::select(X50., X2.5., X97.5.)
 
-as2 <- PA_para %>%
-  dplyr::filter(para == "as") %>%
-  dplyr::select(X50., X2.5., X97.5.)
+point_dat2 <- tibble(type = c("GLOPNET", "Panama Sun", "Panama Shade"),
+  ap = c(point_dat$mean[1], point_dat$mean[3], point_dat$mean[3]),
+  as = c(point_dat$mean[2], 0, 0)
+)
 
-am2 <- PA_para %>%
-  dplyr::filter(para == "am") %>%
-  dplyr::select(X50., X2.5., X97.5.)
-
-point_dat <- bind_rows(am1, am2, am2)
-point_dat2 <- bind_rows(as1, as2, as2)
-
-point_dat3 <- bind_cols(point_dat, point_dat2)
-names(point_dat3) <- c("am_mid", "am_low", "am_upper",
-                      "as_mid", "as_low", "as_upper"
-                     )
-
-point_dat4 <- point_dat3 %>%
-  mutate(type = c("GLOPNET", "Panama Sun", "Panama Shade"))
 
 GLb <- lm(log(Aarea) ~ log(LMA), GL)$coefficients[2]
 Sunb <- lm(log(Aarea) ~ log(LMA), Sun)$coefficients[2]
@@ -2022,7 +1899,7 @@ Shadeb <- lm(log(Aarea) ~ log(LMA), Shade)$coefficients[2]
 
 b_vec <- c(GLb, Sunb, Shadeb) %>% round(2)
 
-point_dat5 <- point_dat4 %>%
+point_dat3 <- point_dat2 %>%
   mutate(b = paste("italic('b')==", b_vec))
 
 PA2 <- PA %>%
