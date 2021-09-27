@@ -28,3 +28,5 @@ s_PA <- data.frame(summary(res)$summary) %>%
 
 write_csv(s_PA, "./data/PApara.csv")
 
+
+hoge
