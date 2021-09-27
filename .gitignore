@@ -77,7 +77,6 @@ rda/
 
 # For now
 #*.png
-Makefile
 
 *.fdb*
 *.gz

@@ -1,8 +1,8 @@
 library(tidyverse)
 # GLOPNET
-d <- read.csv("./data/nature02403-s2.csv", skip = 10)
+d <- read.csv("./data-raw/nature02403-s2.csv", skip = 10)
 
-data <- data_frame(sp = d[ , "Species"] %>% unlist,
+data <- tibble(sp = d[ , "Species"] %>% unlist,
          DE = d[ , "Decid.E.green"],
          GF = d[ , "GF"],
          BIOME = d[ , "BIOME"],
@@ -27,13 +27,13 @@ write.csv(data, "./data/GL_data.csv", row.names = FALSE)
 
 
 # Panama
-fiber <- read_csv("./data/fiber_analysis.csv")
+fiber <- read_csv("./data-raw/fiber_analysis.csv")
 
 fiber2 <- fiber %>%
 #  mutate(sp_site_strata = paste(sp, site2, position, sep = "_")) %>%
   rename(ADF = `%ADF`, Lig = `%Lignin`)
 
-d <- read_csv("./data/LFTRAITS.csv")
+d <- read_csv("./data-raw/LFTRAITS.csv")
 
 # there two types of SLA. In our analysis, both mass and area-normalization are
 # based on SLA_LEAF
@@ -102,7 +102,7 @@ download.file(onoda_url, xlsx_file)
 
 # Panama taxa
 
-d <- read_csv("./data/LFTRAITS.csv")
+d <- read_csv("./data-raw/LFTRAITS.csv")
 
 d2 <- d %>%
   dplyr::select(sp = "SP4$", #"SITE$", "STRATA$", 
@@ -117,7 +117,7 @@ d2 <- d %>%
   mutate(name = ifelse(is.na(name), name1, name)) %>%
   dplyr::select(sp, genus, species, name)
 
-habit <- read_csv("./data/Osnas2018_S1.csv") %>%
+habit <- read_csv("./data-raw/Osnas2018_S1.csv") %>%
  # dplyr::select(Genus, Species, LeafHabit, Site, Stratum)
   dplyr::select(genus = Genus, species = Species, LeafHabit) %>%
   mutate(name = str_c(genus, "_", species)) %>% 
