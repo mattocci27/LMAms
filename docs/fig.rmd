@@ -1604,263 +1604,7 @@ my_ggsave("../figs/mass_prop2.png", mass_plt,
 
 ```
 
-
 ## Based on the results
-
-```{r, eval=FALSE}
-
-GL <- read_csv("../data/GL_res.csv")
-PA <- read_csv("../data/PA_res.csv")
-
-Sun <- PA %>%
-  filter(strata == "CAN")
-
-Shade <- PA %>%
-  filter(strata != "CAN")
-
-GL_para <- read_csv("../data/GLpara.csv")
-PA_para <- read_csv("../data/PApara.csv")
-
-as1 <- GL_para %>%
-  dplyr::filter(para == "amas[1]") %>%
-  dplyr::select(X50., X2.5., X97.5.)
-
-am1 <- GL_para %>%
-  dplyr::filter(para == "amas[2]") %>%
-  dplyr::select(X50., X2.5., X97.5.)
-
-as2 <- PA_para %>%
-  dplyr::filter(para == "as") %>%
-  dplyr::select(X50., X2.5., X97.5.)
-
-am2 <- PA_para %>%
-  dplyr::filter(para == "am") %>%
-  dplyr::select(X50., X2.5., X97.5.)
-
-point_dat <- bind_rows(am1, am2, am2)
-point_dat2 <- bind_rows(as1, as2, as2)
-
-point_dat3 <- bind_cols(point_dat, point_dat2)
-names(point_dat3) <- c("am_mid", "am_low", "am_upper",
-                      "as_mid", "as_low", "as_upper"
-                     )
-
-point_dat4 <- point_dat3 %>%
-  mutate(type = c("GLOPNET", "Panama Sun", "Panama Shade"))
-
-GLb <- lm(log(Aarea) ~ log(LMA), GL)$coefficients[2]
-Sunb <- lm(log(Aarea) ~ log(LMA), Sun)$coefficients[2]
-Shadeb <- lm(log(Aarea) ~ log(LMA), Shade)$coefficients[2]
-PAb <- lm(log(Aarea) ~ log(LMA), PA)$coefficients[2]
-
-b_vec <- c(GLb, Sunb, Shadeb) %>% round(2)
-
-GL_para |> 
-  filter(str_detect(para, "^Sigma"))
-
-point_dat5 <- point_dat4 %>%
-  mutate(b = paste("italic('b')==", b_vec))
-
-my_rlnorm <- function(n, mu, sigma)rlnorm(n, mu - 0.5 * sigma^2, sigma)
-
-var_fun <- \(LMAs) {
-  LMA <- LMAp + LMAs
-  cov(LMA, LMAs) / var(LMA) * 100
-}
-
-PA_varS <- cov(PA$LMA, PA$LMAs) / var(PA$LMA) * 100
-GL_varS <- cov(GL$LMA, GL$LMAs) / var(GL$LMA) * 100
-Sun_varS <- cov(Sun$LMA, Sun$LMAs) / var(Sun$LMA) * 100
-Shade_varS <- cov(Shade$LMA, Shade$LMAs) / var(Shade$LMA) * 100
-
-GL_sim <- \(LMAs) {
-  A <- exp(log(2) +  
-           GL_para$`X50.`[2] * log(LMAp) +
-           GL_para$`X50.`[1] * log(LMAs)
-  )
-  A <- exp(log(1.56) +  
-           0.22 * log(LMAp) 
-          -0.1 * log(LMAs)
-  )
-  A <- exp(log(1.56) +  
-           0.5 * log(LMAp) 
-          -0.1 * log(LMAs)
-  )
-  fit <- lm(log(A) ~ log(LMAp + LMAs))
-  fit$coefficients[2]
-}
-
-PA_sim <- \(LMAs) {
-  A <- exp(log(1) +  
-           PA_para$`X50.`[9] * log(LMAp) +
-           PA_para$`X50.`[10] * log(LMAs))
- # A <- exp(log(1) +  
- #          0.56 * log(LMAp))
-  fit <- lm(log(A) ~ log(LMAp + LMAs))
-  fit$coefficients[2]
-}
-
-
-
-set.seed(123)
-N <- 100
-b_GL <- NULL
-b_PA <- NULL
-LMAs_var <- NULL
-for (i in 1:1000) {
-  LMAp <- rlnorm(N, log(60), 1)
-  tmp <- seq(log(1.01), log(10), length = 10)
-  LMAs <- map(tmp, \(x) rlnorm(N, log(60), x))
-  LMAs_var <- cbind(LMAs_var, map_dbl(LMAs, var_fun))
-  b_GL <- cbind(b_GL, map_dbl(LMAs, GL_sim))
-  b_PA <- cbind(b_PA, map_dbl(LMAs, PA_sim))
-}
-
-LMAs_var_mean <- apply(LMAs_var, 1, mean)
-mean_GL <- apply(b_GL, 1, mean)
-upr_GL <- apply(b_GL, 1, \(x)(quantile(x, 0.975)))
-lwr_GL <- apply(b_GL, 1, \(x)(quantile(x, 0.025)))
-mean_PA <- apply(b_PA, 1, mean)
-upr_PA <- apply(b_PA, 1, \(x)(quantile(x, 0.975)))
-lwr_PA <- apply(b_PA, 1, \(x)(quantile(x, 0.025)))
-
-
-b_dat <- tribble(~mean, ~upr,  ~lwr, ~LMAs_var, ~site,
-  c(mean_GL, mean_PA),
-  c(upr_GL, upr_PA),
-  c(lwr_GL, lwr_PA),
-  rep(LMAs_var_mean, 2),
-  rep(c("GL", "PA"), each = 10)
-  ) |>
-  unnest(cols = c(mean, upr, lwr, LMAs_var, site))
-
-mass_plt_simple <- ggplot(b_dat) +
-  geom_ribbon(aes(ymin = lwr, ymax = upr, 
-                  x = LMAs_var, group = site),
-              fill = "grey70",
-              alpha = 0.6)  +
-  geom_line(aes(y = mean, x = LMAs_var, col = site)) +
-  geom_point(aes(x = GL_varS, y = GLb)) +
-  geom_point(aes(x = Sun_varS, y = Sunb)) +
-  geom_point(aes(x = Shade_varS, y = Shadeb)) +
-  ylab(expression(Mass~proportionality~(italic(b)))) +
-  xlab("Relative variance of LMAs (%)")
-mass_plt_simple
-
-my_ggsave("../figs/mass_prop_simple.png", mass_plt_simple,
-          height = 6, width = 6)
-
-
-log_mu <- log(40)
-log_sig <- tmp
-tmp2 <- (exp(log_sig^2) - 1) * exp(2 * log_mu + log_sig^2)
-var_LMAp <- (exp(1^2) - 1) * exp(2 * log_mu + 1^2)
-
-b_dat2 <- tibble(mean_, upr_, lwr_, var_ = tmp, var2 = tmp2, LMAs_var_mean)
-
-#mass_plt_simple <- ggplot(b_dat2, aes(x = exp(var_)^2)) +
-mass_plt_simple <- ggplot(b_dat2) +
-#mass_plt_simple <- ggplot(b_dat2, aes(x = var_)) +
-  geom_ribbon(aes(ymin = lwr_, ymax = upr_, x = LMAs_var_mean), fill = "grey70")  +
-  geom_line(aes(y = mean_, x = LMAs_var_mean)) +
-  geom_point(aes(x = GL_varS, y = GLb)) +
-  geom_point(aes(x = Sun_varS, y = Sunb)) +
-  geom_point(aes(x = Shade_varS, y = Shadeb)) +
-  ylab(expression(Mass~proportionality~(italic(b)))) +
-  xlab("Relative variance of LMAs (%)")
-  #xlab("Shape parameter of LMAs")
-mass_plt_simple
-
-my_ggsave("../figs/mass_prop_simple.png", mass_plt_simple,
-          height = 6, width = 6)
-
-
-PA_sim <- \(LMAs) {
-  A <- rlnorm(N, 1 * PA_para$`X50.`[9] * log(LMAp) + 
-              PA_para$`X50.`[10] * log(LMAs), 0)
-  fit <- lm(log(A) ~ log(LMAp + LMAs))
-  fit$coefficients[2]
-}
-
-
-
-(Sun$LMAp) |> mean() 
-(Shade$LMAp) |> mean() 
-
-(Sun$LMAs) |> mean() 
-(Shade$LMAs) |> mean() 
-
-set.seed(123)
-N <- 100
-b_val <- NULL
-LMAs_var <- NULL
-for (i in 1:1000) {
-  LMAp <- rlnorm(N, log(40), 1)
-  tmp <- seq(log(1.01), log(10), length = 10)
-  LMAs <- map(tmp, \(x) rlnorm(N, log(40), x))
-  LMAs_var <- cbind(LMAs_var, map_dbl(LMAs, var_fun))
-  b_val <- cbind(b_val, map_dbl(LMAs, PA_sim))
-}
-
-b_dat <- as.data.frame(b_val)
-LMAs_var_mean <- apply(LMAs_var, 1, mean)
-mean_ <- apply(b_dat, 1, mean)
-upr_ <- apply(b_dat, 1, \(x)(quantile(x, 0.975)))
-lwr_ <- apply(b_dat, 1, \(x)(quantile(x, 0.025)))
-
-log_mu <- log(40)
-log_sig <- tmp
-tmp2 <- (exp(log_sig^2) - 1) * exp(2 * log_mu + log_sig^2)
-var_LMAp <- (exp(1^2) - 1) * exp(2 * log_mu + 1^2)
-
-b_dat2 <- tibble(mean_, upr_, lwr_, var_ = tmp, var2 = tmp2, LMAs_var_mean)
-
-#mass_plt_simple <- ggplot(b_dat2, aes(x = exp(var_)^2)) +
-mass_plt_simple2 <- ggplot(b_dat2) +
-#mass_plt_simple <- ggplot(b_dat2, aes(x = var_)) +
-  geom_ribbon(aes(ymin = lwr_, ymax = upr_, x = LMAs_var_mean), fill = "grey70")  +
-  geom_line(aes(y = mean_, x = LMAs_var_mean)) +
-  geom_point(aes(x = Sun_varS, y = Sunb)) +
-  geom_point(aes(x = Shade_varS, y = Shadeb)) +
-  ylab(expression(Mass~proportionality~(italic(b)))) +
-  xlab("Relative variance of LMAs (%)")
-  #xlab("Shape parameter of LMAs")
-mass_plt_simple2
-
-my_ggsave("../figs/mass_prop_simple2.png", mass_plt_simple2,
-          height = 6, width = 6)
-
-```
-
-![Mass-proportionality-simple](../figs/mass_prop_simple.png)
-
-![Mass-proportionality-simple2](../figs/mass_prop_simple2.png)
-
-
-
-```{r}
-
-log_sig <- 0.5
-log_mu <- 2
-mean_ <- NULL
-var_ <- NULL
-for (i in 1:1000) {
-  y <- rlnorm(100, log_mu, log_sig)
-  mean_[i] <- mean(y)
-  var_[i] <- var(y)
-}
-
-exp(log_mu + log_sig^2 / 2)
-(exp(log_sig^2) - 1) * exp(2 * log_mu + log_sig^2)
-
-mean(mean_)
-mean(var_)
-
-exp(log_sig^2)
-
-
-```
-
 
 ```{r}
 
@@ -1902,377 +1646,204 @@ b_vec <- c(GLb, Sunb, Shadeb) %>% round(2)
 point_dat3 <- point_dat2 %>%
   mutate(b = paste("italic('b')==", b_vec))
 
-PA2 <- PA %>%
-  group_by(site, strata) %>%
-  nest() %>%
-  mutate(n = map_dbl(data, function(x)nrow(x))) %>%
-  mutate(LMAp_sd = map_dbl(data, function(x)sd(log(x$LMAp)))) %>%
-  mutate(LMAs_sd = map_dbl(data, function(x)sd(log(x$LMAs)))) %>%
-  mutate(LMAp_mu = map_dbl(data, function(x)mean(log(x$LMAp)))) %>%
-  mutate(LMAs_mu = map_dbl(data, function(x)mean(log(x$LMAs))))
 
-my_rlnorm <- function(n, mu, sigma)rlnorm(n, mu-0.5*sigma^2, sigma)
+my_rlnorm <- function(n, mu, sigma)rlnorm(n, mu - 0.5 * sigma^2, sigma)
+
+var_fun <- \(LMAs) {
+  LMA <- LMAp + LMAs
+  cov(LMA, LMAs) / var(LMA) * 100
+}
+
+PA_varS <- cov(PA$LMA, PA$LMAs) / var(PA$LMA) * 100
+GL_varS <- cov(GL$LMA, GL$LMAs) / var(GL$LMA) * 100
+Sun_varS <- cov(Sun$LMA, Sun$LMAs) / var(Sun$LMA) * 100
+Shade_varS <- cov(Shade$LMA, Shade$LMAs) / var(Shade$LMA) * 100
+
+GL_sim <- \(LMAs) {
+  A <- exp(log(GL_para$`X50.`[1]) +  
+           GL_para$`X50.`[2] * log(LMAp) +
+           GL_para$`X50.`[3] * log(LMAs)
+  )
+  fit <- lm(log(A) ~ log(LMAp + LMAs))
+  fit$coefficients[2]
+}
+
+PA_sim <- \(LMAs) {
+#  A <- exp(log(PA_para$`X50.`[1]) +  
+#           PA_para$`X50.`[2] * log(LMAp))
+  A <- exp(
+           PA_para$`X50.`[2] * log(LMAp))
+#  A <- exp(0.55 * log(LMAp) - 0.2 *(log(LMAs)))
+  fit <- lm(log(A) ~ log(LMAp + LMAs))
+  fit$coefficients[2]
+}
+
+
+log(GL$LMAp) |> sd() 
+log(PA$LMAp) |> sd() 
+
+log(GL$LMAs) |> sd() 
+log(PA$LMAs) |> sd() 
+
 
 set.seed(123)
-am <- seq(-1, 1, by = 0.1)
-as <- seq(-1, 1, by = 0.1)
-dat <- expand.grid(am = am, as = as)
-N <- nrow(GL)
-N2 <- nrow(Sun)
-N3 <- nrow(Shade)
-mass_prop <- NULL
-mass_prop2 <- NULL
-mass_prop3 <- NULL
-mass_prop_ <- NULL
-mass_prop2_ <- NULL
-mass_prop3_ <- NULL
+N <- 100
+b_GL <- NULL
+b_PA <- NULL
+LMAs_var <- NULL
+x_len <- 20
 
-LMA_dat <- PA2 %>%
-  mutate(LMAp2 = pmap(list(n, LMAp_mu, LMAp_sd), my_rlnorm)) %>%
-  mutate(LMAs2 = pmap(list(n, LMAs_mu, LMAs_sd), my_rlnorm)) %>%
-  select(-data) %>%
-  unnest
-
-LMA_dat
-
-for (i in 1:nrow(dat)) {
-  A <- rlnorm(N, dat$am[i] * log(GL$LMAp) + dat$as[i] * log(GL$LMAs), 0)
-  fit <- lm(log(A) ~ log(GL$LMA))
-  mass_prop[i] <- fit$coefficients[2]
-
-  A <- rlnorm(N2, dat$am[i] * log(Sun$LMAp) + dat$as[i] * log(Sun$LMAs), 0)
-  fit <- lm(log(A) ~ log(Sun$LMA))
-  mass_prop2[i] <- fit$coefficients[2]
-
-  A <- rlnorm(N3, dat$am[i] * log(Shade$LMAp) + dat$as[i] * log(Shade$LMAs), 0)
-  fit <- lm(log(A) ~ log(Shade$LMA))
-  mass_prop3[i] <- fit$coefficients[2]
-}
-#}
-
-dat2 <- dat %>%
-  as_tibble %>%
-  mutate('GLOPNET' = mass_prop) %>%
-  mutate('Panama Sun' = mass_prop2) %>%
-  mutate('Panama Shade' = mass_prop3) %>%
-  filter(am >= as) %>%
-  filter(am > 0 | as > 0)
-
-dat3 <- dat2 %>%
-  gather(type, val, 3:5) #%>%
-  #filter(val > -0.5 & val < 2)
-
-theme_set(theme_LES() +
-          theme(axis.text.x = element_text(size = 6),
-                axis.text.y = element_text(size = 6),
-                axis.title = element_text(size = 6),
-                axis.ticks.length = unit(-0.1, "cm"),
-                axis.title.y = element_text(margin = margin(t = 0,
-                                                            b = 0,
-                                                            l = -5,
-                                                            r = 0)),
-                axis.title.x = element_text(margin = margin(t = 0,
-                                                            b = -5,
-                                                            l = -5,
-                                                            r = -5)),
-                ))
-
-theme_LES2 <- function(base_size = 9, 
-                     base_family = "sans") {
-  # based on theme_bw which is based on theme_grey
-  ret <- theme_grey(base_size = base_size, base_family = base_family) %+replace%
-    theme(panel.background = element_rect(fill = "white", colour = NA),
-          panel.border = element_rect(fill = NA, colour = "black", size = 0.25), 
-          #panel.grid.major = element_line(colour = "grey87"),
-         # panel.grid.minor = element_line(colour = "grey87", size = 0.25), 
-          panel.grid.major = element_line(colour = NA),
-          panel.grid.minor = element_line(colour = NA, size = 0.25), 
-          panel.spacing = unit(0, "lines"),
-          strip.background = element_blank(), 
-         # strip.background = element_rect(fill = "white"), 
-          legend.key = element_rect(fill = NA, colour = NA),
-         # legend.position = "top",
-          legend.margin = margin(t = 0, unit = "cm"),
-          legend.key.size = unit(0.2, "cm"),
-          legend.box = "horizontal",
-          legend.box.spacing = unit(0.1, "cm"),
-          #plot.background=element_rect(fill="red"), # fix 
-          #plot.background=element_rect(fill=NA), # fix 
-          plot.background = element_blank(),
-          strip.text = element_text(size = 9),
-          strip.placement = "outside",
-          strip.switch.pad.grid = unit(0, "cm"),
-          axis.ticks.length = unit(-0.15, "cm"),
-          axis.ticks = element_line(size = 0.25),
-          axis.title = element_text(size = 8),
-          axis.text.x = element_text(margin = margin(0.25, unit = "cm"),
-                                     size = unit(8, "pt"),
-                                     colour = "black"),
-          axis.text.y = element_text(hjust = 0.5,
-                                     margin = margin(r = 0.25, unit = "cm"),
-                                     debug = FALSE,
-                                     size = unit(8, "pt"),
-                                     colour = "black"),
-          legend.text = element_text(size = 8),
-          #legend.title = element_blank(),
-          axis.title.y = element_text(margin = margin(t = 0,
-                                                      b = 0,
-                                                      l = -5,
-                                                      r = 0),
-                                      angle = 90),
-          axis.title.x = element_text(margin = margin(t = 0,
-                                                      b = -5,
-                                                      l = -5,
-                                                      r = -5)),
-          complete = TRUE) 
+sig_fun <- function(x) {
+  mu <- mean(x)
+  sig <- sd(x)
+  sqrt(log((sig/mu)^2 + 1))
 }
 
-theme_set(theme_LES2())
+mu_fun <- function(x) {
+  mu <- mean(x)
+  sig <- sd(x)
+  log(mu^2 / sqrt(sig^2 + mu^2))
+}
 
 
-# these do not look good
-#legend_title <- bquote(atop("Value of scaling parameter ("*italic(b)*")",
-#                   "in the equation "*italic(A)[area]*"="*italic(a)*"LMA"^italic(b)))
-#
-#legend_title <- expression(paste("Value of scaling parameter (", italic(b), ")",
-#                                 "\n in the equation ", italic(A)[area], " = ", italic(a), LMA^b))
-#
-#legend_title <- expression("Value of scaling parameter ("*italic(b)*") in the equation "*italic(A)[area]*"="*italic(a)*"LMA"^italic(b))
-#
-#legend_title <- expression('Mean height of \n', atop(italic(Dicksonia~antarctica)*  ' (m)'))
-#
-#legend_title <- expression(atop(NA, atop(textstyle('Mean height of'),
-#                               textstyle(italic(Dicksonia ~ antarctica) ~ (m)))))
-#legend_title <- expression(atop(textstyle(Value~of~scaling~parameter ~ (italic(b))),
-#                                         textstyle(In~the~equation~italic(A)[area]==LMA^italic(b))))
+# GL
+mu_GL <- mu_fun(GL$LMAp)
+mu_GL2 <- mu_fun(GL$LMAs)
+sig_GL <- sig_fun(GL$LMAp)
+LMAs_var <- NULL
+b_GL <- NULL
+for (i in 1:1000) {
+  LMAp <- rlnorm(N, mu_GL, sig_GL)
+  tmp <- seq(log(1.01), log(10), length = x_len)
+  LMAs <- map(tmp, \(x) rlnorm(N, mu_GL2, x))
+  LMAs_var <- cbind(LMAs_var, map_dbl(LMAs, var_fun))
+  b_GL <- cbind(b_GL, map_dbl(LMAs, GL_sim))
+}
 
-legend_title <- expression(atop(NA, atop(textstyle(Value~of~scaling~parameter ~ (italic(b))),
-                                         textstyle(`in`~the~equation~italic(A)[area]==italic(a)(LMA)^italic(b)))))
+LMAs_var_mean <- apply(LMAs_var, 1, mean)
+mean_GL <- apply(b_GL, 1, mean)
+upr_GL <- apply(b_GL, 1, \(x)(quantile(x, 0.975)))
+lwr_GL <- apply(b_GL, 1, \(x)(quantile(x, 0.025)))
+sim1 <- tibble(mean = mean_GL, upr = upr_GL, lwr = lwr_GL,
+               LMAs_var_mean, site = "GL")
 
-dat4 <- dat3 %>%
-  filter(as <= 0.75) %>%
-  filter(as >= -0.5)
 
-mass_plt2 <- ggplot(dat4) +
-  geom_raster(aes(x = am, y = as, fill = val)) +
-  facet_grid(~type) +
-  geom_text_repel(data = point_dat5,
-                  arrow = arrow(length = unit(0.03, "npc"),
-                                type = "open",
-                                ends = "last"),
-                  nudge_y = 0.9,
-                  nudge_x = -0.5,
-                  point.padding = 0.5,
-                  size = 3,
-                  #direction = "x",
-                  aes(x = am_mid,
-                      y = as_mid,
-                      label = b),
-                  parse = TRUE
-                  ) +
-  geom_point(data = point_dat5, aes(x = am_mid, y = as_mid)) +
-  geom_errorbar(data = point_dat5, aes(ymin = as_low, ymax = as_upper,
-                                       x = am_mid), width = 0) +
-  geom_errorbarh(data = point_dat5, aes(xmin = am_low, xmax = am_upper,
-                                        y = as_mid,
-                                        height = 0)) +
-  scale_fill_gradient2(midpoint = 0.5,
-                       low = "#e66101",
-                       high = "#5e3c99") +
-  #scale_fill_gradientn(
-  #                     name = legend_title,
-  #                     # colors from http://colorbrewer2.org/#type=diverging&scheme=PuOr&n=5
-  #                     colors = c("#e66101",
-  #                                "#fdb863",
-  #                                "#f7f7f7",
-  #                                "#b2abd2",
-  #                                "#5e3c99"),
-  #                     breaks = c(min(dat4$val), 0, 0.5, 1, 2),
-  #                     labels = c("-1.5",
-  #                                " 0.0 - Whole-leaf Amax\n         proportional to leaf area",
-  #                                " ",
-  #                                " 1.0 - Whole-leaf Amax\n         proportional to leaf mass",
-  #                                " 2.0"))+
-  #                    # labels = c(
-  #                    #            expression((-1.5)),
-  #                    #            expression(atop((~0.0~Whole~leaf~italic(A)[max]),
-  #                    #                                 (proportional~to~leaf~area))),
-  #                    #            expression((~0.5)),
-  #                    #            expression((~1.0~Whole~leaf~italic(A)[max])),
-  #                    #            expression((~2.0)))) +
-  xlab(expression(alpha[m])) +
-  ylab(expression(alpha[s])) +
-  theme(legend.position = "right",
-        legend.key.height = unit(0.5, "cm"),
-        legend.text = element_text(size = 7),
-        legend.title = element_text(hjust = 0, size = 7)) +
-  coord_cartesian(ylim = c(-0.5, 0.75))
+# PA - Sun
+mu_Sun <- mu_fun(Sun$LMAp)
+mu_Sun2 <- mu_fun(Sun$LMAs)
+sig_Sun <- sig_fun(Sun$LMAp)
+LMAs_var <- NULL
+b_Sun <- NULL
+for (i in 1:1000) {
+  LMAp <- rlnorm(N, mu_Sun, sig_Sun)
+  tmp <- seq(log(1.01), log(10), length = x_len)
+  LMAs <- map(tmp, \(x) rlnorm(N, mu_Sun2, x))
+  LMAs_var <- cbind(LMAs_var, map_dbl(LMAs, var_fun))
+  b_Sun <- cbind(b_Sun, map_dbl(LMAs, PA_sim))
+}
 
-my_ggsave("../figs/mass_prop3.png", mass_plt2,
-          height = 4)
+LMAs_var_mean <- apply(LMAs_var, 1, mean)
+mean_Sun <- apply(b_Sun, 1, mean)
+upr_Sun <- apply(b_Sun, 1, \(x)(quantile(x, 0.975)))
+lwr_Sun <- apply(b_Sun, 1, \(x)(quantile(x, 0.025)))
+sim2 <- tibble(mean = mean_Sun, upr = upr_Sun, lwr = lwr_Sun,
+               LMAs_var_mean, site = "Sun")
+
+# PA - Shade
+
+cor.test(log(Shade$LMAp), log(Shade$LMAs))
+cor.test(log(Sun$LMAp), log(Sun$LMAs))
+cor.test(log(GL$LMAp), log(GL$LMAs))
+
+mu_Shade <- mu_fun(Shade$LMAp)
+mu_Shade2 <- mu_fun(Shade$LMAs)
+sig_Shade <- sig_fun(Shade$LMAp)
+LMAs_var <- NULL
+b_Shade <- NULL
+for (i in 1:1000) {
+  LMAp <- rlnorm(N, mu_Shade, sig_Shade)
+  tmp <- seq(log(1.01), log(10), length = x_len)
+  LMAs <- map(tmp, \(x) rlnorm(N, mu_Shade2, x))
+  LMAs_var <- cbind(LMAs_var, map_dbl(LMAs, var_fun))
+  b_Shade <- cbind(b_Shade, map_dbl(LMAs, PA_sim))
+}
+
+LMAs_var_mean <- apply(LMAs_var, 1, mean)
+mean_Shade <- apply(b_Shade, 1, mean)
+upr_Shade <- apply(b_Shade, 1, \(x)(quantile(x, 0.975)))
+lwr_Shade <- apply(b_Shade, 1, \(x)(quantile(x, 0.025)))
+sim3 <- tibble(mean = mean_Shade, upr = upr_Shade, lwr = lwr_Shade,
+               LMAs_var_mean, site = "Shade")
+
+# PA - shade 2 (MVN)
+
+
+Mu <- c(mean(log(Shade$LMAp)) - var(log(Shade$LMAp)) / 2,
+        mean(log(Shade$LMAs)) - var(log(Shade$LMAs)) / 2)
+
+rho <- -0.4 
+sig1 <- sd(log(Shade$LMAp))
+sig2 <- seq(log(1.01), log(10), length = x_len)
+var_fun2 <- function(LMAp, LMAs) {
+  LMA <- LMAp + LMAs
+  cov(LMA, LMAs) / var(LMA) * 100
+}
+
+PA_sim2 <- \(LMAp, LMAs) {
+  A <- exp(
+           PA_para$`X50.`[2] * log(LMAp))
+  fit <- lm(log(A) ~ log(LMAp + LMAs))
+  fit$coefficients[2]
+}
+
+LMAs_var <- NULL
+b_Shade2 <- NULL
+for (j in 1:1000) {
+  LMAp <- NULL
+  LMAs <- NULL
+  for (i in 1:10) {
+    S <- matrix(c(sig1^2, rho*sig1*sig2[i], rho*sig1*sig2[i], sig2[i]^2), ncol = 2)
+    tmp <- MASS::mvrnorm(100, Mu, S)
+    LMAp[[i]] <- tmp[,1] |> exp()
+    LMAs[[i]] <- tmp[,2] |> exp()
+  }
+  LMAs_var <- cbind(LMAs_var, map2_dbl(LMAp, LMAs, var_fun2))
+  b_Shade2 <- cbind(b_Shade2, map2_dbl(LMAp, LMAs, PA_sim2))
+}
+
+LMAs_var_mean <- apply(LMAs_var, 1, mean)
+mean_Shade2 <- apply(b_Shade2, 1, mean)
+upr_Shade2 <- apply(b_Shade2, 1, \(x)(quantile(x, 0.975)))
+lwr_Shade2 <- apply(b_Shade2, 1, \(x)(quantile(x, 0.025)))
+sim4 <- tibble(mean = mean_Shade2, upr = upr_Shade2, lwr = lwr_Shade2,
+               LMAs_var_mean, site = "Shade")
+
+var_dat <- tibble(var_ = c(GL_varS, Sun_varS, Shade_varS),
+                  b = c(GLb, Sunb, Shadeb),
+                  site = c("GL", "Sun", "Shade"))
+
+mass_plt_simple <- bind_rows(sim1, sim2, sim4) |>
+#mass_plt_simple <- bind_rows(sim1, sim2, sim3, sim4) |>
+  ggplot() +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, 
+                  x = LMAs_var_mean, 
+                  fill = site,
+                  group = site),
+              alpha = 0.4)  +
+  geom_line(aes(y = mean, x = LMAs_var_mean, col = site)) +
+  geom_point(data = var_dat, aes(x = var_, y = b, shape = site)) +
+#  geom_point(aes(x = GL_varS, y = GLb)) +
+#  geom_point(aes(x = Sun_varS, y = Sunb)) +
+#  geom_point(aes(x = Shade_varS, y = Shadeb)) +
+#  coord_cartesian(ylim = c(-0.2, 1)) +
+  ylab(expression(Mass~proportionality~(italic(b)))) +
+  xlab("Relative variance of LMAs (%)")
+mass_plt_simple
+
+my_ggsave("../figs/mass_prop_simple.png", mass_plt_simple,
+          height = 6, width = 6)
 
 ```
-
-
-![Mass-proportionality](../figs/mass_prop3.png)
-
-## Larger legend
-
-```{r mass-prop-big, cache=TRUE, comment=NA}
-
-mass_plt3 <- mass_plt2 +
-  theme(legend.position = "none")
-
-samp_df <- data.frame(parameter = "test",
-                   vals = seq(-1, 1, 0.01),
-                    x = 1)
-
-col_val <- c(-1, 0.5, 1)
-
-names(col_val) <- c("-1.0", 
-                      "0.5",
-                      "1.0")
-
-legend_plt <- ggplot(samp_df, aes(x = x, y = vals, fill = vals)) +
-  geom_raster() +
-  scale_fill_gradient2(midpoint = 0.5) +
-  geom_text(aes(x = 1.5, 
-                y =  -1,
-                label = "-1.0"),
-            vjust = 0.5) +
-  geom_text(aes(x = 1.5,
-                y =  0.5,
-                label = "0.5"),
-            vjust = 0.5) +
-  geom_text(aes(x = 1.5,
-                y =  0,
-                label = "0.0"),
-            vjust = 0.5) +
-  geom_segment(x = 4,
-                  xend = 2.5,
-                  y = 1.02,
-                  yend = 1.0,
-                  arrow = arrow(type = "closed",
-                                length = unit(2, "mm"))) +
-  annotate("text", x = 5, y = 1.02,
-    label = expression(atop(Whole~leaf~italic(A)[max]),
-                       proportional~to~leaf~mass),
-    parse = TRUE) +
-  geom_segment(x = 4,
-                  xend = 2.5,
-                  y = -0.5,
-                  yend = .0,
-                  arrow = arrow(type = "closed",
-                                length = unit(2, "mm"))) +
-  theme_minimal(base_size = 5, base_family = "serif") +
-  theme(axis.text = element_blank(),
-        axis.ticks = element_blank(),
-        panel.grid = element_blank(),
-        aspect.ratio = 4/1,
-        legend.position = "none",
-        plot.title = element_text(hjust = 0.5, size = 10)) +
-   ylab("") + xlab("") +
-   coord_cartesian(xlim = c(0, 20)) +
-   #labs(title = expression(atop(Value~of~scaling~parameter~(italic(b)),
-   #                             `in`~the~equation~italic(A)[area])))
-   labs(title = expression(Value~of~scaling~parameter~(italic(b))~`in`~the~equation~italic(A)[area]==italic(a)~LMA^italic(b)))
-
-legend_plt
-
-legend_plt2 <- ggplot(samp_df, aes(y = x, x = vals, fill = vals)) +
-  geom_raster() +
-# colors from http://colorbrewer2.org/#type=diverging&scheme=PuOr&n=5
-  scale_fill_gradient2(midpoint = 0.5,
-                       low = "#e66101",
-                       high = "#5e3c99") +
-  geom_text(aes(y = -.2,
-                x =  -1,
-                label = "-1.0"),
-            vjust = 0.5) +
-  geom_text(aes(y = -.2,
-                x =  0.5,
-                label = "0.5"),
-            vjust = 0.5) +
-  geom_text(aes(y = -0.2,
-                x =  0,
-                label = "0.0"),
-            vjust = 0.5) +
-  geom_text(aes(y = -0.2,
-                x =  1,
-                label = "1.0"),
-            vjust = 0.5) +
-  geom_segment(y = 2.5,
-                  yend = 1.5,
-                  x = 0.8,
-                  xend = 1.0,
-                  arrow = arrow(type = "closed",
-                                length = unit(1, "mm"))) +
-  annotate("text", y = 3, x = 0.5, size = 3,
-    label = expression(atop(Whole~leaf~italic(A)[max]),
-                       proportional~to~leaf~mass),
-    parse = TRUE) +
-  geom_segment(y = 2,
-                  yend = 1.5,
-                  x = -0.25,
-                  xend = .0,
-                  arrow = arrow(type = "closed",
-                                length = unit(1, "mm"))) +
-  theme_minimal(base_size = 5, base_family = "sans") +
-  theme(axis.text = element_blank(),
-        axis.ticks = element_blank(),
-        panel.grid = element_blank(),
-        aspect.ratio = 1/8,
-        legend.position = "none",
-        plot.title = element_text(hjust = 0, size = 10)) +
-   ylab("") + xlab("") +
-   coord_cartesian(ylim = c(-1, 5)) +
-  annotate("text", y = 3, x = -0.3, size = 3,
-    label = expression(atop(Whole~leaf~italic(A)[max]),
-                       proportional~to~leaf~area),
-    parse = TRUE) +
-   labs(title = expression(Value~of~scaling~parameter~(italic(b))~`in`~the~equation~italic(A)[area]==italic(a)~LMA^italic(b)))
-
-
-
-legend_plt2
-
-p <- plot_grid(mass_plt3,
-               legend_plt2,
-               nrow = 2,
-               rel_heights = c(.6, .4))
-
-my_ggsave("../figs/mass_prop4.png", p,
-          width = 12,
-          height = 8)
-```
-
-![Mass-proportionality2](../figs/mass_prop4.png)
-
-## example data
-
-```{r mass-prop-ex, cache=TRUE, comment=NA}
-
-mass_plt_SI <- ggplot(dat_ex %>% filter(am >= 0.1), aes(x = am, y= as, fill = val)) +
-  geom_raster() +
-  facet_grid(~type) +
-  scale_fill_gradient2(midpoint = 0.5,
-                         low = "#e66101",
-                         high = "#5e3c99") +
-  xlab(expression(alpha[m])) +
-  ylab(expression(alpha[s])) +
-  theme(legend.position = "none")
-
-p <- plot_grid(mass_plt_SI,
-               legend_plt2,
-               nrow = 2,
-               rel_heights = c(.6, .4))
-
-my_ggsave("../figs/mass_prop_SI.png", p,
-          width = 12,
-          height = 8)
-```
-
-![Mass-proportionality3](../figs/mass_prop_SI.png)
 
 # Boxplot
 
