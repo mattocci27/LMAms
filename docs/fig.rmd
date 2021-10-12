@@ -287,6 +287,41 @@ my_ggsave("../figs/fig_h4.png", p4,
 
 # Scatter plots (estimated)
 
+## GL simple
+
+```{r GL-scatter-simple, cache=TRUE, comment=NA}
+
+GL_dat1 <- GL_dat |>
+  filter(Trait %in% c("LL", "Aarea", "Rarea"))
+
+lim_GL <- lim_func(GL_dat1, 
+                   trait = "Val")
+lim_GL2 <- lim_func(GL_dat1,
+                    trait = "Val2", LMA = FALSE)
+
+lab1 <- data_frame(lab = paste("(", letters[1:9], ")", sep = ""),
+                   Val2 = lim_GL2$max_val %>% rep(each = 3),
+                  # Val2 = Inf,
+                   Val = lim_GL$min_val %>% rep(3),
+                   Val_max = lim_GL$max_val %>% rep(3),
+                   gr = "Evergreen",
+                   r_vals = r_vals$r_vals$GL %>% unlist,
+                   Trait2 = rep(lim_GL2$Trait2, each = 3),
+                   LMA = rep(lim_GL$LMA, 3)
+                   )
+
+fills <- c("Deciduous" = settings$fills$D,
+          "Evergreen" = settings$fills$E,
+          "Unclassified" = settings$fills$U)
+
+cols <- c("Deciduous" = settings$colors$D,
+          "Evergreen" = settings$colors$E,
+          "Unclassified" = settings$colors$U)
+
+GL_plot <- scatter_plt(GL_dat1)
+
+```
+
 ## GL
 
 ```{r GL-scatter, cache=TRUE, comment=NA}
