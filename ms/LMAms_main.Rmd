@@ -381,7 +381,7 @@ MK, JWL and JLDO conceived of the study; KK, SJW and SAVB contributed data; MK d
 
 ```{r modeltab}
 
-tab1 <- read_csv("../data/tab1.csv")
+tab1 <- read_csv("../ms/tab1.csv")
 tab1 <- tab1 |>
   dplyr::select(`Expected trait values`)
 
