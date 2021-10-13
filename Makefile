@@ -1,19 +1,39 @@
-all: ./data/PApara.csv ./data/GLpara.csv ./ms/LMAms_main.tex ./ms/diff.tex ./ms/LMA.bib
+RDA := ./rda/GL_Aps_LLs_obs.rda \
+			./rda/PA_Ap_LLs_opt_obs.rda \
+  		./rda/PA_Ap_LLs_opt_more_obs.rda 
+#
+PARA = ./data/PApara.csv ./data/GLpara.csv \
+				./data/GL_res.csv ./data/PA_para.csv
 
-./ms/LMA.bib: ~/LMA.bib
-	cp ~/LMA.bib ./ms/LMA.bib
+MS =  ./ms/LMAms_main.tex
 
-#./data/GL_elpd.csv ./data/PA_elpd.csv: ./rda/GL_Aps_LLs_obs.rda ./rda/PA_Ap_LLs_opt_obs.rda
-#	Rscript util/get_loo.r
+BIB = ./ms/LMA.bib
+#$(info RDA: $(RDA))
+#$(info PAR: $(PAR))
 
-./data/PApara.csv ./data/GLpara.csv ./data/GL_res.csv ./data/PA_para.csv: ./rda/GL_Aps_LLs_obs.rda ./rda/PA_Ap_LLs_opt_obs.rda util/res_para.r
-	Rscript util/res_para.r
+all: emptytarget1 emptytarget2 r_val.yml $(MS) ms/LMA.bib
 
-./ms/LMAms_main.tex: ./ms/LMAms_main.Rmd
-	R -e 'system.time(rmarkdown::render("./ms/LMAms_main.Rmd", "all"))'
+ms/LMA.bib: ~/LMA.bib
+	cp $< $@
 
-./ms/diff.tex: ./ms/LMAms_main.tex ./ms/LMAms_main_old.tex
-	latexdiff --flatten ./ms/LMAms_main_old.tex ./ms/LMAms_main.tex > ./ms/diff.tex
+$(LOO): emptytarget1
+emptytarget1: ./docs/model_selection.Rmd $(RDA)
+	R -e 'system.time(rmarkdown::render("$<", "all"))'
+	touch $@
+
+$(PARA): emptytarget2
+emptytarget2: util/res_para.r $(RDA)
+	Rscript $< 
+	touch $@
+	
+r_val.yml: util/r2_yml.r $(RDA) 
+	Rscript $< 
+
+$(MS): ./ms/LMAms_main.Rmd $(LOO) $(PAR) r_val.yml
+	R -e 'system.time(rmarkdown::render("$<", "all"))'
+
+ms/diff.tex: ms/LMAms_main.tex ms/LMAms_main_old.tex
+	latexdiff --flatten ./ms/LMAms_main_old.tex $< > $@
 
 .PHONY: clean
 clean:
