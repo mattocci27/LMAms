@@ -4,7 +4,7 @@ library(stringr)
 library(loo)
 rstan_options(auto_write = TRUE)
 # options(mc.cores = parallel::detectCores())
-options(mc.cores = 5)
+options(mc.cores = 4)
 
 set.seed(123)
 
@@ -54,7 +54,7 @@ if (data_name == "GL") {
                    q_lim = 1,
                    leaf = 1,
                    dry = 1,
-                   gr = as.numeric(as.factor(dat$DE))) 
+                   gr = as.numeric(as.factor(dat$DE)))
 
   list_dat$J <- list_dat$gr %>% unique %>% length
 
@@ -70,7 +70,7 @@ if (data_name == "GL") {
     filter(!is.na(Rarea)) %>%
     filter(!is.na(LL)) %>%
     as.data.frame %>%
-    mutate(gr = paste(site, strata) %>% 
+    mutate(gr = paste(site, strata) %>%
            as.factor %>%
            as.numeric)
 
@@ -107,7 +107,7 @@ rand_fun <- function(n){
            Aarea = sample(dat$Aarea),
            Rarea = sample(dat$Rarea),
            LT = sample(dat$Rarea)
-           ) 
+           )
   while (min(temp$Aarea - temp$Rarea) < 0){
   temp <- data.frame(dat[,1:3],
            LMA = sample(dat$LMA),
@@ -115,7 +115,7 @@ rand_fun <- function(n){
            Aarea = sample(dat$Aarea),
            Rarea = sample(dat$Rarea),
            LT = sample(dat$Rarea)
-           ) 
+           )
   }
 
   temp$A_R <- temp$A - temp$R
@@ -154,7 +154,7 @@ if (obs == "obs") {
              thin = n_thin,
              chains = n_chains,
              seed = 123,
-             control = list(adapt_delta = 0.99, max_treedepth = 20)))
+             control = list(adapt_delta = 0.99, max_treedepth = 15)))
 
   save_name <- paste("./rda/", n_model, "_obs.rda", sep = "")
 }
@@ -176,17 +176,18 @@ if (obs == "rand") {
             warmup = n_warm,
             thin = n_thin,
             chains = n_chains,
+            seed = 123,
             control = list(adapt_delta = 0.99, max_treedepth = 20))
     res
   }
-  
+
   summary_fun <- function(model) {
      data.frame(summary(model)$summary)
   }
 
   rand_res <- rand_dat %>%
     mutate(model = map(data, mod_fun)) %>%
-    mutate(summary = map(model, summary_fun)) 
+    mutate(summary = map(model, summary_fun))
 
   save_name <- paste("./rda/", n_model, "_rand.rda", sep = "")
 }

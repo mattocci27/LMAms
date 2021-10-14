@@ -1,30 +1,49 @@
 #!/bin/bash
 
-# for looic for best models models ---------------------------------------------------------------
+# for all models ---------------------------------------------------------------
 OBS=obs
 #DATA=GL
-#for MODEL in GL_LMAms1 GL_LMAms2 GL_LMAms3 GL_LMAms4
+#i=1
+#for MODEL in GL_Ap_LLps GL_Ap_LLs GL_Aps_LLps GL_Aps_LLs GL_LMA
 #do
 #  echo "${MODEL}, ${DATA}, ${OBS}"
 #  export MODEL DATA OBS
-#  nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/model.r > ./log/${MODEL}_${OBS}.log &
+#  nohup R --vanilla --slave --args ${MODEL} ${DATA} 2 1 1 ${OBS} < ./model/model.r > ./log/${MODEL}_${OBS}.log &
+#  if [ $((i % 3)) = 0 ]; then
+#    wait
+#  fi
+#  ((i+=1))
 #  sleep 1 # pause to be kind to the scheduler
 #done
-#
-#wait
-#
+
+
+#i=1
 #DATA=PA
-#for MODEL in PA_LMAms_L1 PA_LMAms_L2 PA_LMAms_L3 PA_LMAms_L4
+#for MODEL in  PA_Aps_LLps_opt PA_Aps_LLs_opt PA_Aps_LDps_opt PA_Aps_LDs_opt
 #do
 #  #
 #  echo "${MODEL}, ${DATA}, ${OBS}"
 #  export MODEL DATA OBS
 #  nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/model.r > ./log/${MODEL}_${OBS}.log &
+#  if [ $((i % 4)) = 0 ]; then
+#    wait
+#  fi
+#  ((i+=1))
 #  sleep 1 # pause to be kind to the scheduler
 #done
 
+
+i=1
 DATA=PA
-MODEL=PA_LMAms_L3
-echo "${MODEL}, ${DATA}, ${OBS}"
-export MODEL DATA OBS
-nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/model_more.r > ./log/${MODEL}_${OBS}.log &
+for MODEL in  PA_Ap_LLps_opt PA_Ap_LLs_opt
+do
+  #
+  echo "${MODEL}, ${DATA}, ${OBS}"
+  export MODEL DATA OBS
+  nohup R --vanilla --slave --args ${MODEL} ${DATA} 4000 3000 1 ${OBS} < ./model/k_fold.r > ./log/${MODEL}_${OBS}_CV.log &
+  if [ $((i % 4)) = 0 ]; then
+    wait
+  fi
+  ((i+=1))
+  sleep 1 # pause to be kind to the scheduler
+done

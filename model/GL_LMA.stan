@@ -1,3 +1,4 @@
+//NOTE: THIS STAN CODE IS GENERATED VIA "update.py"
 data{
   int<lower=0> N;
   vector<lower=0>[N] LMA;
@@ -10,18 +11,20 @@ transformed data{
   vector[N] log_LL;
   vector[N] log_R;
   matrix[N,3] obs;
-  matrix[N,2] X;
   vector[N] intercept;
+  matrix[N,2] X;
   for (n in 1:N)
     intercept[n] = 1;
   log_A = log(A);
   log_LL = log(LL);
   log_R = log(R);
+  // use net photosynthesis (A) instead of gross (A + R)
   obs = append_col(append_col(log_A, log_LL), log_R);
   X = append_col(intercept, log(LMA));
 }
 parameters{
   matrix[2,3] Z;
+  vector<lower=0, upper=1>[N] p;
   vector<lower=0>[3] L_sigma;
   cholesky_factor_corr[3] L_Omega;
 }
@@ -33,12 +36,14 @@ transformed parameters{
 }
 model{
   // priors
-  to_vector(Z) ~ normal(0, 10);
+  to_vector(Z) ~ normal(0, 5);
+  p ~ beta(1, 1);
   L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
   L_sigma ~ cauchy(0, 5);
+
   // model
   for (i in 1:N)
-      obs[i,] ~ multi_normal_cholesky(Mu[i,], diag_pre_multiply(L_sigma, L_Omega));
+     target += multi_normal_cholesky_lpdf(obs[i,] | Mu[i,], diag_pre_multiply(L_sigma, L_Omega));
 }
 generated quantities {
   vector[N] log_lik;
