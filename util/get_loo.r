@@ -1,6 +1,5 @@
 library(tidyverse)
 library(rstan)
-library(stringr)
 library(loo)
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
@@ -8,7 +7,7 @@ options(mc.cores = parallel::detectCores())
 #load("./rda/GL_LMAms_more_obs.rda")
 #GL_LMAms <- res
 
-obs_files <- list.files("rda") %>%
+obs_files <- list.files("rda") |>
   str_subset("obs.rda")
 
 #obs_files <- obs_files[!str_detect(obs_files, "_more") |
@@ -31,12 +30,12 @@ data.frame(obs_files, files) |> print()
 
 div <- NULL
 for (i in 1:length(files)) {
-	tmp <- readLines(paste0("log/", files[i]))
-	tmp2 <- str_detect(tmp, "divergent transitions")
-	tmp3 <- unique(tmp2) |> length()
-	if (tmp3 == 1) {
-        div[i] <- "OK"
-	} else div[i] <- "divergent"
+  tmp <- readLines(paste0("log/", files[i]))
+  tmp2 <- str_detect(tmp, "divergent transitions")
+  tmp3 <- unique(tmp2) |> length()
+  if (tmp3 == 1) {
+          div[i] <- "OK"
+  } else div[i] <- "divergent"
 }
 
 dat <- tibble(LMA = models) %>%
