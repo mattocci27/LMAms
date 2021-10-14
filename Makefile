@@ -13,7 +13,7 @@ FIG = figs/fig_hypo.png figs/GL_scatter.png figs/GL_NP.png figs/PA_scatter.png f
 #$(info RDA: $(RDA))
 #$(info PAR: $(PAR))
 
-all: emptytarget1 docs/model_selection.html emptytarget2 r_val.yml emptytarget3 ms/LMAms_main.tex ms/LMA.bib
+all: emptytarget1 docs/model_selection.html emptytarget2 r_val.yml letters.yml emptytarget3 ms/LMAms_main.tex ms/LMA.bib
 
 ms/LMA.bib: ~/LMA.bib
 	cp $< $@
@@ -36,6 +36,9 @@ r_val.yml: util/r2_yml.r $(RDA)
 	Rscript $< 
 	sed -i -e 's/NA/"NA"/g' $@
 	rm r_val.yml-e
+
+letters.yml: util/t_yml.r $(PAR)
+	Rscript $< 
 
 $(FIG): emptytarget3
 emptytarget3: docs/figs.Rmd $(FIGdata)
