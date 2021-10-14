@@ -4,7 +4,7 @@ library(stringr)
 library(loo)
 rstan_options(auto_write = TRUE)
 # options(mc.cores = parallel::detectCores())
-options(mc.cores = 4)
+options(mc.cores = 8)
 
 set.seed(5)
 
@@ -34,7 +34,7 @@ if (data_name == "PA") {
     filter(!is.na(Rarea)) %>%
     filter(!is.na(LL)) %>%
     as.data.frame %>%
-    mutate(gr = paste(site, strata) %>% 
+    mutate(gr = paste(site, strata) %>%
            as.factor %>%
            as.numeric)
 
@@ -103,12 +103,12 @@ stan_kfold <- function(file, list_of_datas, chains, cores,...){
   n_fold <- length(list_of_datas)
   model <- stan_model(file=file)
   # First parallelize all chains:
-  sflist <- 
-    pbmclapply(1:(n_fold*chains), mc.cores = cores, 
+  sflist <-
+    pbmclapply(1:(n_fold*chains), mc.cores = cores,
                function(i){
                  # Fold number:
                  k <- ceiling(i / chains)
-                 s <- sampling(model, data = list_of_datas[[k]], 
+                 s <- sampling(model, data = list_of_datas[[k]],
                                chains = 1, chain_id = i,...)
                  return(s)
                })
@@ -119,8 +119,8 @@ stan_kfold <- function(file, list_of_datas, chains, cores,...){
     inchains <- (chains*k - (chains - 1)):(chains*k)
   #  Merge `chains` of each fold
     stanfit[[k]] <- sflist2stanfit(sflist[inchains])
-  }  
-  return(stanfit) 
+  }
+  return(stanfit)
 }
 
 #extract log-likelihoods of held-out data
@@ -136,7 +136,7 @@ extract_log_lik_K <- function(list_of_stanfits, list_of_holdout, ...){
   log_lik_heldout <- list_of_log_liks[[1]] * NA
   for(k in 1:K){
     log_lik <- list_of_log_liks[[k]]
-    samples <- dim(log_lik)[1] 
+    samples <- dim(log_lik)[1]
     N_obs <- dim(log_lik)[2]
     # This is a matrix with the same size as log_lik_heldout
     # with 1 if the data was held out in the fold k

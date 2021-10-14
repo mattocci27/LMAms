@@ -1,0 +1,113 @@
+{
+    "owner": "mattocci",
+    "configs": [
+    {
+      "model": "GL_Ap_LLs",
+      "site": "GL",
+      "A": "LMAp",
+      "LL": "LMAs"
+    },
+    {
+      "model": "GL_Aps_LLps",
+      "site": "GL",
+      "A": "LMApLMAs",
+      "LL": "LMApLMAs"
+    },
+    {
+      "model": "GL_Ap_LLps",
+      "site": "GL",
+      "A": "LMAp",
+      "LL": "LMApLMAs"
+    },
+    {
+      "model": "GL_Aps_LLs",
+      "site": "GL",
+      "A": "LMApLMAs",
+      "LL": "LMAs"
+    },
+    {
+      "model": "PA_Ap_LLs",
+      "site": "PA",
+      "A": "LMAp",
+      "LL": "LMAs"
+    },
+    {
+      "model": "PA_Aps_LLps",
+      "site": "PA",
+      "A": "LMApLMAs",
+      "LL": "LMApLMAs"
+    },
+    {
+      "model": "PA_Ap_LLps",
+      "site": "PA",
+      "A": "LMAp",
+      "LL": "LMApLMAs"
+    },
+    {
+      "model": "PA_Aps_LLs",
+      "site": "PA",
+      "A": "LMApLMAs",
+      "LL": "LMAs"
+    },
+    {
+      "model": "PA_Ap_LLs_opt",
+      "site": "PA",
+      "A": "LMAp",
+      "LL": "LMAs",
+      "opt": "opt"
+    },
+    {
+      "model": "PA_Aps_LLps_opt",
+      "site": "PA",
+      "A": "LMApLMAs",
+      "LL": "LMApLMAs",
+      "opt": "opt"
+    },
+    {
+      "model": "PA_Ap_LLps_opt",
+      "site": "PA",
+      "A": "LMAp",
+      "LL": "LMApLMAs",
+      "opt": "opt"
+    },
+    {
+      "model": "PA_Aps_LLs_opt",
+      "site": "PA",
+      "A": "LMApLMAs",
+      "LL": "LMAs",
+      "opt": "opt"
+    },
+    {
+      "model": "PA_Ap_LDs_opt",
+      "site": "PA",
+      "LD": "LD",
+      "A": "LMAp",
+      "LL": "LMAs",
+      "opt": "LDopt"
+    },
+    {
+      "model": "PA_Aps_LDps_opt",
+      "site": "PA",
+      "LD": "LD",
+      "A": "LMApLMAs",
+      "LL": "LMApLMAs",
+      "opt": "LDopt"
+    },
+    {
+      "model": "PA_Ap_LDps_opt",
+      "site": "PA",
+      "LD": "LD",
+      "A": "LMAp",
+      "LL": "LMApLMAs",
+      "opt": "LDopt"
+    },
+    {
+      "model": "PA_Aps_LDs_opt",
+      "site": "PA",
+      "LD": "LD",
+      "A": "LMApLMAs",
+      "LL": "LMAs",
+      "opt": "LDopt"
+    }
+    ]
+}

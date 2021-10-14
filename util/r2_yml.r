@@ -1,7 +1,8 @@
 library(rstan)
 library(tidyverse)
+library(tictoc)
 
-d <- read_csv("./data/nature02403-s2.csv", skip = 10)
+d <- read_csv("./data-raw/nature02403-s2.csv", skip = 10)
 
 dd <- data.frame(Narea = 10^d$`log Narea`,
         Parea = 10^d$`log Parea`,
@@ -10,7 +11,8 @@ dd <- data.frame(Narea = 10^d$`log Narea`,
         summarize(Narea = mean(Narea, na.omit = T),
             Parea = mean(Parea, na.omit = T))
 
-load("./rda/GL_LMAms_more_obs.rda")
+load("./rda/GL_Aps_LLs_obs.rda")
+
 resGL <- res
 GL_summary <- data.frame(summary(res)$summary)
 GL <- dat
@@ -27,7 +29,7 @@ temp_LL <- exp(GL_summary[mu2_vec, "mean"])
 GL <- GL %>%
   mutate(LMAp = temp_LMAp) %>%
   mutate(LMAs = temp_LMAs) %>%
-  mutate(preLL = temp_LL) 
+  mutate(preLL = temp_LL)
 
 GL <- left_join(GL, dd, by = "sp") %>%
   mutate(gr = factor(DE,
@@ -37,9 +39,109 @@ GL <- left_join(GL, dd, by = "sp") %>%
                       ))) %>%
   arrange(sp)
 
-write.csv(GL, "./data/GL_LMAms_more_obs.csv", row.names = FALSE)
+write_csv(GL, "./data/GL_Aps_LLs_obs.csv")
 
-load("./rda/PA_LMAms0_more_obs.rda")
+# R for each panel -----------------------------------------------------
+tic()
+N <- 4000
+pmat <- rstan::extract(res, "p")[[1]]
+r_As <- numeric(N)
+r_Am <- r_Rs <- r_Rm <- r_Lm <- r_Ls <- r_As
+r_LMAp_LMAs <- numeric(N)
+for (i in 1:N) {
+  LMAp <- pmat[i,] * GL$LMA
+  LMAs <- GL$LMA - LMAp
+
+  fit_m <- lm(log(LMAs) ~ log(LMAp))
+  fit_s <- lm(log(LMAp) ~ log(LMAs))
+  fit_Am <- lm(log(GL$Aarea) ~ log(LMAp))
+  fit_As <- lm(log(GL$Aarea) ~ log(LMAs))
+  fit_Rm <- lm(log(GL$Rarea) ~ log(LMAp))
+  fit_Rs <- lm(log(GL$Rarea) ~ log(LMAs))
+  fit_Lm <- lm(log(GL$LL) ~ log(LMAp))
+  fit_Ls <- lm(log(GL$LL) ~ log(LMAs))
+
+  res_m  <- residuals(fit_m)
+  res_s  <- residuals(fit_s)
+  res_Am  <- residuals(fit_Am)
+  res_As  <- residuals(fit_As)
+  res_Rm  <- residuals(fit_Rm)
+  res_Rs  <- residuals(fit_Rs)
+  res_Lm  <- residuals(fit_Lm)
+  res_Ls  <- residuals(fit_Ls)
+
+  r_LMAp_LMAs[i] <- cor(log(LMAp), log(LMAs)) 
+  r_Am[i] <- cor(res_s, res_As)# Aarea-LMAm
+  r_As[i] <- cor(res_m, res_Am)# Aarea-LMAs
+  r_Rm[i] <- cor(res_s, res_Rs)
+  r_Rs[i] <- cor(res_m, res_Rm)
+  r_Lm[i] <- cor(res_s, res_Ls)
+  r_Ls[i] <- cor(res_m, res_Lm)
+}
+toc()
+
+
+quant_fun <- function(x) c(mean = mean(x), 
+                           quantile(x, 0.025),
+                           quantile(x, 0.975)) |> round(2)
+
+GL_cor_tbl <- rbind(
+  quant_fun(r_LMAp_LMAs),
+  quant_fun(r_As),
+  quant_fun(r_Am),
+  quant_fun(r_Ls),
+  quant_fun(r_Lm),
+  quant_fun(r_Rs),
+  quant_fun(r_Rm)) |>
+  as_tibble() |>
+  mutate(name = c("LMAp_LMAs", "A_LMAs", "A_LMAp",
+                  "LL_LMAs", "LL_LMAp", "R_LMAs", "R_LMAp"))
+
+# R2------------------------------------------------------------------------
+Mu <- rstan::extract(resGL, "Mu")[[1]]
+L_sigma <- rstan::extract(resGL, "L_sigma")[[1]]
+
+bayes_R2_GL <- \(trait = c("Amax", "LL", "Rdark"), chr = FALSE){
+  if (trait == "Amax") {
+    var_fit <- apply(Mu[,,1], 1, var)
+    var_res <- L_sigma[, 1]^2
+  } else if (trait == "LL") {
+    var_fit <- apply(Mu[,,2], 1, var)
+    var_res <- L_sigma[, 2]^2
+  } else {
+    var_fit <- apply(Mu[,,3], 1, var)
+    var_res <- L_sigma[, 3]^2
+  }
+  R2 <- var_fit / (var_fit + var_res)
+  tmp <- quant_fun(R2) |> round(2)
+  if (chr) {
+    paste0(tmp[1], 
+           " [", tmp[2], ", ",
+           tmp[3], "]")
+
+  } else {
+    tmp
+  }
+}
+
+bayes_R2_GL("Amax")
+bayes_R2_GL("Amax", chr = TRUE)
+
+GL_cor_tbl |>
+  filter(name == "A_LMAs") |>
+  pull(mean)
+
+GL_LMAsLMAp <- paste0(GL_cor_tbl[1,1], 
+                        " [", GL_cor_tbl[1,2], ", ",
+                        GL_cor_tbl[1,3], "]")
+
+#bayes_R2_GL("Amax")
+#bayes_R2_GL("LL")
+#bayes_R2_GL("Rdark")
+
+#PA ==========================================================================
+
+load("./rda/PA_Ap_LLs_opt_more_obs.rda")
 resPA <- res
 #summary_PA_LDL <- data.frame(summary(res)$summary)
 
@@ -66,188 +168,86 @@ PA <- PA %>%
   mutate(preLL = temp_LL) %>%
   mutate(LDs = LMAs/LT/1000)
 
-write.csv(PA, "./data/PA_LMAms0_more.csv", row.names = FALSE)
+write_csv(PA, "./data/PA_Ap_LLs_opt_more.csv")
 
-load("./rda/PA_LMAms_L0_more_obs.rda")
-resPA <- res
-#summary_PA_LDL <- data.frame(summary(res)$summary)
+# R------------------------------------------------------------------------
+# note LL and Amax are not multiple regressoins
+tic()
+N <- 4000
+pmat <- rstan::extract(resPA, "p")[[1]]
+r_As <- numeric(N)
+r_Am <- r_Rs <- r_Rm <- r_Lm <- r_Ls <- r_As
+r_LMAp_LMAs <- numeric(N)
+for (i in 1:N) {
+  LMAp <- pmat[i,] * PA$LMA
+  LMAs <- PA$LMA - LMAp
 
-summary_PA_LDL <- data.frame(summary(res)$summary)
+  fit_m <- lm(log(LMAs) ~ log(LMAp))
+  fit_s <- lm(log(LMAp) ~ log(LMAs))
+  fit_Rm <- lm(log(PA$Rarea) ~ log(LMAp))
+  fit_Rs <- lm(log(PA$Rarea) ~ log(LMAs))
 
-PA <- dat %>%
-  as_tibble %>%
-  mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
-  mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) %>%
-  mutate(site_strata = paste(site2, strata, sep = "_"))
+  res_m  <- residuals(fit_m)
+  res_s  <- residuals(fit_s)
+  res_Rm  <- residuals(fit_Rm)
+  res_Rs  <- residuals(fit_Rs)
 
-P_vec <- paste("p[", 1:nrow(PA), "]", sep = "")
-mu2_vec <- paste("mu2[", 1:nrow(PA), "]", sep = "")
-
-#Mu_vec <- paste("mu[", 1:nrow(PA), ",2]", sep = "")
-temp_LMAp <- summary_PA_LDL[P_vec, "mean"] * PA$LMA
-temp_LMAs <- PA$LMA - temp_LMAp
-temp_LL <- exp(summary_PA_LDL[mu2_vec, "mean"])
-
-
-PA <- PA %>%
-  mutate(LMAp = temp_LMAp) %>%
-  mutate(LMAs = temp_LMAs) %>%
-  mutate(preLL = temp_LL) %>%
-  mutate(LDs = LMAs/LT/1000)
-
-write.csv(PA, "./data/PA_LMAms_L0_more.csv", row.names = FALSE)
+  r_LMAp_LMAs[i] <- cor(log(LMAp), log(LMAs)) 
+  r_Am[i] <- cor(log(LMAp), log(PA$Aarea))# Aarea-LMAm
+  r_Rm[i] <- cor(res_s, res_Rs)
+  r_Rs[i] <- cor(res_m, res_Rm)
+  r_Ls[i] <- cor(log(LMAs), log(PA$LL))
+}
+toc()
 
 
-get_pred <- function(trait = c("Aarea", "Rarea", "LL"), data, log = TRUE) {
-  ypred <- NULL
-  if (trait == "Aarea") {
-    x <- 1
-  } else if (trait == "Rarea") {
-    x <- 3
-  } else if (trait == "LL") { 
-    x <- 2
+PA_cor_tbl <- rbind(
+  quant_fun(r_LMAp_LMAs),
+  quant_fun(r_Am),
+  quant_fun(r_Ls),
+  quant_fun(r_Rs),
+  quant_fun(r_Rm)) |>
+  as_tibble() |>
+  mutate(name = c("LMAp_LMAs", "A_LMAp", "LL_LMAs", "R_LMAs", "R_LMAp"))
+
+PA_LMAsLMAp <- paste0(PA_cor_tbl[1,1], 
+                        " [", PA_cor_tbl[1,2], ", ",
+                        PA_cor_tbl[1,3], "]")
+
+# R2 ------------------------------------------------------------------------
+Mu2 <- rstan::extract(resPA, "Mu")[[1]]
+L_sigma2 <- rstan::extract(resPA, "L_sigma")[[1]]
+
+bayes_R2_PA <- \(trait = c("Amax", "LL", "Rdark"), chr = FALSE){
+  if (trait == "Amax") {
+    var_fit <- apply(Mu2[,,1], 1, var)
+    var_res <- L_sigma[, 1]^2
+  } else if (trait == "LL") {
+    var_fit <- apply(Mu2[,,2], 1, var)
+    var_res <- L_sigma[, 2]^2
+  } else {
+    var_fit <- apply(Mu2[,,3], 1, var)
+    var_res <- L_sigma2[, 3]^2
   }
-  N <- length(data@inits[[1]]$log_lik)
-  for (i in 1:N) {
-  ypred <- cbind(ypred, rstan::extract(data, str_c("Mu[", i,"," ,x, "]"))[[1]])
+  R2 <- var_fit / (var_fit + var_res)
+  tmp <- quant_fun(R2) |> round(2)
+  if (chr) {
+    paste0(tmp[1], 
+           " [", tmp[2], ", ",
+           tmp[3], "]")
+
+  } else {
+    tmp
   }
-  if (log) ypred else exp(ypred)
-}
-
-get_r2 <- function(ypred, y, median = TRUE) {
-  e <- -1 * sweep(ypred, 2, y)
-  var_ypred <- apply(ypred, 1, var)
-  var_e <- apply(e, 1, var)
-  r2 <- var_ypred / (var_ypred + var_e) 
-  if (median) median(r2) else r2
-}
-
-get_r2_2 <- function(ypred, y, median = TRUE) {
-  #e <- -1 * sweep(ypred, 2, y)
-  var_ypred <- apply(ypred, 1, var)
-  var_e <- apply(y - ypred, 1, var)
-  r2 <- var_ypred / (var_ypred + var_e) 
-  if (median) median(r2) else r2
 }
 
 
-#get_r2_2(log(PA_LMAp), log(PA_LMAs), median = TRUE) %>% round(2)
-#get_r2_2(log(PA_LMAp), log(PA_LMAs), median = FALSE) %>% quantile(., 0.025) %>% round(2)
-#get_r2_2(log(PA_LMAp), log(PA_LMAs), median = FALSE) %>% quantile(., 0.975) %>% round(2)
-#
-#get_r2_2(log(GL_LMAp), log(GL_LMAs), median = TRUE) %>% round(2)
-#get_r2_2(log(GL_LMAp), log(GL_LMAs), median = FALSE) %>% quantile(., 0.025) %>% round(2)
-#get_r2_2(log(GL_LMAp), log(GL_LMAs), median = FALSE) %>% quantile(., 0.975) %>% round(2)
+#bayes_R2_PA("Amax")
+#bayes_R2_PA("LL")
+#bayes_R2_PA("Rdark")
 
 
-# we calcluate resis
-my_cor <- function(x, y, median = TRUE){
-  N <- nrow(x)
-  r <- numeric(N)
-  for (i in 1:N) r[i] <- cor(x[i, ], y[i, ]) 
-  if (median) median(r) else r
-}
-
-PA_p <- rstan::extract(resPA, P_vec) 
-PA_p_mat <- NULL
-for (i in 1:length(PA_p)) {
-  PA_p_mat <- cbind(PA_p_mat, PA_p[[i]])
-}
-PA_LMAp <- t(t(PA_p_mat) * PA$LMA)
-PA_LMAs <- t(t(1 - PA_p_mat) * PA$LMA)
-
-r1 <- my_cor(log(PA_LMAp), log(PA_LMAs), median = TRUE) %>% round(2)
-r2 <- my_cor(log(PA_LMAp), log(PA_LMAs), median = FALSE) %>% quantile(., 0.025) %>% round(2)
-r3 <- my_cor(log(PA_LMAp), log(PA_LMAs), median = FALSE) %>% quantile(., 0.975) %>% round(2)
-PA_LMAps_r <- str_c(r1, " [", r2, ", ", r3, "]")
-
-GL_P_vec <- paste("p[", 1:nrow(GL), "]" ,sep = "")
-GL_p <- rstan::extract(resGL, GL_P_vec) 
-GL_p_mat <- NULL
-for (i in 1:length(GL_p)) {
-  GL_p_mat <- cbind(GL_p_mat, GL_p[[i]])
-}
-
-GL_LMAp <- t(t(GL_p_mat) * GL$LMA)
-GL_LMAs <- t(t(1 - GL_p_mat) * GL$LMA)
-
-#my_cor(GL_LMAp, GL_LMAs)
-my_cor(GL_LMAp, GL_LMAs, median = FALSE) %>% hist
-
-r1 <- my_cor(log(GL_LMAp), log(GL_LMAs), median = TRUE) %>% round(2)
-r2 <- my_cor(log(GL_LMAp), log(GL_LMAs), median = FALSE) %>% quantile(., 0.025) %>% round(2)
-r3 <- my_cor(log(GL_LMAp), log(GL_LMAs), median = FALSE) %>% quantile(., 0.975) %>% round(2)
-GL_LMAps_r <- str_c(r1, " [", r2, ", ", r3, "]")
-
-GL_LL <- get_pred(trait = "LL", resGL, log = TRUE)
-GL_Aarea <- get_pred(trait = "Aarea", resGL, log = TRUE)
-GL_Rarea <- get_pred(trait = "Rarea", resGL, log = TRUE)
-
-#my_cor(log(GL_LMAp), GL_Aarea)
-
-PA_LL <- get_pred(trait = "LL", resPA, log = TRUE)
-PA_Aarea <- get_pred(trait = "Aarea", resPA, log = TRUE)
-PA_Rarea <- get_pred(trait = "Rarea", resPA, log = TRUE)
-
-#par(mfrow=c(2,1))
-#plot(PA_Aarea[3003,], PA_Aarea[3001,])
-#abline(a = 0, b = 1)
-#plot(PA_Aarea[3003,], PA_Aarea[3002,])
-#abline(a = 0, b = 1)
-#par(mfrow=c(1,1))
-#my_cor(log(PA_LMAs), PA_LL)
-
-#plot(log(PA$LL) ~ apply(PA_LL,2,mean))
-get_r2(PA_LL, log(PA$LL))
-cor.test(apply(PA_LL, 2, mean), log(PA$LL))
-
-temp_LL <- apply(PA_LL, 2, mean) %>% exp
-#mu2_vec <- paste("mu2[", 1:nrow(PA), "]", sep = "")
-#Mu_vec <- paste("mu[", 1:nrow(PA), ",2]", sep = "")
-temp_LMAp <- summary_PA_LDL[P_vec, "mean"] * PA$LMA
-temp_LMAs <- PA$LMA - temp_LMAp
-#temp_LL <- exp(summary_PA_LDL[mu2_vec, "mean"])
-
-PA <- PA %>%
-  mutate(LMAp = temp_LMAp) %>%
-  mutate(LMAs = temp_LMAs) %>%
-  mutate(preLL = temp_LL) %>%
-  mutate(LDs = LMAs/LT/1000)
-
-write.csv(PA, "./data/PA_LMAms_L0_more.csv", row.names = FALSE)
-
-
-#my_cor <- function(x, y){
-#  lo <- apply(x, 1, function(x)cor(x, y)) %>%
-#    quantile(0.025) %>%
-#    round(3)
-#  mid <- apply(x, 1, function(x)cor(x, y)) %>%
-#    quantile(0.5) %>%
-#    round(3)
-#  up <- apply(x, 1, function(x)cor(x, y)) %>%
-#    quantile(0.975) %>%
-#    round(3)
-#  paste0(mid, " [", lo, ", ", up, "]")
-#}
-
-#my_cor(log(PA_LMAp), log(PA$Aarea))
-#my_cor(log(PA_LMAs), log(PA$Aarea))
-#
-#my_cor(log(PA_LMAp), log(PA$Rarea))
-#my_cor(log(PA_LMAs), log(PA$Rarea))
-#
-#my_cor(log(PA_LMAp), log(PA$LL))
-#my_cor(log(PA_LMAs), log(PA$LL))
-
-#cor.test(log_LMAs[2,], log(GL$Rarea))
-#
-#my_cor(log_LMAs, log(GL$Rarea))
-#
-#moge <- apply(log_LMAs, 2, median)
-#cor.test(moge, log(GL$Rarea))
-
-
-# R values
+# R values ===================================================================
 output <- "r_val.yml"
 out <- file(paste(output), "w") # write
 
@@ -257,53 +257,84 @@ writeLines(paste0("r_vals:"),
 writeLines(paste0("  GL:"),
            out,
            sep = "\n")
-writeLines(paste0("    LMA_Aarea: 'italic(r) == ", cor.test(log(GL$Aarea), log(GL$LMA))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMA_Aarea: 'italic(r) == ", 
+                  cor.test(log(GL$Aarea), log(GL$LMA))$estimate |> round(2),
+                  "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Aarea: 'italic(r) == ", cor.test(log(GL$Aarea), log(GL$LMAp))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAp_Aarea: 'italic(r[B]) == ", 
+                  GL_cor_tbl |>
+                    filter(name == "A_LMAp") |>
+                    pull(mean),
+                  "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Aarea: 'italic(r) == ", cor.test(log(GL$Aarea), log(GL$LMAs))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAs_Aarea: 'italic(r[B]) == ", 
+                  GL_cor_tbl |>
+                    filter(name == "A_LMAs") |>
+                    pull(mean),
+                  "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMA_Rarea: 'italic(r) == ", cor.test(log(GL$Rarea), log(GL$LMA))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMA_Rarea: 'italic(r) == ", 
+                  cor.test(log(GL$Rarea), log(GL$LMA))$estimate |> round(2),
+                  "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Rarea: 'italic(r) == ", cor.test(log(GL$Rarea), log(GL$LMAp))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAp_Rarea: 'italic(r[B]) == ", 
+                  GL_cor_tbl |>
+                    filter(name == "R_LMAp") |>
+                    pull(mean),
+                  "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Rarea: 'italic(r) == ", cor.test(log(GL$Rarea), log(GL$LMAs))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAs_Rarea: 'italic(r[B]) == ", 
+                  GL_cor_tbl |>
+                    filter(name == "R_LMAs") |>
+                    pull(mean),
+                  "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMA_LL: 'italic(r) == ", cor.test(log(GL$LL), log(GL$LMA))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMA_LL: 'italic(r) == ", 
+                  cor.test(log(GL$LL), log(GL$LMA))$estimate |> round(2),
+                  "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_LL: 'italic(r) == ", cor.test(log(GL$LL), log(GL$LMAp))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAp_LL: 'italic(r[B]) == NA'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_LL: 'italic(r) == ", cor.test(log(GL$LL), log(GL$LMAs))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAs_LL: 'italic(r[B]) == ", 
+                  GL_cor_tbl |>
+                    filter(name == "LL_LMAs") |>
+                    pull(mean),
+                  "'"),
            out,
            sep = "\n")
-
 writeLines(paste0("  GL_NP:"),
            out,
            sep = "\n")
-writeLines(paste0("    LMA_Narea: 'italic(r) == ", cor.test(log(GL$Narea), log(GL$LMA))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMA_Narea: 'italic(r) == ", 
+                  cor.test(log(GL$Narea), log(GL$LMA))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Narea: 'italic(r) == ", cor.test(log(GL$Narea), log(GL$LMAp))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAp_Narea: 'italic(r) == ", 
+                  cor.test(log(GL$Narea), log(GL$LMAp))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Narea: 'italic(r) == ", cor.test(log(GL$Narea), log(GL$LMAs))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAs_Narea: 'italic(r) == ", 
+                  cor.test(log(GL$Narea), log(GL$LMAs))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMA_Parea: 'italic(r) == ", cor.test(log(GL$Parea), log(GL$LMA))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMA_Parea: 'italic(r) == ", 
+                  cor.test(log(GL$Parea), log(GL$LMA))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Parea: 'italic(r) == ", cor.test(log(GL$Parea), log(GL$LMAp))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAp_Parea: 'italic(r) == ", 
+                  cor.test(log(GL$Parea), log(GL$LMAp))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Parea: 'italic(r) == ", cor.test(log(GL$Parea), log(GL$LMAs))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAs_Parea: 'italic(r) == ", 
+                  cor.test(log(GL$Parea), log(GL$LMAs))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
 
@@ -311,38 +342,79 @@ writeLines(paste0("    LMAs_Parea: 'italic(r) == ", cor.test(log(GL$Parea), log(
 writeLines(paste0("  GL_LMAms:"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_LMAm: ", "'", GL_LMAps_r, "'"),
+writeLines(paste0("    LMAs_LMAm: ", "'", GL_LMAsLMAp, "'"),
+           out,
+           sep = "\n")
+
+writeLines(paste0("  GL_R2:"),
+           out,
+           sep = "\n")
+writeLines(paste0("    A_R2: '",
+           bayes_R2_GL("A", chr = TRUE),
+           "'"),
+           out,
+           sep = "\n")
+writeLines(paste0("    LL_R2: '",
+           bayes_R2_GL("LL", chr = TRUE),
+           "'"),
+           out,
+           sep = "\n")
+writeLines(paste0("    R_R2: '",
+           bayes_R2_GL("R", chr = TRUE),
+           "'"),
            out,
            sep = "\n")
 
 writeLines(paste0("  PA:"),
            out,
            sep = "\n")
-writeLines(paste0("    LMA_Aarea: 'italic(r) == ", cor.test(log(PA$Aarea), log(PA$LMA))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMA_Aarea: 'italic(r) == ", 
+                  cor.test(log(PA$Aarea), log(PA$LMA))$estimate |> round(2),
+                  "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Aarea: 'italic(r) == ", cor.test(log(PA$Aarea), log(PA$LMAp))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAp_Aarea: 'italic(r[B]) == ", 
+                  PA_cor_tbl |>
+                    filter(name == "A_LMAp") |>
+                    pull(mean),
+                  "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Aarea: 'italic(r) == ", cor.test(log(PA$Aarea), log(PA$LMAs))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAs_Aarea: 'italic(r[B]) == NA'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMA_Rarea: 'italic(r) == ", cor.test(log(PA$Rarea), log(PA$LMA))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMA_Rarea: 'italic(r) == ", 
+                  cor.test(log(PA$Rarea), log(PA$LMA))$estimate |> round(2),
+                  "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Rarea: 'italic(r) == ", cor.test(log(PA$Rarea), log(PA$LMAp))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAp_Rarea: 'italic(r[B]) == ", 
+                  PA_cor_tbl |>
+                    filter(name == "R_LMAp") |>
+                    pull(mean),
+                  "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Rarea: 'italic(r) == ", cor.test(log(PA$Rarea), log(PA$LMAs))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAs_Rarea: 'italic(r[B]) == ", 
+                  PA_cor_tbl |>
+                    filter(name == "R_LMAs") |>
+                    pull(mean),
+                  "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMA_LL: 'italic(r) == ", cor.test(log(PA$LL), log(PA$LMA))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMA_LL: 'italic(r) == ", 
+                  cor.test(log(PA$LL), log(PA$LMA))$estimate |> round(2),
+                  "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_LL: 'italic(r) == ", cor.test(log(PA$LL), log(PA$LMAp))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAp_LL: 'italic(r[B]) == NA'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_LL: 'italic(r) == ", cor.test(log(PA$LL), log(PA$LMAs))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAs_LL: 'italic(r[B]) == ", 
+                  PA_cor_tbl |>
+                    filter(name == "LL_LMAs") |>
+                    pull(mean),
+                  "'"),
            out,
            sep = "\n")
 
@@ -350,7 +422,7 @@ writeLines(paste0("    LMAs_LL: 'italic(r) == ", cor.test(log(PA$LL), log(PA$LMA
 writeLines(paste0("  PA_LMAms:"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_LMAm: ", "'", PA_LMAps_r, "'"),
+writeLines(paste0("    LMAs_LMAm: ", "'", PA_LMAsLMAp, "'"),
            out,
            sep = "\n")
 
@@ -358,54 +430,59 @@ writeLines(paste0("    LMAs_LMAm: ", "'", PA_LMAps_r, "'"),
 writeLines(paste0("  PA_NP:"),
            out,
            sep = "\n")
-writeLines(paste0("    LMA_Narea: 'italic(r) == ", cor.test(log(PA$Narea), log(PA$LMA))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMA_Narea: 'italic(r) == ", 
+                  cor.test(log(PA$Narea), log(PA$LMA))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Narea: 'italic(r) == ", cor.test(log(PA$Narea), log(PA$LMAp))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAp_Narea: 'italic(r) == ", 
+                  cor.test(log(PA$Narea), log(PA$LMAp))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Narea: 'italic(r) == ", cor.test(log(PA$Narea), log(PA$LMAs))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAs_Narea: 'italic(r) == ", 
+                  cor.test(log(PA$Narea), log(PA$LMAs))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMA_Parea: 'italic(r) == ", cor.test(log(PA$Parea), log(PA$LMA))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMA_Parea: 'italic(r) == ", 
+                  cor.test(log(PA$Parea), log(PA$LMA))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Parea: 'italic(r) == ", cor.test(log(PA$Parea), log(PA$LMAp))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAp_Parea: 'italic(r) == ", 
+                  cor.test(log(PA$Parea), log(PA$LMAp))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Parea: 'italic(r) == ", cor.test(log(PA$Parea), log(PA$LMAs))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAs_Parea: 'italic(r) == ", 
+                  cor.test(log(PA$Parea), log(PA$LMAs))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMA_cell_area: 'italic(r) == ", cor.test(log(PA$cell_area), log(PA$LMA))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMA_cell_area: 'italic(r) == ", 
+                  cor.test(log(PA$cell_area), log(PA$LMA))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_cell_area: 'italic(r) == ", cor.test(log(PA$cell_area), log(PA$LMAp))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAp_cell_area: 'italic(r) == ", 
+                  cor.test(log(PA$cell_area), log(PA$LMAp))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_cell_area: 'italic(r) == ", cor.test(log(PA$cell_area), log(PA$LMAs))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAs_cell_area: 'italic(r) == ", 
+                  cor.test(log(PA$cell_area), log(PA$LMAs))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
 
-writeLines(paste0("  PA_LL:"),
+writeLines(paste0("  PA_R2:"),
            out,
            sep = "\n")
-writeLines(paste0("    preLL_LL: 'italic(r^2) == ", 
-                  get_r2(PA_LL, log(PA$LL)) %>% round(2),"'"),
+writeLines(paste0("    LL_R2: 'italic(R^2) == ", 
+                  bayes_R2_PA("LL")[[1]]
+                  ,"'"),
            out,
            sep = "\n")
-
+writeLines(paste0("    A_R2: '",
+           bayes_R2_PA("A", chr = TRUE),
+           "'"),
+           out,
+           sep = "\n")
+writeLines(paste0("    R_R2: '",
+           bayes_R2_PA("R", chr = TRUE),
+           "'"),
+           out,
+           sep = "\n")
 close(out)
-
-
-#bayes_R25 <- function(y, LMA, res) {
-#  res <- resPA
-#  y <- log(PA$cell_area)
-#  ypred <- rstan::extract(res, paste(LMA)) %>%
-#    as.data.frame %>%
-#    as.matrix 
-#  ypred2 <- rbind(y, ypred) %>% as.data.frame %>% t
-#  ypred3 <- na.omit(ypred2) %>% as.matrix %>% t
-#  ypred4 <- ypred3[-1,]
-#  y2 <- ypred3[1,]
-#  r2 <- apply(ypred4, 1, function(x)cor(x, y2))
-#  median(r2) %>% round(2)

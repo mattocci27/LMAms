@@ -18,16 +18,26 @@ my_ggsave = function(filename, plot, height = 11.4, width = 11.4, units = "cm", 
          ...)
 }
 
-lim_func <- function(data, trait, LMA = TRUE) {
-  if (LMA) LMA <- as.name("LMA") else LMA <- as.name("Trait2")
-  data %>%
-    dplyr::select({{LMA}}, {{trait}}) %>%
-    dplyr::group_by({{LMA}}) %>%
-    summarize_(min_val = interp(~log10(min(v, na.rm = TRUE)), v = as.name(trait)),
-              max_val = interp(~log10(max(v, na.rm = TRUE)), v = as.name(trait))) %>%
+lim_func <- \(data, LMA = TRUE) {
+  if (LMA) {
+    tmp <- data |>
+      dplyr::select(LMA, Val) |>
+      group_by(LMA) |>
+      summarize(
+          min_val = log10(min(Val, na.rm = TRUE)),
+          max_val = log10(max(Val, na.rm = TRUE)))
+  } else {
+    tmp <- data |>
+      dplyr::select(Trait2, Val2) |>
+      group_by(Trait2) |>
+      summarize(
+          min_val = log10(min(Val2, na.rm = TRUE)),
+          max_val = log10(max(Val2, na.rm = TRUE)))
+  }
+  tmp |>
+    ungroup() |>
     mutate(mid_val = (max_val - min_val) / 2) %>%
-    ungroup %>%
-    mutate(min_val = 10^(min_val - mid_val * 0.1)) %>%
+    mutate(min_val = 10^(min_val - mid_val * 0.1)) |>
     mutate(max_val = 10^(max_val + mid_val * 0.1))
 }
 
