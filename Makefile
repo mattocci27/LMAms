@@ -35,6 +35,7 @@ emptytarget2: util/res_para.r $(RDA)
 r_val.yml: util/r2_yml.r $(RDA) 
 	Rscript $< 
 	sed -i -e 's/NA/"NA"/g' $@
+	rm r_val.yml-e
 
 $(FIG): emptytarget3
 emptytarget3: docs/figs.Rmd $(FIGdata)
