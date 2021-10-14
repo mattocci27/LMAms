@@ -12,6 +12,7 @@ dd <- data.frame(Narea = 10^d$`log Narea`,
             Parea = mean(Parea, na.omit = T))
 
 load("./rda/GL_Aps_LLs_obs.rda")
+
 resGL <- res
 GL_summary <- data.frame(summary(res)$summary)
 GL <- dat
@@ -261,14 +262,14 @@ writeLines(paste0("    LMA_Aarea: 'italic(r) == ",
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Aarea: 'italic(r) == ", 
+writeLines(paste0("    LMAp_Aarea: 'italic(r[B]) == ", 
                   GL_cor_tbl |>
                     filter(name == "A_LMAp") |>
                     pull(mean),
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Aarea: 'italic(r) == ", 
+writeLines(paste0("    LMAs_Aarea: 'italic(r[B]) == ", 
                   GL_cor_tbl |>
                     filter(name == "A_LMAs") |>
                     pull(mean),
@@ -280,14 +281,14 @@ writeLines(paste0("    LMA_Rarea: 'italic(r) == ",
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Rarea: 'italic(r) == ", 
+writeLines(paste0("    LMAp_Rarea: 'italic(r[B]) == ", 
                   GL_cor_tbl |>
                     filter(name == "R_LMAp") |>
                     pull(mean),
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Rarea: 'italic(r) == ", 
+writeLines(paste0("    LMAs_Rarea: 'italic(r[B]) == ", 
                   GL_cor_tbl |>
                     filter(name == "R_LMAs") |>
                     pull(mean),
@@ -299,14 +300,10 @@ writeLines(paste0("    LMA_LL: 'italic(r) == ",
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_LL: 'italic(r) == ", 
-                  GL_cor_tbl |>
-                    filter(name == "LL_LMAp") |>
-                    pull(mean),
-                  "'"),
+writeLines(paste0("    LMAp_LL: 'italic(r[B]) == NA'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_LL: 'italic(r) == ", 
+writeLines(paste0("    LMAs_LL: 'italic(r[B]) == ", 
                   GL_cor_tbl |>
                     filter(name == "LL_LMAs") |>
                     pull(mean),
@@ -376,18 +373,14 @@ writeLines(paste0("    LMA_Aarea: 'italic(r) == ",
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Aarea: 'italic(r) == ", 
+writeLines(paste0("    LMAp_Aarea: 'italic(r[B]) == ", 
                   PA_cor_tbl |>
                     filter(name == "A_LMAp") |>
                     pull(mean),
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Aarea: 'italic(r) == ", 
-                  PA_cor_tbl |>
-                    filter(name == "A_LMAs") |>
-                    pull(mean),
-                  "'"),
+writeLines(paste0("    LMAs_Aarea: 'italic(r[B]) == NA'"),
            out,
            sep = "\n")
 writeLines(paste0("    LMA_Rarea: 'italic(r) == ", 
@@ -395,14 +388,14 @@ writeLines(paste0("    LMA_Rarea: 'italic(r) == ",
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Rarea: 'italic(r) == ", 
+writeLines(paste0("    LMAp_Rarea: 'italic(r[B]) == ", 
                   PA_cor_tbl |>
                     filter(name == "R_LMAp") |>
                     pull(mean),
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Rarea: 'italic(r) == ", 
+writeLines(paste0("    LMAs_Rarea: 'italic(r[B]) == ", 
                   PA_cor_tbl |>
                     filter(name == "R_LMAs") |>
                     pull(mean),
@@ -414,14 +407,10 @@ writeLines(paste0("    LMA_LL: 'italic(r) == ",
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_LL: 'italic(r) == ", 
-                  PA_cor_tbl |>
-                    filter(name == "LL_LMAp") |>
-                    pull(mean),
-                  "'"),
+writeLines(paste0("    LMAp_LL: 'italic(r[B]) == NA'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_LL: 'italic(r) == ", 
+writeLines(paste0("    LMAs_LL: 'italic(r[B]) == ", 
                   PA_cor_tbl |>
                     filter(name == "LL_LMAs") |>
                     pull(mean),
