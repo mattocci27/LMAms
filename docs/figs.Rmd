@@ -724,12 +724,14 @@ fills <- c("D" = settings$fills$D,
 cols <- c("D" = settings$colors$D,
           "E" = settings$colors$E)
 
-GL_dat_box <- GL_dat %>%
-  filter(gr != "Unclassified") %>%
-  dplyr::select(DE, Val, LMA) %>%
+
+GL_dat_box <- GL |>
+  filter(DE != "U") |>
+  dplyr::select(sp, DE, GF, LMA, LMAp, LMAs) |>
+  pivot_longer(LMA:LMAs, names_to = "LMA", values_to = "Val") |>
   mutate(gr = factor(DE,
-                     levels = c("D", "E"))) %>%
-  unique
+                     levels = c("D", "E"))) |>
+  unique()
 
 
 theme_box <- function(base_size = 9,
