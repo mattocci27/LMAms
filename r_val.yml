@@ -45,6 +45,6 @@ r_vals:
     LMAp_cell_area: 'italic(r) == 0.53'
     LMAs_cell_area: 'italic(r) == 0.58'
   PA_R2:
-    LL_R2: 'italic(r^2) == 0.47'
+    LL_R2: 'italic(R^2) == 0.47'
     A_R2: '0.54 [0.25, 0.92]'
     R_R2: '0.54 [0.25, 0.92]'
