@@ -381,7 +381,7 @@ MK, JWL and JLDO conceived of the study; KK, SJW and SAVB contributed data; MK d
 
 ```{r modeltab}
 
-tab1 <- read_csv("../data/tab1.csv")
+tab1 <- read_csv("../ms/tab1.csv")
 tab1 <- tab1 |>
   dplyr::select(`Expected trait values`)
 
@@ -459,7 +459,7 @@ Example of a two-dimensional functional space that can result in either a two- o
 (C) One-dimensional relationship between *A*~max~ per-unit leaf mass and total LMA.
 LMAp and LMAs are simulated from a hypothetical scenario of lognormal distributions with medians of 80 and standard deviations of exp(0.8) and exp(0.7), and zero covariance.
 Variation in *A*~max~ values are derived from our analysis of the GLOPNET database. $A_{\mathrm{area} \, i}=1.9\mathrm{LMAp}_i^{0.36}\mathrm{LMAs}^{-0.25}\epsilon_i$, where $\epsilon_i$ is log-normally distributed with log-mean with 0, log-scale parameter with 0.3 (see Methods and Results).
-](../figs/fig_h3.png){#fig:Hplt}
+](../figs/fig_hypo.png){#fig:Hplt}
 
 
 ![
@@ -467,7 +467,7 @@ Observed and estimated leaf-trait relationships in the global GLOPNET dataset.
 (A) Leaf life span (LL), net photosynthetic rate per unit leaf area (*A*~area~), and dark respiration rate per unit leaf area (*R*~area~) are plotted against observed LMA.
 (B) Residuals of LL, *A*~area~, and *R*~area~ regressed on posterior estimates of photosynthetic and structural LMA components (LMAp and LMAs, respectively) are plotted against LMAp and LMAs (only means are shown).
 Pearson correlation coefficients are for LMA (left column) and posterior distributions of LMAp (middle column) and LMAs (right column).
-](../figs/GL_3.png){#fig:GLplt}
+](../figs/GL_scatter.png){#fig:GLplt}
 
 
 \newpage
@@ -477,7 +477,7 @@ Observed and estimated leaf-trait relationships in the Panama dataset.
 Estimates are from the LL with light Model (Eq. 6b).
 Details as in [@fig:GLplt].
 Results for other LL models are summarized in Table SX.
-](../figs/PA_3.png){#fig:PAplt}
+](../figs/PA_scatter.png){#fig:PAplt}
 
 
 \newpage
@@ -487,7 +487,7 @@ Observed vs. predicted leaf lifespan (LL) in the LL with light Model (Eq. 6b).
 Predicted LL values are posterior medians.
 The dashed line indicates the 1:1 relationship.
 The *r*^2^ value is the posterior median of Bayesian *r*^2^ [@Gelman2019].
-](../figs/LL_plot2.png){#fig:LLplt}
+](../figs/LL_plot.png){#fig:LLplt}
 
 
 \newpage
@@ -496,7 +496,7 @@ The *r*^2^ value is the posterior median of Bayesian *r*^2^ [@Gelman2019].
 The relationships among mass proportionality (*b~i~* in Eq. 8), variance in LMAp and LMAs, and scaling slopes between LMAp and *A*~area~ ($\alpha_p$) and LMAs and *A*~area~ ($\alpha_s$) for the global GLOPNET dataset, sun leaves in Panama, and shade leaves in Panama.
 The photosynthetic rate (*A*~max~) is primarily mass-dependent (*b~i~* > 0.5, white to blue), primarily area-dependent (0.5 > *b~i~* > 0, white to orange) and purely area-proportional (*b~i~* = 0, white) [@Osnas2018].
 Note that when *b~i~* is negative, *A*~area~ decreases with LMA, which is not realistic.
-](../figs/mass_prop4.png){#fig:massplt}
+](../figs/mass_prop_simple.png){#fig:massplt}
 
 
 \newpage

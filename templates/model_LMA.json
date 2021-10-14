@@ -1,0 +1,15 @@
+{
+    "owner": "mattocci",
+    "configs": [
+    {
+      "model": "GL_LMA"
+    },
+    {
+      "model": "PA_LMA"
+    },
+    {
+      "model": "PA_LMA_opt",
+      "opt": "opt"
+    }
+    ]
+}

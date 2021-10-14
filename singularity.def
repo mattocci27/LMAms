@@ -13,3 +13,7 @@ From: mattocci/myenv:4.1.1
 
 %post
     DEBIAN_FRONTEND=noninteractive
+
+    install2.r -n -2 --skipinstalled --error \
+        --deps TRUE \
+          pbmcapply
