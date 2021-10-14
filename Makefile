@@ -8,8 +8,7 @@ LOO = data/GL_elpd.csv data/PA_elpd.csv
 
 FIGdata = settings.yml r_val.yml letters.yml fig_theme.r data/GL_res.csv data/PA_res.csv data/GLpara.csv data/PApara.csv data/PA_LH.csv
 
-FIG = figs/fig_hypo.png figs/GL_scatter.png figs/GL_NP.png figs/PA_scatter.png figs/PA_NPC.png figs/LL_plot.png figs/LL_plot2.png figs/LL_plot_sd.png figs/mass_prop_simple.png figs/mass_prop_simple2.png figs/box_main.png figs/box_SI.png figs/box_frac.png figs/box_frac2.png figs/box_cell.png figs/frac_paired.png figs/LMAm_paired.png figs/LMAms.png figs/LMAms95.png docs/figs.html
-
+FIG = figs/fig_hypo.png figs/GL_scatter.png figs/GL_NP.png figs/PA_scatter.png figs/PA_NPC.png figs/LL_plot.png figs/mass_prop_simple.png figs/mass_prop_simple2.png figs/box_main.png figs/box_SI.png figs/box_frac.png figs/box_frac2.png figs/box_cell.png figs/frac_paired.png figs/LMAm_paired.png figs/LMAms.png figs/LMAms95.png docs/figs.html
 
 #$(info RDA: $(RDA))
 #$(info PAR: $(PAR))
@@ -54,3 +53,5 @@ clean:
 	rm -f ms/*.tuc \
 	ms/*.log \
 	rm -rf ms/cache/*
+	rm -rf docs/figs_cache
+	rm -rf docs/figs_files
