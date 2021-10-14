@@ -470,7 +470,7 @@ writeLines(paste0("    LMAs_cell_area: 'italic(r) == ",
 writeLines(paste0("  PA_R2:"),
            out,
            sep = "\n")
-writeLines(paste0("    LL_R2: 'italic(r^2) == ", 
+writeLines(paste0("    LL_R2: 'italic(R^2) == ", 
                   bayes_R2_PA("LL")[[1]]
                   ,"'"),
            out,
