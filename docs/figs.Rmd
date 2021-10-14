@@ -20,22 +20,18 @@ output:
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(echo=TRUE,
                       warning=FALSE,
+                      cache=TRUE,
                       message=FALSE)
 ```
 
+# Library
 
-```{r, echo = T, message = F}
+```{r, message=FALSE}
 library(tidyverse)
 library(loo)
 library(rstan)
-library(dplyr)
 library(scales)
-library(cowplot)
-library(ggrepel)
-library(png)
-library(grid)
 library(patchwork)
-library(lazyeval)
 
 settings <- yaml::yaml.load_file("../settings.yml")
 r_vals <- yaml::yaml.load_file("../r_val.yml")
@@ -60,12 +56,6 @@ theme_set(theme_LES() +
 
 ```
 
-# Load GL model result
-
-```{r GLdat, cache=TRUE, comment=NA}
-GL <- read_csv("../data/GL_res.csv")
-```
-
 
 # Scatter plot (Hypo)
 
@@ -74,7 +64,7 @@ var(LMAp) > var(LMAs), alpha_m > 0 and alpha_s < 0.
 This parameter setting mimics GLOPNET values. All the values were generated from the following parameter setting.
 No covariance between LMAp and LMAs
 
-```{r h2, cache=TRUE, comment=NA}
+```{r h2,  comment=NA}
 
 a0 <- para_vals$GL$a0
 ap <- para_vals$GL$ap
@@ -148,9 +138,14 @@ my_ggsave("../figs/fig_hypo.png", p4,
 
 # Scatter plots (estimated)
 
+
 ## GL simple
 
-```{r GL-scatter-simple, cache=FALSE, comment=NA}
+```{r GLdat, comment=NA}
+GL <- read_csv("../data/GL_res.csv")
+```
+
+```{r GL-scatter-simple,  comment=NA}
 
 GL_dat <- GL %>% 
   gather(LMA, Val, c(LMA, LMAs, LMAp)) %>%
@@ -174,10 +169,9 @@ GL_dat <- GL %>%
 GL_dat1 <- GL_dat |>
   filter(Trait %in% c("LL", "Aarea", "Rarea"))
 
-lim_GL <- lim_func(GL_dat1, 
-                   trait = "Val")
-lim_GL2 <- lim_func(GL_dat1,
-                    trait = "Val2", LMA = FALSE)
+lim_GL <- lim_func(GL_dat1)
+
+lim_GL2 <- lim_func(GL_dat1, LMA = FALSE)
 
 lab1 <- tibble(lab = paste("(", letters[1:9], ")", sep = ""),
                    Val2 = lim_GL2$max_val %>% rep(each = 3),
@@ -208,15 +202,14 @@ my_ggsave("../figs/GL_scatter.png", GL_plot)
 
 ## NP
 
-```{r GL-NP, cache=TRUE, comment=NA}
+```{r GL-NP,  comment=NA}
 
 GL_dat2 <- GL_dat |>
   filter(Trait %in% c("Narea", "Parea"))
 
-lim_GL <- lim_func(GL_dat2 %>% filter(DE != "Rand"), 
-                   trait = "Val")
+lim_GL <- lim_func(GL_dat2 %>% filter(DE != "Rand"))
 lim_GL2 <- lim_func(GL_dat2 %>% filter(DE != "Rand"),
-                    trait = "Val2", LMA = FALSE)
+                    LMA = FALSE)
 
 lab1 <- tibble(lab = paste("(", letters[1:6], ")", sep = ""),
                    Val2 = lim_GL2$max_val %>% rep(each = 3),
@@ -239,12 +232,12 @@ my_ggsave("../figs/GL_NP.png", GL_NP_plot)
 
 ## Panama
 
-```{r PAdat, cache=FALSE, comment=NA}
+```{r PAdat, comment=NA}
 PA <- read_csv("../data/PA_res.csv")
 ```
 
 
-```{r PA-scatter-simple, cache=FALSE, comment=NA}
+```{r PA-scatter-simple,  comment=NA}
 
 PA_dat <- PA %>% 
   gather(LMA, Val, c(LMA, LMAs, LMAp)) %>%
@@ -276,10 +269,8 @@ PA_dat <- PA %>%
 PA_dat1 <- PA_dat |>
   filter(Trait %in% c("LL", "Aarea", "Rarea"))
 
-lim_PA <- lim_func(PA_dat1, 
-                   trait = "Val")
-lim_PA2 <- lim_func(PA_dat1,
-                    trait = "Val2", LMA = FALSE)
+lim_PA <- lim_func(PA_dat1)
+lim_PA2 <- lim_func(PA_dat1, LMA = FALSE)
 
 lab1 <- tibble(lab = paste("(", letters[1:9], ")", sep = ""),
                    Val2 = lim_PA2$max_val %>% rep(each = 3),
@@ -315,15 +306,14 @@ my_ggsave("../figs/PA_scatter.png", PA_plot)
 
 ## Panama NPCL
 
-```{r, cache=TRUE, comment=NA, eval = TRUE}
+```{r PA-NPCL, comment=NA, eval = TRUE}
 
 PA_dat2 <- PA_dat %>%
   filter(Trait %in% c("Narea", "Parea", "cell_area"))
 
-lim_PA <- lim_func(PA_dat2, trait = "Val")
+lim_PA <- lim_func(PA_dat2)
 
-lim_PA2 <- lim_func(PA_dat2,
-                    trait = "Val2", LMA = FALSE)
+lim_PA2 <- lim_func(PA_dat2, LMA = FALSE)
 
 lab1 <- tibble(lab = paste("(", letters[1:9], ")", sep = ""),
                    Val2 = lim_PA2$max_val %>% rep(each = 3),
@@ -343,40 +333,40 @@ my_ggsave("../figs/PA_NPC.png", PA_NPC_plot)
 
 ![PA-NPC](../figs/PA_NPC.png)
 
-# LL: Obs vs Pred
+## LL: Obs vs Pred
 
-```{r LL-pre, cache=TRUE, comment=NA, eval = T}
+```{r LL-pre, comment=NA}
+
+LLdat <- PA |>
+  mutate(site_strata = factor(site_strata,
+          levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) %>%
+  mutate(gr = factor(site_strata,
+    labels = c("Sun-Wet",
+               "Sun-Dry",
+               "Shade-Wet",
+               "Shade-Dry"
+                      )))
 
 
-labLL <- tibble(
-                LL = Inf,
-                Val = min(PA$LL),
-                Val_max = max(PA$LL),
-                gr = "Sun-Dry",
-                r_vals = r_vals$r_vals$PA_LL$preLL_LL
-)
 
-LL_plot <- ggplot(PA, aes(x = preLL, y = LL,
+LL_plot <- ggplot(LLdat, aes(x = LL, y = exp(Mu2),
                               fill = gr, col = gr)) +
   geom_point(shape = 21) +
   scale_fill_manual(values = fills) +
   scale_colour_manual(values = cols) +
   scale_x_log10(breaks = my_breaks(), expand = c(0.1, 0),
-                limits = c(min(labLL$Val), max(labLL$Val_max))) +
+                limits = c(min(PA$LL), max(PA$LL))) +
   scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0),
-                limits = c(min(labLL$Val), max(labLL$Val_max))) +
+                limits = c(min(PA$LL), max(PA$LL))) +
   xlab("Predicted LL (months)") +
   ylab("Observed LL (months)") +
   geom_abline(aes(slope = 1, intercept = 0),
               lty = 2,
               lwd = 0.25,
               col = "gray20") +
-  geom_text(data = labLL, aes(label = r_vals, x = Val_max, y = 2.5),
-            colour = "black",
-            hjust = 1,
-            vjust= 0,
-            parse = TRUE,
-            show.legend = FALSE) +
+  annotate("text", x = max(PA$LL) - 20, y = 3,5,
+           label = r_vals$r_vals$PA_R2$LL_R2,
+           parse = TRUE) +
   coord_fixed() +
   theme_LES() +
   theme(
@@ -395,153 +385,12 @@ my_ggsave("../figs/LL_plot.png", LL_plot,
           width = 6.7,
           height = 6.7)
 
-LL_plot2 <- ggplot(LL_dat, aes(x = LL, y = preLL,
-                              fill = gr, col = gr)) +
-  geom_point(shape = 21) +
-  scale_fill_manual(values = fills) +
-  scale_colour_manual(values = cols) +
-  scale_x_log10(breaks = my_breaks(), expand = c(0.1, 0),
-                limits = c(min(labLL$Val), max(labLL$Val_max))) +
-  scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0),
-                limits = c(min(labLL$Val), max(labLL$Val_max))) +
-  xlab("Observed LL (months)") +
-  ylab("Predicted LL (months)") +
-  geom_abline(aes(slope = 1, intercept = 0),
-              lty = 2,
-              lwd = 0.25,
-              col = "gray20") +
-  geom_text(data = labLL, aes(label = r_vals, x = Val_max, y = 2.5),
-            colour = "black",
-            hjust = 1,
-            vjust= 0,
-            parse = TRUE,
-            show.legend = FALSE) +
-  coord_fixed() +
-  theme_LES() +
-  theme(
-    legend.position = c(0.2, 0.85),
-    axis.title.x = element_text(margin = margin(t = 1,
-                                                b = 1,
-                                                l = 0,
-                                                r = 0)),
-    axis.title.y = element_text(margin = margin(t = 1,
-                                                b = 1,
-                                                l = 1,
-                                                r = 1))
-        )
-
-my_ggsave("../figs/LL_plot2.png", LL_plot2,
-        width = 6.7,
-        height = 6.7)
-
-fills <- c("Sun-Dry" = settings$fills$sun_dry,
-          "Sun-Wet" = settings$fills$sun_wet,
-          "Shade-Dry" = settings$fills$shade_dry,
-          "Shade-Wet" = settings$fills$shade_wet)
-
-cols <- c("Sun-Dry" = settings$colors$sun_dry,
-          "Sun-Wet" = settings$colors$sun_wet,
-          "Shade-Dry" = settings$colors$shade_dry,
-          "Shade-Wet" = settings$colors$shade_wet)
-
-LL_plot95 <- ggplot(LL_dat, aes(x = preLL, y = LL,
-                              fill = gr, col = gr)) +
-  geom_segment(aes(x = preLL_lo, xend = preLL_up, y = LL, yend = LL), col = "grey60", size = 0.25) +
-  geom_point(shape = 21) +
-  scale_fill_manual(values = fills) +
-  scale_colour_manual(values = cols) +
-  scale_x_log10(breaks = my_breaks(), expand = c(0.1, 0),
-                limits = c(min(labLL$Val), max(labLL$Val_max))) +
-  scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0),
-                limits = c(min(labLL$Val), max(labLL$Val_max))) +
-  xlab("Predicted LL (months)") +
-  ylab("Observed LL (months)") +
-  geom_abline(aes(slope = 1, intercept = 0),
-              lty = 2,
-              lwd = 0.25,
-              col = "gray20") +
-  geom_text(data = labLL, aes(label = r_vals, x = Val_max, y = 2.5),
-            colour = "black",
-            hjust = 1,
-            vjust= 0,
-            parse = TRUE,
-            show.legend = FALSE) +
-  coord_fixed() +
-  theme_LES() +
-  theme(
-    legend.position = c(0.2, 0.85),
-    axis.title.x = element_text(margin = margin(t = 1,
-                                                b = 1,
-                                                l = 0,
-                                                r = 0)),
-    axis.title.y = element_text(margin = margin(t = 1,
-                                                b = 1,
-                                                l = 1,
-                                                r = 1))
-        )
-
-LL_plot_sd <- ggplot(LL_dat, aes(x = LL, y = preLL,
-                              fill = gr, col = gr)) +
-  geom_segment(aes(y = preLL_lo2, yend = preLL_up2, x = LL, xend = LL), col = "grey60", size = 0.25) +
-  geom_point(shape = 21) +
-  scale_fill_manual(values = fills) +
-  scale_colour_manual(values = cols) +
-  scale_x_log10(breaks = my_breaks(), expand = c(0.1, 0),
-                limits = c(min(labLL$Val), max(labLL$Val_max))) +
-  scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0),
-                limits = c(min(labLL$Val), max(labLL$Val_max))) +
-  ylab("Predicted LL (months)") +
-  xlab("Observed LL (months)") +
-  geom_abline(aes(slope = 1, intercept = 0),
-              lty = 2,
-              lwd = 0.25,
-              col = "gray20") +
-  geom_text(data = labLL, aes(label = r_vals, x = Val_max, y = 2.5),
-            colour = "black",
-            hjust = 1,
-            vjust= 0,
-            parse = TRUE,
-            show.legend = FALSE) +
-  coord_fixed() +
-  theme_LES() +
-  theme(
-    legend.position = c(0.2, 0.85),
-    axis.title.x = element_text(margin = margin(t = 1,
-                                                b = 1,
-                                                l = 0,
-                                                r = 0)),
-    axis.title.y = element_text(margin = margin(t = 1,
-                                                b = 1,
-                                                l = 1,
-                                                r = 1))
-        )
-
-
-my_ggsave("../figs/LL_plot_sd.png", LL_plot_sd,
-          width = 6.7,
-          height = 6.7)
-
 ```
-
-## LL
 
 ![LL plot](../figs/LL_plot.png)
 
-## LL2
-
-![LL plot2](../figs/LL_plot2.png)
-
-## LL 95% CI
-
-![LL plot95](../figs/LL_plot95.png)
-
-## LL sd
-
-![LL plot_sd](../figs/LL_plot_sd.png)
-
 
 # Mass-proportionality
-
 
 ```{r}
 
@@ -867,32 +716,13 @@ my_ggsave("../figs/mass_prop_simple2.png", mass_plt_simple2,
 
 ## Main plot
 
-```{r box, cache=TRUE, comment=NA}
+```{r box, comment=NA}
 
 fills <- c("D" = settings$fills$D,
           "E" = settings$fills$E)
 
 cols <- c("D" = settings$colors$D,
           "E" = settings$colors$E)
-
-GL_dat <- GL %>% 
-  gather(LMA, Val, c(LMA, LMAs, LMAp)) %>%
-  gather(Trait, Val2, c(Aarea, Rarea, LL, 
-                        Parea, Narea)) %>%
-  mutate(DE = factor(DE,
-          levels = c("D", "E", "U"))) %>%
-  mutate(LMA = factor(LMA,
-    labels = c("LMA", "LMAm", "LMAs"))) %>%
-#  mutate(LMA = factor(LMA,
-#    labels = c("LMA~(~g~m^{-2})", "LMAm~(~g~m^{-2})", "LMAs~(~g~m^{-2})"))) %>%
-  mutate(Trait = factor(Trait,
-    levels = c("Aarea", "Rarea", "LL", "Narea", "Parea"))) %>%
-  mutate(Trait2 = factor(Trait,
-    labels = c("italic(A)[area]~(~mu~mol~m^{-2}~s^{-1})",
-               "italic(R)[area]~(~mu~mol~m^{-2}~s^{-1})",
-               "LL~(months)",
-               "italic(N)[area]~(~g~m^{-2})",
-               "italic(P)[area]~(~g~m^{-2})"))) 
 
 GL_dat_box <- GL_dat %>%
   filter(gr != "Unclassified") %>%
@@ -935,7 +765,7 @@ GL_box <- ggplot(GL_dat_box, aes(x = gr, y = Val, fill = gr)) +
   ylab(expression(atop("GLOPNET",
                 LMA~(g~m^{-2})))) +
   xlab("") +
-  scale_fill_manual(values = fills, guide = FALSE) +
+  scale_fill_manual(values = fills, guide = "none") +
   #guides(fill = FALSE, colour = FALSE) +
   #scale_x_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
   scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
@@ -955,36 +785,8 @@ cols2 <- c("Sun\nDry" = settings$colors$sun_dry,
           "Shade\nWet" = settings$colors$shade_wet,
           "Rand" = settings$colors$R)
 
-PA_dat <- PA %>% 
-  gather(LMA, Val, 
-         c(LMA, LMAs, LMAp)) %>%
-  gather(Trait, Val2, c(Aarea, Rarea, LL, 
-                        Parea, Narea, cell_area)) %>%
-  mutate(LMA = factor(LMA,
-    labels = c("LMA", "LMAm", "LMAs"))) %>%
-  mutate(site_strata = factor(site_strata,
-          levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) %>%
-  mutate(Trait = factor(Trait,
-    levels = c("Aarea", "Rarea", "LL", "Narea", "Parea", "cell_area"))) %>%
-  mutate(Trait2 = factor(Trait,
-    labels = c("italic(A)[area]~(~mu~mol~m^{-2}~s^{-1})",
-               "italic(R)[area]~(~mu~mol~m^{-2}~s^{-1})",
-               "LL~(months)",
-               "italic(N)[area]~(~g~m^{-2})",
-               "italic(P)[area]~(~g~m^{-2})",
-               "italic(CL)[area]~(~g~m^{-2})"
-               ))) %>% 
-  mutate(gr = factor(site_strata,
-    labels = c("Sun-Wet",
-               "Sun-Dry",
-               "Shade-Wet",
-               "Shade-Dry"
-                      ))) %>%
-  #arrange(desc(gr))
-  arrange(gr) 
-
-PA_trim_dat <- PA_dat %>% 
-  count(sp) %>% 
+PA_trim_dat <- PA_dat %>%
+  count(sp) %>%
   filter(n >= 2) %>%
   inner_join(., PA_dat, by = "sp") %>%
   dplyr::select(gr, Val, LMA) %>%
@@ -1015,8 +817,8 @@ PA_box <- ggplot(PA_trim_dat, aes(x = gr, y = Val, fill = gr, col = gr)) +
                 LMA~(g~m^{-2})))) +
   xlab("") +
  # labs(title = "moge") +
-  scale_fill_manual(values = fills2, guide = FALSE) +
-  scale_colour_manual(values = cols2, guide = FALSE) +
+  scale_fill_manual(values = fills2, guide = "none") +
+  scale_colour_manual(values = cols2, guide = "none") +
   #scale_x_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
   scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
   #scale_y_log10(#breaks = trans_breaks("log10", function(x) 10^x),
@@ -1033,18 +835,13 @@ PA_box <- ggplot(PA_trim_dat, aes(x = gr, y = Val, fill = gr, col = gr)) +
  #                     )  
 #boxplot(LMAs ~ site_strata, PA, log = "y", ylim = c(10,120))
 
-box_main <- plot_grid(GL_box, PA_box,
-          nrow = 2,
-          #labels = c("(a)", "(b)"),
-          label_size = 9)
+
+box_main <- GL_box / PA_box
+
 
 my_ggsave("../figs/box_main.png", box_main,
           width = 11.7,
           height = 11.7)
-
-img <- readPNG("../figs/box_main.png", native = TRUE, info = TRUE)
-
-grid.raster(img, interpolate=F)
 
 ```
 
@@ -1053,7 +850,7 @@ grid.raster(img, interpolate=F)
 
 ## All Panama
 
-```{r PA-box, cache=TRUE, comment=NA}
+```{r PA-box, comment=NA}
 
 # PA all =================================
 PA_nontrim_dat <- PA_dat %>% 
@@ -1082,8 +879,8 @@ PA_box2 <- ggplot(PA_nontrim_dat, aes(x = gr, y = Val, fill = gr, col = gr)) +
   ylab(expression(atop("Panama",
                 LMA~(g~m^{-2})))) +
   xlab("") +
-  scale_fill_manual(values = fills2, guide = FALSE) +
-  scale_colour_manual(values = cols2, guide = FALSE) +
+  scale_fill_manual(values = fills2, guide = "none") +
+  scale_colour_manual(values = cols2, guide = "none") +
   scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
   theme_box() +
   theme(
@@ -1100,7 +897,7 @@ my_ggsave("../figs/box_SI.png", PA_box2,
 
 ## Box fraction
 
-```{r fraction, cache=TRUE, comment=NA}
+```{r fraction, comment=NA}
 
 GLFracDat <- GL %>%
   mutate(LMAm_frac = LMAp / LMA) %>%
@@ -1111,7 +908,7 @@ GLFracDat <- GL %>%
 
 GLboxFrac <- ggplot(GLFracDat, aes(x = gr, y = LMAm_frac, fill = gr)) +
   geom_boxplot(outlier.shape = 21, outlier.size = 1) +
-  scale_fill_manual(values = fills, guide = FALSE) 
+  scale_fill_manual(values = fills, guide = "none") 
   #geom_text(data= lab1, aes(label = lab),
   #          vjust = -1,
   #          size = 8 * 5/14) 
@@ -1137,7 +934,7 @@ PAFracDat <- PA2 %>%
 
 PAboxFrac <- ggplot(PAFracDat, aes(x = gr, y = LMAm_frac, fill = gr)) +
   geom_boxplot(outlier.shape = 21, outlier.size = 1) +
-  scale_fill_manual(values = fills, guide = FALSE) 
+  scale_fill_manual(values = fills, guide = "none") 
 
 print(PAboxFrac)
 
@@ -1176,8 +973,8 @@ FracBox <- ggplot(FracDat, aes(x = gr, y = LMAm_frac, fill = gr, col = gr)) +
   #ylab(expression(atop("Panama",
   #              LMA~(g~m^{-2})))) +
   xlab("") +
-  scale_fill_manual(values = fills, guide = FALSE) +
-  scale_colour_manual(values = cols, guide = FALSE) +
+  scale_fill_manual(values = fills, guide = "none") +
+  scale_colour_manual(values = cols, guide = "none") +
   scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
   theme_box() +
   theme(
@@ -1193,17 +990,7 @@ my_ggsave("../figs/box_frac.png", FracBox,
 
 ![Fraction](../figs/box_frac.png)
 
-```{r frac2, cache=TRUE, comment=NA}
-
-fills2 <- c("Sun\nDry" = settings$fills$sun_dry,
-          "Sun\nWet" = settings$fills$sun_wet,
-          "Shade\nDry" = settings$fills$shade_dry,
-          "Shade\nWet" = settings$fills$shade_wet)
-
-cols2 <- c("Sun\nDry" = settings$colors$sun_dry,
-          "Sun\nWet" = settings$colors$sun_wet,
-          "Shade\nDry" = settings$colors$shade_dry,
-          "Shade\nWet" = settings$colors$shade_wet)
+```{r frac2, comment=NA}
 
 fills3 <- c(fills, fills2)
 cols3 <- c(cols, cols2)
@@ -1228,7 +1015,6 @@ PAFracDat3 <- PA %>%
   #dplyr::select(sp, gr, LMAm_frac) %>%
   mutate(data = "(c) Panama: intra")
 
-data.frame(PAFracDat3$site_strata, PAFracDat3$gr) %>% unique
 
 FracDat2 <- bind_rows(FracDat, PAFracDat3)
 
@@ -1272,8 +1058,8 @@ FracBox2 <- ggplot(FracDat3, aes(x = gr, y = LMAm_frac, fill = gr, col = gr)) +
   #ylab(expression(atop("Panama",
   #              LMA~(g~m^{-2})))) +
   xlab("") +
-  scale_fill_manual(values = fills3, guide = FALSE) +
-  scale_colour_manual(values = cols3, guide = FALSE) +
+  scale_fill_manual(values = fills3, guide = "none") +
+  scale_colour_manual(values = cols3, guide = "none") +
   #scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
   coord_cartesian(ylim = c(0, 1)) +
   theme_box() +
@@ -1292,9 +1078,9 @@ my_ggsave("../figs/box_frac2.png", FracBox2,
 
 ## celluose
 
-```{r box-cell, cache=TRUE, comment=NA}
+```{r box-cell, comment=NA}
 
-lab5<- FracDat3 %>%
+lab5 <- FracDat3 %>%
   group_by(gr, data) %>%
   filter(gr != "D" & gr != "E") %>%
   mutate(data = ifelse(data == "(d) Panama: all",
@@ -1321,8 +1107,8 @@ CellBox <- FracDat3 %>%
   facet_wrap(.~ data, nrow = 1, scale = "free_x") +
   ylab("Cellulose per mass (%)") +
   xlab("") +
-  scale_fill_manual(values = fills3, guide = FALSE) +
-  scale_colour_manual(values = cols3, guide = FALSE) +
+  scale_fill_manual(values = fills3, guide = "none") +
+  scale_colour_manual(values = cols3, guide = "none") +
   scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
 #  coord_cartesian(ylim = c(0, 1)) +
   theme_box() +
@@ -1341,7 +1127,7 @@ my_ggsave("../figs/box_cell.png", CellBox,
 
 ## paired
 
-```{r Frac-pair, cache=TRUE, comment=NA}
+```{r Frac-pair, comment=NA}
 
 p <- PAFracDat3 %>%
   dplyr::select(sp, strata, site2, LMAm_frac) %>%
@@ -1354,7 +1140,7 @@ p <- PAFracDat3 %>%
   ylab(my_y_title) +
   xlab("") +
   facet_wrap(~ site2) +
-  guides(col = FALSE)
+  guides(col = "none")
 
 my_ggsave("../figs/frac_paired.png", p,
           width = 6,
@@ -1364,7 +1150,7 @@ my_ggsave("../figs/frac_paired.png", p,
 
 ![Fraction3](../figs/frac_paired.png)
 
-```{r mid-pair, cache=TRUE, comment=NA}
+```{r mid-pair, comment=NA}
 
 PAFracDat3 %>%
   dplyr::select(sp, strata, site2) %>% as.data.frame %>%
@@ -1384,7 +1170,7 @@ p <- PAFracDat3 %>%
   xlab("") +
   #facet_grid(LMA ~ site2) +
   facet_grid(site2 ~ LMA) +
-  guides(col = FALSE) +
+  guides(col = "none") +
   scale_y_log10() +
   ylab(expression(atop(LMA~(g~m^{-2})))) 
 
@@ -1400,23 +1186,7 @@ my_ggsave("../figs/LMAm_paired.png", p,
 
 # LMAm vs LMAs 
 
-```{r LMAms, cache=TRUE, comment=NA}
-
-GL <- GL %>%
-  mutate(LMAp = LMA * p_vec) %>%
-  mutate(LMAs = LMA - LMAp)  %>%
-  mutate(LMAp_lo = LMA * p_vec_lo) %>%
-  mutate(LMAp_up = LMA * p_vec_up) %>%
-  mutate(LMAs_lo = LMA - LMAp_up) %>%
-  mutate(LMAs_up = LMA - LMAp_lo) 
-
-PA <- PA %>%
-  mutate(LMAp = LMA * PA_p_vec) %>%
-  mutate(LMAs = LMA - LMAp)  %>%
-  mutate(LMAp_lo = LMA * PA_p_vec_lo) %>%
-  mutate(LMAp_up = LMA * PA_p_vec_up) %>%
-  mutate(LMAs_lo = LMA - LMAp_up) %>%
-  mutate(LMAs_up = LMA - LMAp_lo) 
+```{r LMAms,  comment=NA}
 
 fills1 <- c("Deciduous" = settings$fills$D,
           "Evergreen" = settings$fills$E,
@@ -1442,8 +1212,8 @@ GL_LMAms <- ggplot(GL, aes(x = LMAp, y = LMAs,
                                fill = gr, 
                                col = gr)) +
   geom_point(shape = 21) +
-  scale_fill_manual(values = fills1, guide = FALSE) +
-  scale_colour_manual(values = cols1, guide = FALSE) +
+  scale_fill_manual(values = fills1, guide = "none") +
+  scale_colour_manual(values = cols1, guide = "none") +
   scale_x_log10(breaks = my_breaks_x(), expand = c(0.1, 0)) +
   scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
   xlab(expression(atop(
@@ -1465,8 +1235,6 @@ GL_LMAms <- ggplot(GL, aes(x = LMAp, y = LMAs,
                                                       l = -5,
                                                       r = -5)))
 
-  plot(LMAs ~ LMAs_lo , GL, log = "xy")
-  abline(a = 0, b = 1)
 
 GL_LMAms95 <- ggplot(GL, aes(x = LMAp, y = LMAs, 
                                fill = gr, 
@@ -1474,8 +1242,8 @@ GL_LMAms95 <- ggplot(GL, aes(x = LMAp, y = LMAs,
   geom_segment(aes(x = LMAp_lo, xend = LMAp_up, y = LMAs, yend = LMAs), col = "grey60", size = 0.25) +
   geom_segment(aes(x = LMAp, xend = LMAp, y = LMAs_lo, yend = LMAs_up), col = "grey60", size = 0.25) +
   geom_point(shape = 21) +
-  scale_fill_manual(values = fills1, guide = FALSE) +
-  scale_colour_manual(values = cols1, guide = FALSE) +
+  scale_fill_manual(values = fills1, guide = "none") +
+  scale_colour_manual(values = cols1, guide = "none") +
   scale_x_log10(breaks = my_breaks_x(), expand = c(0.1, 0)) +
   scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
   xlab(expression(atop(
@@ -1510,8 +1278,8 @@ PA_LMAms <- ggplot(PA_tmp,
                                fill = gr, 
                                col = gr)) +
   geom_point(shape = 21) +
-  scale_fill_manual(values = fills2, guide = FALSE) +
-  scale_colour_manual(values = cols2, guide = FALSE) +
+  scale_fill_manual(values = fills2, guide = "none") +
+  scale_colour_manual(values = cols2, guide = "none") +
   scale_x_log10(breaks = my_breaks_x(), expand = c(0.1, 0)) +
   scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
   #labs(title = "Panama \n",
@@ -1547,8 +1315,8 @@ PA_LMAms95 <- ggplot(PA_tmp,
   geom_segment(aes(x = LMAp_lo, xend = LMAp_up, y = LMAs, yend = LMAs), col = "grey60", size = 0.25) +
   geom_segment(aes(x = LMAp, xend = LMAp, y = LMAs_lo, yend = LMAs_up), col = "grey60", size = 0.25) +
   geom_point(shape = 21) +
-  scale_fill_manual(values = fills2, guide = FALSE) +
-  scale_colour_manual(values = cols2, guide = FALSE) +
+  scale_fill_manual(values = fills2, guide = "none") +
+  scale_colour_manual(values = cols2, guide = "none") +
   scale_x_log10(breaks = my_breaks_x(), expand = c(0.1, 0)) +
   scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
   #labs(title = "Panama \n",
@@ -1577,15 +1345,17 @@ PA_LMAms95 <- ggplot(PA_tmp,
 
 PA_LMAms
 
-LMAms_plt <- plot_grid(GL_LMAms, PA_LMAms,
-          labels = c("A", "B"))
+
+LMAms_plt <- GL_LMAms + PA_LMAms +
+  plot_annotation(tag_levels = "a")
 
 my_ggsave("../figs/LMAms.png", LMAms_plt,
           width = 11.7,
           height = 7)
 
-LMAms_plt95 <- plot_grid(GL_LMAms95, PA_LMAms95,
-          labels = c("A", "B"))
+LMAms_plt95 <- GL_LMAms95 + PA_LMAms95 +
+  plot_annotation(tag_levels = "a")
+
 
 my_ggsave("../figs/LMAms95.png", LMAms_plt95,
           width = 11.7,
@@ -1597,28 +1367,10 @@ my_ggsave("../figs/LMAms95.png", LMAms_plt95,
 
 ![LMAms95](../figs/LMAms95.png)
 
+
+# Computing environment
+
 ```{r}
-
-set.seed(123)
-N <- 100
-alpha <- 0.8
-
-one <- rlnorm(N)
-area <- one^2
-mass <- one^3
-
-A <- rlnorm(N, log(alpha * area), 0.1)
-LMA <- mass/area
-Aarea <- A/area
-Amass <- A/mass
-
-par(mfrow=c(2,3))
-plot(mass ~ area, log = "xy")
-plot(Aarea ~ area, log = "xy")
-plot(A ~ area, log = "xy")
-plot(Aarea ~ LMA, log = "xy")
-plot(Amass ~ LMA, log = "xy")
-plot(Amass ~ Aarea, log = "xy")
-par(mfrow=c(1,1))
-
+devtools::session_info()
 ```
+
