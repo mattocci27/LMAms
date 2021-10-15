@@ -408,7 +408,7 @@ if ("docx" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
 
 `r page_break("")`
 
-```{r lootab}
+```{r lootab, eval=FALSE}
 tab3 <- read_csv("../data/LOO.csv") |>
   dplyr::select(-site)
 
@@ -434,7 +434,7 @@ if ("docx" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
 
 `r page_break("")`
 
-Table: (\#tab:paratab) Posterior medians [95% credible interval] of parameters for the best models. 'LMAp + LMAs model' and 'LMAp + LMAs + light model' are shown for GLOPNET and Panama data, respectively. Bold values are significantly different from zero based on the 95% credible interval.
+Table: (\#tab:paratab) Posterior means [95% credible interval] of parameters for the best models. 'LMAp + LMAs model' and 'LMAp + LMAs + light model' are shown for GLOPNET and Panama data, respectively. Bold values are significantly different from zero based on the 95% credible interval.
 
 
 ```{r paratab}
