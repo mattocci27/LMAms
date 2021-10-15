@@ -1,6 +1,6 @@
 # to get dependency in fig.rmd
 library(tidyverse)
-Lines <-readLines("docs/figs.Rmd")
+Lines <-readLines("util/data_cleanin.r")
 Lines2 <- Lines[!str_detect(Lines, "^#")]
 
 dep <- Lines2[str_detect(Lines2, "read_csv|read.csv|source|load")]

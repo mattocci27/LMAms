@@ -458,15 +458,18 @@ Example of a two-dimensional functional space that can result in either a two- o
 (B) Two-dimensional relationship between photosynthetic capacity (*A*~max~) per-unit leaf area and total LMA (equal to LMAp + LMAs).
 (C) One-dimensional relationship between *A*~max~ per-unit leaf mass and total LMA.
 LMAp and LMAs are simulated from a hypothetical scenario of lognormal distributions with medians of 80 and standard deviations of exp(0.8) and exp(0.7), and zero covariance.
-Variation in *A*~max~ values are derived from our analysis of the GLOPNET database. $A_{\mathrm{area} \, i}=1.9\mathrm{LMAp}_i^{0.36}\mathrm{LMAs}^{-0.25}\epsilon_i$, where $\epsilon_i$ is log-normally distributed with log-mean with 0, log-scale parameter with 0.3 (see Methods and Results).
+Variation in *A*~max~ values are derived from our analysis of the GLOPNET database. $A_{\mathrm{area} \, i}=1.81\mathrm{LMAp}_i^{0.28}\mathrm{LMAs}^{-0.13}\epsilon_i$, where $\epsilon_i$ is log-normally distributed with log-mean with 0, log-scale parameter with 0.31 (see Methods and Results).
 ](../figs/fig_hypo.png){#fig:Hplt}
 
 
 ![
 Observed and estimated leaf-trait relationships in the global GLOPNET dataset.
-(A) Leaf life span (LL), net photosynthetic rate per unit leaf area (*A*~area~), and dark respiration rate per unit leaf area (*R*~area~) are plotted against observed LMA.
+Estimates are from the NAME Model (Eq. X).
+Leaf life span (LL), net photosynthetic rate per unit leaf area (*A*~area~), and dark respiration rate per unit leaf area (*R*~area~) are plotted against observed LMA, posteriors means of LMAp and LMAs.
+
 (B) Residuals of LL, *A*~area~, and *R*~area~ regressed on posterior estimates of photosynthetic and structural LMA components (LMAp and LMAs, respectively) are plotted against LMAp and LMAs (only means are shown).
-Pearson correlation coefficients are for LMA (left column) and posterior distributions of LMAp (middle column) and LMAs (right column).
+Pearson correlation coefficients (r) for LMA (left column) and posterior means of Pearson correlation coefficients (*r*~B~) of LMAp (middle column) and LMAs (right column) are shown.
+Note that LL was model by LMAs only.
 ](../figs/GL_scatter.png){#fig:GLplt}
 
 
@@ -520,4 +523,3 @@ Analogous results were obtained for *N*~area~ and *P*~area~ vs. LMAp for GLOPNET
 Others details as in [@fig:GLplt].
 Results for other LL models are reported in Table SX.
 ](../figs/PA_NPC.png){#fig:PA-NPC}
-

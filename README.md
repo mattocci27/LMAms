@@ -10,15 +10,6 @@ or
 
 - `git clone git@github.com:mattocci27/LMAms.git`
 
-### Docker
-
-To build docker image
-
-```
-time docker build -f docker-local/Dockerfile -t mattocci/lma:3.6.3 .
-docker tag mattocci/lma:3.6.3 219.72.93.96:5000/mattocci/lma:3.6.3 
-docker push 219.72.93.96:5000/mattocci/lma:3.6.3 
-```
 
 ### Singularity
 

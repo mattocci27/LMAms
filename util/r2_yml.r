@@ -262,14 +262,14 @@ writeLines(paste0("    LMA_Aarea: 'italic(r) == ",
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Aarea: 'italic(r[B]) == ", 
+writeLines(paste0("    LMAp_Aarea: 'italic(bar(rho)) == ", 
                   GL_cor_tbl |>
                     filter(name == "A_LMAp") |>
                     pull(mean),
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Aarea: 'italic(r[B]) == ", 
+writeLines(paste0("    LMAs_Aarea: 'italic(bar(rho)) == ", 
                   GL_cor_tbl |>
                     filter(name == "A_LMAs") |>
                     pull(mean),
@@ -281,14 +281,14 @@ writeLines(paste0("    LMA_Rarea: 'italic(r) == ",
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Rarea: 'italic(r[B]) == ", 
+writeLines(paste0("    LMAp_Rarea: 'italic(bar(rho)) == ", 
                   GL_cor_tbl |>
                     filter(name == "R_LMAp") |>
                     pull(mean),
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Rarea: 'italic(r[B]) == ", 
+writeLines(paste0("    LMAs_Rarea: 'italic(bar(rho)) == ", 
                   GL_cor_tbl |>
                     filter(name == "R_LMAs") |>
                     pull(mean),
@@ -300,10 +300,10 @@ writeLines(paste0("    LMA_LL: 'italic(r) == ",
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_LL: 'italic(r[B]) == NA'"),
+writeLines(paste0("    LMAp_LL: 'italic(bar(r)) == NA'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_LL: 'italic(r[B]) == ", 
+writeLines(paste0("    LMAs_LL: 'italic(bar(r)) == ", 
                   GL_cor_tbl |>
                     filter(name == "LL_LMAs") |>
                     pull(mean),
@@ -339,10 +339,10 @@ writeLines(paste0("    LMAs_Parea: 'italic(r) == ",
            sep = "\n")
 
 
-writeLines(paste0("  GL_LMAms:"),
+writeLines(paste0("  GL_LMAps:"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_LMAm: ", "'", GL_LMAsLMAp, "'"),
+writeLines(paste0("    LMAs_LMAp: ", "'", GL_LMAsLMAp, "'"),
            out,
            sep = "\n")
 
@@ -373,14 +373,14 @@ writeLines(paste0("    LMA_Aarea: 'italic(r) == ",
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Aarea: 'italic(r[B]) == ", 
+writeLines(paste0("    LMAp_Aarea: 'italic(bar(r)) == ", 
                   PA_cor_tbl |>
                     filter(name == "A_LMAp") |>
                     pull(mean),
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Aarea: 'italic(r[B]) == NA'"),
+writeLines(paste0("    LMAs_Aarea: 'italic(bar(r)) == NA'"),
            out,
            sep = "\n")
 writeLines(paste0("    LMA_Rarea: 'italic(r) == ", 
@@ -388,14 +388,14 @@ writeLines(paste0("    LMA_Rarea: 'italic(r) == ",
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Rarea: 'italic(r[B]) == ", 
+writeLines(paste0("    LMAp_Rarea: 'italic(bar(rho)) == ", 
                   PA_cor_tbl |>
                     filter(name == "R_LMAp") |>
                     pull(mean),
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Rarea: 'italic(r[B]) == ", 
+writeLines(paste0("    LMAs_Rarea: 'italic(bar(rho)) == ", 
                   PA_cor_tbl |>
                     filter(name == "R_LMAs") |>
                     pull(mean),
@@ -407,10 +407,10 @@ writeLines(paste0("    LMA_LL: 'italic(r) == ",
                   "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_LL: 'italic(r[B]) == NA'"),
+writeLines(paste0("    LMAp_LL: 'italic(bar(r)) == NA'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_LL: 'italic(r[B]) == ", 
+writeLines(paste0("    LMAs_LL: 'italic(bar(r)) == ", 
                   PA_cor_tbl |>
                     filter(name == "LL_LMAs") |>
                     pull(mean),
@@ -419,10 +419,10 @@ writeLines(paste0("    LMAs_LL: 'italic(r[B]) == ",
            sep = "\n")
 
 
-writeLines(paste0("  PA_LMAms:"),
+writeLines(paste0("  PA_LMAps:"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_LMAm: ", "'", PA_LMAsLMAp, "'"),
+writeLines(paste0("    LMAs_LMAp: ", "'", PA_LMAsLMAp, "'"),
            out,
            sep = "\n")
 

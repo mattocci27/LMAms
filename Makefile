@@ -14,7 +14,7 @@ RAW = data-raw/nature02403-s2.csv data-raw/fiber_analysis.csv \
  
 FIGdata = settings.yml r_val.yml letters.yml fig_theme.r data/GL_res.csv data/PA_res.csv data/GLpara.csv data/PApara.csv data/PA_LH.csv
 
-FIG = figs/fig_hypo.png figs/GL_scatter.png figs/GL_NP.png figs/PA_scatter.png figs/PA_NPC.png figs/LL_plot.png figs/mass_prop_simple.png figs/mass_prop_simple2.png figs/box_main.png figs/box_SI.png figs/box_frac.png figs/box_frac2.png figs/box_cell.png figs/frac_paired.png figs/LMAm_paired.png figs/LMAms.png figs/LMAms95.png docs/figs.html
+FIG = figs/fig_hypo.png figs/GL_scatter.png figs/GL_NP.png figs/PA_scatter.png figs/PA_NPC.png figs/LL_plot.png figs/mass_prop_simple.png figs/mass_prop_simple2.png figs/box_main.png figs/box_SI.png figs/box_frac.png figs/box_frac2.png figs/box_cell.png figs/frac_paired.png figs/LMAp_paired.png figs/LMAps.png figs/LMAps95.png docs/figs.html
 
 #$(info RDA: $(RDA))
 #$(info PAR: $(PAR))
@@ -56,7 +56,7 @@ emptytarget3: docs/figs.Rmd $(FIGdata)
 	R -e 'system.time(rmarkdown::render("$<", "all"))'
 	touch $@
 
-#ms/LMAms_main.tex: ms/LMAms_main.Rmd $(LOO) $(PAR) r_val.yml
+#ms/LMAps_main.tex: ms/LMAps_main.Rmd $(LOO) $(PAR) r_val.yml
 ms/LMAms_main.tex: ms/LMAms_main.Rmd r_val.yml $(LOO)
 	R -e 'system.time(rmarkdown::render("$<", "all"))'
 

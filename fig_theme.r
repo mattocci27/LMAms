@@ -92,8 +92,8 @@ theme_LES <- function(base_size = 9,
 }
 
 scatter_plt <- function(data) {
-  ggplot(data, aes(x = Val, y = Val2, 
-                               fill = gr, 
+  ggplot(data, aes(x = Val, y = Val2,
+                               fill = gr,
                                col = gr)) +
   geom_point(shape = 21) +
   facet_grid(Trait2 ~ LMA,
@@ -101,13 +101,13 @@ scatter_plt <- function(data) {
              switch = "both",
              labeller = labeller(Trait2 = label_parsed,
                                  LMA = label_parsed)) +
-  geom_text(data = lab1, aes(label = lab), 
+  geom_text(data = lab1, aes(label = lab),
             hjust = 0.25,
             vjust = 0.25,
             size = 8 * 5/14,
             show.legend = FALSE,
             color = "black") +
-  geom_text(data = lab1, aes(label = r_vals, x = Val_max), 
+  geom_text(data = lab1, aes(label = r_vals, x = Val_max),
             hjust = 1,
             vjust= 0.25,
             size = 8 * 5/14,
