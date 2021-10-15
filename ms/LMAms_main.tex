@@ -669,38 +669,16 @@ Expected trait values\\
 \hypertarget{section}{%
 \section{}\label{section}}
 
-\begin{longtable}[t]{lrr}
-\caption{\label{tab:lootab}
-      Summary of the model comparison.
-      Lower approximate leave-one-out cross-validation (LOOIC) indicates better predictive accuracy.
-      N; number of samples.}\\
-\toprule
-Model & LOOIC & N\\
-\midrule
-\addlinespace[0.3em]
-\multicolumn{3}{l}{\textbf{GLOPNET}}\\
-\hspace{1em}LMAp and LMAs & 746.0 & 198\\
-\hspace{1em}LMA & 766.2 & 198\\
-\addlinespace[0.3em]
-\multicolumn{3}{l}{\textbf{Panama}}\\
-\hspace{1em}LMAp + LMAs + light & 501.1 & 106\\
-\hspace{1em}LMA + light & 503.0 & 106\\
-\hspace{1em}LMAp + LMAs/LT + light & 503.4 & 106\\
-\hspace{1em}LMAp + LMAs & 518.2 & 106\\
-\hspace{1em}LMA & 528.1 & 106\\
-\bottomrule
-\end{longtable}
-
 \newpage
 
 \hypertarget{section-1}{%
 \section{}\label{section-1}}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4227}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2887}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2887}}@{}}
-\caption{\label{tab:paratab} Posterior medians {[}95\% credible interval{]} of parameters for the best models. `LMAp + LMAs model' and `LMAp + LMAs + light model' are shown for GLOPNET and Panama data, respectively. Bold values are significantly different from zero based on the 95\% credible interval.}\tabularnewline
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4271}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2812}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2917}}@{}}
+\caption{\label{tab:paratab} Posterior means {[}95\% credible interval{]} of parameters for the best models. `LMAp + LMAs model' and `LMAp + LMAs + light model' are shown for GLOPNET and Panama data, respectively. Bold values are significantly different from zero based on the 95\% credible interval.}\tabularnewline
 \toprule
 \begin{minipage}[b]{\linewidth}\raggedright
 Parameters
@@ -721,13 +699,12 @@ Panama
 \end{minipage} \\
 \midrule
 \endhead
-Effect of LMAp on \emph{A}\textsubscript{area} (\(\alpha_p\)) & \textbf{0.206 {[}0.108, 0.294{]}} & \textbf{0.442 {[}0.338, 0.574{]}} \\
-Effect of LMAs on \emph{A}\textsubscript{area} (\(\alpha_s\)) & \textbf{-0.111 {[}-0.179, -0.037{]}} & \textbf{0.29 {[}0.16, 0.391{]}} \\
-Effect of LMAp on LL (\(\beta_p\)) & \textbf{0.261 {[}0.097, 0.466{]}} & 0.086 {[}-0.119, 0.314{]} \\
-Effect of LMAs on LL (\(\beta_s\)) & \textbf{0.785 {[}0.627, 0.93{]}} & \textbf{0.376 {[}0.172, 0.567{]}} \\
-Effect of LMAp on \emph{R}\textsubscript{area} (\(\gamma_p\)) & \textbf{0.218 {[}0.096, 0.316{]}} & \textbf{0.6 {[}0.345, 0.822{]}} \\
-Effect of LMAs on \emph{R}\textsubscript{area} (\(\gamma_s\)) & 0.049 {[}-0.033, 0.14{]} & 0.204 {[}-0.059, 0.469{]} \\
-Effect of light on LL (\(\theta\)) & - & \textbf{-1.046 {[}-1.471, -0.617{]}} \\
+Effect of LMAp on \emph{A}\textsubscript{area} (\(\alpha_p\)) & \textbf{0.283 {[}0.207, 0.358{]}} & \textbf{0.552 {[}0.404, 0.702{]}} \\
+Effect of LMAs on \emph{A}\textsubscript{area} (\(\alpha_s\)) & \textbf{-0.132 {[}-0.201, -0.06{]}} & - \\
+Effect of LMAs on LL (\(\beta_s\)) & \textbf{0.887 {[}0.765, 1.017{]}} & \textbf{0.367 {[}0.188, 0.55{]}} \\
+Effect of LMAp on \emph{R}\textsubscript{area} (\(\gamma_p\)) & \textbf{0.294 {[}0.21, 0.387{]}} & \textbf{0.651 {[}0.438, 0.851{]}} \\
+Effect of LMAs on \emph{R}\textsubscript{area} (\(\gamma_s\)) & 0.033 {[}-0.045, 0.114{]} & -0.012 {[}-0.276, 0.302{]} \\
+Effect of light on LL (\(\theta\)) & - & \textbf{-0.804 {[}-1.104, -0.525{]}} \\
 \bottomrule
 \end{longtable}
 

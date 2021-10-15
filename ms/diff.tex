@@ -1,7 +1,7 @@
 % Options for packages loaded elsewhere
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL ./ms/LMAms_main_old.tex   Fri Aug 27 11:07:45 2021
-%DIF ADD ./ms/LMAms_main.tex       Wed Oct 13 15:33:55 2021
+%DIF DEL ms/LMAms_main_old.tex   Fri Aug 27 11:07:45 2021
+%DIF ADD ms/LMAms_main.tex       Fri Oct 15 18:06:32 2021
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 %
@@ -986,51 +986,77 @@ Expected trait values\\
 
 \DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}lll@{}}
 %DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \begin{longtable}[t]{lrr}
-\DIFaddend \caption{\label{tab:lootab}
-      Summary of the model comparison.
-      Lower approximate leave-one-out cross-validation (LOOIC) indicates better predictive accuracy.
-      N; number of samples.}\DIFdelbegin %DIFDELCMD < \tabularnewline
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+%DIFDELCMD < \label{tab:lootab} %%%
+\DIFdel{Summary of the model comparison. Lower approximate leave-one-out cross-validation (LOOIC) indicates better predictive accuracy. N; number of samples.}}%DIFAUXCMD
+%DIFDELCMD < \tabularnewline
 %DIFDELCMD < \toprule
 %DIFDELCMD < & %%%
 \DIFdel{LOOIC }%DIFDELCMD < & %%%
-\DIFdel{N }\DIFdelend \\
-\DIFdelbegin %DIFDELCMD < \midrule
+\DIFdel{N }%DIFDELCMD < \\
+%DIFDELCMD < \midrule
 %DIFDELCMD < \endfirsthead
-%DIFDELCMD < %%%
-\DIFdelend \toprule
-\DIFaddbegin \DIFadd{Model }\DIFaddend & LOOIC & N\\
-\midrule
-\DIFdelbegin %DIFDELCMD < \endhead
+%DIFDELCMD < \toprule
+%DIFDELCMD < & %%%
+\DIFdel{LOOIC }%DIFDELCMD < & %%%
+\DIFdel{N }%DIFDELCMD < \\
+%DIFDELCMD < \midrule
+%DIFDELCMD < \endhead
 %DIFDELCMD < %%%
 \textbf{\DIFdel{GLOPNET}} %DIFAUXCMD
-%DIFDELCMD < & & %%%
-\DIFdelend \DIFaddbegin \addlinespace[0.3em]
-\multicolumn{3}{l}{\textbf{GLOPNET}}\DIFaddend \\
-\DIFaddbegin \DIFadd{\hspace{1em}}\DIFaddend LMAp and LMAs & \DIFdelbegin \DIFdel{746 }\DIFdelend \DIFaddbegin \DIFadd{746.0 }\DIFaddend & 198\\
-\DIFaddbegin \DIFadd{\hspace{1em}}\DIFaddend LMA & 766.2 & 198\\
-\DIFdelbegin \textbf{\DIFdel{Panama}} %DIFAUXCMD
-%DIFDELCMD < & & %%%
-\DIFdelend \DIFaddbegin \addlinespace[0.3em]
-\multicolumn{3}{l}{\textbf{Panama}}\DIFaddend \\
-\DIFaddbegin \DIFadd{\hspace{1em}}\DIFaddend LMAp + LMAs + light & 501.1 & 106\\
-\DIFaddbegin \DIFadd{\hspace{1em}}\DIFaddend LMA + light & \DIFdelbegin \DIFdel{503 }\DIFdelend \DIFaddbegin \DIFadd{503.0 }\DIFaddend & 106\\
-\DIFaddbegin \DIFadd{\hspace{1em}}\DIFaddend LMAp + LMAs/LT + light & 503.4 & 106\\
-\DIFaddbegin \DIFadd{\hspace{1em}}\DIFaddend LMAp + LMAs & 518.2 & 106\\
-\DIFaddbegin \DIFadd{\hspace{1em}}\DIFaddend LMA & 528.1 & 106\\
-\bottomrule
-\end{longtable}
+%DIFDELCMD < & & \\
+%DIFDELCMD < %%%
+\DIFdel{LMAp and LMAs }%DIFDELCMD < & %%%
+\DIFdel{746 }%DIFDELCMD < & %%%
+\DIFdel{198 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{LMA }%DIFDELCMD < & %%%
+\DIFdel{766.2 }%DIFDELCMD < & %%%
+\DIFdel{198 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Panama}} %DIFAUXCMD
+%DIFDELCMD < & & \\
+%DIFDELCMD < %%%
+\DIFdel{LMAp + LMAs + light }%DIFDELCMD < & %%%
+\DIFdel{501.1 }%DIFDELCMD < & %%%
+\DIFdel{106 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{LMA + light }%DIFDELCMD < & %%%
+\DIFdel{503 }%DIFDELCMD < & %%%
+\DIFdel{106 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{LMAp + LMAs/LT + light }%DIFDELCMD < & %%%
+\DIFdel{503.4 }%DIFDELCMD < & %%%
+\DIFdel{106 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{LMAp + LMAs }%DIFDELCMD < & %%%
+\DIFdel{518.2 }%DIFDELCMD < & %%%
+\DIFdel{106 }%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdel{LMA }%DIFDELCMD < & %%%
+\DIFdel{528.1 }%DIFDELCMD < & %%%
+\DIFdel{106 }%DIFDELCMD < \\
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \end{longtable}
+%DIFDELCMD < 
 
-\newpage
+%DIFDELCMD < %%%
+\DIFdelend \newpage
 
 \hypertarget{section-1}{%
 \section{}\label{section-1}}
 
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4227}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2887}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2887}}@{}}
-\caption{\label{tab:paratab} Posterior medians {[}95\% credible interval{]} of parameters for the best models. `LMAp + LMAs model' and `LMAp + LMAs + light model' are shown for GLOPNET and Panama data, respectively. Bold values are significantly different from zero based on the 95\% credible interval.}\tabularnewline
+\DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}
+%DIFDELCMD <   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4227}}
+%DIFDELCMD <   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2887}}
+%DIFDELCMD <   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2887}}@{}}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4271}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2812}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2917}}@{}}
+\DIFaddend \caption{\label{tab:paratab} Posterior \DIFdelbegin \DIFdel{medians }\DIFdelend \DIFaddbegin \DIFadd{means }\DIFaddend {[}95\% credible interval{]} of parameters for the best models. `LMAp + LMAs model' and `LMAp + LMAs + light model' are shown for GLOPNET and Panama data, respectively. Bold values are significantly different from zero based on the 95\% credible interval.}\tabularnewline
 \toprule
 \begin{minipage}[b]{\linewidth}\raggedright
 Parameters
@@ -1051,13 +1077,23 @@ Panama
 \end{minipage} \\
 \midrule
 \endhead
-Effect of LMAp on \emph{A}\textsubscript{area} (\(\alpha_p\)) & \textbf{0.206 {[}0.108, 0.294{]}} & \textbf{0.442 {[}0.338, 0.574{]}} \\
-Effect of LMAs on \emph{A}\textsubscript{area} (\(\alpha_s\)) & \textbf{-0.111 {[}-0.179, -0.037{]}} & \textbf{0.29 {[}0.16, 0.391{]}} \\
-Effect of LMAp on LL (\(\beta_p\)) & \textbf{0.261 {[}0.097, 0.466{]}} & 0.086 {[}-0.119, 0.314{]} \\
-Effect of LMAs on LL (\(\beta_s\)) & \textbf{0.785 {[}0.627, 0.93{]}} & \textbf{0.376 {[}0.172, 0.567{]}} \\
-Effect of LMAp on \emph{R}\textsubscript{area} (\(\gamma_p\)) & \textbf{0.218 {[}0.096, 0.316{]}} & \textbf{0.6 {[}0.345, 0.822{]}} \\
-Effect of LMAs on \emph{R}\textsubscript{area} (\(\gamma_s\)) & 0.049 {[}-0.033, 0.14{]} & 0.204 {[}-0.059, 0.469{]} \\
-Effect of light on LL (\(\theta\)) & - & \textbf{-1.046 {[}-1.471, -0.617{]}} \\
+Effect of LMAp on \emph{A}\textsubscript{area} (\(\alpha_p\)) & \textbf{\DIFdelbegin \DIFdel{0.206 }\DIFdelend \DIFaddbegin \DIFadd{0.283 }\DIFaddend {[}\DIFdelbegin \DIFdel{0.108}\DIFdelend \DIFaddbegin \DIFadd{0.207}\DIFaddend , \DIFdelbegin \DIFdel{0.294}\DIFdelend \DIFaddbegin \DIFadd{0.358}\DIFaddend {]}} & \textbf{\DIFdelbegin \DIFdel{0.442 }\DIFdelend \DIFaddbegin \DIFadd{0.552 }\DIFaddend {[}\DIFdelbegin \DIFdel{0.338}\DIFdelend \DIFaddbegin \DIFadd{0.404}\DIFaddend , \DIFdelbegin \DIFdel{0.574}\DIFdelend \DIFaddbegin \DIFadd{0.702}\DIFaddend {]}} \\
+Effect of LMAs on \emph{A}\textsubscript{area} (\(\alpha_s\)) & \textbf{\DIFdelbegin \DIFdel{-0.111 }\DIFdelend \DIFaddbegin \DIFadd{-0.132 }\DIFaddend {[}\DIFdelbegin \DIFdel{-0.179}\DIFdelend \DIFaddbegin \DIFadd{-0.201}\DIFaddend , \DIFdelbegin \DIFdel{-0.037}\DIFdelend \DIFaddbegin \DIFadd{-0.06}\DIFaddend {]}} & \DIFdelbegin \textbf{\DIFdel{0.29 }%DIFDELCMD < {[}%%%
+\DIFdel{0.16, 0.391}%DIFDELCMD < {]}%%%
+} %DIFAUXCMD
+\DIFdelend \DIFaddbegin \DIFadd{- }\DIFaddend \\
+Effect of \DIFdelbegin \DIFdel{LMAp on LL (\(\beta_p\)) }%DIFDELCMD < & %%%
+\textbf{\DIFdel{0.261 }%DIFDELCMD < {[}%%%
+\DIFdel{0.097, 0.466}%DIFDELCMD < {]}%%%
+} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\DIFdel{0.086 }%DIFDELCMD < {[}%%%
+\DIFdel{-0.119, 0.314}%DIFDELCMD < {]} \\
+%DIFDELCMD < %%%
+\DIFdel{Effect of }\DIFdelend LMAs on LL (\(\beta_s\)) & \textbf{\DIFdelbegin \DIFdel{0.785 }\DIFdelend \DIFaddbegin \DIFadd{0.887 }\DIFaddend {[}\DIFdelbegin \DIFdel{0.627}\DIFdelend \DIFaddbegin \DIFadd{0.765}\DIFaddend , \DIFdelbegin \DIFdel{0.93}\DIFdelend \DIFaddbegin \DIFadd{1.017}\DIFaddend {]}} & \textbf{\DIFdelbegin \DIFdel{0.376 }\DIFdelend \DIFaddbegin \DIFadd{0.367 }\DIFaddend {[}\DIFdelbegin \DIFdel{0.172}\DIFdelend \DIFaddbegin \DIFadd{0.188}\DIFaddend , \DIFdelbegin \DIFdel{0.567}\DIFdelend \DIFaddbegin \DIFadd{0.55}\DIFaddend {]}} \\
+Effect of LMAp on \emph{R}\textsubscript{area} (\(\gamma_p\)) & \textbf{\DIFdelbegin \DIFdel{0.218 }\DIFdelend \DIFaddbegin \DIFadd{0.294 }\DIFaddend {[}\DIFdelbegin \DIFdel{0.096}\DIFdelend \DIFaddbegin \DIFadd{0.21}\DIFaddend , \DIFdelbegin \DIFdel{0.316}\DIFdelend \DIFaddbegin \DIFadd{0.387}\DIFaddend {]}} & \textbf{\DIFdelbegin \DIFdel{0.6 }\DIFdelend \DIFaddbegin \DIFadd{0.651 }\DIFaddend {[}\DIFdelbegin \DIFdel{0.345}\DIFdelend \DIFaddbegin \DIFadd{0.438}\DIFaddend , \DIFdelbegin \DIFdel{0.822}\DIFdelend \DIFaddbegin \DIFadd{0.851}\DIFaddend {]}} \\
+Effect of LMAs on \emph{R}\textsubscript{area} (\(\gamma_s\)) & \DIFdelbegin \DIFdel{0.049 }\DIFdelend \DIFaddbegin \DIFadd{0.033 }\DIFaddend {[}\DIFdelbegin \DIFdel{-0.033, 0.14}\DIFdelend \DIFaddbegin \DIFadd{-0.045, 0.114}\DIFaddend {]} & \DIFdelbegin \DIFdel{0.204 }\DIFdelend \DIFaddbegin \DIFadd{-0.012 }\DIFaddend {[}\DIFdelbegin \DIFdel{-0.059, 0.469}\DIFdelend \DIFaddbegin \DIFadd{-0.276, 0.302}\DIFaddend {]} \\
+Effect of light on LL (\(\theta\)) & - & \textbf{\DIFdelbegin \DIFdel{-1.046 }\DIFdelend \DIFaddbegin \DIFadd{-0.804 }\DIFaddend {[}\DIFdelbegin \DIFdel{-1.471}\DIFdelend \DIFaddbegin \DIFadd{-1.104}\DIFaddend , \DIFdelbegin \DIFdel{-0.617}\DIFdelend \DIFaddbegin \DIFadd{-0.525}\DIFaddend {]}} \\
 \bottomrule
 \end{longtable}
 
@@ -1077,12 +1113,12 @@ Effect of light on LL (\(\theta\)) & - & \textbf{-1.046 {[}-1.471, -0.617{]}} \\
 %DIFDELCMD < %%%
 \DIFdelendFL \DIFaddbeginFL \hypertarget{fig:Hplt}{%
 \centering
-\includegraphics{../figs/fig_h3.png}
+\includegraphics{../figs/fig_hypo.png}
 \caption{Example of a two-dimensional functional space that can result in either a two- or one-dimensional trait space, depending on how metabolic traits are normalized. (A) Hypothetical independent variation in two leaf mass per area (LMA) components: metabolic leaf mass per area (LMAp, which largely determines per-area values of photosynthesis, respiration, and nutrient concentrations) and structural leaf mass per area (LMAs, which determines leaf toughness but has little effect on metabolic traits).
 (B) Two-dimensional relationship between photosynthetic capacity (\emph{A}\textsubscript{max}) per-unit leaf area and total LMA (equal to LMAp + LMAs).
 (C) One-dimensional relationship between \emph{A}\textsubscript{max} per-unit leaf mass and total LMA.
 LMAp and LMAs are simulated from a hypothetical scenario of lognormal distributions with medians of 80 and standard deviations of exp(0.8) and exp(0.7), and zero covariance.
-Variation in \emph{A}\textsubscript{max} values are derived from our analysis of the GLOPNET database. \(A_{\mathrm{area} \, i}=1.9\mathrm{LMAp}_i^{0.36}\mathrm{LMAs}^{-0.25}\epsilon_i\), where \(\epsilon_i\) is log-normally distributed with log-mean with 0, log-scale parameter with 0.3 (see Methods and Results).}\label{fig:Hplt}
+Variation in \emph{A}\textsubscript{max} values are derived from our analysis of the GLOPNET database. \(A_{\mathrm{area} \, i}=1.81\mathrm{LMAp}_i^{0.28}\mathrm{LMAs}^{-0.13}\epsilon_i\), where \(\epsilon_i\) is log-normally distributed with log-mean with 0, log-scale parameter with 0.31 (see Methods and Results).}\label{fig:Hplt}
 }
 \DIFaddendFL \end{figure}
 
@@ -1103,11 +1139,12 @@ Variation in \emph{A}\textsubscript{max} values are derived from our analysis of
 %DIFDELCMD < %%%
 \DIFdelendFL \DIFaddbeginFL \hypertarget{fig:GLplt}{%
 \centering
-\includegraphics{../figs/GL_3.png}
+\includegraphics{../figs/GL_scatter.png}
 \caption{Observed and estimated leaf-trait relationships in the global GLOPNET dataset.
-(A) Leaf life span (LL), net photosynthetic rate per unit leaf area (\emph{A}\textsubscript{area}), and dark respiration rate per unit leaf area (\emph{R}\textsubscript{area}) are plotted against observed LMA.
-(B) Residuals of LL, \emph{A}\textsubscript{area}, and \emph{R}\textsubscript{area} regressed on posterior estimates of photosynthetic and structural LMA components (LMAp and LMAs, respectively) are plotted against LMAp and LMAs (only means are shown).
-Pearson correlation coefficients are for LMA (left column) and posterior distributions of LMAp (middle column) and LMAs (right column).}\label{fig:GLplt}
+Estimates are from the NAME Model (Eq. X).
+Leaf life span (LL), net photosynthetic rate per unit leaf area (\emph{A}\textsubscript{area}), and dark respiration rate per unit leaf area (\emph{R}\textsubscript{area}) are plotted against observed LMA, posteriors means of LMAp and LMAs.
+Pearson correlation coefficients (\emph{r}) for LMA (left column) and posterior means of Pearson correlation coefficients (\(\bar{r}\)) or partial correlation coefficients (\(\bar{\rho}\)) of LMAp (middle column) and LMAs (right column) are shown.
+Note that LL was modeled by LMAs alone.}\label{fig:GLplt}
 }
 \DIFaddendFL \end{figure}
 
@@ -1122,11 +1159,12 @@ Pearson correlation coefficients are for LMA (left column) and posterior distrib
 %DIFDELCMD < %%%
 \DIFdelendFL \DIFaddbeginFL \hypertarget{fig:PAplt}{%
 \centering
-\includegraphics{../figs/PA_3.png}
+\includegraphics{../figs/PA_scatter.png}
 \caption{Observed and estimated leaf-trait relationships in the Panama dataset.
-Estimates are from the LL with light Model (Eq. 6b).
+Estimates are from the XXX Model (Eq. 6b).
 Details as in Fig.~\ref{fig:GLplt}.
-Results for other LL models are summarized in Table SX.}\label{fig:PAplt}
+Results for other LL models are summarized in Table SX.
+Note that \emph{A}\textsubscript{area} and LL were modeled by LMAp and LMAs alone, respectively.}\label{fig:PAplt}
 }
 \DIFaddendFL \end{figure}
 
@@ -1144,11 +1182,11 @@ Results for other LL models are summarized in Table SX.}\label{fig:PAplt}
 %DIFDELCMD < %%%
 \DIFdelendFL \DIFaddbeginFL \hypertarget{fig:LLplt}{%
 \centering
-\includegraphics{../figs/LL_plot2.png}
+\includegraphics{../figs/LL_plot.png}
 \caption{Observed vs.~predicted leaf lifespan (LL) in the LL with light Model (Eq. 6b).
-Predicted LL values are posterior medians.
+Predicted LL values are posterior means.
 The dashed line indicates the 1:1 relationship.
-The \emph{r}\textsuperscript{2} value is the posterior median of Bayesian \emph{r}\textsuperscript{2} (\protect\hyperlink{ref-Gelman2019}{Gelman et al. 2019}).}\label{fig:LLplt}
+The \emph{R}\textsuperscript{2} value is the posterior mean of Bayesian \emph{R}\textsuperscript{2} (\protect\hyperlink{ref-Gelman2019}{Gelman et al. 2019}).}\label{fig:LLplt}
 }
 \DIFaddendFL \end{figure}
 
@@ -1165,10 +1203,12 @@ The \emph{r}\textsuperscript{2} value is the posterior median of Bayesian \emph{
 %DIFDELCMD < %%%
 \DIFdelendFL \DIFaddbeginFL \hypertarget{fig:massplt}{%
 \centering
-\includegraphics{../figs/mass_prop4.png}
-\caption{The relationships among mass proportionality (\emph{b\textsubscript{i}} in Eq. 8), variance in LMAp and LMAs, and scaling slopes between LMAp and \emph{A}\textsubscript{area} (\(\alpha_p\)) and LMAs and \emph{A}\textsubscript{area} (\(\alpha_s\)) for the global GLOPNET dataset, sun leaves in Panama, and shade leaves in Panama.
-The photosynthetic rate (\emph{A}\textsubscript{max}) is primarily mass-dependent (\emph{b\textsubscript{i}} \textgreater{} 0.5, white to blue), primarily area-dependent (0.5 \textgreater{} \emph{b\textsubscript{i}} \textgreater{} 0, white to orange) and purely area-proportional (\emph{b\textsubscript{i}} = 0, white) (\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
-Note that when \emph{b\textsubscript{i}} is negative, \emph{A}\textsubscript{area} decreases with LMA, which is not realistic.}\label{fig:massplt}
+\includegraphics{../figs/mass_prop_simple.png}
+\caption{The relationships between mass dependency (\emph{b} in Eq. 8) and relative variance in LMAs to LMA for the global GLOPNET dataset, sun leaves in Panama, and shade leaves in Panama.
+Solid lines indicate simulated means and shaded regions indicate 95\% CI.
+Each symbol indicates the esimated values from the empirical data.
+The photosynthetic rate (\emph{A}\textsubscript{max}) is primarily mass-dependent (\emph{b} \textgreater{} 0.5), primarily area-dependent (0.5 \textgreater{} \emph{b} \textgreater{} 0) and purely area-dependent (\emph{b} = 0) (\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
+Note that when \emph{b} \textgreater{} 1, \emph{A}\textsubscript{area} dramatically increase with LMA, which is not realistic.}\label{fig:massplt}
 }
 \DIFaddendFL \end{figure}
 
