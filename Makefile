@@ -6,6 +6,12 @@ PAR = data/PApara.csv data/GLpara.csv data/GL_res.csv data/PA_res.csv para_val.y
 
 LOO = data/GL_elpd.csv data/PA_elpd.csv
 
+DATA = data/GL_data.csv PA_data.csv PA_data_more.csv data/PA_LH.csv 
+
+RAW = data-raw/nature02403-s2.csv data-raw/fiber_analysis.csv \
+			data-raw/LFTRAITS.csv data-raw/LFTRAITS.csv \
+			data-raw/Osnas2018_S1.csv
+ 
 FIGdata = settings.yml r_val.yml letters.yml fig_theme.r data/GL_res.csv data/PA_res.csv data/GLpara.csv data/PApara.csv data/PA_LH.csv
 
 FIG = figs/fig_hypo.png figs/GL_scatter.png figs/GL_NP.png figs/PA_scatter.png figs/PA_NPC.png figs/LL_plot.png figs/mass_prop_simple.png figs/mass_prop_simple2.png figs/box_main.png figs/box_SI.png figs/box_frac.png figs/box_frac2.png figs/box_cell.png figs/frac_paired.png figs/LMAm_paired.png figs/LMAms.png figs/LMAms95.png docs/figs.html
@@ -13,10 +19,15 @@ FIG = figs/fig_hypo.png figs/GL_scatter.png figs/GL_NP.png figs/PA_scatter.png f
 #$(info RDA: $(RDA))
 #$(info PAR: $(PAR))
 
-all: emptytarget1 docs/model_selection.html emptytarget2 r_val.yml letters.yml emptytarget3 ms/LMAms_main.tex ms/LMA.bib
+all: emptytarget0 emptytarget1 docs/model_selection.html emptytarget2 r_val.yml letters.yml emptytarget3 ms/LMAms_main.tex ms/LMA.bib
 
 ms/LMA.bib: ~/LMA.bib
 	cp $< $@
+
+$(DATA): emptytarget0
+emptytarget0: util/data_clean.r $(RAW)
+	Rscript $< 
+	touch $@
 
 $(LOO): emptytarget1
 emptytarget1: util/get_loo.r $(RDA)
