@@ -53,7 +53,6 @@ theme_set(theme_LES() +
                                                             l = -5,
                                                             r = -5)),
                 ))
-
 ```
 
 
@@ -154,9 +153,9 @@ GL_dat <- GL %>%
   mutate(DE = factor(DE,
           levels = c("D", "E", "U"))) %>%
   mutate(LMA = factor(LMA,
-    labels = c("LMA", "LMAm", "LMAs"))) %>%
+    labels = c("LMA", "LMAp", "LMAs"))) %>%
   mutate(LMA = factor(LMA,
-    labels = c("LMA~(~g~m^{-2})", "LMAm~(~g~m^{-2})", "LMAs~(~g~m^{-2})"))) %>%
+    labels = c("LMA~(~g~m^{-2})", "LMAp~(~g~m^{-2})", "LMAs~(~g~m^{-2})"))) %>%
   mutate(Trait = factor(Trait,
     levels = c("Aarea", "Rarea", "LL", "Narea", "Parea"))) %>%
   mutate(Trait2 = factor(Trait,
@@ -182,7 +181,8 @@ lab1 <- tibble(lab = paste("(", letters[1:9], ")", sep = ""),
                    r_vals = r_vals$r_vals$GL %>% unlist,
                    Trait2 = rep(lim_GL2$Trait2, each = 3),
                    LMA = rep(lim_GL$LMA, 3)
-                   )
+                   ) |>
+  mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
 
 fills <- c("Deciduous" = settings$fills$D,
           "Evergreen" = settings$fills$E,
@@ -252,9 +252,9 @@ PA_dat <- PA %>%
                "Shade-Dry"
                       ))) %>%
   mutate(LMA = factor(LMA,
-    labels = c("LMA", "LMAm", "LMAs"))) %>%
+    labels = c("LMA", "LMAp", "LMAs"))) %>%
   mutate(LMA = factor(LMA,
-    labels = c("LMA~(~g~m^{-2})", "LMAm~(~g~m^{-2})", "LMAs~(~g~m^{-2})"))) %>%
+    labels = c("LMA~(~g~m^{-2})", "LMAp~(~g~m^{-2})", "LMAs~(~g~m^{-2})"))) %>%
   mutate(Trait = factor(Trait,
     levels = c("Aarea", "Rarea", "LL", "Narea", "Parea", "cell_area"))) %>%
   mutate(Trait2 = factor(Trait,
@@ -282,7 +282,8 @@ lab1 <- tibble(lab = paste("(", letters[1:9], ")", sep = ""),
                    #r_vals = "hoge",
                    Trait2 = rep(lim_PA2$Trait2, each = 3),
                    LMA = rep(lim_PA$LMA, 3)
-                   )
+                   ) |>
+  mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
 
 fills <- c("Sun-Dry" = settings$fills$sun_dry,
           "Sun-Wet" = settings$fills$sun_wet,
@@ -902,13 +903,13 @@ my_ggsave("../figs/box_SI.png", PA_box2,
 ```{r fraction, comment=NA}
 
 GLFracDat <- GL %>%
-  mutate(LMAm_frac = LMAp / LMA) %>%
+  mutate(LMAp_frac = LMAp / LMA) %>%
   filter(gr != "Unclassified") %>%
   mutate(gr = factor(DE,
                      levels = c("D", "E"))) %>%
   unique
 
-GLboxFrac <- ggplot(GLFracDat, aes(x = gr, y = LMAm_frac, fill = gr)) +
+GLboxFrac <- ggplot(GLFracDat, aes(x = gr, y = LMAp_frac, fill = gr)) +
   geom_boxplot(outlier.shape = 21, outlier.size = 1) +
   scale_fill_manual(values = fills, guide = "none") 
   #geom_text(data= lab1, aes(label = lab),
@@ -926,7 +927,7 @@ PAFracDat <- PA2 %>%
   count(sp) %>% 
   filter(n >= 2) %>%
   inner_join(., PA2, by = "sp") %>%
-  mutate(LMAm_frac = LMAp / LMA) %>%
+  mutate(LMAp_frac = LMAp / LMA) %>%
   mutate(DE = ifelse(DE == "evergreen", "E", DE)) %>%
   mutate(DE = ifelse(DE == "deciduous", "D", DE)) %>%
   mutate(gr = factor(DE,
@@ -934,35 +935,35 @@ PAFracDat <- PA2 %>%
   unique
 
 
-PAboxFrac <- ggplot(PAFracDat, aes(x = gr, y = LMAm_frac, fill = gr)) +
+PAboxFrac <- ggplot(PAFracDat, aes(x = gr, y = LMAp_frac, fill = gr)) +
   geom_boxplot(outlier.shape = 21, outlier.size = 1) +
   scale_fill_manual(values = fills, guide = "none") 
 
 print(PAboxFrac)
 
 GLFracDat2 <- GLFracDat %>%
-  dplyr::select(sp, gr, LMAm_frac) %>%
+  dplyr::select(sp, gr, LMAp_frac) %>%
   mutate(data = "(a) GLOPNET")
 
 
 PAFracDat2 <- PAFracDat %>%
-  dplyr::select(sp, gr, LMAm_frac) %>%
+  dplyr::select(sp, gr, LMAp_frac) %>%
   mutate(data = "(b) Panama: leaf habit")
 
 
 FracDat <- bind_rows(GLFracDat2, PAFracDat2)
 
 my_y_title <- bquote(atop("The fraction of total LMA",
-                           "comprised by LMAm ("*italic(f)*")"))
+                           "comprised by LMAp ("*italic(f)*")"))
 
 #lab3 <- FracDat %>%
 #  group_by(gr, data) %>%
-#  summarize(LMAm_frac = max(LMAm_frac)) %>%
+#  summarize(LMAp_frac = max(LMAp_frac)) %>%
 #  ungroup %>%
 #  arrange(data) %>%
 #  mutate(lab = p_letters$Frac %>% unlist)
 
-FracBox <- ggplot(FracDat, aes(x = gr, y = LMAm_frac, fill = gr, col = gr)) +
+FracBox <- ggplot(FracDat, aes(x = gr, y = LMAp_frac, fill = gr, col = gr)) +
   geom_boxplot(outlier.shape = 21, outlier.size = 1) +
 #  geom_text(data= lab3, aes(label = lab),
 #            colour = "black",
@@ -970,7 +971,7 @@ FracBox <- ggplot(FracDat, aes(x = gr, y = LMAm_frac, fill = gr, col = gr)) +
 #            size = 8 * 5/14) +
   facet_grid(.~ data) +
   #ylab("The fraction of total LMA\n
-  #     comprised by LMAm (f)") +
+  #     comprised by LMAp (f)") +
   ylab(my_y_title) +
   #ylab(expression(atop("Panama",
   #              LMA~(g~m^{-2})))) +
@@ -1002,7 +1003,7 @@ PAFracDat3 <- PA %>%
   count(sp) %>% 
   filter(n >= 2) %>%
   inner_join(., PA, by = "sp") %>%
-  mutate(LMAm_frac = LMAp / LMA) %>%
+  mutate(LMAp_frac = LMAp / LMA) %>%
   mutate(site_strata = factor(site_strata,
           levels = c("DRY_CAN", 
                      "DRY_UNDER",
@@ -1014,7 +1015,7 @@ PAFracDat3 <- PA %>%
                "Sun\nWet",
                "Shade\nWet"
                       ))) %>%
-  #dplyr::select(sp, gr, LMAm_frac) %>%
+  #dplyr::select(sp, gr, LMAp_frac) %>%
   mutate(data = "(c) Panama: intra")
 
 
@@ -1023,7 +1024,7 @@ FracDat2 <- bind_rows(FracDat, PAFracDat3)
 PAFracDat4 <- PA %>%
   count(sp) %>% 
   inner_join(., PA, by = "sp") %>%
-  mutate(LMAm_frac = LMAp / LMA) %>%
+  mutate(LMAp_frac = LMAp / LMA) %>%
   mutate(site_strata = factor(site_strata,
           levels = c("DRY_CAN", 
                      "DRY_UNDER",
@@ -1041,12 +1042,12 @@ FracDat3 <- bind_rows(FracDat2, PAFracDat4)
 
 lab4 <- FracDat3 %>%
   group_by(gr, data) %>%
-  summarize(LMAm_frac = max(LMAm_frac)) %>%
+  summarize(LMAp_frac = max(LMAp_frac)) %>%
   ungroup %>%
   arrange(data) %>%
   mutate(lab = p_letters$Frac %>% unlist)
 
-FracBox2 <- ggplot(FracDat3, aes(x = gr, y = LMAm_frac, fill = gr, col = gr)) +
+FracBox2 <- ggplot(FracDat3, aes(x = gr, y = LMAp_frac, fill = gr, col = gr)) +
   geom_boxplot(outlier.shape = 21, outlier.size = 1) +
   geom_text(data= lab4, aes(label = lab),
             colour = "black",
@@ -1055,7 +1056,7 @@ FracBox2 <- ggplot(FracDat3, aes(x = gr, y = LMAm_frac, fill = gr, col = gr)) +
   #facet_grid(.~ data,scale = "free_x") +
   facet_wrap(.~ data, nrow = 2, scale = "free_x") +
   #ylab("The fraction of total LMA\n
-  #     comprised by LMAm (f)") +
+  #     comprised by LMAp (f)") +
   ylab(my_y_title) +
   #ylab(expression(atop("Panama",
   #              LMA~(g~m^{-2})))) +
@@ -1132,13 +1133,13 @@ my_ggsave("../figs/box_cell.png", CellBox,
 ```{r Frac-pair, comment=NA}
 
 p <- PAFracDat3 %>%
-  dplyr::select(sp, strata, site2, LMAm_frac) %>%
+  dplyr::select(sp, strata, site2, LMAp_frac) %>%
   mutate(strata = ifelse(strata == "CAN", "Sun", "Shade")) %>%
   mutate(strata = factor(strata, levels = c("Sun", "Shade"))) %>%
   mutate(site2 = ifelse(site2 == "DRY", "Dry", "Wet")) %>%
   ggplot(., aes(gr = sp)) +
-  geom_line(aes(group = sp, x = strata, y = LMAm_frac)) +
-  geom_point(aes(x = strata, y = LMAm_frac)) +
+  geom_line(aes(group = sp, x = strata, y = LMAp_frac)) +
+  geom_point(aes(x = strata, y = LMAp_frac)) +
   ylab(my_y_title) +
   xlab("") +
   facet_wrap(~ site2) +
@@ -1164,7 +1165,7 @@ p <- PAFracDat3 %>%
   mutate(strata = ifelse(strata == "CAN", "Sun", "Shade")) %>%
   mutate(strata = factor(strata, levels = c("Sun", "Shade"))) %>%
   mutate(site2 = ifelse(site2 == "DRY", "Dry", "Wet")) %>%
-  mutate(LMA = ifelse(LMA == "LMAp", "LMAm", LMA)) %>%
+  mutate(LMA = ifelse(LMA == "LMAp", "LMAp", LMA)) %>%
   ggplot(., aes(gr = sp)) +
   geom_line(aes(group = sp, x = strata, y = val)) +
   geom_point(aes(x = strata, y = val)) +
@@ -1176,19 +1177,19 @@ p <- PAFracDat3 %>%
   scale_y_log10() +
   ylab(expression(atop(LMA~(g~m^{-2})))) 
 
-my_ggsave("../figs/LMAm_paired.png", p,
+my_ggsave("../figs/LMAp_paired.png", p,
           width = 11.7,
           height = 11.7)
 
 ```
 
-![LMA-paired](../figs/LMAm_paired.png)
+![LMA-paired](../figs/LMAp_paired.png)
 
 
 
-# LMAm vs LMAs 
+# LMAp vs LMAs 
 
-```{r LMAms,  comment=NA}
+```{r LMAps,  comment=NA}
 
 fills1 <- c("Deciduous" = settings$fills$D,
           "Evergreen" = settings$fills$E,
@@ -1210,7 +1211,7 @@ cols2 <- c("Sun-Dry" = settings$colors$sun_dry,
 
 
 
-GL_LMAms <- ggplot(GL, aes(x = LMAp, y = LMAs, 
+GL_LMAps <- ggplot(GL, aes(x = LMAp, y = LMAs, 
                                fill = gr, 
                                col = gr)) +
   geom_point(shape = 21) +
@@ -1219,11 +1220,11 @@ GL_LMAms <- ggplot(GL, aes(x = LMAp, y = LMAs,
   scale_x_log10(breaks = my_breaks_x(), expand = c(0.1, 0)) +
   scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
   xlab(expression(atop(
-                LMAm~(g~m^{-2})))) +
+                LMAp~(g~m^{-2})))) +
   ylab(expression(atop(
                 LMAs~(g~m^{-2})))) +
  labs(title = "GLOPNET \n",
-       subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$GL_LMAms$LMAs_LMAm))) +
+       subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$GL_LMAps$LMAs_LMAp))) +
   theme_LES() +
   theme(
           plot.title = element_text(margin=margin(b = -2, unit = "pt")),
@@ -1238,7 +1239,7 @@ GL_LMAms <- ggplot(GL, aes(x = LMAp, y = LMAs,
                                                       r = -5)))
 
 
-GL_LMAms95 <- ggplot(GL, aes(x = LMAp, y = LMAs, 
+GL_LMAps95 <- ggplot(GL, aes(x = LMAp, y = LMAs, 
                                fill = gr, 
                                col = gr)) +
   geom_segment(aes(x = LMAp_lo, xend = LMAp_up, y = LMAs, yend = LMAs), col = "grey60", size = 0.25) +
@@ -1249,11 +1250,11 @@ GL_LMAms95 <- ggplot(GL, aes(x = LMAp, y = LMAs,
   scale_x_log10(breaks = my_breaks_x(), expand = c(0.1, 0)) +
   scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
   xlab(expression(atop(
-                LMAm~(g~m^{-2})))) +
+                LMAp~(g~m^{-2})))) +
   ylab(expression(atop(
                 LMAs~(g~m^{-2})))) +
  labs(title = "GLOPNET \n",
-       subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$GL_LMAms$LMAs_LMAm))) +
+       subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$GL_LMAps$LMAs_LMAp))) +
   theme_LES() +
   theme(
           plot.title = element_text(margin=margin(b = -2, unit = "pt")),
@@ -1275,7 +1276,7 @@ PA_tmp <- PA %>%
                "Shade-Dry"
                       ))) 
 
-PA_LMAms <- ggplot(PA_tmp,
+PA_LMAps <- ggplot(PA_tmp,
                    aes(x = LMAp, y = LMAs, 
                                fill = gr, 
                                col = gr)) +
@@ -1289,9 +1290,9 @@ PA_LMAms <- ggplot(PA_tmp,
   #                           italic("p")~"= 0.6",
   #                           )) +
  labs(title = "Panama \n",
-       subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$PA_LMAms$LMAs_LMAm))) +
+       subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$PA_LMAps$LMAs_LMAp))) +
   xlab(expression(atop(
-                LMAm~(g~m^{-2})))) +
+                LMAp~(g~m^{-2})))) +
   ylab(expression(atop(
                 LMAs~(g~m^{-2})))) +
   theme_LES() +
@@ -1307,10 +1308,10 @@ PA_LMAms <- ggplot(PA_tmp,
                                                     l = -5,
                                                     r = -5)))
 
-r_vals$r_vals$PA_LMAms$p_val
-r_vals$r_vals$GL_LMAms$p_val
+r_vals$r_vals$PA_LMAps$p_val
+r_vals$r_vals$GL_LMAps$p_val
 
-PA_LMAms95 <- ggplot(PA_tmp,
+PA_LMAps95 <- ggplot(PA_tmp,
                    aes(x = LMAp, y = LMAs, 
                                fill = gr, 
                                col = gr)) +
@@ -1326,9 +1327,9 @@ PA_LMAms95 <- ggplot(PA_tmp,
   #                           italic("p")~"= 0.6",
   #                           )) +
  labs(title = "Panama \n",
-       subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$PA_LMAms$LMAs_LMAm))) +
+       subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$PA_LMAps$LMAs_LMAp))) +
   xlab(expression(atop(
-                LMAm~(g~m^{-2})))) +
+                LMAp~(g~m^{-2})))) +
   ylab(expression(atop(
                 LMAs~(g~m^{-2})))) +
   theme_LES() +
@@ -1345,29 +1346,29 @@ PA_LMAms95 <- ggplot(PA_tmp,
                                                     r = -5)))
 
 
-PA_LMAms
+PA_LMAps
 
 
-LMAms_plt <- GL_LMAms + PA_LMAms +
+LMAps_plt <- GL_LMAps + PA_LMAps +
   plot_annotation(tag_levels = "a")
 
-my_ggsave("../figs/LMAms.png", LMAms_plt,
+my_ggsave("../figs/LMAps.png", LMAps_plt,
           width = 11.7,
           height = 7)
 
-LMAms_plt95 <- GL_LMAms95 + PA_LMAms95 +
+LMAps_plt95 <- GL_LMAps95 + PA_LMAps95 +
   plot_annotation(tag_levels = "a")
 
 
-my_ggsave("../figs/LMAms95.png", LMAms_plt95,
+my_ggsave("../figs/LMAps95.png", LMAps_plt95,
           width = 11.7,
           height = 7)
 
 ```
 
-![LMAms](../figs/LMAms.png)
+![LMAps](../figs/LMAps.png)
 
-![LMAms95](../figs/LMAms95.png)
+![LMAps95](../figs/LMAps95.png)
 
 
 # Computing environment
