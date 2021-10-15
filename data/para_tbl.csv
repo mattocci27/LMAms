@@ -1,8 +1,7 @@
 Parameters,GLOPNET,Panama
-Effect of LMAp on *A*~area~ ($\alpha_p$),"**0.206 [0.108, 0.294]**","**0.442 [0.338, 0.574]**"
-Effect of LMAs on *A*~area~ ($\alpha_s$),"**-0.111 [-0.179, -0.037]**","**0.29 [0.16, 0.391]**"
-Effect of LMAp on LL ($\beta_p$),"**0.261 [0.097, 0.466]**","0.086 [-0.119, 0.314]"
-Effect of LMAs on LL ($\beta_s$),"**0.785 [0.627, 0.93]**","**0.376 [0.172, 0.567]**"
-Effect of LMAp on *R*~area~ ($\gamma_p$),"**0.218 [0.096, 0.316]**","**0.6 [0.345, 0.822]**"
-Effect of LMAs on *R*~area~ ($\gamma_s$),"0.049 [-0.033, 0.14]","0.204 [-0.059, 0.469]"
-Effect of light on LL ($\theta$),-,"**-1.046 [-1.471, -0.617]**"
+Effect of LMAp on *A*~area~ ($\alpha_p$),"**0.283 [0.207, 0.358]**","**0.552 [0.404, 0.702]**"
+Effect of LMAs on *A*~area~ ($\alpha_s$),"**-0.132 [-0.201, -0.06]**",-
+Effect of LMAs on LL ($\beta_s$),"**0.887 [0.765, 1.017]**","**0.367 [0.188, 0.55]**"
+Effect of LMAp on *R*~area~ ($\gamma_p$),"**0.294 [0.21, 0.387]**","**0.651 [0.438, 0.851]**"
+Effect of LMAs on *R*~area~ ($\gamma_s$),"0.033 [-0.045, 0.114]","-0.012 [-0.276, 0.302]"
+Effect of light on LL ($\theta$),-,"**-0.804 [-1.104, -0.525]**"

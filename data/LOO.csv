@@ -1,8 +1,22 @@
-Model,LOOIC,N,site
-LMAp and LMAs,746,198,GL
-LMA,766.2,198,GL
-LMAp + LMAs + light,501.1,106,Panama
-LMA + light,503,106,Panama
-LMAp + LMAs/LT + light,503.4,106,Panama
-LMAp + LMAs,518.2,106,Panama
-LMA,528.1,106,Panama
+Model,LOOIC,lp,N,div,site
+GL_Aps_LLs,717.1,-621.7,198,OK,GL
+GL_Aps_LLps,745.9,-664.4,198,OK,GL
+GL_Ap_LLs,746.1,-661.9,198,OK,GL
+GL_Ap_LLps,759.3,-697.8,198,OK,GL
+GL_LMA,766.7,-777.9,198,OK,GL
+PA_Ap_LLs_opt,451.2,-357.4,106,divergent,Panama
+PA_Ap_LLps_opt,468.6,-371.6,106,OK,Panama
+PA_Ap_LDs_opt,469.7,-372.8,106,OK,Panama
+PA_Ap_LLps,474.1,-375.5,106,divergent,Panama
+PA_Ap_LDps_opt,486.7,-388,106,OK,Panama
+PA_Ap_LLs,497.1,-393,106,OK,Panama
+PA_Aps_LLs_opt,500.2,-404.5,106,OK,Panama
+PA_Aps_LLps_opt,501.4,-409.6,106,OK,Panama
+PA_LMA_opt,503.4,-459.7,106,OK,Panama
+PA_Aps_LDps_opt,504.1,-416.1,106,OK,Panama
+PA_Aps_LDs_opt,508.6,-413,106,OK,Panama
+PA_Aps_LLps,516.8,-418.8,106,divergent,Panama
+PA_Aps_LLs,518.1,-425.7,106,divergent,Panama
+PA_LMA,528.5,-472.8,106,OK,Panama
+PA_Ap_LLs_opt_more,586.1,-456.7,130,OK,Panama
+PA_Ap_LLps_opt_more,625.9,-486.3,130,OK,Panama
