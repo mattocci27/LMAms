@@ -94,11 +94,11 @@ write.csv(d5, "./data/PA_data_more.csv", row.names = FALSE)
 
 # Onoda et al. 2017
 
-onoda_url <- "https://nph.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1111%2Fnph.14496&file=nph14496-sup-0003-TableS3.xlsx"
-tmp <- tempdir()
-xlsx_file <- file.path(tmp, "onoda_et_al.xlsx")
-xlsx_dir <- file.path(tmp)
-download.file(onoda_url, xlsx_file)
+#onoda_url <- "https://nph.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1111%2Fnph.14496&file=nph14496-sup-0003-TableS3.xlsx"
+#tmp <- tempdir()
+#xlsx_file <- file.path(tmp, "onoda_et_al.xlsx")
+#xlsx_dir <- file.path(tmp)
+#download.file(onoda_url, xlsx_file)
 
 # Panama taxa
 
