@@ -466,20 +466,18 @@ Variation in *A*~max~ values are derived from our analysis of the GLOPNET databa
 Observed and estimated leaf-trait relationships in the global GLOPNET dataset.
 Estimates are from the NAME Model (Eq. X).
 Leaf life span (LL), net photosynthetic rate per unit leaf area (*A*~area~), and dark respiration rate per unit leaf area (*R*~area~) are plotted against observed LMA, posteriors means of LMAp and LMAs.
-
-(B) Residuals of LL, *A*~area~, and *R*~area~ regressed on posterior estimates of photosynthetic and structural LMA components (LMAp and LMAs, respectively) are plotted against LMAp and LMAs (only means are shown).
-Pearson correlation coefficients (r) for LMA (left column) and posterior means of Pearson correlation coefficients (*r*~B~) of LMAp (middle column) and LMAs (right column) are shown.
-Note that LL was model by LMAs only.
+Pearson correlation coefficients (*r*) for LMA (left column) and posterior means of Pearson correlation coefficients ($\bar{r}$) or partial correlation coefficients ($\bar{\rho}$) of LMAp (middle column) and LMAs (right column) are shown.
+Note that LL was modeled by LMAs alone.
 ](../figs/GL_scatter.png){#fig:GLplt}
-
 
 \newpage
 
 ![
 Observed and estimated leaf-trait relationships in the Panama dataset.
-Estimates are from the LL with light Model (Eq. 6b).
+Estimates are from the XXX Model (Eq. 6b).
 Details as in [@fig:GLplt].
 Results for other LL models are summarized in Table SX.
+Note that *A*~area~ and LL were modeled by LMAp and LMAs alone, respectively.
 ](../figs/PA_scatter.png){#fig:PAplt}
 
 
@@ -487,18 +485,20 @@ Results for other LL models are summarized in Table SX.
 
 ![
 Observed vs. predicted leaf lifespan (LL) in the LL with light Model (Eq. 6b).
-Predicted LL values are posterior medians.
+Predicted LL values are posterior means.
 The dashed line indicates the 1:1 relationship.
-The *r*^2^ value is the posterior median of Bayesian *r*^2^ [@Gelman2019].
+The *R*^2^ value is the posterior mean of Bayesian *R*^2^ [@Gelman2019].
 ](../figs/LL_plot.png){#fig:LLplt}
 
 
 \newpage
 
 ![
-The relationships among mass proportionality (*b~i~* in Eq. 8), variance in LMAp and LMAs, and scaling slopes between LMAp and *A*~area~ ($\alpha_p$) and LMAs and *A*~area~ ($\alpha_s$) for the global GLOPNET dataset, sun leaves in Panama, and shade leaves in Panama.
-The photosynthetic rate (*A*~max~) is primarily mass-dependent (*b~i~* > 0.5, white to blue), primarily area-dependent (0.5 > *b~i~* > 0, white to orange) and purely area-proportional (*b~i~* = 0, white) [@Osnas2018].
-Note that when *b~i~* is negative, *A*~area~ decreases with LMA, which is not realistic.
+The relationships between mass dependency (*b* in Eq. 8) and relative variance in LMAs to LMA for the global GLOPNET dataset, sun leaves in Panama, and shade leaves in Panama.
+Solid lines indicate simulated means and shaded regions indicate 95% CI.
+Each symbol indicates the esimated values from the empirical data.
+The photosynthetic rate (*A*~max~) is primarily mass-dependent (*b* > 0.5), primarily area-dependent (0.5 > *b* > 0) and purely area-dependent (*b* = 0) [@Osnas2018].
+Note that when *b* > 1, *A*~area~ dramatically increase with LMA, which is not realistic.
 ](../figs/mass_prop_simple.png){#fig:massplt}
 
 

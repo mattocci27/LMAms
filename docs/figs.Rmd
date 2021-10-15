@@ -624,7 +624,7 @@ cols3 <- c("GLOPNET" = "#008B00",
             "Shade" = "black"
 )
 
-#[1] "#CA0020" "#F4A582" "#92C5DE" "#0571B0"
+# [1] "#CA0020" "#F4A582" "#92C5DE" "#0571B0"
 
 # [1] "#EF8A62" "#F7F7F7" "#67A9CF"
 
@@ -632,23 +632,6 @@ RColorBrewer::brewer.pal(3, "RdBu")
 
 my_col <- RColorBrewer::brewer.pal(4, "RdBu")
 
-#fills3 <- RColorBrewer::brewer.pal(4, "RdBu")[1:3]
-#cols3 <- fills3
-
-#theme_set(theme_LES() +
-#          theme(axis.text.x = element_text(size = 6),
-#                axis.text.y = element_text(size = 6),
-#                axis.title = element_text(size = 6),
-#                axis.ticks.length = unit(-0.1, "cm"),
-#                axis.title.y = element_text(margin = margin(t = 0,
-#                                                            b = 0,
-#                                                            l = -5,
-#                                                            r = 0)),
-#                axis.title.x = element_text(margin = margin(t = 0,
-#                                                            b = -4,
-#                                                            l = -5,
-#                                                            r = -5)),
-#                ))
 
 ```
 
@@ -670,7 +653,7 @@ mass_plt_simple <- bind_rows(sim1, sim2, sim4) |>
 #  geom_point(aes(x = Sun_varS, y = Sunb)) +
 #  geom_point(aes(x = Shade_varS, y = Shadeb)) +
 #  coord_cartesian(ylim = c(-0.2, 1)) +
-  ylab(expression(Mass~proportionality~(italic(b)))) +
+  ylab(expression(Mass~dependency~(italic(b)))) +
   xlab("Relative variance of LMAs (%)") +
   theme(legend.position = c(0.75, 0.66),
         legend.key.size = unit(0.5, "cm"),
