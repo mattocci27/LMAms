@@ -19,7 +19,7 @@ FIG = figs/fig_hypo.png figs/GL_scatter.png figs/GL_NP.png figs/PA_scatter.png f
 #$(info RDA: $(RDA))
 #$(info PAR: $(PAR))
 
-all: emptytarget0 emptytarget1 docs/model_selection.html emptytarget2 r_val.yml letters.yml emptytarget3 emptytarget4 ms/LMAms_main.tex ms/LMA.bib
+all: emptytarget0 emptytarget1 docs/model_selection.html emptytarget2 r_val.yml letters.yml var_val.yml emptytarget3 emptytarget4 ms/LMAms_main.tex ms/LMA.bib
 
 ms/LMA.bib: ~/LMA.bib
 	cp $< $@
@@ -51,6 +51,8 @@ r_val.yml: util/r2_yml.r $(RDA)
 letters.yml: util/t_yml.r $(PAR)
 	Rscript $< 
 
+var_val.yml: util/var.R $(RDA)
+	Rscript $< 
 
 $(FIG): emptytarget3
 emptytarget3: docs/figs.Rmd $(FIGdata)
@@ -63,7 +65,7 @@ emptytarget4: util/tbl.R $(LOO) $(PAR)
 	touch $@
 
 #ms/LMAps_main.tex: ms/LMAps_main.Rmd $(LOO) $(PAR) r_val.yml
-ms/LMAms_main.tex: ms/LMAms_main.Rmd r_val.yml data/loo.csv data/para_tbl.csv
+ms/LMAms_main.tex: ms/LMAms_main.Rmd r_val.yml var_val.yml data/loo.csv data/para_tbl.csv
 	R -e 'system.time(rmarkdown::render("$<", "all"))'
 
 ms/diff.tex: ms/LMAms_main.tex ms/LMAms_main_old.tex
