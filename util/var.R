@@ -1,20 +1,11 @@
-## ----global_options, include=FALSE----------------------------------------------------------------
-knitr::opts_chunk$set(echo=TRUE,
-                      warning=FALSE,
-                      message=FALSE)
-
-
-## ---- echo = T, message = F-----------------------------------------------------------------------
-rm(list = ls())
 library(rstan)
 library(tidyverse)
 
-
 ## -------------------------------------------------------------------------------------------------
-load("./rda/GL_LMAms_more_obs.rda")
+load("./rda/GL_Aps_LLs_obs.rda")
 GL <- dat
 GLres <- res
-pmat <- extract(res, "p")[[1]]
+pmat <- rstan::extract(res, "p")[[1]]
 n <- 4000
 
 LMAp_var <- numeric(n)
@@ -27,82 +18,74 @@ for (i in 1:n) {
   LMAs_var[i] <- cov(LMAs, GL$LMA)
 }
 
-hist(LMAs_var / var(GL$LMA) * 100)
-hist(LMAp_var / var(GL$LMA) * 100)
-
-summary(LMAs_var / var(GL$LMA) * 100)
-summary(LMAp_var / var(GL$LMA) * 100)
-
 
 
 ## -------------------------------------------------------------------------------------------------
-load("./rda/PA_LMAms_L0_more_obs.rda")
-PA <- dat %>%
+load("./rda/PA_Ap_LLs_opt_more_obs.rda")
+PA <- dat |>
   mutate(tmp = 1:n())
 PAres <- res
-pmat <- extract(res, "p")[[1]]
+pmat <- rstan::extract(res, "p")[[1]]
 n <- 4000
 
-wet <- PA %>% filter(site2 == "WET")
-dry <- PA %>% filter(site2 != "WET")
+sun <- PA |> filter(strata == "CAN")
+shade <- PA |> filter(strata != "CAN")
 
-LMAp_wet_var <- numeric(n)
-LMAs_wet_var <- numeric(n)
+LMAp_sun_var <- numeric(n)
+LMAs_sun_var <- numeric(n)
 
 for (i in 1:n) {
-  LMAp_wet <- pmat[i, wet$tmp] * wet$LMA
-  LMAs_wet <- (1 - pmat[i, wet$tmp]) * wet$LMA
-  LMAp_wet_var[i] <- cov(LMAp_wet, wet$LMA)
-  LMAs_wet_var[i] <- cov(LMAs_wet, wet$LMA)
+  LMAp_sun <- pmat[i, sun$tmp] * sun$LMA
+  LMAs_sun <- (1 - pmat[i, sun$tmp]) * sun$LMA
+  LMAp_sun_var[i] <- cov(LMAp_sun, sun$LMA)
+  LMAs_sun_var[i] <- cov(LMAs_sun, sun$LMA)
 }
 
-hist(LMAs_wet_var / var(wet$LMA) * 100)
-hist(LMAp_wet_var / var(wet$LMA) * 100)
+#hist(LMAs_sun_var / var(sun$LMA) * 100)
+#hist(LMAp_sun_var / var(sun$LMA) * 100)
+#
+#summary(LMAs_sun_var / var(sun$LMA) * 100)
+#summary(LMAp_sun_var / var(sun$LMA) * 100)
 
-summary(LMAs_wet_var / var(wet$LMA) * 100)
-summary(LMAp_wet_var / var(wet$LMA) * 100)
-
-LMAp_wet <- apply(1 - pmat[, wet$tmp], 2, median) * wet$LMA 
-cov(LMAp_wet, wet$LMA) / var(wet$LMA)
+LMAp_sun <- apply(1 - pmat[, sun$tmp], 2, median) * sun$LMA 
+#cov(LMAp_sun, sun$LMA) / var(sun$LMA)
 
 
 
 ## -------------------------------------------------------------------------------------------------
-LMAp_dry_var <- numeric(n)
-LMAs_dry_var <- numeric(n)
+LMAp_shade_var <- numeric(n)
+LMAs_shade_var <- numeric(n)
 
 for (i in 1:n) {
-  LMAp_dry <- pmat[i, dry$tmp] * dry$LMA
-  LMAs_dry <- (1 - pmat[i, dry$tmp]) * dry$LMA
-  LMAp_dry_var[i] <- cov(LMAp_dry, dry$LMA)
-  LMAs_dry_var[i] <- cov(LMAs_dry, dry$LMA)
+  LMAp_shade <- pmat[i, shade$tmp] * shade$LMA
+  LMAs_shade <- (1 - pmat[i, shade$tmp]) * shade$LMA
+  LMAp_shade_var[i] <- cov(LMAp_shade, shade$LMA)
+  LMAs_shade_var[i] <- cov(LMAs_shade, shade$LMA)
 }
 
-hist(LMAs_dry_var / var(dry$LMA) * 100)
-hist(LMAp_dry_var / var(dry$LMA) * 100)
-
-summary(LMAs_dry_var / var(dry$LMA) * 100)
-summary(LMAp_dry_var / var(dry$LMA) * 100)
+#hist(LMAs_shade_var / var(shade$LMA) * 100)
+#hist(LMAp_shade_var / var(shade$LMA) * 100)
+#
+#summary(LMAs_shade_var / var(shade$LMA) * 100)
+#summary(LMAp_shade_var / var(shade$LMA) * 100)
 
 
 ## -------------------------------------------------------------------------------------------------
 # R values
 
+
 output <- "var_val.yml"
 out <- file(paste(output), "w") # write
-writeLines(paste0("var_vals:"),
+writeLines(paste0("GL: ",
+  median(LMAs_var / var(GL$LMA) * 100) |> round(0)),
            out,
            sep = "\n")
-writeLines(paste0("  GL: ",
-  median(LMAs_var / var(GL$LMA) * 100) %>% round(0)),
+writeLines(paste0("sun: ",
+  median(LMAs_sun_var / var(sun$LMA) * 100) |> round(0)),
            out,
            sep = "\n")
-writeLines(paste0("  wet: ",
-  median(LMAs_wet_var / var(wet$LMA) * 100) %>% round(0)),
-           out,
-           sep = "\n")
-writeLines(paste0("  dry: ",
-  median(LMAs_dry_var / var(dry$LMA) * 100) %>% round(0)),
+writeLines(paste0("shade: ",
+  median(LMAs_shade_var / var(shade$LMA) * 100) |> round(0)),
            out,
            sep = "\n")
 close(out)
