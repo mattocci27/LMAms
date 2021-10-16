@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.10.14)  15 OCT 2021 18:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.10.14)  16 OCT 2021 16:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -770,7 +770,7 @@ dist/fonts/type1/urw/helvetic/uhvr8a.pfb></Users/mattocci/Library/TinyTeX/texmf
 ist/fonts/type1/urw/times/utmbi8a.pfb></Users/mattocci/Library/TinyTeX/texmf-di
 st/fonts/type1/urw/times/utmr8a.pfb></Users/mattocci/Library/TinyTeX/texmf-dist
 /fonts/type1/urw/times/utmri8a.pfb>
-Output written on LMAms_main.pdf (26 pages, 2307206 bytes).
+Output written on LMAms_main.pdf (26 pages, 2307211 bytes).
 PDF statistics:
  721 PDF objects out of 1000 (max. 8388607)
  642 compressed objects within 7 object streams
