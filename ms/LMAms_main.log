@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.10.14)  16 OCT 2021 16:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.10.14)  18 OCT 2021 23:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -652,93 +652,94 @@ LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
 65.
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [2] [3] [4] [5] [6] [7] [8]
+) [2] [3] [4] [5] [6] [7]
 
-LaTeX Warning: Reference `tab:lootab' on page 9 undefined on input line 371.
-
-
-LaTeX Warning: Reference `tab:lootab' on page 9 undefined on input line 373.
+LaTeX Warning: Reference `tab:lootab' on page 8 undefined on input line 367.
 
 
-LaTeX Warning: Reference `tab:lootab' on page 9 undefined on input line 378.
+LaTeX Warning: Reference `tab:lootab' on page 8 undefined on input line 368.
+
+[8]
+
+LaTeX Warning: Reference `tab:lootab' on page 9 undefined on input line 374.
 
 [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19]
-<../figs/fig_hypo.png, id=509, 2528.44624pt x 789.95125pt>
+<../figs/fig_hypo.png, id=505, 2528.44624pt x 789.95125pt>
 File: ../figs/fig_hypo.png Graphic file (type png)
 <use ../figs/fig_hypo.png>
-Package pdftex.def Info: ../figs/fig_hypo.png  used on input line 725.
+Package pdftex.def Info: ../figs/fig_hypo.png  used on input line 721.
 (pdftex.def)             Requested size: 469.72287pt x 146.75342pt.
-<../figs/GL_scatter.png, id=511, 1801.73125pt x 1801.73125pt>
+<../figs/GL_scatter.png, id=507, 1801.73125pt x 1801.73125pt>
 File: ../figs/GL_scatter.png Graphic file (type png)
 <use ../figs/GL_scatter.png>
-Package pdftex.def Info: ../figs/GL_scatter.png  used on input line 737.
+Package pdftex.def Info: ../figs/GL_scatter.png  used on input line 733.
 (pdftex.def)             Requested size: 469.73122pt x 469.73122pt.
 [20pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.740 \newpage
+l.736 \newpage
                <../figs/fig_hypo.png>] [21pdfTeX warning (ext4): destination wi
 th the same identifier (name{figure.2}) has been already used, duplicate ignore
 d
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.740 \newpage
+l.736 \newpage
                <../figs/GL_scatter.png>]
-<../figs/PA_scatter.png, id=527, 1801.73125pt x 1801.73125pt>
+<../figs/PA_scatter.png, id=523, 1801.73125pt x 1801.73125pt>
 File: ../figs/PA_scatter.png Graphic file (type png)
 <use ../figs/PA_scatter.png>
-Package pdftex.def Info: ../figs/PA_scatter.png  used on input line 751.
+Package pdftex.def Info: ../figs/PA_scatter.png  used on input line 747.
 (pdftex.def)             Requested size: 469.73122pt x 469.73122pt.
-<../figs/LL_plot.png, id=530, 1058.95625pt x 1058.95625pt>
+<../figs/LL_plot.png, id=526, 1058.95625pt x 1058.95625pt>
 File: ../figs/LL_plot.png Graphic file (type png)
 <use ../figs/LL_plot.png>
-Package pdftex.def Info: ../figs/LL_plot.png  used on input line 764.
+Package pdftex.def Info: ../figs/LL_plot.png  used on input line 760.
 (pdftex.def)             Requested size: 469.75557pt x 469.75557pt.
-<../figs/mass_prop_simple.png, id=533, 947.54pt x 947.54pt>
+<../figs/mass_prop_simple.png, id=529, 947.54pt x 947.54pt>
 File: ../figs/mass_prop_simple.png Graphic file (type png)
 <use ../figs/mass_prop_simple.png>
-Package pdftex.def Info: ../figs/mass_prop_simple.png  used on input line 778.
+Package pdftex.def Info: ../figs/mass_prop_simple.png  used on input line 774.
 (pdftex.def)             Requested size: 469.74944pt x 469.74944pt.
-<../figs/box_main.png, id=536, 1848.9075pt x 1848.9075pt>
+<../figs/box_main.png, id=532, 1848.9075pt x 1848.9075pt>
 File: ../figs/box_main.png Graphic file (type png)
 <use ../figs/box_main.png>
-Package pdftex.def Info: ../figs/box_main.png  used on input line 793.
+Package pdftex.def Info: ../figs/box_main.png  used on input line 789.
 (pdftex.def)             Requested size: 469.75835pt x 469.75835pt.
-<../figs/PA_NPC.png, id=537, 1801.73125pt x 1801.73125pt>
+<../figs/PA_NPC.png, id=533, 1801.73125pt x 1801.73125pt>
 File: ../figs/PA_NPC.png Graphic file (type png)
 <use ../figs/PA_NPC.png>
-Package pdftex.def Info: ../figs/PA_NPC.png  used on input line 807.
+Package pdftex.def Info: ../figs/PA_NPC.png  used on input line 803.
 (pdftex.def)             Requested size: 469.73122pt x 469.73122pt.
 [22pdfTeX warning (ext4): destination with the same identifier (name{figure.3})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.810 \end{document}
+l.806 \end{document}
                      <../figs/PA_scatter.png>] [23pdfTeX warning (ext4): destin
 ation with the same identifier (name{figure.4}) has been already used, duplicat
 e ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.810 \end{document}
+l.806 \end{document}
                      <../figs/LL_plot.png>] [24pdfTeX warning (ext4): destinati
 on with the same identifier (name{figure.5}) has been already used, duplicate i
 gnored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.810 \end{document}
+l.806 \end{document}
                      <../figs/mass_prop_simple.png>] [25pdfTeX warning (ext4): 
 destination with the same identifier (name{figure.6}) has been already used, du
 plicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.810 \end{document}
+l.806 \end{document}
                      <../figs/box_main.png>] [26pdfTeX warning (ext4): destinat
 ion with the same identifier (name{figure.7}) has been already used, duplicate 
 ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.810 \end{document}
+l.806 \end{document}
                      <../figs/PA_NPC.png>] (./LMAms_main.aux)
 
 LaTeX Warning: There were undefined references.
@@ -747,11 +748,11 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  13124 strings out of 480559
  191217 string characters out of 5902366
- 522387 words of memory out of 5000000
+ 522363 words of memory out of 5000000
  30338 multiletter control sequences out of 15000+600000
  452349 words of font info for 70 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 74i,12n,80p,1414b,406s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 74i,12n,80p,1414b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}
 {/Users/mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}{/Users
 /mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/Users/m
@@ -770,10 +771,10 @@ dist/fonts/type1/urw/helvetic/uhvr8a.pfb></Users/mattocci/Library/TinyTeX/texmf
 ist/fonts/type1/urw/times/utmbi8a.pfb></Users/mattocci/Library/TinyTeX/texmf-di
 st/fonts/type1/urw/times/utmr8a.pfb></Users/mattocci/Library/TinyTeX/texmf-dist
 /fonts/type1/urw/times/utmri8a.pfb>
-Output written on LMAms_main.pdf (26 pages, 2307211 bytes).
+Output written on LMAms_main.pdf (26 pages, 2307382 bytes).
 PDF statistics:
- 721 PDF objects out of 1000 (max. 8388607)
- 642 compressed objects within 7 object streams
+ 718 PDF objects out of 1000 (max. 8388607)
+ 639 compressed objects within 7 object streams
  142 named destinations out of 1000 (max. 500000)
  188 words of extra memory for PDF output out of 10000 (max. 10000000)
 
