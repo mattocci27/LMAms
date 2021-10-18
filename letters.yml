@@ -11,9 +11,9 @@ PA_SI:
     Shade_Wet: b
   LMAs:
     Sun_Dry: a
-    Shade_Dry: a
-    Sun_Wet: b
-    Shade_Wet: b
+    Shade_Dry: b
+    Sun_Wet: c
+    Shade_Wet: d
 PA:
   LMA:
     Sun_Dry: a
@@ -29,7 +29,7 @@ PA:
     Sun_Dry: a
     Shade_Dry: b
     Sun_Wet: c
-    Shade_Wet: a
+    Shade_Wet: d
 GL:
   LMA:
     D: a
@@ -49,14 +49,14 @@ Frac:
     E: b
   PA-intra:
     Sun_Dry: a
-    Shade_Dry: a
+    Shade_Dry: ab
     Sun_Wet: a
     Shade_Wet: b
   PA-all:
     Sun_Dry: a
-    Shade_Dry: b
-    Sun_Wet: c
-    Shade_Wet: d
+    Shade_Dry: bc
+    Sun_Wet: b
+    Shade_Wet: c
 Cell:
   PA-intra:
     Sun_Dry: a

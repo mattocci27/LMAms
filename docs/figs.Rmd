@@ -640,6 +640,7 @@ mass_plt_simple <- bind_rows(sim1, sim2, sim4) |>
   mutate(site = factor(site, levels = c("GLOPNET", "Sun", "Shade")))  |>
 #mass_plt_simple <- bind_rows(sim1, sim2, sim3, sim4) |>
   ggplot() +
+  #geom_hline(yintercept = 0.5, lty = 2) +
   geom_ribbon(aes(ymin = lwr, ymax = upr,
                   x = LMAs_var_mean,
                   fill = site),
@@ -647,6 +648,7 @@ mass_plt_simple <- bind_rows(sim1, sim2, sim4) |>
   geom_line(aes(y = mean, x = LMAs_var_mean, col = site)) +
   geom_point(data = var_dat, aes(x = var_, y = b, shape = site, col = site)) +
   scale_fill_manual(values = fills3, name = "Parameter") +
+  scale_y_continuous(breaks = c(0, 0.5, 1, 2)) +
   scale_color_manual(values = cols3, name = "Parameter") +
   scale_shape_discrete(name = "Parameter")  +
 #  geom_point(aes(x = GL_varS, y = GLb)) +
@@ -787,7 +789,7 @@ lab2 <- PA_trim_dat %>%
   summarize(Val = max(Val)) %>%
   ungroup %>%
   arrange(LMA) %>%
-  mutate(lab = p_letters$PA 
+  mutate(lab = p_letters$PA
          %>% unlist)
 
 PA_box <- ggplot(PA_trim_dat, aes(x = gr, y = Val, fill = gr, col = gr)) +
