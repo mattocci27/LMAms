@@ -18,8 +18,8 @@ PA1 <- full_join(PA, tmp, by = "sp")
 GL2 <- GL %>% 
   filter(DE != "U")
 
-PA2 <- PA1 %>% 
-  count(sp) %>% 
+PA2 <- PA1 %>%
+  count(sp) %>%
  # filter(n >= 2) %>%
   inner_join(., PA1, by = "sp") %>%
   mutate(site_strata2 = "Shade_Wet") %>%
@@ -181,12 +181,12 @@ p_group2 <- \(pmat,
   multcompView::multcompLetters(p_vec)$Letters
 }
 
-
-# all =========================================================================
+# yml file ==================================================================
+# all Panama 
 PA_LMA <- p_group(PA2$LMA, PA2$site_strata2)
-PA_LMAp <- p_group2(pmat_PA, "LMAp", 
+PA_LMAp <- p_group2(pmat_PA, "LMAp",
                     group = "site_strata2", model = "PA_inter")
-PA_LMAs <- p_group2(pmat_PA, "LMAs", 
+PA_LMAs <- p_group2(pmat_PA, "LMAs",
                     group = "site_strata2", model = "PA_inter")
 
 
@@ -197,12 +197,14 @@ PA2_LMAp <- p_group2(pmat_PA, "LMAp",
 PA2_LMAs <- p_group2(pmat_PA, "LMAs", 
                     group = "site_strata2", model = "PA_intra")
 
+# GL
 GL_LMA <- p_group(GL2$LMA, GL2$DE)
 GL_LMAp <- p_group2(pmat_GL, "LMAp", 
                     group = "DE", model = "GL2")
 GL_LMAs <- p_group2(pmat_GL, "LMAs", 
                     group = "DE", model = "GL2")
 
+# DE
 GL_frac <- p_group2(pmat_GL, "frac", 
                     group = "DE", model = "GL2")
 PA_frac <- p_group2(pmat_PA, "frac", 
@@ -216,12 +218,12 @@ PA_frac3 <- p_group2(pmat_PA, "frac",
                     group = "site_strata2", model = "PA_intra")
 PA_cell3 <- p_group(PA3$cell_mass, PA3$site_strata2)
 
-PA4 <- PA3 %>%
-  dplyr::select(sp, frac, site_strata2) %>%
-  spread(site_strata2, frac)
-
-t.test(PA4$Sun_Dry, PA4$Shade_Dry, pair = TRUE)
-t.test(PA4$Sun_Wet, PA4$Shade_Wet, pair = TRUE)
+#PA4 <- PA3 %>%
+#  dplyr::select(sp, frac, site_strata2) %>%
+#  spread(site_strata2, frac)
+#
+#t.test(PA4$Sun_Dry, PA4$Shade_Dry, pair = TRUE)
+#t.test(PA4$Sun_Wet, PA4$Shade_Wet, pair = TRUE)
 
 output <- "letters.yml"
 out <- file(paste(output), "w") # write

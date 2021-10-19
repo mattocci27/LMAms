@@ -51,7 +51,7 @@ theme_set(theme_LES() +
                 axis.title.x = element_text(margin = margin(t = 0,
                                                             b = -5,
                                                             l = -5,
-                                                            r = -5)),
+                                                            r = -5))
                 ))
 ```
 
@@ -736,13 +736,13 @@ theme_box <- function(base_size = 9,
         )
 }
 
-lab1 <- GL_dat_box %>%
-  group_by(gr, LMA) %>%
-  summarize(Val = max(Val)) %>%
-  ungroup %>%
-  arrange(LMA) %>%
+lab1 <- GL_dat_box |>
+  group_by(gr, LMA) |>
+  summarize(Val = max(Val)) |>
+  ungroup() |>
+  arrange(LMA) |>
   mutate(lab = p_letters$GL 
-         %>% unlist)
+         |> unlist())
 
 GL_box <- ggplot(GL_dat_box, aes(x = gr, y = Val, fill = gr)) +
   geom_boxplot(outlier.shape = 21, outlier.size = 1) +
@@ -773,24 +773,28 @@ cols2 <- c("Sun\nDry" = settings$colors$sun_dry,
           "Shade\nWet" = settings$colors$shade_wet,
           "Rand" = settings$colors$R)
 
-PA_trim_dat <- PA_dat %>%
-  count(sp) %>%
-  filter(n >= 2) %>%
-  inner_join(., PA_dat, by = "sp") %>%
-  dplyr::select(gr, Val, LMA) %>%
+PA_trim_dat <- PA |>
+  count(sp) |>
+  filter(n >= 2) |>
+  left_join(PA_dat, by = "sp") |>
+  dplyr::select(gr, Val, LMA) |>
   mutate(gr = factor(gr,
-    levels = c("Sun-Dry", "Shade-Dry", "Sun-Wet", "Shade-Wet"))) %>%
+    levels = c("Sun-Dry", "Shade-Dry", "Sun-Wet", "Shade-Wet"))) |>
   mutate(gr = factor(gr,
-    labels = c("Sun\nDry", "Shade\nDry", "Sun\nWet", "Shade\nWet"))) %>%
-  unique
+    labels = c("Sun\nDry", "Shade\nDry", "Sun\nWet", "Shade\nWet"))) |>
+  unique()
 
-lab2 <- PA_trim_dat %>%
-  group_by(gr, LMA) %>%
-  summarize(Val = max(Val)) %>%
-  ungroup %>%
-  arrange(LMA) %>%
+PA_trim_dat |>
+  group_by(gr, LMA) |>
+  summarize(mean_ = mean(Val))
+
+lab2 <- PA_trim_dat |>
+  group_by(gr, LMA) |>
+  summarize(Val = max(Val)) |>
+  ungroup() |>
+  arrange(LMA) |>
   mutate(lab = p_letters$PA
-         %>% unlist)
+         |> unlist())
 
 PA_box <- ggplot(PA_trim_dat, aes(x = gr, y = Val, fill = gr, col = gr)) +
   geom_boxplot(outlier.shape = 21, outlier.size = 1) +
