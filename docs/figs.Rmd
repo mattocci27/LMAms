@@ -391,14 +391,154 @@ my_ggsave("../figs/LL_plot.png", LL_plot,
 ![LL plot](../figs/LL_plot.png)
 
 
-# Mass-proportionality
+# Mass-dependency
+
+<!-- 
+This chunk checks how different ap and as change the relationship between mass-dependency and var(LMAs)>
+-->
+
+```{r test, eval=FALSE, echo=FALSE}
+
+set.seed(123)
+N <- 100
+b_GL <- NULL
+b_PA <- NULL
+LMAs_var <- NULL
+x_len <- 20
+
+sig_fun <- function(x) {
+  mu <- mean(x)
+  sig <- sd(x)
+  sqrt(log((sig/mu)^2 + 1))
+}
+
+mu_fun <- function(x) {
+  mu <- mean(x)
+  sig <- sd(x)
+  log(mu^2 / sqrt(sig^2 + mu^2))
+}
+
+
+var_fun <- \(LMAs) {
+  LMA <- LMAp + LMAs
+  cov(LMA, LMAs) / var(LMA) * 100
+}
+
+# GL
+mu_GL <- mu_fun(GL$LMAp)
+mu_GL2 <- mu_fun(GL$LMAs)
+sig_GL <- sig_fun(GL$LMAp)
+LMAs_var <- NULL
+b_GL <- NULL
+for (i in 1:1000) {
+  LMAp <- rlnorm(N, mu_GL, sig_GL)
+  tmp <- seq(log(1.01), log(10), length = x_len)
+  LMAs <- map(tmp, \(x) rlnorm(N, mu_GL2, x))
+  LMAs_var <- cbind(LMAs_var, map_dbl(LMAs, var_fun))
+  b_GL <- cbind(b_GL, map_dbl(LMAs, GL_sim))
+}
+
+LMAs_var_mean <- apply(LMAs_var, 1, mean)
+mean_GL <- apply(b_GL, 1, mean)
+upr_GL <- apply(b_GL, 1, \(x)(quantile(x, 0.975)))
+lwr_GL <- apply(b_GL, 1, \(x)(quantile(x, 0.025)))
+sim1 <- tibble(mean = mean_GL, upr = upr_GL, lwr = lwr_GL,
+               LMAs_var_mean, site = "GLOPNET")
+
+GL_sim <- \(LMAs) {
+  A <- exp(log(GL_para$`X50.`[1]) +
+           GL_para$`X50.`[2] * log(LMAp) +
+           GL_para$`X50.`[3] * log(LMAs)
+  )
+  fit <- lm(log(A) ~ log(LMAp + LMAs))
+  fit$coefficients[2]
+}
+
+GL_sim <- \(LMAs, 
+            para = c("alpha_s=0", 
+                     "original", 
+                     "alpha_p: double",
+                     "alpha_p: double, alpha_s = 0")){
+  if (para == "alpha_s=0") {
+    A <- exp(log(GL_para$`X50.`[1]) +
+             GL_para$`X50.`[2] * log(LMAp)
+    )
+  } else if (para == "alpha_p: double") {
+    A <- exp(log(GL_para$`X50.`[1]) +
+             GL_para$`X50.`[2] * 2 * log(LMAp) +
+             GL_para$`X50.`[3] * log(LMAs)
+    )
+  } else if (para == "alpha_p: double, alpha_s = 0") {
+    A <- exp(log(GL_para$`X50.`[1]) +
+             GL_para$`X50.`[2] * 2 * log(LMAp)
+    )
+  } else {
+    A <- exp(log(GL_para$`X50.`[1]) +
+             GL_para$`X50.`[2] * log(LMAp) +
+             GL_para$`X50.`[3] * log(LMAs)
+    )
+  }
+    fit <- lm(log(A) ~ log(LMAp + LMAs))
+    fit$coefficients[2]
+}
+
+mass_sim_fun <- \(data, name, para = c("alpha_s=0", 
+                                       "original", 
+                                       "alpha_p: double",
+                                       "alpha_p: double, alpha_s = 0",
+                                       )) {
+  mu_GL <- mu_fun(data$LMAp)
+  mu_GL2 <- mu_fun(data$LMAs)
+  sig_GL <- sig_fun(data$LMAp)
+  LMAs_var <- NULL
+  b_GL <- NULL
+
+
+  for (i in 1:1000) {
+    LMAp <- rlnorm(N, mu_GL, sig_GL)
+    tmp <- seq(log(1.01), log(10), length = x_len)
+    LMAs <- map(tmp, \(x) rlnorm(N, mu_GL2, x))
+    LMAs_var <- cbind(LMAs_var, map_dbl(LMAs, var_fun))
+    b_GL <- cbind(b_GL, map_dbl(LMAs, GL_sim, para))
+  }
+
+  LMAs_var_mean <- apply(LMAs_var, 1, mean)
+  mean_GL <- apply(b_GL, 1, mean)
+  upr_GL <- apply(b_GL, 1, \(x)(quantile(x, 0.975)))
+  lwr_GL <- apply(b_GL, 1, \(x)(quantile(x, 0.025)))
+  tibble(mean = mean_GL, upr = upr_GL, lwr = lwr_GL,
+         LMAs_var_mean,
+  para = paste(para),
+  site = paste(name))
+
+                # para = para,
+                # site = name)
+}
+
+tmp1 <- mass_sim_fun(GL, name = "GLOPNET", para = "alpha_s=0")
+tmp2 <- mass_sim_fun(GL, name = "GLOPNET", para = "alpha_p: double")
+tmp3 <- mass_sim_fun(GL, name = "GLOPNET", para = "alpha_p: double, alpha_s = 0")
+tmp4 <- mass_sim_fun(GL, name = "GLOPNET", para = "original=0")
+
+GL_sim <- bind_rows(tmp1, tmp2, tmp3, tmp4)
+
+ggplot(GL_sim) +
+  #geom_hline(yintercept = 0.5, lty = 2) +
+#  geom_ribbon(aes(ymin = lwr, ymax = upr,
+#                  x = LMAs_var_mean,
+#                  fill = para),
+#              alpha = 0.4)  +
+  geom_line(aes(y = mean, x = LMAs_var_mean, col = para))
+
+
+```
 
 ```{r}
 
-Sun <- PA %>%
+Sun <- PA |>
   filter(strata == "CAN")
 
-Shade <- PA %>%
+Shade <- PA |>
   filter(strata != "CAN")
 
 GL_para <- read_csv("../data/GLpara.csv")
@@ -425,9 +565,9 @@ GLb <- lm(log(Aarea) ~ log(LMA), GL)$coefficients[2]
 Sunb <- lm(log(Aarea) ~ log(LMA), Sun)$coefficients[2]
 Shadeb <- lm(log(Aarea) ~ log(LMA), Shade)$coefficients[2]
 
-b_vec <- c(GLb, Sunb, Shadeb) %>% round(2)
+b_vec <- c(GLb, Sunb, Shadeb) |> round(2)
 
-point_dat3 <- point_dat2 %>%
+point_dat3 <- point_dat2 |>
   mutate(b = paste("italic('b')==", b_vec))
 
 
@@ -444,7 +584,7 @@ Sun_varS <- cov(Sun$LMA, Sun$LMAs) / var(Sun$LMA) * 100
 Shade_varS <- cov(Shade$LMA, Shade$LMAs) / var(Shade$LMA) * 100
 
 GL_sim <- \(LMAs) {
-  A <- exp(log(GL_para$`X50.`[1]) +  
+  A <- exp(log(GL_para$`X50.`[1]) +
            GL_para$`X50.`[2] * log(LMAp) +
            GL_para$`X50.`[3] * log(LMAs)
   )
@@ -698,6 +838,66 @@ my_ggsave("../figs/mass_prop_simple2.png", mass_plt_simple2,
 
 ![mass](../figs/mass_prop_simple.png)
 
+# var
+
+```{r}
+tmp <- aov(log(LMAp) ~ site + strata, PA) |>
+  summary()
+tmp2 <- tmp[[1]][[2]]
+PA_LMAp <- tmp2/sum(tmp2) * 100
+
+tmp <- aov(log(LMAs) ~ site + strata, PA) |>
+  summary()
+tmp2 <- tmp[[1]][[2]]
+PA_LMAs <- tmp2/sum(tmp2) * 100
+
+
+my_col <- RColorBrewer::brewer.pal(4, "RdBu")
+names(my_col) <- c("Eve/Dec", "Sun/Shade", "Wet/Dry", "Residuals")
+
+#[1] "#CA0020" "#F4A582" "#92C5DE" "#0571B0"
+
+vpart_PA <- bind_rows(LMAp = PA_LMAp, LMAs = PA_LMAs, 
+          fct = c("Wet/Dry", "Sun/Shade", "Residuals")) |>
+          pivot_longer(1:2) |>
+          ggplot(aes(x = name, y = value, fill = fct)) +
+            geom_col() +
+            ggtitle("Panama") +
+            scale_fill_manual(values = my_col) +
+             theme(legend.position = "none")
+
+tmp <- aov(log(LMAp) ~ DE, GL) |>
+  summary()
+tmp2 <- tmp[[1]][[2]]
+GL_LMAp <- tmp2/sum(tmp2) * 100
+
+tmp <- aov(log(LMAs) ~ DE, GL) |>
+  summary()
+tmp2 <- tmp[[1]][[2]]
+GL_LMAs <- tmp2/sum(tmp2) * 100
+
+vpart_GL <- bind_rows(LMAp = GL_LMAp, LMAs = GL_LMAs, 
+                      fct = c("Eve/Dec", "Residuals")) |>
+           pivot_longer(1:2) |>
+           ggplot(aes(x = name, y = value, fill = fct)) +
+             geom_col() +
+             ggtitle("GLOPNET") +
+             scale_fill_manual(values = my_col) +
+             theme(legend.spacing.x = unit(0.1, "cm"),
+                   legend.text.align = -2, 
+                   legend.position = "bottom"
+             )
+
+vpart_p <- vpart_GL + vpart_PA &
+  ylab("Explained variance (%)") &
+  xlab("")
+
+my_ggsave("../figs/vpart.png", vpart_p,
+          height = 6, width = 10)
+```
+
+![vpart](../figs/vpart.png)
+
 # Boxplot
 
 ## Main plot
@@ -845,7 +1045,7 @@ my_ggsave("../figs/box_main.png", box_main,
 ```{r PA-box, comment=NA}
 
 # PA all =================================
-PA_nontrim_dat <- PA_dat %>% 
+PA_nontrim_dat <- PA_dat %>%
   dplyr::select(gr, Val, LMA) %>%
   mutate(gr = factor(gr,
     levels = c("Sun-Dry", "Shade-Dry", "Sun-Wet", "Shade-Wet"))) %>%
@@ -878,7 +1078,7 @@ PA_box2 <- ggplot(PA_nontrim_dat, aes(x = gr, y = Val, fill = gr, col = gr)) +
   theme(
     strip.background = element_blank(),
     strip.text.x = element_text(colour = NA) # invinsible strip
-        ) # +
+        ) 
 
 my_ggsave("../figs/box_SI.png", PA_box2,
           width = 11.7,
