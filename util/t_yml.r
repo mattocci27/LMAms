@@ -122,7 +122,7 @@ p_post <- \(pmat,
   } else if (model == "PA_intra") {
     pmat <- pmat[, PA_inter$n >= 2]
   }
-  #pmat |> dim() |> print()
+#  pmat |> dim() |> print()
     for (i in 1:4000) {
       frac <- pmat[i,]
       LMAp <- log(frac * LMA)
@@ -135,7 +135,7 @@ p_post <- \(pmat,
         }
       }
      }
-
+#    print(xbar)
     lwr <- apply(m,  1:2, \(x)quantile(x, 0.025 / alpha))
     upr <- apply(m,  1:2, \(x)quantile(x, 1 - 0.025 / alpha))
     sig_m <- lwr * upr
@@ -192,29 +192,33 @@ PA_LMAs <- p_group2(pmat_PA, "LMAs",
 
 # both sun and shade leaves are available
 PA2_LMA <- p_group(PA3$LMA, PA3$site_strata2)
-PA2_LMAp <- p_group2(pmat_PA, "LMAp", 
+PA2_LMAp <- p_group2(pmat_PA, "LMAp",
                     group = "site_strata2", model = "PA_intra")
-PA2_LMAs <- p_group2(pmat_PA, "LMAs", 
+PA2_LMAs <- p_group2(pmat_PA, "LMAs",
                     group = "site_strata2", model = "PA_intra")
+#p_post(pmat_PA, "LMAs",
+#                    group = "site_strata2", model = "PA_intra")
+#p_post(pmat_PA, "LMAs",
+#                    group = "site_strata2", model = "PA_inter")
 
 # GL
 GL_LMA <- p_group(GL2$LMA, GL2$DE)
-GL_LMAp <- p_group2(pmat_GL, "LMAp", 
+GL_LMAp <- p_group2(pmat_GL, "LMAp",
                     group = "DE", model = "GL2")
-GL_LMAs <- p_group2(pmat_GL, "LMAs", 
+GL_LMAs <- p_group2(pmat_GL, "LMAs",
                     group = "DE", model = "GL2")
 
 # DE
-GL_frac <- p_group2(pmat_GL, "frac", 
+GL_frac <- p_group2(pmat_GL, "frac",
                     group = "DE", model = "GL2")
-PA_frac <- p_group2(pmat_PA, "frac", 
+PA_frac <- p_group2(pmat_PA, "frac",
                     group = "DE", model = "PA_intra")
 # all
-PA_frac2 <- p_group2(pmat_PA, "frac", 
+PA_frac2 <- p_group2(pmat_PA, "frac",
                     group = "site_strata2", model = "PA_inter")
 PA_cell2 <- p_group(PA2$cell_mass, PA2$site_strata2)
 # intra
-PA_frac3 <- p_group2(pmat_PA, "frac", 
+PA_frac3 <- p_group2(pmat_PA, "frac",
                     group = "site_strata2", model = "PA_intra")
 PA_cell3 <- p_group(PA3$cell_mass, PA3$site_strata2)
 

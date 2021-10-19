@@ -288,17 +288,16 @@ According to our model results, metabolic leaf mass (LMAp) accounted for nearly 
 Thus, although building costs are likely similar for different leaf chemical components and tissues [@Williams1989; @Villar2001], our results suggest that leaf mass associated with photosynthetic function accounts for nearly all leaf maintenance respiration.
 
 **3. LMA variance components determine the area- vs. mass-dependence of leaf photosynthetic capacity (*A*~max~).**
-Analysis of simulated data showed that the percent of LMA variation due to LMAp vs. LMAs variation, together with the senstivity of *A*~max~ to variation in LMAp and LMAs, determined the area- vs. mass-dependence of *A*~max~ (i.e., the degree to which whole-leaf *A*~max~ depends on leaf area or mass; @Osnas2013; @Osnas2018).
+Analysis of simulated data showed that the percent of LMA variation due to LMAp vs. LMAs variation determined the area- vs. mass-dependence of *A*~max~ (i.e., the degree to which whole-leaf *A*~max~ depends on leaf area or mass; @Osnas2013; @Osnas2018).
 Generally, mass-dependence of *A*~max~ decreases with LMAs variance ([@fig:massplt]).
-Other factors, including scaling slopes ($\alpha_p$ and $\alpha_s$) between LMAp, LMAs and *A*~max~ and covariance between LMAp and LMAs, also affect the relationship between mass-dependence of *A*~max~ and LMAs variance.
-Although relative variance of LMAs was `r var_val$GL`% in GLOPNET, interspecific variation in *A*~max~ among leaves in GLOPNET tended to be area-dependent because of their negative $\alpha_s$.
+Other factors, including the senstivity of *A*~max~ to variation in LMAp and LMAs ($\alpha_p$ and $\alpha_s$) and covariance between LMAp and LMAs, also affect the relationship between mass-dependence of *A*~max~ and LMAs variance ([@fig:massplt], Fig. SX).
+Although relative variance of LMAs was intermediate in GLOPNET (`r var_val$GL`%), interspecific variation in *A*~max~ among leaves in GLOPNET tended to be area-dependent because of their lower $\alpha_p$ and negative $\alpha_s$.
 Interspecific variation in LMA in sun and shade leaves in the Panama data was area-dependent because of their large variance in LMAs ([@fig:massplt]).
 
-
-**4. Evergreen leaves have both greater LMAp and LMAs than deciduous leaves, and sun leaves have both greater LMAp and LMAs than shade leaves.**
-In the GLOPNET dataset, although evergreen leaves had higher both LMAp and LMAs than deciduous leaves, differences in LMAs between the two groups were more apparent ([@fig:boxplt]).
+**4. Evergreen leaves have greater LMAs than deciduous leaves, and sun leaves have both greater LMAp and LMAs than shade leaves.**
+In the GLOPNET dataset, evergreen leaves had higher LMAs than deciduous leaves ([@fig:boxplt]).
 Thus, the higher total LMA in evergreen leaves in GLOPNET was primarily due to differences in LMAs.
-Evergreen leaves have higher fraction of LMAs compared to deciduous leaves in the Panama dataset but that pattern was weak in the GLOPNET (Fig. SX).
+Evergreen leaves have higher fraction of LMAs compared to deciduous leaves both in the Panama and the GLOPNET dataset (Fig. SX).
 In the Panama dataset, sun leaves have both greater LMAp and LMAs than shade leaves, but the differences in LMAp were more apparent ([@fig:boxplt]).
 Thus, variation in LMAp plays a more important role within species than among species.
 
@@ -462,7 +461,7 @@ Variation in *A*~max~ values are derived from our analysis of the GLOPNET databa
 ![
 Observed and estimated leaf-trait relationships in the global GLOPNET dataset.
 Estimates are from the NAME Model (Eq. X).
-Leaf life span (LL), net photosynthetic rate per unit leaf area (*A*~area~), and dark respiration rate per unit leaf area (*R*~area~) are plotted against observed LMA, posteriors means of LMAp and LMAs.
+Leaf life span (LL), net photosynthetic rate per unit leaf area (*A*~area~), and dark respiration rate per unit leaf area (*R*~area~) are plotted against observed LMA, posterior means of LMAp and LMAs.
 Pearson correlation coefficients (*r*) for LMA (left column) and posterior means of Pearson correlation coefficients ($\bar{r}$) or partial correlation coefficients ($\bar{\rho}$) of LMAp (middle column) and LMAs (right column) are shown.
 Note that LL was modeled by LMAs alone.
 ](../figs/GL_scatter.png){#fig:GLplt}
@@ -493,9 +492,9 @@ The *R*^2^ value is the posterior mean of Bayesian *R*^2^ [@Gelman2019].
 ![
 The relationships between mass dependency (*b* in Eq. 8) and relative variance in LMAs to LMA for the global GLOPNET dataset, sun leaves in Panama, and shade leaves in Panama.
 Solid lines indicate simulated means and shaded regions indicate 95% CI.
-Each symbol indicates the esimated values from the empirical data.
+Each symbol indicates the estimated values from the empirical data.
 The photosynthetic rate (*A*~max~) is primarily mass-dependent (*b* > 0.5), primarily area-dependent (0.5 > *b* > 0) and purely area-dependent (*b* = 0) [@Osnas2018].
-Note that when *b* > 1, *A*~area~ dramatically increase with LMA, which is not realistic.
+Note that when *b* > 1, *A*~area~ dramatically increases with LMA, which is not realistic.
 ](../figs/mass_prop_simple.png){#fig:massplt}
 
 
