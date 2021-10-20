@@ -393,145 +393,6 @@ my_ggsave("../figs/LL_plot.png", LL_plot,
 
 # Mass-dependency
 
-<!-- 
-This chunk checks how different ap and as change the relationship between mass-dependency and var(LMAs)>
--->
-
-```{r test, eval=FALSE, echo=FALSE}
-
-set.seed(123)
-N <- 100
-b_GL <- NULL
-b_PA <- NULL
-LMAs_var <- NULL
-x_len <- 20
-
-sig_fun <- function(x) {
-  mu <- mean(x)
-  sig <- sd(x)
-  sqrt(log((sig/mu)^2 + 1))
-}
-
-mu_fun <- function(x) {
-  mu <- mean(x)
-  sig <- sd(x)
-  log(mu^2 / sqrt(sig^2 + mu^2))
-}
-
-
-var_fun <- \(LMAs) {
-  LMA <- LMAp + LMAs
-  cov(LMA, LMAs) / var(LMA) * 100
-}
-
-# GL
-mu_GL <- mu_fun(GL$LMAp)
-mu_GL2 <- mu_fun(GL$LMAs)
-sig_GL <- sig_fun(GL$LMAp)
-LMAs_var <- NULL
-b_GL <- NULL
-for (i in 1:1000) {
-  LMAp <- rlnorm(N, mu_GL, sig_GL)
-  tmp <- seq(log(1.01), log(10), length = x_len)
-  LMAs <- map(tmp, \(x) rlnorm(N, mu_GL2, x))
-  LMAs_var <- cbind(LMAs_var, map_dbl(LMAs, var_fun))
-  b_GL <- cbind(b_GL, map_dbl(LMAs, GL_sim))
-}
-
-LMAs_var_mean <- apply(LMAs_var, 1, mean)
-mean_GL <- apply(b_GL, 1, mean)
-upr_GL <- apply(b_GL, 1, \(x)(quantile(x, 0.975)))
-lwr_GL <- apply(b_GL, 1, \(x)(quantile(x, 0.025)))
-sim1 <- tibble(mean = mean_GL, upr = upr_GL, lwr = lwr_GL,
-               LMAs_var_mean, site = "GLOPNET")
-
-GL_sim <- \(LMAs) {
-  A <- exp(log(GL_para$`X50.`[1]) +
-           GL_para$`X50.`[2] * log(LMAp) +
-           GL_para$`X50.`[3] * log(LMAs)
-  )
-  fit <- lm(log(A) ~ log(LMAp + LMAs))
-  fit$coefficients[2]
-}
-
-GL_sim <- \(LMAs, 
-            para = c("alpha_s=0", 
-                     "original", 
-                     "alpha_p: double",
-                     "alpha_p: double, alpha_s = 0")){
-  if (para == "alpha_s=0") {
-    A <- exp(log(GL_para$`X50.`[1]) +
-             GL_para$`X50.`[2] * log(LMAp)
-    )
-  } else if (para == "alpha_p: double") {
-    A <- exp(log(GL_para$`X50.`[1]) +
-             GL_para$`X50.`[2] * 2 * log(LMAp) +
-             GL_para$`X50.`[3] * log(LMAs)
-    )
-  } else if (para == "alpha_p: double, alpha_s = 0") {
-    A <- exp(log(GL_para$`X50.`[1]) +
-             GL_para$`X50.`[2] * 2 * log(LMAp)
-    )
-  } else {
-    A <- exp(log(GL_para$`X50.`[1]) +
-             GL_para$`X50.`[2] * log(LMAp) +
-             GL_para$`X50.`[3] * log(LMAs)
-    )
-  }
-    fit <- lm(log(A) ~ log(LMAp + LMAs))
-    fit$coefficients[2]
-}
-
-mass_sim_fun <- \(data, name, para = c("alpha_s=0", 
-                                       "original", 
-                                       "alpha_p: double",
-                                       "alpha_p: double, alpha_s = 0",
-                                       )) {
-  mu_GL <- mu_fun(data$LMAp)
-  mu_GL2 <- mu_fun(data$LMAs)
-  sig_GL <- sig_fun(data$LMAp)
-  LMAs_var <- NULL
-  b_GL <- NULL
-
-
-  for (i in 1:1000) {
-    LMAp <- rlnorm(N, mu_GL, sig_GL)
-    tmp <- seq(log(1.01), log(10), length = x_len)
-    LMAs <- map(tmp, \(x) rlnorm(N, mu_GL2, x))
-    LMAs_var <- cbind(LMAs_var, map_dbl(LMAs, var_fun))
-    b_GL <- cbind(b_GL, map_dbl(LMAs, GL_sim, para))
-  }
-
-  LMAs_var_mean <- apply(LMAs_var, 1, mean)
-  mean_GL <- apply(b_GL, 1, mean)
-  upr_GL <- apply(b_GL, 1, \(x)(quantile(x, 0.975)))
-  lwr_GL <- apply(b_GL, 1, \(x)(quantile(x, 0.025)))
-  tibble(mean = mean_GL, upr = upr_GL, lwr = lwr_GL,
-         LMAs_var_mean,
-  para = paste(para),
-  site = paste(name))
-
-                # para = para,
-                # site = name)
-}
-
-tmp1 <- mass_sim_fun(GL, name = "GLOPNET", para = "alpha_s=0")
-tmp2 <- mass_sim_fun(GL, name = "GLOPNET", para = "alpha_p: double")
-tmp3 <- mass_sim_fun(GL, name = "GLOPNET", para = "alpha_p: double, alpha_s = 0")
-tmp4 <- mass_sim_fun(GL, name = "GLOPNET", para = "original=0")
-
-GL_sim <- bind_rows(tmp1, tmp2, tmp3, tmp4)
-
-ggplot(GL_sim) +
-  #geom_hline(yintercept = 0.5, lty = 2) +
-#  geom_ribbon(aes(ymin = lwr, ymax = upr,
-#                  x = LMAs_var_mean,
-#                  fill = para),
-#              alpha = 0.4)  +
-  geom_line(aes(y = mean, x = LMAs_var_mean, col = para))
-
-
-```
 
 ```{r}
 
@@ -838,6 +699,129 @@ my_ggsave("../figs/mass_prop_simple2.png", mass_plt_simple2,
 
 ![mass](../figs/mass_prop_simple.png)
 
+
+<!-- 
+This chunk checks how different ap and as change the relationship between mass-dependency and var(LMAs)>
+-->
+
+```{r test, eval=FALSE, echo=FALSE}
+
+set.seed(123)
+N <- 100
+b_GL <- NULL
+b_PA <- NULL
+LMAs_var <- NULL
+x_len <- 20
+
+sig_fun <- function(x) {
+  mu <- mean(x)
+  sig <- sd(x)
+  sqrt(log((sig/mu)^2 + 1))
+}
+
+mu_fun <- function(x) {
+  mu <- mean(x)
+  sig <- sd(x)
+  log(mu^2 / sqrt(sig^2 + mu^2))
+}
+
+
+var_fun <- \(LMAs) {
+  LMA <- LMAp + LMAs
+  cov(LMA, LMAs) / var(LMA) * 100
+}
+
+
+GL_sim <- \(LMAs) {
+  A <- exp(log(GL_para$`X50.`[1]) +
+           GL_para$`X50.`[2] * log(LMAp) +
+           GL_para$`X50.`[3] * log(LMAs)
+  )
+  fit <- lm(log(A) ~ log(LMAp + LMAs))
+  fit$coefficients[2]
+}
+
+GL_sim <- \(LMAs, 
+            para = c("alpha_s=0", 
+                     "original", 
+                     "alpha_p: double",
+                     "alpha_p: double, alpha_s = 0")){
+  if (para == "alpha_s=0") {
+    A <- exp(log(GL_para$`X50.`[1]) +
+             GL_para$`X50.`[2] * log(LMAp)
+    )
+  } else if (para == "alpha_p: double") {
+    A <- exp(log(GL_para$`X50.`[1]) +
+             GL_para$`X50.`[2] * 2 * log(LMAp) +
+             GL_para$`X50.`[3] * log(LMAs)
+    )
+  } else if (para == "alpha_p: double, alpha_s = 0") {
+    A <- exp(log(GL_para$`X50.`[1]) +
+             GL_para$`X50.`[2] * 2 * log(LMAp)
+    )
+  } else {
+    A <- exp(log(GL_para$`X50.`[1]) +
+             GL_para$`X50.`[2] * log(LMAp) +
+             GL_para$`X50.`[3] * log(LMAs)
+    )
+  }
+    fit <- lm(log(A) ~ log(LMAp + LMAs))
+    fit$coefficients[2]
+}
+
+mass_sim_fun <- \(data, name, para = c("alpha_s=0", 
+                                       "original", 
+                                       "alpha_p: double",
+                                       "alpha_p: double, alpha_s = 0",
+                                       )) {
+  mu_GL <- mu_fun(data$LMAp)
+  mu_GL2 <- mu_fun(data$LMAs)
+  sig_GL <- sig_fun(data$LMAp)
+  LMAs_var <- NULL
+  b_GL <- NULL
+
+
+  for (i in 1:1000) {
+    LMAp <- rlnorm(N, mu_GL, sig_GL)
+    tmp <- seq(log(1.01), log(10), length = x_len)
+    LMAs <- map(tmp, \(x) rlnorm(N, mu_GL2, x))
+    LMAs_var <- cbind(LMAs_var, map_dbl(LMAs, var_fun))
+    b_GL <- cbind(b_GL, map_dbl(LMAs, GL_sim, para))
+  }
+
+  LMAs_var_mean <- apply(LMAs_var, 1, mean)
+  mean_GL <- apply(b_GL, 1, mean)
+  upr_GL <- apply(b_GL, 1, \(x)(quantile(x, 0.975)))
+  lwr_GL <- apply(b_GL, 1, \(x)(quantile(x, 0.025)))
+  tibble(mean = mean_GL, upr = upr_GL, lwr = lwr_GL,
+         LMAs_var_mean,
+  para = paste(para),
+  site = paste(name))
+
+                # para = para,
+                # site = name)
+}
+
+tmp1 <- mass_sim_fun(GL, name = "GLOPNET", para = "alpha_s=0")
+tmp2 <- mass_sim_fun(GL, name = "GLOPNET", para = "alpha_p: double")
+tmp3 <- mass_sim_fun(GL, name = "GLOPNET", para = "alpha_p: double, alpha_s = 0")
+tmp4 <- mass_sim_fun(GL, name = "GLOPNET", para = "original")
+
+GL_sim <- bind_rows(tmp1, tmp2, tmp3, tmp4)
+
+ggplot(GL_sim) +
+  #geom_hline(yintercept = 0.5, lty = 2) +
+#  geom_ribbon(aes(ymin = lwr, ymax = upr,
+#                  x = LMAs_var_mean,
+#                  fill = para),
+#              alpha = 0.4)  +
+  geom_line(aes(y = mean, x = LMAs_var_mean, col = para)) +
+  ylab(expression(Mass~proportionality~(italic(b)))) +
+  xlab("Relative variance of LMAs (%)")
+
+```
+
+
 # var
 
 ```{r}
@@ -1032,9 +1016,7 @@ PA_box <- ggplot(PA_trim_dat, aes(x = gr, y = Val, fill = gr, col = gr)) +
  #                     )  
 #boxplot(LMAs ~ site_strata, PA, log = "y", ylim = c(10,120))
 
-
 box_main <- GL_box / PA_box
-
 
 my_ggsave("../figs/box_main.png", box_main,
           width = 11.7,
