@@ -62,7 +62,7 @@ theme_LES <- function(base_size = 9,
           legend.box.spacing = unit(0.1, "cm"),
           #plot.background=element_rect(fill="red"), # fix 
           #plot.background=element_rect(fill=NA), # fix 
-          plot.background = element_blank(),
+          #plot.background = element_blank(),
           strip.text = element_text(size = 9),
           strip.placement = "outside",
           strip.switch.pad.grid = unit(0, "cm"),
