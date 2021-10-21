@@ -4,10 +4,11 @@ library(tictoc)
 
 d <- read_csv("./data/nature.csv")
 
-dd <- data.frame(Narea = 10^d$`log Narea`,
-        Parea = 10^d$`log Parea`,
-        sp = d$Species) %>%
-        group_by(sp) %>%
+dd <- d |>
+  mutate(Narea = 10^log.Narea) |>
+  mutate(Parea = 10^log.Parea) |>
+  dplyr::select(Narea, Parea, sp = Species) |>
+        group_by(sp) |>
         summarize(Narea = mean(Narea, na.omit = T),
             Parea = mean(Parea, na.omit = T))
 
@@ -240,7 +241,6 @@ bayes_R2_PA <- \(trait = c("Amax", "LL", "Rdark"), chr = FALSE){
     tmp
   }
 }
-
 
 #bayes_R2_PA("Amax")
 #bayes_R2_PA("LL")
