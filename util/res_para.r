@@ -81,7 +81,8 @@ d |>
         group_by(sp) |>
         summarize(Narea = mean(Narea, na.omit = T),
             Parea = mean(Parea, na.omit = T)) |>
-  right_join(GL, by = "sp") |>
+  #left_join(GL, ., by = "sp") |>
+  {\(x) left_join(GL, x, by = "sp")}() |>
   mutate(gr = factor(DE,
                      labels = c("Deciduous",
                                 "Evergreen",
