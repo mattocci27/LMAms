@@ -72,7 +72,7 @@ GL <- GL |>
   mutate(LMAs_lo = LMA - LMAp_up) |>
   mutate(LMAs_up = LMA - LMAp_lo)
 
-d <- read_csv("./data-raw/nature02403-s2.csv", skip = 10)
+d <- read_csv("./data/nature.csv")
 dd <- tibble(Narea = 10^d$`log Narea`,
         Parea = 10^d$`log Parea`,
         sp = d$Species) |>

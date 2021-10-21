@@ -1,15 +1,21 @@
 library(tidyverse)
+
 # GLOPNET
+# read_csv not working
 d <- read.csv("./data-raw/nature02403-s2.csv", skip = 10)
 
-data <- tibble(sp = d[ , "Species"] %>% unlist,
-         DE = d[ , "Decid.E.green"],
-         GF = d[ , "GF"],
-         BIOME = d[ , "BIOME"],
-         LL = 10^d[ , "log.LL"],
-         LMA = 10^d[ , "log.LMA"],
-         Aarea = 10^d[ , "log.Aarea"],
-         Rarea = 10^d[ , "log.Rdarea"])
+d |>
+  dplyr::select(Code:`Ca...Ci`) |>
+  write_csv("./data/nature.csv")
+
+data <- tibble(sp = d[, "Species"] %>% unlist,
+         DE = d[, "Decid.E.green"],
+         GF = d[, "GF"],
+         BIOME = d[, "BIOME"],
+         LL = 10^d[, "log.LL"],
+         LMA = 10^d[, "log.LMA"],
+         Aarea = 10^d[, "log.Aarea"],
+         Rarea = 10^d[, "log.Rdarea"])
 
 data <- na.omit(data)
 rownames(data) <- NULL
