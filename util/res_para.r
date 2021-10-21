@@ -73,19 +73,22 @@ GL <- GL |>
   mutate(LMAs_up = LMA - LMAp_lo)
 
 d <- read_csv("./data/nature.csv")
-dd <- tibble(Narea = 10^d$`log Narea`,
-        Parea = 10^d$`log Parea`,
-        sp = d$Species) |>
+
+d |>
+  mutate(Narea = 10^log.Narea) |>
+  mutate(Parea = 10^log.Parea) |>
+  dplyr::select(Narea, Parea, sp = Species) |>
         group_by(sp) |>
         summarize(Narea = mean(Narea, na.omit = T),
-            Parea = mean(Parea, na.omit = T))
-GL <- left_join(GL, dd, by = "sp") |>
+            Parea = mean(Parea, na.omit = T)) |>
+  right_join(GL, by = "sp") |>
   mutate(gr = factor(DE,
-    labels = c("Deciduous",
-               "Evergreen",
-               "Unclassified"
-                      ))) 
-write_csv(GL, "./data/GL_res.csv")
+                     labels = c("Deciduous",
+                                "Evergreen",
+                                "Unclassified"
+                                ))) |>
+  write_csv("./data/GL_res.csv")
+
 
 ## PA ----------------------------------------------
 ## summary table
