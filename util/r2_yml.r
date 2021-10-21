@@ -2,7 +2,7 @@ library(rstan)
 library(tidyverse)
 library(tictoc)
 
-d <- read_csv("./data-raw/nature02403-s2.csv", skip = 10)
+d <- read_csv("./data/nature.csv")
 
 dd <- data.frame(Narea = 10^d$`log Narea`,
         Parea = 10^d$`log Parea`,

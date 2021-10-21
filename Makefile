@@ -6,7 +6,8 @@ PAR = data/PApara.csv data/GLpara.csv data/GL_res.csv data/PA_res.csv para_val.y
 
 LOO = data/GL_elpd.csv data/PA_elpd.csv
 
-DATA = data/GL_data.csv PA_data.csv PA_data_more.csv data/PA_LH.csv 
+DATA = data/GL_data.csv PA_data.csv PA_data_more.csv data/PA_LH.csv \
+			 data/nature.csv
 
 RAW = data-raw/nature02403-s2.csv data-raw/fiber_analysis.csv \
 			data-raw/LFTRAITS.csv data-raw/LFTRAITS.csv \
