@@ -1,6 +1,8 @@
 library(rstan)
 library(tidyverse)
-
+library(tictoc)
+library(doMC)
+registerDoMC(cores = parallel::detectCores())
 ## -------------------------------------------------------------------------------------------------
 load("./rda/GL_Aps_LLs_obs.rda")
 GL <- dat
@@ -8,19 +10,16 @@ GLres <- res
 pmat <- rstan::extract(res, "p")[[1]]
 n <- 4000
 
-LMAp_var <- numeric(n)
-LMAs_var <- numeric(n)
 
 DE <- GL |>
   filter(DE != "U") |>
   pull(DE)
-GL_LMAp <- NULL
-GL_LMAs <- NULL
-for (i in 1:n) {
+
+loop_fun <- \(i) {
   LMAp <- pmat[i,] * GL$LMA
   LMAs <- (1 - pmat[i,]) * GL$LMA
-  LMAp_var[i] <- cov(LMAp, GL$LMA)
-  LMAs_var[i] <- cov(LMAs, GL$LMA)
+  LMAp_var <- cov(LMAp, GL$LMA)
+  LMAs_var <- cov(LMAs, GL$LMA)
 
   GL2 <- GL |>
     mutate(LMAp, LMAs) |>
@@ -29,13 +28,24 @@ for (i in 1:n) {
   tmp <- aov(log(LMAp) ~ DE, GL2) |>
     summary()
   tmp2 <- tmp[[1]][[2]]
-  GL_LMAp <- rbind(GL_LMAp, tmp2/sum(tmp2) * 100)
+  #GL_LMAp <- rbind(GL_LMAp, tmp2/sum(tmp2) * 100)
+  GL_LMAp <- tmp2/sum(tmp2) * 100
 
   tmp <- aov(log(LMAs) ~ DE, GL2) |>
     summary()
   tmp2 <- tmp[[1]][[2]]
-  GL_LMAs <- rbind(GL_LMAs, tmp2/sum(tmp2) * 100)
+  #GL_LMAs <- rbind(GL_LMAs, tmp2/sum(tmp2) * 100)
+  GL_LMAs <- tmp2/sum(tmp2) * 100
+  c(GL_LMAp, GL_LMAs, LMAp_var, LMAs_var)
 }
+
+tic()
+bb <- foreach (i = 1:n, .combine = rbind) %dopar% loop_fun(i)
+GL_LMAp <- bb[,1:2]
+GL_LMAs <- bb[,3:4]
+LMAp_var <- bb[,5]
+LMAs_var <- bb[,6]
+toc()
 
 apply(GL_LMAs, 2, mean)
 apply(GL_LMAs, 2, \(x)quantile(x, 0.975))
@@ -109,15 +119,11 @@ for (i in 1:n) {
 }
 
 
-LMAp_PA_var <- numeric(n)
-LMAs_PA_var <- numeric(n)
-PA_LMAp <- NULL
-PA_LMAs <- NULL
-for (i in 1:n) {
+loop_fun2 <- \(i) {
   LMAp_PA <- pmat[i,] * PA$LMA
   LMAs_PA <- (1 - pmat[i, ]) * PA$LMA
-  LMAp_PA_var[i] <- cov(LMAp_PA, PA$LMA)
-  LMAs_PA_var[i] <- cov(LMAs_PA, PA$LMA)
+  LMAp_PA_var <- cov(LMAp_PA, PA$LMA)
+  LMAs_PA_var <- cov(LMAs_PA, PA$LMA)
 
   PA2 <- PA |>
     mutate(LMAp = LMAp_PA,
@@ -126,14 +132,22 @@ for (i in 1:n) {
   tmp <- aov(log(LMAp) ~ site + strata, PA2) |>
     summary()
   tmp2 <- tmp[[1]][[2]]
-  PA_LMAp <- rbind(PA_LMAp, tmp2/sum(tmp2) * 100)
+  PA_LMAp <- tmp2/sum(tmp2) * 100
 
   tmp <- aov(log(LMAs) ~ site + strata, PA2) |>
     summary()
   tmp2 <- tmp[[1]][[2]]
-  PA_LMAs <- rbind(PA_LMAs, tmp2/sum(tmp2) * 100)
+  PA_LMAs <- tmp2/sum(tmp2) * 100
+  c(PA_LMAp, PA_LMAs, LMAp_PA_var, LMAs_PA_var)
 }
 
+tic()
+bb2 <- foreach (i = 1:n, .combine = rbind) %dopar% loop_fun2(i)
+PA_LMAp <- bb2[,1:3]
+PA_LMAs <- bb2[,4:6]
+LMAp_PA_var <- bb2[,7]
+LMAs_PA_var <- bb2[,8]
+toc()
 
 apply(PA_LMAs, 2, mean) |> round(1)
 apply(PA_LMAs, 2, \(x)quantile(x, 0.975)) |> round(1)
