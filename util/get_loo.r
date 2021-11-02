@@ -12,8 +12,7 @@ obs_files <- list.files("rda") |>
 
 #obs_files <- obs_files[!str_detect(obs_files, "_more") |
 #                 !str_detect(obs_files, "PA")]
-
-tmp <- obs_files %>%
+tmp <- obs_files |>
   str_split_fixed("_obs", 2)
 
 models <- tmp[,1]
@@ -25,7 +24,8 @@ for (i in 1:length(models)) {
 }
 
 
-files <- list.files("log")
+files <- list.files("log") |>
+  str_subset("obs")
 data.frame(obs_files, files) |> print()
 
 div <- NULL

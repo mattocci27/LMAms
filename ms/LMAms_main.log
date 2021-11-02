@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.10.14)  21 OCT 2021 14:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.10.22)  2 NOV 2021 13:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **LMAms_main.tex
 (./LMAms_main.tex
 LaTeX2e <2021-06-01> patch level 1
-L3 programming layer <2021-10-12> (/Users/mattocci/Library/TinyTeX/texmf-dist/t
+L3 programming layer <2021-10-18> (/Users/mattocci/Library/TinyTeX/texmf-dist/t
 ex/latex/base/article.cls
 Document Class: article 2021/02/12 v1.4n Standard LaTeX document class
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/base/size12.clo
@@ -506,7 +506,7 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdfte
 x.def
-File: l3backend-pdftex.def 2021-10-12 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2021-10-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count314
 \l__pdf_internal_box=\box73
 ) (./LMAms_main.aux)
@@ -746,10 +746,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 13124 strings out of 480559
- 191217 string characters out of 5902366
- 522388 words of memory out of 5000000
- 30338 multiletter control sequences out of 15000+600000
+ 13127 strings out of 480539
+ 191322 string characters out of 5901723
+ 524048 words of memory out of 5000000
+ 30361 multiletter control sequences out of 15000+600000
  452349 words of font info for 70 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  74i,12n,80p,1414b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
