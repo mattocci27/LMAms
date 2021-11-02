@@ -176,8 +176,7 @@ if (obs == "rand") {
             warmup = n_warm,
             thin = n_thin,
             chains = n_chains,
-            seed = 123,
-            control = list(adapt_delta = 0.99, max_treedepth = 20))
+            control = list(adapt_delta = 0.99, max_treedepth = 15))
     res
   }
 
@@ -185,6 +184,7 @@ if (obs == "rand") {
      data.frame(summary(model)$summary)
   }
 
+  set.seed(123)
   rand_res <- rand_dat %>%
     mutate(model = map(data, mod_fun)) %>%
     mutate(summary = map(model, summary_fun))
