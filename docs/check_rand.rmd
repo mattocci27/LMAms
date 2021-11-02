@@ -1,0 +1,361 @@
+---
+title: Diagnostics for randomized data
+author: Masatoshi Katabuchi
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+#rmdformats::material
+  html_document:
+    fig_caption: yes
+    theme: spacelab #readable #sandstone #spacelab #flatly
+    highlight: pygments #tango #kate
+    toc: TRUE
+    toc_depth: 2
+    number_sections: TRUE
+    toc_float:
+      collapsed: TRUE
+      smooth_scroll: TRUE
+      toc: true
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE,
+                      warning=FALSE,
+                      cache=FALSE,
+                      message=FALSE)
+```
+
+```{r, cache=FALSE}
+library(tidyverse)
+library(rstan)
+library(scales)
+library(memisc)
+library(bayesplot)
+settings <- yaml::yaml.load_file("../settings.yml")
+```
+
+
+```{r data, cache=FALSE, comment=NA}
+load("../rda/GL_Aps_LLs_rand.rda")
+GL <- dat
+GLrand <- rand_dat
+GLres <- rand_res  |>
+  mutate(dataset = "GLOPNET")
+
+load("../rda/PA_Ap_LLs_opt_more_rand.rda")
+PA <- dat
+PArand <- rand_dat
+PAres <- rand_res |>
+  mutate(dataset = "Panama")
+
+res <- bind_rows(GLres, PAres)
+```
+
+# Diagnostics
+
+## Rhat values
+
+```{r Rhat, cache=FALSE, comment=NA}
+
+hist_dat <- res %>%
+  mutate(rhat = map(summary, ~ .$Rhat)) %>%
+  dplyr::select(null_model, dataset, rhat) %>%
+  unnest(cols = c(rhat)) %>%
+  filter(!is.nan(rhat))
+
+max_rhat <- hist_dat %>%
+  group_by(null_model, dataset) %>%
+  summarize(rhat_max = max(rhat))
+
+hist_dat2 <- full_join(hist_dat, max_rhat,
+                       by = c("null_model" = "null_model",
+                                     "dataset" = "dataset")) %>%
+  mutate(conv = ifelse(rhat_max > 1.1, "Not-convergent", "Convergent"))
+
+ggplot(hist_dat2, aes(rhat, fill = conv)) +
+  geom_histogram() +
+  geom_vline(xintercept = 1.1) +
+  facet_wrap(dataset ~ null_model, scale = "free") +
+  theme_light()
+
+```
+
+Check posterior distributions for 10 randomized datasets.
+
+```{r trace}
+
+#color_scheme_set("darkgray")
+color_scheme_set("mix-brightblue-gray")
+
+check_trace <- function(x) {
+  fit <- GLres$model[[x]]
+  np_cp <- nuts_params(fit)
+  mcmc_trace(fit, pars = c("Z[2,3]", "lp__"), np = np_cp) +
+    ggtitle(str_c("Rand", x, sep = " "))
+}
+
+
+p <- 1:10  %>%
+  map(check_trace)
+
+p %>%
+  walk(print)
+
+```
+
+Divergent transitions indicate biased estimates for posterior distributions.
+Although Rand 3 and 8 did not show divergent transitions but these model did not
+show any patterns (See the figures below). The other models showed divergent transitions.
+
+
+```{r}
+n <- 2
+```
+
+```{r, GLdata}
+summary_GL_LDL <- GLres$summary[[n]]
+
+summary_GL_LDL %>%
+  round(3) %>%
+  DT::datatable(.)
+
+temp <- GLrand$data[[n]]
+
+GL0 <- GL %>%
+  as_tibble %>%
+  dplyr::select(sp, DE, GF)
+
+GL <- tibble(LMA = temp$LMA,
+                 Aarea = temp$A,
+                 LL = temp$LL,
+                 Rarea = temp$R)
+
+GL <- bind_cols(GL0, GL)
+
+p_mat <- rstan::extract(GLres$model[[n]], "p")[[1]]
+p_vec <- apply(p_mat, 2, mean)
+
+GL <- GL |>
+  mutate(LMAp = LMA * p_vec) |>
+  mutate(LMAs = LMA - LMAp)
+
+tmp <- GL %>%
+  dplyr::select(sp, DE)
+
+d <- read_csv("../data/nature.csv")
+
+dd <- data.frame(Narea = 10^d$`log.Narea`,
+        Parea = 10^d$`log.Parea`,
+        sp = d$Species) %>%
+        group_by(sp) %>%
+        summarize(Narea = mean(Narea, na.omit = T),
+            Parea = mean(Parea, na.omit = T))
+
+GL <- left_join(GL, dd, by = "sp") %>%
+  mutate(gr = factor(DE,
+    labels = c("Deciduous",
+               "Evergreen",
+               "Unclassified"
+                      ))) %>%
+  arrange(desc(gr))
+
+```
+
+# GLOPNET (rand 2)
+
+## A~area~, R~area~, LL
+
+Open symbols indicate sun leaves and closed symbols indicate shade leaves. The results look nice and do not alter main conclusions.
+
+```{r ARL, echo = F, message = F}
+
+GL2 <- GL %>%
+  gather(LMA, val, c("LMA", "LMAp", "LMAs")) %>%
+  gather(trait, val2, c("Aarea", "LL", "Rarea"))
+
+GL3 <- GL %>%
+  gather(LMA, val, c("LMA", "LMAp", "LMAs")) %>%
+  #gather(trait, val2, c("Aarea", "LL", "Rarea")) %>%
+  gather(trait2, val3, c("Narea","Parea"))
+
+fills <- c("Deciduous" = settings$fills$D,
+          "Evergreen" = settings$fills$E,
+          "Unclassified" = settings$fills$U)
+
+cols <- c("Deciduous" = settings$colors$D,
+          "Evergreen" = settings$colors$E,
+          "Unclassified" = settings$colors$U)
+
+ggplot(GL2, aes(x = val, y = val2, fill = gr, col = gr)) +
+  geom_point(shape = 21) +
+  facet_grid(trait ~ LMA, scale = "free") +
+  xlab("LMA") +
+  ylab("Traits") +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x)))
+
+
+```
+
+
+##  N~area~, P~area~
+
+```{r NP, echo = F, message = F, eval=TRUE}
+
+ggplot(GL3, aes(x = val, y = val3, fill = gr, col = gr)) +
+  geom_point(shape = 21) +
+  facet_grid(trait2 ~ LMA, scale = "free") +
+  xlab("LMA") +
+  ylab("Traits") +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x)))
+
+cor.test(log(GL$LMA), log(GL$Narea))
+
+cor.test(log(GL$LMAp), log(GL$Narea))
+
+
+```
+
+## LMAp vs LMAs
+
+```{r ps, echo = F, message = F}
+
+
+ggplot(GL, aes(x = LMAp, y = LMAs, fill = gr, col = gr)) +
+  geom_point(shape = 21) +
+  xlab("LMAm") +
+  ylab("LMAs") +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x)))
+
+
+cor.test(log(GL$LMAp) , log(GL$LMAs))
+
+```
+
+## Trait means
+
+The results look nice and do not alter main conclusions.
+
+```{r box, echo = F, message = F}
+ggplot(GL2, aes(x = gr, y = val,
+                fill = gr,
+                col = gr)) +
+  geom_boxplot() +
+  facet_grid(.~LMA, scale = "free") +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x))) +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols)
+```
+
+# Panama
+
+Check posterior distributions for 10 randomized datasets.
+
+```{r trace2}
+
+#color_scheme_set("darkgray")
+color_scheme_set("mix-brightblue-gray")
+
+check_trace <- function(x) {
+  fit <- PAres$model[[x]]
+  np_cp <- nuts_params(fit)
+  mcmc_trace(fit, pars = c("Z[2,3]", "lp__"), np = np_cp) +
+    ggtitle(str_c("Rand", x, sep = " "))
+}
+
+
+p <- 1:10  %>%
+  map(check_trace)
+
+p %>%
+  walk(print)
+
+```
+
+```{r, PAdata}
+n <- 6
+summary_PA_LDL <- PAres$summary[[n]]
+
+#summary_PA_LDL %>%
+#  round(3) %>%
+#  DT::datatable(.)
+
+temp <- PArand$data[[n]]
+
+PA0 <- PA %>%
+  as_tibble %>%
+  dplyr::select(sp, site, strata) %>%
+  mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) %>%
+  mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) %>%
+  mutate(site_strata = paste(site2, strata, sep = "_")) %>%
+  mutate(site_strata = factor(site_strata,
+          levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) %>%
+  mutate(gr = factor(site_strata,
+    labels = c("Sun-Wet",
+               "Sun-Dry",
+               "Shade-Wet",
+               "Shade-Dry"
+                      )))
+
+PA2 <- tibble(LMA = temp$LMA,
+                 Aarea = temp$A,
+                 LL = temp$LL,
+                 Rarea = temp$R
+                 )
+
+PA3 <- bind_cols(PA2, PA0)
+
+p_mat <- rstan::extract(PAres$model[[n]], "p")[[1]]
+p_vec <- apply(p_mat, 2, mean)
+
+PA4 <- PA3 |>
+  mutate(LMAp = LMA * p_vec) |>
+  mutate(LMAs = LMA - LMAp)
+
+```
+
+
+```{r ARL2, echo = F, message = F}
+
+PA_long <- PA4 %>%
+  gather(LMA, val, c("LMA", "LMAp", "LMAs")) %>%
+  gather(trait, val2, c("Aarea", "LL", "Rarea"))
+
+fills <- c("Sun-Dry" = settings$fills$sun_dry,
+          "Sun-Wet" = settings$fills$sun_wet,
+          "Shade-Dry" = settings$fills$shade_dry,
+          "Shade-Wet" = settings$fills$shade_wet)
+
+cols <- c("Sun-Dry" = settings$colors$sun_dry,
+          "Sun-Wet" = settings$colors$sun_wet,
+          "Shade-Dry" = settings$colors$shade_dry,
+          "Shade-Wet" = settings$colors$shade_wet)
+
+ggplot(PA_long, aes(x = val, y = val2, fill = gr, col = gr)) +
+  geom_point(shape = 21) +
+  facet_grid(trait ~ LMA, scale = "free") +
+  xlab("LMA") +
+  ylab("Traits") +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x))) +
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+              labels = trans_format("log10", math_format(10^.x)))
+
+
+```
