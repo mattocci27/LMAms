@@ -596,14 +596,10 @@ Xu, X., D. Medvigy, S. Joseph Wright, K. Kitajima, J. Wu, L. P. Albert, G. A. Ma
 \hypertarget{tables}{%
 \section{Tables}\label{tables}}
 
-\hypertarget{tables}{%
-\section{Tables}\label{tables}}
-
-Table: \label{tab:modeltab} Five model forms compared to predict \emph{A}\textsubscript{area}, LL and \emph{R}\textsubscript{area}.
-
-\begin{table}
-\centering
-\begin{tabular}[t]{l}
+\begin{longtable}[t]{l}
+\caption{\label{tab:modeltab}
+        Five model forms compared to predict $A_{area}$, *A*~area~, LL and *R*~area~.
+      }\\
 \toprule
 Expected trait values\\
 \midrule
@@ -633,9 +629,7 @@ Expected trait values\\
 \hspace{1em}$\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAp}_{i}^{\beta_p} (\mathrm{LMAs}_{i}/\mathrm{LT}{i})^{\beta_s}exp(\theta Light_i)$\\
 \hspace{1em}$\mathrm{E}[R_{\mathrm{area} , i}] = \gamma_0\mathrm{LMAp}_{i}^{\gamma_p} \mathrm{LMAs}_{i}^{\gamma_s}$\\
 \bottomrule
-\end{tabular}
-\end{table}
-
+\end{longtable}
 \newpage
 
 \hypertarget{section}{%
@@ -669,10 +663,10 @@ LMA & 528.1 & 106 \\
 \section{}\label{section-1}}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4227}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2887}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2887}}@{}}
-\caption{\label{tab:paratab} Posterior medians {[}95\% credible interval{]} of parameters for the best models. `LMAp + LMAs model' and `LMAp + LMAs + light model' are shown for GLOPNET and Panama data, respectively. Bold values are significantly different from zero based on the 95\% credible interval.}\tabularnewline
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4271}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2812}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2917}}@{}}
+\caption{\label{tab:paratab} Posterior means {[}95\% credible interval{]} of parameters for the best models. `LMAp + LMAs model' and `LMAp + LMAs + light model' are shown for GLOPNET and Panama data, respectively. Bold values are significantly different from zero based on the 95\% credible interval.}\tabularnewline
 \toprule
 \begin{minipage}[b]{\linewidth}\raggedright
 Parameters
@@ -693,13 +687,12 @@ Panama
 \end{minipage} \\
 \midrule
 \endhead
-Effect of LMAp on \emph{A}\textsubscript{area} (\(\alpha_p\)) & \textbf{0.206 {[}0.108, 0.294{]}} & \textbf{0.442 {[}0.338, 0.574{]}} \\
-Effect of LMAs on \emph{A}\textsubscript{area} (\(\alpha_s\)) & \textbf{-0.111 {[}-0.179, -0.037{]}} & \textbf{0.29 {[}0.16, 0.391{]}} \\
-Effect of LMAp on LL (\(\beta_p\)) & \textbf{0.261 {[}0.097, 0.466{]}} & 0.086 {[}-0.119, 0.314{]} \\
-Effect of LMAs on LL (\(\beta_s\)) & \textbf{0.785 {[}0.627, 0.93{]}} & \textbf{0.376 {[}0.172, 0.567{]}} \\
-Effect of LMAp on \emph{R}\textsubscript{area} (\(\gamma_p\)) & \textbf{0.218 {[}0.096, 0.316{]}} & \textbf{0.6 {[}0.345, 0.822{]}} \\
-Effect of LMAs on \emph{R}\textsubscript{area} (\(\gamma_s\)) & 0.049 {[}-0.033, 0.14{]} & 0.204 {[}-0.059, 0.469{]} \\
-Effect of light on LL (\(\theta\)) & - & \textbf{-1.046 {[}-1.471, -0.617{]}} \\
+Effect of LMAp on \emph{A}\textsubscript{area} (\(\alpha_p\)) & \textbf{0.283 {[}0.207, 0.358{]}} & \textbf{0.552 {[}0.404, 0.702{]}} \\
+Effect of LMAs on \emph{A}\textsubscript{area} (\(\alpha_s\)) & \textbf{-0.132 {[}-0.201, -0.06{]}} & - \\
+Effect of LMAs on LL (\(\beta_s\)) & \textbf{0.887 {[}0.765, 1.017{]}} & \textbf{0.367 {[}0.188, 0.55{]}} \\
+Effect of LMAp on \emph{R}\textsubscript{area} (\(\gamma_p\)) & \textbf{0.294 {[}0.21, 0.387{]}} & \textbf{0.651 {[}0.438, 0.851{]}} \\
+Effect of LMAs on \emph{R}\textsubscript{area} (\(\gamma_s\)) & 0.033 {[}-0.045, 0.114{]} & -0.012 {[}-0.276, 0.302{]} \\
+Effect of light on LL (\(\theta\)) & - & \textbf{-0.804 {[}-1.104, -0.525{]}} \\
 \bottomrule
 \end{longtable}
 
@@ -711,7 +704,7 @@ Effect of light on LL (\(\theta\)) & - & \textbf{-1.046 {[}-1.471, -0.617{]}} \\
 \begin{figure}
 \hypertarget{fig:Hplt}{%
 \centering
-\includegraphics{../figs/fig_h3.png}
+\includegraphics{../figs/fig_hypo.png}
 \caption{Example of a two-dimensional functional space that can result in either a two- or one-dimensional trait space, depending on how metabolic traits are normalized. (A) Hypothetical indpendent variation in two leaf mass per area (LMA) components: metabolic leaf mass per area (LMAp, which largely determines per-area values of photosynthesis, respiration, and nutrient concentrations) and structural leaf mass per area (LMAs, which determines leaf toughness but has little effect on metabolic traits).
 (B) Two-dimensional relationship between photosynthetic capacity (\emph{A}\textsubscript{max}) per-unit leaf area and total LMA (equal to LMAp + LMAs).
 (C) One-dimensional relationship between \emph{A}\textsubscript{max} per-unit leaf mass and total LMA. Variation in LMAp and LMAs \emph{A}\textsubscript{max} values in panels B and C are derived from our analysis of the GLOPNET database. \(A_{\mathrm{area} \, i}=1.9\mathrm{LMAp}_i^{0.36}\mathrm{LMAs}^{-0.25}\epsilon_i\), where \(\epsilon_i\) is log-normally distributed with log-mean with 0, log-scale parameter with 0.3 (see Methods and Results).''\}}\label{fig:Hplt}
