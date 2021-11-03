@@ -218,7 +218,7 @@ To avoid this non-identifiability, we explore two methods based on our biologica
 In the first method, we switched the $\alpha_p$ and $\alpha_s$ labels within a chain when the posterior means for $\alpha_p$ was smaller than that for $\alpha_s$ after the posterior distributions converged.
 In the second method, we constrained $\alpha_p$ > $\alpha_s$ during MCMC.
 Both methods yielded qualitatively similar results; we report results from the second method.
-Constraing $\alpha_p$ > $\alpha_s$ alone also constrains posterior distributions of the ohter parameters, and thus we did not
+Constraing $\alpha_p$ > $\alpha_s$ alone also constrains posterior distributions of the ohter parameters, and thus we did not XXX.
 Convergence of the posterior distribution was assessed with the Gelman-Rubin statistic with a convergence threshold of 1.1 for all parameters [@Gelman2013].
 
 Because our statistical approach includes many parameters (one latent variable *f~i~* to partition LMA into LMAp and LMAs for each leaf sample), we implemented tests with randomized data to assess potential overfitting.
@@ -250,7 +250,7 @@ We applied our LMAp+LMAs model (Eq. \@ref(eq:E-A)) to simulated data to better u
 The causes and interpretation of *A* vs. LMA relationships are controversial [@Westoby2013].
 Although *A* is often mass-normalized (e.g., @Wright2005; @Shipley2006; @Blonder2011), @Lloyd2013 argued that photosynthesis is an area-based process, and therefore *A* should be area-normalized when exploring trait relationships.
 Consistent with this argument, @Osnas2013 showed that across global species, variation in *A* is strongly dependent on leaf area, but only weakly dependent on leaf mass (after controlling for interspecific variation in leaf area).
-@Osnas2018 further showed that this result (strong area-dependence but weak mass-dependence of A across species) is most apparent within species groups in which LL is highly variable.
+@Osnas2018 further showed that this result (strong area-dependence but weak mass-dependence of A across species) is most apparent within species groups in which LL is highly variable (‘Area-dependence and ‘mass-dependence’ refer to the degree to which whole-leaf trait values depend on leaf area and mass, respectively; see @Osnas2013, @Osnas2018).
 
 To better understand the factors affecting *A* vs. LMA relationships, we created simulated datasets in which we varied the following factors: the sensitivity of *A*~area~ to variation in LMAp (parameter $\alpha_p$ in Eq. \@ref(eq:E-A)); the sensitivity of *A*~area~ to LMAs (parameter $\alpha_s$ in Eq. \@ref(eq:E-A)), and the degree to which LMAp and LMAs varied among leaves.
 For each simulated dataset, we quantified the *A* vs. LMA relationship following @Osnas2018:
