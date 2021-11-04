@@ -1,7 +1,7 @@
 % Options for packages loaded elsewhere
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL ms/LMAms_main_old.tex   Wed Nov  3 18:14:46 2021
-%DIF ADD ms/LMAms_main.tex       Wed Nov  3 18:31:29 2021
+%DIF ADD ms/LMAms_main.tex       Thu Nov  4 18:01:55 2021
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 %
@@ -436,6 +436,12 @@ where \DIFdelbegin \DIFdel{, }\emph{\DIFdel{A}}%DIFAUXCMD
 The }\DIFdelend \DIFaddbegin \DIFadd{E}{[}\DIFadd{\(\cdot\)}{]} \DIFadd{indicates expected value;
 the \(\alpha\), \(\beta\), and \(\gamma\) terms are fitted parameters;
 and the }\DIFaddend logarithms of \emph{A}\textsubscript{area}, LL, and \emph{R}\textsubscript{area} are assumed to have a multivariate normal distribution (see supplement).
+\DIFaddbegin \DIFadd{We assumed that:
+(i) }\emph{\DIFadd{A}}\DIFadd{\textsubscript{area} depends more strongly on metabolic leaf mass (LMAp: parameters \(\alpha_p\) Eq. 4) than structural leaf mass (LMAs: parameter \(\alpha_s\)), and
+(ii) LL depends more strongly on LMAs (\(\beta_s\) in Eqs. 6a-b) than LMAm (\(\beta_p\)).
+In the first assumption, we constrained \(\alpha_p\) \textgreater{} \(\alpha_s\) or we set \(\alpha_s\) to be zero.
+In the second assumption, we constrained \(\beta_s\) \textgreater{} \(\beta_p\) or we set \(\beta_p\) to be zero.
+}\DIFaddend 
 
 We also considered models in which LMAs in Eq. \DIFdelbegin %DIFDELCMD < \eqref{eq:E-LL} %%%
 \DIFdelend \DIFaddbegin \DIFadd{(6a) }\DIFaddend was replaced by leaf structural density \DIFdelbegin \DIFdel{, }\DIFdelend \DIFaddbegin \DIFadd{(}\DIFaddend LMAs/LT, where LT is leaf thickness\DIFdelbegin \DIFdel{.
@@ -521,15 +527,19 @@ Posterior distributions of all parameters were estimated using the Hamiltonian M
 Prior distributions for the latent variables \emph{f}\textsubscript{i} (which are used to partition LMA into LMAp and LMAs according to Eqs. \eqref{eq:E-A}-\eqref{eq:E-R}) were non-informative uniform\DIFdelbegin \DIFdel{priors beta(1}\DIFdelend \DIFaddbegin \DIFadd{(0}\DIFaddend , 1) \DIFaddbegin \DIFadd{distributions, }\DIFaddend (i.e., LMA was partitioned based on patterns in the data).
 See supplement X for more detail.
 The Stan code use to fit models \DIFdelbegin \DIFdel{are also }\DIFdelend \DIFaddbegin \DIFadd{is }\DIFaddend available from Github at: \href{https://github.com/mattocci27/LMApLMAs}{https://github.com/mattocci27/XXX}.
+\DIFdelbegin %DIFDELCMD < 
 
-\DIFdelbegin \DIFdel{Some parameters are obviously exchangeable in our model }\DIFdelend \DIFaddbegin \DIFadd{In the absence of additional constraints, some parameters are exchangeable (and the model is therefore non-identifiable), because different parameter values can lead to the identical expected values of }\emph{\DIFadd{A}}\DIFadd{\textsubscript{area}, }\emph{\DIFadd{R}}\DIFadd{\textsubscript{area}, and LL}\DIFaddend .
-For example, \DIFdelbegin \DIFdel{\((f_i, \alpha_m, \alpha_s)\) }\DIFdelend \DIFaddbegin \DIFadd{\((f_i, \alpha_p, \alpha_s)\) }\DIFaddend = (0.2, 0.5, 1.0) and (0.8, 1.0, 0.5) yield the \DIFdelbegin \DIFdel{invariance of the likelihood}\DIFdelend \DIFaddbegin \DIFadd{identical expectation for }\emph{\DIFadd{A}}\DIFadd{\textsubscript{area}}\DIFaddend .
-To avoid this non-identifiability, we explore two methods based on our \DIFdelbegin \DIFdel{assumption }\DIFdelend \DIFaddbegin \DIFadd{biological assumption (following Osnas et al. (}\protect\hyperlink{ref-Osnas2018}{2018}\DIFadd{)) }\DIFaddend that \emph{A}\textsubscript{area} depends more strongly on metabolic leaf mass (LMAp; parameter \DIFdelbegin \DIFdel{\(\alpha_m\) }\DIFdelend \DIFaddbegin \DIFadd{\(\alpha_p\) }\DIFaddend in Eq. \eqref{eq:E-A}) than structural leaf mass (LMAs; parameter \(\alpha_s\) in \DIFdelbegin \DIFdel{Eq}\DIFdelend \DIFaddbegin \DIFadd{Eqs}\DIFaddend . \eqref{eq:E-A}.
-In the first method, we switched the \DIFdelbegin \DIFdel{\(\alpha_m\) }\DIFdelend \DIFaddbegin \DIFadd{\(\alpha_p\) }\DIFaddend and \(\alpha_s\) labels within a chain when the posterior means for \DIFdelbegin \DIFdel{\(\alpha_m\) }\DIFdelend \DIFaddbegin \DIFadd{\(\alpha_p\) }\DIFaddend was smaller than that for \(\alpha_s\) after the posterior distributions converged.
-In the second method, we constrained \DIFdelbegin \DIFdel{\(\alpha_m\) }\DIFdelend \DIFaddbegin \DIFadd{\(\alpha_p\) }\DIFaddend \textgreater{} \(\alpha_s\) during MCMC.
+%DIFDELCMD < %%%
+\DIFdel{Some parameters are obviously exchangeable in our model.
+For example, \((f_i, \alpha_m, \alpha_s)\) = (0.2, 0.5, 1.0) and (0.8, 1.0, 0.5) yield the invariance of the likelihood.
+To avoid this non-identifiability, we explore two methods based on our assumption that }\emph{\DIFdel{A}}%DIFAUXCMD
+\DIFdel{\textsubscript{area} depends more strongly on metabolic leaf mass (LMAp; parameter \(\alpha_m\) in Eq. }%DIFDELCMD < \eqref{eq:E-A}%%%
+\DIFdel{) than structural leaf mass (LMAs; parameter \(\alpha_s\) in Eq. }%DIFDELCMD < \eqref{eq:E-A}%%%
+\DIFdel{.
+In the first method, we switched the \(\alpha_m\) and \(\alpha_s\) labels within a chain when the posterior means for \(\alpha_m\) was smaller than that for \(\alpha_s\) after the posterior distributions converged.
+In the second method, we constrained \(\alpha_m\) \textgreater{} \(\alpha_s\) during MCMC.
 Both methods yielded qualitatively similar results; we report results from the second method.
-\DIFaddbegin \DIFadd{Constraing \(\alpha_p\) \textgreater{} \(\alpha_s\) alone also constrains posterior distributions of the ohter parameters, and thus we did not XXX.
-}\DIFaddend Convergence of the posterior distribution was assessed with the Gelman-Rubin statistic with a convergence threshold of 1.1 for all \DIFdelbegin \DIFdel{diagnostics (Gelman et al. }\DIFdelend \DIFaddbegin \DIFadd{parameters (}\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Gelman2013}{2013}%%%
+}\DIFdelend Convergence of the posterior distribution was assessed with the Gelman-Rubin statistic with a convergence threshold of 1.1 for all \DIFdelbegin \DIFdel{diagnostics (Gelman et al. }\DIFdelend \DIFaddbegin \DIFadd{parameters (}\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Gelman2013}{2013}%%%
 \DIFdelend \DIFaddbegin \hyperlink{ref-Gelman2013}{Gelman et al. 2013}\DIFaddend ).
 
 Because our statistical approach includes \DIFaddbegin \DIFadd{many parameters (}\DIFaddend one latent variable \emph{f\textsubscript{i}} to partition LMA into LMAp and LMAs for each leaf sample\DIFdelbegin \DIFdel{, one might expect a good match between predictions and observations simply due to the large number of free parameters, whether or not the model captured important biological mechanisms.
@@ -537,9 +547,11 @@ To evaluate model performance while controlling for the number of free parameter
 Specifically, we }\DIFdelend \DIFaddbegin \DIFadd{), we implemented tests with randomized data to assess potential overfitting.
 We }\DIFaddend generated randomized datasets by randomizing all the trait values (LMA, \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and LL) across species.
 Thus, the randomized datasets had zero expected covariance among traits.
-Model results obtained from the randomized datasets did not produce any significant patterns for the GLOPNET data or models did not converged for the Panama data (Supplement X).
-\DIFaddbegin \DIFadd{In contrast, models fit to observed data converged and produced significant results for both GLOPNET and Panama (see Results).
-}\DIFaddend Thus, the \DIFaddbegin \DIFadd{tests with randomized data indicate that our }\DIFaddend model is not \DIFdelbegin \DIFdel{guaranteed to work based on the assumptions alone.
+Model results obtained from the randomized datasets did not \DIFdelbegin \DIFdel{produce any significant patterns for the GLOPNET data or models did not converged for the Panama data (Supplement X}\DIFdelend \DIFaddbegin \DIFadd{convergent or showed divergent transitions.
+Divergent transitions suggest that estimates are based on the incomplete exploration of the simulated Hamiltonian trajectory and not trusted (}\protect\hyperlink{ref-Betancourt2016}{Betancourt 2016}\DIFadd{).
+(in a simple sentence: Model did not work)
+In contrast, models fit to observed data converged without divergent transitions and produced significant results for both GLOPNET and Panama (see Results}\DIFaddend ).
+Thus, the \DIFaddbegin \DIFadd{tests with randomized data indicate that our }\DIFaddend model is not \DIFdelbegin \DIFdel{guaranteed to work based on the assumptions alone.
 We }\DIFdelend \DIFaddbegin \DIFadd{inherently prone to overfitting or to producing patterns from noise.
 We therefore }\DIFaddend assume that estimates of LMAp and LMAs \DIFaddbegin \DIFadd{obtained from the GLOPNET and Panama datasets }\DIFaddend reflect meaningful patterns in the \DIFdelbegin \DIFdel{observed data.
 }%DIFDELCMD < 
@@ -593,9 +605,13 @@ Note that although Eq. \DIFdelbegin %DIFDELCMD < \eqref{eq:mass} %%%
 \DIFdelend \DIFaddbegin \DIFadd{8 }\DIFaddend uses area-normalized \emph{A}\DIFdelbegin \DIFdel{\textsubscript{max}}\DIFdelend , equivalent results \DIFdelbegin \DIFdel{can be }\DIFdelend \DIFaddbegin \DIFadd{are }\DIFaddend obtained from mass-normalized \emph{A} \DIFdelbegin \DIFdel{\textsubscript{max} (Osnas et al. }\DIFdelend \DIFaddbegin \DIFadd{(}\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Osnas2018}{2018}%%%
 \DIFdelend \DIFaddbegin \hyperlink{ref-Osnas2018}{Osnas et al. 2018}\DIFaddend ).
 
-We created simulated datasets based on a range of assumptions for the LMA variance components: (i) \DIFdelbegin \DIFdel{LMAp variance \textless\textless{} }\DIFdelend \DIFaddbegin \DIFadd{low LMAp variance and high }\DIFaddend LMAs variance, (ii) \DIFdelbegin \DIFdel{LMAp variance = }\DIFdelend \DIFaddbegin \DIFadd{low LMAp variance and low }\DIFaddend LMAs variance, (iii) \DIFdelbegin \DIFdel{LMAp variance \textgreater\textgreater{} }\DIFdelend \DIFaddbegin \DIFadd{high LMAp variance and low }\DIFaddend LMAs variance, (iv) our estimates (posterior means) of LMAp and LMAs variances from GLOPNET, (v) our estimates of LMAp and LMAs variances for Panama sun leaves, and (vi) our estimates of LMAp and LMAs variances for Panama shade leaves.
-For each of the above cases, we considered a range of values for and (which determine the sensitivity of \emph{A}\textsubscript{area} to LMAp and LMAs in Eq \eqref{eq:E-A}), as well as the empirical estimates of these values based on GLOPNET and Panama datasets.
-Each simulation had a sample size of 100 leaves, where the values of LMAp and LMAs for each leaf was a random draw from a lognormal distribution with median and variance as follows: for simulations (i)-(iii), median \DIFdelbegin \DIFdel{log(}\DIFdelend 40 \DIFdelbegin \DIFdel{) and variance log}\DIFdelend \DIFaddbegin \DIFadd{and standard deviaitons of exp}\DIFaddend (1) or \DIFdelbegin \DIFdel{log}\DIFdelend \DIFaddbegin \DIFadd{exp}\DIFaddend (4) (for low and high variance \DIFaddbegin \DIFadd{cases}\DIFaddend , respectively); and for simulations (iv)-(vi), medians and \DIFdelbegin \DIFdel{variances }\DIFdelend \DIFaddbegin \DIFadd{standard deviations }\DIFaddend were the posterior means from our GLOPNET and Panama analyses.
+We \DIFdelbegin \DIFdel{created simulated datasets based on a range of assumptions for the LMA variance components: (i) LMAp variance \textless\textless{} LMAs variance, (ii) LMAp variance = LMAs variance, (iii) LMAp variance \textgreater\textgreater{} LMAs variance, (iv) our estimates (posterior means) of LMAp and LMAs variances from GLOPNET, (v) our estimates of LMAp and LMAs variances for Panama sun leaves, and (vi) our estimates of LMAp and LMAs variances for Panama shade leaves.
+For each of the above cases, we considered a range of values for and (which determine the sensitivity of }\DIFdelend \DIFaddbegin \DIFadd{prepared LMAp values based on the empirical estimates of these values from our GLOPNET and Panama analyses.
+LMAs was generated by a random draw from a lognormal distribution with the empirical estimates of mean values but changing variance.
+}\DIFaddend \emph{A}\textsubscript{area} \DIFdelbegin \DIFdel{to LMApand LMAs in Eq}%DIFDELCMD < \eqref{eq:E-A}%%%
+\DIFdel{), as well as the empirical estimates of these valuesbased on GLOPNET}\DIFdelend \DIFaddbegin \DIFadd{was then generated based on LMAp, LMAs }\DIFaddend and \DIFdelbegin \DIFdel{Panama datasets}\DIFdelend \DIFaddbegin \DIFadd{\(\alpha\) values (Eq}\DIFaddend . \DIFaddbegin \DIFadd{4).
+Using the above values, we calculated }\emph{\DIFadd{b}} \DIFadd{for GLOPNET, Panama sun leaves and Panama shade leaves.
+}\DIFaddend Each simulation had a sample size of 100 leaves, \DIFdelbegin \DIFdel{where the values of LMAp and LMAs for each leaf was a random draw from a lognormal distribution with median and variance as follows: for simulations (i)-(iii), median log(40) and variance log(1) or log(4) (for low and high variance, respectively); and for simulations (iv)-(vi), medians and variances were the posterior means from our GLOPNET and Panama analyses}\DIFdelend \DIFaddbegin \DIFadd{and we repeated these steps 1000 times}\DIFaddend .
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
@@ -775,7 +791,11 @@ MK, JWL and JLDO conceived of the study; KK, SJW and SAVB contributed data; MK d
 \leavevmode\vadjust pre{\hypertarget{ref-Aranda2004}{}}%
 Aranda, I., F. Pardo, L. Gil, and J. A. Pardos. 2004. \href{https://doi.org/10.1016/j.actao.2004.01.003}{Anatomical basis of the change in leaf mass per area and nitrogen investment with relative irradiance within the canopy of eight temperate tree species}. Acta Oecologica 25:187--195.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Blonder2011}{}}%
+\leavevmode\vadjust pre{\DIFaddbegin \hypertarget{ref-Betancourt2016}{}}%DIF > 
+\DIFadd{Betancourt, M. 2016. }\href{https://arxiv.org/abs/1604.00695}{\DIFadd{Diagnosing }{\DIFadd{Suboptimal Cotangent Disintegrations}} \DIFadd{in }{\DIFadd{Hamiltonian Monte Carlo}}}\DIFadd{.
+}
+
+\leavevmode\vadjust \DIFadd{pre}{\DIFaddend \hypertarget{ref-Blonder2011}{}}%
 Blonder, B., C. Violle, L. P. Bentley, and B. J. Enquist. 2011. \href{https://doi.org/10.1111/j.1461-0248.2010.01554.x}{Venation networks and the origin of the leaf economics spectrum}. Ecology Letters 14:91--100.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Bonan2002}{}}%
