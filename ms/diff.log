@@ -1,35 +1,35 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.10.22)  4 NOV 2021 18:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.11.24)  29 NOV 2021 18:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **ms/diff.tex
 (./ms/diff.tex
-LaTeX2e <2021-06-01> patch level 1
-L3 programming layer <2021-10-18>
+LaTeX2e <2021-11-15>
+L3 programming layer <2021-11-22>
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2021/02/12 v1.4n Standard LaTeX document class
+Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/base/size12.clo
-File: size12.clo 2021/02/12 v1.4n Standard LaTeX file (size option)
+File: size12.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count182
-\c@section=\count183
-\c@subsection=\count184
-\c@subsubsection=\count185
-\c@paragraph=\count186
-\c@subparagraph=\count187
-\c@figure=\count188
-\c@table=\count189
+\c@part=\count183
+\c@section=\count184
+\c@subsection=\count185
+\c@subsubsection=\count186
+\c@paragraph=\count187
+\c@subparagraph=\count188
+\c@figure=\count189
+\c@table=\count190
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2021/04/20 v2.17j AMS math features
+Package: amsmath 2021/10/15 v2.17l AMS math features
 \@mathmargin=\skip49
 
 For additional information on amsmath, use the `?' option.
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
-Package: amstext 2000/06/29 v2.01 AMS text
+Package: amstext 2021/08/26 v2.01 AMS text
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
@@ -41,15 +41,15 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen140
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
-Package: amsopn 2016/03/08 v2.02 operator names
+Package: amsopn 2021/08/26 v2.02 operator names
 )
-\inf@bad=\count190
+\inf@bad=\count191
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count191
-\leftroot@=\count192
+\uproot@=\count192
+\leftroot@=\count193
 LaTeX Info: Redefining \overline on input line 399.
-\classnum@=\count193
-\DOTSCASE@=\count194
+\classnum@=\count194
+\DOTSCASE@=\count195
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
@@ -58,15 +58,15 @@ LaTeX Info: Redefining \cdots on input line 620.
 \big@size=\dimen141
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count195
-\c@MaxMatrixCols=\count196
+\macc@depth=\count196
+\c@MaxMatrixCols=\count197
 \dotsspace@=\muskip16
-\c@parentequation=\count197
-\dspbrk@lvl=\count198
+\c@parentequation=\count198
+\dspbrk@lvl=\count199
 \tag@help=\toks17
-\row@=\count199
-\column@=\count266
-\maxfields@=\count267
+\row@=\count266
+\column@=\count267
+\maxfields@=\count268
 \andhelp@=\toks18
 \eqnshift@=\dimen142
 \alignsep@=\dimen143
@@ -78,8 +78,8 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 \multlinegap=\skip50
 \multlinetaggap=\skip51
 \mathdisplay@stack=\toks20
-LaTeX Info: Redefining \[ on input line 2923.
-LaTeX Info: Redefining \] on input line 2924.
+LaTeX Info: Redefining \[ on input line 2938.
+LaTeX Info: Redefining \] on input line 2939.
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
@@ -212,8 +212,8 @@ Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 )
 \@linkdim=\dimen148
-\Hy@linkcounter=\count268
-\Hy@pagecounter=\count269
+\Hy@linkcounter=\count269
+\Hy@pagecounter=\count270
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2021-06-07 v7.00m Hyperref: PDFDocEncoding definition (HO)
@@ -231,7 +231,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count270
+\Hy@SavedSpaceFactor=\count271
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2021-06-07 v7.00m Hyperref: PDF Unicode definition (HO)
@@ -246,7 +246,7 @@ Package hyperref Info: Plain pages OFF on input line 4207.
 Package hyperref Info: Backreferencing OFF on input line 4212.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4445.
-\c@Hy@tempcnt=\count271
+\c@Hy@tempcnt=\count272
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
@@ -263,7 +263,7 @@ ty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count272
+\Fld@menulength=\count273
 \Field@Width=\dimen150
 \Fld@charsize=\dimen151
 Package hyperref Info: Hyper figures OFF on input line 6076.
@@ -280,9 +280,9 @@ LaTeX Info: Redefining \pageref on input line 6150.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count273
-\c@Item=\count274
-\c@Hfootnote=\count275
+\Hy@abspage=\count274
+\c@Item=\count275
+\c@Hfootnote=\count276
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
@@ -290,12 +290,12 @@ Package hyperref Info: Driver (autodetected): hpdftex.
 File: hpdftex.def 2021-06-07 v7.00m Hyperref driver for pdfTeX
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
-Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atvery packag
-e
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
+kage
 with kernel methods
 )
-\Fld@listcount=\count276
-\c@bookmark@seq@number=\count277
+\Fld@listcount=\count277
+\c@bookmark@seq@number=\count278
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilec
 heck.sty
@@ -312,16 +312,16 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
 File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
-\BKM@id=\count278
+\BKM@id=\count279
 )) (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count279
-\Gm@cntv=\count280
-\c@Gm@tempcnt=\count281
+\Gm@cnth=\count280
+\Gm@cntv=\count281
+\c@Gm@tempcnt=\count282
 \Gm@bindingoffset=\dimen152
 \Gm@wd@mp=\dimen153
 \Gm@odd@mp=\dimen154
@@ -333,22 +333,22 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@dimlist=\toks24
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
-Package: longtable 2021-05-07 v4.16 Multi-page Table package (DPC)
+Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
 \LTleft=\skip53
 \LTright=\skip54
 \LTpre=\skip55
 \LTpost=\skip56
-\LTchunksize=\count282
+\LTchunksize=\count283
 \LTcapwidth=\dimen160
 \LT@head=\box52
 \LT@firsthead=\box53
 \LT@foot=\box54
 \LT@lastfoot=\box55
 \LT@gbox=\box56
-\LT@cols=\count283
-\LT@rows=\count284
-\c@LT@tables=\count285
-\c@LT@chunks=\count286
+\LT@cols=\count284
+\LT@rows=\count285
+\c@LT@tables=\count286
+\c@LT@chunks=\count287
 \LT@p@ftn=\toks25
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
@@ -363,16 +363,16 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen168
 \cmidrulekern=\dimen169
 \defaultaddspace=\dimen170
-\@cmidla=\count287
-\@cmidlb=\count288
+\@cmidla=\count288
+\@cmidlb=\count289
 \@aboverulesep=\dimen171
 \@belowrulesep=\dimen172
-\@thisruleclass=\count289
-\@lastruleclass=\count290
+\@thisruleclass=\count290
+\@lastruleclass=\count291
 \@thisrulewidth=\dimen173
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
-Package: array 2021/04/20 v2.5e Tabular extension package (FMi)
+Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
 \col@sep=\dimen174
 \ar@mcellbox=\box57
 \extrarowheight=\dimen175
@@ -383,20 +383,20 @@ Package: array 2021/04/20 v2.5e Tabular extension package (FMi)
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count291
-\calc@Bcount=\count292
+\calc@Acount=\count292
+\calc@Bcount=\count293
 \calc@Adimen=\dimen176
 \calc@Bdimen=\dimen177
 \calc@Askip=\skip59
 \calc@Bskip=\skip60
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count293
+\calc@Ccount=\count294
 \calc@Cskip=\skip61
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count294
+\etb@tempcnta=\count295
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
@@ -404,13 +404,13 @@ Package: footnote 1997/01/28 1.13 Save footnotes around boxes
 \fn@width=\dimen178
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2020/12/05 v1.2c Enhanced LaTeX Graphics (DPC,SPQR)
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
@@ -431,16 +431,16 @@ Package: setspace 2011/12/19 v6.7a set line spacing
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
-\linenopenalty=\count295
+\linenopenalty=\count296
 \output=\toks27
-\linenoprevgraf=\count296
+\linenoprevgraf=\count297
 \linenumbersep=\dimen181
 \linenumberwidth=\dimen182
-\c@linenumber=\count297
-\c@pagewiselinenumber=\count298
-\c@LN@truepage=\count299
-\c@internallinenumber=\count300
-\c@internallinenumbers=\count301
+\c@linenumber=\count298
+\c@pagewiselinenumber=\count299
+\c@LN@truepage=\count300
+\c@internallinenumber=\count301
+\c@internallinenumbers=\count302
 \quotelinenumbersep=\dimen183
 \bframerule=\dimen184
 \bframesep=\dimen185
@@ -450,21 +450,21 @@ LaTeX Info: Redefining \\ on input line 3056.
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip65
-\multirow@cntb=\count302
+\multirow@cntb=\count303
 \multirow@dima=\skip66
 \bigstrutjot=\dimen186
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen187
 \WF@size=\dimen188
-\c@WF@wrappedlines=\count303
+\c@WF@wrappedlines=\count304
 \WF@box=\box61
 \WF@everypar=\toks28
 Package: wrapfig 2003/01/31  v 3.6
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count304
+\c@float@type=\count305
 \float@exts=\toks29
 \float@box=\box62
 \@float@everytoks=\toks30
@@ -489,16 +489,16 @@ Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box64
-\sift@deathcycles=\count305
+\sift@deathcycles=\count306
 \@vwid@loff=\dimen189
 \@vwid@roff=\dimen190
 )
-\c@taburow=\count306
-\tabu@nbcols=\count307
-\tabu@cnt=\count308
-\tabu@Xcol=\count309
-\tabu@alloc=\count310
-\tabu@nested=\count311
+\c@taburow=\count307
+\tabu@nbcols=\count308
+\tabu@cnt=\count309
+\tabu@Xcol=\count310
+\tabu@alloc=\count311
+\tabu@nested=\count312
 \tabu@target=\dimen191
 \tabu@spreadtarget=\dimen192
 \tabu@naturalX=\dimen193
@@ -538,7 +538,7 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \UL@skip=\skip70
 \UL@hook=\toks34
 \UL@height=\dimen256
-\UL@pe=\count312
+\UL@pe=\count313
 \UL@pixel=\dimen257
 \ULC@box=\box72
 Package: ulem 2019/11/18
@@ -547,7 +547,7 @@ Package: ulem 2019/11/18
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \rotheadsize=\dimen259
-\c@nlinenum=\count313
+\c@nlinenum=\count314
 \TeXr@lab=\toks35
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/oberdiek/settobox.sty
@@ -574,7 +574,7 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdfte
 x.def
 File: l3backend-pdftex.def 2021-10-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count314
+\l__color_backend_stack_int=\count315
 \l__pdf_internal_box=\box74
 ) (ms/diff.aux)
 \openout1 = `diff.aux'.
@@ -600,16 +600,16 @@ LaTeX Font Info:    ... okay on input line 238.
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count315
+\scratchcounter=\count316
 \scratchdimen=\dimen260
 \scratchbox=\box75
-\nofMPsegments=\count316
-\nofMParguments=\count317
+\nofMPsegments=\count317
+\nofMParguments=\count318
 \everyMPshowfont=\toks36
-\MPscratchCnt=\count318
+\MPscratchCnt=\count319
 \MPscratchDim=\dimen261
-\MPnumerator=\count319
-\makeMPintoPDFobject=\count320
+\MPnumerator=\count320
+\makeMPintoPDFobject=\count321
 \everyMPtoPDFconversion=\toks37
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-bas
@@ -635,7 +635,7 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 string.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count321
+\c@section@level=\count322
 )
 LaTeX Info: Redefining \ref on input line 238.
 LaTeX Info: Redefining \pageref on input line 238.
@@ -730,52 +730,99 @@ LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 2
  (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-[2] [3] [4] [5] [6] [7] [8] [9]
+[2] [3] [4]
 
-LaTeX Warning: Reference `tab:lootab' on page 10 undefined on input line 631.
+LaTeX Warning: Reference `tab:modeltab' on page 5 undefined on input line 388.
 
+[5] [6] [7] [8] [9]
 
-LaTeX Warning: Reference `tab:lootab' on page 10 undefined on input line 633.
-
-
-Underfull \hbox (badness 3108) in paragraph at lines 629--634
-|   []   |   []   |   []   |   []   |   []   []\T1/ptm/m/n/12 (Ta-ble []), sug-
-gest-ing that []|   []
- []
+LaTeX Warning: Reference `tab:paratab' on page 10 undefined on input line 624.
 
 
-LaTeX Warning: Reference `tab:lootab' on page 10 undefined on input line 635.
+LaTeX Warning: Reference `tab:lootab' on page 10 undefined on input line 634.
+
+
+LaTeX Warning: Reference `tab:lootab' on page 10 undefined on input line 638.
 
 [10]
 
-LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 639.
+LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 642.
 
 
-Underfull \hbox (badness 3514) in paragraph at lines 651--654
+LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 644.
+
+
+LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 646.
+
+
+LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 646.
+
+
+Underfull \hbox (badness 3514) in paragraph at lines 654--657
 [][]|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |  
  []   |   []   |   []
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 664.
-[11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21]
-<../figs/fig_hypo.png, id=534, 2528.44624pt x 789.95125pt>
+(Font)              <5> on input line 667.
+[11] [12]
+
+LaTeX Warning: Reference `tab:paratab' on page 13 undefined on input line 712.
+
+[13] [14] [15] [16] [17] [18]
+Underfull \hbox (badness 10000) in paragraph at lines 988--1038
+|   [][][]   |   [][][]   |   [][][]   |   [][][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 988--1038
+|   [][][]   |   [][][]   |   [][][]
+ []
+
+
+Overfull \hbox (10.86308pt too wide) in paragraph at lines 988--1038
+|   [][][]   |   [][][]   |   [][][]
+ []
+
+
+Overfull \hbox (112.93405pt too wide) in paragraph at lines 988--1038
+|   [][][]   |   [][][]   |   [][][]
+ []
+
+<../figs/table1.png, id=509, 225.84375pt x 530.98375pt>
+File: ../figs/table1.png Graphic file (type png)
+<use ../figs/table1.png>
+Package pdftex.def Info: ../figs/table1.png  used on input line 1104.
+(pdftex.def)             Requested size: 225.85696pt x 531.01483pt.
+[19] [20 <ms/../figs/table1.png>]
+<../figs/table2.png, id=523, 497.86pt x 244.915pt>
+File: ../figs/table2.png Graphic file (type png)
+<use ../figs/table2.png>
+Package pdftex.def Info: ../figs/table2.png  used on input line 1214.
+(pdftex.def)             Requested size: 469.7661pt x 231.09459pt.
+
+Overfull \hbox (6.81107pt too wide) in paragraph at lines 1214--1215
+[][][] 
+ []
+
+[21 <ms/../figs/table2.png>]
+<../figs/fig_hypo.png, id=531, 2528.44624pt x 789.95125pt>
 File: ../figs/fig_hypo.png Graphic file (type png)
 <use ../figs/fig_hypo.png>
-Package pdftex.def Info: ../figs/fig_hypo.png  used on input line 1136.
+Package pdftex.def Info: ../figs/fig_hypo.png  used on input line 1238.
 (pdftex.def)             Requested size: 469.72287pt x 146.75342pt.
 
-Overfull \hbox (6.76784pt too wide) in paragraph at lines 1136--1136
+Overfull \hbox (6.76784pt too wide) in paragraph at lines 1238--1238
  [][][] 
  []
 
-<../figs/GL_scatter.png, id=536, 1801.73125pt x 1801.73125pt>
+<../figs/GL_scatter.png, id=532, 1801.73125pt x 1801.73125pt>
 File: ../figs/GL_scatter.png Graphic file (type png)
 <use ../figs/GL_scatter.png>
-Package pdftex.def Info: ../figs/GL_scatter.png  used on input line 1162.
+Package pdftex.def Info: ../figs/GL_scatter.png  used on input line 1250.
 (pdftex.def)             Requested size: 469.73122pt x 469.73122pt.
 
-Overfull \hbox (6.77618pt too wide) in paragraph at lines 1162--1162
+Overfull \hbox (6.77618pt too wide) in paragraph at lines 1250--1250
  [][][] 
  []
 
@@ -783,102 +830,118 @@ Overfull \hbox (6.77618pt too wide) in paragraph at lines 1162--1162
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1165 \newpage
-                <ms/../figs/fig_hypo.png>] [23pdfTeX warning (ext4): destinatio
-n with the same identifier (name{figure.2}) has been already used, duplicate ig
-nored
+l.1253 \DIFaddend \newpage
+                           <ms/../figs/fig_hypo.png>] [23pdfTeX warning (ext4):
+ destination with the same identifier (name{figure.2}) has been already used, d
+uplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1165 \newpage
-                <ms/../figs/GL_scatter.png>]
-<../figs/PA_scatter.png, id=552, 1801.73125pt x 1801.73125pt>
+l.1253 \DIFaddend \newpage
+                           <ms/../figs/GL_scatter.png>]
+<../figs/PA_scatter.png, id=548, 1801.73125pt x 1801.73125pt>
 File: ../figs/PA_scatter.png Graphic file (type png)
 <use ../figs/PA_scatter.png>
-Package pdftex.def Info: ../figs/PA_scatter.png  used on input line 1182.
+Package pdftex.def Info: ../figs/PA_scatter.png  used on input line 1275.
 (pdftex.def)             Requested size: 469.73122pt x 469.73122pt.
 
-Overfull \hbox (6.77618pt too wide) in paragraph at lines 1182--1182
+Overfull \hbox (6.77618pt too wide) in paragraph at lines 1275--1275
  [][][] 
  []
 
-<../figs/LL_plot.png, id=555, 1058.95625pt x 1058.95625pt>
+[24] [25pdfTeX warning (ext4): destination with the same identifier (name{figur
+e.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1278 \newpage
+                <ms/../figs/PA_scatter.png>]
+<../figs/LL_plot.png, id=562, 1058.95625pt x 1058.95625pt>
 File: ../figs/LL_plot.png Graphic file (type png)
 <use ../figs/LL_plot.png>
-Package pdftex.def Info: ../figs/LL_plot.png  used on input line 1204.
+Package pdftex.def Info: ../figs/LL_plot.png  used on input line 1294.
 (pdftex.def)             Requested size: 469.75557pt x 469.75557pt.
 
-Overfull \hbox (6.80054pt too wide) in paragraph at lines 1204--1204
+Overfull \hbox (6.80054pt too wide) in paragraph at lines 1294--1294
  [][][] 
  []
 
-<../figs/mass_prop_simple.png, id=558, 947.54pt x 947.54pt>
+<../figs/mass_prop_simple.png, id=565, 947.54pt x 947.54pt>
 File: ../figs/mass_prop_simple.png Graphic file (type png)
 <use ../figs/mass_prop_simple.png>
-Package pdftex.def Info: ../figs/mass_prop_simple.png  used on input line 1226.
+Package pdftex.def Info: ../figs/mass_prop_simple.png  used on input line 1317.
 
 (pdftex.def)             Requested size: 469.74944pt x 469.74944pt.
 
-Overfull \hbox (6.7944pt too wide) in paragraph at lines 1226--1226
+Overfull \hbox (6.7944pt too wide) in paragraph at lines 1317--1317
  [][][] 
  []
 
-<../figs/box_main.png, id=561, 1848.9075pt x 1848.9075pt>
+<../figs/vpart.png, id=568, 1579.9025pt x 947.54pt>
+File: ../figs/vpart.png Graphic file (type png)
+<use ../figs/vpart.png>
+Package pdftex.def Info: ../figs/vpart.png  used on input line 1335.
+(pdftex.def)             Requested size: 469.75563pt x 281.734pt.
+
+Overfull \hbox (6.8006pt too wide) in paragraph at lines 1335--1335
+ [][][] 
+ []
+
+<../figs/box_main.png, id=569, 1848.9075pt x 1848.9075pt>
 File: ../figs/box_main.png Graphic file (type png)
 <use ../figs/box_main.png>
-Package pdftex.def Info: ../figs/box_main.png  used on input line 1241.
+Package pdftex.def Info: ../figs/box_main.png  used on input line 1350.
 (pdftex.def)             Requested size: 469.75835pt x 469.75835pt.
-<../figs/PA_NPC.png, id=562, 1801.73125pt x 1801.73125pt>
+<../figs/PA_NPC.png, id=570, 1801.73125pt x 1801.73125pt>
 File: ../figs/PA_NPC.png Graphic file (type png)
 <use ../figs/PA_NPC.png>
-Package pdftex.def Info: ../figs/PA_NPC.png  used on input line 1265.
+Package pdftex.def Info: ../figs/PA_NPC.png  used on input line 1374.
 (pdftex.def)             Requested size: 469.73122pt x 469.73122pt.
 
-Overfull \hbox (6.77618pt too wide) in paragraph at lines 1265--1265
+Overfull \hbox (6.77618pt too wide) in paragraph at lines 1374--1374
  [][][] 
  []
 
-[24pdfTeX warning (ext4): destination with the same identifier (name{figure.3})
+[26pdfTeX warning (ext4): destination with the same identifier (name{figure.4})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1268 \end{document}
-                      <ms/../figs/PA_scatter.png>] [25pdfTeX warning (ext4): de
-stination with the same identifier (name{figure.4}) has been already used, dupl
-icate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1268 \end{document}
-                      <ms/../figs/LL_plot.png>] [26pdfTeX warning (ext4): desti
+l.1377 \end{document}
+                      <ms/../figs/LL_plot.png>] [27pdfTeX warning (ext4): desti
 nation with the same identifier (name{figure.5}) has been already used, duplica
 te ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1268 \end{document}
-                      <ms/../figs/mass_prop_simple.png>] [27pdfTeX warning (ext
+l.1377 \end{document}
+                      <ms/../figs/mass_prop_simple.png>] [28pdfTeX warning (ext
 4): destination with the same identifier (name{figure.6}) has been already used
 , duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1268 \end{document}
-                      <ms/../figs/box_main.png>] [28pdfTeX warning (ext4): dest
-ination with the same identifier (name{figure.7}) has been already used, duplic
+l.1377 \end{document}
+                      <ms/../figs/vpart.png>] [29pdfTeX warning (ext4): destina
+tion with the same identifier (name{figure.7}) has been already used, duplicate
+ ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1377 \end{document}
+                      <ms/../figs/box_main.png>] [30pdfTeX warning (ext4): dest
+ination with the same identifier (name{figure.8}) has been already used, duplic
 ate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1268 \end{document}
+l.1377 \end{document}
                       <ms/../figs/PA_NPC.png>] (ms/diff.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 13213 strings out of 480539
- 192565 string characters out of 5901723
- 622434 words of memory out of 5000000
- 30433 multiletter control sequences out of 15000+600000
+ 13922 strings out of 480313
+ 218567 string characters out of 5896366
+ 622723 words of memory out of 5000000
+ 31365 multiletter control sequences out of 15000+600000
  456681 words of font info for 76 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 74i,13n,80p,1411b,377s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 74i,13n,77p,1411b,377s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}
 {/Users/mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}{/Users
 /mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/Users/m
@@ -898,10 +961,10 @@ inyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></Users/mattocci/Library/Tin
 yTeX/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></Users/mattocci/Library/Tiny
 TeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></Users/mattocci/Library/TinyTe
 X/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ms/diff.pdf (28 pages, 2468334 bytes).
+Output written on ms/diff.pdf (30 pages, 2579203 bytes).
 PDF statistics:
- 752 PDF objects out of 1000 (max. 8388607)
- 669 compressed objects within 7 object streams
+ 756 PDF objects out of 1000 (max. 8388607)
+ 665 compressed objects within 7 object streams
  145 named destinations out of 1000 (max. 500000)
- 188 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 195 words of extra memory for PDF output out of 10000 (max. 10000000)
 
