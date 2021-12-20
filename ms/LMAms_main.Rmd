@@ -113,7 +113,6 @@ These two independent axes can be translated into either a two-dimensional trait
 While both [@fig:Hplt]b and [@fig:Hplt]c are both ‘correct’ representations of the same data, they lead to different perceptions about the dimensionality of leaf functional variation.
 If LMAp, LMAs, and/or other axes are largely independent and have distinct functional consequences, then it would not be possible to accurately represent functional variation with a single axis.
 
-
 The hypothetical example in [@fig:Hplt] shows how mass-normalization can, in principle, make a two-dimensional trait space appear one-dimensional, but this example does not resolve the dimensionality of functional variation in real leaf assemblages.
 One way to better understand the dimensionality of leaf trait variation is to compare models with different numbers of dimensions, and to ask if models with multiple dimensions provide improved statistical fits and conceptual insights compared to a single axis.
 For example, the two-dimensional ‘LMAp + LMAs’ model proposed by @Osnas2018 could be compared to a one-dimensional LMA model in terms of their capacities to explain variation in other traits.
@@ -178,8 +177,8 @@ and the logarithms of *A*~area~, LL, and *R*~area~ are assumed to have a multiva
 We assumed that:
 (i) *A*~area~ depends more strongly on metabolic leaf mass (LMAp: parameters $\alpha_p$ Eq. 4) than structural leaf mass (LMAs: parameter $\alpha_s$), and
 (ii) LL depends more strongly on LMAs ($\beta_s$ in Eqs. 6a-b) than LMAm ($\beta_p$).
-In the first assumption, we constrained $\alpha_p$ > $\alpha_s$ or we set $\alpha_s$ to be zero.
-In the second assumption, we constrained $\beta_s$ > $\beta_p$ or we set $\beta_p$ to be zero.
+In the first assumption, we constrained $\alpha_p$ > $\alpha_s$ or we set $\alpha_s$ to zero.
+In the second assumption, we constrained $\beta_s$ > $\beta_p$ or we set $\beta_p$ to zero.
 
 We also considered models in which LMAs in Eq. (6a) was replaced by leaf structural density (LMAs/LT, where LT is leaf thickness), which has been shown in some cases to be a good predictor for LL [@Kitajima2012; @Kitajima2013].
 In our analysis, models with leaf density yielded qualitatively similar results as those based on LMAs, but did not perform as well in the model evaluation (see below).
@@ -190,7 +189,17 @@ This light-dependent model is motivated by optimal LL theory, which predicts dec
 Mechanistically modeling how light affects LL via leaf carbon balance [@Xu2017] is beyond the scope of our study.
 Instead, we introduced light effects in a simple way by modifying Eq. (6a) to Eq. (6b) where the dummy variable $Light_i$ is set to 1 for sun leaves and 0 for shade leaves, and $exp(\theta)$ is the sun:shade LL ratio.
 
-In summary, we have five model forms representing LL: (1) LMA, (2) LMAp and LMAs, (3) LMA and light, (4) LMAp, LMAs and light, and (5) LMAp, LMAs/LT and light, with (a) $\alpha_s \neq 0$  and $\beta_p = 0$, (b) $\alpha_s \neq 0$  and $\beta_p = 0$, (c) $\alpha_s$ = 0 and  $\beta_p \neq 0$, and (d) $\alpha_s \neq 0$ and $\beta_p \neq 0$ (Table 1).
+In summary, we have five model forms representing LL:
+(1) LMA,
+(2) LMAp and LMAs,
+(3) LMA and light,
+(4) LMAp, LMAs and light, and
+(5) LMAp, LMAs/LT and light,
+with four types of parameter restrictions:
+(a) $\alpha_s = 0$  and $\beta_p = 0$,
+(b) $\alpha_p > \alpha_s$  and $\beta_p = 0$,
+(c) $\alpha_s = 0$  and $\beta_s > \beta_p$, and
+(d) $\alpha_p > \alpha_s$  and $\beta_s > \beta_p$ (Table 1).
 
 ## Datasets
 
@@ -210,8 +219,7 @@ Both datasets include additional traits that we used to interpret model results,
 ## Model estimation and evaluation
 
 We modeled *A*~area~ and *R*~area~ using Eqs. \@ref(eq:E-A) and \@ref(eq:E-R), respectively, for both GLOPNET and Panama.
-To model LL for GLOPNET, we used Eq. (6a) (no light effects), because GLOPNET includes no information on light availability.
-Given the GLOPNET dataset description, which states that sun leaves were used where traits reported sparetely for sun and shade leaves [@Wright2004a], we do not expect light availability to be an important source of variation in our GLOPNET analysis.
+To model LL for GLOPNET, we used Eq. (6a) (no light effects), because GLOPNET does not report canopy position and thus primarily represents interspecific variation (see above).
 To model LL for Panama, we used Eq. (6b) (light effects model), which was motivated by the negative intraspecific LL-LMA relationship observed in Panama [@Xu2017; @Osnas2018] and elsewhere [@Lusk2008; @Russo2016].
 
 Posterior distributions of all parameters were estimated using the Hamiltonian Monte Carlo algorithm (HMC) implemented in Stan [@Carpenter2017].
@@ -220,18 +228,19 @@ See supplement X for more detail.
 The Stan code use to fit models is available from Github at: [https://github.com/mattocci27/XXX](https://github.com/mattocci27/LMApLMAs).
 Convergence of the posterior distribution was assessed with the Gelman-Rubin statistic with a convergence threshold of 1.1 for all parameters [@Gelman2013].
 
-Because our statistical approach includes many parameters (one latent variable *f~i~* to partition LMA into LMAp and LMAs for each leaf sample), we implemented tests with randomized data to assess potential overfitting.
+Because our statistical approach includes many parameters (one latent variable *f~i~* to partition LMA into LMAp and LMAs for each leaf sample), we implemented tests with randomized data (*n* = 10) to assess potential overfitting.
 We generated randomized datasets by randomizing all the trait values (LMA, *A*~area~, *R*~area~ and LL) across species.
 Thus, the randomized datasets had zero expected covariance among traits.
 Model results obtained from the randomized datasets did not convergent or showed divergent transitions.
 Divergent transitions suggest that estimates are based on the incomplete exploration of the simulated Hamiltonian trajectory and not trusted [@Betancourt2016].
-(in a simple sentence: Model did not work)
+(in a simple sentence: Model did not work).
 In contrast, models fit to observed data converged without divergent transitions and produced significant results for both GLOPNET and Panama (see Results).
 Thus, the tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
 We therefore assume that estimates of LMAp and LMAs obtained from the GLOPNET and Panama datasets reflect meaningful patterns in the observations and allow for meaningful tests of our hypotheses.
 
-We compared the performance of different models (Table 1) by using Pareto-smoothed importance sampling leave-one-out cross-validation (LOO; @Vehtari2014), an approximation to LOO.
-Similar to other information criteria (e.g. Akaike Information Criterion (AIC); @Burnham2002), a better model shows a smaller LOO Information Criterion (LOOIC).
+Instead of using exact leave-one-out cross-validation (LOO), which is a robust way to compare models with different numbers of parameters but computationally impractical, we compared the performance of different models (Table 1) using Pareto-smoothed importance sampling leave-one-out cross-validation (PSIS-LOO; @Vehtari2014; @Vehtari2017), an approximation to LOO.
+The PSIS-LOO gives the accurate and reliable results [@Vehtari2014; @Vehtari2017].
+Similar to other information criteria (e.g. Akaike Information Criterion (AIC); @Burnham2002), a better model in terms of predictive accuracy shows a smaller LOO Information Criterion (LOOIC).
 
 ## Partitioning LMA variance into metabolic and structural components
 
@@ -259,12 +268,13 @@ For each simulated dataset, we quantified the *A* vs. LMA relationship following
 A_{\mathrm{area} \, i} = a (LMA_i)^{b}\epsilon_i \tag{8}
 \end{align}
 
-where LMA is the sum of LMAp and LMAs (Eq. \@ref(eq:LMA)), *a* is a fitted constant, and *b* is an index of mass-dependence as illustrated by the following cases [@Osnas2013; @Osnas2018]: if *b* = 0, then *A*~area~ is independent of LMA, which implies that whole-leaf *A* is proportional to leaf area; conversely, if *b* = 1, then *A*~area~ is proportional to LMA, which implies that whole-leaf *A* is proportional to leaf mass.
-Intermediate cases (0 < *b* < 1), as well as more extreme cases (*b* < 0 or *b* > 1), are also possible.
-Note that although Eq. 8 uses area-normalized *A*, equivalent results are obtained from mass-normalized *A* [@Osnas2018].
+where LMA is the sum of LMAp and LMAs (Eq. \@ref(eq:LMA)), *a* is a fitted constant, and *b* is an index of mass-dependence as illustrated by the following cases [@Osnas2013; @Osnas2018]: if *b* = 0, then *A*~area~ is independent of LMA, which implies that whole-leaf *A*~max~ is proportional to leaf area; conversely, if *b* = 1, then *A*~area~ is proportional to LMA, which implies that whole-leaf *A*~max~ is proportional to leaf mass.
+Intermediate cases (0 < *b* < 1), as well as more extreme cases (*b* $\leq$ 0 or *b* $\geq$ 1), are also possible.
+Note that although Eq. 8 uses area-normalized *A*~max~, equivalent results are obtained from mass-normalized *A*~max~ [@Osnas2018].
 
 We prepared LMAp values based on the empirical estimates of these values from our GLOPNET and Panama analyses.
-LMAs was generated by a random draw from a lognormal distribution with the empirical estimates of mean values but changing variance.
+LMAs was generated by a random draw from a lognormal distribution with the empirical estimates of mean values, while with changing the standard deviation of log(LMAs) between log(1.01) and log(10).
+
 *A*~area~ was then generated based on LMAp, LMAs and $\alpha$ values (Eq. 4).
 Using the above values, we calculated *b* for GLOPNET, Panama sun leaves and Panama shade leaves.
 Each simulation had a sample size of 100 leaves, and we repeated these steps 1000 times.
@@ -381,7 +391,16 @@ MK, JWL and JLDO conceived of the study; KK, SJW and SAVB contributed data; MK d
 
 Table 1. Summary of the model comparison.
 Lower approximate leave-one-out cross-validation information criterion (LOOIC) indicates better predictive accuracy.
-The models here are the five moodel forms representing LL: (1) LMA, (2) LMAp and LMAs, (3) LMA and light, (4) LMAp, LMAs and light, and (5) LMAp, LMAs/LT and light, with (a) $\alpha_s \neq 0$  and $\beta_p = 0$, (b) $\alpha_s \neq 0$  and $\beta_p = 0$, (c) $\alpha_s$ = 0 and  $\beta_p \neq 0$, and (d) $\alpha_s \neq 0$ and $\beta_p \neq 0$ (Table 1).
+The models here are the five moodel forms representing LL:
+(1) LMA,
+(2) LMAp and LMAs,
+(3) LMA and light,
+(4) LMAp, LMAs and light, and
+(5) LMAp, LMAs/LT and light, with four types of parameter restrictions:
+(a) $\alpha_s = 0$  and $\beta_p = 0$,
+(b) $\alpha_p > \alpha_s$  and $\beta_p = 0$,
+(c) $\alpha_s = 0$  and $\beta_s > \beta_p$, and
+(d) $\alpha_p > \alpha_s$  and $\beta_s > \beta_p$.
 
 ```{r lootab, eval=TRUE, echo=FALSE}
 tab3 <- read_csv("../data/model_selection.csv") |>
