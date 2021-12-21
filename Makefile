@@ -69,6 +69,8 @@ emptytarget4: util/tbl.R $(LOO) $(PAR)
 ms/LMAms_main.tex: ms/LMAms_main.Rmd r_val.yml var_val.yml data/loo.csv data/para_tbl.csv
 	R -e 'system.time(rmarkdown::render("$<", "all"))'
 
+#R -e 'system.time(rmarkdown::render("ms/LMAms_main_old.Rmd", "bookdown::pdf_document2"))'
+
 ms/diff.tex: ms/LMAms_main.tex ms/LMAms_main_old.tex
 	#latexdiff  ms/LMAms_main_old.tex $< > $@
 	latexdiff --flatten ms/LMAms_main_old.tex $< > $@

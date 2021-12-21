@@ -1,14 +1,63 @@
+%%
+% Copyright (c) 2017 - 2020, Pascal Wagler;
+% Copyright (c) 2014 - 2020, John MacFarlane
+%
+% All rights reserved.
+%
+% Redistribution and use in source and binary forms, with or without
+% modification, are permitted provided that the following conditions
+% are met:
+%
+% - Redistributions of source code must retain the above copyright
+% notice, this list of conditions and the following disclaimer.
+%
+% - Redistributions in binary form must reproduce the above copyright
+% notice, this list of conditions and the following disclaimer in the
+% documentation and/or other materials provided with the distribution.
+%
+% - Neither the name of John MacFarlane nor the names of other
+% contributors may be used to endorse or promote products derived
+% from this software without specific prior written permission.
+%
+% THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+% "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+% LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+% FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+% COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+% INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+% BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+% LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+% CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+% LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+% ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+% POSSIBILITY OF SUCH DAMAGE.
+%%
+
+%%
+% This is the Eisvogel pandoc LaTeX template.
+%
+% For usage information and examples visit the official GitHub page:
+% https://github.com/Wandmalfarbe/pandoc-latex-template
+%%
+
+\DeclareUnicodeCharacter{2212}{-}
+
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*,table}{xcolor}
 %
 \documentclass[
   12pt,
-]{article}
-\usepackage{amsmath,amssymb}
+  a4paper,
+,tablecaptionabove
+]{scrartcl}
 \usepackage{lmodern}
-\usepackage{iftex}
-\ifPDFTeX
+\usepackage{setspace}
+\setstretch{1.2}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -34,15 +83,19 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\definecolor{default-linkcolor}{HTML}{A50000}
+\definecolor{default-filecolor}{HTML}{A50000}
+\definecolor{default-citecolor}{HTML}{4077C0}
+\definecolor{default-urlcolor}{HTML}{4077C0}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
   hidelinks,
-  pdfcreator={LaTeX via pandoc}}
+  breaklinks=true,
+  pdfcreator={LaTeX via pandoc with the Eisvogel template}}
 \urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
-\usepackage{longtable,booktabs,array}
-\usepackage{calc} % for calculating minipage widths
+\usepackage{longtable,booktabs}
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
 \makeatletter
@@ -51,6 +104,8 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
+% add backlinks to footnote references, cf. https://tex.stackexchange.com/questions/302266/make-footnote-clickable-both-ways
+\usepackage{footnotebackref}
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -60,37 +115,16 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-% Set default figure placement to htbp
-\makeatletter
-\def\fps@figure{htbp}
-\makeatother
-\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
-\newlength{\cslhangindent}
-\setlength{\cslhangindent}{1.5em}
-\newlength{\csllabelwidth}
-\setlength{\csllabelwidth}{3em}
-\newlength{\cslentryspacingunit} % times entry-spacing
-\setlength{\cslentryspacingunit}{\parskip}
-\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
- {% don't indent paragraphs
-  \setlength{\parindent}{0pt}
-  % turn on hanging indent if param 1 is 1
-  \ifodd #1
-  \let\oldpar\par
-  \def\par{\hangindent=\cslhangindent\oldpar}
-  \fi
-  % set entry spacing
-  \setlength{\parskip}{#2\cslentryspacingunit}
- }%
- {}
-\usepackage{calc}
-\newcommand{\CSLBlock}[1]{#1\hfill\break}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
-\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+% Make use of float-package and set default placement for figures to H.
+% The option H means 'PUT IT HERE' (as  opposed to the standard h option which means 'You may put it here if you like').
+\usepackage{float}
+\floatplacement{figure}{H}
+
 \usepackage{times}
 \usepackage{setspace}
 %\doublespacing
@@ -128,14 +162,205 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
+
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\date{}
+
+
+%%
+%% added
+%%
+
+%
+% language specification
+%
+% If no language is specified, use English as the default main document language.
+%
+
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[shorthands=off,main=english]{babel}
+\else
+    % Workaround for bug in Polyglossia that breaks `\familydefault` when `\setmainlanguage` is used.
+  % See https://github.com/Wandmalfarbe/pandoc-latex-template/issues/8
+  % See https://github.com/reutenauer/polyglossia/issues/186
+  % See https://github.com/reutenauer/polyglossia/issues/127
+  \renewcommand*\familydefault{\sfdefault}
+    % load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[]{english}
 \fi
 
+
+
+%
+% for the background color of the title page
+%
+
+%
+% break urls
+%
+\PassOptionsToPackage{hyphens}{url}
+
+%
+% When using babel or polyglossia with biblatex, loading csquotes is recommended
+% to ensure that quoted texts are typeset according to the rules of your main language.
+%
+\usepackage{csquotes}
+
+%
+% captions
+%
+%\definecolor{caption-color}{HTML}{777777}
+\definecolor{caption-color}{HTML}{37474F}
+%\usepackage[font={stretch=1.2}, textfont={color=caption-color}, position=top, skip=4mm, labelfont=bf, singlelinecheck=false, justification=raggedright]{caption}
+\usepackage[font={stretch=1}, textfont={color=caption-color}, position=top, skip=2mm, labelfont=bf, singlelinecheck=false, justification=raggedright]{caption}
+\setcapindent{0em}
+
+%
+% blockquote
+%
+\definecolor{blockquote-border}{RGB}{221,221,221}
+\definecolor{blockquote-text}{RGB}{119,119,119}
+\usepackage{mdframed}
+\newmdenv[rightline=false,bottomline=false,topline=false,linewidth=3pt,linecolor=blockquote-border,skipabove=\parskip]{customblockquote}
+\renewenvironment{quote}{\begin{customblockquote}\list{}{\rightmargin=0em\leftmargin=0em}%
+\item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\endlist\end{customblockquote}}
+
+%
+% Source Sans Pro as the de­fault font fam­ily
+% Source Code Pro for monospace text
+%
+% 'default' option sets the default
+% font family to Source Sans Pro, not \sfdefault.
+%
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+    \usepackage[default]{sourcesanspro}
+  \usepackage{sourcecodepro}
+  %\usepackage{}
+  \else % if not pdftex
+    \usepackage[default]{sourcesanspro}
+  \usepackage{sourcecodepro}
+  %\usepackage{}
+
+  % XeLaTeX specific adjustments for straight quotes: https://tex.stackexchange.com/a/354887
+  % This issue is already fixed (see https://github.com/silkeh/latex-sourcecodepro/pull/5) but the
+  % fix is still unreleased.
+  % TODO: Remove this workaround when the new version of sourcecodepro is released on CTAN.
+  \ifxetex
+    \makeatletter
+    \defaultfontfeatures[\ttfamily]
+      { Numbers   = \sourcecodepro@figurestyle,
+        Scale     = \SourceCodePro@scale,
+        Extension = .otf }
+    \setmonofont
+      [ UprightFont    = *-\sourcecodepro@regstyle,
+        ItalicFont     = *-\sourcecodepro@regstyle It,
+        BoldFont       = *-\sourcecodepro@boldstyle,
+        BoldItalicFont = *-\sourcecodepro@boldstyle It ]
+      {SourceCodePro}
+    \makeatother
+  \fi
+  \fi
+
+%
+% heading color
+%
+\definecolor{heading-color}{RGB}{40,40,40}
+\addtokomafont{section}{\color{heading-color}}
+% When using the classes report, scrreprt, book,
+% scrbook or memoir, uncomment the following line.
+%\addtokomafont{chapter}{\color{heading-color}}
+
+%
+% variables for title and author
+%
+\usepackage{titling}
+\title{}
 \author{}
-\date{\vspace{-2.5em}}
+
+%
+% tables
+%
+
+\definecolor{table-row-color}{HTML}{F5F5F5}
+\definecolor{table-rule-color}{HTML}{999999}
+
+%\arrayrulecolor{black!40}
+\arrayrulecolor{table-rule-color}     % color of \toprule, \midrule, \bottomrule
+\setlength\heavyrulewidth{0.3ex}      % thickness of \toprule, \bottomrule
+\renewcommand{\arraystretch}{1.3}     % spacing (padding)
+
+
+%
+% remove paragraph indention
+%
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+%
+%
+% Listings
+%
+%
+
+
+%
+% header and footer
+%
+\usepackage{fancyhdr}
+
+\fancypagestyle{eisvogel-header-footer}{
+  \fancyhead{}
+  \fancyfoot{}
+  \lhead[]{}
+  \chead[]{}
+  \rhead[]{}
+  %\lfoot[\thepage]{}
+  \cfoot[]{}
+  \cfoot[]{\thepage}
+  \renewcommand{\headrulewidth}{0.0pt}
+ % \renewcommand{\footrulewidth}{0.0pt}
+ % \renewcommand{\headrulewidth}{0.4pt}
+ % \renewcommand{\footrulewidth}{0.4pt}
+}
+\pagestyle{eisvogel-header-footer}
+
+%%
+%% end added
+%%
 
 \begin{document}
+
+%%
+%% begin titlepage
+%%
+
+%%
+%% end titlepage
+%%
+
+
 
 \textbf{Running title}: Metabolic and structural leaf mass
 
@@ -347,17 +572,19 @@ We used the following identity to estimate the relative contributions of LMAp an
 where Var(\(\cdot\)) is variance and Cov(\(\cdot\)) is covariance.
 Thus, the fractions of total LMA variance due to variance in LMAp and LMAs are Cov(LMA, LMAp)/Var(LMA) and Cov(LMA, LMAs)/Var(LMA), respectively.
 
+We also partitioned variance of the posterior means of LMAp and LMAs into between group (evergreen vs.~deciduous for GLOPNET, and dry vs.~wet sites and sun vs.~shade leaves for Panama) and within group components using ANOVA.
+
 \hypertarget{understanding-relationships-between-photosynthetic-capacity-and-lma}{%
 \subsection{Understanding relationships between photosynthetic capacity and LMA}\label{understanding-relationships-between-photosynthetic-capacity-and-lma}}
 
-We applied our LMAp+LMAs model (Eq. \eqref{eq:E-A}) to simulated data to better understand relationships between photosynthetic capacity (\emph{A}) and LMA.
-The causes and interpretation of \emph{A} vs.~LMA relationships are controversial (\protect\hyperlink{ref-Westoby2013}{Westoby et al. 2013}).
-Although \emph{A} is often mass-normalized (e.g., Wright et al. (\protect\hyperlink{ref-Wright2005}{2005}); Shipley et al. (\protect\hyperlink{ref-Shipley2006}{2006}); Blonder et al. (\protect\hyperlink{ref-Blonder2011}{2011})), Lloyd et al. (\protect\hyperlink{ref-Lloyd2013}{2013}) argued that photosynthesis is an area-based process, and therefore \emph{A} should be area-normalized when exploring trait relationships.
-Consistent with this argument, Osnas et al. (\protect\hyperlink{ref-Osnas2013}{2013}) showed that across global species, variation in \emph{A} is strongly dependent on leaf area, but only weakly dependent on leaf mass (after controlling for interspecific variation in leaf area).
+We applied our LMAp+LMAs model (Eq. \eqref{eq:E-A}) to simulated data to better understand relationships between photosynthetic capacity (\emph{A}\textsubscript{max}) and LMA.
+The causes and interpretation of \emph{A}\textsubscript{max} vs.~LMA relationships are controversial (\protect\hyperlink{ref-Westoby2013}{Westoby et al. 2013}).
+Although \emph{A}\textsubscript{max} is often mass-normalized (e.g., Wright et al. (\protect\hyperlink{ref-Wright2005}{2005}); Shipley et al. (\protect\hyperlink{ref-Shipley2006}{2006}); Blonder et al. (\protect\hyperlink{ref-Blonder2011}{2011})), Lloyd et al. (\protect\hyperlink{ref-Lloyd2013}{2013}) argued that photosynthesis is an area-based process, and therefore \emph{A}\textsubscript{max} should be area-normalized when exploring trait relationships.
+Consistent with this argument, Osnas et al. (\protect\hyperlink{ref-Osnas2013}{2013}) showed that across global species, variation in \emph{A}\textsubscript{max} is strongly dependent on leaf area, but only weakly dependent on leaf mass (after controlling for interspecific variation in leaf area).
 Osnas et al. (\protect\hyperlink{ref-Osnas2018}{2018}) further showed that this result (strong area-dependence but weak mass-dependence of A across species) is most apparent within species groups in which LL is highly variable (`Area-dependence and `mass-dependence' refer to the degree to which whole-leaf trait values depend on leaf area and mass, respectively; see Osnas et al. (\protect\hyperlink{ref-Osnas2013}{2013}), Osnas et al. (\protect\hyperlink{ref-Osnas2018}{2018})).
 
-To better understand the factors affecting \emph{A} vs.~LMA relationships, we created simulated datasets in which we varied the following factors: the sensitivity of \emph{A}\textsubscript{area} to variation in LMAp (parameter \(\alpha_p\) in Eq. \eqref{eq:E-A}); the sensitivity of \emph{A}\textsubscript{area} to LMAs (parameter \(\alpha_s\) in Eq. \eqref{eq:E-A}), and the degree to which LMAp and LMAs varied among leaves.
-For each simulated dataset, we quantified the \emph{A} vs.~LMA relationship following Osnas et al. (\protect\hyperlink{ref-Osnas2018}{2018}):
+To better understand the factors affecting \emph{A}\textsubscript{max} vs.~LMA relationships, we created simulated datasets in which we varied the following factors: the sensitivity of \emph{A}\textsubscript{area} to variation in LMAp (parameter \(\alpha_p\) in Eq. \eqref{eq:E-A}); the sensitivity of \emph{A}\textsubscript{area} to LMAs (parameter \(\alpha_s\) in Eq. \eqref{eq:E-A}), and the degree to which LMAp and LMAs varied among leaves.
+For each simulated dataset, we quantified the \emph{A}\textsubscript{max} vs.~LMA relationship following Osnas et al. (\protect\hyperlink{ref-Osnas2018}{2018}):
 
 \begin{align}
 A_{\mathrm{area} \, i} = a (LMA_i)^{b}\epsilon_i \tag{8}
@@ -370,9 +597,10 @@ Note that although Eq. 8 uses area-normalized \emph{A}\textsubscript{max}, equiv
 We prepared LMAp values based on the empirical estimates of these values from our GLOPNET and Panama analyses.
 LMAs was generated by a random draw from a lognormal distribution with the empirical estimates of mean values, while with changing the standard deviation of log(LMAs) between log(1.01) and log(10).
 
-\emph{A}\textsubscript{area} was then generated based on LMAp, LMAs and \(\alpha\) values (Eq. 4).
+\emph{A}\textsubscript{area} was then generated based on LMAp, LMAs and \(\alpha\) values (Eq. 8).
 Using the above values, we calculated \emph{b} for GLOPNET, Panama sun leaves and Panama shade leaves.
 Each simulation had a sample size of 100 leaves, and we repeated these steps 1000 times.
+We compared the simulated results with the fractions of total LMA variance due to variance in LMAp and LMAs of the emprical data (see above).
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
@@ -402,10 +630,10 @@ Other factors, including the senstivity of \emph{A}\textsubscript{max} to variat
 Although relative variance of LMAs was intermediate in GLOPNET (51\%), interspecific variation in \emph{A}\textsubscript{max} among leaves in GLOPNET tended to be area-dependent because of their lower \(\alpha_p\) and negative \(\alpha_s\).
 Interspecific variation in LMA in sun and shade leaves in the Panama data was area-dependent because of their large variance in LMAs (Fig.~\ref{fig:massplt}).
 
+\textbf{4. Evergreen leaves have greater LMAs than deciduous leaves, and sun leaves have both greater LMAp and LMAs than shade leaves.}
 Evergreen vs.~decidous explains the majority of variance in LMAs but not LMAp in GLOPNET (Fig.~\ref{fig:vpart}).
 In the Panama dataset, light (sun vs.~shade) explains the majority of variance in LMAp but not LMAs, and site (wet/dry) explains 33\% of variance in LMAs (Fig.~\ref{fig:vpart}).
 
-\textbf{4. Evergreen leaves have greater LMAs than deciduous leaves, and sun leaves have both greater LMAp and LMAs than shade leaves.}
 In the GLOPNET dataset, evergreen leaves had higher LMAs than deciduous leaves (Fig.~\ref{fig:boxplt}).
 Thus, the higher total LMA in evergreen leaves in GLOPNET was primarily due to differences in LMAs.
 Evergreen leaves have higher fraction of LMAs compared to deciduous leaves both in the Panama and the GLOPNET dataset (Fig. SX).
@@ -661,18 +889,67 @@ The models here are the five moodel forms representing LL:
 (c) \(\alpha_s = 0\) and \(\beta_s > \beta_p\), and
 (d) \(\alpha_p > \alpha_s\) and \(\beta_s > \beta_p\).
 
-\includegraphics{../figs/table1.png}
+\begin{table}
+\centering
+\begin{tabular}{lrr}
+\toprule
+model & N & looic\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{3}{l}{\textbf{GLOPNET}}\\
+\hspace{1em}2b & 198 & 717.1\\
+\hspace{1em}2d & 198 & 745.9\\
+\hspace{1em}2a & 198 & 746.1\\
+\hspace{1em}2c & 198 & 759.3\\
+\hspace{1em}1 & 198 & 766.7\\
+\addlinespace[0.3em]
+\multicolumn{3}{l}{\textbf{Panama}}\\
+\hspace{1em}4a & 106 & 451.2\\
+\hspace{1em}4c & 106 & 468.6\\
+\hspace{1em}5a & 106 & 469.7\\
+\hspace{1em}2c & 106 & 474.1\\
+\hspace{1em}5c & 106 & 486.7\\
+\hspace{1em}2a & 106 & 497.1\\
+\hspace{1em}4b & 106 & 500.2\\
+\hspace{1em}4d & 106 & 501.4\\
+\hspace{1em}3a & 106 & 503.4\\
+\hspace{1em}5d & 106 & 504.1\\
+\hspace{1em}5b & 106 & 508.6\\
+\hspace{1em}2d & 106 & 516.8\\
+\hspace{1em}2b & 106 & 518.1\\
+\hspace{1em}1 & 106 & 528.5\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \newpage
-
-\hypertarget{section}{%
-\section{}\label{section}}
 
 Table 2.
 Posterior means {[}95\% credible interval{]} of parameters for the best models. Model 1b (LMAp and LMAs) and Model 4a (LMAp, LMAs and light) are shown for GLOPNET and Panama data, respectively.
 Bold values are significantly different from zero based on the 95\% credible interval.
 
-\includegraphics{../figs/table2.png}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4271}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2812}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2917}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+Parameters
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+GLOPNET
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Panama
+\end{minipage} \\
+\midrule
+\endhead
+Effect of LMAp on \emph{A}\textsubscript{area} (\(\alpha_p\)) & \textbf{0.283 {[}0.207, 0.358{]}} & \textbf{0.552 {[}0.404, 0.702{]}} \\
+Effect of LMAs on \emph{A}\textsubscript{area} (\(\alpha_s\)) & \textbf{-0.132 {[}-0.201, -0.06{]}} & - \\
+Effect of LMAs on LL (\(\beta_s\)) & \textbf{0.887 {[}0.765, 1.017{]}} & \textbf{0.367 {[}0.188, 0.55{]}} \\
+Effect of LMAp on \emph{R}\textsubscript{area} (\(\gamma_p\)) & \textbf{0.294 {[}0.21, 0.387{]}} & \textbf{0.651 {[}0.438, 0.851{]}} \\
+Effect of LMAs on \emph{R}\textsubscript{area} (\(\gamma_s\)) & 0.033 {[}-0.045, 0.114{]} & -0.012 {[}-0.276, 0.302{]} \\
+Effect of light on LL (\(\theta\)) & - & \textbf{-0.804 {[}-1.104, -0.525{]}} \\
+\bottomrule
+\end{longtable}
 
 \newpage
 
@@ -777,8 +1054,8 @@ Note that the vertical axis is on a log\textsubscript{10} scale.}\label{fig:boxp
 \includegraphics{../figs/PA_NPC.png}
 \caption{Measured traits related to photosynthesis and metabolism traits (nitrogen and phosphorus per-unit leaf area; \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area}) are strongly correlated with estimates (posterior medians) of the photosynthetic LMA component (LMAp), and a measured structural trait (cellulose per-unit leaf area; \emph{CL}\textsubscript{area}) is strongly correlated with estimates of the structural LMA component (LMAs) for the Panama dataset.
 Note that sun and shade leaves align along a single relationship for \emph{CL}\textsubscript{area} vs.~LMAs, but not for \emph{CL}\textsubscript{area} vs.~LMA or LMAp. \emph{N}\textsubscript{area}, \emph{P}\textsubscript{area}, and \emph{CL}\textsubscript{area} data were not used to fit the models, and are presented here as independent support for the model results.
-Analogous results were obtained for \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} vs.~LMAp for GLOPNET (Fig. S3).
-Others details as in Fig.~\ref{fig:GLplt}.
+Pearson correlation coefficients (\emph{r}) for LMA (left column) and partial correlation coefficients (\(\rho\)) of LMAp (middle column) and LMAs (right column) are shown.
+Analogous results were obtained for \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} for GLOPNET (Fig. S3).
 Results for other LL models are reported in Table SX.}\label{fig:PA-NPC}
 }
 \end{figure}
