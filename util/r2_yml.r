@@ -267,6 +267,25 @@ bayes_R2_PA <- \(trait = c("Amax", "LL", "Rdark"), chr = FALSE){
 #bayes_R2_PA("LL")
 #bayes_R2_PA("Rdark")
 
+# NPC -----------------------------------------------------------------------
+rho_fun <- function(trait, database = c("GL", "PA")) {
+  LMAp <- database |>
+    pull(LMAp) |>
+    log()
+  LMAs <- database |>
+    pull(LMAs) |>
+    log()
+  tmp <- database |>
+    pull({{trait}}) |>
+    log()
+  m <- cbind(LMAp = LMAp - mean(LMAp),
+              LMAs = LMAs - mean(LMAs),
+              tmp = tmp - mean(tmp, na.rm = TRUE))
+  m <- na.omit(m)
+  tmp <- 1/nrow(m - 1) * t(m) %*% m
+  tmp2 <- solve(tmp) |> cov2cor()
+  list(LMAp_cor = -tmp2[1,3] |> round(2), LMAs_cor = -tmp2[2, 3] |> round(2))
+}
 
 # R values ===================================================================
 output <- "r_val.yml"
@@ -338,24 +357,24 @@ writeLines(paste0("    LMA_Narea: 'italic(r) == ",
                   cor.test(log(GL$Narea), log(GL$LMA))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Narea: 'italic(r) == ",
-                  cor.test(log(GL$Narea), log(GL$LMAp))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAp_Narea: 'italic(rho) == ",
+                  rho_fun(Narea, GL)$LMAp_cor, "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Narea: 'italic(r) == ",
-                  cor.test(log(GL$Narea), log(GL$LMAs))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAs_Narea: 'italic(rho) == ",
+                  rho_fun(Narea, GL)$LMAs_cor, "'"),
            out,
            sep = "\n")
 writeLines(paste0("    LMA_Parea: 'italic(r) == ",
                   cor.test(log(GL$Parea), log(GL$LMA))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Parea: 'italic(r) == ",
-                  cor.test(log(GL$Parea), log(GL$LMAp))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAp_Parea: 'italic(rho) == ",
+                  rho_fun(Parea, GL)$LMAp_cor, "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Parea: 'italic(r) == ",
-                  cor.test(log(GL$Parea), log(GL$LMAs))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAs_Parea: 'italic(rho) == ",
+                  rho_fun(Parea, GL)$LMAs_cor, "'"),
            out,
            sep = "\n")
 
@@ -455,36 +474,36 @@ writeLines(paste0("    LMA_Narea: 'italic(r) == ",
                   cor.test(log(PA$Narea), log(PA$LMA))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Narea: 'italic(r) == ",
-                  cor.test(log(PA$Narea), log(PA$LMAp))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAp_Narea: 'italic(rho) == ",
+                  rho_fun(Narea, PA)$LMAp_cor, "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Narea: 'italic(r) == ",
-                  cor.test(log(PA$Narea), log(PA$LMAs))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAs_Narea: 'italic(rho) == ",
+                  rho_fun(Narea, PA)$LMAs_cor, "'"),
            out,
            sep = "\n")
 writeLines(paste0("    LMA_Parea: 'italic(r) == ",
                   cor.test(log(PA$Parea), log(PA$LMA))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_Parea: 'italic(r) == ",
-                  cor.test(log(PA$Parea), log(PA$LMAp))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAp_Parea: 'italic(rho) == ",
+                  rho_fun(Parea, PA)$LMAp_cor, "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_Parea: 'italic(r) == ",
-                  cor.test(log(PA$Parea), log(PA$LMAs))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAs_Parea: 'italic(rho) == ",
+                  rho_fun(Parea, PA)$LMAs_cor, "'"),
            out,
            sep = "\n")
 writeLines(paste0("    LMA_cell_area: 'italic(r) == ",
                   cor.test(log(PA$cell_area), log(PA$LMA))$estimate %>% round(2),"'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAp_cell_area: 'italic(r) == ",
-                  cor.test(log(PA$cell_area), log(PA$LMAp))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAp_cell_area: 'italic(rho) == ",
+                  rho_fun(cell_area, PA)$LMAp_cor, "'"),
            out,
            sep = "\n")
-writeLines(paste0("    LMAs_cell_area: 'italic(r) == ",
-                  cor.test(log(PA$cell_area), log(PA$LMAs))$estimate %>% round(2),"'"),
+writeLines(paste0("    LMAs_cell_area: 'italic(rho) == ",
+                  rho_fun(cell_area, PA)$LMAs_cor, "'"),
            out,
            sep = "\n")
 
