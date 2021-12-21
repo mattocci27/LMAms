@@ -268,7 +268,8 @@ bayes_R2_PA <- \(trait = c("Amax", "LL", "Rdark"), chr = FALSE){
 #bayes_R2_PA("Rdark")
 
 # NPC -----------------------------------------------------------------------
-rho_fun <- function(trait, database = c("GL", "PA")) {
+# another simple way to get partial correlations
+rho_fun <- function(trait, database) {
   LMAp <- database |>
     pull(LMAp) |>
     log()
@@ -284,7 +285,8 @@ rho_fun <- function(trait, database = c("GL", "PA")) {
   m <- na.omit(m)
   tmp <- 1/nrow(m - 1) * t(m) %*% m
   tmp2 <- solve(tmp) |> cov2cor()
-  list(LMAp_cor = -tmp2[1,3] |> round(2), LMAs_cor = -tmp2[2, 3] |> round(2))
+  list(LMAp_cor = -tmp2[1, 3] |> round(2),
+       LMAs_cor = -tmp2[2, 3] |> round(2))
 }
 
 # R values ===================================================================

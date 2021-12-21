@@ -1,25 +1,66 @@
-% Options for packages loaded elsewhere
+%%
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL ms/LMAms_main_old.tex   Wed Nov  3 18:14:46 2021
-%DIF ADD ms/LMAms_main.tex       Mon Dec 20 18:02:44 2021
+%DIF DEL ms/LMAms_main_old.tex   Tue Dec 21 18:08:38 2021
+%DIF ADD ms/LMAms_main.tex       Tue Dec 21 18:35:20 2021
+% Copyright (c) 2017 - 2020, Pascal Wagler;
+% Copyright (c) 2014 - 2020, John MacFarlane
+%
+% All rights reserved.
+%
+% Redistribution and use in source and binary forms, with or without
+% modification, are permitted provided that the following conditions
+% are met:
+%
+% - Redistributions of source code must retain the above copyright
+% notice, this list of conditions and the following disclaimer.
+%
+% - Redistributions in binary form must reproduce the above copyright
+% notice, this list of conditions and the following disclaimer in the
+% documentation and/or other materials provided with the distribution.
+%
+% - Neither the name of John MacFarlane nor the names of other
+% contributors may be used to endorse or promote products derived
+% from this software without specific prior written permission.
+%
+% THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+% "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+% LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+% FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+% COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+% INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+% BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+% LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+% CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+% LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+% ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+% POSSIBILITY OF SUCH DAMAGE.
+%%
+
+%%
+% This is the Eisvogel pandoc LaTeX template.
+%
+% For usage information and examples visit the official GitHub page:
+% https://github.com/Wandmalfarbe/pandoc-latex-template
+%%
+
+\DeclareUnicodeCharacter{2212}{-}
+
+% Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*,table}{xcolor}
 %
 \documentclass[
   12pt,
-]{article}
-%DIF 8a8
-\usepackage{amsmath,amssymb} %DIF > 
-%DIF -------
+  a4paper,
+,tablecaptionabove
+]{scrartcl}
 \usepackage{lmodern}
-%DIF 9-11c10-11
-%DIF < \usepackage{amssymb,amsmath}
-%DIF < \usepackage{ifxetex,ifluatex}
-%DIF < \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-%DIF -------
-\usepackage{iftex} %DIF > 
-\ifPDFTeX %DIF > 
-%DIF -------
+\usepackage{setspace}
+\setstretch{1.2}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -45,19 +86,19 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\definecolor{default-linkcolor}{HTML}{A50000}
+\definecolor{default-filecolor}{HTML}{A50000}
+\definecolor{default-citecolor}{HTML}{4077C0}
+\definecolor{default-urlcolor}{HTML}{4077C0}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
   hidelinks,
-  pdfcreator={LaTeX via pandoc}}
+  breaklinks=true,
+  pdfcreator={LaTeX via pandoc with the Eisvogel template}}
 \urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
-%DIF 44c44-45
-%DIF < \usepackage{longtable,booktabs}
-%DIF -------
-\usepackage{longtable,booktabs,array} %DIF > 
-\usepackage{calc} % for calculating minipage widths %DIF > 
-%DIF -------
+\usepackage{longtable,booktabs}
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
 \makeatletter
@@ -66,6 +107,8 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
+% add backlinks to footnote references, cf. https://tex.stackexchange.com/questions/302266/make-footnote-clickable-both-ways
+\usepackage{footnotebackref}
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -75,46 +118,19 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-% Set default figure placement to htbp
-\makeatletter
-\def\fps@figure{htbp}
-\makeatother
-\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
-%DIF 70a71-93
-\newlength{\cslhangindent} %DIF > 
-\setlength{\cslhangindent}{1.5em} %DIF > 
-\newlength{\csllabelwidth} %DIF > 
-\setlength{\csllabelwidth}{3em} %DIF > 
-\newlength{\cslentryspacingunit} % times entry-spacing %DIF > 
-\setlength{\cslentryspacingunit}{\parskip} %DIF > 
-\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing %DIF > 
- {% don't indent paragraphs %DIF > 
-  \setlength{\parindent}{0pt} %DIF > 
-  % turn on hanging indent if param 1 is 1 %DIF > 
-  \ifodd #1 %DIF > 
-  \let\oldpar\par %DIF > 
-  \def\par{\hangindent=\cslhangindent\oldpar} %DIF > 
-  \fi %DIF > 
-  % set entry spacing %DIF > 
-  \setlength{\parskip}{#2\cslentryspacingunit} %DIF > 
- }% %DIF > 
- {} %DIF > 
-\usepackage{calc} %DIF > 
-\newcommand{\CSLBlock}[1]{#1\hfill\break} %DIF > 
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}} %DIF > 
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break} %DIF > 
-\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1} %DIF > 
-%DIF -------
+
+% Make use of float-package and set default placement for figures to H.
+% The option H means 'PUT IT HERE' (as  opposed to the standard h option which means 'You may put it here if you like').
+\usepackage{float}
+\floatplacement{figure}{H}
+
 \usepackage{times}
 \usepackage{setspace}
-%DIF 72c96
-%DIF < \doublespacing
-%DIF -------
-%\doublespacing %DIF > 
-%DIF -------
+%\doublespacing
 \usepackage{lineno}
 \linenumbers
 \usepackage{amsmath}
@@ -134,9 +150,7 @@
 \usepackage{makecell}
 \usepackage{xcolor}
 % \usepackage{array}
-%DIF 92a116
-%\usepackage[T1]{fontenc} %DIF > 
-%DIF -------
+%\usepackage[T1]{fontenc}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -150,25 +164,194 @@
 \usepackage{threeparttablex}
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
-%DIF 105c130-131
-%DIF < \ifluatex
-%DIF -------
-\usepackage{xcolor} %DIF > 
-\ifLuaTeX %DIF > 
-%DIF -------
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
-%DIF 108-113d134
-%DIF < \newlength{\cslhangindent}
-%DIF < \setlength{\cslhangindent}{1.5em}
-%DIF < \newenvironment{cslreferences}%
-%DIF <   {\setlength{\parindent}{0pt}%
-%DIF <   \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
-%DIF <   {\par}
-%DIF -------
+\usepackage{xcolor}
 
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\date{}
+
+
+%%
+%% added
+%%
+
+%
+% language specification
+%
+% If no language is specified, use English as the default main document language.
+%
+
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[shorthands=off,main=english]{babel}
+\else
+    % Workaround for bug in Polyglossia that breaks `\familydefault` when `\setmainlanguage` is used.
+  % See https://github.com/Wandmalfarbe/pandoc-latex-template/issues/8
+  % See https://github.com/reutenauer/polyglossia/issues/186
+  % See https://github.com/reutenauer/polyglossia/issues/127
+  \renewcommand*\familydefault{\sfdefault}
+    % load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[]{english}
+\fi
+
+
+
+%
+% for the background color of the title page
+%
+
+%
+% break urls
+%
+\PassOptionsToPackage{hyphens}{url}
+
+%
+% When using babel or polyglossia with biblatex, loading csquotes is recommended
+% to ensure that quoted texts are typeset according to the rules of your main language.
+%
+\usepackage{csquotes}
+
+%
+% captions
+%
+%\definecolor{caption-color}{HTML}{777777}
+\definecolor{caption-color}{HTML}{37474F}
+%\usepackage[font={stretch=1.2}, textfont={color=caption-color}, position=top, skip=4mm, labelfont=bf, singlelinecheck=false, justification=raggedright]{caption}
+\usepackage[font={stretch=1}, textfont={color=caption-color}, position=top, skip=2mm, labelfont=bf, singlelinecheck=false, justification=raggedright]{caption}
+\setcapindent{0em}
+
+%
+% blockquote
+%
+\definecolor{blockquote-border}{RGB}{221,221,221}
+\definecolor{blockquote-text}{RGB}{119,119,119}
+\usepackage{mdframed}
+\newmdenv[rightline=false,bottomline=false,topline=false,linewidth=3pt,linecolor=blockquote-border,skipabove=\parskip]{customblockquote}
+\renewenvironment{quote}{\begin{customblockquote}\list{}{\rightmargin=0em\leftmargin=0em}%
+\item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\endlist\end{customblockquote}}
+
+%
+% Source Sans Pro as the de­fault font fam­ily
+% Source Code Pro for monospace text
+%
+% 'default' option sets the default
+% font family to Source Sans Pro, not \sfdefault.
+%
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+    \usepackage[default]{sourcesanspro}
+  \usepackage{sourcecodepro}
+  %\usepackage{}
+  \else % if not pdftex
+    \usepackage[default]{sourcesanspro}
+  \usepackage{sourcecodepro}
+  %\usepackage{}
+
+  % XeLaTeX specific adjustments for straight quotes: https://tex.stackexchange.com/a/354887
+  % This issue is already fixed (see https://github.com/silkeh/latex-sourcecodepro/pull/5) but the
+  % fix is still unreleased.
+  % TODO: Remove this workaround when the new version of sourcecodepro is released on CTAN.
+  \ifxetex
+    \makeatletter
+    \defaultfontfeatures[\ttfamily]
+      { Numbers   = \sourcecodepro@figurestyle,
+        Scale     = \SourceCodePro@scale,
+        Extension = .otf }
+    \setmonofont
+      [ UprightFont    = *-\sourcecodepro@regstyle,
+        ItalicFont     = *-\sourcecodepro@regstyle It,
+        BoldFont       = *-\sourcecodepro@boldstyle,
+        BoldItalicFont = *-\sourcecodepro@boldstyle It ]
+      {SourceCodePro}
+    \makeatother
+  \fi
+  \fi
+
+%
+% heading color
+%
+\definecolor{heading-color}{RGB}{40,40,40}
+\addtokomafont{section}{\color{heading-color}}
+% When using the classes report, scrreprt, book,
+% scrbook or memoir, uncomment the following line.
+%\addtokomafont{chapter}{\color{heading-color}}
+
+%
+% variables for title and author
+%
+\usepackage{titling}
+\title{}
 \author{}
-\date{\vspace{-2.5em}}
+
+%
+% tables
+%
+
+\definecolor{table-row-color}{HTML}{F5F5F5}
+\definecolor{table-rule-color}{HTML}{999999}
+
+%\arrayrulecolor{black!40}
+\arrayrulecolor{table-rule-color}     % color of \toprule, \midrule, \bottomrule
+\setlength\heavyrulewidth{0.3ex}      % thickness of \toprule, \bottomrule
+\renewcommand{\arraystretch}{1.3}     % spacing (padding)
+
+
+%
+% remove paragraph indention
+%
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+%
+%
+% Listings
+%
+%
+
+
+%
+% header and footer
+%
+\usepackage{fancyhdr}
+
+\fancypagestyle{eisvogel-header-footer}{
+  \fancyhead{}
+  \fancyfoot{}
+  \lhead[]{}
+  \chead[]{}
+  \rhead[]{}
+  %\lfoot[\thepage]{}
+  \cfoot[]{}
+  \cfoot[]{\thepage}
+  \renewcommand{\headrulewidth}{0.0pt}
+ % \renewcommand{\footrulewidth}{0.0pt}
+ % \renewcommand{\headrulewidth}{0.4pt}
+ % \renewcommand{\footrulewidth}{0.4pt}
+}
+\pagestyle{eisvogel-header-footer}
+
+%%
+%% end added
+%%
 %DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
 %DIF UNDERLINE PREAMBLE %DIF PREAMBLE
 \RequirePackage[normalem]{ulem} %DIF PREAMBLE
@@ -237,27 +420,33 @@
 
 \begin{document}
 
+%%
+%% begin titlepage
+%%
+
+%%
+%% end titlepage
+%%
+
+
+
 \textbf{Running title}: Metabolic and structural leaf mass
 
 \textbf{Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species}
 
-Masatoshi Katabuchi\textsuperscript{1,2,\DIFdelbegin \DIFdel{3,7}\DIFdelend \DIFaddbegin \DIFadd{6}\DIFaddend }, Kaoru Kitajima\textsuperscript{\DIFaddbegin \DIFadd{2,}\DIFaddend 3,4\DIFdelbegin \DIFdel{,5}\DIFdelend }, S. Joseph Wright\textsuperscript{\DIFdelbegin \DIFdel{5}\DIFdelend \DIFaddbegin \DIFadd{4}\DIFaddend }, Sunshine A. Van Bael\textsuperscript{\DIFdelbegin \DIFdel{5}\DIFdelend \DIFaddbegin \DIFadd{4}\DIFaddend ,\DIFdelbegin \DIFdel{6}\DIFdelend \DIFaddbegin \DIFadd{5}\DIFaddend }, Jeanne L. D. Osnas\textsuperscript{\DIFdelbegin \DIFdel{3}\DIFdelend \DIFaddbegin \DIFadd{2}\DIFaddend } and Jeremy W. Lichstein\textsuperscript{\DIFdelbegin \DIFdel{3}\DIFdelend \DIFaddbegin \DIFadd{2}\DIFaddend }
+Masatoshi Katabuchi\textsuperscript{1,2,6}, Kaoru Kitajima\textsuperscript{2,3,4}, S. Joseph Wright\textsuperscript{4}, Sunshine A. Van Bael\textsuperscript{4,5}, Jeanne L. D. Osnas\textsuperscript{2} and Jeremy W. Lichstein\textsuperscript{2}
 
 \textsuperscript{1} Xishuangbanna Tropical Botanical Garden, Chinese Academy of Sciences, Menglun, Yunnan 666303 China
 
-\textsuperscript{2} \DIFdelbegin \DIFdel{Center of Plant Ecology, Core Botanical Gardens, Chinese Academy of Sciences, Menglun, Yunnan 666303 China
-}%DIFDELCMD < 
+\textsuperscript{2} Department of Biology, University of Florida, Gainesville, FL 32611, USA
 
-%DIFDELCMD < %%%
-\DIFdel{\textsuperscript{3} }\DIFdelend Department of Biology, University of Florida, Gainesville, FL 32611, USA
+\textsuperscript{3} Graduate School of Agriculture, Kyoto University, Kitashirakawa Oiwake-Cho, Kyoto 606-8502 Japan
 
-\textsuperscript{\DIFdelbegin \DIFdel{4}\DIFdelend \DIFaddbegin \DIFadd{3}\DIFaddend } Graduate School of Agriculture, Kyoto University, Kitashirakawa Oiwake-Cho, Kyoto 606-8502 Japan
+\textsuperscript{4} Smithsonian Tropical Research Institute, 9100 Panama City Pl., Washington, DC 20521
 
-\textsuperscript{\DIFdelbegin \DIFdel{5}\DIFdelend \DIFaddbegin \DIFadd{4}\DIFaddend } Smithsonian Tropical Research Institute, 9100 Panama City Pl., Washington, DC 20521
+\textsuperscript{5} Department of Ecology and Evolutionary Biology, Tulane University, New Orleans, LA 70118 USA
 
-\textsuperscript{\DIFdelbegin \DIFdel{6}\DIFdelend \DIFaddbegin \DIFadd{5}\DIFaddend } Department of Ecology and Evolutionary Biology, Tulane University, New Orleans, LA 70118 USA
-
-\textsuperscript{\DIFdelbegin \DIFdel{7}\DIFdelend \DIFaddbegin \DIFadd{6}\DIFaddend } \textbf{Corresponding Author}: E-mail: \href{mailto:mattocci27@gmail.com}{\nolinkurl{mattocci27@gmail.com}}
+\textsuperscript{6} \textbf{Corresponding Author}: E-mail: \href{mailto:mattocci27@gmail.com}{\nolinkurl{mattocci27@gmail.com}}
 
 \newpage
 
@@ -282,115 +471,68 @@ Masatoshi Katabuchi\textsuperscript{1,2,\DIFdelbegin \DIFdel{3,7}\DIFdelend \DIF
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-Leaf functional traits play an important role in ecological and physiological tradeoffs (\DIFdelbegin \DIFdel{Wright et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Wright2004a}{2004}%%%
-\DIFdel{, Onoda et al. }\DIFdelend \DIFaddbegin \hyperlink{ref-Wright2004a}{Wright et al. 2004}\DIFadd{, }\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Onoda2017}{2017}%%%
-\DIFdel{, Reich }\DIFdelend \DIFaddbegin \hyperlink{ref-Reich2014}{Reich 2014}\DIFadd{, }\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Reich2014}{2014}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Onoda2017}{Onoda et al. 2017}\DIFaddend ) and in carbon and nutrient cycling (\DIFaddbegin \protect\hyperlink{ref-Tcherkez2017}{Tcherkez et al. 2017}\DIFadd{, }\DIFaddend e.g., \DIFdelbegin \DIFdel{Huntingford et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Huntingford2017}{2017}%%%
-\DIFdel{, Tcherkez et al. }%DIFDELCMD < \protect\hyperlink{ref-Tcherkez2017}{2017}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Huntingford2017}{Huntingford et al. 2017}\DIFaddend ).
+Leaf functional traits play an important role in ecological and physiological tradeoffs (\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}, \protect\hyperlink{ref-Reich2014}{Reich 2014}, \protect\hyperlink{ref-Onoda2017}{Onoda et al. 2017}) and in carbon and nutrient cycling (\protect\hyperlink{ref-Tcherkez2017}{Tcherkez et al. 2017}, e.g., \protect\hyperlink{ref-Huntingford2017}{Huntingford et al. 2017}).
 Thus, understanding the causes and consequences of leaf trait variation is an important goal in ecology, plant physiology, and biogeochemistry (references).
 Different leaf assemblages exhibit markedly different patterns of trait variation.
 For example, across global species, whole-leaf values of traits related to photosynthesis and metabolism (e.g., the photosynthetic capacity, respiration rate, or nutrient content of an entire leaf) tend to increase with leaf area, but not leaf mass per area (LMA; Osnas et al. (\protect\hyperlink{ref-Osnas2013}{2013})).
-In contrast, within species, these same whole-leaf trait values tend to increase with LMA from shade to full sunlight (\DIFdelbegin \DIFdel{Osada et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Osada2001}{2001}%%%
-\DIFdel{, Osnas et al. }\DIFdelend \DIFaddbegin \hyperlink{ref-Osada2001}{Osada et al. 2001}\DIFadd{, }\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Osnas2013}{2013}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Osnas2018}{Osnas et al. 2018}\DIFaddend ).
-Functional groups (e.g., deciduous vs.~evergreen angiosperms) also differ from each other in terms of how \DIFdelbegin \DIFdel{interspecific trait variation depends }\DIFdelend \DIFaddbegin \DIFadd{photosynthetic and metabolic traits variation depend }\DIFaddend on leaf mass and area (\DIFdelbegin \DIFdel{Osnas et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Osnas2018}{2018}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Osnas2018}{Osnas et al. 2018}\DIFaddend ).
+In contrast, within species, these same whole-leaf trait values tend to increase with LMA from shade to full sunlight (\protect\hyperlink{ref-Osada2001}{Osada et al. 2001}, \protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
+Functional groups (e.g., deciduous vs.~evergreen angiosperms) also differ from each other in terms of how photosynthetic and metabolic traits variation depend on leaf mass and area (\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
 These divergent patterns suggest the presence of multiple drivers of trait variation.
 
-Strong interspecific correlations among LMA, leaf lifespan (LL), and mass-normalized leaf traits related to photosynthesis and metabolism have been interpreted as evidence for a single dominant axis of leaf functional variation (\DIFdelbegin \DIFdel{Wright et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Wright2004a}{2004}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Wright2004a}{Wright et al. 2004}\DIFaddend ).
-However, \DIFdelbegin \DIFdel{several studies suggest that }\DIFdelend \DIFaddbegin \DIFadd{the interpretation of }\DIFaddend these strong correlations\DIFaddbegin \DIFadd{, which }\DIFaddend result from mass-normalization of area-dependent traits (\DIFdelbegin \DIFdel{Lloyd et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Lloyd2013}{2013}%%%
-\DIFdel{, Osnas et al. }\DIFdelend \DIFaddbegin \hyperlink{ref-Lloyd2013}{Lloyd et al. 2013}\DIFadd{, }\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Osnas2013}{2013}%%%
-\DIFdel{).
-Thus, although }\DIFdelend \DIFaddbegin \hyperlink{ref-Osnas2013}{Osnas et al. 2013}\DIFadd{), is controversial.
-On the one hand, }\DIFaddend mass-normalization \DIFdelbegin \DIFdel{and the LES can be justified from economic principles (Westoby et al.
-}\DIFdelend \DIFaddbegin \DIFadd{has been justified based on economic principles alone (}\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Westoby2013}{2013}%%%
-\DIFdel{), the }\DIFdelend \DIFaddbegin \hyperlink{ref-Westoby2013}{Westoby et al. 2013}\DIFadd{), because leaf mass provides a simple index of investment that underlies the leaf economics spectrum (LES), ranging from cheap, low-LMA leaves with a fast rate of return per-unit investment to expensive, high-LMA leaves with a slow rate of return (}\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}\DIFadd{).
-On the other hand, because the lifetime return on investment depends on LL (}\protect\hyperlink{ref-Westoby2000}{Westoby et al. 2000}\DIFadd{, }\protect\hyperlink{ref-Falster2012}{Falster et al. 2012}\DIFadd{), it has been argued that annualized construction costs (or mass/LL) should be used as a normalizer in leaf economics analyses (}\protect\hyperlink{ref-Osnas2013}{Osnas et al. 2013}\DIFadd{).
-In global analyses, normalizing leaf traits by mass/LL yields similarly weak correlations as area-normalization, because leaf area is roughly proportional to mass/LL across global species (}\protect\hyperlink{ref-Osnas2013}{Osnas et al. 2013}\DIFadd{).
-Area-dependence of metabolic traits and the inconsistent correlation strengths obtained from different normalizers (}\protect\hyperlink{ref-Lloyd2013}{Lloyd et al. 2013}\DIFadd{, }\protect\hyperlink{ref-Osnas2013}{Osnas et al. 2013}\DIFadd{) do not invalidate mass-normalization or the LES (}\protect\hyperlink{ref-Westoby2013}{Westoby et al. 2013}\DIFadd{)
-These considerations do, however, lead us to question the }\DIFaddend evidence for a single dominant axis \DIFdelbegin \DIFdel{is controversial}\DIFdelend \DIFaddbegin \DIFadd{of leaf functional diversity, which has important implications for how trait variation is represented in vegetation models (}\protect\hyperlink{ref-Bonan2002}{Bonan et al. 2002}\DIFadd{, }\protect\hyperlink{ref-Sakschewski2016}{Sakschewski et al. 2016}\DIFadd{)}\DIFaddend .
+Strong interspecific correlations among LMA, leaf lifespan (LL), and mass-normalized leaf traits related to photosynthesis and metabolism have been interpreted as evidence for a single dominant axis of leaf functional variation (\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}).
+However, the interpretation of these strong correlations, which result from mass-normalization of area-dependent traits (\protect\hyperlink{ref-Lloyd2013}{Lloyd et al. 2013}, \protect\hyperlink{ref-Osnas2013}{Osnas et al. 2013}), is controversial.
+On the one hand, mass-normalization has been justified based on economic principles alone (\protect\hyperlink{ref-Westoby2013}{Westoby et al. 2013}), because leaf mass provides a simple index of investment that underlies the leaf economics spectrum (LES), ranging from cheap, low-LMA leaves with a fast rate of return per-unit investment to expensive, high-LMA leaves with a slow rate of return (\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}).
+On the other hand, because the lifetime return on investment depends on LL (\protect\hyperlink{ref-Westoby2000}{Westoby et al. 2000}, \protect\hyperlink{ref-Falster2012}{Falster et al. 2012}), it has been argued that annualized construction costs (or mass/LL) should be used as a normalizer in leaf economics analyses (\protect\hyperlink{ref-Osnas2013}{Osnas et al. 2013}).
+In global analyses, normalizing leaf traits by mass/LL yields similarly weak correlations as area-normalization, because leaf area is roughly proportional to mass/LL across global species (\protect\hyperlink{ref-Osnas2013}{Osnas et al. 2013}).
+Area-dependence of metabolic traits and the inconsistent correlation strengths obtained from different normalizers (\protect\hyperlink{ref-Lloyd2013}{Lloyd et al. 2013}, \protect\hyperlink{ref-Osnas2013}{Osnas et al. 2013}) do not invalidate mass-normalization or the LES (\protect\hyperlink{ref-Westoby2013}{Westoby et al. 2013})
+These considerations \DIFdelbegin \DIFdel{should}\DIFdelend \DIFaddbegin \DIFadd{do}\DIFaddend , however, lead us to question the \DIFdelbegin \DIFdel{strong correlations cited as }\DIFdelend evidence for a single dominant axis of leaf functional diversity, which has important implications for how trait variation is represented in \DIFdelbegin \DIFdel{global }\DIFdelend \DIFaddbegin \DIFadd{vegetation }\DIFaddend models (\protect\hyperlink{ref-Bonan2002}{Bonan et al. 2002}, \protect\hyperlink{ref-Sakschewski2016}{Sakschewski et al. 2016}).
 
 To understand why the same data can be interpreted as either supporting or opposing the existence of a single dominant axis of leaf trait variation, consider the conceptual model proposed by Osnas et al. (\protect\hyperlink{ref-Osnas2018}{2018}), in which LMA is comprised of two additive components:
-\DIFdelbegin \DIFdel{structural leaf }\DIFdelend \DIFaddbegin \DIFadd{photosynthetic LMA (LMAp) -- the }\DIFaddend mass per area \DIFaddbegin \DIFadd{of chloroplasts and other metabolically active leaf components that contribute directly to photosynthesis -- and structural LMA }\DIFaddend (LMAs) \DIFdelbegin \DIFdel{and photosynthetic (hereafter `metabolic') leaf }\DIFdelend \DIFaddbegin \DIFadd{-- the }\DIFaddend mass per area \DIFdelbegin \DIFdel{(LMAp).
-Suppose that }\DIFdelend \DIFaddbegin \DIFadd{of structural leaf components that contribute to toughness and durability (}\protect\hyperlink{ref-Kitajima2012}{Kitajima et al. 2012}\DIFadd{, }\protect\hyperlink{ref-Kitajima2016}{2016}\DIFadd{, }\protect\hyperlink{ref-Onoda2017}{Onoda et al. 2017}\DIFadd{).
-Consider the scenario where }\DIFaddend these two LMA components are independent axes of functional variation\DIFaddbegin \DIFadd{, so that LMAp and LMAs are uncorrelated across species }\DIFaddend (Fig.\DIFaddbegin \DIFadd{~}\DIFaddend \ref{fig:Hplt}a).
-These two independent axes can be translated into either a two-dimensional trait space (if metabolic traits are area-normalized; Fig.\DIFaddbegin \DIFadd{~}\DIFaddend \ref{fig:Hplt}b) or a one-dimensional trait space (if metabolic traits are mass-normalized; Fig.\DIFaddbegin \DIFadd{~}\DIFaddend \ref{fig:Hplt}c).
-\DIFdelbegin \DIFdel{Essentially, mass-normalization can collapse one of the functional dimensions, because leaves that differ substantially in their metabolic investment per-unit area can have similar values of mass-normalized metabolic traits (Fig.
-\ref{fig:Hplt}bc).
-}\DIFdelend \DIFaddbegin \DIFadd{While both Fig.~\ref{fig:Hplt}b and Fig.~\ref{fig:Hplt}c are both `correct' representations of the same data, they lead to different perceptions about the dimensionality of leaf functional variation.
+photosynthetic LMA (LMAp) -- the mass per area of chloroplasts and other metabolically active leaf components that contribute directly to photosynthesis -- and structural LMA (LMAs) -- the mass per area of structural leaf components that contribute to toughness and durability (\protect\hyperlink{ref-Kitajima2012}{Kitajima et al. 2012}, \protect\hyperlink{ref-Kitajima2016}{2016}, \protect\hyperlink{ref-Onoda2017}{Onoda et al. 2017}).
+Consider the scenario where these two LMA components are independent axes of functional variation, so that LMAp and LMAs are uncorrelated across species (Fig.~\ref{fig:Hplt}a).
+These two independent axes can be translated into either a two-dimensional trait space (if metabolic traits are area-normalized; Fig.~\ref{fig:Hplt}b) or a one-dimensional trait space (if metabolic traits are mass-normalized; Fig.~\ref{fig:Hplt}c).
+While both Fig.~\ref{fig:Hplt}b and Fig.~\ref{fig:Hplt}c are both `correct' representations of the same data, they lead to different perceptions about the dimensionality of leaf functional variation.
 If LMAp, LMAs, and/or other axes are largely independent and have distinct functional consequences, then it would not be possible to accurately represent functional variation with a single axis.
-}\DIFaddend 
 
-The hypothetical example in Fig.\DIFaddbegin \DIFadd{~}\DIFaddend \ref{fig:Hplt} shows how mass-normalization can, in principle, make a two-dimensional trait space appear one-dimensional, but this example does not resolve the dimensionality of functional variation in real leaf assemblages.
+The hypothetical example in Fig.~\ref{fig:Hplt} shows how mass-normalization can, in principle, make a two-dimensional trait space appear one-dimensional, but this example does not resolve the dimensionality of functional variation in real leaf assemblages.
 One way to better understand the dimensionality of leaf trait variation is to compare models with different numbers of dimensions, and to ask if models with multiple dimensions provide improved statistical fits and conceptual insights compared to a single axis.
 For example, the two-dimensional `LMAp + LMAs' model proposed by Osnas et al. (\protect\hyperlink{ref-Osnas2018}{2018}) could be compared to a one-dimensional LMA model in terms of their capacities to explain variation in other traits.
-\DIFdelbegin \DIFdel{Doing so would require }\DIFdelend \DIFaddbegin \DIFadd{However, }\DIFaddend implementing the `LMAp + LMAs' model \DIFdelbegin \DIFdel{in a quantitative framework.
-Implementing this model }\DIFdelend is challenging, because although certain leaf mass components can be neatly classified as `metabolic' or `structural' (\DIFdelbegin \DIFdel{Poorter et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Poorter2009}{2009}%%%
-\DIFdel{, Osnas et al. }\DIFdelend \DIFaddbegin \hyperlink{ref-Poorter2009}{Poorter et al. 2009}\DIFadd{, }\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Osnas2018}{2018}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Osnas2018}{Osnas et al. 2018}\DIFaddend ), other leaf mass components cannot.
-For example, thick cell walls contribute to structural toughness (\DIFdelbegin \DIFdel{Onoda et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Onoda2015}{2015}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Onoda2015}{Onoda et al. 2015}\DIFaddend ), but at least some cell wall mass is required for the biomechanical support that enables photosynthesis.
-\DIFdelbegin \DIFdel{One way forward is to use statistical methods to partition }\DIFdelend \DIFaddbegin \DIFadd{Thus, partitioning }\DIFaddend LMA into different \DIFdelbegin \DIFdel{components, rather than relying on direct measurements of morphological components (e.
-g., John et al. (}%DIFDELCMD < \protect\hyperlink{ref-John2017}{2017}%%%
-\DIFdel{)).
-}\DIFdelend \DIFaddbegin \DIFadd{functional components requires novel empirical or modeling approaches.
-}\DIFaddend 
+However, implementing the `LMAp + LMAs' model is challenging, because although certain leaf mass components can be neatly classified as `metabolic' or `structural' (\protect\hyperlink{ref-Poorter2009}{Poorter et al. 2009}, \protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}), other leaf mass components cannot.
+For example, thick cell walls contribute to structural toughness (\protect\hyperlink{ref-Onoda2015}{Onoda et al. 2015}), but at least some cell wall mass is required for the biomechanical support that enables photosynthesis.
+Thus, partitioning LMA into different functional components requires novel empirical or modeling approaches.
 
 In this paper, we present a statistical modeling framework to partition LMA into metabolic and structural components: LMAp and LMAs.
-We develop and test \DIFdelbegin \DIFdel{the }\DIFdelend \DIFaddbegin \DIFadd{this two-dimensional }\DIFaddend model using leaf trait data from two tropical forest sites (sun and shade leaves from wet and dry sites in Panama) and the GLOPNET global leaf traits database (\DIFdelbegin \DIFdel{Wright et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Wright2004a}{2004}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Wright2004a}{Wright et al. 2004}\DIFaddend ).
+We develop and test \DIFdelbegin \DIFdel{the }\DIFdelend \DIFaddbegin \DIFadd{this two-dimensional }\DIFaddend model using leaf trait data from two tropical forest sites (sun and shade leaves from wet and dry sites in Panama) and the GLOPNET global leaf traits database (\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}).
 We use the model to address the following questions: (1) How does variation in LMA components related with mass and area proportionality of leaf traits? (2) Do LMAp and LMAs differ between evergreen and deciduous species, and between sun and shade leaves? and (3) How are measurable leaf photosynthetic and structural traits (e.g., concentrations of nitrogen and cellulose) related to LMAp and LMAs?
 
 \hypertarget{material-and-methods}{%
 \section{Material and Methods}\label{material-and-methods}}
 
-\DIFdelbegin %DIFDELCMD < \hypertarget{model-overview}{%
-%DIFDELCMD < \subsection{Model overview}\label{model-overview}}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \hypertarget{overview}{%
+\hypertarget{overview}{%
 \subsection{Overview}\label{overview}}
-\DIFaddend 
 
-We \DIFdelbegin \DIFdel{developed a statistical modeling framework to partition LMAinto additive LMAs and LMAp components (see below and Supplement SX).
-For sample }\emph{\DIFdel{i}} %DIFAUXCMD
-\DIFdel{(e.g.
-, sun or shade leaves of a given species; see Datasets below) , we partition LMA \textsubscript{\emph{i}} into LMAp\textsubscript{\emph{i}} = }\emph{\DIFdel{f\textsubscript{i}}} %DIFAUXCMD
-\DIFdel{× LMA \textsubscript{\emph{i}} and LMAs\textsubscript{\emph{i}} = (1 }\DIFdelend \DIFaddbegin \DIFadd{considered multiple approaches to modeling datasets that include observations of leaf mass per area (LMA), leaf lifespan (LL), net photosynthetic capacity (A), and dark respiration rate (R).
+We considered multiple approaches to modeling datasets that include observations of leaf mass per area (LMA), leaf lifespan (LL), net photosynthetic capacity (A), and dark respiration rate (R).
 These traits comprise four of the six traits in the global leaf economics spectrum (LES) analysis of Wright et al.~(2004).
-For simplicity, we did not include the other two LES traits }\DIFaddend -- \DIFaddbegin \DIFadd{leaf nitrogen (N) and phosphorus (P) concentrations -- in our modeling framework, but we did explore relationships between our model predictions and observed leaf N and P.
+For simplicity, we did not include the other two LES traits -- leaf nitrogen (N) and phosphorus (P) concentrations -- in our modeling framework, but we did explore relationships between our model predictions and observed leaf N and P.
 We considered a simple one-dimensional model that predicts LL, A, and R from LMA alone, as well as two-dimensional models that predict LL, A, and R from two additive LMA components: structural and metabolic leaf mass per area (LMAs and LMAp, respectively).
-We formulate the models in terms of area-normalized A and R (}\DIFaddend \emph{\DIFdelbegin \DIFdel{f\textsubscript{i}}%DIFDELCMD < \MBLOCKRIGHTBRACE%%%
-\DIFdel{)× LMA \textsubscript{\emph{i}} by estimating a latent variable }\emph{\DIFdel{f\textsubscript{i}}}%DIFAUXCMD
-\DIFdel{.
-The latent variables }\emph{\DIFdel{f\textsubscript{i}}} %DIFAUXCMD
-\DIFdel{are not directly observed, but they can be constrained by available data using Bayesian methods (Bishop }%DIFDELCMD < \protect\hyperlink{ref-Bishop2006}{2006}%%%
-\DIFdel{, Gelman and Hill }%DIFDELCMD < \protect\hyperlink{ref-Gelman2006}{2006}%%%
-\DIFdel{).For example, we would expect high values of }\emph{\DIFdel{f\textsubscript{i}}} %DIFAUXCMD
-\DIFdel{(high LMAp\textsubscript{\emph{i}})for leaves with high }\emph{\DIFdel{A}}%DIFAUXCMD
-\DIFdelend \DIFaddbegin \DIFadd{A}}\DIFaddend \textsubscript{area} \DIFdelbegin \DIFdel{, and low values of }\emph{\DIFdel{f\textsubscript{i}}} %DIFAUXCMD
-\DIFdel{(high LMAs \textsubscript{\emph{i}})for leaves with high LL}\DIFdelend \DIFaddbegin \DIFadd{and }\emph{\DIFadd{R}}\DIFadd{\textsubscript{area}, respectively), as these trait forms are naturally related to the LMA components (particularly LMAp) in our model.
+We formulate the models in terms of area-normalized A and R (\emph{A}\textsubscript{area} and \emph{R}\textsubscript{area}, respectively), as these trait forms are naturally related to the LMA components (particularly LMAp) in our model.
 To implement the two-dimensional models, we developed a statistical modeling framework to partition LMA into additive LMAs and LMAp components.
-We fit the models to two datasets: the GLOPNET global leaf traits dataset (}\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}\DIFadd{), which primarily represents interspecific variation; and the Panama dataset described by Osnas et al.~(2018), which includes traits for both sun and shade leaves at wet and dry tropical forest sites.
-Because LMAs and LMAp are modeled (rather than observed), the two-dimensional models require one parameter per analysis unit (a species in GLOPNET or a species \(\times\) canopy-position in the Panama dataset) to partition observed LMA into LMAs and LMAp}\DIFaddend .
-Given the large number of \DIFdelbegin \DIFdel{free parameters (i.e., one latent variable per leaf sample), it is possible for the model to over-fit the data, which could lead to spurious inferences.
-Therefore, }\DIFdelend \DIFaddbegin \DIFadd{parameters in these models, }\DIFaddend we performed tests with randomized data \DIFdelbegin \DIFdel{(see below) to evaluate model performance (Supplement SX).
-Tests with randomized data suggest that our modeling approach reflect }\DIFdelend \DIFaddbegin \DIFadd{to evaluate if our two-dimensional models were prone to overfitting, which could lead to spurious conclusions.
-These tests suggested that our two-dimensional modeling approach revealed }\DIFaddend meaningful patterns in the observed trait data.
-\DIFaddbegin \DIFadd{We compared predictions from the one- and two-dimensional models to address the questions listed at the end of the Introduction.
-}\DIFaddend 
+We fit the models to two datasets: the GLOPNET global leaf traits dataset (\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}), which primarily represents interspecific variation; and the Panama dataset described by Osnas et al.~(2018), which includes traits for both sun and shade leaves at wet and dry tropical forest sites.
+Because LMAs and LMAp are modeled (rather than observed), the two-dimensional models require one parameter per analysis unit (a species in GLOPNET or a species \(\times\) canopy-position in the Panama dataset) to partition observed LMA into LMAs and LMAp.
+Given the large number of parameters in these models, we performed tests with randomized data to evaluate if our two-dimensional models were prone to overfitting, which could lead to spurious conclusions.
+These tests suggested that our two-dimensional modeling approach revealed meaningful patterns in the observed trait data.
+We compared predictions from the one- and two-dimensional models to address the questions listed at the end of the Introduction.
 
 \hypertarget{modeling-leaf-lifespan-photosynthetic-capacity-and-dark-respiration-rate}{%
 \subsection{Modeling leaf lifespan, photosynthetic capacity, and dark respiration rate}\label{modeling-leaf-lifespan-photosynthetic-capacity-and-dark-respiration-rate}}
 
-We considered five \DIFdelbegin \DIFdel{sets }\DIFdelend \DIFaddbegin \DIFadd{types }\DIFaddend of models, ranging from simple models with LMA as the sole predictor, to more complex models in which LMA was partitioned into metabolic and structural components (LMAp and LMAs).
-\DIFdelbegin \DIFdel{The modelsare summarized in Table \ref{tab:modeltab}, and are explained in detail below}\DIFdelend \DIFaddbegin \DIFadd{In all models, the unit of analysis is a `leaf sample', defined as a species in the GLOPNET dataset or a species \(\times\) canopy position in the Panama dataset (see Datasets below)}\DIFaddend .
+We considered five \DIFdelbegin \DIFdel{sets of models(summarized in Table \ref{tab:modeltab})}\DIFdelend \DIFaddbegin \DIFadd{types of models}\DIFaddend , ranging from simple models with LMA as the sole predictor, to more complex models in which LMA was partitioned into metabolic and structural components (LMAp and LMAs).
+In all models, the unit of analysis is a `leaf sample', defined as a species in the GLOPNET dataset or a species \(\times\) canopy position in the Panama dataset (see Datasets below).
 
 First, we considered a simple set of models with LMA as the sole predictor for \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area}, and LL.
-In this model, \DIFdelbegin \DIFdel{the observed LMA for leaf sample i (where `sample' is a species in the GLOPNET dataset, or a species \(\times\) canopy position combination in the Panama dataset) are }\DIFdelend \DIFaddbegin \DIFadd{LMA is }\DIFaddend assumed to have \DIFdelbegin \DIFdel{scaling }\DIFdelend \DIFaddbegin \DIFadd{power-law }\DIFaddend relationships with \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and LL.
+In this model, LMA is assumed to have power-law relationships with \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and LL.
 
-Next, we considered \DIFaddbegin \DIFadd{several }\DIFaddend models in which LMA is partitioned into additive metabolic and structural functions; i.e., we assume that the sum of metabolic leaf mass per area (LMAp) and structural leaf mass per area (LMAs) is equal to total observed LMA for leaf sample \emph{i}\DIFdelbegin \DIFdel{(where a `sample' is a species in the GLOPNET dataset, or a species × canopy position combination in the Panama dataset)}\DIFdelend :
+Next, we considered several models in which LMA is partitioned into additive metabolic and structural functions; i.e., we assume that the sum of metabolic leaf mass per area (LMAp) and structural leaf mass per area (LMAs) is equal to total observed LMA for leaf sample \emph{i}:
 
 \begin{align}
   &\mathrm{LMA}_{i} =\mathrm{LMAp}_{i} + \mathrm{LMAs}_{i} \label{eq:LMA}\\
@@ -398,44 +540,24 @@ Next, we considered \DIFaddbegin \DIFadd{several }\DIFaddend models in which LMA
   &\mathrm{LMAs}_{i} = (1 - f_{i})  \mathrm{LMA}_{i}\label{eq:LMAs}
 \end{align}
 
-where \DIFdelbegin \DIFdel{, }\DIFdelend \DIFaddbegin \DIFadd{the }\DIFaddend \emph{f\textsubscript{i}} \DIFdelbegin \DIFdel{is the fraction of LMA \textsubscript{\emph{i}} that is }\DIFdelend \DIFaddbegin \DIFadd{values -- the fractions of LMA }\DIFaddend comprised of LMAp \DIFdelbegin \DIFdel{\textsubscript{\emph{i}}.
-The }\DIFdelend \DIFaddbegin \DIFadd{for each sample }\DIFaddend \emph{\DIFdelbegin \DIFdel{f\textsubscript{i}}\DIFdelend \DIFaddbegin \DIFadd{i}\DIFaddend } \DIFdelbegin \DIFdel{terms are not directly observed but can be }\DIFdelend \DIFaddbegin \DIFadd{-- are }\DIFaddend estimated as latent variables in \DIFdelbegin \DIFdel{a Bayesian }\DIFdelend \DIFaddbegin \DIFadd{our }\DIFaddend modeling framework (see details below).
-\DIFdelbegin \DIFdel{In our model, net photosynthetic capacity, LL and total leaf dark respiration are determined by both metabolic and structural tissues:
-}\DIFdelend \DIFaddbegin \DIFadd{The models we considered combine Eqns. }\eqref{eq:LMA}\DIFadd{-}\eqref{eq:LMAs} \DIFadd{with functional forms that predict observed values Amax, Rdark, and LL from the unobserved values LMAs and LMAp.
-}\DIFaddend 
+where the \emph{f\textsubscript{i}} values -- the fractions of LMA comprised of LMAp for each sample \emph{i} -- are estimated as latent variables in our modeling framework (see details below).
+The models we considered combine Eqns. \eqref{eq:LMA}-\eqref{eq:LMAs} with functional forms that predict observed values Amax, Rdark, and LL from the unobserved values LMAs and LMAp.
 
-\DIFdelbegin \DIFdel{In our model, net photosynthetic capacity (}\emph{\DIFdel{A}}%DIFAUXCMD
-\DIFdel{\textsubscript{area}) is determined by LMAp, LL is determined by LMAs , and total leaf dark respiration is determined by both metabolic and structural tissues}\DIFdelend \DIFaddbegin \DIFadd{The simplest of these forms is a multivariate power-law}\DIFaddend :
+The simplest of these forms is a multivariate power-law:
 
 \begin{align}
 & \mathrm{E}[A_{\mathrm{area} \, i}]
-= \alpha_0\mathrm{LMAp}_{i}\DIFdelbegin \DIFdel{^{\alpha_m}}\DIFdelend \DIFaddbegin \DIFadd{^{\alpha_p}}\DIFaddend \mathrm{LMAs}_i^{\alpha_s}  =  \alpha_0 (f_i \mathrm{LMA}_{i})\DIFdelbegin \DIFdel{^{\alpha_m} }\DIFdelend \DIFaddbegin \DIFadd{^{\alpha_p} }\DIFaddend \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\alpha_s} \label{eq:E-A} \\
-& \DIFdelbegin \DIFdel{\mathrm{E}[\mathrm{LL}_i] }\DIFdelend \DIFaddbegin \DIFadd{\mathrm{E}[R_{\mathrm{area} \, i}]
-}\DIFaddend = \DIFdelbegin \DIFdel{\beta}\DIFdelend \DIFaddbegin \DIFadd{\gamma}\DIFaddend _0\mathrm{LMAp}_{i}\DIFdelbegin \DIFdel{^{\beta_m} }\DIFdelend \DIFaddbegin \DIFadd{^{\gamma_p} }\DIFaddend \mathrm{LMAs}_{i}\DIFdelbegin \DIFdel{^{\beta_s}   }\DIFdelend \DIFaddbegin \DIFadd{^{\gamma_s}
-}\DIFaddend = \DIFdelbegin \DIFdel{\beta}\DIFdelend \DIFaddbegin \DIFadd{\gamma}\DIFaddend _0 (f_i \mathrm{LMA}_{i})\DIFdelbegin \DIFdel{^{\beta_m} }\DIFdelend \DIFaddbegin \DIFadd{^{\gamma_p} }\DIFaddend \bigl\{(1-f_i)\mathrm{LMA}_{i}\bigr\}\DIFdelbegin \DIFdel{^{\beta_s} }%DIFDELCMD < \label{eq:E-LL} %%%
-\DIFdelend \DIFaddbegin \DIFadd{^{\gamma_s} }\label{eq:E-R} \DIFaddend \\
-& \DIFdelbegin \DIFdel{\mathrm{E}[R_{\mathrm{area} \, i}]
-}\DIFdelend \DIFaddbegin \DIFadd{\mathrm{E}[\mathrm{LL}_i] }\DIFaddend = \DIFdelbegin \DIFdel{\gamma}\DIFdelend \DIFaddbegin \DIFadd{\beta}\DIFaddend _0\mathrm{LMAp}_{i}\DIFdelbegin \DIFdel{^{\gamma_m} }\DIFdelend \DIFaddbegin \DIFadd{^{\beta_p} }\DIFaddend \mathrm{LMAs}_{i}\DIFdelbegin \DIFdel{^{\gamma_s}
-}\DIFdelend \DIFaddbegin \DIFadd{^{\beta_s}   }\DIFaddend = \DIFdelbegin \DIFdel{\gamma}\DIFdelend \DIFaddbegin \DIFadd{\beta}\DIFaddend _0 (f_i \mathrm{LMA}_{i})\DIFdelbegin \DIFdel{^{\gamma_m} }\DIFdelend \DIFaddbegin \DIFadd{^{\beta_p} }\DIFaddend \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}\DIFdelbegin \DIFdel{^{\gamma_s} }%DIFDELCMD < \label{eq:E-R}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \DIFadd{^{\beta_s} }\tag{6a}  \\
-& \DIFadd{\mathrm{E[LL}_i}] \DIFadd{= \beta_0\mathrm{LMAp}_{i}^{\beta_p} \mathrm{LMAs}_{i}^{\beta_s} exp(\theta Light_i) }\tag{6b}
-\DIFaddend \end{align}
+= \alpha_0\mathrm{LMAp}_{i}^{\alpha_p}\mathrm{LMAs}_i^{\alpha_s}  =  \alpha_0 (f_i \mathrm{LMA}_{i})^{\alpha_p} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\alpha_s} \label{eq:E-A} \\
+& \mathrm{E}[R_{\mathrm{area} \, i}]
+= \gamma_0\mathrm{LMAp}_{i}^{\gamma_p} \mathrm{LMAs}_{i}^{\gamma_s}
+= \gamma_0 (f_i \mathrm{LMA}_{i})^{\gamma_p} \bigl\{(1-f_i)\mathrm{LMA}_{i}\bigr\}^{\gamma_s} \label{eq:E-R} \\
+& \mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAp}_{i}^{\beta_p} \mathrm{LMAs}_{i}^{\beta_s}   = \beta_0 (f_i \mathrm{LMA}_{i})^{\beta_p} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\beta_s} \tag{6a}  \\
+& \mathrm{E[LL}_i] = \beta_0\mathrm{LMAp}_{i}^{\beta_p} \mathrm{LMAs}_{i}^{\beta_s} exp(\theta Light_i) \tag{6b}
+\end{align}
 
-where \DIFdelbegin \DIFdel{, }\emph{\DIFdel{A}}%DIFAUXCMD
-\DIFdel{\textsubscript{area} \textsubscript{\emph{i}}, }\emph{\DIFdel{R}}%DIFAUXCMD
-\DIFdel{\textsubscript{area} \textsubscript{\emph{i}}, and LL\textsubscript{\emph{i}}, are, respectively, the net photosynthetic rate (}\emph{\DIFdel{A}}%DIFAUXCMD
-\DIFdel{\textsubscript{max}) per unit area, dark respiration rate (}\emph{\DIFdel{R}}%DIFAUXCMD
-\DIFdel{\textsubscript{dark}) per unit area, and leaf life span of leaf }\emph{\DIFdel{i}}%DIFAUXCMD
-\DIFdel{; \(\alpha_0\), \(\beta_0\), and \(\gamma_0\) are fitted constants;
-\(\alpha_m\), \(\beta_m\), and \(\gamma_m\) are fitted exponents that quantify the sensitivities of }\emph{\DIFdel{A}}%DIFAUXCMD
-\DIFdel{\textsubscript{area}, LL and }\emph{\DIFdel{R}}%DIFAUXCMD
-\DIFdel{\textsubscript{area}, respectively, to variation in LMAp; \(\alpha_s\), \(\beta_s\), and \(\gamma_s\) are fitted exponents that quantify the sensitivities of }\emph{\DIFdel{A}}%DIFAUXCMD
-\DIFdel{\textsubscript{area}, LL and }\emph{\DIFdel{R}}%DIFAUXCMD
-\DIFdel{\textsubscript{area}, respectively, to variation in LMAs.
-The }\DIFdelend \DIFaddbegin \DIFadd{E}{[}\DIFadd{\(\cdot\)}{]} \DIFadd{indicates expected value;
+where E{[}\(\cdot\){]} indicates expected value;
 the \(\alpha\), \(\beta\), and \(\gamma\) terms are fitted parameters;
-and the }\DIFaddend logarithms of \emph{A}\textsubscript{area}, LL, and \emph{R}\textsubscript{area} are assumed to have a multivariate normal distribution (see supplement).
+and the logarithms of \emph{A}\textsubscript{area}, LL, and \emph{R}\textsubscript{area} are assumed to have a multivariate normal distribution (see supplement).
 \DIFaddbegin \DIFadd{We assumed that:
 (i) }\emph{\DIFadd{A}}\DIFadd{\textsubscript{area} depends more strongly on metabolic leaf mass (LMAp: parameters \(\alpha_p\) Eq. 4) than structural leaf mass (LMAs: parameter \(\alpha_s\)), and
 (ii) LL depends more strongly on LMAs (\(\beta_s\) in Eqs. 6a-b) than LMAm (\(\beta_p\)).
@@ -443,42 +565,14 @@ In the first assumption, we constrained \(\alpha_p\) \textgreater{} \(\alpha_s\)
 In the second assumption, we constrained \(\beta_s\) \textgreater{} \(\beta_p\) or we set \(\beta_p\) to zero.
 }\DIFaddend 
 
-We also considered models in which LMAs in Eq. \DIFdelbegin %DIFDELCMD < \eqref{eq:E-LL} %%%
-\DIFdelend \DIFaddbegin \DIFadd{(6a) }\DIFaddend was replaced by leaf structural density \DIFdelbegin \DIFdel{, }\DIFdelend \DIFaddbegin \DIFadd{(}\DIFaddend LMAs/LT, where LT is leaf thickness\DIFdelbegin \DIFdel{.
-Leaf density has also }\DIFdelend \DIFaddbegin \DIFadd{), which has }\DIFaddend been shown in some cases to be a good predictor for LL (\DIFdelbegin \DIFdel{Kitajima et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Kitajima2012}{2012}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Kitajima2012}{Kitajima et al. 2012}\DIFaddend , \protect\hyperlink{ref-Kitajima2013}{2013}).
-In our analysis, models with leaf density yielded qualitatively similar results as those based on LMAs, but did not perform as well in the model \DIFdelbegin \DIFdel{selection procedure }\DIFdelend \DIFaddbegin \DIFadd{evaluation }\DIFaddend (see below).
+We also considered models in which LMAs in Eq. (6a) was replaced by leaf structural density (LMAs/LT, where LT is leaf thickness), which has been shown in some cases to be a good predictor for LL (\protect\hyperlink{ref-Kitajima2012}{Kitajima et al. 2012}, \protect\hyperlink{ref-Kitajima2013}{2013}).
+In our analysis, models with leaf density yielded qualitatively similar results as those based on LMAs, but did not perform as well in the model evaluation (see below).
 Therefore, we only present results of the models with LMAs.
 
-Finally, we considered \DIFdelbegin \DIFdel{models that explicitly account }\DIFdelend \DIFaddbegin \DIFadd{a functional form that accounts }\DIFaddend for the effects of light availability on LL\DIFdelbegin \DIFdel{, consistent with optimall LL theory}%DIFDELCMD < {[}%%%
-\DIFdel{Kikuzawa (}%DIFDELCMD < \protect\hyperlink{ref-Kikuzawa1991}{1991}%%%
-\DIFdel{); Kikuzawa2004}%DIFDELCMD < {]}%%%
-\DIFdel{.
-Eqs. }%DIFDELCMD < \eqref{eq:E-A}%%%
-\DIFdel{-}%DIFDELCMD < \eqref{eq:E-R} %%%
-\DIFdel{implicitly account for light availability , because LMA tends to increase from shade to sun within species (Onoda et al. }%DIFDELCMD < \protect\hyperlink{ref-Onoda2008}{2008}%%%
-\DIFdel{, Kenzo et al. }%DIFDELCMD < \protect\hyperlink{ref-Kenzo2006}{2006}%%%
-\DIFdel{, Terashima et al. }%DIFDELCMD < \protect\hyperlink{ref-Terashima2011}{2011}%%%
-\DIFdel{)that can be allocated to metabolic and/or structural functions.
-However, LMA cannot account for both inter- and intraspecific variation in LL, because LL increases as LMA increases }\DIFdelend \DIFaddbegin \DIFadd{.
-This light-dependent model is motivated by optimal LL theory, which predicts decreasing LL with increasing light availability (refs), and also by the often-observed `LMA counter-gradient', whereby LL and LMA positively covary }\DIFaddend across species but \DIFdelbegin \DIFdel{decreases as LMA increases within species from shade to sun (Lusk et al. }\DIFdelend \DIFaddbegin \DIFadd{negatively covary within species across light gradients (}\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Lusk2008}{2008}%%%
-\DIFdel{, Russo and Kitajima }\DIFdelend \DIFaddbegin \hyperlink{ref-Lusk2008}{Lusk et al. 2008}\DIFadd{, }\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Russo2016}{2016}%%%
-\DIFdel{)different light conditions.
-Accounting for the details of }\DIFdelend \DIFaddbegin \hyperlink{ref-Russo2016}{Russo and Kitajima 2016}\DIFadd{, }\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}\DIFadd{).
-Mechanistically modeling how light affects LL via }\DIFaddend leaf carbon balance \DIFdelbegin \DIFdel{-- e.g., diurnal and seasonal cycles (Xu et al. }\DIFdelend \DIFaddbegin \DIFadd{(}\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Xu2017}{2017}%%%
-\DIFdel{) -- would complicate our modeling framework, but we can account for }\DIFdelend \DIFaddbegin \hyperlink{ref-Xu2017}{Xu et al. 2017}\DIFadd{) is beyond the scope of our study.
-Instead, we introduced }\DIFaddend light effects in a simple way by \DIFdelbegin \DIFdel{-modifying Eq. }%DIFDELCMD < \eqref{eq:E-LL} %%%
-\DIFdel{as follows:
-}%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\begin{align*}
-\DIFdel{\mathrm{E[LL}_i}] \DIFdel{= \beta_0\mathrm{LMAp}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s} exp(\theta Light_i) %DIFDELCMD < \label{eq:E-LL2}%%%
-}\end{align*}%DIFAUXCMD
-%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\DIFdel{where \(\theta\) is the effect of light for sun leaves and the }\DIFdelend \DIFaddbegin \DIFadd{modifying Eq. (6a) to Eq. (6b) where the }\DIFaddend dummy variable \(Light_i\) is set to 1 for sun leaves and 0 for shade leaves\DIFaddbegin \DIFadd{, and \(exp(\theta)\) is the sun:shade LL ratio}\DIFaddend .
+Finally, we considered a functional form that accounts for the effects of light availability on LL.
+This light-dependent model is motivated by optimal LL theory, which predicts decreasing LL with increasing light availability (refs), and also by the often-observed `LMA counter-gradient', whereby LL and LMA positively covary across species but negatively covary within species across light gradients (\protect\hyperlink{ref-Lusk2008}{Lusk et al. 2008}, \protect\hyperlink{ref-Russo2016}{Russo and Kitajima 2016}, \protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
+Mechanistically modeling how light affects LL via leaf carbon balance (\protect\hyperlink{ref-Xu2017}{Xu et al. 2017}) is beyond the scope of our study.
+Instead, we introduced light effects in a simple way by modifying Eq. (6a) to Eq. (6b) where the dummy variable \(Light_i\) is set to 1 for sun leaves and 0 for shade leaves, and \(exp(\theta)\) is the sun:shade LL ratio.
 
 \DIFaddbegin \DIFadd{In summary, we have five model forms representing LL:
 (1) LMA,
@@ -496,79 +590,63 @@ with four types of parameter restrictions:
 \DIFaddend \hypertarget{datasets}{%
 \subsection{Datasets}\label{datasets}}
 
-\DIFdelbegin \DIFdel{To }\DIFdelend \DIFaddbegin \DIFadd{We }\DIFaddend fit the models described above \DIFdelbegin \DIFdel{, we used }\DIFdelend \DIFaddbegin \DIFadd{using observations of }\DIFaddend LMA (g m\textsuperscript{-2}), \DIFdelbegin \DIFdel{net photosynthetic capacity per unit leaf area (}\DIFdelend \emph{A}\textsubscript{area} \DIFdelbegin \DIFdel{; }\DIFdelend \DIFaddbegin \DIFadd{(}\DIFaddend mol s\textsuperscript{-1} m\textsuperscript{-2}), \DIFdelbegin \DIFdel{dark respiration rate per unit leaf area (}\DIFdelend \emph{R}\textsubscript{area} \DIFdelbegin \DIFdel{; }\DIFdelend \DIFaddbegin \DIFadd{(}\DIFaddend mol s\textsuperscript{-1} m\textsuperscript{-2}) and LL (months) from the GLOPNET global leaf traits database (\DIFdelbegin \DIFdel{Wright et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Wright2004a}{2004}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Wright2004a}{Wright et al. 2004}\DIFaddend ) and from two tropical forest sites in Panama: Monumental Natural Metropolitano (MNM, ``dry site'') and Bosque Protector San Lorenzo (SL, ``wet site'')\DIFdelbegin \DIFdel{(Osnas et al.
-}%DIFDELCMD < \protect\hyperlink{ref-Osnas2018}{2018}%%%
-\DIFdel{).
-}\DIFdelend \DIFaddbegin \DIFadd{.
-}\DIFaddend The GLOPNET data primarily represent interspecific variation, whereas the Panama data represent both inter- and intraspecific variation, including leaves sampled at two canopy positions (``sun'': full sun at the top of the canopy; and ``shade'': well shaded, sampled within 2 m of the forest floor) from trees within reach of canopy cranes.
-The dry MNM site is a semi-deciduous coastal Pacific forest with a 5-month dry season from December-April and 1740 mm of annual rainfall (\DIFdelbegin \DIFdel{Wright et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Wright2003}{2003}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Wright2003}{Wright et al. 2003}\DIFaddend ).
-The MNM crane is 40 m tall with a 51 m long boom. The wet SL site is an evergreen Caribbean coastal forest with 3100 mm of annual rainfall (\DIFdelbegin \DIFdel{Wright et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Wright2003}{2003}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Wright2003}{Wright et al. 2003}\DIFaddend ).
+We fit the models described above using observations of LMA (g m\textsuperscript{-2}), \emph{A}\textsubscript{area} (mol s\textsuperscript{-1} m\textsuperscript{-2}), \emph{R}\textsubscript{area} (mol s\textsuperscript{-1} m\textsuperscript{-2}) and LL (months) from the GLOPNET global leaf traits database (\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}) and from two tropical forest sites in Panama: Monumental Natural Metropolitano (MNM, ``dry site'') and Bosque Protector San Lorenzo (SL, ``wet site'').
+The GLOPNET data primarily represent interspecific variation, whereas the Panama data represent both inter- and intraspecific variation, including leaves sampled at two canopy positions (``sun'': full sun at the top of the canopy; and ``shade'': well shaded, sampled within 2 m of the forest floor) from trees within reach of canopy cranes.
+The dry MNM site is a semi-deciduous coastal Pacific forest with a 5-month dry season from December-April and 1740 mm of annual rainfall (\protect\hyperlink{ref-Wright2003}{Wright et al. 2003}).
+The MNM crane is 40 m tall with a 51 m long boom. The wet SL site is an evergreen Caribbean coastal forest with 3100 mm of annual rainfall (\protect\hyperlink{ref-Wright2003}{Wright et al. 2003}).
 The SL crane is 52 m tall with a 54 m long boom.
-\DIFaddbegin \DIFadd{Additional details of the Panama dataset are described in Osnas et al. (}\protect\hyperlink{ref-Osnas2018}{2018}\DIFadd{).
-}\DIFaddend 
+Additional details of the Panama dataset are described in Osnas et al. (\protect\hyperlink{ref-Osnas2018}{2018}).
 
-\DIFdelbegin \DIFdel{After deleting leaf samples (i.
-e., database records , which typically average over multiple individual leaves) that lacked one of the }\DIFdelend \DIFaddbegin \DIFadd{We restricted our analysis to database records for which all }\DIFaddend four traits (LMA, \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area}, \DIFdelbegin \DIFdel{or LL), }\DIFdelend \DIFaddbegin \DIFadd{and LL; each typically averaged over multiple leaves) were available.
+We restricted our analysis to database records for which all four traits (LMA, \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area}, and LL; each typically averaged over multiple leaves) were available.
 Each database record corresponds to an analysis unit (or `leaf sample') described above; i.e., a species in GLOPNET, or a species \(\times\) canopy position in the Panama dataset.
-After excluding database records that lacked one or more of the four traits, }\DIFaddend 198 samples for 198 unique species were available for GLOPNET, and 130 samples for 104 unique species were available for Panama (dry and wet sites combined; 26 species sampled in both sun and shade; no species with all four traits available at both sites).
-\DIFdelbegin \DIFdel{For Panama, leaf thickness is available }\DIFdelend \DIFaddbegin \DIFadd{In addition to the four primary traits, Model 5 (Table 1) also requires observations of leaf thickness, which was not available in GLOPNET but was available }\DIFaddend for 106\DIFdelbegin \DIFdel{samples, which is used for model selection (See below)}\DIFdelend \DIFaddbegin \DIFadd{/130 Panama samples}\DIFaddend .
+After excluding database records that lacked one or more of the four traits, 198 samples for 198 unique species were available for GLOPNET, and 130 samples for 104 unique species were available for Panama (dry and wet sites combined; 26 species sampled in both sun and shade; no species with all four traits available at both sites).
+In addition to the four primary traits, Model 5 (Table 1) also requires observations of leaf thickness, which was not available in GLOPNET but was available for 106/130 Panama samples.
 Both datasets include additional traits that we used to interpret model results, but which were not used to fit models. These traits include nitrogen and phosphorus content per leaf unit area (\emph{N}\textsubscript{area} and \emph{P}\textsubscript{area}; g m\textsuperscript{-2}) in both datasets, leaf habit in GLOPNET (deciduous or evergreen), and cellulose content per unit area (\emph{CL}\textsubscript{area}; g m\textsuperscript{-2}) in Panama.
 
-\DIFdelbegin %DIFDELCMD < \hypertarget{model-estimation-and-selection}{%
-%DIFDELCMD < \subsection{Model estimation and selection}\label{model-estimation-and-selection}}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \hypertarget{model-estimation-and-evaluation}{%
+\hypertarget{model-estimation-and-evaluation}{%
 \subsection{Model estimation and evaluation}\label{model-estimation-and-evaluation}}
-\DIFaddend 
 
-We modeled \emph{A}\textsubscript{area} and \emph{R}\textsubscript{area} using Eqs. \eqref{eq:E-A} and \eqref{eq:E-R}, respectively, for both GLOPNET and \DIFdelbegin \DIFdel{Panam}\DIFdelend \DIFaddbegin \DIFadd{Panama}\DIFaddend .
-To model LL for GLOPNET, we used Eq. \DIFdelbegin %DIFDELCMD < \eqref{eq:E-LL} %%%
-\DIFdel{(}\DIFdelend \DIFaddbegin \DIFadd{(6a) (}\DIFaddend no light effects)\DIFdelbegin \DIFdel{for GL}\DIFdelend , because GLOPNET \DIFdelbegin \DIFdel{includes no information on light availability}\DIFdelend \DIFaddbegin \DIFadd{does not report canopy position and thus primarily represents interspecific variation (see above)}\DIFaddend .
-To model LL for Panama, we used Eq. \DIFdelbegin %DIFDELCMD < \eqref{eq:E-LL2} %%%
-\DIFdel{(}\DIFdelend \DIFaddbegin \DIFadd{(6b) (}\DIFaddend light effects model), which was motivated by the negative intraspecific LL-LMA relationship observed in Panama (\DIFdelbegin \DIFdel{Xu et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Xu2017}{2017}%%%
-\DIFdel{, Osnas et al. }\DIFdelend \DIFaddbegin \hyperlink{ref-Xu2017}{Xu et al. 2017}\DIFadd{, }\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Osnas2018}{2018}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Osnas2018}{Osnas et al. 2018}\DIFaddend ) and elsewhere (\DIFdelbegin \DIFdel{Lusk et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Lusk2008}{2008}%%%
-\DIFdel{, Russo and Kitajima }\DIFdelend \DIFaddbegin \hyperlink{ref-Lusk2008}{Lusk et al. 2008}\DIFadd{, }\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Russo2016}{2016}%%%
-\DIFdel{)and elsewhere}\DIFdelend \DIFaddbegin \hyperlink{ref-Russo2016}{Russo and Kitajima 2016}\DIFadd{)}\DIFaddend .
+We modeled \emph{A}\textsubscript{area} and \emph{R}\textsubscript{area} using Eqs. \eqref{eq:E-A} and \eqref{eq:E-R}, respectively, for both GLOPNET and Panama.
+To model LL for GLOPNET, we used Eq. (6a) (no light effects), because GLOPNET \DIFdelbegin \DIFdel{includes no information on light availability.
+Given the GLOPNET dataset description, which states that sun leaves were used where traits reported sparetely for sun and shade leaves (}%DIFDELCMD < \protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}%%%
+\DIFdel{), we do not expect light availability to be an important source of variation in our GLOPNET analysis}\DIFdelend \DIFaddbegin \DIFadd{does not report canopy position and thus primarily represents interspecific variation (see above)}\DIFaddend .
+To model LL for Panama, we used Eq. (6b) (light effects model), which was motivated by the negative intraspecific LL-LMA relationship observed in Panama (\protect\hyperlink{ref-Xu2017}{Xu et al. 2017}, \protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}) and elsewhere (\protect\hyperlink{ref-Lusk2008}{Lusk et al. 2008}, \protect\hyperlink{ref-Russo2016}{Russo and Kitajima 2016}).
 
-Posterior distributions of all parameters were estimated using the Hamiltonian Monte Carlo algorithm (HMC) implemented in Stan (\DIFdelbegin \DIFdel{Carpenter et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Carpenter2017}{2017}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Carpenter2017}{Carpenter et al. 2017}\DIFaddend ).
-Prior distributions for the latent variables \emph{f}\textsubscript{i} (which are used to partition LMA into LMAp and LMAs according to Eqs. \eqref{eq:E-A}-\eqref{eq:E-R}) were non-informative uniform\DIFdelbegin \DIFdel{priors beta(1}\DIFdelend \DIFaddbegin \DIFadd{(0}\DIFaddend , 1) \DIFaddbegin \DIFadd{distributions, }\DIFaddend (i.e., LMA was partitioned based on patterns in the data).
+Posterior distributions of all parameters were estimated using the Hamiltonian Monte Carlo algorithm (HMC) implemented in Stan (\protect\hyperlink{ref-Carpenter2017}{Carpenter et al. 2017}).
+Prior distributions for the latent variables \emph{f}\textsubscript{i} (which are used to partition LMA into LMAp and LMAs according to Eqs. \eqref{eq:E-A}-\eqref{eq:E-R}) were non-informative uniform(0, 1) distributions, (i.e., LMA was partitioned based on patterns in the data).
 See supplement X for more detail.
-The Stan code use to fit models \DIFdelbegin \DIFdel{are also }\DIFdelend \DIFaddbegin \DIFadd{is }\DIFaddend available from Github at: \href{https://github.com/mattocci27/LMApLMAs}{https://github.com/mattocci27/XXX}.
+The Stan code use to fit models is available from Github at: \href{https://github.com/mattocci27/LMApLMAs}{https://github.com/mattocci27/XXX}.
 \DIFdelbegin %DIFDELCMD < 
 
 %DIFDELCMD < %%%
-\DIFdel{Some parameters are obviously exchangeable in our model.
-For example, \((f_i, \alpha_m, \alpha_s)\) = (0.2, 0.5, 1.0) and (0.8, 1.0, 0.5) yield the invariance of the likelihood.
-To avoid this non-identifiability, we explore two methods based on our assumption that }\emph{\DIFdel{A}}%DIFAUXCMD
-\DIFdel{\textsubscript{area} depends more strongly on metabolic leaf mass (LMAp; parameter \(\alpha_m\) in Eq. }%DIFDELCMD < \eqref{eq:E-A}%%%
-\DIFdel{) than structural leaf mass (LMAs; parameter \(\alpha_s\) in Eq. }%DIFDELCMD < \eqref{eq:E-A}%%%
+\DIFdel{In the absence of additional constraints, some parameters are exchangeable (and the model is therefore non-identifiable), because different parameter values can lead to the identical expected values of }\emph{\DIFdel{A}}%DIFAUXCMD
+\DIFdel{\textsubscript{area}, }\emph{\DIFdel{R}}%DIFAUXCMD
+\DIFdel{\textsubscript{area}, and LL.
+For example, \((f_i, \alpha_p, \alpha_s)\) = (0.2, 0.5, 1.0) and (0.8, 1.0, 0.5) yield the identical expectation for }\emph{\DIFdel{A}}%DIFAUXCMD
+\DIFdel{\textsubscript{area}.
+To avoid this non-identifiability, we explore two methods based on our biological assumption (following Osnas et al. (}%DIFDELCMD < \protect\hyperlink{ref-Osnas2018}{2018}%%%
+\DIFdel{)) that }\emph{\DIFdel{A}}%DIFAUXCMD
+\DIFdel{\textsubscript{area} depends more strongly on metabolic leaf mass (LMAp; parameter \(\alpha_p\) in Eq. }%DIFDELCMD < \eqref{eq:E-A}%%%
+\DIFdel{) than structural leaf mass (LMAs; parameter \(\alpha_s\) in Eqs. }%DIFDELCMD < \eqref{eq:E-A}%%%
 \DIFdel{.
-In the first method, we switched the \(\alpha_m\) and \(\alpha_s\) labels within a chain when the posterior means for \(\alpha_m\) was smaller than that for \(\alpha_s\) after the posterior distributions converged.
-In the second method, we constrained \(\alpha_m\) \textgreater{} \(\alpha_s\) during MCMC.
+In the first method, we switched the \(\alpha_p\) and \(\alpha_s\) labels within a chain when the posterior means for \(\alpha_p\) was smaller than that for \(\alpha_s\) after the posterior distributions converged.
+In the second method, we constrained \(\alpha_p\) \textgreater{} \(\alpha_s\) during MCMC.
 Both methods yielded qualitatively similar results; we report results from the second method.
-}\DIFdelend Convergence of the posterior distribution was assessed with the Gelman-Rubin statistic with a convergence threshold of 1.1 for all \DIFdelbegin \DIFdel{diagnostics (Gelman et al. }\DIFdelend \DIFaddbegin \DIFadd{parameters (}\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Gelman2013}{2013}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Gelman2013}{Gelman et al. 2013}\DIFaddend ).
+Constraing \(\alpha_p\) \textgreater{} \(\alpha_s\) alone also constrains posterior distributions of the ohter parameters, and thus we did not
+}\DIFdelend Convergence of the posterior distribution was assessed with the Gelman-Rubin statistic with a convergence threshold of 1.1 for all parameters (\protect\hyperlink{ref-Gelman2013}{Gelman et al. 2013}).
 
-Because our statistical approach includes \DIFaddbegin \DIFadd{many parameters (}\DIFaddend one latent variable \emph{f\textsubscript{i}} to partition LMA into LMAp and LMAs for each leaf sample\DIFdelbegin \DIFdel{, one might expect a good match between predictions and observations simply due to the large number of free parameters, whether or not the model captured important biological mechanisms.
-To evaluate model performance while controlling for the number of free parameters, we compared the fit of our model to observed and randomized datasets.
-Specifically, we }\DIFdelend \DIFaddbegin \DIFadd{), we implemented tests with randomized data (}\emph{\DIFadd{n}} \DIFadd{= 10) to assess potential overfitting.
-We }\DIFaddend generated randomized datasets by randomizing all the trait values (LMA, \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and LL) across species.
+Because our statistical approach includes many parameters (one latent variable \emph{f\textsubscript{i}} to partition LMA into LMAp and LMAs for each leaf sample), we implemented tests with randomized data \DIFaddbegin \DIFadd{(}\emph{\DIFadd{n}} \DIFadd{= 10) }\DIFaddend to assess potential overfitting.
+We generated randomized datasets by randomizing all the trait values (LMA, \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and LL) across species.
 Thus, the randomized datasets had zero expected covariance among traits.
-Model results obtained from the randomized datasets did not \DIFdelbegin \DIFdel{produce any significant patterns for the GLOPNET data or models did not converged for the Panama data (Supplement X}\DIFdelend \DIFaddbegin \DIFadd{convergent or showed divergent transitions.
+Model results obtained from the randomized datasets did not \DIFdelbegin \DIFdel{produce any significant patterns for the GLOPNET data or models did not converged for the Panama data (Supplement X).
+}\DIFdelend \DIFaddbegin \DIFadd{convergent or showed divergent transitions.
 Divergent transitions suggest that estimates are based on the incomplete exploration of the simulated Hamiltonian trajectory and not trusted (}\protect\hyperlink{ref-Betancourt2016}{Betancourt 2016}\DIFadd{).
 (in a simple sentence: Model did not work).
-In contrast, models fit to observed data converged without divergent transitions and produced significant results for both GLOPNET and Panama (see Results}\DIFaddend ).
-Thus, the \DIFaddbegin \DIFadd{tests with randomized data indicate that our }\DIFaddend model is not \DIFdelbegin \DIFdel{guaranteed to work based on the assumptions alone.
-We }\DIFdelend \DIFaddbegin \DIFadd{inherently prone to overfitting or to producing patterns from noise.
-We therefore }\DIFaddend assume that estimates of LMAp and LMAs \DIFaddbegin \DIFadd{obtained from the GLOPNET and Panama datasets }\DIFaddend reflect meaningful patterns in the \DIFdelbegin \DIFdel{observed data}\DIFdelend \DIFaddbegin \DIFadd{observations and allow for meaningful tests of our hypotheses}\DIFaddend .
+}\DIFaddend In contrast, models fit to observed data converged \DIFaddbegin \DIFadd{without divergent transitions }\DIFaddend and produced significant results for both GLOPNET and Panama (see Results).
+Thus, the tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
+We therefore assume that estimates of LMAp and LMAs obtained from the GLOPNET and Panama datasets reflect meaningful patterns in the observations and allow for meaningful tests of our hypotheses.
 
-\DIFdelbegin \DIFdel{To assess if decomposing LMA into photosynthetic and structural components lead to improved our model}\DIFdelend \DIFaddbegin \DIFadd{Instead of using exact leave-one-out cross-validation (LOO), which is a robust way to compare models with different numbers of parameters but computationally impractical}\DIFaddend , we compared \DIFdelbegin \DIFdel{our model with models that only use LMA instead of LMAp and LMAs.
-We assessed the model performance by }\DIFdelend \DIFaddbegin \DIFadd{the performance of different models (Table 1) }\DIFaddend using Pareto-smoothed importance sampling leave-one-out cross-validation (\DIFdelbegin \DIFdel{LOO}\DIFdelend \DIFaddbegin \DIFadd{PSIS-LOO}\DIFaddend ; Vehtari et al. (\protect\hyperlink{ref-Vehtari2014}{2014})\DIFdelbegin \DIFdel{).
+\DIFdelbegin \DIFdel{We }\DIFdelend \DIFaddbegin \DIFadd{Instead of using exact leave-one-out cross-validation (LOO), which is a robust way to compare models with different numbers of parameters but computationally impractical, we }\DIFaddend compared the performance of different models (Table 1) \DIFdelbegin \DIFdel{by }\DIFdelend using Pareto-smoothed importance sampling leave-one-out cross-validation (\DIFdelbegin \DIFdel{LOO}\DIFdelend \DIFaddbegin \DIFadd{PSIS-LOO}\DIFaddend ; Vehtari et al. (\protect\hyperlink{ref-Vehtari2014}{2014})\DIFdelbegin \DIFdel{).
 }\DIFdelend \DIFaddbegin \DIFadd{; Vehtari et al. (}\protect\hyperlink{ref-Vehtari2017}{2017}\DIFadd{)), an approximation to LOO.
 The PSIS-LOO gives the accurate and reliable results (}\protect\hyperlink{ref-Vehtari2014}{Vehtari et al. 2014}\DIFadd{, }\protect\hyperlink{ref-Vehtari2017}{2017}\DIFadd{).
 }\DIFaddend Similar to other information criteria (e.g.~Akaike Information Criterion (AIC); Burnham and Anderson (\protect\hyperlink{ref-Burnham2002}{2002})), a better model \DIFaddbegin \DIFadd{in terms of predictive accuracy }\DIFaddend shows a smaller LOO Information Criterion (LOOIC).
@@ -579,80 +657,76 @@ The PSIS-LOO gives the accurate and reliable results (}\protect\hyperlink{ref-Ve
 We used the following identity to estimate the relative contributions of LMAp and LMAs to LMA variance, where again LMA = LMAp + LMAs:
 
 \begin{align}
-\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \DIFdelbegin %DIFDELCMD < \label{eq:var}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \tag{7}
-\DIFaddend \end{align}
+\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \tag{7}
+\end{align}
 
-\DIFaddbegin \DIFadd{where Var(\(\cdot\)) is variance and Cov(\(\cdot\)) is covariance.
-}\DIFaddend Thus, the fractions of total LMA variance due to variance in LMAp and LMAs \DIFdelbegin \DIFdel{were determined by the covariances }\DIFdelend \DIFaddbegin \DIFadd{are }\DIFaddend Cov(LMA, LMAp)\DIFaddbegin \DIFadd{/Var(LMA) }\DIFaddend and Cov(LMA, LMAs)\DIFdelbegin \DIFdel{, respectively, taken as proportions of the total variance }\DIFdelend \DIFaddbegin \DIFadd{/}\DIFaddend Var(LMA)\DIFaddbegin \DIFadd{, respectively}\DIFaddend .
+where Var(\(\cdot\)) is variance and Cov(\(\cdot\)) is covariance.
+Thus, the fractions of total LMA variance due to variance in LMAp and LMAs are Cov(LMA, LMAp)/Var(LMA) and Cov(LMA, LMAs)/Var(LMA), respectively.
 
-\hypertarget{understanding-relationships-between-photosynthetic-capacity-and-lma}{%
+\DIFaddbegin \DIFadd{We also partitioned variance of the posterior means of LMAp and LMAs into between group (evergreen vs.~deciduous for GLOPNET, and dry vs.~wet sites and sun vs.~shade leaves for Panama) and within group components using ANOVA.
+}
+
+\DIFaddend \hypertarget{understanding-relationships-between-photosynthetic-capacity-and-lma}{%
 \subsection{Understanding relationships between photosynthetic capacity and LMA}\label{understanding-relationships-between-photosynthetic-capacity-and-lma}}
 
-We applied our LMAp+LMAs model (Eq. \eqref{eq:E-A}) to simulated data to better understand relationships between photosynthetic capacity (\emph{A}\DIFdelbegin \DIFdel{\textsubscript{max}}\DIFdelend ) and LMA.
-The causes and interpretation of \emph{A} \DIFdelbegin \DIFdel{\textsubscript{max} }\DIFdelend vs.~LMA relationships are controversial (\DIFdelbegin \DIFdel{Westoby et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Westoby2013}{2013}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Westoby2013}{Westoby et al. 2013}\DIFaddend ).
-Although \emph{A} \DIFdelbegin \DIFdel{\textsubscript{max} }\DIFdelend is often mass-normalized (e.g., Wright et al. (\protect\hyperlink{ref-Wright2005}{2005}); Shipley et al. (\protect\hyperlink{ref-Shipley2006}{2006}); Blonder et al. (\protect\hyperlink{ref-Blonder2011}{2011})), Lloyd et al. (\protect\hyperlink{ref-Lloyd2013}{2013}) argued that photosynthesis is an area-based process, and therefore \emph{A} \DIFdelbegin \DIFdel{\textsubscript{max} }\DIFdelend should be area-normalized \DIFdelbegin \DIFdel{rather than mass-normalized }\DIFdelend when exploring trait relationships.
-Consistent with this argument, Osnas et al. (\protect\hyperlink{ref-Osnas2013}{2013}) showed that across global species, \DIFaddbegin \DIFadd{variation in }\DIFaddend \emph{A} \DIFdelbegin \DIFdel{\textsubscript{max} variation }\DIFdelend is strongly dependent on leaf area, but only weakly dependent on leaf mass (after controlling for interspecific variation in leaf area).
-\DIFaddbegin \DIFadd{Osnas et al. (}\protect\hyperlink{ref-Osnas2018}{2018}\DIFadd{) further showed that this result (strong area-dependence but weak mass-dependence of A across species) is most apparent within species groups in which LL is highly variable (`Area-dependence and `mass-dependence' refer to the degree to which whole-leaf trait values depend on leaf area and mass, respectively; see Osnas et al. (}\protect\hyperlink{ref-Osnas2013}{2013}\DIFadd{), Osnas et al. (}\protect\hyperlink{ref-Osnas2018}{2018}\DIFadd{)).
+We applied our LMAp+LMAs model (Eq. \eqref{eq:E-A}) to simulated data to better understand relationships between photosynthetic capacity (\emph{A}\DIFaddbegin \DIFadd{\textsubscript{max}}\DIFaddend ) and LMA.
+The causes and interpretation of \emph{A}\DIFaddbegin \DIFadd{\textsubscript{max} }\DIFaddend vs.~LMA relationships are controversial (\protect\hyperlink{ref-Westoby2013}{Westoby et al. 2013}).
+Although \emph{A}\DIFaddbegin \DIFadd{\textsubscript{max} }\DIFaddend is often mass-normalized (e.g., Wright et al. (\protect\hyperlink{ref-Wright2005}{2005}); Shipley et al. (\protect\hyperlink{ref-Shipley2006}{2006}); Blonder et al. (\protect\hyperlink{ref-Blonder2011}{2011})), Lloyd et al. (\protect\hyperlink{ref-Lloyd2013}{2013}) argued that photosynthesis is an area-based process, and therefore \emph{A}\DIFaddbegin \DIFadd{\textsubscript{max} }\DIFaddend should be area-normalized when exploring trait relationships.
+Consistent with this argument, Osnas et al. (\protect\hyperlink{ref-Osnas2013}{2013}) showed that across global species, variation in \emph{A}\DIFaddbegin \DIFadd{\textsubscript{max} }\DIFaddend is strongly dependent on leaf area, but only weakly dependent on leaf mass (after controlling for interspecific variation in leaf area).
+Osnas et al. (\protect\hyperlink{ref-Osnas2018}{2018}) further showed that this result (strong area-dependence but weak mass-dependence of A across species) is most apparent within species groups in which LL is highly variable \DIFdelbegin \DIFdel{.
+}\DIFdelend \DIFaddbegin \DIFadd{(`Area-dependence and `mass-dependence' refer to the degree to which whole-leaf trait values depend on leaf area and mass, respectively; see Osnas et al. (}\protect\hyperlink{ref-Osnas2013}{2013}\DIFadd{), Osnas et al. (}\protect\hyperlink{ref-Osnas2018}{2018}\DIFadd{)).
 }\DIFaddend 
 
-To better understand the factors affecting \emph{A} \DIFdelbegin \DIFdel{\textsubscript{max} }\DIFdelend vs.~LMA relationships, we created simulated datasets in which we varied the following factors: the sensitivity of \emph{A}\textsubscript{area} to variation in LMAp (parameter \DIFdelbegin \DIFdel{\(\alpha_m\) }\DIFdelend \DIFaddbegin \DIFadd{\(\alpha_p\) }\DIFaddend in Eq. \eqref{eq:E-A}); the sensitivity of \emph{A}\textsubscript{area} to LMAs (parameter \(\alpha_s\) in Eq. \eqref{eq:E-A}), and the degree to which LMAp and LMAs varied among leaves.
-For each simulated dataset, we quantified the \emph{A} \DIFdelbegin \DIFdel{\textsubscript{max} }\DIFdelend vs.~LMA relationship following Osnas et al. (\protect\hyperlink{ref-Osnas2018}{2018}):
+To better understand the factors affecting \emph{A}\DIFaddbegin \DIFadd{\textsubscript{max} }\DIFaddend vs.~LMA relationships, we created simulated datasets in which we varied the following factors: the sensitivity of \emph{A}\textsubscript{area} to variation in LMAp (parameter \(\alpha_p\) in Eq. \eqref{eq:E-A}); the sensitivity of \emph{A}\textsubscript{area} to LMAs (parameter \(\alpha_s\) in Eq. \eqref{eq:E-A}), and the degree to which LMAp and LMAs varied among leaves.
+For each simulated dataset, we quantified the \emph{A}\DIFaddbegin \DIFadd{\textsubscript{max} }\DIFaddend vs.~LMA relationship following Osnas et al. (\protect\hyperlink{ref-Osnas2018}{2018}):
 
 \begin{align}
-A_{\mathrm{area} \, i} = a (LMA_i)^{b}\epsilon_i \DIFdelbegin %DIFDELCMD < \label{eq:mass}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \tag{8}
-\DIFaddend \end{align}
+A_{\mathrm{area} \, i} = a (LMA_i)^{b}\epsilon_i \tag{8}
+\end{align}
 
-where LMA is the sum of LMAp and LMAs (Eq. \eqref{eq:LMA}), \emph{a} is a fitted constant, and \emph{b} is an index of mass-dependence as illustrated by the following cases (\DIFdelbegin \DIFdel{Osnas et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Osnas2013}{2013}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Osnas2013}{Osnas et al. 2013}\DIFaddend , \protect\hyperlink{ref-Osnas2018}{2018}): if \emph{b} = 0, then \emph{A}\textsubscript{area} is independent of LMA, which implies that whole-leaf \emph{A}\textsubscript{max} is proportional to leaf area; conversely, if \emph{b} = 1, then \emph{A}\textsubscript{area} is proportional to LMA, which implies that \DIFdelbegin \DIFdel{the }\DIFdelend whole-leaf \emph{A}\textsubscript{max} is proportional to leaf mass.
-Intermediate cases (0 \textless{} \DIFdelbegin \DIFdel{b }\DIFdelend \DIFaddbegin \emph{\DIFadd{b}} \DIFaddend \textless{} 1), as well as more extreme cases (\DIFdelbegin \DIFdel{b \textless{} }\DIFdelend \DIFaddbegin \emph{\DIFadd{b}} \DIFadd{\(\leq\) }\DIFaddend 0 or \DIFdelbegin \DIFdel{b \textgreater{} }\DIFdelend \DIFaddbegin \emph{\DIFadd{b}} \DIFadd{\(\geq\) }\DIFaddend 1), are also possible.
-Note that although Eq. \DIFdelbegin %DIFDELCMD < \eqref{eq:mass} %%%
-\DIFdelend \DIFaddbegin \DIFadd{8 }\DIFaddend uses area-normalized \emph{A}\textsubscript{max}, equivalent results \DIFdelbegin \DIFdel{can be }\DIFdelend \DIFaddbegin \DIFadd{are }\DIFaddend obtained from mass-normalized \emph{A}\textsubscript{max} (\DIFdelbegin \DIFdel{Osnas et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Osnas2018}{2018}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Osnas2018}{Osnas et al. 2018}\DIFaddend ).
+where LMA is the sum of LMAp and LMAs (Eq. \eqref{eq:LMA}), \emph{a} is a fitted constant, and \emph{b} is an index of mass-dependence as illustrated by the following cases (\protect\hyperlink{ref-Osnas2013}{Osnas et al. 2013}, \protect\hyperlink{ref-Osnas2018}{2018}): if \emph{b} = 0, then \emph{A}\textsubscript{area} is independent of LMA, which implies that whole-leaf \emph{A}\DIFaddbegin \DIFadd{\textsubscript{max} }\DIFaddend is proportional to leaf area; conversely, if \emph{b} = 1, then \emph{A}\textsubscript{area} is proportional to LMA, which implies that whole-leaf \emph{A}\DIFaddbegin \DIFadd{\textsubscript{max} }\DIFaddend is proportional to leaf mass.
+Intermediate cases (0 \textless{} \emph{b} \textless{} 1), as well as more extreme cases (\emph{b} \DIFdelbegin \DIFdel{\textless{} }\DIFdelend \DIFaddbegin \DIFadd{\(\leq\) }\DIFaddend 0 or \emph{b} \DIFdelbegin \DIFdel{\textgreater{} }\DIFdelend \DIFaddbegin \DIFadd{\(\geq\) }\DIFaddend 1), are also possible.
+Note that although Eq. 8 uses area-normalized \emph{A}\DIFaddbegin \DIFadd{\textsubscript{max}}\DIFaddend , equivalent results are obtained from mass-normalized \emph{A}\DIFaddbegin \DIFadd{\textsubscript{max} }\DIFaddend (\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
 
-We \DIFdelbegin \DIFdel{created simulated datasets based on a range of assumptions for the LMA variance components: (i) LMAp variance \textless\textless{} LMAs variance, (ii) LMAp variance = LMAs variance, (iii) LMAp variance \textgreater\textgreater{} LMAs variance, (iv) our estimates (posterior means) of LMAp and LMAs variances from GLOPNET, (v) our estimates of LMAp and LMAs variances for Panama sun leaves, and (vi) our estimates of LMAp and LMAs variances for Panama shade leaves.
-For each of the above cases, we considered a range of values for and (which determine the sensitivity of }\emph{\DIFdel{A}}%DIFAUXCMD
-\DIFdel{\textsubscript{area} to LMAp and LMAs in Eq }%DIFDELCMD < \eqref{eq:E-A}%%%
-\DIFdel{), as well as the }\DIFdelend \DIFaddbegin \DIFadd{prepared LMAp values based on the }\DIFaddend empirical estimates of these values \DIFdelbegin \DIFdel{based on }\DIFdelend \DIFaddbegin \DIFadd{from our }\DIFaddend GLOPNET and Panama \DIFdelbegin \DIFdel{datasets.
-Each simulation had a sample size of 100 leaves, where the values of LMAp and LMAs for each leaf was }\DIFdelend \DIFaddbegin \DIFadd{analyses.
-LMAs was generated by }\DIFaddend a random draw from a lognormal distribution with \DIFdelbegin \DIFdel{median and variance as follows: for simulations (i)-(iii), median log(40) and variance log(1) or log(4)(for low and high variance, respectively); and for simulations (iv)-(vi), medians and variances were the posterior means from our GLOPNET and Panama analyses}\DIFdelend \DIFaddbegin \DIFadd{the empirical estimates of mean values, while with changing the standard deviation of log(LMAs) between log(1.01) and log(10)}\DIFaddend .
+We \DIFdelbegin \DIFdel{created simulated datasets based on a range of assumptions for the LMA variance components: (i) low LMAp variance and high LMAs variance, (ii) low LMAp variance and low LMAsvariance, (iii) high LMAp variance and low LMAs variance, (iv) our estimates (posterior means) of LMAp and LMAs variances from GLOPNET, (v)our estimates of LMApand LMAs variances for Panama sun leaves, }\DIFdelend \DIFaddbegin \DIFadd{prepared LMAp values based on the empirical estimates of these values from our GLOPNET and Panama analyses.
+LMAs was generated by a random draw from a lognormal distribution with the empirical estimates of mean values, while with changing the standard deviation of log(LMAs) between log(1.01) }\DIFaddend and \DIFdelbegin \DIFdel{(vi)our estimates of LMAp and LMAs variances for Panama shade leaves.
+For each of the above cases, we considered a range of values for and (which determine the sensitivity of }\DIFdelend \DIFaddbegin \DIFadd{log(10).
+}
 
-\DIFdelbegin %DIFDELCMD < \hypertarget{results}{%
-%DIFDELCMD < \section{Results}\label{results}}
-%DIFDELCMD < 
+\DIFaddend \emph{A}\textsubscript{area} \DIFdelbegin \DIFdel{to LMAp and LMAs in Eq }%DIFDELCMD < \eqref{eq:E-A}%%%
+\DIFdel{), as well as the empirical estimates of these values based on GLOPNETand Panama datasets}\DIFdelend \DIFaddbegin \DIFadd{was then generated based on LMAp, LMAs and \(\alpha\) values (Eq. 8)}\DIFaddend .
+\DIFaddbegin \DIFadd{Using the above values, we calculated }\emph{\DIFadd{b}} \DIFadd{for GLOPNET, Panama sun leaves and Panama shade leaves.
+}\DIFaddend Each simulation had a sample size of 100 leaves, \DIFdelbegin \DIFdel{where the values of LMAp and LMAs for each leaf was a random draw from a lognormal distribution with median and variance as follows: for simulations (i)-(iii), median 40 and standard deviaitons of exp(1) or exp(4) (for low and high variance cases, respectively); and for simulations (iv)-(vi), medians and standard deviations were the posterior means from our GLOPNET and Panama analyses.
+}\DIFdelend \DIFaddbegin \DIFadd{and we repeated these steps 1000 times.
+We compared the simulated results with the fractions of total LMA variance due to variance in LMAp and LMAs of the emprical data (see above).
+}\DIFaddend 
 
-%DIFDELCMD < %%%
-\textbf{\DIFdel{1. Nearly all leaf dark respiration is associated with metabolic leaf tissue mass.}}
-%DIFAUXCMD
-\DIFdel{Metabolic leaf mass (LMAp) accounted for nearly all leaf dark respiration; i.e., estimated dark respiration rate per-unit structural mass (\(\gamma_s\)) was close to zero in analyses of both GLOPNET and Panama data (Table \ref{tab:paratab}).
-Thus, although building costs are likely similar for different leaf chemical components and tissues (Williams et al.
-}%DIFDELCMD < \protect\hyperlink{ref-Williams1989}{1989}%%%
-\DIFdel{, Villar and Merino }%DIFDELCMD < \protect\hyperlink{ref-Villar2001}{2001}%%%
-\DIFdel{), our results suggest that leaf mass associated with photosynthetic function accounts for nearly all leaf maintenance respiration}\DIFdelend \DIFaddbegin \emph{\DIFadd{A}}\DIFadd{\textsubscript{area} was then generated based on LMAp, LMAs and \(\alpha\) values (Eq. 4).
-Using the above values, we calculated }\emph{\DIFadd{b}} \DIFadd{for GLOPNET, Panama sun leaves and Panama shade leaves.
-Each simulation had a sample size of 100 leaves, and we repeated these steps 1000 times}\DIFaddend .
-
-\DIFaddbegin \hypertarget{results}{%
+\hypertarget{results}{%
 \section{Results}\label{results}}
 
-\DIFaddend \textbf{\DIFdelbegin \DIFdel{2. }\DIFdelend \DIFaddbegin \DIFadd{1. }\DIFaddend Decomposing LMA into metabolic and structural components leads to improved predictions of \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and LL.}
+\DIFdelbegin \textbf{\DIFdel{1. Nearly all leaf dark respiration is associated with metabolic leaf tissue mass.}}
+%DIFAUXCMD
+\DIFdel{Metabolic leaf mass (LMAp) accounted for nearly all leaf dark respiration; i.e., estimated dark respiration rate per-unit structural mass (\(\gamma_s\)) was close to zero in analyses of both GLOPNET and Panama data (Table \ref{tab:paratab}).
+Thus, although building costs are likely similar for different leaf chemical components and tissues (}%DIFDELCMD < \protect\hyperlink{ref-Williams1989}{Williams et al. 1989}%%%
+\DIFdel{, }%DIFDELCMD < \protect\hyperlink{ref-Villar2001}{Villar and Merino 2001}%%%
+\DIFdel{), our results suggest that leaf mass associated with photosynthetic function accounts for nearly all leaf maintenance respiration.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \textbf{\DIFdelbegin \DIFdel{2. }\DIFdelend \DIFaddbegin \DIFadd{1. }\DIFaddend Decomposing LMA into metabolic and structural components leads to improved predictions of \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and LL.}
 For both the GLOPNET global datasets and the Panama datasets, \DIFdelbegin \DIFdel{model including }\DIFdelend \DIFaddbegin \DIFadd{two-dimensional model (}\DIFaddend LMAp and LMAs\DIFdelbegin \DIFdel{showed better predictions than model including LMAbased on approximate cross-validation (Table \ref{tab:lootab}}\DIFdelend \DIFaddbegin \DIFadd{) performed better in cross validation than one-dimensional (LMA) models (Table 1}\DIFaddend ), suggesting that \DIFdelbegin \DIFdel{decompose }\DIFdelend \DIFaddbegin \DIFadd{decomposing }\DIFaddend LMA into metabolic and structural components leads \DIFaddbegin \DIFadd{to }\DIFaddend improved predictions of \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and LL.
 \DIFaddbegin \DIFadd{Additionally, the effects of LMAp on LL for the GLOPNET and the Panama dataset and the effect of LMAs on the Panama dataset were not selected in the best models (Table 1).
 }\DIFaddend 
 
-For the GLOPNET global dataset, \emph{A}\textsubscript{area} had a \DIFdelbegin \DIFdel{strong }\DIFdelend positive correlation with LMAp, a \DIFdelbegin \DIFdel{weak }\DIFdelend negative correlation with LMAs, and a non-significant correlation with total LMA (\DIFdelbegin \DIFdel{Figs.}\DIFdelend \DIFaddbegin \DIFadd{Fig.~}\DIFaddend \ref{fig:GLplt}a-c; Table \DIFdelbegin \DIFdel{\ref{tab:lootab}}\DIFdelend \DIFaddbegin \DIFadd{2}\DIFaddend ).
-\emph{R}\textsubscript{area} in GLOPNET also had a \DIFdelbegin \DIFdel{strong }\DIFdelend positive correlation with LMAp, which was stronger than the correlation between \emph{R}\textsubscript{area} and either LMA or LMAs (\DIFdelbegin \DIFdel{Figs.}\DIFdelend \DIFaddbegin \DIFadd{Fig.~}\DIFaddend \ref{fig:GLplt}d-f).
-Finally, LL in GLOPNET had a strong positive correlation with LMAs, which was stronger than the correlation between LL and \DIFdelbegin \DIFdel{either LMA or LMAp (Figs.}\DIFdelend \DIFaddbegin \DIFadd{LMA (Fig.~}\DIFaddend \ref{fig:GLplt}g-i).
+For the GLOPNET global dataset, \emph{A}\textsubscript{area} had a \DIFdelbegin \DIFdel{strong }\DIFdelend positive correlation with LMAp, a \DIFdelbegin \DIFdel{weak }\DIFdelend negative correlation with LMAs, and a non-significant correlation with total LMA (Fig.~\ref{fig:GLplt}a-c; Table \DIFdelbegin \DIFdel{\ref{tab:lootab}}\DIFdelend \DIFaddbegin \DIFadd{2}\DIFaddend ).
+\emph{R}\textsubscript{area} in GLOPNET also had a \DIFdelbegin \DIFdel{strong }\DIFdelend positive correlation with LMAp, which was stronger than the correlation between \emph{R}\textsubscript{area} and either LMA or LMAs (Fig.~\ref{fig:GLplt}d-f).
+Finally, LL in GLOPNET had a strong positive correlation with LMAs, which was stronger than the correlation between LL and \DIFdelbegin \DIFdel{either LMA or LMAp }\DIFdelend \DIFaddbegin \DIFadd{LMA }\DIFaddend (Fig.~\ref{fig:GLplt}g-i).
 
 For the Panama dataset, \DIFdelbegin \DIFdel{we evaluated multiple models due to the availability of both sun and shade leaves.The model including the light effects fit the data better than the model without the light effects (Table \ref{tab:lootab}}\DIFdelend \DIFaddbegin \DIFadd{including the effect of light (sun vs.~shade) imporved model performance (Table 1}\DIFaddend ).
 All Panama results we report are for \DIFdelbegin \DIFdel{the model including the }\DIFdelend \DIFaddbegin \DIFadd{models including }\DIFaddend light effects unless stated otherwise.
-\emph{A}\textsubscript{area} and \emph{R}\textsubscript{area} had stronger and more positive correlations with LMAp than with LMA \DIFdelbegin \DIFdel{or LMAs (Figs.}\DIFdelend \DIFaddbegin \DIFadd{(Fig.~}\DIFaddend \ref{fig:PAplt}a-f and Table \DIFdelbegin \DIFdel{\ref{tab:paratab}}\DIFdelend \DIFaddbegin \DIFadd{2}\DIFaddend ).
-LL was not significantly correlated with LMA when all leaves were combined, but was strongly correlated with LMA for shade leaves at the dry site (Fig.\DIFaddbegin \DIFadd{~}\DIFaddend \ref{fig:PAplt}g).
-There was \DIFdelbegin \DIFdel{an apparent negative correlation between LMAp and LL }\DIFdelend \DIFaddbegin \DIFadd{a positive correlation between LL and LMAs }\DIFaddend (Fig.\DIFdelbegin \DIFdel{\ref{fig:PAplt}h)but the effect of LMAp on LL was not significant (Table \ref{tab:paratab}), implying that a weak covariance between LMApand LMAs produced this negative correlation.There was a positive correlation between LL and LMAs (}\DIFdelend \DIFaddbegin \DIFadd{~\ref{fig:PAplt}i), and this relationship was strengthened by accounting the effects of LL (}\DIFaddend Fig. \DIFdelbegin \DIFdel{\ref{fig:PAplt}i and Table \ref{tab:paratab})}\DIFdelend \DIFaddbegin \DIFadd{4; 2)}\DIFaddend .
+\emph{A}\textsubscript{area} and \emph{R}\textsubscript{area} had stronger and more positive correlations with LMAp than with LMA \DIFdelbegin \DIFdel{or LMAs }\DIFdelend (Fig.~\ref{fig:PAplt}a-f and Table \DIFdelbegin \DIFdel{\ref{tab:paratab}}\DIFdelend \DIFaddbegin \DIFadd{2}\DIFaddend ).
+LL was not significantly correlated with LMA when all leaves were combined, but was strongly correlated with LMA for shade leaves at the dry site (Fig.~\ref{fig:PAplt}g).
+There was \DIFdelbegin \DIFdel{an apparent negative correlation between LMAp and LL }\DIFdelend \DIFaddbegin \DIFadd{a positive correlation between LL and LMAs }\DIFaddend (Fig.~\ref{fig:PAplt}\DIFdelbegin \DIFdel{h)but the effect of LMAp on LL was not significant (Table \ref{tab:paratab}), implying that a weak covariance between LMApand LMAs produced this negative correlation.There was a positive correlation between LL and LMAs (}\DIFdelend \DIFaddbegin \DIFadd{i), and this relationship was strengthened by accounting the effects of LL (}\DIFaddend Fig. \DIFdelbegin \DIFdel{~\ref{fig:PAplt}i and Table \ref{tab:paratab})}\DIFdelend \DIFaddbegin \DIFadd{4; 2)}\DIFaddend .
 \DIFdelbegin \DIFdel{Because the LL }\DIFdelend \DIFaddbegin 
 
 \textbf{\DIFadd{2. Nearly all leaf dark respiration is associated with metabolic leaf tissue mass.}}
@@ -661,46 +735,48 @@ Thus, although building costs are likely similar for different leaf chemical com
 }
 
 \textbf{\DIFadd{3. LMA variance components determine the area- vs.~mass-dependence of leaf photosynthetic capacity (}\emph{\DIFadd{A}}\DIFadd{\textsubscript{max}).}}
-\DIFadd{Analysis of simulated data showed that the percent of LMA variation due to LMAp }\DIFaddend vs.~LMAs \DIFdelbegin \DIFdel{relationship ignores important factors }\DIFdelend \DIFaddbegin \DIFadd{variation determined the area- vs.~mass-dependence of }\emph{\DIFadd{A}}\DIFadd{\textsubscript{max} }\DIFaddend (i.e., \DIFdelbegin \DIFdel{effects of light on realized photosynthetic rates), the explained variance of LL from the model was higher (r\textsuperscript{2} = 0.45)than expected from the correlation between LMAs and LL (Fig. \ref{fig:PAplt}g, \ref{fig:LLplt}).
+\DIFadd{Analysis of simulated data showed that the percent of LMA variation due to LMAp }\DIFaddend vs.~LMAs \DIFdelbegin \DIFdel{relationship ignores important factors }\DIFdelend \DIFaddbegin \DIFadd{variation determined the area- vs.~mass-dependence of }\emph{\DIFadd{A}}\DIFadd{\textsubscript{max} }\DIFaddend (i.e., \DIFdelbegin \DIFdel{effects of light on realized photosynthetic rates), the explained variance of LL from the model was higher (r\textsuperscript{2} = 0.45)than expected from the correlation between LMAs and LL (Fig. ~\ref{fig:PAplt}g, Fig.~\ref{fig:LLplt}).
 }%DIFDELCMD < 
 
 %DIFDELCMD < %%%
 \textbf{\DIFdel{3. Interspecific mass proportionality of }\emph{\DIFdel{A}}%DIFAUXCMD
 \DIFdel{\textsubscript{max} depended on both scaling slope and variance in LMA components.}}
 %DIFAUXCMD
-\DIFdel{Percent of interspecific variation in LMA explained by structural components were 46\%, 96\% and 63\% for GLOPNET, shade leaves in Panama and sun leaves in Panama, respectively.
+\DIFdel{Percent of interspecific variation in LMA explained by structural components were 51\%, 92\% and 66\% for GLOPNET, shade leaves in Panama and sun leaves in Panama, respectively.
 Large variance in LMAp and LMAs among leaves leads to mass and area proportionality }\DIFdelend \DIFaddbegin \DIFadd{the degree to which whole-leaf }\emph{\DIFadd{A}}\DIFadd{\textsubscript{max} depends on leaf area or mass; Osnas et al. (}\protect\hyperlink{ref-Osnas2013}{2013}\DIFadd{); Osnas et al. (}\protect\hyperlink{ref-Osnas2018}{2018}\DIFadd{)).
 Generally, mass-dependence }\DIFaddend of \emph{A}\textsubscript{max} \DIFdelbegin \DIFdel{, respectively }\DIFdelend \DIFaddbegin \DIFadd{decreases with LMAs variance }\DIFaddend (Fig.\DIFdelbegin \DIFdel{SX).
 Additionally, increasing the effects of LMAp on }\DIFdelend \DIFaddbegin \DIFadd{~\ref{fig:massplt}).
-Other factors, including the senstivity of }\DIFaddend \emph{A}\textsubscript{\DIFdelbegin \DIFdel{area}%DIFDELCMD < \MBLOCKRIGHTBRACE %%%
-\DIFdel{(\(\alpha_m\)) leads to mass proportionality and increasing the effects of LMAs on }\DIFdelend \DIFaddbegin \DIFadd{max}} \DIFadd{to variation in LMAp and LMAs (\(\alpha_p\) and \(\alpha_s\)) and covariance between LMAp and LMAs, also affect the relationship between mass-dependence of }\DIFaddend \emph{A}\textsubscript{\DIFdelbegin \DIFdel{area}%DIFDELCMD < \MBLOCKRIGHTBRACE %%%
-\DIFdel{(\(\alpha_s\)) leads to area proportionality (Fig.\ref{fig:massplt})}\DIFdelend \DIFaddbegin \DIFadd{max}} \DIFadd{and LMAs variance (Fig}\DIFaddend .\DIFdelbegin %DIFDELCMD < 
+Other factors, including the senstivity of }\DIFaddend \emph{A}\textsubscript{\DIFdelbegin \DIFdel{area}\DIFdelend \DIFaddbegin \DIFadd{max}\DIFaddend } \DIFaddbegin \DIFadd{to variation in LMAp and LMAs }\DIFaddend (\(\alpha_p\) \DIFdelbegin \DIFdel{) leads to mass proportionality and increasing the effects of LMAs on }\DIFdelend \DIFaddbegin \DIFadd{and \(\alpha_s\)) and covariance between LMAp and LMAs, also affect the relationship between mass-dependence of }\DIFaddend \emph{A}\textsubscript{\DIFdelbegin \DIFdel{area}%DIFDELCMD < \MBLOCKRIGHTBRACE %%%
+\DIFdel{(\(\alpha_s\)) leads to area proportionality (}\DIFdelend \DIFaddbegin \DIFadd{max}} \DIFadd{and LMAs variance (}\DIFaddend Fig.~\ref{fig:massplt}\DIFdelbegin \DIFdel{).
+}%DIFDELCMD < 
 
 %DIFDELCMD < %%%
-\DIFdel{Interspecific }\DIFdelend \DIFaddbegin \DIFadd{~\ref{fig:massplt}, Fig. SX).
-Although relative variance of LMAs was intermediate in GLOPNET (51\%), interspecific }\DIFaddend variation in \emph{A}\textsubscript{max} among leaves in GLOPNET tended to be \DIFdelbegin \DIFdel{area proportional }\DIFdelend \DIFaddbegin \DIFadd{area-dependent }\DIFaddend because of their \DIFaddbegin \DIFadd{lower \(\alpha_p\) and }\DIFaddend negative \(\alpha_s\)\DIFdelbegin \DIFdel{and small \(\alpha_m\) values (Fig.
-\ref{fig:massplt}).
+\DIFdel{Interspecific }\DIFdelend \DIFaddbegin \DIFadd{, Fig. SX).
+Although relative variance of LMAs was intermediate in GLOPNET (51\%), interspecific }\DIFaddend variation in \emph{A}\textsubscript{max} among leaves in GLOPNET tended to be \DIFdelbegin \DIFdel{area proportional }\DIFdelend \DIFaddbegin \DIFadd{area-dependent }\DIFaddend because of their \DIFaddbegin \DIFadd{lower \(\alpha_p\) and }\DIFaddend negative \(\alpha_s\)\DIFdelbegin \DIFdel{and small \(\alpha_p\) values (Fig.
+~\ref{fig:massplt}).
 }\DIFdelend \DIFaddbegin \DIFadd{.
-}\DIFaddend Interspecific variation in LMA in \DIFaddbegin \DIFadd{sun and }\DIFaddend shade leaves in the Panama data was \DIFdelbegin \DIFdel{area depend }\DIFdelend \DIFaddbegin \DIFadd{area-dependent }\DIFaddend because of their large variance in LMAs (Fig.\DIFdelbegin \DIFdel{\ref{fig:massplt}, Fig.SX).
+}\DIFaddend Interspecific variation in LMA in \DIFaddbegin \DIFadd{sun and }\DIFaddend shade leaves in the Panama data was \DIFdelbegin \DIFdel{area depend }\DIFdelend \DIFaddbegin \DIFadd{area-dependent }\DIFaddend because of their large variance in LMAs (Fig.~\ref{fig:massplt}\DIFdelbegin \DIFdel{, Fig.SX).
 Although sun leaves in the Panama data showed area proportionality, the
-pattern is weaker than the rest of two because of the balance among \(\alpha_m\), \(\alpha_s\) and }\DIFdelend \DIFaddbegin \DIFadd{~\ref{fig:massplt}).
+pattern is weaker than the rest of two because of the balance among \(\alpha_p\), \(\alpha_s\) and }\DIFdelend \DIFaddbegin \DIFadd{).
 }
 
+\textbf{\DIFadd{4. Evergreen leaves have greater LMAs than deciduous leaves, and sun leaves have both greater LMAp and LMAs than shade leaves.}}
 \DIFadd{Evergreen vs.~decidous explains the majority of variance in LMAs but not LMAp in GLOPNET (Fig.~\ref{fig:vpart}).
-In the Panama dataset, light (sun vs.~shade) explains the majority of variance in LMAp but not LMAs, and site (wet/dry) explains 33\% of }\DIFaddend variance in LMAs (Fig.\DIFdelbegin \DIFdel{\ref{fig:massplt}}\DIFdelend \DIFaddbegin \DIFadd{~\ref{fig:vpart}}\DIFaddend ).
+In the Panama dataset, light (sun vs.~shade) explains the majority of variance in LMAp but not LMAs, and site (wet/dry) explains 33\% of }\DIFaddend variance in LMAs (Fig.~\DIFdelbegin \DIFdel{\ref{fig:massplt}}\DIFdelend \DIFaddbegin \DIFadd{\ref{fig:vpart}}\DIFaddend ).
 
-\textbf{4. Evergreen leaves have \DIFdelbegin \DIFdel{both }\DIFdelend greater \DIFdelbegin \DIFdel{LMAp and }\DIFdelend LMAs than deciduous leaves, and sun leaves have both greater LMAp and LMAs than shade leaves.}
-In the GLOPNET dataset, \DIFdelbegin \DIFdel{although }\DIFdelend evergreen leaves had higher \DIFdelbegin \DIFdel{both LMAp and }\DIFdelend LMAs than deciduous leaves \DIFdelbegin \DIFdel{, differences in LMAs between the two groups were more apparent }\DIFdelend (Fig.\DIFaddbegin \DIFadd{~}\DIFaddend \ref{fig:boxplt}).
+\DIFdelbegin \textbf{\DIFdel{4. Evergreen leaves have both greater LMAp and LMAs than deciduous leaves, and sun leaves have both greater LMAp and LMAs than shade leaves.}}
+%DIFAUXCMD
+\DIFdelend In the GLOPNET dataset, \DIFdelbegin \DIFdel{although }\DIFdelend evergreen leaves had higher \DIFdelbegin \DIFdel{both LMAp and }\DIFdelend LMAs than deciduous leaves \DIFdelbegin \DIFdel{, differences in LMAs between the two groups were more apparent }\DIFdelend (Fig.~\ref{fig:boxplt}).
 Thus, the higher total LMA in evergreen leaves in GLOPNET was primarily due to differences in LMAs.
 Evergreen leaves have higher fraction of LMAs compared to deciduous leaves \DIFaddbegin \DIFadd{both }\DIFaddend in the Panama \DIFdelbegin \DIFdel{dataset but that pattern was weak in the GLOPNET }\DIFdelend \DIFaddbegin \DIFadd{and the GLOPNET dataset }\DIFaddend (Fig. SX).
-In the Panama dataset, sun leaves have both greater LMAp and LMAs than shade leaves, but the differences in LMAp were more apparent (Fig.\DIFaddbegin \DIFadd{~}\DIFaddend \ref{fig:boxplt}).
+In the Panama dataset, sun leaves have both greater LMAp and LMAs than shade leaves, but the differences in LMAp were more apparent (Fig.~\ref{fig:boxplt}).
 Thus, variation in LMAp plays a more important role within species than among species.
 
 \textbf{5. Nitrogen and phosphorus per-unit leaf area are strongly correlated with LMAp, and cellulose per-unit leaf area is strongly correlated with LMAs.}
 In the GLOPNET dataset, \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} had strong positive correlations with LMAp, but only weak correlations with LMAs (Fig. SX).
-Similarly, in the Panama dataset, \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} had strong positive correlations with LMAp, but were not correlated with LMAs (Fig.\DIFaddbegin \DIFadd{~}\DIFaddend \ref{fig:PA-NPC}).
-In contrast, cellulose per-unit leaf area (\emph{CL}\textsubscript{area}), which was available for the Panama dataset but not for GLOPNET, had a strong positive correlation with LMAs, and a weak positive correlation with LMAp (\DIFdelbegin \DIFdel{Fig.}\DIFdelend \DIFaddbegin \DIFadd{FFig.~}\DIFaddend \ref{fig:PA-NPC}).
-\emph{CL}\textsubscript{area} was more strongly correlated with LMA than with LMAp or LMAs, but sun and shade leaves aligned along a common \emph{CL}\textsubscript{area}-LMAs relationship, as opposed to being offset for LMA and LMAp (\DIFdelbegin \DIFdel{Figs.}\DIFdelend \DIFaddbegin \DIFadd{Fig.~}\DIFaddend \ref{fig:PA-NPC}g-i).
+Similarly, in the Panama dataset, \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} had strong positive correlations with LMAp, but were not correlated with LMAs (Fig.~\ref{fig:PA-NPC}).
+In contrast, cellulose per-unit leaf area (\emph{CL}\textsubscript{area}), which was available for the Panama dataset but not for GLOPNET, had a strong positive correlation with LMAs, and a weak positive correlation with LMAp (FFig.~\ref{fig:PA-NPC}).
+\emph{CL}\textsubscript{area} was more strongly correlated with LMA than with LMAp or LMAs, but sun and shade leaves aligned along a common \emph{CL}\textsubscript{area}-LMAs relationship, as opposed to being offset for LMA and LMAp (Fig.~\ref{fig:PA-NPC}g-i).
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
@@ -709,16 +785,14 @@ Our analyses demonstrate that decomposing LMA variation into separate metabolic 
 The model with LMAp and LMAs showed better predictive accuracy than model with LMA alone for both intraspecific variation in relation to light and interspecific variation.
 Below, we elaborate on the insights gained from our analysis and the implications of our results for the representation of leaf functional diversity in global ecosystem models.
 
-Decomposing LMA into LMAp and LMAs provides insights into why interspecific variation in leaf traits related to photosynthesis and metabolism are primarily area-dependent (i.e., primarily independent of LMA when expressed per-unit area rather than mass-dependent (\DIFdelbegin \DIFdel{Osnas et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Osnas2013}{2013}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Osnas2013}{Osnas et al. 2013}\DIFaddend , \protect\hyperlink{ref-Osnas2018}{2018})).
+Decomposing LMA into LMAp and LMAs provides insights into why interspecific variation in leaf traits related to photosynthesis and metabolism are primarily area-dependent (i.e., primarily independent of LMA when expressed per-unit area rather than mass-dependent (\protect\hyperlink{ref-Osnas2013}{Osnas et al. 2013}, \protect\hyperlink{ref-Osnas2018}{2018})).
 We expected that leaf metabolic traits tend to be area-depend when variance in LMAp is larger than variance in LMAs.
-However, our results suggest that the scaling slopes (\DIFdelbegin \DIFdel{\(\alpha_m\) }\DIFdelend \DIFaddbegin \DIFadd{\(\alpha_p\) }\DIFaddend and \(\alpha_s\)) between LMAp, LMAs and \emph{A}\textsubscript{area} also affect trait area proportionality.
-Leaf metabolic traits tend to be area-dependent when (i) variance in LMAp is small or similar to variance in LMAs, (ii) the effects of LMAp and LMAs on \emph{A}\textsubscript{area} (\DIFdelbegin \DIFdel{\(\alpha_m\) }\DIFdelend \DIFaddbegin \DIFadd{\(\alpha_p\) }\DIFaddend and \(\alpha_s\)) are small, (iii) or combinations of those (Fig. \DIFaddbegin \DIFadd{Fig.~}\DIFaddend \ref{fig:massplt}).
-Consistent with this explanation, the assemblage we examined where LMAs counted for the highest fraction of total LMA variation (\DIFdelbegin \DIFdel{96}\DIFdelend \DIFaddbegin \DIFadd{92}\DIFaddend \% for Panama shade leaves) is also the assembled with the highest degree of trait area-dependence (\DIFdelbegin \DIFdel{Osnas et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Osnas2018}{2018}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Osnas2018}{Osnas et al. 2018}\DIFaddend ).
+However, our results suggest that the scaling slopes (\(\alpha_p\) and \(\alpha_s\)) between LMAp, LMAs and \emph{A}\textsubscript{area} also affect trait area proportionality.
+Leaf metabolic traits tend to be area-dependent when (i) variance in LMAp is small or similar to variance in LMAs, (ii) the effects of LMAp and LMAs on \emph{A}\textsubscript{area} (\(\alpha_p\) and \(\alpha_s\)) are small, (iii) or combinations of those (Fig. Fig.~\ref{fig:massplt}).
+Consistent with this explanation, the assemblage we examined where LMAs counted for the highest fraction of total LMA variation (92\% for Panama shade leaves) is also the assembled with the highest degree of trait area-dependence (\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
 Our results also suggest that high degree of trait area-dependence in GLOPNET is due to the negative effect of LMAs on \emph{A}\textsubscript{area}.
 
-The scaling slope \DIFdelbegin \DIFdel{\(\alpha_m\) }\DIFdelend \DIFaddbegin \DIFadd{\(\alpha_p\) }\DIFaddend less than 1 (Table \DIFdelbegin \DIFdel{\ref{tab:paratab}}\DIFdelend \DIFaddbegin \DIFadd{2}\DIFaddend ) suggests a diminishing return on addition LMAp (i.e., doubling LMAp does not simply result in doubling \emph{A}\textsubscript{max}).
+The scaling slope \(\alpha_p\) less than 1 (Table \DIFdelbegin \DIFdel{\ref{tab:paratab}}\DIFdelend \DIFaddbegin \DIFadd{2}\DIFaddend ) suggests a diminishing return on addition LMAp (i.e., doubling LMAp does not simply result in doubling \emph{A}\textsubscript{max}).
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -728,62 +802,37 @@ The scaling slope \DIFdelbegin \DIFdel{\(\alpha_m\) }\DIFdelend \DIFaddbegin \DI
 \item
   High LMAp (thick leaves) might cause chloroplast self-shading within a leaf
 \item
-  LMAp = (purely) metabolic active leaf mass + something we couldn't estimate in our analysis. All the leaf mass needs to be allocated to LMAp or LMAs in our model. However, variation in non-structural carbohydrates in leaves, which is not estimated in our model, is relatively large (\DIFdelbegin \DIFdel{Martínez-Vilalta et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Martinez-Vilalta2016}{2016}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Martinez-Vilalta2016}{Martínez-Vilalta et al. 2016}\DIFaddend ). Simply partitioning leaf mass into two functions might underestimate how much \emph{A}\textsubscript{max} depending on the metabolic leaf mass .
+  LMAp = (purely) metabolic active leaf mass + something we couldn't estimate in our analysis. All the leaf mass needs to be allocated to LMAp or LMAs in our model. However, variation in non-structural carbohydrates in leaves, which is not estimated in our model, is relatively large (\protect\hyperlink{ref-Martinez-Vilalta2016}{Martínez-Vilalta et al. 2016}). Simply partitioning leaf mass into two functions might underestimate how much \emph{A}\textsubscript{max} depending on the metabolic leaf mass .
 \end{enumerate}
 
 Decomposing LMA also provides insights as to why intraspecific patterns of trait variation differ from those observed across species.
-In contrast to interspecific LMA variation, our analysis suggests that LMAp contributes half or more of the intraspecific increase in LMA from shade to sun (Figs. \DIFaddbegin \DIFadd{Fig.~}\DIFaddend \ref{fig:massplt} and SX).
-The increase in LMAp from shade to sun -- which likely reflects an increase in the size and number of palisade mesophyll cells with increasing light availability (\DIFdelbegin \DIFdel{Onoda et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Onoda2008}{2008}%%%
-\DIFdel{, Terashima et al. }\DIFdelend \DIFaddbegin \hyperlink{ref-Onoda2008}{Onoda et al. 2008}\DIFadd{, }\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Terashima2011}{2011}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Terashima2011}{Terashima et al. 2011}\DIFaddend ) -- is also associated with an increase in LMAs from shade to sun (Fig. \DIFaddbegin \DIFadd{Fig.~}\DIFaddend \ref{fig:boxplt}).
-This positive covariance between LMAp and LMAs within species means that per-area values of LMAp-proportional traits (e.g., \emph{A}\textsubscript{area}) have a strong, positive relationship with total LMA, which implies trait mass-proportionality (\DIFdelbegin \DIFdel{Osnas et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Osnas2018}{2018}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Osnas2018}{Osnas et al. 2018}\DIFaddend ).
+In contrast to interspecific LMA variation, our analysis suggests that LMAp contributes half or more of the intraspecific increase in LMA from shade to sun (Figs. Fig.~\ref{fig:massplt} and SX).
+The increase in LMAp from shade to sun -- which likely reflects an increase in the size and number of palisade mesophyll cells with increasing light availability (\protect\hyperlink{ref-Onoda2008}{Onoda et al. 2008}, \protect\hyperlink{ref-Terashima2011}{Terashima et al. 2011}) -- is also associated with an increase in LMAs from shade to sun (Fig. Fig.~\ref{fig:boxplt}).
+This positive covariance between LMAp and LMAs within species means that per-area values of LMAp-proportional traits (e.g., \emph{A}\textsubscript{area}) have a strong, positive relationship with total LMA, which implies trait mass-proportionality (\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
 
-The improved predictions and understanding provided by decomposing LMA into photosynthetic and structural components challenge the view that leaf functional diversity can be accurately represented by a single leaf economics spectrum (LES) axis (\DIFdelbegin \DIFdel{Wright et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Wright2004a}{2004}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Wright2004a}{Wright et al. 2004}\DIFaddend ).
+The improved predictions and understanding provided by decomposing LMA into photosynthetic and structural components challenge the view that leaf functional diversity can be accurately represented by a single leaf economics spectrum (LES) axis (\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}).
 Lloyd et al. (\protect\hyperlink{ref-Lloyd2013}{2013}) argued that the apparent dominance of a single LES axis is an artifact of expressing area-dependent leaf traits on a per-mass basis, and Osnas et al. (\protect\hyperlink{ref-Osnas2013}{2013}) demonstrated that across the global flora, traits related to photosynthesis and metabolism are indeed area-dependent.
 Intraspecific patterns in trait variation, which contrast with interspecific patterns, pose additional challenges for a one-dimensional view of leaf functional diversity. Our analysis shows that considering two primary axes of leaf trait variation (photosynthesis and structure) provides improved quantitative predictions and insights compared to LES of a single dominant axis.
-Our results point to a simple two-dimensional framework for representing leaf functional diversity in global ecosystem models: a LMAp axis that determines \emph{A}\textsubscript{max}, accounts for nearly all \emph{R}\textsubscript{dark} (see rp and rs estimates in Table S1) and a LMAs axis that determines potential LL through its effects on leaf toughness (\DIFdelbegin \DIFdel{Kleyer et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Kleyer2012}{2012}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Kleyer2012}{Kleyer et al. 2012}\DIFaddend ).
-In the datasets we analyzed (the global flora and tropical trees in Panama), these two axes are only weakly correlated with each other (Fig. S5), which suggests that trait-based approaches to global ecosystem modeling (\DIFdelbegin \DIFdel{Scheiter et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Scheiter2013}{2013}%%%
-\DIFdel{, Wullschleger et al. }\DIFdelend \DIFaddbegin \hyperlink{ref-Scheiter2013}{Scheiter et al. 2013}\DIFadd{, }\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Wullschleger2014}{2014}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Wullschleger2014}{Wullschleger et al. 2014}\DIFaddend ) could consider these as independent axes.
-For example, to simulate individual competing trees which from diverse community of growth strategies (\DIFdelbegin \DIFdel{Sakschewski et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Sakschewski2015}{2015}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Sakschewski2015}{Sakschewski et al. 2015}\DIFaddend , \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Sakschewski2016}{2016}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Sakschewski2016}{Sakschewski et al. 2016}\DIFaddend ), it would be possible to draw LMAp and LMAs values from distributions with realistic ranges instead of a single LMA distribution.
+Our results point to a simple two-dimensional framework for representing leaf functional diversity in global ecosystem models: a LMAp axis that determines \emph{A}\textsubscript{max}, accounts for nearly all \emph{R}\textsubscript{dark} (see rp and rs estimates in Table S1) and a LMAs axis that determines potential LL through its effects on leaf toughness (\protect\hyperlink{ref-Kleyer2012}{Kleyer et al. 2012}).
+In the datasets we analyzed (the global flora and tropical trees in Panama), these two axes are only weakly correlated with each other (Fig. S5), which suggests that trait-based approaches to global ecosystem modeling (\protect\hyperlink{ref-Scheiter2013}{Scheiter et al. 2013}, \protect\hyperlink{ref-Wullschleger2014}{Wullschleger et al. 2014}) could consider these as independent axes.
+For example, to simulate individual competing trees which from diverse community of growth strategies (\protect\hyperlink{ref-Sakschewski2015}{Sakschewski et al. 2015}, \protect\hyperlink{ref-Sakschewski2016}{Sakschewski et al. 2016}), it would be possible to draw LMAp and LMAs values from distributions with realistic ranges instead of a single LMA distribution.
 
 Our statistical decomposition of LMA into metabolic and structural components provides important insights, but additional insights and accuracy could be gained by a more mechanistic modeling approach.
 For example, John et al. (\protect\hyperlink{ref-John2017}{2017}) decomposed interspecific LMA variation into anatomical components such as the size, number of layers, and mass density of cells in different leaf tissues.
 If such detailed information became available for a large number of leaves, representing both intra- and interspecific variation, it should be possible to quantify how these anatomical traits scale up to leaf-level \emph{A}\textsubscript{max} , \emph{R}\textsubscript{dark}, and LL.
-A simpler alternative would be to modify our model to account for variation in cell wall thickness (TCW): for a given cell size, increasing TCW would lead to an increase in lamina density, cellulose per volume, toughness, and LL (\DIFdelbegin \DIFdel{Kitajima et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Kitajima2012}{2012}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Kitajima2010}{Kitajima and Poorter 2010}\DIFaddend , \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Kitajima2016}{2016}%%%
-\DIFdel{, Kitajima and Poorter }\DIFdelend \DIFaddbegin \hyperlink{ref-Kitajima2012}{Kitajima et al. 2012}\DIFadd{, }\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Kitajima2010}{2010}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Kitajima2016}{2016}\DIFaddend ), and a decrease in mesophyll conductance and \emph{A}\textsubscript{max} (\DIFdelbegin \DIFdel{Onoda et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Onoda2017}{2017}%%%
-\DIFdel{, Evans et al. }\DIFdelend \DIFaddbegin \hyperlink{ref-Evans2009}{Evans et al. 2009}\DIFadd{, }\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Evans2009}{2009}%%%
-\DIFdel{, Terashima et al. }\DIFdelend \DIFaddbegin \hyperlink{ref-Terashima2011}{Terashima et al. 2011}\DIFadd{, }\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Terashima2011}{2011}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Onoda2017}{Onoda et al. 2017}\DIFaddend ).
+A simpler alternative would be to modify our model to account for variation in cell wall thickness (TCW): for a given cell size, increasing TCW would lead to an increase in lamina density, cellulose per volume, toughness, and LL (\protect\hyperlink{ref-Kitajima2010}{Kitajima and Poorter 2010}, \protect\hyperlink{ref-Kitajima2012}{Kitajima et al. 2012}, \protect\hyperlink{ref-Kitajima2016}{2016}), and a decrease in mesophyll conductance and \emph{A}\textsubscript{max} (\protect\hyperlink{ref-Evans2009}{Evans et al. 2009}, \protect\hyperlink{ref-Terashima2011}{Terashima et al. 2011}, \protect\hyperlink{ref-Onoda2017}{Onoda et al. 2017}).
 Indeed, our model might capture those patterns. The negative effects of LMAs on \emph{A}\textsubscript{area} in GLOPNET data indicate that high amount of photosynthetic proteins is not always translated into high photosynthetic capacity.
 High LMAs that may be associated with a particular anatomical components might lead to lower mesophyll conductance.
 
 \hypertarget{conclusions}{%
 \section{Conclusions}\label{conclusions}}
 
-It is widely recognized that LMA variation is associated with multiple tissues and functions, including metabolically active mesophyll that largely determines photosynthetic capacity, as well as structural and chemical components that contribute primarily to leaf toughness and defense (\DIFdelbegin \DIFdel{Roderick et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Roderick1999}{1999}%%%
-\DIFdel{, Shipley et al. }\DIFdelend \DIFaddbegin \hyperlink{ref-Roderick1999}{Roderick et al. 1999}\DIFadd{, }\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Shipley2006}{2006}%%%
-\DIFdel{, Lusk et al. }\DIFdelend \DIFaddbegin \hyperlink{ref-Shipley2006}{Shipley et al. 2006}\DIFadd{, }\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Lusk2010}{2010}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Lusk2010}{Lusk et al. 2010}\DIFaddend ).
+It is widely recognized that LMA variation is associated with multiple tissues and functions, including metabolically active mesophyll that largely determines photosynthetic capacity, as well as structural and chemical components that contribute primarily to leaf toughness and defense (\protect\hyperlink{ref-Roderick1999}{Roderick et al. 1999}, \protect\hyperlink{ref-Shipley2006}{Shipley et al. 2006}, \protect\hyperlink{ref-Lusk2010}{Lusk et al. 2010}).
 It should not be surprising then, that partitioning LMA into metabolic and structural components yields enhanced predictions and improved understanding of patterns of leaf trait variation both within and among species.
 Yet for over a decade, the vast literature on leaf traits has been strongly influenced by the view that leaf trait variation can usefully be represented by a single dominant axis of LES.
-Our results provide quantitative evidence that this one-dimensional view of leaf trait variation is insufficient, and our model provides a biological explanation for previous statistical analyses that have demonstrated area-dependence of leaf traits across species (\DIFdelbegin \DIFdel{Osnas et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Osnas2013}{2013}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Osnas2013}{Osnas et al. 2013}\DIFaddend ), while also explaining mass-dependence within species. Our results suggest that small scaling slope between metabolic leaf mass and photosynthetic rate, and similar variance in LMAp and in LMAs leads to area-proportionality of interspecific leaf traits.
-Thus, strong interspecific correlations between LMA and mass-normalized photosynthetic capacity (and related traits, such as respiration rate, and nitrogen and phosphorus concentrations) are likely driven by mass-normalization itself, rather than any functional dependence of these photosynthetic and metabolic traits on LMA (\DIFdelbegin \DIFdel{Lloyd et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Lloyd2013}{2013}%%%
-\DIFdel{, Osnas et al. }\DIFdelend \DIFaddbegin \hyperlink{ref-Lloyd2013}{Lloyd et al. 2013}\DIFadd{, }\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Osnas2013}{2013}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Osnas2013}{Osnas et al. 2013}\DIFaddend ).
-In contrast, intraspecific variation in LMA is driven by coordinated changes in structural and metabolic mass components, which explains why mass-normalized photosynthetic and metabolic traits vary little from sun to shade within species (\DIFdelbegin \DIFdel{Poorter et al. }\DIFdelend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Poorter2006b}{2006}%%%
-\DIFdel{, Aranda et al. }\DIFdelend \DIFaddbegin \hyperlink{ref-Aranda2004}{Aranda et al. 2004}\DIFadd{, }\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Aranda2004}{2004}%%%
-\DIFdel{, Niinemets et al. }\DIFdelend \DIFaddbegin \hyperlink{ref-Poorter2006b}{Poorter et al. 2006}\DIFadd{, }\DIFaddend \protect\DIFdelbegin %DIFDELCMD < \hyperlink{ref-Niinemets2015}{2015}%%%
-\DIFdelend \DIFaddbegin \hyperlink{ref-Niinemets2015}{Niinemets et al. 2015}\DIFaddend ).
+Our results provide quantitative evidence that this one-dimensional view of leaf trait variation is insufficient, and our model provides a biological explanation for previous statistical analyses that have demonstrated area-dependence of leaf traits across species (\protect\hyperlink{ref-Osnas2013}{Osnas et al. 2013}), while also explaining mass-dependence within species. Our results suggest that small scaling slope between metabolic leaf mass and photosynthetic rate, and similar variance in LMAp and in LMAs leads to area-proportionality of interspecific leaf traits.
+Thus, strong interspecific correlations between LMA and mass-normalized photosynthetic capacity (and related traits, such as respiration rate, and nitrogen and phosphorus concentrations) are likely driven by mass-normalization itself, rather than any functional dependence of these photosynthetic and metabolic traits on LMA (\protect\hyperlink{ref-Lloyd2013}{Lloyd et al. 2013}, \protect\hyperlink{ref-Osnas2013}{Osnas et al. 2013}).
+In contrast, intraspecific variation in LMA is driven by coordinated changes in structural and metabolic mass components, which explains why mass-normalized photosynthetic and metabolic traits vary little from sun to shade within species (\protect\hyperlink{ref-Aranda2004}{Aranda et al. 2004}, \protect\hyperlink{ref-Poorter2006b}{Poorter et al. 2006}, \protect\hyperlink{ref-Niinemets2015}{Niinemets et al. 2015}).
 
 \hypertarget{acknowledgments}{%
 \section{Acknowledgments}\label{acknowledgments}}
@@ -816,9 +865,7 @@ Blonder, B., C. Violle, L. P. Bentley, and B. J. Enquist. 2011. \href{https://do
 Bonan, G. B., S. Levis, L. Kergoat, and K. W. Oleson. 2002. \href{https://doi.org/10.1029/2000GB001360}{Landscapes as patches of plant functional types: {An} integrating concept for climate and ecosystem models}. Global Biogeochemical Cycles 16:5-1-5-23.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Burnham2002}{}}%
-Burnham, K. P., and D. R. Anderson. 2002. \href{https://doi.org/10.1007/b97636}{Model {Selection} and {Multimodel Inference}: {A Practical \DIFdelbegin \DIFdel{Information}%DIFDELCMD < }%%%
-\DIFdel{-}%DIFDELCMD < {%%%
-\DIFdel{Theoretic }\DIFdelend \DIFaddbegin \DIFadd{Information-Theoretic }\DIFaddend Approach}}. Second. {Springer-Verlag}, {New York}.
+Burnham, K. P., and D. R. Anderson. 2002. \href{https://doi.org/10.1007/b97636}{Model {Selection} and {Multimodel Inference}: {A Practical Information-Theoretic Approach}}. Second. {Springer-Verlag}, {New York}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Carpenter2017}{}}%
 Carpenter, B., A. Gelman, M. D. Hoffman, D. Lee, B. Goodrich, M. Betancourt, M. Brubaker, J. Guo, P. Li, and A. Riddell. 2017. \href{https://doi.org/10.18637/jss.v076.i01}{Stan : {A Probabilistic Programming Language}}. Journal of Statistical Software 76:1--32.
@@ -832,11 +879,10 @@ Falster, D. S., P. B. Reich, D. S. Ellsworth, I. J. Wright, M. Westoby, J. Oleks
 \leavevmode\vadjust pre{\hypertarget{ref-Gelman2013}{}}%
 Gelman, A., J. B. Carlin, H. S. Stern, D. B. Dunson, A. Vehtari, and D. B. Rubin. 2013. Bayesian {Data Analysis}, {Third Edition}. {Taylor \& Francis}.
 
-\leavevmode\vadjust pre{\DIFaddbegin \hypertarget{ref-Gelman2019}{}}%DIF > 
-\DIFadd{Gelman, A., B. Goodrich, J. Gabry, and A. Vehtari. 2019. }\href{https://doi.org/10.1080/00031305.2018.1549100}{\DIFadd{R-squared for }{\DIFadd{Bayesian Regression Models}}}\DIFadd{. The American Statistician 73:307--309.
-}
+\leavevmode\vadjust pre{\hypertarget{ref-Gelman2019}{}}%
+Gelman, A., B. Goodrich, J. Gabry, and A. Vehtari. 2019. \href{https://doi.org/10.1080/00031305.2018.1549100}{R-squared for {Bayesian Regression Models}}. The American Statistician 73:307--309.
 
-\leavevmode\vadjust \DIFadd{pre}{\DIFaddend \hypertarget{ref-Huntingford2017}{}}%
+\leavevmode\vadjust pre{\hypertarget{ref-Huntingford2017}{}}%
 Huntingford, C., O. K. Atkin, A. Martinez-de la Torre, L. M. Mercado, M. A. Heskel, A. B. Harper, K. J. Bloomfield, O. S. O'Sullivan, P. B. Reich, K. R. Wythers, E. E. Butler, M. Chen, K. L. Griffin, P. Meir, M. G. Tjoelker, M. H. Turnbull, S. Sitch, A. Wiltshire, and Y. Malhi. 2017. \href{https://doi.org/10.1038/s41467-017-01774-z}{Implications of improved representations of plant respiration in a changing climate}. Nature Communications 8:1602.
 
 \leavevmode\vadjust pre{\hypertarget{ref-John2017}{}}%
@@ -934,15 +980,13 @@ Vehtari, A., T. Mononen, V. Tolvanen, T. Sivula, and O. Winther. 2014. \href{htt
 Villar, R., and J. Merino. 2001. \href{https://doi.org/10.1046/j.1469-8137.2001.00147.x}{Comparison of leaf construction costs in woody species with differing leaf life-spans in contrasting ecosystems}. New Phytologist 151:213--226.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Westoby2013}{}}%
-Westoby, M., P. B. Reich, and I. J. Wright. 2013. \href{https://doi.org/10.1111/nph.12345}{Understanding ecological variation across species: {\DIFdelbegin \DIFdel{Area}\DIFdelend \DIFaddbegin \DIFadd{Area-based}\DIFaddend } \DIFdelbegin \DIFdel{-based }\DIFdelend vs mass-based expression of leaf traits}. New Phytologist 199:322--323.
+Westoby, M., P. B. Reich, and I. J. Wright. 2013. \href{https://doi.org/10.1111/nph.12345}{Understanding ecological variation across species: {Area-based} vs mass-based expression of leaf traits}. New Phytologist 199:322--323.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Westoby2000}{}}%
 Westoby, M., D. Warton, and P. B. Reich. 2000. \href{https://doi.org/10.1086/303346}{The {Time Value} of {Leaf Area}}. The American Naturalist 155:649--656.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Williams1989}{}}%
-Williams, K., C. B. Field, and H. A. Mooney. 1989. \href{https://doi.org/10.1086/284910}{Relationships {Among Leaf Construction Cost}, {Leaf Longevity}, and {Light Environment} in {\DIFdelbegin \DIFdel{Rain}%DIFDELCMD < }%%%
-\DIFdel{-}%DIFDELCMD < {%%%
-\DIFdel{Forest }\DIFdelend \DIFaddbegin \DIFadd{Rain-Forest }\DIFaddend Plants} of the {Genus Piper}}. The American Naturalist 133:198--211.
+Williams, K., C. B. Field, and H. A. Mooney. 1989. \href{https://doi.org/10.1086/284910}{Relationships {Among Leaf Construction Cost}, {Leaf Longevity}, and {Light Environment} in {Rain-Forest Plants} of the {Genus Piper}}. The American Naturalist 133:198--211.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Wright2005}{}}%
 Wright, I. J., P. B. Reich, J. H. C. Cornelissen, D. S. Falster, P. K. Groom, K. Hikosaka, W. Lee, C. H. Lusk, Ü. Niinemets, J. Oleksyn, N. Osada, H. Poorter, D. I. Warton, and M. Westoby. 2005. \href{https://doi.org/10.1111/j.1466-822x.2005.00172.x}{Modulation of leaf economic traits and trait relationships by climate}. Global Ecology and Biogeography 14:411--421.
@@ -966,262 +1010,97 @@ Xu, X., D. Medvigy, S. Joseph Wright, K. Kitajima, J. Wu, L. P. Albert, G. A. Ma
 \hypertarget{tables}{%
 \section{Tables}\label{tables}}
 
-\DIFdelbegin %DIFDELCMD < \begin{longtable}[t]{l}
-%DIFDELCMD < %%%
-%DIFDELCMD < \caption{%
-{%DIFAUXCMD
-%DIFDELCMD < \label{tab:modeltab}
-%DIFDELCMD <         %%%
-\DIFdel{Five model forms compared to predict $A_{area}$, *A*~area~, LL and *R*~area~.
-      }}%DIFAUXCMD
-%DIFDELCMD < \\
-%DIFDELCMD < \toprule
-%DIFDELCMD < %%%
-\DIFdel{Expected trait values}%DIFDELCMD < \\
-%DIFDELCMD < \midrule
-%DIFDELCMD < \addlinespace[0.3em]
-%DIFDELCMD < \multicolumn{1}{l}{\textbf{Model 1: LMA}}\\
-%DIFDELCMD < %%%
-\DIFdel{\hspace{1em}$\mathrm{E}[A_{\mathrm{area} , i}] = \vphantom{1} \alpha_0\mathrm{LMA}_{i}^{\alpha}$}%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{\hspace{1em}$\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMA}{i}^{\beta}$}%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{\hspace{1em}$\mathrm{E}[R_{\mathrm{area} , i}] = \gamma_0\mathrm{LMA}_{i}^{\gamma}$}%DIFDELCMD < \\
-%DIFDELCMD < \addlinespace[0.3em]
-%DIFDELCMD < \multicolumn{1}{l}{\textbf{Model 2: LMA + light}}\\
-%DIFDELCMD < %%%
-\DIFdel{\hspace{1em}$\mathrm{E}[A_{\mathrm{area} , i}] = \alpha_0\mathrm{LMA}_{i}^{\alpha}$}%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{\hspace{1em}$\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMA}{i}^{\beta}exp(\theta Light_i)$}%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{\hspace{1em}$\mathrm{E}[R_{\mathrm{area} , i}] = \gamma_0\mathrm{LMA}_{i}^{\gamma}$"}%DIFDELCMD < \\
-%DIFDELCMD < \addlinespace[0.3em]
-%DIFDELCMD < \multicolumn{1}{l}{\textbf{Model 3: LMAp + LMAs}}\\
-%DIFDELCMD < %%%
-\DIFdel{\hspace{1em}$\mathrm{E}[A_{\mathrm{area} , i}] = \alpha_0\mathrm{LMAp}_{i}^{\alpha_p} \mathrm{LMAs}_{i}^{\alpha_s}$}%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{\hspace{1em}$\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAp}_{i}^{\beta_p} \mathrm{LMAs}_{i}^{\beta_s}$}%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{\hspace{1em}$\mathrm{E}[R_{\mathrm{area} , i}] = \gamma_0\mathrm{LMAp}_{i}^{\gamma_p} \vphantom{2} \mathrm{LMAs}_{i}^{\gamma_s}$}%DIFDELCMD < \\
-%DIFDELCMD < \addlinespace[0.3em]
-%DIFDELCMD < \multicolumn{1}{l}{\textbf{Model 4: LMAp + LMAs + light}}\\
-%DIFDELCMD < %%%
-\DIFdel{\hspace{1em}$\mathrm{E}[A_{\mathrm{area} , i}]= \alpha_0\mathrm{LMAp}_{i}^{\alpha_p} \mathrm{LMAs}_{i}^{\alpha_s}$}%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{\hspace{1em}$\mathrm{E}[R_{\mathrm{area} , i}] = \gamma_0\mathrm{LMAp}_{i}^{\gamma_p} \vphantom{1} \mathrm{LMAs}_{i}^{\gamma_s}$}%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{\hspace{1em}$\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAp}_{i}^{\beta_p} \mathrm{LMAs}_{i}^{\beta_s}exp(\theta Light_i)$}%DIFDELCMD < \\
-%DIFDELCMD < \addlinespace[0.3em]
-%DIFDELCMD < \multicolumn{1}{l}{\textbf{Model 5: LMAp + LMAs/LT + light}}\\
-%DIFDELCMD < %%%
-\DIFdel{\hspace{1em}$\mathrm{E}[A_{\mathrm{area} , i}]= \alpha_0\mathrm{LMAp}_{i}^{\alpha_p} (\mathrm{LMAs}_{i}/\mathrm{LT}_{i})^{\alpha_s}$}%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{\hspace{1em}$\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAp}_{i}^{\beta_p} (\mathrm{LMAs}_{i}/\mathrm{LT}{i})^{\beta_s}exp(\theta Light_i)$}%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{\hspace{1em}$\mathrm{E}[R_{\mathrm{area} , i}] = \gamma_0\mathrm{LMAp}_{i}^{\gamma_p} \mathrm{LMAs}_{i}^{\gamma_s}$}%DIFDELCMD < \\
-%DIFDELCMD < \bottomrule
-%DIFDELCMD < \end{longtable}
-%DIFDELCMD < \newpage
-%DIFDELCMD < 
-
-%DIFDELCMD < \hypertarget{section}{%
-%DIFDELCMD < \section{}\label{section}}
-%DIFDELCMD < 
-
-%DIFDELCMD < \begin{longtable}[]{@{}lll@{}}
-%DIFDELCMD < %%%
-%DIFDELCMD < \caption{%
-{%DIFAUXCMD
-%DIFDELCMD < \label{tab:lootab} %%%
-\DIFdel{Summary of the model comparison. Lower approximate leave-one-out cross-validation (LOOIC) indicates better predictive accuracy. N; number of samples.}}%DIFAUXCMD
-%DIFDELCMD < \tabularnewline
-%DIFDELCMD < \toprule
-%DIFDELCMD < & %%%
-\DIFdel{LOOIC}%DIFDELCMD < & %%%
-\DIFdel{N }%DIFDELCMD < \\
-%DIFDELCMD < \midrule
-%DIFDELCMD < \endfirsthead
-%DIFDELCMD < \toprule
-%DIFDELCMD < & %%%
-\DIFdel{LOOIC }%DIFDELCMD < & %%%
-\DIFdel{N }%DIFDELCMD < \\
-%DIFDELCMD < \midrule
-%DIFDELCMD < \endhead
-%DIFDELCMD < %%%
-\textbf{\DIFdel{GLOPNET}} %DIFAUXCMD
-%DIFDELCMD < & & \\
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \DIFadd{Table 1. Summary of the model comparison.
+\DIFaddbegin \DIFadd{Table 1. Summary of the model comparison.
 Lower approximate leave-one-out cross-validation information criterion (LOOIC) indicates better predictive accuracy.
 The models here are the five moodel forms representing LL:
 (1) LMA,
-(2) }\DIFaddend LMAp and LMAs\DIFdelbegin %DIFDELCMD < & %%%
-\DIFdel{746 }%DIFDELCMD < & %%%
-\DIFdel{198 }%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{LMA }%DIFDELCMD < & %%%
-\DIFdel{766.2 }%DIFDELCMD < & %%%
-\DIFdel{198 }%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\textbf{\DIFdel{Panama}} %DIFAUXCMD
-%DIFDELCMD < & & \\
-%DIFDELCMD < %%%
-\DIFdel{LMAp+ LMAs + light}%DIFDELCMD < & %%%
-\DIFdel{501.1 }%DIFDELCMD < & %%%
-\DIFdel{106 }%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{LMA + light }%DIFDELCMD < & %%%
-\DIFdel{503 }%DIFDELCMD < & %%%
-\DIFdel{106 }%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{LMAp+ }\DIFdelend \DIFaddbegin \DIFadd{,
+(2) LMAp and LMAs,
 (3) LMA and light,
 (4) LMAp, LMAs and light, and
-(5) LMAp, }\DIFaddend LMAs/LT \DIFdelbegin \DIFdel{+ light}%DIFDELCMD < & %%%
-\DIFdel{503.4 }%DIFDELCMD < & %%%
-\DIFdel{106 }%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{LMAp + LMAs }%DIFDELCMD < & %%%
-\DIFdel{518.2 }%DIFDELCMD < & %%%
-\DIFdel{106 }%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{LMA }%DIFDELCMD < & %%%
-\DIFdel{528.1 }%DIFDELCMD < & %%%
-\DIFdel{106 }%DIFDELCMD < \\
-%DIFDELCMD < \bottomrule
-%DIFDELCMD < \end{longtable}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \DIFadd{and light, with four types of parameter restrictions:
+(5) LMAp, LMAs/LT and light, with four types of parameter restrictions:
 (a) \(\alpha_s = 0\) and \(\beta_p = 0\),
 (b) \(\alpha_p > \alpha_s\) and \(\beta_p = 0\),
 (c) \(\alpha_s = 0\) and \(\beta_s > \beta_p\), and
 (d) \(\alpha_p > \alpha_s\) and \(\beta_s > \beta_p\).
-}\DIFaddend 
+}
 
-\DIFaddbegin \includegraphics{../figs/table1.png}
+\begin{table}
+\centering
+\begin{tabular}{lrr}
+\toprule
+\DIFaddFL{model }& \DIFaddFL{N }& \DIFaddFL{looic}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{3}{l}{\textbf{GLOPNET}}\\
+\DIFaddFL{\hspace{1em}2b }& \DIFaddFL{198 }& \DIFaddFL{717.1}\\
+\DIFaddFL{\hspace{1em}2d }& \DIFaddFL{198 }& \DIFaddFL{745.9}\\
+\DIFaddFL{\hspace{1em}2a }& \DIFaddFL{198 }& \DIFaddFL{746.1}\\
+\DIFaddFL{\hspace{1em}2c }& \DIFaddFL{198 }& \DIFaddFL{759.3}\\
+\DIFaddFL{\hspace{1em}1 }& \DIFaddFL{198 }& \DIFaddFL{766.7}\\
+\addlinespace[0.3em]
+\multicolumn{3}{l}{\textbf{Panama}}\\
+\DIFaddFL{\hspace{1em}4a }& \DIFaddFL{106 }& \DIFaddFL{451.2}\\
+\DIFaddFL{\hspace{1em}4c }& \DIFaddFL{106 }& \DIFaddFL{468.6}\\
+\DIFaddFL{\hspace{1em}5a }& \DIFaddFL{106 }& \DIFaddFL{469.7}\\
+\DIFaddFL{\hspace{1em}2c }& \DIFaddFL{106 }& \DIFaddFL{474.1}\\
+\DIFaddFL{\hspace{1em}5c }& \DIFaddFL{106 }& \DIFaddFL{486.7}\\
+\DIFaddFL{\hspace{1em}2a }& \DIFaddFL{106 }& \DIFaddFL{497.1}\\
+\DIFaddFL{\hspace{1em}4b }& \DIFaddFL{106 }& \DIFaddFL{500.2}\\
+\DIFaddFL{\hspace{1em}4d }& \DIFaddFL{106 }& \DIFaddFL{501.4}\\
+\DIFaddFL{\hspace{1em}3a }& \DIFaddFL{106 }& \DIFaddFL{503.4}\\
+\DIFaddFL{\hspace{1em}5d }& \DIFaddFL{106 }& \DIFaddFL{504.1}\\
+\DIFaddFL{\hspace{1em}5b }& \DIFaddFL{106 }& \DIFaddFL{508.6}\\
+\DIFaddFL{\hspace{1em}2d }& \DIFaddFL{106 }& \DIFaddFL{516.8}\\
+\DIFaddFL{\hspace{1em}2b }& \DIFaddFL{106 }& \DIFaddFL{518.1}\\
+\DIFaddFL{\hspace{1em}1 }& \DIFaddFL{106 }& \DIFaddFL{528.5}\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \DIFaddend \newpage
 
-\DIFdelbegin %DIFDELCMD < \hypertarget{section-1}{%
-%DIFDELCMD < \section{}\label{section-1}}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \hypertarget{section}{%
-\section{}\label{section}}
-\DIFaddend 
-
-\DIFdelbegin %DIFDELCMD < \begin{longtable}[]{@{}
-%DIFDELCMD <   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4271}}
-%DIFDELCMD <   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2812}}
-%DIFDELCMD <   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2917}}@{}}
-%DIFDELCMD < %%%
-%DIFDELCMD < \caption{%
-{%DIFAUXCMD
-%DIFDELCMD < \label{tab:paratab} %%%
-\DIFdel{Posterior means }%DIFDELCMD < {[}%%%
-\DIFdel{95\% credible interval}%DIFDELCMD < {]} %%%
-\DIFdel{of parameters for the best models. `LMAp + LMAs model' and `LMAp + LMAs + light model' are shown for GLOPNET and Panama data, respectively. Bold values are significantly different from zero based on the 95\% credible interval.}}%DIFAUXCMD
-%DIFDELCMD < \tabularnewline
-%DIFDELCMD < \toprule
-%DIFDELCMD < \begin{minipage}[b]{\linewidth}\raggedright
-%DIFDELCMD < %%%
-\DIFdel{Parameters
-}%DIFDELCMD < \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-%DIFDELCMD < %%%
-\DIFdel{GLOPNET
-}%DIFDELCMD < \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-%DIFDELCMD < %%%
-\DIFdel{Panama
-}%DIFDELCMD < \end{minipage} \\
-%DIFDELCMD < \midrule
-%DIFDELCMD < \endfirsthead
-%DIFDELCMD < \toprule
-%DIFDELCMD < \begin{minipage}[b]{\linewidth}\raggedright
-%DIFDELCMD < %%%
-\DIFdel{Parameters
-}%DIFDELCMD < \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-%DIFDELCMD < %%%
-\DIFdel{GLOPNET
-}%DIFDELCMD < \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-%DIFDELCMD < %%%
-\DIFdel{Panama
-}%DIFDELCMD < \end{minipage} \\
-%DIFDELCMD < \midrule
-%DIFDELCMD < \endhead
-%DIFDELCMD < %%%
-\DIFdel{Effect of LMAp on }\emph{\DIFdel{A}}%DIFAUXCMD
-\DIFdel{\textsubscript{area} (\(\alpha_p\)) }%DIFDELCMD < & %%%
-\textbf{\DIFdel{0.283 }%DIFDELCMD < {[}%%%
-\DIFdel{0.207, 0.358}%DIFDELCMD < {]}%%%
-} %DIFAUXCMD
-%DIFDELCMD < & %%%
-\textbf{\DIFdel{0.552 }%DIFDELCMD < {[}%%%
-\DIFdel{0.404, 0.702}%DIFDELCMD < {]}%%%
-} %DIFAUXCMD
-%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{Effect of LMAs on }\emph{\DIFdel{A}}%DIFAUXCMD
-\DIFdel{\textsubscript{area} (\(\alpha_s\)) }%DIFDELCMD < & %%%
-\textbf{\DIFdel{-0.132 }%DIFDELCMD < {[}%%%
-\DIFdel{-0.201, -0.06}%DIFDELCMD < {]}%%%
-} %DIFAUXCMD
-%DIFDELCMD < & %%%
-\DIFdel{- }%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{Effect of LMAs on LL (\(\beta_s\)) }%DIFDELCMD < & %%%
-\textbf{\DIFdel{0.887 }%DIFDELCMD < {[}%%%
-\DIFdel{0.765, 1.017}%DIFDELCMD < {]}%%%
-} %DIFAUXCMD
-%DIFDELCMD < & %%%
-\textbf{\DIFdel{0.367 }%DIFDELCMD < {[}%%%
-\DIFdel{0.188, 0.55}%DIFDELCMD < {]}%%%
-} %DIFAUXCMD
-%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{Effect of LMAp on }\emph{\DIFdel{R}}%DIFAUXCMD
-\DIFdel{\textsubscript{area} (\(\gamma_p\)) }%DIFDELCMD < & %%%
-\textbf{\DIFdel{0.294 }%DIFDELCMD < {[}%%%
-\DIFdel{0.21, 0.387}%DIFDELCMD < {]}%%%
-} %DIFAUXCMD
-%DIFDELCMD < & %%%
-\textbf{\DIFdel{0.651 }%DIFDELCMD < {[}%%%
-\DIFdel{0.438, 0.851}%DIFDELCMD < {]}%%%
-} %DIFAUXCMD
-%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdel{Effect of LMAs on }\emph{\DIFdel{R}}%DIFAUXCMD
-\DIFdel{\textsubscript{area} (\(\gamma_s\)) }%DIFDELCMD < & %%%
-\DIFdel{0.033 }\DIFdelend \DIFaddbegin \DIFadd{Table 2.
-Posterior means }\DIFaddend {[}\DIFdelbegin \DIFdel{-0.045, 0.114}\DIFdelend \DIFaddbegin \DIFadd{95\% credible interval}\DIFaddend {]} \DIFdelbegin %DIFDELCMD < & %%%
-\DIFdel{-0.012 }%DIFDELCMD < {[}%%%
-\DIFdel{-0.276, 0.302}%DIFDELCMD < {]} \\
-%DIFDELCMD < %%%
-\DIFdel{Effect of light on LL (\(\theta\)) }%DIFDELCMD < & %%%
-\DIFdel{- }%DIFDELCMD < & %%%
-\textbf{\DIFdel{-0.804 }%DIFDELCMD < {[}%%%
-\DIFdel{-1.104, -0.525}%DIFDELCMD < {]}%%%
-} %DIFAUXCMD
-%DIFDELCMD < \\
-%DIFDELCMD < \bottomrule
-%DIFDELCMD < \end{longtable}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \DIFadd{of parameters for the best models. Model 1b (LMAp and LMAs) and Model 4a (LMAp, LMAs and light) are shown for GLOPNET and Panama data, respectively.
+\DIFaddbegin \DIFadd{Table 2.
+Posterior means }{[}\DIFadd{95\% credible interval}{]} \DIFadd{of parameters for the best models. Model 1b (LMAp and LMAs) and Model 4a (LMAp, LMAs and light) are shown for GLOPNET and Panama data, respectively.
 Bold values are significantly different from zero based on the 95\% credible interval.
-}\DIFaddend 
+}
 
-\DIFaddbegin \includegraphics{../figs/table2.png}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4271}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2812}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2917}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+\DIFadd{Parameters
+}\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\DIFadd{GLOPNET
+}\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\DIFadd{Panama
+}\end{minipage} \\
+\midrule
+\endhead
+\DIFadd{Effect of LMAp on }\emph{\DIFadd{A}}\DIFadd{\textsubscript{area} (\(\alpha_p\)) }& \textbf{\DIFadd{0.283 }{[}\DIFadd{0.207, 0.358}{]}} & \textbf{\DIFadd{0.552 }{[}\DIFadd{0.404, 0.702}{]}} \\
+\DIFadd{Effect of LMAs on }\emph{\DIFadd{A}}\DIFadd{\textsubscript{area} (\(\alpha_s\)) }& \textbf{\DIFadd{-0.132 }{[}\DIFadd{-0.201, -0.06}{]}} & \DIFadd{- }\\
+\DIFadd{Effect of LMAs on LL (\(\beta_s\)) }& \textbf{\DIFadd{0.887 }{[}\DIFadd{0.765, 1.017}{]}} & \textbf{\DIFadd{0.367 }{[}\DIFadd{0.188, 0.55}{]}} \\
+\DIFadd{Effect of LMAp on }\emph{\DIFadd{R}}\DIFadd{\textsubscript{area} (\(\gamma_p\)) }& \textbf{\DIFadd{0.294 }{[}\DIFadd{0.21, 0.387}{]}} & \textbf{\DIFadd{0.651 }{[}\DIFadd{0.438, 0.851}{]}} \\
+\DIFadd{Effect of LMAs on }\emph{\DIFadd{R}}\DIFadd{\textsubscript{area} (\(\gamma_s\)) }& \DIFadd{0.033 }{[}\DIFadd{-0.045, 0.114}{]} & \DIFadd{-0.012 }{[}\DIFadd{-0.276, 0.302}{]} \\
+\DIFadd{Effect of light on LL (\(\theta\)) }& \DIFadd{- }& \textbf{\DIFadd{-0.804 }{[}\DIFadd{-1.104, -0.525}{]}} \\
+\bottomrule
+\end{longtable}
 
-\DIFaddend \newpage
+\newpage
 
-\hypertarget{figures}{%
+\DIFaddend \hypertarget{figures}{%
 \section{Figures}\label{figures}}
 
 \begin{figure}
 \DIFdelbeginFL %DIFDELCMD < \hypertarget{fig:Hplt}{%
 %DIFDELCMD < \centering
-%DIFDELCMD < \includegraphics{../figs/fig_hypo.png}
-%DIFDELCMD < \caption{Example of a two-dimensional functional space that can result in either a two- or one-dimensional trait space, depending on how metabolic traits are normalized. (A) Hypothetical indpendent variation in two leaf mass per area (LMA) components: metabolic leaf mass per area (LMAp, which largely determines per-area values of photosynthesis, respiration, and nutrient concentrations) and structural leaf mass per area (LMAs, which determines leaf toughness but has little effect on metabolic traits).
+%DIFDELCMD < \includegraphics{../figs/fig_h3.png}
+%DIFDELCMD < \caption{Example of a two-dimensional functional space that can result in either a two- or one-dimensional trait space, depending on how metabolic traits are normalized. (A) Hypothetical independent variation in two leaf mass per area (LMA) components: metabolic leaf mass per area (LMAp, which largely determines per-area values of photosynthesis, respiration, and nutrient concentrations) and structural leaf mass per area (LMAs, which determines leaf toughness but has little effect on metabolic traits).
 %DIFDELCMD < (B) Two-dimensional relationship between photosynthetic capacity (\emph{A}\textsubscript{max}) per-unit leaf area and total LMA (equal to LMAp + LMAs).
-%DIFDELCMD < (C) One-dimensional relationship between \emph{A}\textsubscript{max} per-unit leaf mass and total LMA. Variation in LMAp and LMAs \emph{A}\textsubscript{max} values in panels B and C are derived from our analysis of the GLOPNET database. \(A_{\mathrm{area} \, i}=1.9\mathrm{LMAp}_i^{0.36}\mathrm{LMAs}^{-0.25}\epsilon_i\), where \(\epsilon_i\) is log-normally distributed with log-mean with 0, log-scale parameter with 0.3 (see Methods and Results).''\}}\label{fig:Hplt}
+%DIFDELCMD < (C) One-dimensional relationship between \emph{A}\textsubscript{max} per-unit leaf mass and total LMA.
+%DIFDELCMD < LMAp and LMAs are simulated from a hypothetical scenario of lognormal distributions with medians of 80 and standard deviations of exp(0.8) and exp(0.7), and zero covariance.
+%DIFDELCMD < Variation in \emph{A}\textsubscript{max} values are derived from our analysis of the GLOPNET database. \(A_{\mathrm{area} \, i}=1.9\mathrm{LMAp}_i^{0.36}\mathrm{LMAs}^{-0.25}\epsilon_i\), where \(\epsilon_i\) is log-normally distributed with log-mean with 0, log-scale parameter with 0.3 (see Methods and Results).}\label{fig:Hplt}
 %DIFDELCMD < }
 %DIFDELCMD < %%%
 \DIFdelendFL \DIFaddbeginFL \hypertarget{fig:Hplt}{%
@@ -1235,8 +1114,17 @@ Variation in \emph{A}\textsubscript{max} values are derived from our analysis of
 }
 \DIFaddendFL \end{figure}
 
-\DIFdelbegin \DIFdel{\%s/}\DIFdelend \DIFaddbegin \begin{figure}
-\hypertarget{fig:GLplt}{%
+\begin{figure}
+\DIFdelbeginFL %DIFDELCMD < \hypertarget{fig:GLplt}{%
+%DIFDELCMD < \centering
+%DIFDELCMD < \includegraphics{../figs/GL_3.png}
+%DIFDELCMD < \caption{Observed and estimated leaf-trait relationships in the global GLOPNET dataset.
+%DIFDELCMD < (A) Leaf life span (LL), net photosynthetic rate per unit leaf area (\emph{A}\textsubscript{area}), and dark respiration rate per unit leaf area (\emph{R}\textsubscript{area}) are plotted against observed LMA.
+%DIFDELCMD < (B) Residuals of LL, \emph{A}\textsubscript{area}, and \emph{R}\textsubscript{area} regressed on posterior estimates of photosynthetic and structural LMA components (LMAp and LMAs, respectively) are plotted against LMAp and LMAs (only means are shown).
+%DIFDELCMD < Pearson correlation coefficients are for LMA (left column) and posterior distributions of LMAp (middle column) and LMAs (right column).}\label{fig:GLplt}
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \hypertarget{fig:GLplt}{%
 \centering
 \includegraphics{../figs/GL_scatter.png}
 \caption{Observed and estimated leaf-trait relationships in the global GLOPNET dataset.
@@ -1245,20 +1133,18 @@ Leaf life span (LL), net photosynthetic rate per unit leaf area (\emph{A}\textsu
 Pearson correlation coefficients (\emph{r}) for LMA (left column) and posterior means of Pearson correlation coefficients (\(\bar{r}\)) or partial correlation coefficients (\(\bar{\rho}\)) of LMAp (middle column) and LMAs (right column) are shown.
 Note that LL was modeled by LMAs alone.}\label{fig:GLplt}
 }
-\end{figure}
+\DIFaddendFL \end{figure}
 
-\DIFaddend \newpage
-\DIFdelbegin \DIFdel{/\textbackslash newpage
-}\DIFdelend 
+\newpage
 
 \begin{figure}
-\DIFdelbeginFL %DIFDELCMD < \hypertarget{fig:GLplt}{%
+\DIFdelbeginFL %DIFDELCMD < \hypertarget{fig:PAplt}{%
 %DIFDELCMD < \centering
-%DIFDELCMD < \includegraphics{../figs/GL_3.png}
-%DIFDELCMD < \caption{Observed and estimated leaf-trait relationships in the global GLOPNET dataset.
-%DIFDELCMD < (A) Leaf life span (LL), net photosynthetic rate per unit leaf area (\emph{A}\textsubscript{area}), and dark respiration rate per unit leaf area (\emph{R}\textsubscript{area}) are plotted against observed LMA.
-%DIFDELCMD < (B) Residuals of LL, \emph{A}\textsubscript{area}, and \emph{R}\textsubscript{area} regressed on posteior estimates of photosynthetic and structural LMA components (LMAp and LMAs, respectively) are plotted against LMAp and LMAs (only means are shown).
-%DIFDELCMD < Pearson correlation coefficients are for LMA (left column) and posterior distributions of LMAp (middle column) and LMAs (right column).}\label{fig:GLplt}
+%DIFDELCMD < \includegraphics{../figs/PA_3.png}
+%DIFDELCMD < \caption{Observed and estimated leaf-trait relationships in the Panama dataset.
+%DIFDELCMD < Estimates are from the LL with light Model (Eq. 6b).
+%DIFDELCMD < Details as in Fig.~\ref{fig:GLplt}.
+%DIFDELCMD < Results for other LL models are summarized in Table SX.}\label{fig:PAplt}
 %DIFDELCMD < }
 %DIFDELCMD < %%%
 \DIFdelendFL \DIFaddbeginFL \hypertarget{fig:PAplt}{%
@@ -1275,10 +1161,13 @@ Note that \emph{A}\textsubscript{area} and LL were modeled by LMAp and LMAs alon
 \newpage
 
 \begin{figure}
-\DIFdelbeginFL %DIFDELCMD < \hypertarget{fig:PAplt}{%
+\DIFdelbeginFL %DIFDELCMD < \hypertarget{fig:LLplt}{%
 %DIFDELCMD < \centering
-%DIFDELCMD < \includegraphics{../figs/PA_3.png}
-%DIFDELCMD < \caption{Observed and estimated leaf-trait relationships in the Panama dataset. Estimates are from the Optimal LL Model (Eq. 8). Details as in Fig. 2. Results for other LL models are summarized in Table SX.}\label{fig:PAplt}
+%DIFDELCMD < \includegraphics{../figs/LL_plot2.png}
+%DIFDELCMD < \caption{Observed vs.~predicted leaf lifespan (LL) in the LL with light Model (Eq. 6b).
+%DIFDELCMD < Predicted LL values are posterior medians.
+%DIFDELCMD < The dashed line indicates the 1:1 relationship.
+%DIFDELCMD < The \emph{r}\textsuperscript{2} value is the posterior median of Bayesian \emph{r}\textsuperscript{2} (\protect\hyperlink{ref-Gelman2019}{Gelman et al. 2019}).}\label{fig:LLplt}
 %DIFDELCMD < }
 %DIFDELCMD < %%%
 \DIFdelendFL \DIFaddbeginFL \hypertarget{fig:LLplt}{%
@@ -1294,13 +1183,12 @@ The \emph{R}\textsuperscript{2} value is the posterior mean of Bayesian \emph{R}
 \newpage
 
 \begin{figure}
-\DIFdelbeginFL %DIFDELCMD < \hypertarget{fig:LLplt}{%
+\DIFdelbeginFL %DIFDELCMD < \hypertarget{fig:massplt}{%
 %DIFDELCMD < \centering
-%DIFDELCMD < \includegraphics{../figs/LL_plot2.png}
-%DIFDELCMD < \caption{Observed vs.~predicted leaf lifespan (LL) in the Optimal LL Model (Eq. 8).
-%DIFDELCMD < Predicted LL values are posterior medians.
-%DIFDELCMD < The dashed line indicates the 1:1 relationship.
-%DIFDELCMD < The \emph{r}\textsuperscript{2} value is the posterior median of Bayesian \emph{r}\textsuperscript{2} (Gelman et al.~2019).}\label{fig:LLplt}
+%DIFDELCMD < \includegraphics{../figs/mass_prop4.png}
+%DIFDELCMD < \caption{The relationships among mass proportionality (\emph{b\textsubscript{i}} in Eq. 8), variance in LMAp and LMAs, and scaling slopes between LMAp and \emph{A}\textsubscript{area} (\(\alpha_p\)) and LMAs and \emph{A}\textsubscript{area} (\(\alpha_s\)) for the global GLOPNET dataset, sun leaves in Panama, and shade leaves in Panama.
+%DIFDELCMD < The photosynthetic rate (\emph{A}\textsubscript{max}) is primarily mass-dependent (\emph{b\textsubscript{i}} \textgreater{} 0.5, white to blue), primarily area-dependent (0.5 \textgreater{} \emph{b\textsubscript{i}} \textgreater{} 0, white to orange) and purely area-proportional (\emph{b\textsubscript{i}} = 0, white) (\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
+%DIFDELCMD < Note that when \emph{b\textsubscript{i}} is negative, \emph{A}\textsubscript{area} decreases with LMA, which is not realistic.}\label{fig:massplt}
 %DIFDELCMD < }
 %DIFDELCMD < %%%
 \DIFdelendFL \DIFaddbeginFL \hypertarget{fig:massplt}{%
@@ -1317,25 +1205,17 @@ Note that when \emph{b} \textgreater{} 1, \emph{A}\textsubscript{area} dramatica
 \newpage
 
 \begin{figure}
-\DIFdelbeginFL %DIFDELCMD < \hypertarget{fig:massplt}{%
-%DIFDELCMD < \centering
-%DIFDELCMD < \includegraphics{../figs/mass_prop4.png}
-%DIFDELCMD < \caption{The relationships among mass proportionality (\emph{b\textsubscript{i}} in Eq. 8), variance in LMAp and LMAs, and scaling slopes between LMAp and \emph{A}\textsubscript{area} (\(\alpha_p\)) and LMAs and \emph{A}\textsubscript{area} (\(\alpha_s\)) for the global GLOPNET dataset, sun leaves in Panama, and shade leaves in Panama.
-%DIFDELCMD < The photosynthetic rate (\emph{A}\textsubscript{max}) is primarily mass-dependent (\emph{b\textsubscript{i}} \textgreater{} 0.5, white to blue), primarily area-dependent (0.5 \textgreater{} \emph{b\textsubscript{i}} \textgreater{} 0, white to orange) and purely area-proportional (\emph{b\textsubscript{i}} = 0, white) (Osnas et al.~2018).
-%DIFDELCMD < Note that when \emph{b\textsubscript{i}} is negative, \emph{A}\textsubscript{area} decreases with LMA, which is not realistic.}\label{fig:massplt}
-%DIFDELCMD < }
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \hypertarget{fig:vpart}{%
+\DIFaddbeginFL \hypertarget{fig:vpart}{%
 \centering
 \includegraphics{../figs/vpart.png}
 \caption{Variance partitioning on LMA components between and within leaf habits (evergreen vs.~deciuous) for the GLOPNET dataset, and between and within sites (wet vs.~dry) and light (sun vs.~shade) for the Panama dataset.}\label{fig:vpart}
 }
-\DIFaddendFL \end{figure}
+\end{figure}
 
 \newpage
 
 \begin{figure}
-\hypertarget{fig:boxplt}{%
+\DIFaddendFL \hypertarget{fig:boxplt}{%
 \centering
 \includegraphics{../figs/box_main.png}
 \caption{Boxplots comparing leaf mass per area (LMA) and posterior medians of photosynthetic and structural LMA components (LMAp and LMAs, respectively) across deciduous (D) and evergreen (E) leaves in the GLOPNET dataset (top), and across sites (wet and dry) and canopy strata (sun and shade) in the Panama dataset (bottom).
@@ -1356,8 +1236,8 @@ Note that the vertical axis is on a log\textsubscript{10} scale.}\label{fig:boxp
 %DIFDELCMD < \caption{Measured traits related to photosynthesis and metabolism traits (nitrogen and phosphorus per-unit leaf area; \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area}) are strongly correlated with estimates (posterior medians) of the photosynthetic LMA component (LMAp), and a measured structural trait (cellulose per-unit leaf area; \emph{CL}\textsubscript{area}) is strongly correlated with estimates of the structural LMA component (LMAs) for the Panama dataset.
 %DIFDELCMD < Note that sun and shade leaves align along a single relationship for \emph{CL}\textsubscript{area} vs.~LMAs, but not for \emph{CL}\textsubscript{area} vs.~LMA or LMAp. \emph{N}\textsubscript{area}, \emph{P}\textsubscript{area}, and \emph{CL}\textsubscript{area} data were not used to fit the models, and are presented here as independent support for the model results.
 %DIFDELCMD < Analogous results were obtained for \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} vs.~LMAp for GLOPNET (Fig. S3).
-%DIFDELCMD < Others details as in Fig. GL.
-%DIFDELCMD < Results for other LL models are reported in Table SX.''\}}\label{fig:PA-NPC}
+%DIFDELCMD < Others details as in Fig.~\ref{fig:GLplt}.
+%DIFDELCMD < Results for other LL models are reported in Table SX.}\label{fig:PA-NPC}
 %DIFDELCMD < }
 %DIFDELCMD < %%%
 \DIFdelendFL \DIFaddbeginFL \hypertarget{fig:PA-NPC}{%
@@ -1365,8 +1245,8 @@ Note that the vertical axis is on a log\textsubscript{10} scale.}\label{fig:boxp
 \includegraphics{../figs/PA_NPC.png}
 \caption{Measured traits related to photosynthesis and metabolism traits (nitrogen and phosphorus per-unit leaf area; \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area}) are strongly correlated with estimates (posterior medians) of the photosynthetic LMA component (LMAp), and a measured structural trait (cellulose per-unit leaf area; \emph{CL}\textsubscript{area}) is strongly correlated with estimates of the structural LMA component (LMAs) for the Panama dataset.
 Note that sun and shade leaves align along a single relationship for \emph{CL}\textsubscript{area} vs.~LMAs, but not for \emph{CL}\textsubscript{area} vs.~LMA or LMAp. \emph{N}\textsubscript{area}, \emph{P}\textsubscript{area}, and \emph{CL}\textsubscript{area} data were not used to fit the models, and are presented here as independent support for the model results.
-Analogous results were obtained for \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} vs.~LMAp for GLOPNET (Fig. S3).
-Others details as in Fig.~\ref{fig:GLplt}.
+Pearson correlation coefficients (\emph{r}) for LMA (left column) and partial correlation coefficients (\(\rho\)) of LMAp (middle column) and LMAs (right column) are shown.
+Analogous results were obtained for \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} for GLOPNET (Fig. S3).
 Results for other LL models are reported in Table SX.}\label{fig:PA-NPC}
 }
 \DIFaddendFL \end{figure}

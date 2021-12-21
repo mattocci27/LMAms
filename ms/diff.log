@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.15)  20 DEC 2021 18:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.15)  21 DEC 2021 18:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -6,93 +6,162 @@ entering extended mode
 (./ms/diff.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2021-11-22>
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/base/size12.clo
-File: size12.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+   defining Unicode char U+2212 (decimal 8722)
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrartcl.cls
+Document Class: scrartcl 2021/11/13 v3.35 KOMA-Script document class (article)
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrkbase.sty
+Package: scrkbase 2021/11/13 v3.35 KOMA-Script package (KOMA-Script-dependent b
+asics and keyval usage)
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2021/11/13 v3.35 KOMA-Script package (KOMA-Script-independent 
+basics and keyval usage)
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package: scrlfile 2021/11/13 v3.35 KOMA-Script package (file load hooks)
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrlfile-hook
+.sty
+Package: scrlfile-hook 2021/11/13 v3.35 KOMA-Script package (using LaTeX hooks)
+
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrlogo.sty
+Package: scrlogo 2021/11/13 v3.35 KOMA-Script package (logo)
+))) (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
 )
-\c@part=\count183
-\c@section=\count184
-\c@subsection=\count185
-\c@subsubsection=\count186
-\c@paragraph=\count187
-\c@subparagraph=\count188
-\c@figure=\count189
-\c@table=\count190
-\abovecaptionskip=\skip47
-\belowcaptionskip=\skip48
+Applying: [2021/05/01] Usage of raw or classic option list on input line 252.
+Already applied: [0000/00/00] Usage of raw or classic option list on input line
+ 368.
+))
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/koma-script/tocbasic.sty
+Package: tocbasic 2021/11/13 v3.35 KOMA-Script package (handling toc-files)
+\scr@dte@tocline@numberwidth=\skip47
+\scr@dte@tocline@numbox=\box50
+)
+Package tocbasic Info: babel extension for `toc' omitted
+(tocbasic)             because of missing \bbl@set@language on input line 135.
+Package scrartcl Info: You've used standard option `12pt'.
+(scrartcl)             This is correct!
+(scrartcl)             Internally I'm using `fontsize=12pt'.
+(scrartcl)             If you'd like to set the option with \KOMAoptions,
+(scrartcl)             you'd have to use `fontsize=12pt' there
+(scrartcl)             instead of `12pt', too.
+
+Class scrartcl Warning: You've used obsolete option `tablecaptionabove'.
+(scrartcl)              Usage of this option indicates an old document
+(scrartcl)              and changes compatibility level using
+(scrartcl)              `captions=tableheading,version=first,
+(scrartcl)              enabledeprecatedfontcommands' that may result
+(scrartcl)              in further warnings.
+(scrartcl)              If you don't want this, you should simply
+(scrartcl)              replace option `tablecaptionabove' by `captions=tablehe
+ading'.
+
+Class scrartcl Info: Switching compatibility level to `first'.
+
+Class scrartcl Warning: deprecated option `enabledeprecatedfontcommands'.
+(scrartcl)              Note, that this option was already depreacted when
+(scrartcl)              it has been defined. Support for old font commands
+(scrartcl)              has been removed from KOMA-Script more than one
+(scrartcl)              decade ago. It is not recommended to use them any
+(scrartcl)              longer. Therefore usage of this class option also
+(scrartcl)              is not recommended.
+
+Class scrartcl Info: File `scrsize12pt.clo' used to setup font sizes on input l
+ine 2242.
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrsize12pt.c
+lo
+File: scrsize12pt.clo 2021/11/13 v3.35 KOMA-Script font size class option (12pt
+)
+)
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/koma-script/typearea.sty
+Package: typearea 2021/11/13 v3.35 KOMA-Script package (type area)
+\ta@bcor=\skip48
+\ta@div=\count183
+Package typearea Info: You've used standard option `a4paper'.
+(typearea)             This is correct!
+(typearea)             Internally I'm using `paper=a4'.
+(typearea)             If you'd like to set the option with \KOMAoptions,
+(typearea)             you'd have to use `paper=a4' there
+(typearea)             instead of `a4paper', too.
+\ta@hblk=\skip49
+\ta@vblk=\skip50
+\ta@temp=\skip51
+\footheight=\skip52
+Package typearea Info: These are the values describing the layout:
+(typearea)             DIV  = 12
+(typearea)             BCOR = 0.0pt
+(typearea)             \paperwidth      = 597.50793pt
+(typearea)              \textwidth      = 448.13095pt
+(typearea)              DIV departure   = -6%
+(typearea)              \evensidemargin = 2.4185pt
+(typearea)              \oddsidemargin  = 2.4185pt
+(typearea)             \paperheight     = 845.04694pt
+(typearea)              \textheight     = 635.5pt
+(typearea)              \topmargin      = -41.72441pt
+(typearea)              \headheight     = 18.125pt
+(typearea)              \headsep        = 21.75pt
+(typearea)              \topskip        = 12.0pt
+(typearea)              \footskip       = 50.75pt
+(typearea)              \baselineskip   = 14.5pt
+(typearea)              on input line 1743.
+)
+\c@part=\count184
+\c@section=\count185
+\c@subsection=\count186
+\c@subsubsection=\count187
+\c@paragraph=\count188
+\c@subparagraph=\count189
+\scr@dte@section@maxnumwidth=\skip53
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\section on input line 4852.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\section on input line 4852.
+\scr@dte@part@maxnumwidth=\skip54
+Class scrartcl Info: using compatibility default `afterindent=false'
+(scrartcl)           for `\part on input line 4860.
+\scr@dte@subsection@maxnumwidth=\skip55
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subsection on input line 4870.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subsection on input line 4870.
+\scr@dte@subsubsection@maxnumwidth=\skip56
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subsubsection on input line 4880.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subsubsection on input line 4880.
+\scr@dte@paragraph@maxnumwidth=\skip57
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\paragraph on input line 4891.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\paragraph on input line 4891.
+\scr@dte@subparagraph@maxnumwidth=\skip58
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subparagraph on input line 4901.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subparagraph on input line 4901.
+\abovecaptionskip=\skip59
+\belowcaptionskip=\skip60
+\c@pti@nb@sid@b@x=\box51
+Package tocbasic Info: babel extension for `lof' omitted
+(tocbasic)             because of missing \bbl@set@language on input line 6076.
+
+\scr@dte@figure@maxnumwidth=\skip61
+\c@figure=\count190
+Package tocbasic Info: babel extension for `lot' omitted
+(tocbasic)             because of missing \bbl@set@language on input line 6091.
+
+\scr@dte@table@maxnumwidth=\skip62
+\c@table=\count191
+Class scrartcl Info: Using old \@makefntext due to compatibility level
+(scrartcl)           less than 3.22 on input line 6245.
+Class scrartcl Info: Redefining `\numberline' on input line 6258.
 \bibindent=\dimen138
-)
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2021/10/15 v2.17l AMS math features
-\@mathmargin=\skip49
-
-For additional information on amsmath, use the `?' option.
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
-Package: amstext 2021/08/26 v2.01 AMS text
-
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
-File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks16
-\ex@=\dimen139
-))
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
-Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen140
-)
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
-Package: amsopn 2021/08/26 v2.02 operator names
-)
-\inf@bad=\count191
-LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count192
-\leftroot@=\count193
-LaTeX Info: Redefining \overline on input line 399.
-\classnum@=\count194
-\DOTSCASE@=\count195
-LaTeX Info: Redefining \ldots on input line 496.
-LaTeX Info: Redefining \dots on input line 499.
-LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box50
-\strutbox@=\box51
-\big@size=\dimen141
-LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count196
-\c@MaxMatrixCols=\count197
-\dotsspace@=\muskip16
-\c@parentequation=\count198
-\dspbrk@lvl=\count199
-\tag@help=\toks17
-\row@=\count266
-\column@=\count267
-\maxfields@=\count268
-\andhelp@=\toks18
-\eqnshift@=\dimen142
-\alignsep@=\dimen143
-\tagshift@=\dimen144
-\tagwidth@=\dimen145
-\totwidth@=\dimen146
-\lineht@=\dimen147
-\@envbody=\toks19
-\multlinegap=\skip50
-\multlinetaggap=\skip51
-\mathdisplay@stack=\toks20
-LaTeX Info: Redefining \[ on input line 2938.
-LaTeX Info: Redefining \] on input line 2939.
-)
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
-Package: amssymb 2013/01/14 v3.01 AMS font symbols
-
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
-Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\symAMSa=\mathgroup4
-\symAMSb=\mathgroup5
-LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
-LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-))
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
+) (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
 Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
@@ -127,8 +196,87 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 )
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks17
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2021/10/15 v2.17l AMS math features
+\@mathmargin=\skip63
+
+For additional information on amsmath, use the `?' option.
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks18
+\ex@=\dimen139
+))
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen140
+)
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2021/08/26 v2.02 operator names
+)
+\inf@bad=\count192
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count193
+\leftroot@=\count194
+LaTeX Info: Redefining \overline on input line 399.
+\classnum@=\count195
+\DOTSCASE@=\count196
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box52
+\strutbox@=\box53
+\big@size=\dimen141
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count197
+\c@MaxMatrixCols=\count198
+\dotsspace@=\muskip16
+\c@parentequation=\count199
+\dspbrk@lvl=\count266
+\tag@help=\toks19
+\row@=\count267
+\column@=\count268
+\maxfields@=\count269
+\andhelp@=\toks20
+\eqnshift@=\dimen142
+\alignsep@=\dimen143
+\tagshift@=\dimen144
+\tagwidth@=\dimen145
+\totwidth@=\dimen146
+\lineht@=\dimen147
+\@envbody=\toks21
+\multlinegap=\skip64
+\multlinetaggap=\skip65
+\mathdisplay@stack=\toks22
+LaTeX Info: Redefining \[ on input line 2938.
+LaTeX Info: Redefining \] on input line 2939.
+)
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifxetex.sty
+Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
@@ -140,8 +288,8 @@ File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ))
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
-\inpenc@prehook=\toks21
-\inpenc@posthook=\toks22
+\inpenc@prehook=\toks23
+\inpenc@posthook=\toks24
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
@@ -157,6 +305,23 @@ Package xcolor Info: Driver file: pdftex.def on input line 227.
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 )
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
+Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
+\col@sep=\dimen148
+\ar@mcellbox=\box54
+\extrarowheight=\dimen149
+\NC@list=\toks25
+\extratabsurround=\skip66
+\backup@length=\skip67
+\ar@cellbox=\box55
+)
+\everycr=\toks26
+\minrowclearance=\skip68
+)
+\rownum=\count270
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1352.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1356.
 Package xcolor Info: Model `RGB' extended on input line 1368.
@@ -166,7 +331,17 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1372.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1373.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1374.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
-) (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+)
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/xcolor/svgnam.def
+File: svgnam.def 2021/10/31 v2.13 Predefined colors according to SVG 1.1 (UK)
+)
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/xcolor/x11nam.def
+File: x11nam.def 2021/10/31 v2.13 Predefined colors according to Unix/X11 (UK)
+))
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
@@ -186,9 +361,6 @@ Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-) (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks23
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
@@ -211,9 +383,9 @@ Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 )
-\@linkdim=\dimen148
-\Hy@linkcounter=\count269
-\Hy@pagecounter=\count270
+\@linkdim=\dimen150
+\Hy@linkcounter=\count271
+\Hy@pagecounter=\count272
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2021-06-07 v7.00m Hyperref: PDFDocEncoding definition (HO)
@@ -231,7 +403,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count271
+\Hy@SavedSpaceFactor=\count273
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2021-06-07 v7.00m Hyperref: PDF Unicode definition (HO)
@@ -246,14 +418,14 @@ Package hyperref Info: Plain pages OFF on input line 4207.
 Package hyperref Info: Backreferencing OFF on input line 4212.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4445.
-\c@Hy@tempcnt=\count272
+\c@Hy@tempcnt=\count274
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4804.
-\XeTeXLinkMargin=\dimen149
+\XeTeXLinkMargin=\dimen151
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -263,9 +435,9 @@ ty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count273
-\Field@Width=\dimen150
-\Fld@charsize=\dimen151
+\Fld@menulength=\count275
+\Field@Width=\dimen152
+\Fld@charsize=\dimen153
 Package hyperref Info: Hyper figures OFF on input line 6076.
 Package hyperref Info: Link nesting OFF on input line 6081.
 Package hyperref Info: Hyper index ON on input line 6084.
@@ -280,9 +452,9 @@ LaTeX Info: Redefining \pageref on input line 6150.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count274
-\c@Item=\count275
-\c@Hfootnote=\count276
+\Hy@abspage=\count276
+\c@Item=\count277
+\c@Hfootnote=\count278
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
@@ -294,8 +466,8 @@ Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
 )
-\Fld@listcount=\count277
-\c@bookmark@seq@number=\count278
+\Fld@listcount=\count279
+\c@bookmark@seq@number=\count280
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilec
 heck.sty
@@ -308,100 +480,87 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
-\Hy@SectionHShift=\skip52
+\Hy@SectionHShift=\skip69
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
 File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
-\BKM@id=\count279
-)) (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
+\BKM@id=\count281
+))
+Package hyperref Info: Option `breaklinks' set `true' on input line 98.
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count280
-\Gm@cntv=\count281
-\c@Gm@tempcnt=\count282
-\Gm@bindingoffset=\dimen152
-\Gm@wd@mp=\dimen153
-\Gm@odd@mp=\dimen154
-\Gm@even@mp=\dimen155
-\Gm@layoutwidth=\dimen156
-\Gm@layoutheight=\dimen157
-\Gm@layouthoffset=\dimen158
-\Gm@layoutvoffset=\dimen159
-\Gm@dimlist=\toks24
+\Gm@cnth=\count282
+\Gm@cntv=\count283
+\c@Gm@tempcnt=\count284
+\Gm@bindingoffset=\dimen154
+\Gm@wd@mp=\dimen155
+\Gm@odd@mp=\dimen156
+\Gm@even@mp=\dimen157
+\Gm@layoutwidth=\dimen158
+\Gm@layoutheight=\dimen159
+\Gm@layouthoffset=\dimen160
+\Gm@layoutvoffset=\dimen161
+\Gm@dimlist=\toks27
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
-\LTleft=\skip53
-\LTright=\skip54
-\LTpre=\skip55
-\LTpost=\skip56
-\LTchunksize=\count283
-\LTcapwidth=\dimen160
-\LT@head=\box52
-\LT@firsthead=\box53
-\LT@foot=\box54
-\LT@lastfoot=\box55
-\LT@gbox=\box56
-\LT@cols=\count284
-\LT@rows=\count285
-\c@LT@tables=\count286
-\c@LT@chunks=\count287
-\LT@p@ftn=\toks25
+\LTleft=\skip70
+\LTright=\skip71
+\LTpre=\skip72
+\LTpost=\skip73
+\LTchunksize=\count285
+\LTcapwidth=\dimen162
+\LT@head=\box56
+\LT@firsthead=\box57
+\LT@foot=\box58
+\LT@lastfoot=\box59
+\LT@gbox=\box60
+\LT@cols=\count286
+\LT@rows=\count287
+\c@LT@tables=\count288
+\c@LT@chunks=\count289
+\LT@p@ftn=\toks28
 )
+Class scrartcl Info: longtable captions redefined on input line 103.
+
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen161
-\lightrulewidth=\dimen162
-\cmidrulewidth=\dimen163
-\belowrulesep=\dimen164
-\belowbottomsep=\dimen165
-\aboverulesep=\dimen166
-\abovetopsep=\dimen167
-\cmidrulesep=\dimen168
-\cmidrulekern=\dimen169
-\defaultaddspace=\dimen170
-\@cmidla=\count288
-\@cmidlb=\count289
-\@aboverulesep=\dimen171
-\@belowrulesep=\dimen172
-\@thisruleclass=\count290
-\@lastruleclass=\count291
-\@thisrulewidth=\dimen173
-)
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
-Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
-\col@sep=\dimen174
-\ar@mcellbox=\box57
-\extrarowheight=\dimen175
-\NC@list=\toks26
-\extratabsurround=\skip57
-\backup@length=\skip58
-\ar@cellbox=\box58
-)
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
-Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count292
-\calc@Bcount=\count293
-\calc@Adimen=\dimen176
-\calc@Bdimen=\dimen177
-\calc@Askip=\skip59
-\calc@Bskip=\skip60
-LaTeX Info: Redefining \setlength on input line 80.
-LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count294
-\calc@Cskip=\skip61
+\heavyrulewidth=\dimen163
+\lightrulewidth=\dimen164
+\cmidrulewidth=\dimen165
+\belowrulesep=\dimen166
+\belowbottomsep=\dimen167
+\aboverulesep=\dimen168
+\abovetopsep=\dimen169
+\cmidrulesep=\dimen170
+\cmidrulekern=\dimen171
+\defaultaddspace=\dimen172
+\@cmidla=\count290
+\@cmidlb=\count291
+\@aboverulesep=\dimen173
+\@belowrulesep=\dimen174
+\@thisruleclass=\count292
+\@lastruleclass=\count293
+\@thisrulewidth=\dimen175
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count295
+\etb@tempcnta=\count294
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
-\fn@notes=\box59
-\fn@width=\dimen178
+\fn@notes=\box61
+\fn@width=\dimen176
+)
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/footnotebackref/footnoteb
+ackref.sty
+Package: footnotebackref 2012/07/01 v1.0 Backreferences for footnotes (Holger L
+ange)
+\c@BackrefHyperFootnoteCounter=\count295
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
@@ -417,63 +576,51 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 107.
 )
-\Gin@req@height=\dimen179
-\Gin@req@width=\dimen180
-)
-\cslhangindent=\skip62
-\csllabelwidth=\skip63
-\cslentryspacingunit=\skip64
- (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/psnfss/times.sty
-Package: times 2020/03/25 PSNFSS-v9.3 (SPQR) 
-)
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/setspace/setspace.sty
-Package: setspace 2011/12/19 v6.7a set line spacing
-)
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/lineno/lineno.sty
-Package: lineno 2005/11/02 line numbers on paragraphs v4.41
-\linenopenalty=\count296
-\output=\toks27
-\linenoprevgraf=\count297
-\linenumbersep=\dimen181
-\linenumberwidth=\dimen182
-\c@linenumber=\count298
-\c@pagewiselinenumber=\count299
-\c@LN@truepage=\count300
-\c@internallinenumber=\count301
-\c@internallinenumbers=\count302
-\quotelinenumbersep=\dimen183
-\bframerule=\dimen184
-\bframesep=\dimen185
-\bframebox=\box60
-LaTeX Info: Redefining \\ on input line 3056.
-)
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/multirow/multirow.sty
-Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
-\multirow@colwidth=\skip65
-\multirow@cntb=\count303
-\multirow@dima=\skip66
-\bigstrutjot=\dimen186
-)
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen187
-\WF@size=\dimen188
-\c@WF@wrappedlines=\count304
-\WF@box=\box61
-\WF@everypar=\toks28
-Package: wrapfig 2003/01/31  v 3.6
-)
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/float/float.sty
+\Gin@req@height=\dimen177
+\Gin@req@width=\dimen178
+) (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count305
+\c@float@type=\count296
 \float@exts=\toks29
 \float@box=\box62
 \@float@everytoks=\toks30
 \@floatcapt=\box63
 )
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/colortbl/colortbl.sty
-Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
-\everycr=\toks31
-\minrowclearance=\skip67
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/psnfss/times.sty
+Package: times 2020/03/25 PSNFSS-v9.3 (SPQR) 
+)
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2005/11/02 line numbers on paragraphs v4.41
+\linenopenalty=\count297
+\output=\toks31
+\linenoprevgraf=\count298
+\linenumbersep=\dimen179
+\linenumberwidth=\dimen180
+\c@linenumber=\count299
+\c@pagewiselinenumber=\count300
+\c@LN@truepage=\count301
+\c@internallinenumber=\count302
+\c@internallinenumbers=\count303
+\quotelinenumbersep=\dimen181
+\bframerule=\dimen182
+\bframesep=\dimen183
+\bframebox=\box64
+LaTeX Info: Redefining \\ on input line 3056.
+)
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip74
+\multirow@cntb=\count304
+\multirow@dima=\skip75
+\bigstrutjot=\dimen184
+)
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen185
+\WF@size=\dimen186
+\c@WF@wrappedlines=\count305
+\WF@box=\box65
+\WF@everypar=\toks32
+Package: wrapfig 2003/01/31  v 3.6
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
@@ -488,10 +635,10 @@ Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
-\@vwid@box=\box64
+\@vwid@box=\box66
 \sift@deathcycles=\count306
-\@vwid@loff=\dimen189
-\@vwid@roff=\dimen190
+\@vwid@loff=\dimen187
+\@vwid@roff=\dimen188
 )
 \c@taburow=\count307
 \tabu@nbcols=\count308
@@ -499,27 +646,27 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \tabu@Xcol=\count310
 \tabu@alloc=\count311
 \tabu@nested=\count312
-\tabu@target=\dimen191
-\tabu@spreadtarget=\dimen192
-\tabu@naturalX=\dimen193
-\tabucolX=\dimen194
-\tabu@Xsum=\dimen195
-\extrarowdepth=\dimen196
-\abovetabulinesep=\dimen197
-\belowtabulinesep=\dimen198
-\tabustrutrule=\dimen199
-\tabu@thebody=\toks32
-\tabu@footnotes=\toks33
-\tabu@box=\box65
-\tabu@arstrutbox=\box66
-\tabu@hleads=\box67
-\tabu@vleads=\box68
-\tabu@cellskip=\skip68
+\tabu@target=\dimen189
+\tabu@spreadtarget=\dimen190
+\tabu@naturalX=\dimen191
+\tabucolX=\dimen192
+\tabu@Xsum=\dimen193
+\extrarowdepth=\dimen194
+\abovetabulinesep=\dimen195
+\belowtabulinesep=\dimen196
+\tabustrutrule=\dimen197
+\tabu@thebody=\toks33
+\tabu@footnotes=\toks34
+\tabu@box=\box67
+\tabu@arstrutbox=\box68
+\tabu@hleads=\box69
+\tabu@vleads=\box70
+\tabu@cellskip=\skip76
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/threeparttable/threepartt
 able.sty
 Package: threeparttable 2003/06/13  v 3.0
-\@tempboxb=\box69
+\@tempboxb=\box71
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/threeparttablex/threepart
 tablex.sty
@@ -531,86 +678,504 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-\TPTL@width=\skip69
+\TPTL@width=\skip77
 ) (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/ulem/ulem.sty
-\UL@box=\box70
-\UL@hyphenbox=\box71
-\UL@skip=\skip70
-\UL@hook=\toks34
-\UL@height=\dimen256
+\UL@box=\box72
+\UL@hyphenbox=\box73
+\UL@skip=\skip78
+\UL@hook=\toks35
+\UL@height=\dimen198
 \UL@pe=\count313
-\UL@pixel=\dimen257
-\ULC@box=\box72
+\UL@pixel=\dimen199
+\ULC@box=\box74
 Package: ulem 2019/11/18
-\ULdepth=\dimen258
+\ULdepth=\dimen256
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
-\rotheadsize=\dimen259
+\rotheadsize=\dimen257
 \c@nlinenum=\count314
-\TeXr@lab=\toks35
+\TeXr@lab=\toks36
+)
+\cslhangindent=\skip79
+\csllabelwidth=\skip80
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count315
+\calc@Bcount=\count316
+\calc@Adimen=\dimen258
+\calc@Bdimen=\dimen259
+\calc@Askip=\skip81
+\calc@Bskip=\skip82
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count317
+\calc@Cskip=\skip83
+)
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2021/11/29 3.67 The Babel package
+\babel@savecnt=\count318
+\U@D=\dimen260
+\l@unhyphenated=\language3
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count319
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/babel-english/english.l
+df
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'british' set to \l@english
+(babel)             (\language0). Reported on input line 82.
+Package babel Info: Hyphen rules for 'UKenglish' set to \l@english
+(babel)             (\language0). Reported on input line 83.
+Package babel Info: Hyphen rules for 'canadian' set to \l@english
+(babel)             (\language0). Reported on input line 102.
+Package babel Info: Hyphen rules for 'australian' set to \l@english
+(babel)             (\language0). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@english
+(babel)             (\language0). Reported on input line 108.
+))
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/csquotes/csquotes.sty
+Package: csquotes 2021-02-22 v5.2l context-sensitive quotations (JAW)
+\csq@reset=\count320
+\csq@gtype=\count321
+\csq@glevel=\count322
+\csq@qlevel=\count323
+\csq@maxlvl=\count324
+\csq@tshold=\count325
+\csq@ltx@everypar=\toks37
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/csquotes/csquotes.def
+File: csquotes.def 2021-02-22 v5.2l csquotes generic definitions (JAW)
+)
+Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
+Package csquotes Info: ... configuration file loaded successfully.
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/csquotes/csquotes.cfg
+File: csquotes.cfg 
+))
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen261
+\captionmargin@=\dimen262
+\captionwidth=\dimen263
+\caption@tempdima=\dimen264
+\caption@indent=\dimen265
+\caption@parindent=\dimen266
+\caption@hangindent=\dimen267
+Package caption Info: KOMA-Script document class detected.
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/caption/caption-koma.sto
+File: caption-koma.sto 2020/09/21 v2.0b Adaption of the caption package to the 
+KOMA-Script document classes (AR)
+))
+\c@caption@flags=\count326
+\c@continuedfloat=\count327
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: longtable package is loaded.
+ (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2020/05/30 v1.4b longtable captions (AR)
+)
+Package caption Info: threeparttable package is loaded.
+Package caption Info: wrapfig package is loaded.
+) (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/mdframed/mdframed.sty
+Package: mdframed 2013/07/01 1.9b: mdframed
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.
+sty (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2021-11-22 L3 programming layer (loader) 
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdfte
+x.def
+File: l3backend-pdftex.def 2021-12-14 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count328
+\l__pdf_internal_box=\box75
+))
+Package: xparse 2021-11-12 L3 Experimental document command parser
+)
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/zref/zref-abspage.sty
+Package: zref-abspage 2020-07-03 v2.32 Module abspage for zref (HO)
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/zref/zref-base.sty
+Package: zref-base 2020-07-03 v2.32 Module base for zref (HO)
+Package zref Info: New property list: main on input line 764.
+Package zref Info: New property: default on input line 765.
+Package zref Info: New property: page on input line 766.
+)
+\c@abspage=\count329
+Package zref Info: New property: abspage on input line 66.
+)
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/needspace/needspace.sty
+Package: needspace 2010/09/12 v1.3d reserve vertical space
+)
+\mdf@templength=\skip84
+\c@mdf@globalstyle@cnt=\count330
+\mdf@skipabove@length=\skip85
+\mdf@skipbelow@length=\skip86
+\mdf@leftmargin@length=\skip87
+\mdf@rightmargin@length=\skip88
+\mdf@innerleftmargin@length=\skip89
+\mdf@innerrightmargin@length=\skip90
+\mdf@innertopmargin@length=\skip91
+\mdf@innerbottommargin@length=\skip92
+\mdf@splittopskip@length=\skip93
+\mdf@splitbottomskip@length=\skip94
+\mdf@outermargin@length=\skip95
+\mdf@innermargin@length=\skip96
+\mdf@linewidth@length=\skip97
+\mdf@innerlinewidth@length=\skip98
+\mdf@middlelinewidth@length=\skip99
+\mdf@outerlinewidth@length=\skip100
+\mdf@roundcorner@length=\skip101
+\mdf@footenotedistance@length=\skip102
+\mdf@userdefinedwidth@length=\skip103
+\mdf@needspace@length=\skip104
+\mdf@frametitleaboveskip@length=\skip105
+\mdf@frametitlebelowskip@length=\skip106
+\mdf@frametitlerulewidth@length=\skip107
+\mdf@frametitleleftmargin@length=\skip108
+\mdf@frametitlerightmargin@length=\skip109
+\mdf@shadowsize@length=\skip110
+\mdf@extratopheight@length=\skip111
+\mdf@subtitleabovelinewidth@length=\skip112
+\mdf@subtitlebelowlinewidth@length=\skip113
+\mdf@subtitleaboveskip@length=\skip114
+\mdf@subtitlebelowskip@length=\skip115
+\mdf@subtitleinneraboveskip@length=\skip116
+\mdf@subtitleinnerbelowskip@length=\skip117
+\mdf@subsubtitleabovelinewidth@length=\skip118
+\mdf@subsubtitlebelowlinewidth@length=\skip119
+\mdf@subsubtitleaboveskip@length=\skip120
+\mdf@subsubtitlebelowskip@length=\skip121
+\mdf@subsubtitleinneraboveskip@length=\skip122
+\mdf@subsubtitleinnerbelowskip@length=\skip123
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/mdframed/md-frame-0.mdf
+File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
+)
+\mdf@frametitlebox=\box76
+\mdf@footnotebox=\box77
+\mdf@splitbox@one=\box78
+\mdf@splitbox@two=\box79
+\mdf@splitbox@save=\box80
+\mdfsplitboxwidth=\skip124
+\mdfsplitboxtotalwidth=\skip125
+\mdfsplitboxheight=\skip126
+\mdfsplitboxdepth=\skip127
+\mdfsplitboxtotalheight=\skip128
+\mdfframetitleboxwidth=\skip129
+\mdfframetitleboxtotalwidth=\skip130
+\mdfframetitleboxheight=\skip131
+\mdfframetitleboxdepth=\skip132
+\mdfframetitleboxtotalheight=\skip133
+\mdffootnoteboxwidth=\skip134
+\mdffootnoteboxtotalwidth=\skip135
+\mdffootnoteboxheight=\skip136
+\mdffootnoteboxdepth=\skip137
+\mdffootnoteboxtotalheight=\skip138
+\mdftotallinewidth=\skip139
+\mdfboundingboxwidth=\skip140
+\mdfboundingboxtotalwidth=\skip141
+\mdfboundingboxheight=\skip142
+\mdfboundingboxdepth=\skip143
+\mdfboundingboxtotalheight=\skip144
+\mdf@freevspace@length=\skip145
+\mdf@horizontalwidthofbox@length=\skip146
+\mdf@verticalmarginwhole@length=\skip147
+\mdf@horizontalspaceofbox=\skip148
+\mdfsubtitleheight=\skip149
+\mdfsubsubtitleheight=\skip150
+\c@mdfcountframes=\count331
+
+****** mdframed patching \endmdf@trivlist
+
+****** -- success******
+
+\mdf@envdepth=\count332
+\c@mdf@env@i=\count333
+\c@mdf@env@ii=\count334
+\c@mdf@zref@counter=\count335
+Package zref Info: New property: mdf@pagevalue on input line 895.
+)
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/sourcesanspro/sourcesansp
+ro.sty
+Package: sourcesanspro 2018/05/19 v2.7 Adobe's Source Sans Pro typeface
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks38
+\XKV@tempa@toks=\toks39
+)
+\XKV@depth=\count336
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+)) (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/ly1/ly1enc.def
+File: ly1enc.def 2009/07/22 v0.7 TeX 'n ANSI encoding (DPC/KB)
+Now handling font encoding LY1 ...
+... processing UTF-8 mapping file for font encoding LY1
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/base/ly1enc.dfu
+File: ly1enc.dfu 2021/06/21 v1.2n UTF-8 support
+   defining Unicode char U+00A0 (decimal 160)
+   defining Unicode char U+00A1 (decimal 161)
+   defining Unicode char U+00A2 (decimal 162)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00A4 (decimal 164)
+   defining Unicode char U+00A5 (decimal 165)
+   defining Unicode char U+00A6 (decimal 166)
+   defining Unicode char U+00A7 (decimal 167)
+   defining Unicode char U+00AA (decimal 170)
+   defining Unicode char U+00AB (decimal 171)
+   defining Unicode char U+00AD (decimal 173)
+   defining Unicode char U+00AE (decimal 174)
+   defining Unicode char U+00B0 (decimal 176)
+   defining Unicode char U+00B5 (decimal 181)
+   defining Unicode char U+00B6 (decimal 182)
+   defining Unicode char U+00B7 (decimal 183)
+   defining Unicode char U+00BA (decimal 186)
+   defining Unicode char U+00BB (decimal 187)
+   defining Unicode char U+00BC (decimal 188)
+   defining Unicode char U+00BD (decimal 189)
+   defining Unicode char U+00BE (decimal 190)
+   defining Unicode char U+00BF (decimal 191)
+   defining Unicode char U+00C0 (decimal 192)
+   defining Unicode char U+00C1 (decimal 193)
+   defining Unicode char U+00C2 (decimal 194)
+   defining Unicode char U+00C3 (decimal 195)
+   defining Unicode char U+00C4 (decimal 196)
+   defining Unicode char U+00C5 (decimal 197)
+   defining Unicode char U+00C6 (decimal 198)
+   defining Unicode char U+00C7 (decimal 199)
+   defining Unicode char U+00C8 (decimal 200)
+   defining Unicode char U+00C9 (decimal 201)
+   defining Unicode char U+00CA (decimal 202)
+   defining Unicode char U+00CB (decimal 203)
+   defining Unicode char U+00CC (decimal 204)
+   defining Unicode char U+00CD (decimal 205)
+   defining Unicode char U+00CE (decimal 206)
+   defining Unicode char U+00CF (decimal 207)
+   defining Unicode char U+00D0 (decimal 208)
+   defining Unicode char U+00D1 (decimal 209)
+   defining Unicode char U+00D2 (decimal 210)
+   defining Unicode char U+00D3 (decimal 211)
+   defining Unicode char U+00D4 (decimal 212)
+   defining Unicode char U+00D5 (decimal 213)
+   defining Unicode char U+00D6 (decimal 214)
+   defining Unicode char U+00D8 (decimal 216)
+   defining Unicode char U+00D9 (decimal 217)
+   defining Unicode char U+00DA (decimal 218)
+   defining Unicode char U+00DB (decimal 219)
+   defining Unicode char U+00DC (decimal 220)
+   defining Unicode char U+00DD (decimal 221)
+   defining Unicode char U+00DE (decimal 222)
+   defining Unicode char U+00DF (decimal 223)
+   defining Unicode char U+00E0 (decimal 224)
+   defining Unicode char U+00E1 (decimal 225)
+   defining Unicode char U+00E2 (decimal 226)
+   defining Unicode char U+00E3 (decimal 227)
+   defining Unicode char U+00E4 (decimal 228)
+   defining Unicode char U+00E5 (decimal 229)
+   defining Unicode char U+00E6 (decimal 230)
+   defining Unicode char U+00E7 (decimal 231)
+   defining Unicode char U+00E8 (decimal 232)
+   defining Unicode char U+00E9 (decimal 233)
+   defining Unicode char U+00EA (decimal 234)
+   defining Unicode char U+00EB (decimal 235)
+   defining Unicode char U+00EC (decimal 236)
+   defining Unicode char U+00ED (decimal 237)
+   defining Unicode char U+00EE (decimal 238)
+   defining Unicode char U+00EF (decimal 239)
+   defining Unicode char U+00F0 (decimal 240)
+   defining Unicode char U+00F1 (decimal 241)
+   defining Unicode char U+00F2 (decimal 242)
+   defining Unicode char U+00F3 (decimal 243)
+   defining Unicode char U+00F4 (decimal 244)
+   defining Unicode char U+00F5 (decimal 245)
+   defining Unicode char U+00F6 (decimal 246)
+   defining Unicode char U+00F8 (decimal 248)
+   defining Unicode char U+00F9 (decimal 249)
+   defining Unicode char U+00FA (decimal 250)
+   defining Unicode char U+00FB (decimal 251)
+   defining Unicode char U+00FC (decimal 252)
+   defining Unicode char U+00FD (decimal 253)
+   defining Unicode char U+00FE (decimal 254)
+   defining Unicode char U+00FF (decimal 255)
+   defining Unicode char U+0131 (decimal 305)
+   defining Unicode char U+0141 (decimal 321)
+   defining Unicode char U+0142 (decimal 322)
+   defining Unicode char U+0152 (decimal 338)
+   defining Unicode char U+0153 (decimal 339)
+   defining Unicode char U+0160 (decimal 352)
+   defining Unicode char U+0161 (decimal 353)
+   defining Unicode char U+0174 (decimal 372)
+   defining Unicode char U+0175 (decimal 373)
+   defining Unicode char U+0176 (decimal 374)
+   defining Unicode char U+0177 (decimal 375)
+   defining Unicode char U+0178 (decimal 376)
+   defining Unicode char U+017D (decimal 381)
+   defining Unicode char U+017E (decimal 382)
+   defining Unicode char U+0192 (decimal 402)
+   defining Unicode char U+0218 (decimal 536)
+   defining Unicode char U+0219 (decimal 537)
+   defining Unicode char U+021A (decimal 538)
+   defining Unicode char U+021B (decimal 539)
+   defining Unicode char U+0237 (decimal 567)
+   defining Unicode char U+02C6 (decimal 710)
+   defining Unicode char U+02DC (decimal 732)
+   defining Unicode char U+2013 (decimal 8211)
+   defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+201C (decimal 8220)
+   defining Unicode char U+201D (decimal 8221)
+   defining Unicode char U+2020 (decimal 8224)
+   defining Unicode char U+2021 (decimal 8225)
+   defining Unicode char U+2022 (decimal 8226)
+   defining Unicode char U+2026 (decimal 8230)
+   defining Unicode char U+2030 (decimal 8240)
+   defining Unicode char U+2039 (decimal 8249)
+   defining Unicode char U+203A (decimal 8250)
+   defining Unicode char U+2122 (decimal 8482)
+   defining Unicode char U+FB00 (decimal 64256)
+   defining Unicode char U+FB01 (decimal 64257)
+   defining Unicode char U+FB02 (decimal 64258)
+   defining Unicode char U+FB03 (decimal 64259)
+   defining Unicode char U+FB04 (decimal 64260)
+   defining Unicode char U+FB05 (decimal 64261)
+   defining Unicode char U+FB06 (decimal 64262)
+))
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 11
+2.
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/psnfss/t1ptm.fd
+File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
+)))
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/sourcecodepro/sourcecodep
+ro.sty
+Package: sourcecodepro 2018/01/13 v2.7 Adobe's Source Code Pro typeface
+ (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+LaTeX Font Info:    Trying to load font information for T1+SourceSansPro-TLF on
+ input line 112.
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/sourcesanspro/T1SourceSan
+sPro-TLF.fd
+File: T1SourceSansPro-TLF.fd 2020/01/19 (autoinst) Font definitions for T1/Sour
+ceSansPro-TLF.
+)
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/m/n' aliased to
+(Font)              `T1/SourceSansPro-TLF/regular/n' on input line 112.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/regular/n' will be
+(Font)              scaled to size 12.0pt on input line 112.
+))
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/titling/titling.sty
+Package: titling 2009/09/04 v2.1d maketitle typesetting
+\thanksmarkwidth=\skip151
+\thanksmargin=\skip152
+\droptitle=\skip153
+)
+
+Class scrartcl Warning: Usage of package `fancyhdr' together
+(scrartcl)              with a KOMA-Script class is not recommended.
+(scrartcl)              I'd suggest to use 
+(scrartcl)              package `scrlayer' or `scrlayer-scrpage', because
+(scrartcl)              they support KOMA-Script classes.
+(scrartcl)              With `fancyhdr' several features of class `scrartcl'
+(scrartcl)              like options `headsepline', `footsepline' or command
+(scrartcl)              `\MakeMarkcase' and the commands `\setkomafont' and
+(scrartcl)              `\addtokomafont' for the page style elements need
+(scrartcl)              explicite user intervention to work.
+(scrartcl)              Nevertheless, using requested
+(scrartcl)              package `fancyhdr' on input line 335.
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and foote
+rs
+\f@nch@headwidth=\skip154
+\f@nch@O@elh=\skip155
+\f@nch@O@erh=\skip156
+\f@nch@O@olh=\skip157
+\f@nch@O@orh=\skip158
+\f@nch@O@elf=\skip159
+\f@nch@O@erf=\skip160
+\f@nch@O@olf=\skip161
+\f@nch@O@orf=\skip162
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/oberdiek/settobox.sty
 Package: settobox 2016/05/16 v1.5 Assign box dimensions to length registers (HO
 )
 )
-\DIFdelgraphicsbox=\box73
-\DIFdelgraphicswidth=\skip71
-\DIFdelgraphicsheight=\skip72
-LaTeX Info: Redefining \DIFaddbegin on input line 224.
-LaTeX Info: Redefining \DIFaddend on input line 225.
-LaTeX Info: Redefining \DIFdelbegin on input line 226.
-LaTeX Info: Redefining \DIFdelend on input line 227.
-LaTeX Info: Redefining \DIFaddbeginFL on input line 232.
-LaTeX Info: Redefining \DIFaddendFL on input line 233.
-LaTeX Info: Redefining \DIFdelbeginFL on input line 234.
-LaTeX Info: Redefining \DIFdelendFL on input line 235.
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 23
-8.
+\DIFdelgraphicsbox=\box81
+\DIFdelgraphicswidth=\skip163
+\DIFdelgraphicsheight=\skip164
+LaTeX Info: Redefining \DIFaddbegin on input line 407.
+LaTeX Info: Redefining \DIFaddend on input line 408.
+LaTeX Info: Redefining \DIFdelbegin on input line 409.
+LaTeX Info: Redefining \DIFdelend on input line 410.
+LaTeX Info: Redefining \DIFaddbeginFL on input line 415.
+LaTeX Info: Redefining \DIFaddendFL on input line 416.
+LaTeX Info: Redefining \DIFdelbeginFL on input line 417.
+LaTeX Info: Redefining \DIFdelendFL on input line 418.
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... found 'babel' package.
+Package csquotes Info: Adjusting default style.
+Package csquotes Info: Redefining alias 'default' -> 'english'.
 
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/psnfss/t1ptm.fd
-File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
-)
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdfte
-x.def
-File: l3backend-pdftex.def 2021-12-14 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count315
-\l__pdf_internal_box=\box74
-) (ms/diff.aux)
+(ms/diff.aux)
 \openout1 = `diff.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 238.
-LaTeX Font Info:    ... okay on input line 238.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 238.
-LaTeX Font Info:    ... okay on input line 238.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 238.
-LaTeX Font Info:    ... okay on input line 238.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 238.
-LaTeX Font Info:    ... okay on input line 238.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 238.
-LaTeX Font Info:    ... okay on input line 238.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 238.
-LaTeX Font Info:    ... okay on input line 238.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 238.
-LaTeX Font Info:    ... okay on input line 238.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 238.
-LaTeX Font Info:    ... okay on input line 238.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 238.
-LaTeX Font Info:    ... okay on input line 238.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 421.
+LaTeX Font Info:    ... okay on input line 421.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 421.
+LaTeX Font Info:    ... okay on input line 421.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 421.
+LaTeX Font Info:    ... okay on input line 421.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 421.
+LaTeX Font Info:    ... okay on input line 421.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 421.
+LaTeX Font Info:    ... okay on input line 421.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 421.
+LaTeX Font Info:    ... okay on input line 421.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 421.
+LaTeX Font Info:    ... okay on input line 421.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 421.
+LaTeX Font Info:    ... okay on input line 421.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 421.
+LaTeX Font Info:    ... okay on input line 421.
+LaTeX Font Info:    Checking defaults for LY1/ptm/m/n on input line 421.
+LaTeX Font Info:    Trying to load font information for LY1+ptm on input line 4
+21.
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/ly1/ly1ptm.fd
+File: ly1ptm.fd 2001/02/01 font definitions for LY1/ptm using Berry names.
+)
+LaTeX Font Info:    ... okay on input line 421.
+Package scrbase Info: activating english \contentsname on input line 421.
+Package scrbase Info: activating english \listfigurename on input line 421.
+Package scrbase Info: activating english \listtablename on input line 421.
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count316
-\scratchdimen=\dimen260
-\scratchbox=\box75
-\nofMPsegments=\count317
-\nofMParguments=\count318
-\everyMPshowfont=\toks36
-\MPscratchCnt=\count319
-\MPscratchDim=\dimen261
-\MPnumerator=\count320
-\makeMPintoPDFobject=\count321
-\everyMPtoPDFconversion=\toks37
+\scratchcounter=\count337
+\scratchdimen=\dimen268
+\scratchbox=\box82
+\nofMPsegments=\count338
+\nofMParguments=\count339
+\everyMPshowfont=\toks40
+\MPscratchCnt=\count340
+\MPscratchDim=\dimen269
+\MPnumerator=\count341
+\makeMPintoPDFobject=\count342
+\everyMPtoPDFconversion=\toks41
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-bas
 e.sty
@@ -623,7 +1188,7 @@ cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 238.
+Package hyperref Info: Link coloring OFF on input line 421.
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -635,35 +1200,35 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 string.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count322
+\c@section@level=\count343
 )
-LaTeX Info: Redefining \ref on input line 238.
-LaTeX Info: Redefining \pageref on input line 238.
-LaTeX Info: Redefining \nameref on input line 238.
+LaTeX Info: Redefining \ref on input line 421.
+LaTeX Info: Redefining \pageref on input line 421.
+LaTeX Info: Redefining \nameref on input line 421.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
 * driver: pdftex
-* paper: <default>
+* paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
-* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
-* \paperwidth=614.295pt
-* \paperheight=794.96999pt
-* \textwidth=469.75502pt
-* \textheight=650.43001pt
+* h-part:(L,W,R)=(72.26999pt, 452.9679pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 700.50687pt, 72.26999pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=452.9679pt
+* \textheight=700.50687pt
 * \oddsidemargin=0.0pt
 * \evensidemargin=0.0pt
-* \topmargin=-37.0pt
-* \headheight=12.0pt
-* \headsep=25.0pt
+* \topmargin=-39.875pt
+* \headheight=18.125pt
+* \headsep=21.75pt
 * \topskip=12.0pt
-* \footskip=30.0pt
-* \marginparwidth=44.0pt
-* \marginparsep=10.0pt
+* \footskip=50.75pt
+* \marginparwidth=49.79233pt
+* \marginparsep=12.8401pt
 * \columnsep=10.0pt
 * \skip\footins=10.8pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
@@ -675,296 +1240,325 @@ LaTeX Info: Redefining \nameref on input line 238.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 24
-1.
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/psnfss/t1phv.fd
-File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
-)
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
-44.
-
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/b/n' aliased to
+(Font)              `T1/SourceSansPro-TLF/bold/n' on input line 433.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/bold/n' will be
+(Font)              scaled to size 12.0pt on input line 433.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/m/n' aliased to
+(Font)              `T1/SourceSansPro-TLF/regular/n' on input line 434.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/regular/n' will be
+(Font)              scaled to size 6.0pt on input line 434.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 4
+37.
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
-44.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 4
+37.
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-244.
+437.
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-244.
+437.
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 244.
+(Font)              <12> on input line 437.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 244.
+(Font)              <8> on input line 437.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 244.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 244
+(Font)              <6> on input line 437.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 437
 .
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 244
+LaTeX Font Info:    Trying to load font information for U+msb on input line 437
 .
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/m/n' aliased to
+(Font)              `T1/SourceSansPro-TLF/regular/n' on input line 437.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/regular/n' will be
+(Font)              scaled to size 8.0pt on input line 437.
+
 [1
 
 {/Users/mattocci/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 2
-69.
- (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ts1ptm.fd
-File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/b/n' aliased to
+(Font)              `T1/SourceSansPro-TLF/bold/n' on input line 454.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/bold/n' will be
+(Font)              scaled to size 17.28pt on input line 454.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/m/n' aliased to
+(Font)              `T1/SourceSansPro-TLF/regular/n' on input line 454.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/regular/n' will be
+(Font)              scaled to size 17.28pt on input line 454.
+LaTeX Font Info:    Trying to load font information for TS1+SourceSansPro-TLF o
+n input line 458.
+
+(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/sourcesanspro/TS1SourceSa
+nsPro-TLF.fd
+File: TS1SourceSansPro-TLF.fd 2020/01/19 (autoinst) Font definitions for TS1/So
+urceSansPro-TLF.
 )
-[2] [3] [4]
+LaTeX Font Info:    Font shape `TS1/SourceSansPro-TLF/m/n' aliased to
+(Font)              `TS1/SourceSansPro-TLF/regular/n' on input line 458.
+LaTeX Font Info:    Font shape `TS1/SourceSansPro-TLF/regular/n' will be
+(Font)              scaled to size 12.0pt on input line 458.
 
-LaTeX Warning: Reference `tab:modeltab' on page 5 undefined on input line 388.
+Underfull \hbox (badness 2452) in paragraph at lines 482--489
+[]\T1/SourceSansPro-TLF/regular/n/12 Strong in-ter-spe-cific cor-re-la-tions am
+ong LMA, leaf lifes-pan (LL), and mass-normalized
+ []
 
-[5] [6] [7] [8] [9]
+[2]
+Underfull \hbox (badness 2088) in paragraph at lines 497--503
+[]\T1/SourceSansPro-TLF/regular/n/12 The hy-po-thet-i-cal ex-am-ple in Fig. []1
+[] shows how mass-normalization can, in prin-ci-ple,
+ []
 
-LaTeX Warning: Reference `tab:paratab' on page 10 undefined on input line 633.
+[3]
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/b/n' aliased to
+(Font)              `T1/SourceSansPro-TLF/bold/n' on input line 512.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/bold/n' will be
+(Font)              scaled to size 14.4pt on input line 512.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/m/n' aliased to
+(Font)              `T1/SourceSansPro-TLF/regular/n' on input line 512.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/regular/n' will be
+(Font)              scaled to size 14.4pt on input line 512.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/m/it' aliased to
+(Font)              `T1/SourceSansPro-TLF/regular/it' on input line 518.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/regular/it' will be
+(Font)              scaled to size 12.0pt on input line 518.
+ [4]
+
+LaTeX Warning: Reference `tab:modeltab' on page 5 undefined on input line 529.
+
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/m/it' aliased to
+(Font)              `T1/SourceSansPro-TLF/regular/it' on input line 543.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/regular/it' will be
+(Font)              scaled to size 8.0pt on input line 543.
+[5] [6]
+Underfull \hbox (badness 1990) in paragraph at lines 609--614
+|   []   |   []   |   [][][]|   []   |   []   |   []   |   []   |   []   |   []
+   |   []   |   []   |   []
+ []
+
+[7] [8] [9]
+
+LaTeX Warning: Reference `tab:paratab' on page 10 undefined on input line 710.
 
 
-LaTeX Warning: Reference `tab:lootab' on page 10 undefined on input line 643.
+Underfull \hbox (badness 1845) in paragraph at lines 707--714
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [][][]|   []
+   [][]|   []   |   []   |   []   |   []   |   []   |   []
+ []
 
 [10]
-
-LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 647.
-
-
-LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 651.
-
-
-LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 653.
-
-
-LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 655.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/b/it' aliased to
+(Font)              `T1/SourceSansPro-TLF/bold/it' on input line 716.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/bold/it' will be
+(Font)              scaled to size 12.0pt on input line 716.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/b/n' aliased to
+(Font)              `T1/SourceSansPro-TLF/bold/n' on input line 716.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/bold/n' will be
+(Font)              scaled to size 8.0pt on input line 716.
 
 
-LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 655.
+LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 717.
 
 
-Underfull \hbox (badness 3514) in paragraph at lines 663--666
+Underfull \hbox (badness 1173) in paragraph at lines 716--720
+[][]|   []   [][]|   []   []\T1/SourceSansPro-TLF/bold/n/12 De-com-pos-ing LMA 
+into metabolic and struc-tural com-po-nents leads to im-
+ []
+
+
+LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 721.
+
+
+LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 725.
+
+
+LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 727.
+
+
+LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 729.
+
+
+LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 729.
+
+
+Underfull \hbox (badness 2393) in paragraph at lines 737--740
 [][]|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |  
  []   |   []   |   []
  []
 
+[11]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 676.
-[11] [12]
+(Font)              <5> on input line 750.
 
-LaTeX Warning: Reference `tab:paratab' on page 13 undefined on input line 721.
+Underfull \hbox (badness 4084) in paragraph at lines 754--762
+|   []   |   []   []\T1/SourceSansPro-TLF/regular/n/12 vari-a-tion in \T1/Sourc
+eSansPro-TLF/regular/it/12 A$[]$ \T1/SourceSansPro-TLF/regular/n/12 among leave
+s in GLOP-NET tended to be []|   []
+ []
 
-[13] [14] [15] [16] [17] [18] [19]
-Underfull \hbox (badness 10000) in paragraph at lines 976--1026
-|   [][][]   |   [][][]   |   [][][]   |   [][][]
+[12]
+Underfull \hbox (badness 2875) in paragraph at lines 784--787
+\T1/SourceSansPro-TLF/regular/n/12 struc-tural com-po-nents (LMAp and LMAs, re-
+spec-tively) leads to im-proved pre-dic-tions
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 976--1026
-|   [][][]   |   [][][]   |   [][][]
+LaTeX Warning: Reference `tab:paratab' on page 13 undefined on input line 795.
+
+[13] [14] [15] [16] [17] [18] [19] [20]
+Underfull \hbox (badness 5519) in paragraph at lines 1025--1026
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
+  |   []
  []
 
 
-Overfull \hbox (10.86308pt too wide) in paragraph at lines 976--1026
-|   [][][]   |   [][][]   |   [][][]
+Underfull \hbox (badness 10000) in paragraph at lines 1025--1026
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
-
-Overfull \hbox (112.93405pt too wide) in paragraph at lines 976--1026
-|   [][][]   |   [][][]   |   [][][]
- []
-
-<../figs/table1.png, id=519, 225.84375pt x 530.98375pt>
-File: ../figs/table1.png Graphic file (type png)
-<use ../figs/table1.png>
-Package pdftex.def Info: ../figs/table1.png  used on input line 1101.
-(pdftex.def)             Requested size: 225.85696pt x 531.01483pt.
-[20] [21 <ms/../figs/table1.png>]
-<../figs/table2.png, id=532, 497.86pt x 244.915pt>
-File: ../figs/table2.png Graphic file (type png)
-<use ../figs/table2.png>
-Package pdftex.def Info: ../figs/table2.png  used on input line 1211.
-(pdftex.def)             Requested size: 469.7661pt x 231.09459pt.
-
-Overfull \hbox (6.81107pt too wide) in paragraph at lines 1211--1212
-[][][] 
- []
-
-[22 <ms/../figs/table2.png>]
-<../figs/fig_hypo.png, id=540, 2528.44624pt x 789.95125pt>
+[21] [22]
+<../figs/fig_hypo.png, id=551, 2528.44624pt x 789.95125pt>
 File: ../figs/fig_hypo.png Graphic file (type png)
 <use ../figs/fig_hypo.png>
-Package pdftex.def Info: ../figs/fig_hypo.png  used on input line 1235.
-(pdftex.def)             Requested size: 469.72287pt x 146.75342pt.
+Package pdftex.def Info: ../figs/fig_hypo.png  used on input line 1114.
+(pdftex.def)             Requested size: 452.94016pt x 141.51007pt.
 
-Overfull \hbox (6.76784pt too wide) in paragraph at lines 1235--1235
+Overfull \hbox (6.77225pt too wide) in paragraph at lines 1114--1114
  [][][] 
  []
 
-<../figs/GL_scatter.png, id=541, 1801.73125pt x 1801.73125pt>
+<../figs/GL_scatter.png, id=553, 1801.73125pt x 1801.73125pt>
 File: ../figs/GL_scatter.png Graphic file (type png)
 <use ../figs/GL_scatter.png>
-Package pdftex.def Info: ../figs/GL_scatter.png  used on input line 1247.
-(pdftex.def)             Requested size: 469.73122pt x 469.73122pt.
+Package pdftex.def Info: ../figs/GL_scatter.png  used on input line 1135.
+(pdftex.def)             Requested size: 452.96098pt x 452.96098pt.
 
-Overfull \hbox (6.77618pt too wide) in paragraph at lines 1247--1247
+Overfull \hbox (6.79308pt too wide) in paragraph at lines 1135--1135
  [][][] 
  []
 
-[23pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
- has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1250 \DIFaddend \newpage
-                           <ms/../figs/fig_hypo.png>] [24pdfTeX warning (ext4):
- destination with the same identifier (name{figure.2}) has been already used, d
-uplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1250 \DIFaddend \newpage
-                           <ms/../figs/GL_scatter.png>]
-<../figs/PA_scatter.png, id=557, 1801.73125pt x 1801.73125pt>
+[23 <ms/../figs/fig_hypo.png>] [24 <ms/../figs/GL_scatter.png>]
+<../figs/PA_scatter.png, id=571, 1801.73125pt x 1801.73125pt>
 File: ../figs/PA_scatter.png Graphic file (type png)
 <use ../figs/PA_scatter.png>
-Package pdftex.def Info: ../figs/PA_scatter.png  used on input line 1272.
-(pdftex.def)             Requested size: 469.73122pt x 469.73122pt.
+Package pdftex.def Info: ../figs/PA_scatter.png  used on input line 1158.
+(pdftex.def)             Requested size: 452.96098pt x 452.96098pt.
 
-Overfull \hbox (6.77618pt too wide) in paragraph at lines 1272--1272
+Overfull \hbox (6.79308pt too wide) in paragraph at lines 1158--1158
  [][][] 
  []
 
-[25] [26pdfTeX warning (ext4): destination with the same identifier (name{figur
-e.3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1275 \newpage
-                <ms/../figs/PA_scatter.png>]
-<../figs/LL_plot.png, id=572, 1058.95625pt x 1058.95625pt>
+[25 <ms/../figs/PA_scatter.png>]
+<../figs/LL_plot.png, id=580, 1058.95625pt x 1058.95625pt>
 File: ../figs/LL_plot.png Graphic file (type png)
 <use ../figs/LL_plot.png>
-Package pdftex.def Info: ../figs/LL_plot.png  used on input line 1291.
-(pdftex.def)             Requested size: 469.75557pt x 469.75557pt.
+Package pdftex.def Info: ../figs/LL_plot.png  used on input line 1180.
+(pdftex.def)             Requested size: 452.96704pt x 452.96704pt.
 
-Overfull \hbox (6.80054pt too wide) in paragraph at lines 1291--1291
+Overfull \hbox (6.79913pt too wide) in paragraph at lines 1180--1180
  [][][] 
  []
 
-<../figs/mass_prop_simple.png, id=575, 947.54pt x 947.54pt>
+[26 <ms/../figs/LL_plot.png>]
+<../figs/mass_prop_simple.png, id=588, 947.54pt x 947.54pt>
 File: ../figs/mass_prop_simple.png Graphic file (type png)
 <use ../figs/mass_prop_simple.png>
-Package pdftex.def Info: ../figs/mass_prop_simple.png  used on input line 1314.
+Package pdftex.def Info: ../figs/mass_prop_simple.png  used on input line 1202.
 
-(pdftex.def)             Requested size: 469.74944pt x 469.74944pt.
+(pdftex.def)             Requested size: 452.96336pt x 452.96336pt.
 
-Overfull \hbox (6.7944pt too wide) in paragraph at lines 1314--1314
+Overfull \hbox (6.79546pt too wide) in paragraph at lines 1202--1202
  [][][] 
  []
 
-<../figs/vpart.png, id=578, 1579.9025pt x 947.54pt>
+[27 <ms/../figs/mass_prop_simple.png>]
+<../figs/vpart.png, id=596, 1579.9025pt x 947.54pt>
 File: ../figs/vpart.png Graphic file (type png)
 <use ../figs/vpart.png>
-Package pdftex.def Info: ../figs/vpart.png  used on input line 1332.
-(pdftex.def)             Requested size: 469.75563pt x 281.734pt.
+Package pdftex.def Info: ../figs/vpart.png  used on input line 1212.
+(pdftex.def)             Requested size: 452.9528pt x 271.65657pt.
 
-Overfull \hbox (6.8006pt too wide) in paragraph at lines 1332--1332
+Overfull \hbox (6.7849pt too wide) in paragraph at lines 1212--1212
  [][][] 
  []
 
-<../figs/box_main.png, id=579, 1848.9075pt x 1848.9075pt>
+[28 <ms/../figs/vpart.png>]
+<../figs/box_main.png, id=603, 1848.9075pt x 1848.9075pt>
 File: ../figs/box_main.png Graphic file (type png)
 <use ../figs/box_main.png>
-Package pdftex.def Info: ../figs/box_main.png  used on input line 1347.
-(pdftex.def)             Requested size: 469.75835pt x 469.75835pt.
-<../figs/PA_NPC.png, id=580, 1801.73125pt x 1801.73125pt>
+Package pdftex.def Info: ../figs/box_main.png  used on input line 1227.
+(pdftex.def)             Requested size: 452.9722pt x 452.9722pt.
+ [29 <ms/../figs/box_main.png>]
+<../figs/PA_NPC.png, id=610, 1801.73125pt x 1801.73125pt>
 File: ../figs/PA_NPC.png Graphic file (type png)
 <use ../figs/PA_NPC.png>
-Package pdftex.def Info: ../figs/PA_NPC.png  used on input line 1371.
-(pdftex.def)             Requested size: 469.73122pt x 469.73122pt.
+Package pdftex.def Info: ../figs/PA_NPC.png  used on input line 1251.
+(pdftex.def)             Requested size: 452.96098pt x 452.96098pt.
 
-Overfull \hbox (6.77618pt too wide) in paragraph at lines 1371--1371
+Overfull \hbox (6.79308pt too wide) in paragraph at lines 1251--1251
  [][][] 
  []
 
-[27pdfTeX warning (ext4): destination with the same identifier (name{figure.4})
- has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1374 \end{document}
-                      <ms/../figs/LL_plot.png>] [28pdfTeX warning (ext4): desti
-nation with the same identifier (name{figure.5}) has been already used, duplica
-te ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1374 \end{document}
-                      <ms/../figs/mass_prop_simple.png>] [29pdfTeX warning (ext
-4): destination with the same identifier (name{figure.6}) has been already used
-, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1374 \end{document}
-                      <ms/../figs/vpart.png>] [30pdfTeX warning (ext4): destina
-tion with the same identifier (name{figure.7}) has been already used, duplicate
- ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1374 \end{document}
-                      <ms/../figs/box_main.png>] [31pdfTeX warning (ext4): dest
-ination with the same identifier (name{figure.8}) has been already used, duplic
-ate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1374 \end{document}
-                      <ms/../figs/PA_NPC.png>] (ms/diff.aux)
+[30 <ms/../figs/PA_NPC.png>] (ms/diff.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 13924 strings out of 480313
- 218589 string characters out of 5896366
- 618829 words of memory out of 5000000
- 31365 multiletter control sequences out of 15000+600000
- 456681 words of font info for 76 fonts, out of 8000000 for 9000
+ 21546 strings out of 480313
+ 386089 string characters out of 5896366
+ 927754 words of memory out of 5000000
+ 38831 multiletter control sequences out of 15000+600000
+ 537288 words of font info for 76 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 74i,13n,77p,1411b,377s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 108i,12n,106p,10622b,516s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}
-{/Users/mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}{/Users
-/mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/Users/m
-attocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/mat
-tocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}</Users/mattocci/
-Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/latxfont/lasy6.pfb></Use
-rs/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users
-/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></Users/m
-attocci/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></Users/matt
-occi/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/mattocc
-i/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/mattocci/L
-ibrary/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/mattocci/Libra
-ry/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/mattocci/Library
-/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></Users/mattocci/Library/Ti
-nyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></Users/mattocci/Library/T
-inyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></Users/mattocci/Library/Tin
-yTeX/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></Users/mattocci/Library/Tiny
-TeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></Users/mattocci/Library/TinyTe
-X/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ms/diff.pdf (31 pages, 2580768 bytes).
+{/Users/mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/sourcesanspro/a_emk
+xm5.enc}{/Users/mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathe
+x.enc}{/Users/mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.
+enc}{/Users/mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/
+Users/mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/sourcesanspro/a_5ponh
+6.enc}</Users/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesansp
+ro/SourceSansPro-Bold.pfb></Users/mattocci/Library/TinyTeX/texmf-dist/fonts/typ
+e1/adobe/sourcesanspro/SourceSansPro-BoldIt.pfb></Users/mattocci/Library/TinyTe
+X/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb></Users/matto
+cci/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-Re
+gular.pfb></Users/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfon
+ts/latxfont/lasy6.pfb></Users/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/p
+ublic/lm/lmex10.pfb></Users/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/pub
+lic/lm/lmmi12.pfb></Users/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/publi
+c/lm/lmmi6.pfb></Users/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/public/l
+m/lmmi8.pfb></Users/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/l
+mr12.pfb></Users/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8
+.pfb></Users/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.p
+fb></Users/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
+
+Output written on ms/diff.pdf (30 pages, 2655763 bytes).
 PDF statistics:
- 766 PDF objects out of 1000 (max. 8388607)
- 674 compressed objects within 7 object streams
- 147 named destinations out of 1000 (max. 500000)
- 195 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 768 PDF objects out of 1000 (max. 8388607)
+ 686 compressed objects within 7 object streams
+ 163 named destinations out of 1000 (max. 500000)
+ 177 words of extra memory for PDF output out of 10000 (max. 10000000)
 
