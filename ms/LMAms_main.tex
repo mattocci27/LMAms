@@ -623,22 +623,20 @@ There was a positive correlation between LL and LMAs (Fig.~\ref{fig:PAplt}i), an
 According to our model results, metabolic leaf mass (LMAp) accounted for nearly all leaf dark respiration; i.e., estimated dark respiration rate per-unit structural mass (\(\gamma_s\)) was close to zero in analyses of both GLOPNET and Panama data (Table 1).
 Thus, although building costs are likely similar for different leaf chemical components and tissues (\protect\hyperlink{ref-Williams1989}{Williams et al. 1989}, \protect\hyperlink{ref-Villar2001}{Villar and Merino 2001}), our results suggest that leaf mass associated with photosynthetic function accounts for nearly all leaf maintenance respiration.
 
-\textbf{3. LMA variance components determine the area- vs.~mass-dependence of leaf photosynthetic capacity (\emph{A}\textsubscript{max}).}
+\textbf{3. Evergreen leaves have greater LMAs than deciduous leaves, and sun leaves have both greater LMAp and LMAs than shade leaves.}
+Evergreen vs.~decidous explains the majority of variance in LMAs but not LMAp in GLOPNET (Fig.~\ref{fig:vpart}).
+Thus, the higher total LMA in evergreen leaves in GLOPNET (Fig.~\ref{fig:boxplt}) was primarily due to differences in LMAs.
+In the Panama dataset, light (sun vs.~shade) explains the majority of variance in LMAp but not LMAs, and site (wet/dry) explains 33\% of variance in LMAs (Fig.~\ref{fig:vpart}).
+Sun leaves have both greater LMAp and LMAs than shade leaves, but the differences in LMAp were more apparent (Fig.~\ref{fig:boxplt}).
+Thus, variation in LMAp plays a more important role within species than among species.
+Evergreen leaves have higher fraction of LMAs compared to deciduous leaves both in the Panama and the GLOPNET dataset (Fig. SX).
+
+\textbf{4. LMA variance components determine the area- vs.~mass-dependence of leaf photosynthetic capacity (\emph{A}\textsubscript{max}).}
 Analysis of simulated data showed that the percent of LMA variation due to LMAp vs.~LMAs variation determined the area- vs.~mass-dependence of \emph{A}\textsubscript{max} (i.e., the degree to which whole-leaf \emph{A}\textsubscript{max} depends on leaf area or mass; Osnas et al. (\protect\hyperlink{ref-Osnas2013}{2013}); Osnas et al. (\protect\hyperlink{ref-Osnas2018}{2018})).
 Generally, mass-dependence of \emph{A}\textsubscript{max} decreases with LMAs variance (Fig.~\ref{fig:massplt}).
 Other factors, including the senstivity of \emph{A}\textsubscript{max} to variation in LMAp and LMAs (\(\alpha_p\) and \(\alpha_s\)) and covariance between LMAp and LMAs, also affect the relationship between mass-dependence of \emph{A}\textsubscript{max} and LMAs variance (Fig.~\ref{fig:massplt}, Fig. SX).
 Although relative variance of LMAs was intermediate in GLOPNET (51\%), interspecific variation in \emph{A}\textsubscript{max} among leaves in GLOPNET tended to be area-dependent because of their lower \(\alpha_p\) and negative \(\alpha_s\).
-Interspecific variation in LMA in sun and shade leaves in the Panama data was area-dependent because of their large variance in LMAs (Fig.~\ref{fig:massplt}).
-
-\textbf{4. Evergreen leaves have greater LMAs than deciduous leaves, and sun leaves have both greater LMAp and LMAs than shade leaves.}
-Evergreen vs.~decidous explains the majority of variance in LMAs but not LMAp in GLOPNET (Fig.~\ref{fig:vpart}).
-In the Panama dataset, light (sun vs.~shade) explains the majority of variance in LMAp but not LMAs, and site (wet/dry) explains 33\% of variance in LMAs (Fig.~\ref{fig:vpart}).
-
-In the GLOPNET dataset, evergreen leaves had higher LMAs than deciduous leaves (Fig.~\ref{fig:boxplt}).
-Thus, the higher total LMA in evergreen leaves in GLOPNET was primarily due to differences in LMAs.
-Evergreen leaves have higher fraction of LMAs compared to deciduous leaves both in the Panama and the GLOPNET dataset (Fig. SX).
-In the Panama dataset, sun leaves have both greater LMAp and LMAs than shade leaves, but the differences in LMAp were more apparent (Fig.~\ref{fig:boxplt}).
-Thus, variation in LMAp plays a more important role within species than among species.
+Interspecific variation in \emph{A}\textsubscript{max} in sun and shade leaves in the Panama data was area-dependent because of their large variance in LMAs (Fig.~\ref{fig:massplt}).
 
 \textbf{5. Nitrogen and phosphorus per-unit leaf area are strongly correlated with LMAp, and cellulose per-unit leaf area is strongly correlated with LMAs.}
 In the GLOPNET dataset, \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} had strong positive correlations with LMAp, but only weak correlations with LMAs (Fig. SX).
@@ -964,7 +962,7 @@ Effect of light on LL (\(\theta\)) & - & \textbf{-0.804 {[}-1.104, -0.525{]}} \\
 (B) Two-dimensional relationship between photosynthetic capacity (\emph{A}\textsubscript{max}) per-unit leaf area and total LMA (equal to LMAp + LMAs).
 (C) One-dimensional relationship between \emph{A}\textsubscript{max} per-unit leaf mass and total LMA.
 LMAp and LMAs are simulated from a hypothetical scenario of lognormal distributions with medians of 80 and standard deviations of exp(0.8) and exp(0.7), and zero covariance.
-Variation in \emph{A}\textsubscript{max} values are derived from our analysis of the GLOPNET database. \(A_{\mathrm{area} \, i}=1.81\mathrm{LMAp}_i^{0.28}\mathrm{LMAs}^{-0.13}\epsilon_i\), where \(\epsilon_i\) is log-normally distributed with log-mean with 0, log-scale parameter with 0.31 (see Methods and Results).}\label{fig:Hplt}
+Variation in \emph{A}\textsubscript{max} values are derived from our analysis of the GLOPNET database. \(A_{\mathrm{area} \, i}=1.81 \times \mathrm{LMAp}_i^{0.28}\mathrm{LMAs}^{-0.13}\epsilon_i\), where \(\epsilon_i\) is log-normally distributed with log-mean with 0, log-scale parameter with 0.31 (see Methods and Results).}\label{fig:Hplt}
 }
 \end{figure}
 
@@ -1010,20 +1008,6 @@ The \emph{R}\textsuperscript{2} value is the posterior mean of Bayesian \emph{R}
 \newpage
 
 \begin{figure}
-\hypertarget{fig:massplt}{%
-\centering
-\includegraphics{../figs/mass_prop_simple.png}
-\caption{The relationships between mass dependency (\emph{b} in Eq. 8) and relative variance in LMAs to LMA for the global GLOPNET dataset, sun leaves in Panama, and shade leaves in Panama.
-Solid lines indicate simulated means and shaded regions indicate 95\% CI.
-Each symbol indicates the estimated values from the empirical data.
-The photosynthetic rate (\emph{A}\textsubscript{max}) is primarily mass-dependent (\emph{b} \textgreater{} 0.5), primarily area-dependent (0.5 \textgreater{} \emph{b} \textgreater{} 0) and purely area-dependent (\emph{b} = 0) (\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
-Note that when \emph{b} \textgreater{} 1, \emph{A}\textsubscript{area} dramatically increases with LMA, which is not realistic.}\label{fig:massplt}
-}
-\end{figure}
-
-\newpage
-
-\begin{figure}
 \hypertarget{fig:vpart}{%
 \centering
 \includegraphics{../figs/vpart.png}
@@ -1043,6 +1027,20 @@ Groups sharing the same letters are not significantly different (P \textgreater{
 To isolate the effects of intraspecific variation (i.e., plastic responses to light), the Panama results shown here only include species for which both sun and shade leaves were available.
 Qualitatively similar results were obtained when all Panama species were included (Fig. SX).
 Note that the vertical axis is on a log\textsubscript{10} scale.}\label{fig:boxplt}
+}
+\end{figure}
+
+\newpage
+
+\begin{figure}
+\hypertarget{fig:massplt}{%
+\centering
+\includegraphics{../figs/mass_prop_simple.png}
+\caption{The relationships between mass dependency (\emph{b} in Eq. 8) and relative variance in LMAs to LMA for the global GLOPNET dataset, sun leaves in Panama, and shade leaves in Panama.
+Solid lines indicate simulated means and shaded regions indicate 95\% CI.
+Each symbol indicates the estimated values from the empirical data.
+The photosynthetic rate (\emph{A}\textsubscript{max}) is primarily mass-dependent (\emph{b} \textgreater{} 0.5), primarily area-dependent (0.5 \textgreater{} \emph{b} \textgreater{} 0) and purely area-dependent (\emph{b} = 0) (\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
+Note that when \emph{b} \textgreater{} 1, \emph{A}\textsubscript{area} dramatically increases with LMA, which is not realistic.}\label{fig:massplt}
 }
 \end{figure}
 
