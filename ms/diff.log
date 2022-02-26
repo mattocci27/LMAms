@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.15)  23 DEC 2021 15:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.15)  26 FEB 2022 21:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1358,171 +1358,180 @@ Underfull \hbox (badness 1990) in paragraph at lines 609--614
    |   []   |   []   |   []
  []
 
-[7] [8] [9]
+[7]
+Underfull \hbox (badness 1043) in paragraph at lines 622--635
+[]|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
+]   |   []   |   []   |   []
+ []
 
-LaTeX Warning: Reference `tab:paratab' on page 10 undefined on input line 710.
+[8] [9]
+
+LaTeX Warning: Reference `tab:paratab' on page 10 undefined on input line 707.
 
 
-Underfull \hbox (badness 1845) in paragraph at lines 707--714
+Underfull \hbox (badness 1845) in paragraph at lines 704--711
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [][][]|   []
    [][]|   []   |   []   |   []   |   []   |   []   |   []
  []
 
 [10]
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/b/it' aliased to
-(Font)              `T1/SourceSansPro-TLF/bold/it' on input line 716.
+(Font)              `T1/SourceSansPro-TLF/bold/it' on input line 713.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/bold/it' will be
-(Font)              scaled to size 12.0pt on input line 716.
+(Font)              scaled to size 12.0pt on input line 713.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/b/n' aliased to
-(Font)              `T1/SourceSansPro-TLF/bold/n' on input line 716.
+(Font)              `T1/SourceSansPro-TLF/bold/n' on input line 713.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/bold/n' will be
-(Font)              scaled to size 8.0pt on input line 716.
+(Font)              scaled to size 8.0pt on input line 713.
 
 
-LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 717.
+LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 714.
 
 
-Underfull \hbox (badness 1173) in paragraph at lines 716--720
+Underfull \hbox (badness 1173) in paragraph at lines 713--717
 [][]|   []   [][]|   []   []\T1/SourceSansPro-TLF/bold/n/12 De-com-pos-ing LMA 
 into metabolic and struc-tural com-po-nents leads to im-
  []
 
 
-LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 721.
+LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 718.
 
 
-LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 725.
+LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 722.
+
+
+LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 724.
 
 
 LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 727.
 
 
-LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 730.
+LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 728.
 
 
-LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 731.
-
-
-Underfull \hbox (badness 1708) in paragraph at lines 734--739
+Underfull \hbox (badness 1708) in paragraph at lines 731--736
 |   []   |   []   []\T1/SourceSansPro-TLF/regular/n/12 i.e., []|   []   |   [] 
   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 [11]
-Underfull \hbox (badness 2393) in paragraph at lines 772--781
+Underfull \hbox (badness 2393) in paragraph at lines 769--778
 [][]|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |  
  []   |   []   |   []
  []
 
 [12]
-Underfull \hbox (badness 2875) in paragraph at lines 791--794
+Underfull \hbox (badness 2875) in paragraph at lines 788--791
 \T1/SourceSansPro-TLF/regular/n/12 struc-tural com-po-nents (LMAp and LMAs, re-
 spec-tively) leads to im-proved pre-dic-tions
  []
 
 [13]
 
-LaTeX Warning: Reference `tab:paratab' on page 14 undefined on input line 802.
+LaTeX Warning: Reference `tab:paratab' on page 14 undefined on input line 799.
 
 [14] [15] [16] [17] [18] [19] [20]
-Underfull \hbox (badness 5519) in paragraph at lines 1032--1033
+Underfull \hbox (badness 5519) in paragraph at lines 1029--1030
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1032--1033
+Underfull \hbox (badness 10000) in paragraph at lines 1029--1030
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 [21] [22]
-<../figs/fig_hypo.png, id=555, 2528.44624pt x 789.95125pt>
+<../figs/fig_hypo.png, id=556, 2528.44624pt x 789.95125pt>
 File: ../figs/fig_hypo.png Graphic file (type png)
 <use ../figs/fig_hypo.png>
-Package pdftex.def Info: ../figs/fig_hypo.png  used on input line 1121.
+Package pdftex.def Info: ../figs/fig_hypo.png  used on input line 1118.
 (pdftex.def)             Requested size: 452.94016pt x 141.51007pt.
 
-Overfull \hbox (6.77225pt too wide) in paragraph at lines 1121--1121
+Overfull \hbox (6.77225pt too wide) in paragraph at lines 1118--1118
  [][][] 
  []
 
-<../figs/GL_scatter.png, id=557, 1801.73125pt x 1801.73125pt>
+<../figs/GL_scatter.png, id=558, 1801.73125pt x 1801.73125pt>
 File: ../figs/GL_scatter.png Graphic file (type png)
 <use ../figs/GL_scatter.png>
-Package pdftex.def Info: ../figs/GL_scatter.png  used on input line 1142.
+Package pdftex.def Info: ../figs/GL_scatter.png  used on input line 1139.
 (pdftex.def)             Requested size: 452.96098pt x 452.96098pt.
 
-Overfull \hbox (6.79308pt too wide) in paragraph at lines 1142--1142
+Overfull \hbox (6.79308pt too wide) in paragraph at lines 1139--1139
  [][][] 
  []
 
 [23 <ms/../figs/fig_hypo.png>] [24 <ms/../figs/GL_scatter.png>]
-<../figs/PA_scatter.png, id=574, 1801.73125pt x 1801.73125pt>
+<../figs/PA_scatter.png, id=575, 1801.73125pt x 1801.73125pt>
 File: ../figs/PA_scatter.png Graphic file (type png)
 <use ../figs/PA_scatter.png>
-Package pdftex.def Info: ../figs/PA_scatter.png  used on input line 1165.
+Package pdftex.def Info: ../figs/PA_scatter.png  used on input line 1162.
 (pdftex.def)             Requested size: 452.96098pt x 452.96098pt.
 
-Overfull \hbox (6.79308pt too wide) in paragraph at lines 1165--1165
+Overfull \hbox (6.79308pt too wide) in paragraph at lines 1162--1162
  [][][] 
  []
 
 [25 <ms/../figs/PA_scatter.png>]
-<../figs/LL_plot.png, id=583, 1058.95625pt x 1058.95625pt>
+<../figs/LL_plot.png, id=584, 1058.95625pt x 1058.95625pt>
 File: ../figs/LL_plot.png Graphic file (type png)
 <use ../figs/LL_plot.png>
-Package pdftex.def Info: ../figs/LL_plot.png  used on input line 1187.
+Package pdftex.def Info: ../figs/LL_plot.png  used on input line 1184.
 (pdftex.def)             Requested size: 452.96704pt x 452.96704pt.
 
-Overfull \hbox (6.79913pt too wide) in paragraph at lines 1187--1187
+Overfull \hbox (6.79913pt too wide) in paragraph at lines 1184--1184
  [][][] 
  []
 
 [26 <ms/../figs/LL_plot.png>]
-<../figs/vpart.png, id=591, 1579.9025pt x 947.54pt>
+<../figs/vpart.png, id=592, 1579.9025pt x 947.54pt>
 File: ../figs/vpart.png Graphic file (type png)
 <use ../figs/vpart.png>
-Package pdftex.def Info: ../figs/vpart.png  used on input line 1205.
+Package pdftex.def Info: ../figs/vpart.png  used on input line 1202.
 (pdftex.def)             Requested size: 452.9528pt x 271.65657pt.
 
-Overfull \hbox (6.7849pt too wide) in paragraph at lines 1205--1205
+Overfull \hbox (6.7849pt too wide) in paragraph at lines 1202--1202
  [][][] 
  []
 
 [27 <ms/../figs/vpart.png>]
-<../figs/box_main.png, id=598, 1848.9075pt x 1848.9075pt>
+<../figs/box_main.png, id=599, 1848.9075pt x 1848.9075pt>
 File: ../figs/box_main.png Graphic file (type png)
 <use ../figs/box_main.png>
-Package pdftex.def Info: ../figs/box_main.png  used on input line 1220.
+Package pdftex.def Info: ../figs/box_main.png  used on input line 1217.
 (pdftex.def)             Requested size: 452.9722pt x 452.9722pt.
  [28 <ms/../figs/box_main.png>]
-<../figs/mass_prop_simple.png, id=605, 947.54pt x 947.54pt>
+<../figs/mass_prop_simple.png, id=606, 947.54pt x 947.54pt>
 File: ../figs/mass_prop_simple.png Graphic file (type png)
 <use ../figs/mass_prop_simple.png>
-Package pdftex.def Info: ../figs/mass_prop_simple.png  used on input line 1244.
+Package pdftex.def Info: ../figs/mass_prop_simple.png  used on input line 1241.
 
 (pdftex.def)             Requested size: 452.96336pt x 452.96336pt.
 
-Overfull \hbox (6.79546pt too wide) in paragraph at lines 1244--1244
+Overfull \hbox (6.79546pt too wide) in paragraph at lines 1241--1241
  [][][] 
  []
 
 [29 <ms/../figs/mass_prop_simple.png>]
-<../figs/PA_NPC.png, id=613, 1801.73125pt x 1801.73125pt>
+<../figs/PA_NPC.png, id=614, 1801.73125pt x 1801.73125pt>
 File: ../figs/PA_NPC.png Graphic file (type png)
 <use ../figs/PA_NPC.png>
-Package pdftex.def Info: ../figs/PA_NPC.png  used on input line 1258.
+Package pdftex.def Info: ../figs/PA_NPC.png  used on input line 1255.
 (pdftex.def)             Requested size: 452.96098pt x 452.96098pt.
  [30 <ms/../figs/PA_NPC.png>]
 (ms/diff.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
  21535 strings out of 480313
  385985 string characters out of 5896366
- 955754 words of memory out of 5000000
+ 960754 words of memory out of 5000000
  38825 multiletter control sequences out of 15000+600000
  533289 words of font info for 71 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -1548,10 +1557,10 @@ mr12.pfb></Users/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8
 .pfb></Users/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.p
 fb></Users/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
 
-Output written on ms/diff.pdf (30 pages, 2659118 bytes).
+Output written on ms/diff.pdf (30 pages, 2659002 bytes).
 PDF statistics:
- 771 PDF objects out of 1000 (max. 8388607)
- 689 compressed objects within 7 object streams
+ 772 PDF objects out of 1000 (max. 8388607)
+ 690 compressed objects within 7 object streams
  163 named destinations out of 1000 (max. 500000)
  177 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,0 +1,96 @@
+---
+fontsize: 12pt
+geometry: margin=1in
+link-citations: yes
+csl: templates/ecology.csl
+bibliography: [LMA.bib]
+output:
+  bookdown::pdf_document2:
+    latex_engine: pdflatex
+    #latex_engine: xelatex
+    fig_caption: yes
+    keep_tex: yes
+    toc: no
+    number_sections: no
+    template: templates/eisvogel2.tex
+    includes:
+        in_header: format.sty
+    pandoc_args:
+      - "--filter"
+      - "pandoc-crossref"
+  bookdown::word_document2:
+    fig_width: 6
+    fig_caption: yes
+    reference_docx: templates/rmd_style.docx
+    toc: no
+    number_sections: no
+    pandoc_args:
+        - "--filter"
+        - "pandoc-crossref"
+        - "--mathml"
+  bookdown::html_document2:
+    fig_width: 6
+    fig_caption: yes
+    number_sections: no
+    pandoc_args:
+        - "--filter"
+        - "pandoc-crossref"
+        - "--mathml"
+figPrefix: Fig.
+figureTitle: 'Figure'
+tblPrefix: Table
+tableTitle: 'Table'
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
+```
+
+```{r caching, include=FALSE}
+library(methods)
+library(knitr)
+library(kableExtra)
+library(png)
+library(grid)
+library(pander)
+source("rmd_func.r")
+```
+
+
+## SX:
+
+Measured traits related to photosynthesis and metabolism traits (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are strongly correlated with estimates (posterior means) of the metabolic LMA component (LMAm) in the GLOPNET dataset.
+LMAm yields slightly stronger correlations and more consistent relationships compared to LMA and LMAs; e.g., evergreen and deciduous leaves align along a single relationship in  panel b, but not in panels a or c.
+
+![](../figs/GL_NP.png){#fig:hoge}
+
+\newpage
+
+## SX:
+
+Posterior means of LMAp vs LMAs in the (a) GLOPNET and (b) Panama datasets.
+The *r* values were calucalted for each MCMC step and the means [95% credible interval] are shown. 
+Correlations between LMAm and LMAs are significantly negative for Panama, but the small absoulte *r* value indicate that a single axis could not accurately represent the two-dimensional space.
+Symbols as in Main Text Figs. 2-3.
+
+![](../figs/LMAps.png)
+
+\newpage
+
+
+## SX:
+
+Boxplots comparing posterior means of the latent variable f (the fraction of total LMA comprised by LMAm) across deciduous (D) and evergreen (E) leaves in GLOPNET and Panama, and across sites (wet and dry) and canopy strata (sun and shade) in Panama.
+Note that LMAm = f $\times$ LMA, and LMAs = (1 – f) $\times$ LMA. 
+(a) Deciduous and evergreen leaves in the GLOPNET dataset; 
+(b) deciduous and evergreen leaves for Panama species for which both sun and shade leaves were available; 
+(c) leaves for Panama species for which both sun and shade leaves were available; and 
+(d) all leaves for Panama.
+GLOPNET results are for the Model 2b, and Panama results are for the Model 4a.
+The center line in each box indicates the median, upper and lower box edges indicate the interquartile range, whiskers show 1.5 times the interquartile range, and points are outliers.
+Groups sharing the same letters are not significantly different (P > 0.05; t-tests).
+
+![](../figs/box_frac2.png)
+
+
+\newpage

@@ -20,7 +20,7 @@ FIG = figs/fig_hypo.png figs/GL_scatter.png figs/GL_NP.png figs/PA_scatter.png f
 #$(info RDA: $(RDA))
 #$(info PAR: $(PAR))
 
-all: emptytarget0 emptytarget1 docs/model_selection.html emptytarget2 r_val.yml letters.yml var_val.yml emptytarget3 emptytarget4 ms/LMA.bib ms/LMAms_main.tex ms/diff.tex
+all: emptytarget0 emptytarget1 docs/model_selection.html emptytarget2 r_val.yml letters.yml var_val.yml emptytarget3 emptytarget4 ms/LMA.bib ms/LMAms_main.tex ms/diff.tex ms/SI.docx
 
 ms/LMA.bib: ~/LMA.bib
 	cp $< $@
@@ -76,6 +76,10 @@ ms/diff.tex: ms/LMAms_main.tex ms/LMAms_main_old.tex
 	latexdiff --flatten ms/LMAms_main_old.tex $< > $@
 	pdflatex -halt-on-error --output-directory=ms $@
 	#pdflatex --output-directory=ms $@
+
+#ms/LMAps_main.tex: ms/LMAps_main.Rmd $(LOO) $(PAR) r_val.yml
+ms/SI.docx: ms/SI.Rmd
+	R -e 'system.time(rmarkdown::render("$<", "all"))'
 
 .PHONY: clean
 clean:
