@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.15)  26 FEB 2022 21:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2022.2.26)  28 FEB 2022 18:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **ms/diff.tex
 (./ms/diff.tex
 LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2021-11-22>
+L3 programming layer <2022-02-24>
    defining Unicode char U+2212 (decimal 8722)
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrartcl.cls
@@ -81,7 +81,7 @@ File: scrsize12pt.clo 2021/11/13 v3.35 KOMA-Script font size class option (12pt
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/koma-script/typearea.sty
 Package: typearea 2021/11/13 v3.35 KOMA-Script package (type area)
 \ta@bcor=\skip48
-\ta@div=\count183
+\ta@div=\count185
 Package typearea Info: You've used standard option `a4paper'.
 (typearea)             This is correct!
 (typearea)             Internally I'm using `paper=a4'.
@@ -110,12 +110,12 @@ Package typearea Info: These are the values describing the layout:
 (typearea)              \baselineskip   = 14.5pt
 (typearea)              on input line 1743.
 )
-\c@part=\count184
-\c@section=\count185
-\c@subsection=\count186
-\c@subsubsection=\count187
-\c@paragraph=\count188
-\c@subparagraph=\count189
+\c@part=\count186
+\c@section=\count187
+\c@subsection=\count188
+\c@subsubsection=\count189
+\c@paragraph=\count190
+\c@subparagraph=\count191
 \scr@dte@section@maxnumwidth=\skip53
 Class scrartcl Info: using compatibility default `runin=bysign'
 (scrartcl)           for `\section on input line 4852.
@@ -151,12 +151,12 @@ Package tocbasic Info: babel extension for `lof' omitted
 (tocbasic)             because of missing \bbl@set@language on input line 6076.
 
 \scr@dte@figure@maxnumwidth=\skip61
-\c@figure=\count190
+\c@figure=\count192
 Package tocbasic Info: babel extension for `lot' omitted
 (tocbasic)             because of missing \bbl@set@language on input line 6091.
 
 \scr@dte@table@maxnumwidth=\skip62
-\c@table=\count191
+\c@table=\count193
 Class scrartcl Info: Using old \@makefntext due to compatibility level
 (scrartcl)           less than 3.22 on input line 6245.
 Class scrartcl Info: Redefining `\numberline' on input line 6258.
@@ -231,13 +231,13 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2021/08/26 v2.02 operator names
 )
-\inf@bad=\count192
+\inf@bad=\count194
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count193
-\leftroot@=\count194
+\uproot@=\count195
+\leftroot@=\count196
 LaTeX Info: Redefining \overline on input line 399.
-\classnum@=\count195
-\DOTSCASE@=\count196
+\classnum@=\count197
+\DOTSCASE@=\count198
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
@@ -246,15 +246,15 @@ LaTeX Info: Redefining \cdots on input line 620.
 \big@size=\dimen141
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count197
-\c@MaxMatrixCols=\count198
+\macc@depth=\count199
+\c@MaxMatrixCols=\count266
 \dotsspace@=\muskip16
-\c@parentequation=\count199
-\dspbrk@lvl=\count266
+\c@parentequation=\count267
+\dspbrk@lvl=\count268
 \tag@help=\toks19
-\row@=\count267
-\column@=\count268
-\maxfields@=\count269
+\row@=\count269
+\column@=\count270
+\maxfields@=\count271
 \andhelp@=\toks20
 \eqnshift@=\dimen142
 \alignsep@=\dimen143
@@ -273,7 +273,7 @@ LaTeX Info: Redefining \] on input line 2939.
 Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2020/03/06 v1.0d TeX engine tests
+Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifluatex.sty
 Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
@@ -321,7 +321,7 @@ Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
 \everycr=\toks26
 \minrowclearance=\skip68
 )
-\rownum=\count270
+\rownum=\count272
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1352.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1356.
 Package xcolor Info: Model `RGB' extended on input line 1368.
@@ -345,7 +345,7 @@ File: x11nam.def 2021/10/31 v2.13 Predefined colors according to Unix/X11 (UK)
 Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2021-06-07 v7.00m Hypertext links for LaTeX
+Package: hyperref 2022-02-21 v7.00n Hypertext links for LaTeX
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
@@ -384,18 +384,13 @@ Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 )
 \@linkdim=\dimen150
-\Hy@linkcounter=\count271
-\Hy@pagecounter=\count272
+\Hy@linkcounter=\count273
+\Hy@pagecounter=\count274
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2021-06-07 v7.00m Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2022-02-21 v7.00n Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
-)
-(/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref-langpat
-ches.def
-File: hyperref-langpatches.def 2021-06-07 v7.00m Hyperref: patches for babel la
-nguages
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
@@ -403,28 +398,28 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count273
+\Hy@SavedSpaceFactor=\count275
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2021-06-07 v7.00m Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2022-02-21 v7.00n Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Option `unicode' set `true' on input line 4073.
-Package hyperref Info: Hyper figures OFF on input line 4192.
-Package hyperref Info: Link nesting OFF on input line 4197.
-Package hyperref Info: Hyper index ON on input line 4200.
-Package hyperref Info: Plain pages OFF on input line 4207.
-Package hyperref Info: Backreferencing OFF on input line 4212.
+Package hyperref Info: Option `unicode' set `true' on input line 4018.
+Package hyperref Info: Hyper figures OFF on input line 4137.
+Package hyperref Info: Link nesting OFF on input line 4142.
+Package hyperref Info: Hyper index ON on input line 4145.
+Package hyperref Info: Plain pages OFF on input line 4152.
+Package hyperref Info: Backreferencing OFF on input line 4157.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4445.
-\c@Hy@tempcnt=\count274
+Package hyperref Info: Bookmarks ON on input line 4390.
+\c@Hy@tempcnt=\count276
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4804.
+LaTeX Info: Redefining \url on input line 4749.
 \XeTeXLinkMargin=\dimen151
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
@@ -435,39 +430,39 @@ ty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count275
+\Fld@menulength=\count277
 \Field@Width=\dimen152
 \Fld@charsize=\dimen153
-Package hyperref Info: Hyper figures OFF on input line 6076.
-Package hyperref Info: Link nesting OFF on input line 6081.
-Package hyperref Info: Hyper index ON on input line 6084.
-Package hyperref Info: backreferencing OFF on input line 6091.
-Package hyperref Info: Link coloring OFF on input line 6096.
-Package hyperref Info: Link coloring with OCG OFF on input line 6101.
-Package hyperref Info: PDF/A mode OFF on input line 6106.
-LaTeX Info: Redefining \ref on input line 6146.
-LaTeX Info: Redefining \pageref on input line 6150.
+Package hyperref Info: Hyper figures OFF on input line 6027.
+Package hyperref Info: Link nesting OFF on input line 6032.
+Package hyperref Info: Hyper index ON on input line 6035.
+Package hyperref Info: backreferencing OFF on input line 6042.
+Package hyperref Info: Link coloring OFF on input line 6047.
+Package hyperref Info: Link coloring with OCG OFF on input line 6052.
+Package hyperref Info: PDF/A mode OFF on input line 6057.
+LaTeX Info: Redefining \ref on input line 6097.
+LaTeX Info: Redefining \pageref on input line 6101.
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count276
-\c@Item=\count277
-\c@Hfootnote=\count278
+\Hy@abspage=\count278
+\c@Item=\count279
+\c@Hfootnote=\count280
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2021-06-07 v7.00m Hyperref driver for pdfTeX
+File: hpdftex.def 2022-02-21 v7.00n Hyperref driver for pdfTeX
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
 )
-\Fld@listcount=\count279
-\c@bookmark@seq@number=\count280
+\Fld@listcount=\count281
+\c@bookmark@seq@number=\count282
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilec
 heck.sty
@@ -484,7 +479,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
 File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
-\BKM@id=\count281
+\BKM@id=\count283
 ))
 Package hyperref Info: Option `breaklinks' set `true' on input line 98.
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
@@ -493,9 +488,9 @@ Package: geometry 2020/01/02 v5.9 Page Geometry
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count282
-\Gm@cntv=\count283
-\c@Gm@tempcnt=\count284
+\Gm@cnth=\count284
+\Gm@cntv=\count285
+\c@Gm@tempcnt=\count286
 \Gm@bindingoffset=\dimen154
 \Gm@wd@mp=\dimen155
 \Gm@odd@mp=\dimen156
@@ -512,17 +507,17 @@ Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
 \LTright=\skip71
 \LTpre=\skip72
 \LTpost=\skip73
-\LTchunksize=\count285
+\LTchunksize=\count287
 \LTcapwidth=\dimen162
 \LT@head=\box56
 \LT@firsthead=\box57
 \LT@foot=\box58
 \LT@lastfoot=\box59
 \LT@gbox=\box60
-\LT@cols=\count286
-\LT@rows=\count287
-\c@LT@tables=\count288
-\c@LT@chunks=\count289
+\LT@cols=\count288
+\LT@rows=\count289
+\c@LT@tables=\count290
+\c@LT@chunks=\count291
 \LT@p@ftn=\toks28
 )
 Class scrartcl Info: longtable captions redefined on input line 103.
@@ -539,17 +534,17 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen170
 \cmidrulekern=\dimen171
 \defaultaddspace=\dimen172
-\@cmidla=\count290
-\@cmidlb=\count291
+\@cmidla=\count292
+\@cmidlb=\count293
 \@aboverulesep=\dimen173
 \@belowrulesep=\dimen174
-\@thisruleclass=\count292
-\@lastruleclass=\count293
+\@thisruleclass=\count294
+\@lastruleclass=\count295
 \@thisrulewidth=\dimen175
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count294
+\etb@tempcnta=\count296
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
@@ -560,7 +555,7 @@ Package: footnote 1997/01/28 1.13 Save footnotes around boxes
 ackref.sty
 Package: footnotebackref 2012/07/01 v1.0 Backreferences for footnotes (Holger L
 ange)
-\c@BackrefHyperFootnoteCounter=\count295
+\c@BackrefHyperFootnoteCounter=\count297
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
@@ -580,7 +575,7 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 \Gin@req@width=\dimen178
 ) (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count296
+\c@float@type=\count298
 \float@exts=\toks29
 \float@box=\box62
 \@float@everytoks=\toks30
@@ -591,16 +586,16 @@ Package: times 2020/03/25 PSNFSS-v9.3 (SPQR)
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
-\linenopenalty=\count297
+\linenopenalty=\count299
 \output=\toks31
-\linenoprevgraf=\count298
+\linenoprevgraf=\count300
 \linenumbersep=\dimen179
 \linenumberwidth=\dimen180
-\c@linenumber=\count299
-\c@pagewiselinenumber=\count300
-\c@LN@truepage=\count301
-\c@internallinenumber=\count302
-\c@internallinenumbers=\count303
+\c@linenumber=\count301
+\c@pagewiselinenumber=\count302
+\c@LN@truepage=\count303
+\c@internallinenumber=\count304
+\c@internallinenumbers=\count305
 \quotelinenumbersep=\dimen181
 \bframerule=\dimen182
 \bframesep=\dimen183
@@ -610,14 +605,14 @@ LaTeX Info: Redefining \\ on input line 3056.
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip74
-\multirow@cntb=\count304
+\multirow@cntb=\count306
 \multirow@dima=\skip75
 \bigstrutjot=\dimen184
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen185
 \WF@size=\dimen186
-\c@WF@wrappedlines=\count305
+\c@WF@wrappedlines=\count307
 \WF@box=\box65
 \WF@everypar=\toks32
 Package: wrapfig 2003/01/31  v 3.6
@@ -636,16 +631,16 @@ Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box66
-\sift@deathcycles=\count306
+\sift@deathcycles=\count308
 \@vwid@loff=\dimen187
 \@vwid@roff=\dimen188
 )
-\c@taburow=\count307
-\tabu@nbcols=\count308
-\tabu@cnt=\count309
-\tabu@Xcol=\count310
-\tabu@alloc=\count311
-\tabu@nested=\count312
+\c@taburow=\count309
+\tabu@nbcols=\count310
+\tabu@cnt=\count311
+\tabu@Xcol=\count312
+\tabu@alloc=\count313
+\tabu@nested=\count314
 \tabu@target=\dimen189
 \tabu@spreadtarget=\dimen190
 \tabu@naturalX=\dimen191
@@ -685,7 +680,7 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \UL@skip=\skip78
 \UL@hook=\toks35
 \UL@height=\dimen198
-\UL@pe=\count313
+\UL@pe=\count315
 \UL@pixel=\dimen199
 \ULC@box=\box74
 Package: ulem 2019/11/18
@@ -694,7 +689,7 @@ Package: ulem 2019/11/18
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \rotheadsize=\dimen257
-\c@nlinenum=\count314
+\c@nlinenum=\count316
 \TeXr@lab=\toks36
 )
 \cslhangindent=\skip79
@@ -702,26 +697,29 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count315
-\calc@Bcount=\count316
+\calc@Acount=\count317
+\calc@Bcount=\count318
 \calc@Adimen=\dimen258
 \calc@Bdimen=\dimen259
 \calc@Askip=\skip81
 \calc@Bskip=\skip82
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count317
+\calc@Ccount=\count319
 \calc@Cskip=\skip83
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2021/11/29 3.67 The Babel package
-\babel@savecnt=\count318
+Package: babel 2022/02/24 3.72 The Babel package
+\babel@savecnt=\count320
 \U@D=\dimen260
 \l@unhyphenated=\language3
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
-\bbl@dirlevel=\count319
+\bbl@dirlevel=\count321
+Package babel Info: Main language set with 'main='. Except if you have
+(babel)             problems, prefer the default mechanism for setting
+(babel)             the main language. Reported on input line 4219.
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/generic/babel-english/english.l
 df
@@ -739,12 +737,12 @@ Package babel Info: Hyphen rules for 'newzealand' set to \l@english
 ))
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/csquotes/csquotes.sty
 Package: csquotes 2021-02-22 v5.2l context-sensitive quotations (JAW)
-\csq@reset=\count320
-\csq@gtype=\count321
-\csq@glevel=\count322
-\csq@qlevel=\count323
-\csq@maxlvl=\count324
-\csq@tshold=\count325
+\csq@reset=\count322
+\csq@gtype=\count323
+\csq@glevel=\count324
+\csq@qlevel=\count325
+\csq@maxlvl=\count326
+\csq@tshold=\count327
 \csq@ltx@everypar=\toks37
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/csquotes/csquotes.def
@@ -757,30 +755,31 @@ Package csquotes Info: ... configuration file loaded successfully.
 File: csquotes.cfg 
 ))
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+Package: caption 2022/02/20 v3.6 Customizing captions (AR)
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
-\captionmargin=\dimen261
-\captionmargin@=\dimen262
-\captionwidth=\dimen263
-\caption@tempdima=\dimen264
-\caption@indent=\dimen265
-\caption@parindent=\dimen266
-\caption@hangindent=\dimen267
+Package: caption3 2022/01/07 v2.3 caption3 kernel (AR)
+\caption@tempdima=\dimen261
+\captionmargin=\dimen262
+\caption@leftmargin=\dimen263
+\caption@rightmargin=\dimen264
+\caption@width=\dimen265
+\caption@indent=\dimen266
+\caption@parindent=\dimen267
+\caption@hangindent=\dimen268
 Package caption Info: KOMA-Script document class detected.
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/caption/caption-koma.sto
 File: caption-koma.sto 2020/09/21 v2.0b Adaption of the caption package to the 
 KOMA-Script document classes (AR)
 ))
-\c@caption@flags=\count326
-\c@continuedfloat=\count327
+\c@caption@flags=\count328
+\c@continuedfloat=\count329
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: longtable package is loaded.
  (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/caption/ltcaption.sty
-Package: ltcaption 2020/05/30 v1.4b longtable captions (AR)
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )
 Package caption Info: threeparttable package is loaded.
 Package caption Info: wrapfig package is loaded.
@@ -789,15 +788,15 @@ Package: mdframed 2013/07/01 1.9b: mdframed
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.
 sty (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2021-11-22 L3 programming layer (loader) 
+Package: expl3 2022-02-24 L3 programming layer (loader) 
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdfte
 x.def
-File: l3backend-pdftex.def 2021-12-14 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count328
+File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count330
 \l__pdf_internal_box=\box75
 ))
-Package: xparse 2021-11-12 L3 Experimental document command parser
+Package: xparse 2022-01-12 L3 Experimental document command parser
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/zref/zref-abspage.sty
 Package: zref-abspage 2020-07-03 v2.32 Module abspage for zref (HO)
@@ -808,14 +807,14 @@ Package zref Info: New property list: main on input line 764.
 Package zref Info: New property: default on input line 765.
 Package zref Info: New property: page on input line 766.
 )
-\c@abspage=\count329
+\c@abspage=\count331
 Package zref Info: New property: abspage on input line 66.
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/needspace/needspace.sty
 Package: needspace 2010/09/12 v1.3d reserve vertical space
 )
 \mdf@templength=\skip84
-\c@mdf@globalstyle@cnt=\count330
+\c@mdf@globalstyle@cnt=\count332
 \mdf@skipabove@length=\skip85
 \mdf@skipbelow@length=\skip86
 \mdf@leftmargin@length=\skip87
@@ -891,16 +890,16 @@ File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 \mdf@horizontalspaceofbox=\skip148
 \mdfsubtitleheight=\skip149
 \mdfsubsubtitleheight=\skip150
-\c@mdfcountframes=\count331
+\c@mdfcountframes=\count333
 
 ****** mdframed patching \endmdf@trivlist
 
 ****** -- success******
 
-\mdf@envdepth=\count332
-\c@mdf@env@i=\count333
-\c@mdf@env@ii=\count334
-\c@mdf@zref@counter=\count335
+\mdf@envdepth=\count334
+\c@mdf@env@i=\count335
+\c@mdf@env@ii=\count336
+\c@mdf@zref@counter=\count337
 Package zref Info: New property: mdf@pagevalue on input line 895.
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/sourcesanspro/sourcesansp
@@ -915,7 +914,7 @@ Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
 \XKV@toks=\toks38
 \XKV@tempa@toks=\toks39
 )
-\XKV@depth=\count336
+\XKV@depth=\count338
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )) (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
@@ -1165,16 +1164,16 @@ Package scrbase Info: activating english \listtablename on input line 421.
 
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count337
-\scratchdimen=\dimen268
+\scratchcounter=\count339
+\scratchdimen=\dimen269
 \scratchbox=\box82
-\nofMPsegments=\count338
-\nofMParguments=\count339
+\nofMPsegments=\count340
+\nofMParguments=\count341
 \everyMPshowfont=\toks40
-\MPscratchCnt=\count340
-\MPscratchDim=\dimen269
-\MPnumerator=\count341
-\makeMPintoPDFobject=\count342
+\MPscratchCnt=\count342
+\MPscratchDim=\dimen270
+\MPnumerator=\count343
+\makeMPintoPDFobject=\count344
 \everyMPtoPDFconversion=\toks41
 )
 (/Users/mattocci/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-bas
@@ -1200,7 +1199,7 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 string.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count343
+\c@section@level=\count345
 )
 LaTeX Info: Redefining \ref on input line 421.
 LaTeX Info: Redefining \pageref on input line 421.
@@ -1366,160 +1365,160 @@ Underfull \hbox (badness 1043) in paragraph at lines 622--635
 
 [8] [9]
 
-LaTeX Warning: Reference `tab:paratab' on page 10 undefined on input line 707.
+LaTeX Warning: Reference `tab:paratab' on page 10 undefined on input line 713.
 
 
-Underfull \hbox (badness 1845) in paragraph at lines 704--711
-|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [][][]|   []
-   [][]|   []   |   []   |   []   |   []   |   []   |   []
+Underfull \hbox (badness 2837) in paragraph at lines 710--720
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
+  |   []   |   []   |   []
  []
 
 [10]
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/b/it' aliased to
-(Font)              `T1/SourceSansPro-TLF/bold/it' on input line 713.
+(Font)              `T1/SourceSansPro-TLF/bold/it' on input line 724.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/bold/it' will be
-(Font)              scaled to size 12.0pt on input line 713.
+(Font)              scaled to size 12.0pt on input line 724.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/b/n' aliased to
-(Font)              `T1/SourceSansPro-TLF/bold/n' on input line 713.
+(Font)              `T1/SourceSansPro-TLF/bold/n' on input line 724.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/bold/n' will be
-(Font)              scaled to size 8.0pt on input line 713.
+(Font)              scaled to size 8.0pt on input line 724.
 
 
-LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 714.
+LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 725.
 
 
-Underfull \hbox (badness 1173) in paragraph at lines 713--717
-[][]|   []   [][]|   []   []\T1/SourceSansPro-TLF/bold/n/12 De-com-pos-ing LMA 
-into metabolic and struc-tural com-po-nents leads to im-
+Underfull \hbox (badness 1173) in paragraph at lines 724--728
+[]|   []   [][]|   []   []\T1/SourceSansPro-TLF/bold/n/12 De-com-pos-ing LMA in
+to metabolic and struc-tural com-po-nents leads to im-
  []
 
 
-LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 718.
+LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 729.
 
 
-LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 722.
+LaTeX Warning: Reference `tab:lootab' on page 11 undefined on input line 733.
 
 
-LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 724.
+LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 735.
 
 
-LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 727.
+LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 738.
 
 
-LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 728.
+LaTeX Warning: Reference `tab:paratab' on page 11 undefined on input line 739.
 
-
-Underfull \hbox (badness 1708) in paragraph at lines 731--736
+[11]
+Underfull \hbox (badness 1708) in paragraph at lines 742--747
 |   []   |   []   []\T1/SourceSansPro-TLF/regular/n/12 i.e., []|   []   |   [] 
   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
-[11]
-Underfull \hbox (badness 2393) in paragraph at lines 769--778
+[12]
+Underfull \hbox (badness 2393) in paragraph at lines 780--789
 [][]|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |  
  []   |   []   |   []
  []
 
-[12]
-Underfull \hbox (badness 2875) in paragraph at lines 788--791
+
+Underfull \hbox (badness 2875) in paragraph at lines 799--802
 \T1/SourceSansPro-TLF/regular/n/12 struc-tural com-po-nents (LMAp and LMAs, re-
 spec-tively) leads to im-proved pre-dic-tions
  []
 
 [13]
 
-LaTeX Warning: Reference `tab:paratab' on page 14 undefined on input line 799.
+LaTeX Warning: Reference `tab:paratab' on page 14 undefined on input line 810.
 
-[14] [15] [16] [17] [18] [19] [20]
-Underfull \hbox (badness 5519) in paragraph at lines 1029--1030
+[14] [15] [16] [17] [18] [19] [20] [21]
+Underfull \hbox (badness 5519) in paragraph at lines 1040--1041
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1029--1030
+Underfull \hbox (badness 10000) in paragraph at lines 1040--1041
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
-[21] [22]
-<../figs/fig_hypo.png, id=556, 2528.44624pt x 789.95125pt>
+[22] [23]
+<../figs/fig_hypo.png, id=562, 2528.44624pt x 789.95125pt>
 File: ../figs/fig_hypo.png Graphic file (type png)
 <use ../figs/fig_hypo.png>
-Package pdftex.def Info: ../figs/fig_hypo.png  used on input line 1118.
+Package pdftex.def Info: ../figs/fig_hypo.png  used on input line 1129.
 (pdftex.def)             Requested size: 452.94016pt x 141.51007pt.
 
-Overfull \hbox (6.77225pt too wide) in paragraph at lines 1118--1118
+Overfull \hbox (6.77225pt too wide) in paragraph at lines 1129--1129
  [][][] 
  []
 
-<../figs/GL_scatter.png, id=558, 1801.73125pt x 1801.73125pt>
+<../figs/GL_scatter.png, id=564, 1801.73125pt x 1801.73125pt>
 File: ../figs/GL_scatter.png Graphic file (type png)
 <use ../figs/GL_scatter.png>
-Package pdftex.def Info: ../figs/GL_scatter.png  used on input line 1139.
+Package pdftex.def Info: ../figs/GL_scatter.png  used on input line 1150.
 (pdftex.def)             Requested size: 452.96098pt x 452.96098pt.
 
-Overfull \hbox (6.79308pt too wide) in paragraph at lines 1139--1139
+Overfull \hbox (6.79308pt too wide) in paragraph at lines 1150--1150
  [][][] 
  []
 
-[23 <ms/../figs/fig_hypo.png>] [24 <ms/../figs/GL_scatter.png>]
-<../figs/PA_scatter.png, id=575, 1801.73125pt x 1801.73125pt>
+[24 <ms/../figs/fig_hypo.png>] [25 <ms/../figs/GL_scatter.png>]
+<../figs/PA_scatter.png, id=582, 1801.73125pt x 1801.73125pt>
 File: ../figs/PA_scatter.png Graphic file (type png)
 <use ../figs/PA_scatter.png>
-Package pdftex.def Info: ../figs/PA_scatter.png  used on input line 1162.
+Package pdftex.def Info: ../figs/PA_scatter.png  used on input line 1173.
 (pdftex.def)             Requested size: 452.96098pt x 452.96098pt.
 
-Overfull \hbox (6.79308pt too wide) in paragraph at lines 1162--1162
+Overfull \hbox (6.79308pt too wide) in paragraph at lines 1173--1173
  [][][] 
  []
 
-[25 <ms/../figs/PA_scatter.png>]
-<../figs/LL_plot.png, id=584, 1058.95625pt x 1058.95625pt>
+[26 <ms/../figs/PA_scatter.png>]
+<../figs/LL_plot.png, id=590, 1058.95625pt x 1058.95625pt>
 File: ../figs/LL_plot.png Graphic file (type png)
 <use ../figs/LL_plot.png>
-Package pdftex.def Info: ../figs/LL_plot.png  used on input line 1184.
+Package pdftex.def Info: ../figs/LL_plot.png  used on input line 1195.
 (pdftex.def)             Requested size: 452.96704pt x 452.96704pt.
 
-Overfull \hbox (6.79913pt too wide) in paragraph at lines 1184--1184
+Overfull \hbox (6.79913pt too wide) in paragraph at lines 1195--1195
  [][][] 
  []
 
-[26 <ms/../figs/LL_plot.png>]
-<../figs/vpart.png, id=592, 1579.9025pt x 947.54pt>
+[27 <ms/../figs/LL_plot.png>]
+<../figs/vpart.png, id=598, 1579.9025pt x 947.54pt>
 File: ../figs/vpart.png Graphic file (type png)
 <use ../figs/vpart.png>
-Package pdftex.def Info: ../figs/vpart.png  used on input line 1202.
+Package pdftex.def Info: ../figs/vpart.png  used on input line 1213.
 (pdftex.def)             Requested size: 452.9528pt x 271.65657pt.
 
-Overfull \hbox (6.7849pt too wide) in paragraph at lines 1202--1202
+Overfull \hbox (6.7849pt too wide) in paragraph at lines 1213--1213
  [][][] 
  []
 
-[27 <ms/../figs/vpart.png>]
-<../figs/box_main.png, id=599, 1848.9075pt x 1848.9075pt>
+[28 <ms/../figs/vpart.png>]
+<../figs/box_main.png, id=605, 1848.9075pt x 1848.9075pt>
 File: ../figs/box_main.png Graphic file (type png)
 <use ../figs/box_main.png>
-Package pdftex.def Info: ../figs/box_main.png  used on input line 1217.
+Package pdftex.def Info: ../figs/box_main.png  used on input line 1228.
 (pdftex.def)             Requested size: 452.9722pt x 452.9722pt.
- [28 <ms/../figs/box_main.png>]
-<../figs/mass_prop_simple.png, id=606, 947.54pt x 947.54pt>
+ [29 <ms/../figs/box_main.png>]
+<../figs/mass_prop_simple.png, id=612, 947.54pt x 947.54pt>
 File: ../figs/mass_prop_simple.png Graphic file (type png)
 <use ../figs/mass_prop_simple.png>
-Package pdftex.def Info: ../figs/mass_prop_simple.png  used on input line 1241.
+Package pdftex.def Info: ../figs/mass_prop_simple.png  used on input line 1252.
 
 (pdftex.def)             Requested size: 452.96336pt x 452.96336pt.
 
-Overfull \hbox (6.79546pt too wide) in paragraph at lines 1241--1241
+Overfull \hbox (6.79546pt too wide) in paragraph at lines 1252--1252
  [][][] 
  []
 
-[29 <ms/../figs/mass_prop_simple.png>]
-<../figs/PA_NPC.png, id=614, 1801.73125pt x 1801.73125pt>
+[30 <ms/../figs/mass_prop_simple.png>]
+<../figs/PA_NPC.png, id=620, 1801.73125pt x 1801.73125pt>
 File: ../figs/PA_NPC.png Graphic file (type png)
 <use ../figs/PA_NPC.png>
-Package pdftex.def Info: ../figs/PA_NPC.png  used on input line 1255.
+Package pdftex.def Info: ../figs/PA_NPC.png  used on input line 1266.
 (pdftex.def)             Requested size: 452.96098pt x 452.96098pt.
- [30 <ms/../figs/PA_NPC.png>]
+ [31 <ms/../figs/PA_NPC.png>]
 (ms/diff.aux)
 
 LaTeX Warning: There were undefined references.
@@ -1529,13 +1528,13 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 21535 strings out of 480313
- 385985 string characters out of 5896366
- 960754 words of memory out of 5000000
- 38825 multiletter control sequences out of 15000+600000
- 533289 words of font info for 71 fonts, out of 8000000 for 9000
+ 21540 strings out of 480236
+ 386012 string characters out of 5894787
+ 945905 words of memory out of 5000000
+ 38915 multiletter control sequences out of 15000+600000
+ 599118 words of font info for 72 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 108i,12n,106p,10622b,480s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 108i,12n,106p,10622b,483s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}
 {/Users/mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/sourcesanspro/a_emk
 xm5.enc}{/Users/mattocci/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathe
@@ -1557,10 +1556,10 @@ mr12.pfb></Users/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8
 .pfb></Users/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.p
 fb></Users/mattocci/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
 
-Output written on ms/diff.pdf (30 pages, 2659002 bytes).
+Output written on ms/diff.pdf (31 pages, 2661723 bytes).
 PDF statistics:
- 772 PDF objects out of 1000 (max. 8388607)
- 690 compressed objects within 7 object streams
- 163 named destinations out of 1000 (max. 500000)
+ 779 PDF objects out of 1000 (max. 8388607)
+ 696 compressed objects within 7 object streams
+ 164 named destinations out of 1000 (max. 500000)
  177 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -37,7 +37,7 @@ output:
         - "pandoc-crossref"
         - "--mathml"
 figPrefix: Fig.
-figureTitle: 'Figure'
+figureTitle: 'Figure S'
 tblPrefix: Table
 tableTitle: 'Table'
 ---
@@ -59,10 +59,11 @@ source("rmd_func.r")
 
 ## SX:
 
+
+![
 Measured traits related to photosynthesis and metabolism traits (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are strongly correlated with estimates (posterior means) of the metabolic LMA component (LMAm) in the GLOPNET dataset.
 LMAm yields slightly stronger correlations and more consistent relationships compared to LMA and LMAs; e.g., evergreen and deciduous leaves align along a single relationship in  panel b, but not in panels a or c.
-
-![](../figs/GL_NP.png){#fig:hoge}
+](../figs/GL_NP.png){#fig:hoge}
 
 \newpage
 
