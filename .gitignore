@@ -85,3 +85,6 @@ ms/*.fdb_latexmk
 
 ms/LMAms_main.fdb_latexmk
 ms/LMAms_main.fls
+
+/stan*
+!/stan/*.stan
