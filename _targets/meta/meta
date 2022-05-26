@@ -1,0 +1,14 @@
+name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
+fiber_file|stem|0cea3a7510dfac3a|1ba377f49217fae7|ef46db3751d8e999|982305646|data-raw/fiber_analysis.csv|t18914.6136155568s|b8069a7f778ad631|8139|file|local|vector|||0||
+gl_csv|stem|d630a60e221d4191|721b96efaceba01a|929a41c9bf3f7484|-1180034688|./data/GL_data.csv|t19138.2862268529s|aa26983ea1e0966a|19157|file|local|vector|||0.123||
+gl_file|stem|ff1fae2bc62f7d0a|1f669516f8e53652|ef46db3751d8e999|916253716|data-raw/nature02403-s2.csv|t18914.6136155568s|ad9e83c77988a604|266938|file|local|vector|||0||
+leafhabit_file|stem|f9cfd330e326f550|7edb38a1aa7d74b4|ef46db3751d8e999|1077799091|data-raw/Osnas2018_S1.csv|t18914.6136155568s|9c3f694b1092d9a9|26723|file|local|vector|||0.045||
+pa_csv|stem|a624ab6c5ef66af9|1ff861e5c246bb69|8c991b5a6714ca0e|-1646576989|data/PA_data_more.csv|t19138.3116300824s|10ac68ce53df2736|43915|file|local|vector|||0.149||
+pa_file|stem|46a4b6585ea35199|941b0a1fa226ec04|ef46db3751d8e999|1614294208|data-raw/leaf_traits.csv|t19138.2850349352s|37334c9037cdd9c1|91610|file|local|vector|||0.045||
+pa_lh_csv|stem|bf406c2ef0b6db32|761d07e2b8b6bb7f|1ec9b06b4585a902|886344997|./data/PA_LH.csv|t19138.3129442291s|a24fd4724809bff1|7604|file|local|vector|||0.248||
+pa_more_csv|stem|bf87555d8d7e134f|c46dc6dde0ab35fd|2a9d3eaf3e8bef4e|-2115643176|./data/PA_data_more.csv|t19138.312946544s|4806d387a760a7bb|53534|file|local|vector|||0.192||
+pl_csv|stem||6464fb03bab3ce03|696ccdf519c8fb3d|672368113||t19138.2896204811s||0|file|local|vector|||0.001||could not find function prepare_pl
+preapre_gl|function|9b1e7049856c8e69|||||||||||||||
+prepare_gl|function|9b1e7049856c8e69|||||||||||||||
+prepare_leafhabit|function|14f89d69569b5692|||||||||||||||
+prepare_pa|function|606cb2e38190cecc|||||||||||||||
