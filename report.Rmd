@@ -1,0 +1,79 @@
+---
+title: Figures for "report"
+author: "Masatoshi Katabuchi"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    fig_caption: yes
+    theme: spacelab #readable #sandstone #spacelab #flatly
+    highlight: pygments #tango #kate
+    toc: TRUE
+    toc_depth: 2
+    number_sections: TRUE
+    toc_float:
+     collapsed: TRUE
+     smooth_scroll: TRUE
+     toc: true
+---
+
+```{r global_options, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE,
+  cache = FALSE,
+  fig.align = "center",
+  fig.show = "hold"
+)
+```
+
+```{r}
+library(tidyverse)
+library(targets)
+library(kableExtra)
+```
+
+```{r}
+targets::tar_load(fit_1_summary_GL_Ap_LLs)
+targets::tar_load(fit_2_summary_GL_Aps_LLps)
+targets::tar_load(fit_3_summary_GL_Ap_LLps)
+targets::tar_load(fit_4_summary_GL_Aps_LLs)
+targets::tar_load(fit_5_summary_PA_Ap_LLs)
+targets::tar_load(fit_6_summary_PA_Aps_LLps)
+targets::tar_load(fit_7_summary_PA_Ap_LLps)
+targets::tar_load(fit_8_summary_PA_Aps_LLs)
+targets::tar_load(fit_9_summary_PA_Ap_LLs_opt)
+targets::tar_load(fit_10_summary_PA_Aps_LLps_opt)
+targets::tar_load(fit_11_summary_PA_Ap_LLps_opt)
+targets::tar_load(fit_12_summary_PA_Aps_LLs_opt)
+targets::tar_load(fit_13_summary_PA_Ap_LDs_opt)
+targets::tar_load(fit_14_summary_PA_Aps_LDps_opt)
+targets::tar_load(fit_15_summary_PA_Ap_LDps_opt)
+targets::tar_load(fit_16_summary_PA_Aps_LDs_opt)
+targets::tar_load(fit_17_summary_GL_LMA)
+targets::tar_load(fit_18_summary_PA_LMA)
+targets::tar_load(fit_19_summary_PA_LMA_opt)
+```
+
+```{r}
+targets::tar_load(fit_1_diagnostics_GL_Ap_LLs)
+targets::tar_load(fit_2_diagnostics_GL_Aps_LLps)
+targets::tar_load(fit_3_diagnostics_GL_Ap_LLps)
+targets::tar_load(fit_4_diagnostics_GL_Aps_LLs)
+targets::tar_load(fit_5_diagnostics_PA_Ap_LLs)
+targets::tar_load(fit_6_diagnostics_PA_Aps_LLps)
+targets::tar_load(fit_7_diagnostics_PA_Ap_LLps)
+targets::tar_load(fit_8_diagnostics_PA_Aps_LLs)
+targets::tar_load(fit_9_diagnostics_PA_Ap_LLs_opt)
+targets::tar_load(fit_10_diagnostics_PA_Aps_LLps_opt)
+targets::tar_load(fit_11_diagnostics_PA_Ap_LLps_opt)
+targets::tar_load(fit_12_diagnostics_PA_Aps_LLs_opt)
+targets::tar_load(fit_13_diagnostics_PA_Ap_LDs_opt)
+targets::tar_load(fit_14_diagnostics_PA_Aps_LDps_opt)
+targets::tar_load(fit_15_diagnostics_PA_Ap_LDps_opt)
+targets::tar_load(fit_16_diagnostics_PA_Aps_LDs_opt)
+targets::tar_load(fit_17_diagnostics_GL_LMA)
+targets::tar_load(fit_18_diagnostics_PA_LMA)
+targets::tar_load(fit_19_diagnostics_PA_LMA_opt)
+```
