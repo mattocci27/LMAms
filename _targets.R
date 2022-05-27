@@ -6,7 +6,7 @@ library(cmdstanr)
 
 source("R/data_clean.R")
 source("R/stan.R")
-source("R/fig_theme.R")
+#source("R/fig_theme.R")
 source("R/figs.R")
 source("R/yml.R")
 
@@ -97,7 +97,7 @@ list(
     format = "file"
   ),
   tar_target(
-    settings,
+    settings_yml,
     "yml/settings.yml",
     format = "file"
   ),
@@ -396,31 +396,37 @@ list(
   ),
 
   tar_target(
-    r_val_yml,
+    r_vals_yml,
     write_r2(gl_res_csv, fit_7_draws_GL_Aps_LLs,
       pa_res_csv, fit_20_draws_PA_Ap_LLs_opt),
     format = "file"
   ),
-  # tar_target(
-  #   gl_point_plot, {
-  #     p <- gl_point(gl_res_csv, settings)
-  #     ggsave(
-  #       "figs/petiole.png",
-  #       p,
-  #       dpi = 300,
-  #       width = 8,
-  #       height = 4
-  #     )
-  #     ggsave(
-  #       "figs/petiole.pdf",
-  #       p,
-  #       device = cairo_pdf,
-  #       width = 8,
-  #       height = 4)
-  #       paste0("figs/petiole", c(".png", ".pdf"))
-  #   },
-  #   format = "file"
-  # )
+
+  tar_target(
+    gl_long_dat,
+    gen_gl_long(gl_res_csv)
+  ),
+  tar_target(
+    gl_point_plot, {
+      p <- gl_point(gl_long_dat, settings_yml, r_vals_yml)
+      ggsave(
+        "figs/GL_scatter.png",
+       p,
+       dpi = 300,
+       height = 11.4,
+       width = 11.4,
+       units = "cm"
+      )
+      # ggsave(
+      #   "figs/petiole.pdf",
+      #   p,
+      #   device = cairo_pdf,
+      #   width = 8,
+      #   height = 4)
+        paste0("figs/GL_scatter", c(".png"))
+    },
+    format = "file"
+  ),
 
   tar_render(
     report,
