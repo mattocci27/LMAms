@@ -56,7 +56,10 @@ targets::tar_load(fit_16_summary_PA_Ap_LDs)
 targets::tar_load(fit_17_summary_PA_Ap_LDps)
 targets::tar_load(fit_18_summary_PA_Ap_LDs_opt)
 targets::tar_load(fit_19_summary_PA_Ap_LDps_opt)
+targets::tar_load(fit_20_summary_PA_Ap_LLs_opt)
 ```
+
+Note: Model 6 (GL_Ap_LLps) didn't converge very well.
 
 ```{r}
 fit_1_summary_GL_LMA |> filter(rhat > 1.1)
@@ -78,6 +81,7 @@ fit_16_summary_PA_Ap_LDs |> filter(rhat > 1.1)
 fit_17_summary_PA_Ap_LDps |> filter(rhat > 1.1)
 fit_18_summary_PA_Ap_LDs_opt |> filter(rhat > 1.1)
 fit_19_summary_PA_Ap_LDps_opt |> filter(rhat > 1.1)
+fit_20_summary_PA_Ap_LLs_opt |> filter(rhat > 1.1)
 ```
 
 
@@ -101,6 +105,7 @@ targets::tar_load(fit_16_diagnostics_PA_Ap_LDs)
 targets::tar_load(fit_17_diagnostics_PA_Ap_LDps)
 targets::tar_load(fit_18_diagnostics_PA_Ap_LDs_opt)
 targets::tar_load(fit_19_diagnostics_PA_Ap_LDps_opt)
+targets::tar_load(fit_20_diagnostics_PA_Ap_LLs_opt)
 ```
 
 ```{r}
@@ -123,6 +128,7 @@ div_check(fit_16_diagnostics_PA_Ap_LDs)
 div_check(fit_17_diagnostics_PA_Ap_LDps)
 div_check(fit_18_diagnostics_PA_Ap_LDs_opt)
 div_check(fit_19_diagnostics_PA_Ap_LDps_opt)
+div_check(fit_20_diagnostics_PA_Ap_LLs_opt)
 ```
 
 
@@ -162,7 +168,7 @@ loo::loo_compare(
 
 
 
-```{r}
+```{r,eval=FALSE}
 targets::tar_load(fit_4_draws_GL_Aps_LLs)
 draws <- fit_4_draws_GL_Aps_LLs |>
   janitor::clean_names()
