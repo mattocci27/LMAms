@@ -78,7 +78,7 @@ generate_tar_stan <- function(model, model_lma) {
   model_lma2 <- model_lma |>
     mutate(site = ifelse(str_detect(model, "GL"), "GL", "PA"))
 
-  model2 <- full_join(model, model_lma2, by = c("site", "model", "opt"))
+  model2 <- full_join(model_lma2, model, by = c("site", "model", "opt"))
 
   model_n <- nrow(model2)
 
@@ -109,8 +109,8 @@ generate_tar_stan <- function(model, model_lma) {
     write_lines('    refresh = 0,
     chains = 4,
     parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 20,
-    iter_sampling = 20,
+    iter_warmup = 1,
+    iter_sampling = 1,
     adapt_delta = 0.99,
     max_treedepth = 15,
     seed = 123),',
@@ -119,4 +119,40 @@ generate_tar_stan <- function(model, model_lma) {
     )
   }
   paste(tmp)
+}
+
+div_check <- function(diags) {
+  n1 <- diags |>
+    filter(divergent__ == 1) |>
+    nrow()
+  n2 <- diags |>
+    nrow()
+  print(paste(n1, "of", n2, "iterations ended with a divergence", n1/n2 * 100, "%" ))
+}
+
+
+generate_gl_dat <- function(draws) {
+  draws <- draws |>
+    janitor::clean_names()
+
+  p_dat <- draws |>
+    dplyr::select(contains("p_"))
+  p_vec <- apply(p_dat, 2, median)
+
+  p_vec_lo <- apply(p_dat, 2, function(x)quantile(x, 0.025))
+  p_vec_up <- apply(p_dat, 2, function(x)quantile(x, 0.975))
+
+  targets::tar_load(gl_csv)
+  GL <- read_csv(gl_csv)
+
+  GL <- GL |>
+    mutate(DE = ifelse(GL$DE == "", "U", as.character(DE)))
+
+  GL |>
+    mutate(LMAp = LMA * p_vec) |>
+    mutate(LMAs = LMA - LMAp)  |>
+    mutate(LMAp_lo = LMA * p_vec_lo) |>
+    mutate(LMAp_up = LMA * p_vec_up) |>
+    mutate(LMAs_lo = LMA - LMAp_up) |>
+    mutate(LMAs_up = LMA - LMAp_lo)
 }
