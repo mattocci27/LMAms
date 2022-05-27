@@ -65,14 +65,14 @@ list(
     format = "file"
   ),
   tar_target(
-    pa_more_csv,
+    pa_full_csv,
     prepare_pa(fiber_file, pa_file),
     format = "file"
   ),
   tar_target(
     pa_csv,
     {
-      d <- read_csv("data/PA_data_more.csv")
+      d <- read_csv(pa_full_csv)
       d |>
         filter(!is.na(LD)) |>
         filter(!is.na(LT)) |>
@@ -330,6 +330,8 @@ list(
     adapt_delta = 0.99,
     max_treedepth = 15,
     seed = 123),
+
+
   tar_target(
     loo_model,
     mclapply(
@@ -357,6 +359,32 @@ list(
     \(x)x$loo(cores = parallel::detectCores())
     )
   ),
+
+  tar_stan_mcmc(
+    fit_20,
+    "stan/PA_Ap_LLs_opt.stan",
+    data = generate_pa_stan(pa_full_csv, full = TRUE),
+    refresh = 0,
+    chains = 4,
+    parallel_chains = getOption("mc.cores", 4),
+    iter_warmup = 2000,
+    iter_sampling = 2000,
+    adapt_delta = 0.99,
+    max_treedepth = 15,
+    seed = 123),
+
+  tar_target(
+    gl_res_csv,
+    generate_gl_dat(gl_csv, fit_7_draws_GL_Aps_LLs),
+    format = "file"
+  ),
+  tar_target(
+    pa_res_csv,
+    generate_pa_dat(pa_full_csv, fit_20_draws_PA_Ap_LLs_opt),
+    format = "file"
+  ),
+
+
   tar_render(
     report,
     "report.Rmd"
