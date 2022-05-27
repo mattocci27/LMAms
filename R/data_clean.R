@@ -13,10 +13,10 @@ prepare_gl <- function(data) {
     Narea = 10^d[, "log.Narea"],
     Parea = 10^d[, "log.Parea"]
   ) |>
-  filter(!is.na(LL)) |>
-  filter(!is.na(LMA)) |>
-  filter(!is.na(Aarea)) |>
-  filter(!is.na(Rarea))
+    filter(!is.na(LL)) |>
+    filter(!is.na(LMA)) |>
+    filter(!is.na(Aarea)) |>
+    filter(!is.na(Rarea))
 
   ## each sample corresponds to each species
   data_clean <- data |>
@@ -94,15 +94,19 @@ prepare_pa <- function(fiber, leaf) {
     filter(sp != "MARL") %>% # Rarea of sun leaves < Rarea of shade leaves
     filter(sp != "TRAA") %>% # LL measurement error
     filter(sp != "ABUP") %>% # LL measurement error
-    filter(sp != "VIR1") # Rdark is too low
+    filter(sp != "VIR1") %>% # Rdark is too low
+    filter(!is.na(LMA)) %>%
+    filter(!is.na(Aarea)) %>%
+    filter(!is.na(Rarea)) %>%
+    filter(!is.na(LL))
 
   d5 <- d4 %>%
     mutate(cell_mass = ADF - Lig) %>%
     mutate(cell_area = cell_mass / 100 * LMA) %>%
     mutate(cell_vol = cell_area / LT / 100 / 100 / 0.1) # g/cm3
 
-  write_csv(d5, "./data/PA_data_more.csv")
-  paste("./data/PA_data_more.csv")
+  write_csv(d5, "./data/PA_data_full.csv")
+  paste("./data/PA_data_full.csv")
 }
 
 

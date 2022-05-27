@@ -1,3 +1,4 @@
+#' @title Generate stan data for GLOPNET
 generate_gl_stan <- function(data) {
   dat <- read_csv(data) %>%
     mutate(DE = ifelse(is.na(DE), "U", DE)) %>%
@@ -30,7 +31,10 @@ generate_gl_stan <- function(data) {
   list_dat
 }
 
-generate_pa_stan <- function(data) {
+#' @title Generate stan data for Panama
+#' @par full TRUE removes LT from the list (default = FALSE)
+generate_pa_stan <- function(data, full = FALSE) {
+  # data <- pa_full_csv
   dat <- read_csv(data) %>%
     filter(!is.na(LMA)) %>%
     filter(!is.na(Aarea)) %>%
@@ -67,9 +71,14 @@ generate_pa_stan <- function(data) {
     leaf = ifelse(dat$strata == "CAN", 1, 0),
     dry = ifelse(dat$site == "PNM", 1, 0)
   )
+  if (full) {
+    # drop LT from the full data
+    list_dat <- list_dat[names(list_dat) != "LT"]
+  }
   list_dat
 }
 
+#' @title Generate a txt file for _targets.R
 generate_tar_stan <- function(model, model_lma) {
   model <- fromJSON(model)$config
   # model_lma <- fromJSON("templates/model_LMA.json")$config
@@ -121,38 +130,75 @@ generate_tar_stan <- function(model, model_lma) {
   paste(tmp)
 }
 
+#' @title Check divergence from draws
 div_check <- function(diags) {
   n1 <- diags |>
     filter(divergent__ == 1) |>
     nrow()
   n2 <- diags |>
     nrow()
-  print(paste(n1, "of", n2, "iterations ended with a divergence", n1/n2 * 100, "%" ))
+  print(paste(
+    n1, "of", n2,
+    "iterations ended with a divergence", n1 / n2 * 100, "%"
+  ))
 }
 
 
-generate_gl_dat <- function(draws) {
+#' @title Generates csv file of GLOPNET for the subsequent analysis
+generate_gl_dat <- function(gl_csv, draws) {
+  # targets::tar_load(gl_csv)
+  GL <- read_csv(gl_csv)
   draws <- draws |>
     janitor::clean_names()
-
   p_dat <- draws |>
     dplyr::select(contains("p_"))
-  p_vec <- apply(p_dat, 2, median)
-
-  p_vec_lo <- apply(p_dat, 2, function(x)quantile(x, 0.025))
-  p_vec_up <- apply(p_dat, 2, function(x)quantile(x, 0.975))
-
-  targets::tar_load(gl_csv)
-  GL <- read_csv(gl_csv)
-
+  p_vec <- apply(p_dat, 2, mean)
+  p_vec_lo <- apply(p_dat, 2, function(x) quantile(x, 0.025))
+  p_vec_up <- apply(p_dat, 2, function(x) quantile(x, 0.975))
   GL <- GL |>
     mutate(DE = ifelse(GL$DE == "", "U", as.character(DE)))
-
   GL |>
     mutate(LMAp = LMA * p_vec) |>
-    mutate(LMAs = LMA - LMAp)  |>
+    mutate(LMAs = LMA - LMAp) |>
     mutate(LMAp_lo = LMA * p_vec_lo) |>
     mutate(LMAp_up = LMA * p_vec_up) |>
     mutate(LMAs_lo = LMA - LMAp_up) |>
-    mutate(LMAs_up = LMA - LMAp_lo)
+    mutate(LMAs_up = LMA - LMAp_lo) |>
+    write_csv("data/GL_res.csv")
+  paste("data/GL_res.csv")
+}
+
+#' @title Generates csv file of Panama for the subsequent analysis
+generate_pa_dat <- function(pa_full_csv, draws) {
+  # library(tidyverse)
+  # targets::tar_load(pa_full_csv)
+  # targets::tar_load(fit_20_draws_PA_Ap_LLs_opt)
+  # draws <- fit_20_draws_PA_Ap_LLs_opt
+  draws <- draws |>
+    janitor::clean_names()
+  p_dat <- draws |>
+    dplyr::select(contains("p_"))
+  p_vec <- apply(p_dat, 2, mean)
+  p_vec_lo <- apply(p_dat, 2, function(x) quantile(x, 0.025))
+  p_vec_up <- apply(p_dat, 2, function(x) quantile(x, 0.975))
+  mu_dat <- draws |>
+    dplyr::select(contains("mu_")) |>
+    dplyr::select(ends_with("_2"))
+  PA <- read_csv(pa_full_csv)
+  PA <- PA |>
+    mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) |>
+    mutate(site_strata = paste(site2, strata, sep = "_"))
+  PA |>
+    mutate(LMAp = LMA * p_vec) |>
+    mutate(LMAs = LMA - LMAp) |>
+    mutate(LMAp_lo = LMA * p_vec_lo) |>
+    mutate(LMAp_up = LMA * p_vec_up) |>
+    mutate(LMAs_lo = LMA - LMAp_up) |>
+    mutate(LMAs_up = LMA - LMAp_lo) |>
+    mutate(Mu2 = apply(mu_dat, 2, mean)) |>
+    mutate(Mu2_lo = apply(mu_dat, 2, \(x) quantile(x, 0.025))) |>
+    mutate(Mu2_up = apply(mu_dat, 2, \(x) quantile(x, 0.975))) |>
+    write_csv("data/PA_res.csv")
+
+  paste("data/PA_res.csv")
 }
