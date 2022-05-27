@@ -1,5 +1,5 @@
 ---
-title: Figures for "report"
+title: report
 author: "Masatoshi Katabuchi"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
@@ -76,4 +76,91 @@ targets::tar_load(fit_16_diagnostics_PA_Aps_LDs_opt)
 targets::tar_load(fit_17_diagnostics_GL_LMA)
 targets::tar_load(fit_18_diagnostics_PA_LMA)
 targets::tar_load(fit_19_diagnostics_PA_LMA_opt)
+```
+
+```{r}
+targets::tar_load(loo_model)
+
+loo::loo_compare(
+   loo_model[[1]], loo_model[[2]], loo_model[[3]],
+   loo_model[[4]], model17 = loo_model[[17]]) |>
+  print()
+
+loo::loo_compare(
+  loo_model[[5]],
+  model6 = loo_model[[6]],
+  model7 = loo_model[[7]],
+  model8 = loo_model[[8]],
+  model10 = loo_model[[10]],
+  model11 = loo_model[[11]],
+  model12 = loo_model[[12]],
+  model13 = loo_model[[13]],
+  model14 = loo_model[[14]],
+  model15 = loo_model[[15]],
+  model16 = loo_model[[16]],
+  model18 = loo_model[[18]],
+  model19 = loo_model[[19]]) |>
+  print()
+```
+
+```{r}
+div_check(fit_1_diagnostics_GL_Ap_LLs)
+div_check(fit_2_diagnostics_GL_Aps_LLps)
+div_check(fit_3_diagnostics_GL_Ap_LLps)
+div_check(fit_4_diagnostics_GL_Aps_LLs)
+div_check(fit_5_diagnostics_PA_Ap_LLs)
+div_check(fit_6_diagnostics_PA_Aps_LLps)
+div_check(fit_7_diagnostics_PA_Ap_LLps)
+div_check(fit_8_diagnostics_PA_Aps_LLs)
+div_check(fit_9_diagnostics_PA_Ap_LLs_opt)
+div_check(fit_10_diagnostics_PA_Aps_LLps_opt)
+div_check(fit_11_diagnostics_PA_Ap_LLps_opt)
+div_check(fit_12_diagnostics_PA_Aps_LLs_opt)
+div_check(fit_13_diagnostics_PA_Ap_LDs_opt)
+div_check(fit_14_diagnostics_PA_Aps_LDps_opt)
+div_check(fit_15_diagnostics_PA_Ap_LDps_opt)
+div_check(fit_16_diagnostics_PA_Aps_LDs_opt)
+div_check(fit_17_diagnostics_GL_LMA)
+div_check(fit_18_diagnostics_PA_LMA)
+div_check(fit_19_diagnostics_PA_LMA_opt)
+```
+
+
+```{r}
+targets::tar_load(fit_4_draws_GL_Aps_LLs)
+draws <- fit_4_draws_GL_Aps_LLs |>
+  janitor::clean_names()
+
+p_dat <- draws |>
+  dplyr::select(contains("p_"))
+p_vec <- apply(p_dat, 2, median)
+
+p_vec_lo <- apply(p_dat, 2, function(x)quantile(x, 0.025))
+p_vec_up <- apply(p_dat, 2, function(x)quantile(x, 0.975))
+
+targets::tar_load(gl_csv)
+GL <- read_csv(gl_csv)
+
+GL <- GL |>
+  mutate(DE = ifelse(GL$DE == "", "U", as.character(DE)))
+
+GL <- GL |>
+  mutate(LMAp = LMA * p_vec) |>
+  mutate(LMAs = LMA - LMAp)  |>
+  mutate(LMAp_lo = LMA * p_vec_lo) |>
+  mutate(LMAp_up = LMA * p_vec_up) |>
+  mutate(LMAs_lo = LMA - LMAp_up) |>
+  mutate(LMAs_up = LMA - LMAp_lo)
+```
+
+
+```{r, eval=FALSE}
+targets::tar_load(gl_csv)
+gl <- read_csv(gl_csv)
+
+targets::tar_load(pa_csv)
+pa <- read_csv(pa_csv)
+
+
+targets::tar_load(pa_stan_dat)
 ```
