@@ -9,24 +9,31 @@ prepare_gl <- function(data) {
     LL = 10^d[, "log.LL"],
     LMA = 10^d[, "log.LMA"],
     Aarea = 10^d[, "log.Aarea"],
-    Rarea = 10^d[, "log.Rdarea"]
-  )
-
-  data <- na.omit(data)
-  rownames(data) <- NULL
+    Rarea = 10^d[, "log.Rdarea"],
+    Narea = 10^d[, "log.Narea"],
+    Parea = 10^d[, "log.Parea"]
+  ) |>
+  filter(!is.na(LL)) |>
+  filter(!is.na(LMA)) |>
+  filter(!is.na(Aarea)) |>
+  filter(!is.na(Rarea))
 
   ## each sample corresponds to each species
-  data <- data %>%
-    group_by(sp, DE, GF) %>%
-    summarize(
-      LL = mean(LL),
-      LMA = mean(LMA),
-      Aarea = mean(Aarea),
-      Rarea = mean(Rarea)
-    ) %>%
-    ungroup()
+  data_clean <- data |>
+    group_by(sp, DE, GF) |>
+    summarise_at(
+      .vars = vars(
+        LL,
+        LMA,
+        Aarea,
+        Rarea,
+        Narea,
+        Parea
+      ),
+      .funs = \(x)mean(x, na.rm = TRUE)
+    )
 
-  write_csv(data, "./data/GL_data.csv")
+  write_csv(data_clean, "./data/GL_data.csv")
   paste("./data/GL_data.csv")
 }
 
