@@ -34,63 +34,119 @@ library(targets)
 library(kableExtra)
 ```
 
+# MCMC diagnostics
+
 ```{r}
-targets::tar_load(fit_1_summary_GL_Ap_LLs)
-targets::tar_load(fit_2_summary_GL_Aps_LLps)
-targets::tar_load(fit_3_summary_GL_Ap_LLps)
-targets::tar_load(fit_4_summary_GL_Aps_LLs)
-targets::tar_load(fit_5_summary_PA_Ap_LLs)
-targets::tar_load(fit_6_summary_PA_Aps_LLps)
-targets::tar_load(fit_7_summary_PA_Ap_LLps)
-targets::tar_load(fit_8_summary_PA_Aps_LLs)
-targets::tar_load(fit_9_summary_PA_Ap_LLs_opt)
-targets::tar_load(fit_10_summary_PA_Aps_LLps_opt)
-targets::tar_load(fit_11_summary_PA_Ap_LLps_opt)
-targets::tar_load(fit_12_summary_PA_Aps_LLs_opt)
-targets::tar_load(fit_13_summary_PA_Ap_LDs_opt)
-targets::tar_load(fit_14_summary_PA_Aps_LDps_opt)
-targets::tar_load(fit_15_summary_PA_Ap_LDps_opt)
-targets::tar_load(fit_16_summary_PA_Aps_LDs_opt)
-targets::tar_load(fit_17_summary_GL_LMA)
-targets::tar_load(fit_18_summary_PA_LMA)
-targets::tar_load(fit_19_summary_PA_LMA_opt)
+targets::tar_load(fit_1_summary_GL_LMA)
+targets::tar_load(fit_2_summary_PA_LMA)
+targets::tar_load(fit_3_summary_PA_LMA_opt)
+targets::tar_load(fit_4_summary_GL_Ap_LLs)
+targets::tar_load(fit_5_summary_GL_Aps_LLps)
+targets::tar_load(fit_6_summary_GL_Ap_LLps)
+targets::tar_load(fit_7_summary_GL_Aps_LLs)
+targets::tar_load(fit_8_summary_PA_Ap_LLs)
+targets::tar_load(fit_9_summary_PA_Aps_LLps)
+targets::tar_load(fit_10_summary_PA_Ap_LLps)
+targets::tar_load(fit_11_summary_PA_Aps_LLs)
+targets::tar_load(fit_12_summary_PA_Ap_LLs_opt)
+targets::tar_load(fit_13_summary_PA_Aps_LLps_opt)
+targets::tar_load(fit_14_summary_PA_Ap_LLps_opt)
+targets::tar_load(fit_15_summary_PA_Aps_LLs_opt)
+targets::tar_load(fit_16_summary_PA_Ap_LDs)
+targets::tar_load(fit_17_summary_PA_Ap_LDps)
+targets::tar_load(fit_18_summary_PA_Ap_LDs_opt)
+targets::tar_load(fit_19_summary_PA_Ap_LDps_opt)
 ```
 
 ```{r}
-targets::tar_load(fit_1_diagnostics_GL_Ap_LLs)
-targets::tar_load(fit_2_diagnostics_GL_Aps_LLps)
-targets::tar_load(fit_3_diagnostics_GL_Ap_LLps)
-targets::tar_load(fit_4_diagnostics_GL_Aps_LLs)
-targets::tar_load(fit_5_diagnostics_PA_Ap_LLs)
-targets::tar_load(fit_6_diagnostics_PA_Aps_LLps)
-targets::tar_load(fit_7_diagnostics_PA_Ap_LLps)
-targets::tar_load(fit_8_diagnostics_PA_Aps_LLs)
-targets::tar_load(fit_9_diagnostics_PA_Ap_LLs_opt)
-targets::tar_load(fit_10_diagnostics_PA_Aps_LLps_opt)
-targets::tar_load(fit_11_diagnostics_PA_Ap_LLps_opt)
-targets::tar_load(fit_12_diagnostics_PA_Aps_LLs_opt)
-targets::tar_load(fit_13_diagnostics_PA_Ap_LDs_opt)
-targets::tar_load(fit_14_diagnostics_PA_Aps_LDps_opt)
-targets::tar_load(fit_15_diagnostics_PA_Ap_LDps_opt)
-targets::tar_load(fit_16_diagnostics_PA_Aps_LDs_opt)
-targets::tar_load(fit_17_diagnostics_GL_LMA)
-targets::tar_load(fit_18_diagnostics_PA_LMA)
-targets::tar_load(fit_19_diagnostics_PA_LMA_opt)
+fit_1_summary_GL_LMA |> filter(rhat > 1.1)
+fit_2_summary_PA_LMA |> filter(rhat > 1.1)
+fit_3_summary_PA_LMA_opt |> filter(rhat > 1.1)
+fit_4_summary_GL_Ap_LLs |> filter(rhat > 1.1)
+fit_5_summary_GL_Aps_LLps |> filter(rhat > 1.1)
+fit_6_summary_GL_Ap_LLps |> filter(rhat > 1.1)
+fit_7_summary_GL_Aps_LLs |> filter(rhat > 1.1)
+fit_8_summary_PA_Ap_LLs |> filter(rhat > 1.1)
+fit_9_summary_PA_Aps_LLps |> filter(rhat > 1.1)
+fit_10_summary_PA_Ap_LLps |> filter(rhat > 1.1)
+fit_11_summary_PA_Aps_LLs |> filter(rhat > 1.1)
+fit_12_summary_PA_Ap_LLs_opt |> filter(rhat > 1.1)
+fit_13_summary_PA_Aps_LLps_opt |> filter(rhat > 1.1)
+fit_14_summary_PA_Ap_LLps_opt |> filter(rhat > 1.1)
+fit_15_summary_PA_Aps_LLs_opt |> filter(rhat > 1.1)
+fit_16_summary_PA_Ap_LDs |> filter(rhat > 1.1)
+fit_17_summary_PA_Ap_LDps |> filter(rhat > 1.1)
+fit_18_summary_PA_Ap_LDs_opt |> filter(rhat > 1.1)
+fit_19_summary_PA_Ap_LDps_opt |> filter(rhat > 1.1)
 ```
+
+
+```{r}
+targets::tar_load(fit_1_diagnostics_GL_LMA)
+targets::tar_load(fit_2_diagnostics_PA_LMA)
+targets::tar_load(fit_3_diagnostics_PA_LMA_opt)
+targets::tar_load(fit_4_diagnostics_GL_Ap_LLs)
+targets::tar_load(fit_5_diagnostics_GL_Aps_LLps)
+targets::tar_load(fit_6_diagnostics_GL_Ap_LLps)
+targets::tar_load(fit_7_diagnostics_GL_Aps_LLs)
+targets::tar_load(fit_8_diagnostics_PA_Ap_LLs)
+targets::tar_load(fit_9_diagnostics_PA_Aps_LLps)
+targets::tar_load(fit_10_diagnostics_PA_Ap_LLps)
+targets::tar_load(fit_11_diagnostics_PA_Aps_LLs)
+targets::tar_load(fit_12_diagnostics_PA_Ap_LLs_opt)
+targets::tar_load(fit_13_diagnostics_PA_Aps_LLps_opt)
+targets::tar_load(fit_14_diagnostics_PA_Ap_LLps_opt)
+targets::tar_load(fit_15_diagnostics_PA_Aps_LLs_opt)
+targets::tar_load(fit_16_diagnostics_PA_Ap_LDs)
+targets::tar_load(fit_17_diagnostics_PA_Ap_LDps)
+targets::tar_load(fit_18_diagnostics_PA_Ap_LDs_opt)
+targets::tar_load(fit_19_diagnostics_PA_Ap_LDps_opt)
+```
+
+```{r}
+div_check(fit_1_diagnostics_GL_LMA)
+div_check(fit_2_diagnostics_PA_LMA)
+div_check(fit_3_diagnostics_PA_LMA_opt)
+div_check(fit_4_diagnostics_GL_Ap_LLs)
+div_check(fit_5_diagnostics_GL_Aps_LLps)
+div_check(fit_6_diagnostics_GL_Ap_LLps)
+div_check(fit_7_diagnostics_GL_Aps_LLs)
+div_check(fit_8_diagnostics_PA_Ap_LLs)
+div_check(fit_9_diagnostics_PA_Aps_LLps)
+div_check(fit_10_diagnostics_PA_Ap_LLps)
+div_check(fit_11_diagnostics_PA_Aps_LLs)
+div_check(fit_12_diagnostics_PA_Ap_LLs_opt)
+div_check(fit_13_diagnostics_PA_Aps_LLps_opt)
+div_check(fit_14_diagnostics_PA_Ap_LLps_opt)
+div_check(fit_15_diagnostics_PA_Aps_LLs_opt)
+div_check(fit_16_diagnostics_PA_Ap_LDs)
+div_check(fit_17_diagnostics_PA_Ap_LDps)
+div_check(fit_18_diagnostics_PA_Ap_LDs_opt)
+div_check(fit_19_diagnostics_PA_Ap_LDps_opt)
+```
+
+
+Model 4: GL_Ap_LLs is best for GLOPNET.
 
 ```{r}
 targets::tar_load(loo_model)
-
 loo::loo_compare(
-   loo_model[[1]], loo_model[[2]], loo_model[[3]],
-   loo_model[[4]], model17 = loo_model[[17]]) |>
+   loo_model[[1]],
+   model4 = loo_model[[4]],
+   model5 = loo_model[[5]],
+   model6 = loo_model[[6]],
+   model7 = loo_model[[7]]) |>
   print()
+```
 
+Model 12: PA_Ap_LLs_opt is best for Panama.
+
+```{r}
 loo::loo_compare(
-  loo_model[[5]],
-  model6 = loo_model[[6]],
-  model7 = loo_model[[7]],
+  loo_model[[2]],
+  model3 = loo_model[[3]],
   model8 = loo_model[[8]],
+  model9 = loo_model[[9]],
   model10 = loo_model[[10]],
   model11 = loo_model[[11]],
   model12 = loo_model[[12]],
@@ -98,32 +154,12 @@ loo::loo_compare(
   model14 = loo_model[[14]],
   model15 = loo_model[[15]],
   model16 = loo_model[[16]],
+  model17 = loo_model[[17]],
   model18 = loo_model[[18]],
   model19 = loo_model[[19]]) |>
   print()
 ```
 
-```{r}
-div_check(fit_1_diagnostics_GL_Ap_LLs)
-div_check(fit_2_diagnostics_GL_Aps_LLps)
-div_check(fit_3_diagnostics_GL_Ap_LLps)
-div_check(fit_4_diagnostics_GL_Aps_LLs)
-div_check(fit_5_diagnostics_PA_Ap_LLs)
-div_check(fit_6_diagnostics_PA_Aps_LLps)
-div_check(fit_7_diagnostics_PA_Ap_LLps)
-div_check(fit_8_diagnostics_PA_Aps_LLs)
-div_check(fit_9_diagnostics_PA_Ap_LLs_opt)
-div_check(fit_10_diagnostics_PA_Aps_LLps_opt)
-div_check(fit_11_diagnostics_PA_Ap_LLps_opt)
-div_check(fit_12_diagnostics_PA_Aps_LLs_opt)
-div_check(fit_13_diagnostics_PA_Ap_LDs_opt)
-div_check(fit_14_diagnostics_PA_Aps_LDps_opt)
-div_check(fit_15_diagnostics_PA_Ap_LDps_opt)
-div_check(fit_16_diagnostics_PA_Aps_LDs_opt)
-div_check(fit_17_diagnostics_GL_LMA)
-div_check(fit_18_diagnostics_PA_LMA)
-div_check(fit_19_diagnostics_PA_LMA_opt)
-```
 
 
 ```{r}
