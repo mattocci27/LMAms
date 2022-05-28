@@ -75,10 +75,10 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
                           GL_cor_tbl[1,3], "]")
   #PA data --------------------------------------------
   # targets::tar_load(fit_20_draws_PA_Ap_LLs_opt)
+#  pa_draws <- fit_20_draws_PA_Ap_LLs_opt
   # targets::tar_load(pa_res_csv)
   PA <- read_csv(pa_res_csv)
 
-#  pa_draws <- fit_20_draws_PA_Ap_LLs_opt
   pa_draws <- pa_draws |>
     janitor::clean_names()
 
@@ -133,16 +133,19 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
                           PA_cor_tbl[1,3], "]")
 
   # R2 for LL
+  # targets::tar_load(fit_20_draws_PA_Ap_LLs_opt)
+  # pa_draws <- fit_20_draws_PA_Ap_LLs_opt |>
+  #   janitor::clean_names()
   mu_dat <- pa_draws |>
     dplyr::select(contains("mu_")) |>
     dplyr::select(ends_with("_2"))
 
-  L_sigma <- pa_draws |>
-    dplyr::select(contains("L_sigma")) |>
-    dplyr::select(ends_with("_2"))
+  l_sigma <- pa_draws |>
+    dplyr::select(l_sigma_2)
 
   var_fit <- apply(mu_dat, 1, var)
-  var_res <- unlist(L_sigma[, 2]^2)
+  var_res <- unlist(l_sigma^2)
+  #var_res <- unlist(L_sigma[, 2]^2)
   R2 <- var_fit / (var_fit + var_res)
   PA_LL_R2 <- quant_fun(R2) |> round(2)
 
