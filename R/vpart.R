@@ -61,5 +61,4 @@ vpart_bar <- function(gl_res_csv, pa_res_csv) {
   vpart_GL + vpart_PA &
     ylab("Explained variance (%)") &
     xlab("")
-
 }

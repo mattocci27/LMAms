@@ -9,6 +9,7 @@ source("R/stan.R")
 #source("R/fig_theme.R")
 source("R/figs.R")
 source("R/vpart.R")
+source("R/mass_prop.R")
 source("R/yml.R")
 
 options(clustermq.scheduler = "multicore")
@@ -499,6 +500,27 @@ list(
     format = "file"
   ),
 
+  tar_target(
+    gl_mass_prop,
+    mass_prop_sim(
+      read_csv(gl_res_csv), fit_7_summary_GL_Aps_LLs, n_sim = 1000)
+  ),
+  tar_target(
+    sun_mass_prop,
+    mass_prop_sim(read_csv(pa_res_csv) |> filter(strata == "CAN"),
+      fit_20_summary_PA_Ap_LLs_opt,
+      gl = FALSE, n_sim = 1000,
+      site_name = "Sun"
+    )
+  ),
+  tar_target(
+    shade_mass_prop,
+    mass_prop_sim(read_csv(pa_res_csv) |> filter(strata != "CAN"),
+      fit_20_summary_PA_Ap_LLs_opt,
+      gl = FALSE, n_sim = 1000,
+      site_name = "Shade"
+    )
+  ),
   tar_render(
     report,
     "report.Rmd"
