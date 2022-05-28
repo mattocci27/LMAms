@@ -58,8 +58,8 @@ theme_set(theme_LES() +
 
 # Scatter plot (Hypo)
 
-This figure is based on a hypothetical data. 
-var(LMAp) > var(LMAs), alpha_m > 0 and alpha_s < 0. 
+This figure is based on a hypothetical data.
+var(LMAp) > var(LMAs), alpha_m > 0 and alpha_s < 0.
 This parameter setting mimics GLOPNET values. All the values were generated from the following parameter setting.
 No covariance between LMAp and LMAs
 
@@ -146,7 +146,7 @@ GL <- read_csv("../data/GL_res.csv")
 
 ```{r GL-scatter-simple,  comment=NA}
 
-GL_dat <- GL %>% 
+GL_dat <- GL %>%
   gather(LMA, Val, c(LMA, LMAs, LMAp)) %>%
   gather(Trait, Val2, c(Aarea, Rarea, LL,
                         Parea, Narea)) %>%
@@ -163,7 +163,7 @@ GL_dat <- GL %>%
                "italic(R)[area]~(~mu~mol~m^{-2}~s^{-1})",
                "LL~(months)",
                "italic(N)[area]~(~g~m^{-2})",
-               "italic(P)[area]~(~g~m^{-2})"))) 
+               "italic(P)[area]~(~g~m^{-2})")))
 
 GL_dat1 <- GL_dat |>
   filter(Trait %in% c("LL", "Aarea", "Rarea"))
@@ -239,7 +239,7 @@ PA <- read_csv("../data/PA_res.csv")
 
 ```{r PA-scatter-simple,  comment=NA}
 
-PA_dat <- PA %>% 
+PA_dat <- PA %>%
   gather(LMA, Val, c(LMA, LMAs, LMAp)) %>%
   gather(Trait, Val2, c(Aarea, Rarea, LL,
                         Parea, Narea, cell_area)) %>%
@@ -407,10 +407,10 @@ PA_para <- read_csv("../data/PApara.csv")
 
 point_dat <- bind_rows(
   GL_para |>
-    filter(para %in% c("ap", "as")) |> 
-    mutate(site = "GL"), 
+    filter(para %in% c("ap", "as")) |>
+    mutate(site = "GL"),
   PA_para |>
-    filter(para %in% c("ap", "as")) |> 
+    filter(para %in% c("ap", "as")) |>
     mutate(site = "PA")
 ) |>
   dplyr::select(site, para, mean, lwr = X2.5., upr = X97.5.)
@@ -557,7 +557,7 @@ sim3 <- tibble(mean = mean_Shade, upr = upr_Shade, lwr = lwr_Shade,
 Mu <- c(mean(log(Shade$LMAp)) - var(log(Shade$LMAp)) / 2,
         mean(log(Shade$LMAs)) - var(log(Shade$LMAs)) / 2)
 
-rho <- -0.4 
+rho <- -0.4
 sig1 <- sd(log(Shade$LMAp))
 sig2 <- seq(log(1.01), log(10), length = x_len)
 var_fun2 <- function(LMAp, LMAs) {
@@ -677,8 +677,8 @@ mass_plt_simple2 <- bind_rows(sim1, sim2, sim4) |>
   mutate(site = factor(site, levels = c("GLOPNET", "Sun", "Shade")))  |>
 #mass_plt_simple <- bind_rows(sim1, sim2, sim3, sim4) |>
   ggplot() +
-  geom_ribbon(aes(ymin = lwr, ymax = upr, 
-                  x = LMAs_var_mean, 
+  geom_ribbon(aes(ymin = lwr, ymax = upr,
+                  x = LMAs_var_mean,
                   group = site),
               alpha = 0.4)  +
   geom_line(aes(y = mean, x = LMAs_var_mean)) +
@@ -700,7 +700,7 @@ my_ggsave("../figs/mass_prop_simple2.png", mass_plt_simple2,
 ![mass](../figs/mass_prop_simple.png)
 
 
-<!-- 
+<!--
 This chunk checks how different ap and as change the relationship between mass-dependency and var(LMAs)>
 -->
 
@@ -741,9 +741,9 @@ GL_sim <- \(LMAs) {
   fit$coefficients[2]
 }
 
-GL_sim <- \(LMAs, 
-            para = c("alpha_s=0", 
-                     "original", 
+GL_sim <- \(LMAs,
+            para = c("alpha_s=0",
+                     "original",
                      "alpha_p: double",
                      "alpha_p: double, alpha_s = 0")){
   if (para == "alpha_s=0") {
@@ -769,8 +769,8 @@ GL_sim <- \(LMAs,
     fit$coefficients[2]
 }
 
-mass_sim_fun <- \(data, name, para = c("alpha_s=0", 
-                                       "original", 
+mass_sim_fun <- \(data, name, para = c("alpha_s=0",
+                                       "original",
                                        "alpha_p: double",
                                        "alpha_p: double, alpha_s = 0",
                                        )) {
@@ -842,7 +842,7 @@ names(my_col) <- c("Eve/Dec", "Sun/Shade", "Wet/Dry", "Residuals")
 
 #"#F4A582" "#92C5DE" "#0571B0" "#9E9E9E"
 
-vpart_PA <- bind_rows(LMAp = PA_LMAp, LMAs = PA_LMAs, 
+vpart_PA <- bind_rows(LMAp = PA_LMAp, LMAs = PA_LMAs,
                       fct = c("Wet/Dry", "Sun/Shade", "Residuals")) |>
            pivot_longer(1:2) |>
            ggplot(aes(x = name, y = value, fill = fct)) +
@@ -864,7 +864,7 @@ tmp <- aov(log(LMAs) ~ DE, GL) |>
 tmp2 <- tmp[[1]][[2]]
 GL_LMAs <- tmp2/sum(tmp2) * 100
 
-vpart_GL <- bind_rows(LMAp = GL_LMAp, LMAs = GL_LMAs, 
+vpart_GL <- bind_rows(LMAp = GL_LMAp, LMAs = GL_LMAs,
                       fct = c("Eve/Dec", "Residuals")) |>
            mutate(fct = factor(fct, c("Residuals", "Eve/Dec"))) |>
            pivot_longer(1:2) |>
@@ -930,7 +930,7 @@ lab1 <- GL_dat_box |>
   summarize(Val = max(Val)) |>
   ungroup() |>
   arrange(LMA) |>
-  mutate(lab = p_letters$GL 
+  mutate(lab = p_letters$GL
          |> unlist())
 
 GL_box <- ggplot(GL_dat_box, aes(x = gr, y = Val, fill = gr)) +
@@ -1010,10 +1010,10 @@ PA_box <- ggplot(PA_trim_dat, aes(x = gr, y = Val, fill = gr, col = gr)) +
     strip.text.x = element_text(colour = NA) # invinsible strip
         ) # +
  # annotation_logticks(size = 0.25,
- #   short = unit(0.1, "cm"), 
- #   mid = unit(0.0, "cm"), 
+ #   short = unit(0.1, "cm"),
+ #   mid = unit(0.0, "cm"),
  #   long = unit(0.2, "cm")
- #                     )  
+ #                     )
 #boxplot(LMAs ~ site_strata, PA, log = "y", ylim = c(10,120))
 
 box_main <- GL_box / PA_box
@@ -1065,7 +1065,7 @@ PA_box2 <- ggplot(PA_nontrim_dat, aes(x = gr, y = Val, fill = gr, col = gr)) +
   theme(
     strip.background = element_blank(),
     strip.text.x = element_text(colour = NA) # invinsible strip
-        ) 
+        )
 
 my_ggsave("../figs/box_SI.png", PA_box2,
           width = 11.7,
@@ -1087,10 +1087,10 @@ GLFracDat <- GL %>%
 
 GLboxFrac <- ggplot(GLFracDat, aes(x = gr, y = LMAp_frac, fill = gr)) +
   geom_boxplot(outlier.shape = 21, outlier.size = 1) +
-  scale_fill_manual(values = fills, guide = "none") 
+  scale_fill_manual(values = fills, guide = "none")
   #geom_text(data= lab1, aes(label = lab),
   #          vjust = -1,
-  #          size = 8 * 5/14) 
+  #          size = 8 * 5/14)
 
 print(GLboxFrac)
 
@@ -1100,7 +1100,7 @@ tmp <- read_csv("../data/PA_LH.csv") %>%
 PA2 <- full_join(PA, tmp, by = "sp")
 
 PAFracDat <- PA2 %>%
-  count(sp) %>% 
+  count(sp) %>%
   filter(n >= 2) %>%
   inner_join(., PA2, by = "sp") %>%
   mutate(LMAp_frac = LMAp / LMA) %>%
@@ -1113,7 +1113,7 @@ PAFracDat <- PA2 %>%
 
 PAboxFrac <- ggplot(PAFracDat, aes(x = gr, y = LMAp_frac, fill = gr)) +
   geom_boxplot(outlier.shape = 21, outlier.size = 1) +
-  scale_fill_manual(values = fills, guide = "none") 
+  scale_fill_manual(values = fills, guide = "none")
 
 print(PAboxFrac)
 
@@ -1176,14 +1176,14 @@ cols3 <- c(cols, cols2)
 
 
 PAFracDat3 <- PA %>%
-  count(sp) %>% 
+  count(sp) %>%
   filter(n >= 2) %>%
   inner_join(., PA, by = "sp") %>%
   mutate(LMAp_frac = LMAp / LMA) %>%
   mutate(site_strata = factor(site_strata,
-          levels = c("DRY_CAN", 
+          levels = c("DRY_CAN",
                      "DRY_UNDER",
-                     "WET_CAN", 
+                     "WET_CAN",
                      "WET_UNDER"))) %>%
   mutate(gr = factor(site_strata,
     labels = c("Sun\nDry",
@@ -1198,13 +1198,13 @@ PAFracDat3 <- PA %>%
 FracDat2 <- bind_rows(FracDat, PAFracDat3)
 
 PAFracDat4 <- PA %>%
-  count(sp) %>% 
+  count(sp) %>%
   inner_join(., PA, by = "sp") %>%
   mutate(LMAp_frac = LMAp / LMA) %>%
   mutate(site_strata = factor(site_strata,
-          levels = c("DRY_CAN", 
+          levels = c("DRY_CAN",
                      "DRY_UNDER",
-                     "WET_CAN", 
+                     "WET_CAN",
                      "WET_UNDER"))) %>%
   mutate(gr = factor(site_strata,
     labels = c("Sun\nDry",
@@ -1351,7 +1351,7 @@ p <- PAFracDat3 %>%
   facet_grid(site2 ~ LMA) +
   guides(col = "none") +
   scale_y_log10() +
-  ylab(expression(atop(LMA~(g~m^{-2})))) 
+  ylab(expression(atop(LMA~(g~m^{-2}))))
 
 my_ggsave("../figs/LMAp_paired.png", p,
           width = 11.7,
@@ -1363,7 +1363,7 @@ my_ggsave("../figs/LMAp_paired.png", p,
 
 
 
-# LMAp vs LMAs 
+# LMAp vs LMAs
 
 ```{r LMAps,  comment=NA}
 
@@ -1387,8 +1387,8 @@ cols2 <- c("Sun-Dry" = settings$colors$sun_dry,
 
 
 
-GL_LMAps <- ggplot(GL, aes(x = LMAp, y = LMAs, 
-                               fill = gr, 
+GL_LMAps <- ggplot(GL, aes(x = LMAp, y = LMAs,
+                               fill = gr,
                                col = gr)) +
   geom_point(shape = 21) +
   scale_fill_manual(values = fills1, guide = "none") +
@@ -1415,8 +1415,8 @@ GL_LMAps <- ggplot(GL, aes(x = LMAp, y = LMAs,
                                                       r = -5)))
 
 
-GL_LMAps95 <- ggplot(GL, aes(x = LMAp, y = LMAs, 
-                               fill = gr, 
+GL_LMAps95 <- ggplot(GL, aes(x = LMAp, y = LMAs,
+                               fill = gr,
                                col = gr)) +
   geom_segment(aes(x = LMAp_lo, xend = LMAp_up, y = LMAs, yend = LMAs), col = "grey60", size = 0.25) +
   geom_segment(aes(x = LMAp, xend = LMAp, y = LMAs_lo, yend = LMAs_up), col = "grey60", size = 0.25) +
@@ -1450,11 +1450,11 @@ PA_tmp <- PA %>%
                "Sun-Dry",
                "Shade-Wet",
                "Shade-Dry"
-                      ))) 
+                      )))
 
 PA_LMAps <- ggplot(PA_tmp,
-                   aes(x = LMAp, y = LMAs, 
-                               fill = gr, 
+                   aes(x = LMAp, y = LMAs,
+                               fill = gr,
                                col = gr)) +
   geom_point(shape = 21) +
   scale_fill_manual(values = fills2, guide = "none") +
@@ -1488,8 +1488,8 @@ r_vals$r_vals$PA_LMAps$p_val
 r_vals$r_vals$GL_LMAps$p_val
 
 PA_LMAps95 <- ggplot(PA_tmp,
-                   aes(x = LMAp, y = LMAs, 
-                               fill = gr, 
+                   aes(x = LMAp, y = LMAs,
+                               fill = gr,
                                col = gr)) +
   geom_segment(aes(x = LMAp_lo, xend = LMAp_up, y = LMAs, yend = LMAs), col = "grey60", size = 0.25) +
   geom_segment(aes(x = LMAp, xend = LMAp, y = LMAs_lo, yend = LMAs_up), col = "grey60", size = 0.25) +
