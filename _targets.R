@@ -8,6 +8,7 @@ source("R/data_clean.R")
 source("R/stan.R")
 #source("R/fig_theme.R")
 source("R/figs.R")
+source("R/vpart.R")
 source("R/yml.R")
 
 options(clustermq.scheduler = "multicore")
@@ -479,6 +480,21 @@ list(
        units = "cm"
       )
       paste0("figs/pa_point_ll", c(".png"))
+    },
+    format = "file"
+  ),
+  tar_target(
+    vpart_plot, {
+      p <- vpart_bar(gl_res_csv, pa_res_csv)
+      ggsave(
+        "figs/vpart.png",
+       p,
+       dpi = 300,
+       height = 6,
+       width = 10,
+       units = "cm"
+      )
+      paste0("figs/vpart", c(".png"))
     },
     format = "file"
   ),
