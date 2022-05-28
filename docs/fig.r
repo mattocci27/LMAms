@@ -17,9 +17,9 @@ source("fig_theme.r")
 #GL <- read_csv("./data/GL_m0_N.csv")
 GL <- read_csv("./data/GL_LMAms_more_obs.csv")
 
-GL_dat <- GL %>% 
+GL_dat <- GL %>%
   gather(LMA, Val, c(LMA, LMAs, LMAp)) %>%
-  gather(Trait, Val2, c(Aarea, Rarea, LL, 
+  gather(Trait, Val2, c(Aarea, Rarea, LL,
                         Parea, Narea)) %>%
   mutate(DE = factor(DE,
           levels = c("D", "E", "U"))) %>%
@@ -34,7 +34,7 @@ GL_dat <- GL %>%
                "italic(R)[area]~(~mu~mol~m^{-2}~s^{-1})",
                "LL~(months)",
                "italic(N)[area]~(~g~m^{-2})",
-               "italic(P)[area]~(~g~m^{-2})"))) 
+               "italic(P)[area]~(~g~m^{-2})")))
 
 # GL all scatterplot ---------------------------------------------------------
 
@@ -44,7 +44,7 @@ GL_dat1 <- GL_dat %>%
          Trait == "Rarea")
 
 
-lim_GL <- lim_func(GL_dat1, 
+lim_GL <- lim_func(GL_dat1,
                    trait = "Val")
 lim_GL2 <- lim_func(GL_dat1,
                     trait = "Val2", LMA = FALSE)
@@ -69,22 +69,22 @@ cols <- c("Deciduous" = settings$colors$D,
           "Unclassified" = settings$colors$U)
 
 scatter_plt <- function(data) {
-  ggplot(data, aes(x = Val, y = Val2, 
-                               fill = gr, 
+  ggplot(data, aes(x = Val, y = Val2,
+                               fill = gr,
                                col = gr)) +
   geom_point(shape = 21) +
   facet_grid(Trait2 ~ LMA,
              scales = "free",
-             switch = "both", 
+             switch = "both",
              labeller = labeller(Trait2 = label_parsed,
                                  LMA = label_parsed)) +
-  geom_text(data = lab1, aes(label = lab), 
+  geom_text(data = lab1, aes(label = lab),
             hjust = 0.25,
             vjust = 0.25,
             size = 8 * 5/14,
             show.legend = FALSE,
             color = "black") +
-  geom_text(data = lab1, aes(label = r_vals, x = Val_max), 
+  geom_text(data = lab1, aes(label = r_vals, x = Val_max),
             hjust = 1,
             vjust= 0.25,
             size = 8 * 5/14,
@@ -111,7 +111,7 @@ GL_dat2 <- GL_dat %>%
   filter(Trait == "Narea" |
          Trait == "Parea")
 
-lim_GL <- lim_func(GL_dat2 %>% filter(DE != "Rand"), 
+lim_GL <- lim_func(GL_dat2 %>% filter(DE != "Rand"),
                    trait = "Val")
 lim_GL2 <- lim_func(GL_dat2 %>% filter(DE != "Rand"),
                     trait = "Val2", LMA = FALSE)
@@ -136,10 +136,10 @@ my_ggsave("./figs/GL_NP.pdf", GL_NP_plot, height = 8.1)
 #PA <- read_csv("./data/PA_m1q_more_N.csv")
 PA <- read_csv("./data/PA_LMAms_L0_more.csv")
 
-PA_dat <- PA %>% 
-  gather(LMA, Val, 
+PA_dat <- PA %>%
+  gather(LMA, Val,
          c(LMA, LMAs, LMAp)) %>%
-  gather(Trait, Val2, c(Aarea, Rarea, LL, 
+  gather(Trait, Val2, c(Aarea, Rarea, LL,
                         Parea, Narea, cell_area)) %>%
   mutate(LMA = factor(LMA,
     labels = c("LMA", "LMAm", "LMAs"))) %>%
@@ -156,7 +156,7 @@ PA_dat <- PA %>%
                "italic(N)[area]~(~g~m^{-2})",
                "italic(P)[area]~(~g~m^{-2})",
                "italic(CL)[area]~(~g~m^{-2})"
-               ))) %>% 
+               ))) %>%
   mutate(gr = factor(site_strata,
     labels = c("Sun-Wet",
                "Sun-Dry",
@@ -164,7 +164,7 @@ PA_dat <- PA %>%
                "Shade-Dry"
                       ))) %>%
   #arrange(desc(gr))
-  arrange(gr) 
+  arrange(gr)
 
 
 # PA LES plot ----------------------------------------------------------------0
@@ -173,7 +173,7 @@ PA_dat1 <- PA_dat %>%
          Trait == "Aarea" |
          Trait == "Rarea")
 
-lim_PA <- lim_func(PA_dat1 %>% filter(site_strata != "Rand"), 
+lim_PA <- lim_func(PA_dat1 %>% filter(site_strata != "Rand"),
                    trait = "Val")
 lim_PA2 <- lim_func(PA_dat1 %>% filter(site_strata != "Rand"),
                     trait = "Val2", LMA = FALSE)
@@ -209,7 +209,7 @@ PA_dat2 <- PA_dat %>%
          Trait == "cell_area")
 
 
-lim_PA <- lim_func(PA_dat2 %>% filter(site_strata != "Rand"), 
+lim_PA <- lim_func(PA_dat2 %>% filter(site_strata != "Rand"),
                    trait = "Val")
 lim_PA2 <- lim_func(PA_dat2 %>% filter(site_strata != "Rand"),
                     trait = "Val2", LMA = FALSE)
@@ -248,22 +248,22 @@ labLL <- tibble(
                    r_vals = r_vals$r_vals$PA_LL$preLL_LL
                    )
 
-LL_plot <- ggplot(LL_dat, aes(x = preLL, y = LL, 
-                              fill = gr, col = gr)) + 
+LL_plot <- ggplot(LL_dat, aes(x = preLL, y = LL,
+                              fill = gr, col = gr)) +
   geom_point(shape = 21) +
   scale_fill_manual(values = fills) +
   scale_colour_manual(values = cols) +
   scale_x_log10(breaks = my_breaks(), expand = c(0.1, 0),
                 limits = c(min(labLL$Val), max(labLL$Val_max))) +
-  scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0), 
+  scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0),
                 limits = c(min(labLL$Val), max(labLL$Val_max))) +
   xlab("Predicted LL (months)") +
   ylab("Observed LL (months)") +
-  geom_abline(aes(slope = 1, intercept = 0), 
-              lty = 2, 
-              lwd = 0.25, 
+  geom_abline(aes(slope = 1, intercept = 0),
+              lty = 2,
+              lwd = 0.25,
               col = "gray20") +
-  geom_text(data = labLL, aes(label = r_vals, x = Val_max, y = 2.5), 
+  geom_text(data = labLL, aes(label = r_vals, x = Val_max, y = 2.5),
             colour = "black",
             hjust = 1,
             vjust= 0,
@@ -288,7 +288,7 @@ my_ggsave("./figs/LL_plot.png", LL_plot,
           height = 6.7)
 
 
-# cov plot --------------------------------------------------------------------- 
+# cov plot ---------------------------------------------------------------------
 
 var_p <- function(data)cov(data$LMA, data$LMAp)
 var_s <- function(data)cov(data$LMA, data$LMAs)
@@ -300,8 +300,8 @@ cov_ps <- function(data)cov(data$LMAp, data$LMAs)
 var_t <- function(data)var(data$LMA)
 
 
-PA_cov <- PA %>% 
-  count(sp) %>% 
+PA_cov <- PA %>%
+  count(sp) %>%
 #  filter(n >= 2) %>%
   inner_join(., PA, by = "sp") %>%
   mutate(gr = strata)
@@ -381,7 +381,7 @@ lab1 <- GL_dat_box %>%
   summarize(Val = max(Val)) %>%
   ungroup %>%
   arrange(LMA) %>%
-  mutate(lab = p_letters$GL 
+  mutate(lab = p_letters$GL
          %>% unlist)
 
 GL_box <- ggplot(GL_dat_box, aes(x = gr, y = Val, fill = gr)) +
@@ -413,8 +413,8 @@ cols2 <- c("Sun\nDry" = settings$colors$sun_dry,
           "Shade\nWet" = settings$colors$shade_wet,
           "Rand" = settings$colors$R)
 
-PA_trim_dat <- PA_dat %>% 
-  count(sp) %>% 
+PA_trim_dat <- PA_dat %>%
+  count(sp) %>%
   filter(n >= 2) %>%
   inner_join(., PA_dat, by = "sp") %>%
   dplyr::select(gr, Val, LMA) %>%
@@ -429,7 +429,7 @@ lab2 <- PA_trim_dat %>%
   summarize(Val = max(Val)) %>%
   ungroup %>%
   arrange(LMA) %>%
-  mutate(lab = p_letters$PA 
+  mutate(lab = p_letters$PA
          %>% unlist)
 
 PA_box <- ggplot(PA_trim_dat, aes(x = gr, y = Val, fill = gr, col = gr)) +
@@ -457,10 +457,10 @@ PA_box <- ggplot(PA_trim_dat, aes(x = gr, y = Val, fill = gr, col = gr)) +
     strip.text.x = element_text(colour = NA) # invinsible strip
         ) # +
  # annotation_logticks(size = 0.25,
- #   short = unit(0.1, "cm"), 
- #   mid = unit(0.0, "cm"), 
+ #   short = unit(0.1, "cm"),
+ #   mid = unit(0.0, "cm"),
  #   long = unit(0.2, "cm")
- #                     )  
+ #                     )
 #boxplot(LMAs ~ site_strata, PA, log = "y", ylim = c(10,120))
 
 box_main <- plot_grid(GL_box, PA_box,
@@ -474,7 +474,7 @@ my_ggsave("./figs/box_main.png", box_main,
 
 
 # PA all =================================
-PA_nontrim_dat <- PA_dat %>% 
+PA_nontrim_dat <- PA_dat %>%
   dplyr::select(gr, Val, LMA) %>%
   mutate(gr = factor(gr,
     levels = c("Sun-Dry", "Shade-Dry", "Sun-Wet", "Shade-Wet"))) %>%
@@ -487,7 +487,7 @@ lab2 <- PA_nontrim_dat %>%
   summarize(Val = max(Val)) %>%
   ungroup %>%
   arrange(LMA) %>%
-  mutate(lab = p_letters$PA 
+  mutate(lab = p_letters$PA
          %>% unlist)
 
 PA_box2 <- ggplot(PA_nontrim_dat, aes(x = gr, y = Val, fill = gr, col = gr)) +
@@ -525,13 +525,13 @@ GLFracDat <- GL %>%
 
 GLboxFrac <- ggplot(GLFracDat, aes(x = gr, y = LMAm_frac, fill = gr)) +
   geom_boxplot(outlier.shape = 21, outlier.size = 1) +
-  scale_fill_manual(values = fills, guide = FALSE) 
+  scale_fill_manual(values = fills, guide = FALSE)
   #geom_text(data= lab1, aes(label = lab),
   #          vjust = -1,
-  #          size = 8 * 5/14) 
+  #          size = 8 * 5/14)
 
 PAFracDat <- PA %>%
-  count(sp) %>% 
+  count(sp) %>%
   filter(n >= 2) %>%
   inner_join(., PA, by = "sp") %>%
   mutate(LMAm_frac = LMAp / LMA) %>%
@@ -542,7 +542,7 @@ PAFracDat <- PA %>%
 
 PAboxFrac <- ggplot(PAFracDat, aes(x = gr, y = LMAm_frac, fill = gr)) +
   geom_boxplot(outlier.shape = 21, outlier.size = 1) +
-  scale_fill_manual(values = fills, guide = FALSE) 
+  scale_fill_manual(values = fills, guide = FALSE)
 
 
 ## LMAm vs LMAs =====================================
@@ -565,8 +565,8 @@ cols2 <- c("Sun-Dry" = settings$colors$sun_dry,
           "Shade-Dry" = settings$colors$shade_dry,
           "Shade-Wet" = settings$colors$shade_wet)
 
-GL_LMAms <- ggplot(GL, aes(x = LMAp, y = LMAs, 
-                               fill = gr, 
+GL_LMAms <- ggplot(GL, aes(x = LMAp, y = LMAs,
+                               fill = gr,
                                col = gr)) +
   geom_point(shape = 21) +
   scale_fill_manual(values = fills1, guide = FALSE) +
@@ -600,12 +600,12 @@ PA_tmp <- PA %>%
                "Sun-Dry",
                "Shade-Wet",
                "Shade-Dry"
-                      ))) 
+                      )))
 
 
 PA_LMAms <- ggplot(PA_tmp,
-                   aes(x = LMAp, y = LMAs, 
-                               fill = gr, 
+                   aes(x = LMAp, y = LMAs,
+                               fill = gr,
                                col = gr)) +
   geom_point(shape = 21) +
   scale_fill_manual(values = fills2, guide = FALSE) +

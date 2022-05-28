@@ -407,10 +407,14 @@ list(
     gen_gl_long(gl_res_csv)
   ),
   tar_target(
+    pa_long_dat,
+    gen_pa_long(pa_res_csv)
+  ),
+  tar_target(
     gl_point_plot, {
       p <- gl_point(gl_long_dat, settings_yml, r_vals_yml)
       ggsave(
-        "figs/GL_scatter.png",
+        "figs/gl_point.png",
        p,
        dpi = 300,
        height = 11.4,
@@ -423,7 +427,58 @@ list(
       #   device = cairo_pdf,
       #   width = 8,
       #   height = 4)
-        paste0("figs/GL_scatter", c(".png"))
+        paste0("figs/gl_point", c(".png"))
+    },
+    format = "file"
+  ),
+  tar_target(
+    pa_point_plot, {
+      p <- pa_point(pa_long_dat, settings_yml, r_vals_yml)
+      ggsave(
+        "figs/pa_point.png",
+       p,
+       dpi = 300,
+       height = 11.4,
+       width = 11.4,
+       units = "cm"
+      )
+      # ggsave(
+      #   "figs/petiole.pdf",
+      #   p,
+      #   device = cairo_pdf,
+      #   width = 8,
+      #   height = 4)
+        paste0("figs/pa_point", c(".png"))
+    },
+    format = "file"
+  ),
+  tar_target(
+    pa_point_npc_plot, {
+      p <- pa_point_npc(pa_long_dat, settings_yml, r_vals_yml)
+      ggsave(
+        "figs/pa_point_npc.png",
+       p,
+       dpi = 300,
+       height = 11.4,
+       width = 11.4,
+       units = "cm"
+      )
+      paste0("figs/pa_point_npc", c(".png"))
+    },
+    format = "file"
+  ),
+  tar_target(
+    pa_point_ll_plot, {
+      p <- pa_point_ll(pa_res_csv, settings_yml, r_vals_yml)
+      ggsave(
+        "figs/pa_point_ll.png",
+       p,
+       dpi = 300,
+       height = 6.7,
+       width = 6.7,
+       units = "cm"
+      )
+      paste0("figs/pa_point_ll", c(".png"))
     },
     format = "file"
   ),
