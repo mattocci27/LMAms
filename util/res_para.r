@@ -55,10 +55,11 @@ GL_summary <- data.frame(summary(res)$summary) |>
   round(3)
 #DT::datatable(GL_summary)
 GL <- dat
-p_mat <- rstan::extract(res, "p")[[1]] 
+p_mat <- rstan::extract(res, "p")[[1]]
 p_vec <- apply(p_mat, 2, median)
 
 p_vec_lo <- apply(p_mat, 2, function(x)quantile(x, 0.025))
+
 p_vec_up <- apply(p_mat, 2, function(x)quantile(x, 0.975))
 
 GL <- GL |>
@@ -112,7 +113,7 @@ write_csv(s_PA, "./data/PApara.csv")
 
 summary_PA_LDL <- data.frame(summary(res)$summary)
 
-PA <- dat |>
+PA <- dat >
   as_tibble() |>
   mutate(site2 = ifelse(site == "PNM", "DRY", "WET")) |>
   mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) |>
