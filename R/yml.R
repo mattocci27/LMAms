@@ -199,7 +199,7 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
                     "'"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAp_LL: 'italic(bar(r)) == NA'"),
+  writeLines(paste0('    LMAp_LL: "italic(bar(r)) == ', "'NA'", '"'),
              out,
              sep = "\n")
   writeLines(paste0("    LMAs_LL: 'italic(bar(r)) == ",
@@ -273,13 +273,13 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
              out,
              sep = "\n")
   writeLines(paste0("    LMAp_Aarea: 'italic(bar(r)) == ",
-                    PA_cor_tbl |>
+                   PA_cor_tbl |>
                       filter(name == "A_LMAp") |>
                       pull(mean),
                     "'"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAs_Aarea: 'italic(bar(r)) == NA'"),
+  writeLines(paste0('    LMAs_Aaera: "italic(bar(r)) == ', "'NA'", '"'),
              out,
              sep = "\n")
   writeLines(paste0("    LMA_Rarea: 'italic(r) == ",
@@ -306,7 +306,7 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
                     "'"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAp_LL: 'italic(bar(r)) == NA'"),
+  writeLines(paste0('    LMAp_LL: "italic(bar(r)) == ', "'NA'", '"'),
              out,
              sep = "\n")
   writeLines(paste0("    LMAs_LL: 'italic(bar(r)) == ",

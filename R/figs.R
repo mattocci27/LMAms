@@ -1,8 +1,9 @@
-
+#' @title Breaks for tratis
 my_breaks <- function(...){
   c(0.002, 0.005, 0.02, 0.05, 0.1, 0.2,  0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500)
 }
 
+#' @title Breaks for LMS
 my_breaks_x <- function(...){
   c(1, 2, 5, 10, 20, 50, 100, 500)
 }
@@ -17,6 +18,7 @@ my_ggsave = function(filename, plot, height = 11.4, width = 11.4, units = "cm", 
          ...)
 }
 
+#' @title Creates axis lim from long-data
 lim_func <- \(data, LMA = TRUE) {
   if (LMA) {
     tmp <- data |>
@@ -40,6 +42,7 @@ lim_func <- \(data, LMA = TRUE) {
     mutate(max_val = 10^(max_val + mid_val * 0.1))
 }
 
+#' @title Theme
 theme_LES <- function(base_size = 9,
                      base_family = "sans") {
   # based on theme_bw which is based on theme_grey
@@ -91,8 +94,30 @@ theme_LES <- function(base_size = 9,
 }
 
 
-#' @title scatter plots for GL and Panama
-scatter_plt <- function(data, lab1, fills, cols) {
+#' @title Base scatter plots for GL and Panama
+scatter_plt <- function(data, lab1, settings_yml, GL = TRUE) {
+#scatter_plt <- function(data, lab1, fills, cols) {
+  settings <- yaml::yaml.load_file(settings_yml)
+  if (GL) {
+    fills <- c("Deciduous" = settings$fills$D,
+              "Evergreen" = settings$fills$E,
+              "Unclassified" = settings$fills$U)
+
+    cols <- c("Deciduous" = settings$colors$D,
+              "Evergreen" = settings$colors$E,
+              "Unclassified" = settings$colors$U)
+  } else {
+    fills <- c("Sun-Dry" = settings$fills$sun_dry,
+              "Sun-Wet" = settings$fills$sun_wet,
+              "Shade-Dry" = settings$fills$shade_dry,
+              "Shade-Wet" = settings$fills$shade_wet)
+
+    cols <- c("Sun-Dry" = settings$colors$sun_dry,
+              "Sun-Wet" = settings$colors$sun_wet,
+              "Shade-Dry" = settings$colors$shade_dry,
+              "Shade-Wet" = settings$colors$shade_wet)
+  }
+
   ggplot(data, aes(x = val, y = val2,
                                fill = gr,
                                col = gr)) +
@@ -151,38 +176,192 @@ gen_gl_long <- function(gl_res_csv) {
                  "italic(P)[area]~(~g~m^{-2})")))
 }
 
-#' @title scatter plots for GL
+#' @title Generates long data for ggplot (Panama)
+gen_pa_long <- function(pa_res_csv) {
+  #targets::tar_load(pa_res_csv)
+  read_csv(pa_res_csv) |>
+    pivot_longer(c(LMA, LMAs, LMAp), names_to = "LMA", values_to = "val") |>
+    pivot_longer(c(Aarea, Rarea, LL, Narea, Parea, cell_area),
+      names_to = "trait", values_to = "val2") |>
+    # mutate(DE = factor(DE,
+    #         levels = c("D", "E", "U"))) |>
+    mutate(LMA = factor(LMA,
+      labels = c("LMA", "LMAp", "LMAs"))) |>
+    mutate(LMA = factor(LMA,
+      labels = c("LMA~(~g~m^{-2})", "LMAp~(~g~m^{-2})", "LMAs~(~g~m^{-2})"))) |>
+    mutate(site_strata = factor(site_strata,
+            levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) |>
+    mutate(trait = factor(trait,
+      levels = c("Aarea", "Rarea", "LL", "Narea", "Parea", "cell_area"))) |>
+    mutate(trait2 = factor(trait,
+      labels = c("italic(A)[area]~(~mu~mol~m^{-2}~s^{-1})",
+                 "italic(R)[area]~(~mu~mol~m^{-2}~s^{-1})",
+                 "LL~(months)",
+                 "italic(N)[area]~(~g~m^{-2})",
+                 "italic(P)[area]~(~g~m^{-2})",
+                 "italic(CL)[area]~(~g~m^{-2})"
+                 ))) |>
+    mutate(gr = factor(site_strata,
+      labels = c("Sun-Wet",
+                 "Sun-Dry",
+                 "Shade-Wet",
+                 "Shade-Dry"
+                        ))) |>
+    arrange(gr)
+}
+
+#' @title Scatter plots for GL
 gl_point <- function(gl_long_dat, settings_yml, r_vals_yml) {
     # targets::tar_load(gl_long_dat)
     # targets::tar_load(settings_yml)
     # targets::tar_load(r_vals_yml)
-  settings <- yaml::yaml.load_file(settings_yml)
+  # settings <- yaml::yaml.load_file(settings_yml)
   r_vals <- yaml::yaml.load_file(r_vals_yml)
   dat <- gl_long_dat |>
     filter(trait %in% c("LL", "Aarea", "Rarea"))
 
-  lim_GL <- lim_func(dat)
-  lim_GL2 <- lim_func(dat, LMA = FALSE)
+  lim_gl <- lim_func(dat)
+  lim_gl2 <- lim_func(dat, LMA = FALSE)
 
   lab1 <- tibble(lab = paste("(", letters[1:9], ")", sep = ""),
-                     val2 = lim_GL2$max_val %>% rep(each = 3),
+                     val2 = lim_gl2$max_val %>% rep(each = 3),
                     # val2 = Inf,
-                     val = lim_GL$min_val %>% rep(3),
-                     val_max = lim_GL$max_val %>% rep(3),
+                     val = lim_gl$min_val %>% rep(3),
+                     val_max = lim_gl$max_val %>% rep(3),
                      gr = "Evergreen",
-                     r_vals = r_vals$r_vals$GL %>% unlist,
-                     trait2 = rep(lim_GL2$trait2, each = 3),
-                     LMA = rep(lim_GL$LMA, 3)
+                     r_vals = r_vals$r_vals$gl %>% unlist,
+                     trait2 = rep(lim_gl2$trait2, each = 3),
+                     LMA = rep(lim_gl$LMA, 3)
                      ) |>
     mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
 
-  fills <- c("Deciduous" = settings$fills$D,
-            "Evergreen" = settings$fills$E,
-            "Unclassified" = settings$fills$U)
+  scatter_plt(dat, lab1, settings_yml)
+}
 
-  cols <- c("Deciduous" = settings$colors$D,
-            "Evergreen" = settings$colors$E,
-            "Unclassified" = settings$colors$U)
 
-  scatter_plt(dat, lab1, fills, cols)
+#' @title Scatter plots for Panama
+pa_point <- function(pa_long_dat, settings_yml, r_vals_yml) {
+    # targets::tar_load(pa_long_dat)
+    # targets::tar_load(settings_yml)
+    # targets::tar_load(r_vals_yml)
+  r_vals <- yaml::yaml.load_file(r_vals_yml)
+  dat <- pa_long_dat |>
+    filter(trait %in% c("LL", "Aarea", "Rarea"))
+
+  lim_pa <- lim_func(dat)
+  lim_pa2 <- lim_func(dat, LMA = FALSE)
+
+  lab1 <- tibble(lab = paste("(", letters[1:9], ")", sep = ""),
+                     val2 = lim_pa2$max_val %>% rep(each = 3),
+                    # val2 = Inf,
+                     val = lim_pa$min_val %>% rep(3),
+                     val_max = lim_pa$max_val %>% rep(3),
+                     gr = "Sun-Dry",
+                     r_vals = r_vals$r_vals$PA %>% unlist,
+                     trait2 = rep(lim_pa2$trait2, each = 3),
+                     LMA = rep(lim_pa$LMA, 3)
+                     ) |>
+    mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
+
+  scatter_plt(dat, lab1, settings_yml, GL = FALSE)
+}
+
+
+#' @title Scatter plots for Panama (NPC)
+pa_point_npc <- function(pa_long_dat, settings_yml, r_vals_yml) {
+    # targets::tar_load(pa_long_dat)
+    # targets::tar_load(settings_yml)
+    # targets::tar_load(r_vals_yml)
+  r_vals <- yaml::yaml.load_file(r_vals_yml)
+  dat <- pa_long_dat |>
+    filter(trait %in% c("Narea", "Parea", "cell_area"))
+
+  lim_pa <- lim_func(dat)
+  lim_pa2 <- lim_func(dat, LMA = FALSE)
+
+  lab1 <- tibble(lab = paste("(", letters[1:9], ")", sep = ""),
+                     val2 = lim_pa2$max_val %>% rep(each = 3),
+                    # val2 = Inf,
+                     val = lim_pa$min_val %>% rep(3),
+                     val_max = lim_pa$max_val %>% rep(3),
+                     gr = "Sun-Dry",
+                     r_vals = r_vals$r_vals$PA_NP %>% unlist,
+                     trait2 = rep(lim_pa2$trait2, each = 3),
+                     LMA = rep(lim_pa$LMA, 3)
+                     ) |>
+    mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
+
+  scatter_plt(dat, lab1, settings_yml, GL = FALSE)
+}
+
+#' @title Scatter plots for Panama (LL)
+pa_point_ll <- function(pa_res_csv, settings_yml, r_vals_yml) {
+  dat <- read_csv(pa_res_csv) %>%
+  mutate(site_strata = factor(site_strata,
+          levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) %>%
+  mutate(gr = factor(site_strata,
+    labels = c("Sun-Wet",
+               "Sun-Dry",
+               "Shade-Wet",
+               "Shade-Dry"
+                      )))
+  settings <- yaml::yaml.load_file(settings_yml)
+  r_vals <- yaml::yaml.load_file(r_vals_yml)
+  fills <- c(
+   "Sun-Dry" = settings$fills$sun_dry,
+   "Sun-Wet" = settings$fills$sun_wet,
+   "Shade-Dry" = settings$fills$shade_dry,
+   "Shade-Wet" = settings$fills$shade_wet
+  )
+
+  cols <- c(
+   "Sun-Dry" = settings$colors$sun_dry,
+   "Sun-Wet" = settings$colors$sun_wet,
+   "Shade-Dry" = settings$colors$shade_dry,
+   "Shade-Wet" = settings$colors$shade_wet
+  )
+
+
+  labLL <- tibble(
+     LL = Inf,
+     val = min(dat$LL),
+     val_max = max(dat$LL),
+     gr = "Sun-Dry",
+     r_vals = r_vals$r_vals$PA_R2$LL_R2
+   )
+
+   ggplot(dat, aes(x = exp(Mu2), y = LL,
+                                fill = gr, col = gr)) +
+    geom_point(shape = 21) +
+    scale_fill_manual(values = fills) +
+    scale_colour_manual(values = cols) +
+    scale_x_log10(breaks = my_breaks(), expand = c(0.1, 0),
+                  limits = c(min(labLL$val), max(labLL$val_max))) +
+    scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0),
+                  limits = c(min(labLL$val), max(labLL$val_max))) +
+    xlab("Predicted LL (months)") +
+    ylab("Observed LL (months)") +
+    geom_abline(aes(slope = 1, intercept = 0),
+                lty = 2,
+                lwd = 0.25,
+                col = "gray20") +
+    geom_text(data = labLL, aes(label = r_vals, x = val_max, y = 2.5),
+              colour = "black",
+              hjust = 1,
+              vjust = 0,
+              parse = TRUE,
+              show.legend = FALSE) +
+    coord_fixed() +
+    theme_LES() +
+    theme(
+      legend.position = c(0.2, 0.85),
+      axis.title.x = element_text(margin = margin(t = 1,
+                                                  b = 1,
+                                                  l = 0,
+                                                  r = 0)),
+      axis.title.y = element_text(margin = margin(t = 1,
+                                                  b = 1,
+                                                  l = 1,
+                                                  r = 1))
+          )
 }

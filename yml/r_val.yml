@@ -7,7 +7,7 @@ r_vals:
     LMAp_Rarea: 'italic(bar(rho)) == 0.53'
     LMAs_Rarea: 'italic(bar(rho)) == 0.08'
     LMA_LL: 'italic(r) == 0.72'
-    LMAp_LL: 'italic(bar(r)) == NA'
+    LMAp_LL: "italic(bar(r)) == 'NA'"
     LMAs_LL: 'italic(bar(r)) == 0.88'
   GL_NP:
     LMA_Narea: 'italic(r) == 0.64'
@@ -21,12 +21,12 @@ r_vals:
   PA:
     LMA_Aarea: 'italic(r) == 0.67'
     LMAp_Aarea: 'italic(bar(r)) == 0.89'
-    LMAs_Aarea: 'italic(bar(r)) == NA'
+    LMAs_Aaera: "italic(bar(r)) == 'NA'"
     LMA_Rarea: 'italic(r) == 0.5'
     LMAp_Rarea: 'italic(bar(rho)) == 0.68'
     LMAs_Rarea: 'italic(bar(rho)) == 0.02'
     LMA_LL: 'italic(r) == -0.03'
-    LMAp_LL: 'italic(bar(r)) == NA'
+    LMAp_LL: "italic(bar(r)) == 'NA'"
     LMAs_LL: 'italic(bar(r)) == 0.43'
   PA_LMAps:
     LMAs_LMAp: '-0.16 [-0.26, -0.06]'
