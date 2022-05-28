@@ -330,7 +330,7 @@ pa_point_ll <- function(pa_res_csv, settings_yml, r_vals_yml) {
      r_vals = r_vals$r_vals$PA_R2$LL_R2
    )
 
-   ggplot(dat, aes(x = exp(Mu2), y = LL,
+   ggplot(dat, aes(y = exp(Mu2), x = LL,
                                 fill = gr, col = gr)) +
     geom_point(shape = 21) +
     scale_fill_manual(values = fills) +
@@ -339,8 +339,8 @@ pa_point_ll <- function(pa_res_csv, settings_yml, r_vals_yml) {
                   limits = c(min(labLL$val), max(labLL$val_max))) +
     scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0),
                   limits = c(min(labLL$val), max(labLL$val_max))) +
-    xlab("Predicted LL (months)") +
-    ylab("Observed LL (months)") +
+    ylab("Predicted LL (months)") +
+    xlab("Observed LL (months)") +
     geom_abline(aes(slope = 1, intercept = 0),
                 lty = 2,
                 lwd = 0.25,
