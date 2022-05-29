@@ -1,15 +1,17 @@
 
-gen_point_dat <- function() {
-  targets::tar_load(pa_res_csv)
-  targets::tar_load(gl_res_csv)
+#' @para gl_para MCMC summary for GLOPNET (e.g., fit_7_summary_GL_Aps_LLs)
+#' @para pa_para MCMC summary for Panama (e.g. fit_20_summary_PA_Ap_LLs_opt)
+gen_mass_point_dat <- function(gl_res_csv, pa_res_csv, gl_para, pa_para) {
+  # targets::tar_load(pa_res_csv)
+  # targets::tar_load(gl_res_csv)
   pa <- read_csv(pa_res_csv)
   gl <- read_csv(gl_res_csv)
 
-  targets::tar_load(fit_7_summary_GL_Aps_LLs)
-  gl_para <- fit_7_summary_GL_Aps_LLs
+  # targets::tar_load(fit_7_summary_GL_Aps_LLs)
+  # gl_para <- fit_7_summary_GL_Aps_LLs
 
-  targets::tar_load(fit_20_summary_PA_Ap_LLs_opt)
-  pa_para <- fit_20_summary_PA_Ap_LLs_opt
+  # targets::tar_load(fit_20_summary_PA_Ap_LLs_opt)
+  # pa_para <- fit_20_summary_PA_Ap_LLs_opt
 
   sun <- pa |>
     filter(strata == "CAN")
@@ -22,17 +24,30 @@ gen_point_dat <- function() {
     pull(mean)
   }
 
-  point_dat <- tribble(~ type, ~ ap, ~ as,
-  "GLOPNET", get_mean(gl_para, "ap"), get_mean(gl_para, "as"),
-  "sun", get_mean(pa_para, "ap"), 0,
-  "shade", get_mean(pa_para, "ap"), 0)
+  # point_dat <- tribble(~ type, ~ ap, ~ as,
+  # "GLOPNET", get_mean(gl_para, "ap"), get_mean(gl_para, "as"),
+  # "sun", get_mean(pa_para, "ap"), 0,
+  # "shade", get_mean(pa_para, "ap"), 0)
+
+  point_dat <- tibble(
+    site = c("GLOPNET", "Sun", "Shade") |>
+                    factor(levels =  c("GLOPNET", "Sun", "Shade")),
+    ap = c(get_mean(gl_para, "ap"), get_mean(pa_para, "ap"), get_mean(pa_para, "ap")),
+    as = c(get_mean(gl_para, "as"), 0, 0)
+  )
+
 
   gl_b <- lm(log(Aarea) ~ log(LMA), gl)$coefficients[2]
   sun_b <- lm(log(Aarea) ~ log(LMA), sun)$coefficients[2]
   shade_b <- lm(log(Aarea) ~ log(LMA), shade)$coefficients[2]
 
+  gl_vars <- cov(gl$LMA, gl$LMAs) / var(gl$LMA) * 100
+  sun_vars <- cov(sun$LMA, sun$LMAs) / var(sun$LMA) * 100
+  shade_vars <- cov(shade$LMA, shade$LMAs) / var(shade$LMA) * 100
+
   point_dat  |>
-    mutate(b = c(gl_b, sun_b, shade_b))
+    mutate(b = c(gl_b, sun_b, shade_b)) |>
+    mutate(vars = c(gl_vars, sun_vars, shade_vars))
 }
 
 
@@ -79,7 +94,7 @@ get_mean <- function(data, para_str)  {
 #' @para data gl_res_csv or pa_res_csv
 #' @para para mcmc summary (e.g.  fit_7_summary_GL_Aps_LLs)
 mass_prop_sim <- function(data, para, n_sim = 1000, n_samp = 100,
-                   x_len = 20, site_name = "GLOPNET", gl = TRUE, seed = 123) {
+                   x_len = 20, site = "GLOPNET", gl = TRUE, seed = 123) {
   set.seed(seed)
   mu <- mu_fun(data$LMAp)
   mu2 <- mu_fun(data$LMAs)
@@ -105,11 +120,100 @@ mass_prop_sim <- function(data, para, n_sim = 1000, n_samp = 100,
       ))
     }
   }
+  LMAs_var_mean <- apply(LMAs_var, 1, mean)
+  mean_ <- apply(b, 1, mean)
+  upr <- apply(b, 1, \(x)(quantile(x, 0.975)))
+  lwr <- apply(b, 1, \(x)(quantile(x, 0.025)))
+  tibble(mean = mean_, upr = upr, lwr = lwr,
+              LMAs_var_mean, site = site)
+}
+
+#' @title Simulation for mass prop (MVN)
+#' @para data pa_res_csv
+#' @para para mcmc summary (e.g.  fit_20_summary_PA_Ap_LLs_opt)
+mass_prop_sim_mv <- function(data, para, n_sim = 1000, n_samp = 100,
+                   x_len = 20, site = "Shade", seed = 123) {
+  set.seed(seed)
+  Mu <- c(mean(log(data$LMAp)) - var(log(data$LMAp)) / 2,
+          mean(log(data$LMAs)) - var(log(data$LMAs)) / 2)
+  rho <- -0.4
+  sig1 <- sd(log(data$LMAp))
+  sig2 <- seq(log(1.01), log(10), length = x_len)
+  LMAs_var <- NULL
+  b <- NULL
+  for (j in 1:n_sim) {
+    LMAp <- NULL
+    LMAs <- NULL
+    for (i in 1:10) {
+      S <- matrix(c(sig1^2, rho*sig1*sig2[i],
+      rho*sig1*sig2[i], sig2[i]^2), ncol = 2)
+      tmp <- MASS::mvrnorm(n_samp, Mu, S)
+      LMAp[[i]] <- tmp[,1] |> exp()
+      LMAs[[i]] <- tmp[,2] |> exp()
+    }
+    LMAs_var <- cbind(LMAs_var, map2_dbl(LMAs, LMAp, var_fun))
+    b <- cbind(b, map2_dbl(LMAs, LMAp, pa_sim_fit,
+      get_mean(para, "ap")
+    ))
+  }
 
   LMAs_var_mean <- apply(LMAs_var, 1, mean)
   mean_ <- apply(b, 1, mean)
   upr <- apply(b, 1, \(x)(quantile(x, 0.975)))
   lwr <- apply(b, 1, \(x)(quantile(x, 0.025)))
   tibble(mean = mean_, upr = upr, lwr = lwr,
-              LMAs_var_mean, site = site_name)
+              LMAs_var_mean, site = site)
+}
+
+#' @para mass_obs_dat dataframe with obsreved mass-prop
+#' @para sim1 GLOPNET
+#' @para sim2 Panama sun
+#' @para sim3 Panama shade
+mass_prop_point <- function(mass_obs_dat, sim1, sim2, sim3) {
+  # targets::tar_load(mass_obs_dat)
+  # targets::tar_load(gl_mass_prop)
+  # targets::tar_load(sun_mass_prop)
+  # targets::tar_load(shade_mass_prop)
+  # sim1 <- gl_mass_prop
+  # sim2 <- sun_mass_prop
+  # sim3 <- shade_mass_prop
+  sim_dat <- bind_rows(sim1, sim2, sim3)
+  #sim3[20 ,3] <- -1
+  #sim_dat[20 ,3] <- -1
+
+  sim_dat |> as.data.frame()
+
+  fills <- c("GLOPNET" = "#008B00",
+              "Sun" = "#1874CD",
+              "Shade" = "gray"
+  )
+
+  cols <- c("GLOPNET" = "#008B00",
+              "Sun" = "#1874CD",
+              "Shade" = "black"
+  )
+
+  ggplot(data = sim_dat) +
+    geom_ribbon(aes(ymin = lwr, ymax = upr,
+                    x = LMAs_var_mean,
+                    fill = site),
+                alpha = 0.4)  +
+    geom_line(aes(y = mean, x = LMAs_var_mean, col = site)) +
+    geom_point(data = mass_obs_dat , aes(x = vars, y = b,
+     shape = site, col = site)) +
+    scale_fill_manual(values = fills, name = "Parameter") +
+    scale_y_continuous(breaks = c(0, 0.5, 1, 2)) +
+    scale_color_manual(values = cols, name = "Parameter") +
+    scale_shape_discrete(name = "Parameter")  +
+    ylab(expression(Mass~dependency~(italic(b)))) +
+    xlab("Relative variance of LMAs (%)") +
+    theme_LES() +
+    theme(legend.position = c(0.75, 0.66),
+          legend.key.size = unit(0.5, "cm"),
+          legend.spacing.y = unit(0.1, "cm"),
+          legend.text.align = 0,
+          legend.key.height = unit(0.2, "cm"),
+          legend.text = element_text(size = 8),
+          legend.title = element_text(size = 8)
+    )
 }
