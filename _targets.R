@@ -6,7 +6,7 @@ library(cmdstanr)
 
 source("R/data_clean.R")
 source("R/stan.R")
-#source("R/fig_theme.R")
+source("R/fig_theme.R")
 source("R/figs.R")
 source("R/vpart.R")
 source("R/mass_prop.R")
@@ -499,7 +499,14 @@ list(
     },
     format = "file"
   ),
-
+  # mass prop ----------------------------------------------------
+  tar_target(
+    mass_obs_dat,
+    gen_mass_point_dat(
+      gl_res_csv, pa_res_csv,
+      fit_7_summary_GL_Aps_LLs, fit_20_summary_PA_Ap_LLs_opt
+    )
+  ),
   tar_target(
     gl_mass_prop,
     mass_prop_sim(
@@ -510,7 +517,7 @@ list(
     mass_prop_sim(read_csv(pa_res_csv) |> filter(strata == "CAN"),
       fit_20_summary_PA_Ap_LLs_opt,
       gl = FALSE, n_sim = 1000,
-      site_name = "Sun"
+      site = "Sun"
     )
   ),
   tar_target(
@@ -518,15 +525,54 @@ list(
     mass_prop_sim(read_csv(pa_res_csv) |> filter(strata != "CAN"),
       fit_20_summary_PA_Ap_LLs_opt,
       gl = FALSE, n_sim = 1000,
-      site_name = "Shade"
+      site = "Shade"
     )
   ),
+  tar_target(
+    shade_mass_prop_mv,
+    mass_prop_sim_mv(read_csv(pa_res_csv) |> filter(strata != "CAN"),
+      fit_20_summary_PA_Ap_LLs_opt,
+      n_sim = 1000,
+      site = "Shade"
+    )
+  ),
+  tar_target(
+    mass_prop_plot, {
+      p <- mass_prop_point(mass_obs_dat,
+        gl_mass_prop, sun_mass_prop, shade_mass_prop)
+      ggsave(
+        "figs/mass_prop.png",
+       p,
+       dpi = 300,
+       height = 6,
+       width = 6,
+       units = "cm"
+      )
+      paste0("figs/mass_prop", c(".png"))
+    },
+    format = "file"
+  ),
+  tar_target(
+    mass_prop_mv_plot, {
+      p <- mass_prop_point(mass_obs_dat,
+        gl_mass_prop, sun_mass_prop, shade_mass_prop_mv)
+      ggsave(
+        "figs/mass_prop_mv.png",
+       p,
+       dpi = 300,
+       height = 6,
+       width = 6,
+       units = "cm"
+      )
+      paste0("figs/mass_prop_mv", c(".png"))
+    },
+    format = "file"
+  ),
+
   tar_render(
     report,
     "report.Rmd"
   )
-
-
 
 )
 
