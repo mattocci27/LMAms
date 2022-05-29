@@ -1,24 +1,14 @@
-#' @title Breaks for tratis
+#' @title Breaks for tratis (scatter plots)
 my_breaks <- function(...){
   c(0.002, 0.005, 0.02, 0.05, 0.1, 0.2,  0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500)
 }
 
-#' @title Breaks for LMS
+#' @title Breaks for LMS (scatter plots)
 my_breaks_x <- function(...){
   c(1, 2, 5, 10, 20, 50, 100, 500)
 }
 
-my_ggsave = function(filename, plot, height = 11.4, width = 11.4, units = "cm", ...){
-  ggsave(filename = filename,
-         plot = plot,
-         height = height,
-         width = width,
-         units = units,
-         dpi = 400,
-         ...)
-}
-
-#' @title Creates axis lim from long-data
+#' @title Creates axis lim from long-data (scatter plots)
 lim_func <- \(data, LMA = TRUE) {
   if (LMA) {
     tmp <- data |>
@@ -41,58 +31,6 @@ lim_func <- \(data, LMA = TRUE) {
     mutate(min_val = 10^(min_val - mid_val * 0.1)) |>
     mutate(max_val = 10^(max_val + mid_val * 0.1))
 }
-
-#' @title Theme
-theme_LES <- function(base_size = 9,
-                     base_family = "sans") {
-  # based on theme_bw which is based on theme_grey
-  ret <- theme_grey(base_size = base_size, base_family = base_family) %+replace%
-    theme(panel.background = element_rect(fill = "white", colour = NA),
-          panel.border = element_rect(fill = NA, colour = "black", size = 0.25),
-          #panel.grid.major = element_line(colour = "grey87"),
-         # panel.grid.minor = element_line(colour = "grey87", size = 0.25),
-          panel.grid.major = element_line(colour = NA),
-          panel.grid.minor = element_line(colour = NA, size = 0.25),
-          panel.spacing = unit(0, "lines"),
-          strip.background = element_blank(),
-         # strip.background = element_rect(fill = "white"),
-          legend.key = element_rect(fill = NA, colour = NA),
-          legend.position = "top",
-          legend.margin = margin(t = 0, unit = "cm"),
-          legend.key.size = unit(0.2, "cm"),
-          legend.box = "horizontal",
-          legend.box.spacing = unit(0.1, "cm"),
-          #plot.background=element_rect(fill="red"), # fix
-          #plot.background=element_rect(fill=NA), # fix
-          #plot.background = element_blank(),
-          strip.text = element_text(size = 9),
-          strip.placement = "outside",
-          strip.switch.pad.grid = unit(0, "cm"),
-          axis.ticks.length = unit(-0.15, "cm"),
-          axis.ticks = element_line(size = 0.25),
-          axis.title = element_text(size = 8),
-          axis.text.x = element_text(margin = margin(0.25, unit = "cm"),
-                                     size = unit(8, "pt"),
-                                     colour = "black"),
-          axis.text.y = element_text(hjust = 0.5,
-                                     margin = margin(r = 0.25, unit = "cm"),
-                                     debug = FALSE,
-                                     size = unit(8, "pt"),
-                                     colour = "black"),
-          legend.text = element_text(size = 8),
-          legend.title = element_blank(),
-          axis.title.y = element_text(margin = margin(t = 0,
-                                                      b = 0,
-                                                      l = -10,
-                                                      r = 0),
-                                      angle = 90),
-          axis.title.x = element_text(margin = margin(t = -5,
-                                                      b = -5,
-                                                      l = -5,
-                                                      r = -5)),
-          complete = TRUE)
-}
-
 
 #' @title Base scatter plots for GL and Panama
 scatter_plt <- function(data, lab1, settings_yml, GL = TRUE) {
