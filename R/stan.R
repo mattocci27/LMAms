@@ -164,6 +164,7 @@ generate_gl_dat <- function(gl_csv, draws) {
     mutate(LMAp_up = LMA * p_vec_up) |>
     mutate(LMAs_lo = LMA - LMAp_up) |>
     mutate(LMAs_up = LMA - LMAp_lo) |>
+    mutate(id = paste0("gl_", 1:nrow(GL))) |>
     write_csv("data/GL_res.csv")
   paste("data/GL_res.csv")
 }
@@ -198,6 +199,7 @@ generate_pa_dat <- function(pa_full_csv, draws) {
     mutate(Mu2 = apply(mu_dat, 2, mean)) |>
     mutate(Mu2_lo = apply(mu_dat, 2, \(x) quantile(x, 0.025))) |>
     mutate(Mu2_up = apply(mu_dat, 2, \(x) quantile(x, 0.975))) |>
+    mutate(id = paste0("pa_", 1:nrow(PA))) |>
     write_csv("data/PA_res.csv")
 
   paste("data/PA_res.csv")

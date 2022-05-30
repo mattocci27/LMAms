@@ -11,6 +11,7 @@ source("R/figs.R")
 source("R/vpart.R")
 source("R/mass_prop.R")
 source("R/yml.R")
+source("R/t_yml.R")
 
 options(clustermq.scheduler = "multicore")
 
@@ -23,7 +24,8 @@ tar_option_set(packages = c(
   "loo",
   "jsonlite",
   "doParallel",
-  "foreach"
+  "foreach",
+  "multcompView"
 ))
 
 # check if it's inside a container
@@ -566,6 +568,24 @@ list(
       )
       paste0("figs/mass_prop_mv", c(".png"))
     },
+    format = "file"
+  ),
+  # boxplot ------------------------------------------------------
+  tar_target(
+    gl_box_dat,
+    prep_gl_box_dat(gl_res_csv)
+  ),
+  tar_target(
+    pa_inter_box_dat,
+    prep_pa_box_dat(pa_res_csv, pa_lh_csv, intra = FALSE)
+  ),
+  tar_target(
+    pa_intra_box_dat,
+    prep_pa_box_dat(pa_res_csv, pa_lh_csv, intra = TRUE)
+  ),
+  tar_target(
+    letters_yml,
+    write_t(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat, fit_7_draws_GL_Aps_LLs, fit_20_draws_PA_Ap_LLs_opt),
     format = "file"
   ),
 
