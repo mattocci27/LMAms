@@ -303,3 +303,21 @@ pa_point_ll <- function(pa_res_csv, settings_yml, r_vals_yml) {
                                                   r = 1))
           )
 }
+
+
+prep_box_dat <- function(gl_res_csv) {
+  data <- read_csv(gl_res_csv) |>
+    filter(DE != "U") |>
+    dplyr::select(sp, DE, GF, LMA, LMAp, LMAs) |>
+    pivot_longer(LMA:LMAs, names_to = "LMA", values_to = "Val") |>
+    mutate(gr = factor(DE,
+                       levels = c("D", "E"))) |>
+    unique()
+  lab1 <- data |>
+    group_by(gr, LMA) |>
+    summarize(Val = max(Val)) |>
+    ungroup() |>
+    arrange(LMA) |>
+    mutate(lab = p_letters$GL
+           |> unlist())
+}
