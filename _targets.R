@@ -25,6 +25,7 @@ tar_option_set(packages = c(
   "jsonlite",
   "doParallel",
   "foreach",
+  "httpgd",
   "multcompView"
 ))
 
@@ -398,6 +399,15 @@ list(
     generate_pa_dat(pa_full_csv, fit_20_draws_PA_Ap_LLs_opt),
     format = "file"
   ),
+  tar_target(
+    gl_res_dat,
+    clean_gl_res(gl_res_csv)
+  ),
+  tar_target(
+    pa_res_dat,
+    clean_pa_res(pa_res_csv)
+  ),
+
 
   tar_target(
     r_vals_yml,
@@ -588,7 +598,48 @@ list(
     write_t(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat, fit_7_draws_GL_Aps_LLs, fit_20_draws_PA_Ap_LLs_opt),
     format = "file"
   ),
-
+  tar_target(
+    gl_box_list,
+    prep_gl_box_list(gl_res_dat, letters_yml)
+  ),
+  tar_target(
+    pa_box_trim_list,
+    prep_pa_box_list(pa_intra_box_dat, letters_yml)
+  ),
+  tar_target(
+    pa_box_list,
+    prep_pa_box_list(pa_inter_box_dat, letters_yml, trim = FALSE)
+  ),
+  tar_target(
+    box_main_plot, {
+      p <- box_main(gl_box_list, pa_box_trim_list, settings_yml)
+      ggsave(
+        "figs/box_main.png",
+       p,
+       dpi = 300,
+       height = 11.7,
+       width = 11.7,
+       units = "cm"
+      )
+      paste0("figs/box_main", c(".png"))
+    },
+    format = "file"
+  ),
+  tar_target(
+    box_frac_plot, {
+      p <- box_frac(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml)
+      ggsave(
+        "figs/box_frac.png",
+       p,
+       dpi = 300,
+       height = 6,
+       width = 10,
+       units = "cm"
+      )
+      paste0("figs/box_frac", c(".png"))
+    },
+    format = "file"
+  ),
   tar_render(
     report,
     "report.Rmd"
