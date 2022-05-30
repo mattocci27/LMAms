@@ -1,4 +1,6 @@
-
+#' @title Pairwise t-test for LMA
+#' @para LMA vector of LMA
+#' @para group group name (e.g., "DE")
 p_group <- function(LMA, group, log = TRUE) {
   if (log) LMA <- log(LMA)
   moge <- pairwise.t.test(LMA, group, p.adjust.method = "bonferroni")$p.value
@@ -20,6 +22,11 @@ p_group <- function(LMA, group, log = TRUE) {
   multcompView::multcompLetters(p_vec)$Letters
 }
 
+#' @title Pairwise t-test for MCMC
+#' @para draws MCMC output (e.g., fit_7_draws_GL_Aps_LLs)
+#' @para data boxplot data (e.g., pa_inter_box_dat)
+#' @para x name of variancle (e.g., "frac", "LMAp", "LMAs")
+#' @para group group name (e.g., "DE")
 p_group2 <- function(draws,
           data,
           x,
@@ -55,6 +62,8 @@ p_group2 <- function(draws,
 }
 
 
+#' @title Wrapper function for p_goup2
+#' @para pmat matrix of latent variable p (iters * n_sample)
 p_post <- function(pmat,
           data,
           x,
@@ -124,6 +133,7 @@ p_post <- function(pmat,
   m2
 }
 
+#' @title Preaprea data for boxplot and t-test (Panama - short)
 prep_pa_box_dat <- function(pa_res_csv, pa_lh_csv, intra = TRUE) {
   pa <- read_csv(pa_res_csv) |>
     mutate(frac = LMAp / LMA)
@@ -147,7 +157,11 @@ prep_pa_box_dat <- function(pa_res_csv, pa_lh_csv, intra = TRUE) {
                                  levels = c("Sun_Dry",
                                             "Shade_Dry",
                                             "Sun_Wet",
-                                            "Shade_Wet")))
+                                            "Shade_Wet"))) |>
+    mutate(gr = site_strata2) |>
+    mutate(gr = factor(gr,
+      labels = c("Sun\nDry", "Shade\nDry", "Sun\nWet", "Shade\nWet")))
+
   if (intra) {
    pa_inter |>
     filter(n >= 2)
@@ -156,9 +170,12 @@ prep_pa_box_dat <- function(pa_res_csv, pa_lh_csv, intra = TRUE) {
   }
 }
 
+#' @title Preaprea data for boxplot and t-test (GLOPNET - short)
 prep_gl_box_dat <- function(gl_res_csv) {
   gl <- read_csv(gl_res_csv) |>
-    mutate(frac = LMAp / LMA)
+    mutate(frac = LMAp / LMA) |>
+    mutate(gr = factor(DE,
+                     levels = c("D", "E")))
   gl_de <- gl |>
     filter(DE != "U")
   gl_de
@@ -171,269 +188,270 @@ prep_gl_box_dat <- function(gl_res_csv) {
 # targets::tar_load(fit_7_draws_GL_Aps_LLs)
 # yml file ==================================================================
 
+#'@ title Write letters for multiple comparisons
 write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
   gl_draws, pa_draws) {
 
 # all Panama
 
-PA_LMA <- p_group(pa_inter_box_dat$LMA, pa_inter_box_dat$site_strata2)
-PA_LMAp <- p_group2(pa_draws, "LMAp",
-                    group = "site_strata2", data = pa_inter_box_dat)
-PA_LMAs <- p_group2(pa_draws, "LMAs",
-                    group = "site_strata2", data = pa_inter_box_dat)
+  PA_LMA <- p_group(pa_inter_box_dat$LMA, pa_inter_box_dat$site_strata2)
+  PA_LMAp <- p_group2(pa_draws, "LMAp",
+                      group = "site_strata2", data = pa_inter_box_dat)
+  PA_LMAs <- p_group2(pa_draws, "LMAs",
+                      group = "site_strata2", data = pa_inter_box_dat)
 
 
 # both sun and shade leaves are available
-PA2_LMA <- p_group(pa_intra_box_dat$LMA, pa_intra_box_dat$site_strata2)
-PA2_LMAp <- p_group2(pa_draws, "LMAp",
-                    group = "site_strata2", data = pa_intra_box_dat)
-PA2_LMAs <- p_group2(pa_draws, "LMAs",
-                    group = "site_strata2", data = pa_intra_box_dat)
+  PA2_LMA <- p_group(pa_intra_box_dat$LMA, pa_intra_box_dat$site_strata2)
+  PA2_LMAp <- p_group2(pa_draws, "LMAp",
+                      group = "site_strata2", data = pa_intra_box_dat)
+  PA2_LMAs <- p_group2(pa_draws, "LMAs",
+                      group = "site_strata2", data = pa_intra_box_dat)
 
 
 # GL
-GL_LMA <- p_group(gl_box_dat$LMA, gl_box_dat$DE)
-GL_LMAp <- p_group2(gl_draws, "LMAp",
-                    group = "DE", data = gl_box_dat)
-GL_LMAs <- p_group2(gl_draws, "LMAs",
-                    group = "DE", data = gl_box_dat)
+  GL_LMA <- p_group(gl_box_dat$LMA, gl_box_dat$DE)
+  GL_LMAp <- p_group2(gl_draws, "LMAp",
+                      group = "DE", data = gl_box_dat)
+  GL_LMAs <- p_group2(gl_draws, "LMAs",
+                      group = "DE", data = gl_box_dat)
 
 # DE
-GL_frac <- p_group2(gl_draws, "frac",
-                    group = "DE", data = gl_box_dat)
-PA_frac <- p_group2(pa_draws, "frac",
-                    group = "DE", data = pa_intra_box_dat)
+  GL_frac <- p_group2(gl_draws, "frac",
+                      group = "DE", data = gl_box_dat)
+  PA_frac <- p_group2(pa_draws, "frac",
+                      group = "DE", data = pa_intra_box_dat)
 
 
 # all
-PA_frac2 <- p_group2(pa_draws, "frac",
-                    group = "DE", data = pa_inter_box_dat)
-PA_cell2 <- p_group(pa_inter_box_dat$cell_mass, pa_inter_box_dat$site_strata2)
+  PA_frac2 <- p_group2(pa_draws, "frac",
+                      group = "DE", data = pa_inter_box_dat)
+  PA_cell2 <- p_group(pa_inter_box_dat$cell_mass, pa_inter_box_dat$site_strata2)
 
 # intra
-PA_frac3 <- p_group2(pa_draws, "frac",
-                    group = "DE", data = pa_intra_box_dat)
-PA_cell3 <- p_group(pa_intra_box_dat$cell_mass, pa_intra_box_dat$site_strata2)
+  PA_frac3 <- p_group2(pa_draws, "frac",
+                      group = "DE", data = pa_intra_box_dat)
+  PA_cell3 <- p_group(pa_intra_box_dat$cell_mass, pa_intra_box_dat$site_strata2)
 
 
-output <- "yml/letters.yml"
-out <- file(paste(output), "w") # write
-writeLines(paste0("PA_SI:"),
-           out,
-           sep = "\n")
-writeLines(paste0("  LMA:"),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Dry: ", PA_LMA["Sun_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Dry: ", PA_LMA["Shade_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Wet: ", PA_LMA["Sun_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Wet: ", PA_LMA["Shade_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("  LMAp:"),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Dry: ", PA_LMAp["Sun_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Dry: ", PA_LMAp["Shade_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Wet: ", PA_LMAp["Sun_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Wet: ", PA_LMAp["Shade_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("  LMAs:"),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Dry: ", PA_LMAs["Sun_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Dry: ", PA_LMAs["Shade_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Wet: ", PA_LMAs["Sun_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Wet: ", PA_LMAs["Shade_Wet"]),
-           out,
-           sep = "\n")
+  output <- "yml/letters.yml"
+  out <- file(paste(output), "w") # write
+  writeLines(paste0("PA_SI:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMA:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Dry: ", PA_LMA["Sun_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Dry: ", PA_LMA["Shade_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Wet: ", PA_LMA["Sun_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Wet: ", PA_LMA["Shade_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMAp:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Dry: ", PA_LMAp["Sun_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Dry: ", PA_LMAp["Shade_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Wet: ", PA_LMAp["Sun_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Wet: ", PA_LMAp["Shade_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMAs:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Dry: ", PA_LMAs["Sun_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Dry: ", PA_LMAs["Shade_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Wet: ", PA_LMAs["Sun_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Wet: ", PA_LMAs["Shade_Wet"]),
+             out,
+             sep = "\n")
 
 
-writeLines(paste0("PA:"),
-           out,
-           sep = "\n")
-writeLines(paste0("  LMA:"),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Dry: ", PA2_LMA["Sun_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Dry: ", PA2_LMA["Shade_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Wet: ", PA2_LMA["Sun_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Wet: ", PA2_LMA["Shade_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("  LMAp:"),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Dry: ", PA2_LMAp["Sun_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Dry: ", PA2_LMAp["Shade_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Wet: ", PA2_LMAp["Sun_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Wet: ", PA2_LMAp["Shade_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("  LMAs:"),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Dry: ", PA2_LMAs["Sun_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Dry: ", PA2_LMAs["Shade_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Wet: ", PA2_LMAs["Sun_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Wet: ", PA2_LMAs["Shade_Wet"]),
-           out,
-           sep = "\n")
+  writeLines(paste0("PA:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMA:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Dry: ", PA2_LMA["Sun_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Dry: ", PA2_LMA["Shade_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Wet: ", PA2_LMA["Sun_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Wet: ", PA2_LMA["Shade_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMAp:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Dry: ", PA2_LMAp["Sun_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Dry: ", PA2_LMAp["Shade_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Wet: ", PA2_LMAp["Sun_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Wet: ", PA2_LMAp["Shade_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMAs:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Dry: ", PA2_LMAs["Sun_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Dry: ", PA2_LMAs["Shade_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Wet: ", PA2_LMAs["Sun_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Wet: ", PA2_LMAs["Shade_Wet"]),
+             out,
+             sep = "\n")
 
 
-writeLines(paste0("GL:"),
-           out,
-           sep = "\n")
-writeLines(paste0("  LMA:"),
-           out,
-           sep = "\n")
-writeLines(paste0("    D: ", GL_LMA["D"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    E: ", GL_LMA["E"]),
-           out,
-           sep = "\n")
-writeLines(paste0("  LMAp:"),
-           out,
-           sep = "\n")
-writeLines(paste0("    D: ", GL_LMAp["D"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    E: ", GL_LMAp["E"]),
-           out,
-           sep = "\n")
-writeLines(paste0("  LMAs:"),
-           out,
-           sep = "\n")
-writeLines(paste0("    D: ", GL_LMAs["D"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    E: ", GL_LMAs["E"]),
-           out,
-           sep = "\n")
+  writeLines(paste0("GL:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMA:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    D: ", GL_LMA["D"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    E: ", GL_LMA["E"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMAp:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    D: ", GL_LMAp["D"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    E: ", GL_LMAp["E"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMAs:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    D: ", GL_LMAs["D"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    E: ", GL_LMAs["E"]),
+             out,
+             sep = "\n")
 
-writeLines(paste0("Frac:"),
-           out,
-           sep = "\n")
-writeLines(paste0("  GL:"),
-           out,
-           sep = "\n")
-writeLines(paste0("    D: ", GL_frac["D"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    E: ", GL_frac["E"]),
-           out,
-           sep = "\n")
-writeLines(paste0("  PA:"),
-           out,
-           sep = "\n")
-writeLines(paste0("    D: ", PA_frac["D"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    E: ", PA_frac["E"]),
-           out,
-           sep = "\n")
-writeLines(paste0("  PA-intra:"),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Dry: ", PA_frac3["Sun_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Dry: ", PA_frac3["Shade_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Wet: ", PA_frac3["Sun_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Wet: ", PA_frac3["Shade_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("  PA-all:"),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Dry: ", PA_frac2["Sun_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Dry: ", PA_frac2["Shade_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Wet: ", PA_frac2["Sun_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Wet: ", PA_frac2["Shade_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("Cell:"),
-           out,
-           sep = "\n")
-writeLines(paste0("  PA-intra:"),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Dry: ", PA_cell3["Sun_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Dry: ", PA_cell3["Shade_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Wet: ", PA_cell3["Sun_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Wet: ", PA_cell3["Shade_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("  PA-all:"),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Dry: ", PA_cell2["Sun_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Dry: ", PA_cell2["Shade_Dry"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Sun_Wet: ", PA_cell2["Sun_Wet"]),
-           out,
-           sep = "\n")
-writeLines(paste0("    Shade_Wet: ", PA_cell2["Shade_Wet"]),
-           out,
-           sep = "\n")
-close(out)
-paste(output)
+  writeLines(paste0("Frac:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("  GL:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    D: ", GL_frac["D"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    E: ", GL_frac["E"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("  PA:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    D: ", PA_frac["D"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    E: ", PA_frac["E"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("  PA-intra:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Dry: ", PA_frac3["Sun_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Dry: ", PA_frac3["Shade_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Wet: ", PA_frac3["Sun_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Wet: ", PA_frac3["Shade_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("  PA-all:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Dry: ", PA_frac2["Sun_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Dry: ", PA_frac2["Shade_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Wet: ", PA_frac2["Sun_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Wet: ", PA_frac2["Shade_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("Cell:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("  PA-intra:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Dry: ", PA_cell3["Sun_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Dry: ", PA_cell3["Shade_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Wet: ", PA_cell3["Sun_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Wet: ", PA_cell3["Shade_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("  PA-all:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Dry: ", PA_cell2["Sun_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Dry: ", PA_cell2["Shade_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Wet: ", PA_cell2["Sun_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Wet: ", PA_cell2["Shade_Wet"]),
+             out,
+             sep = "\n")
+  close(out)
+  paste(output)
 }
 

@@ -305,19 +305,177 @@ pa_point_ll <- function(pa_res_csv, settings_yml, r_vals_yml) {
 }
 
 
-prep_box_dat <- function(gl_res_csv) {
-  data <- read_csv(gl_res_csv) |>
+prep_gl_box_list <- function(gl_res_dat, letters_yml) {
+  data <- gl_res_dat |>
     filter(DE != "U") |>
-    dplyr::select(sp, DE, GF, LMA, LMAp, LMAs) |>
-    pivot_longer(LMA:LMAs, names_to = "LMA", values_to = "Val") |>
-    mutate(gr = factor(DE,
-                       levels = c("D", "E"))) |>
+    dplyr::select(sp, DE, gr, LMA, LMAp, LMAs) |>
+    pivot_longer(LMA:LMAs, names_to = "LMA", values_to = "val") |>
     unique()
+  p_letters <- yaml::yaml.load_file(letters_yml)
   lab1 <- data |>
     group_by(gr, LMA) |>
-    summarize(Val = max(Val)) |>
+    summarize(val = max(val)) |>
     ungroup() |>
     arrange(LMA) |>
     mutate(lab = p_letters$GL
            |> unlist())
+  list(data = data, lab = lab1)
 }
+
+prep_pa_box_list <- function(pa_inter_box_dat, letters_yml, trim = TRUE) {
+  # targets::tar_load(pa_inter_box_dat)
+  # targets::tar_load(letters_yml)
+  # pa_inter_box_dat$DE
+  # pa_inter_box_dat$n
+  p_letters <- yaml::yaml.load_file(letters_yml)
+  data <- pa_inter_box_dat |>
+    dplyr::select(sp, n, DE, gr, LMA, LMAp, LMAs) |>
+    pivot_longer(LMA:LMAs, names_to = "LMA", values_to = "val") |>
+    #dplyr::select(gr, val, LMA) |>
+    unique()
+  if (trim) {
+    data <- data |> filter(n >= 2)
+  }
+  lab1 <- data |>
+    group_by(gr, LMA) |>
+    summarize(val = max(val)) |>
+    ungroup() |>
+    arrange(LMA) |>
+    mutate(lab = p_letters$PA
+           |> unlist())
+  list(data = data, lab = lab1)
+}
+
+#' @title Theme for boxplot
+theme_box <- function(base_size = 9,
+                      base_family = "sans") {
+  ret <- theme_LES() %+replace%
+  theme(
+    panel.border = element_blank(),
+    panel.spacing = unit(0.5, "lines"),
+    #plot.margin = margin(1,10,1,1),
+    axis.line = element_line(colour = "black", size = 0.25),
+    axis.title.y = element_text(margin = margin(t = 0,
+                                                b = 0,
+                                                l = -4,
+                                                r = 0),
+                                angle = 90)
+        )
+}
+
+
+#' @title boxplot
+box_fun <- function(gl_box_list, fills, ylab = "GLOPNET") {
+  ggplot(gl_box_list$data, aes(x = gr, y = val, fill = gr)) +
+    geom_boxplot(outlier.shape = 21, outlier.size = 1) +
+    geom_text(data = gl_box_list$lab, aes(label = lab),
+              vjust = -1,
+              size = 8 * 5/14) +
+    facet_grid(.~ LMA) +
+    xlab("") +
+    scale_fill_manual(values = fills, guide = "none") +
+    scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
+    theme_box()
+}
+
+#' @title boxplot
+#' @para gl_box_list list with data and lab
+box_main <- function(gl_box_list, pa_box_trim_list, settings_yml) {
+  settings <- yaml::yaml.load_file(settings_yml)
+  fills <- c("Deciduous" = settings$fills$D,
+            "Evergreen" = settings$fills$E,
+            "Unclassified" = settings$fills$U)
+  fills2 <- c("Sun\nDry" = settings$fills$sun_dry,
+            "Sun\nWet" = settings$fills$sun_wet,
+            "Shade\nDry" = settings$fills$shade_dry,
+            "Shade\nWet" = settings$fills$shade_wet,
+            "Rand" = settings$fills$R)
+  p1 <- box_fun(gl_box_list, fills) +
+       ylab(expression(atop("GLOPNET",
+                   LMA~(g~m^{-2}))))
+  p2 <- box_fun(pa_box_trim_list, fills2) +
+       ylab(expression(atop("Panama",
+                   LMA~(g~m^{-2})))) +
+  theme(
+    strip.background = element_blank(),
+    strip.text.x = element_text(colour = NA) # invinsible strip
+        ) # +
+  p1 / p2
+}
+
+#' @title Boxplot for LMAp fraction (LMAp / LMA)
+box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
+  # targets::tar_load(pa_inter_box_dat)
+  # targets::tar_load(gl_box_dat)
+  settings <- yaml::yaml.load_file(settings_yml)
+  p_letters <- yaml::yaml.load_file(letters_yml)
+  fills <- c("D" = settings$fills$D,
+            "E" = settings$fills$E)
+  cols <- c("D" = settings$fills$D,
+            "E" = settings$fills$E)
+
+  my_y_title <- bquote(atop("The fraction of total LMA",
+                           "comprised by LMAp ("*italic(f)*")"))
+
+  lab1 <- gl_box_dat |>
+    group_by(DE) |>
+    summarize(frac = max(frac)) |>
+    ungroup() |>
+    mutate(lab = p_letters$Frac$GL
+           |> unlist())
+
+  lab2 <- pa_intra_box_dat |>
+    filter(!is.na(DE)) |>
+    group_by(DE) |>
+    summarize(frac = max(frac)) |>
+    ungroup() |>
+    mutate(lab = p_letters$Frac$PA
+           |> unlist())
+
+  p1 <- ggplot(gl_box_dat,
+    aes(x = DE, y = frac, fill = DE)) +
+    geom_boxplot(outlier.shape = 21, outlier.size = 1) +
+    geom_text(data = lab1, aes(label = lab),
+              vjust = -1,
+              size = 8 * 5/14) +
+    ylab(my_y_title) +
+    xlab("") +
+    scale_fill_manual(values = fills, guide = "none") +
+#    scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
+    theme_box() +
+    theme(
+      strip.background = element_blank()
+          )
+  p2 <- ggplot(pa_intra_box_dat,
+    aes(x = DE, y = frac, fill = DE)) +
+    geom_boxplot(outlier.shape = 21, outlier.size = 1) +
+    geom_text(data = lab2, aes(label = lab),
+              vjust = -1,
+              size = 8 * 5/14) +
+    ylab(my_y_title) +
+    xlab("") +
+    scale_fill_manual(values = fills, guide = "none") +
+   # scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
+    theme_box() +
+    theme(
+      strip.background = element_blank()
+          )
+  p1 + p2 +
+    plot_annotation(tag_levels = "a")
+}
+# box_main(gl_box_list, pa_box_trim_list, settings_yml)
+
+# targets::tar_load(gl_box_list)
+# targets::tar_load(pa_box_trim_list)
+
+#box_main(gl_box_list, fills = fills)
+
+# targets::tar_load(pa_res_csv)
+# pa_dat <- read_csv(pa_res_csv)
+
+#  targets::tar_load(gl_res_dat)
+#  targets::tar_load(pa_res_dat)
+
+#pa_res_dat$gr
+
+# gl_dat <- read_csv(gl_res_csv)
