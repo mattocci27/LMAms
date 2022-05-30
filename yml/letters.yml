@@ -6,14 +6,14 @@ PA_SI:
     Shade_Wet: d
   LMAp:
     Sun_Dry: a
-    Shade_Dry: bc
-    Sun_Wet: b
-    Shade_Wet: c
+    Shade_Dry: b
+    Sun_Wet: a
+    Shade_Wet: b
   LMAs:
     Sun_Dry: a
-    Shade_Dry: bc
-    Sun_Wet: b
-    Shade_Wet: c
+    Shade_Dry: b
+    Sun_Wet: c
+    Shade_Wet: d
 PA:
   LMA:
     Sun_Dry: a
@@ -22,21 +22,21 @@ PA:
     Shade_Wet: d
   LMAp:
     Sun_Dry: a
-    Shade_Dry: ab
+    Shade_Dry: b
     Sun_Wet: a
     Shade_Wet: b
   LMAs:
     Sun_Dry: a
-    Shade_Dry: ab
-    Sun_Wet: a
-    Shade_Wet: b
+    Shade_Dry: b
+    Sun_Wet: c
+    Shade_Wet: d
 GL:
   LMA:
     D: a
     E: b
   LMAp:
     D: a
-    E: b
+    E: a
   LMAs:
     D: a
     E: b

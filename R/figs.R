@@ -310,11 +310,12 @@ prep_gl_box_list <- function(gl_res_dat, letters_yml) {
     filter(DE != "U") |>
     dplyr::select(sp, DE, gr, LMA, LMAp, LMAs) |>
     pivot_longer(LMA:LMAs, names_to = "LMA", values_to = "val") |>
-    unique()
+    unique() |>
+    mutate(gr = ifelse(gr == "Deciduous", "Dec", "Eve"))
   p_letters <- yaml::yaml.load_file(letters_yml)
   lab1 <- data |>
     group_by(gr, LMA) |>
-    summarize(val = max(val)) |>
+    summarize(val = max(val) * 0.9) |>
     ungroup() |>
     arrange(LMA) |>
     mutate(lab = p_letters$GL
@@ -338,7 +339,7 @@ prep_pa_box_list <- function(pa_inter_box_dat, letters_yml, trim = TRUE) {
   }
   lab1 <- data |>
     group_by(gr, LMA) |>
-    summarize(val = max(val)) |>
+    summarize(val = max(val) * 0.9) |>
     ungroup() |>
     arrange(LMA) |>
     mutate(lab = p_letters$PA
@@ -382,18 +383,24 @@ box_fun <- function(gl_box_list, fills, ylab = "GLOPNET") {
 #' @para gl_box_list list with data and lab
 box_main <- function(gl_box_list, pa_box_trim_list, settings_yml) {
   settings <- yaml::yaml.load_file(settings_yml)
-  fills <- c("Deciduous" = settings$fills$D,
-            "Evergreen" = settings$fills$E,
+  fills <- c("Dec" = settings$fills$D,
+            "Eve" = settings$fills$E,
             "Unclassified" = settings$fills$U)
   fills2 <- c("Sun\nDry" = settings$fills$sun_dry,
             "Sun\nWet" = settings$fills$sun_wet,
             "Shade\nDry" = settings$fills$shade_dry,
             "Shade\nWet" = settings$fills$shade_wet,
             "Rand" = settings$fills$R)
+  cols2 <- c("Sun\nDry" = settings$colors$sun_dry,
+            "Sun\nWet" = settings$colors$sun_wet,
+            "Shade\nDry" = settings$colors$shade_dry,
+            "Shade\nWet" = settings$colors$shade_wet,
+            "Rand" = settings$colors$R)
   p1 <- box_fun(gl_box_list, fills) +
        ylab(expression(atop("GLOPNET",
                    LMA~(g~m^{-2}))))
   p2 <- box_fun(pa_box_trim_list, fills2) +
+       scale_colour_manual(values = cols2, guide = "none") +
        ylab(expression(atop("Panama",
                    LMA~(g~m^{-2})))) +
   theme(
