@@ -931,7 +931,7 @@ lab1 <- GL_dat_box |>
   ungroup() |>
   arrange(LMA) |>
   mutate(lab = p_letters$GL
-         |> unlist())
+         |> unlist()
 
 GL_box <- ggplot(GL_dat_box, aes(x = gr, y = Val, fill = gr)) +
   geom_boxplot(outlier.shape = 21, outlier.size = 1) +

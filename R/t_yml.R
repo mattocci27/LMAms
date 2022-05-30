@@ -69,18 +69,6 @@ p_post <- function(pmat,
           x,
           group = c("DE", "site_strata2")
           ){
-#targets::tar_load(fit_7_draws_GL_Aps_LLs)
-# targets::tar_load(fit_20_draws_PA_Ap_LLs_opt)
-#  draws <- fit_7_draws_GL_Aps_LLs |>
-#    janitor::clean_names()
-  # data <- gl_de
-# data <- pa_inter
-
-# draws <- fit_20_draws_PA_Ap_LLs_opt |>
-#   janitor::clean_names()
-# pmat <- draws |>
-#   dplyr::select(contains("p_")) |>
-#   as.matrix()
 
   if (group == "DE") {
     m <- array(dim = c(2, 2, nrow(pmat)))
@@ -95,41 +83,39 @@ p_post <- function(pmat,
   LMA <- data |>
     pull(LMA)
 
-#  pmat |> dim() |> print()
-   for (i in 1:nrow(pmat)) {
-      frac <- pmat[i,]
-      LMAp <- log(frac * LMA)
-      LMAs <- log(LMA - LMAp)
-      x <- "frac"
-      xbar <- tapply(get(x), group2, \(x)mean(x, na.rm = TRUE))
-      for (j in 1:length(xbar)) {
-        for (k in 1:length(xbar)) {
-          dif <- xbar[j] - xbar[k]
-          m[j, k, i] <- dif
-        }
+  for (i in 1:nrow(pmat)) {
+    frac <- pmat[i,]
+    LMAp <- log(frac * LMA)
+    LMAs <- log(LMA - LMAp)
+    xbar <- tapply(get(x), group2, \(x)mean(x, na.rm = TRUE))
+    for (j in 1:length(xbar)) {
+      for (k in 1:length(xbar)) {
+        dif <- xbar[j] - xbar[k]
+        m[j, k, i] <- dif
       }
-     }
-#    print(xbar)
-    lwr <- apply(m,  1:2, \(x)quantile(x, 0.025 / alpha))
-    upr <- apply(m,  1:2, \(x)quantile(x, 1 - 0.025 / alpha))
-    sig_m <- lwr * upr
-    colnames(sig_m) <- rownames(sig_m) <- names(xbar)
-    sig_m[sig_m > 0] <- 0.01
-    sig_m[sig_m == 0] <- NA
-    sig_m[sig_m < 0] <- 1
-
-    il_tri <- lower.tri(sig_m, TRUE)
-    if (group == "site_strata2") {
-      m2 <- matrix(sig_m[il_tri][-1], ncol = 3, nrow = 3)
-      m2[3, 3] <- m2[2,3]
-      m2[2, 3] <- NA
-      rownames(m2) <- rownames(sig_m)[2:4]
-      colnames(m2) <- colnames(sig_m)[1:3]
-    } else {
-      m2 <- matrix(sig_m[il_tri][2], ncol = 1, nrow = 1)
-      rownames(m2) <- rownames(sig_m)[2]
-      colnames(m2) <- colnames(sig_m)[1]
     }
+   }
+
+  lwr <- apply(m,  1:2, \(x)quantile(x, 0.025 / alpha))
+  upr <- apply(m,  1:2, \(x)quantile(x, 1 - 0.025 / alpha))
+  sig_m <- lwr * upr
+  colnames(sig_m) <- rownames(sig_m) <- names(xbar)
+  sig_m[sig_m > 0] <- 0.01
+  sig_m[sig_m == 0] <- NA
+  sig_m[sig_m < 0] <- 1
+
+  il_tri <- lower.tri(sig_m, TRUE)
+  if (group == "site_strata2") {
+    m2 <- matrix(sig_m[il_tri][-1], ncol = 3, nrow = 3)
+    m2[3, 3] <- m2[2,3]
+    m2[2, 3] <- NA
+    rownames(m2) <- rownames(sig_m)[2:4]
+    colnames(m2) <- colnames(sig_m)[1:3]
+  } else {
+    m2 <- matrix(sig_m[il_tri][2], ncol = 1, nrow = 1)
+    rownames(m2) <- rownames(sig_m)[2]
+    colnames(m2) <- colnames(sig_m)[1]
+  }
   m2
 }
 
@@ -183,9 +169,10 @@ prep_gl_box_dat <- function(gl_res_csv) {
 
 # targets::tar_load(pa_inter_box_dat)
 # targets::tar_load(pa_intra_box_dat)
-# targets::tar_load(gl_box_dat)
+#  targets::tar_load(gl_box_dat)
 # targets::tar_load(fit_20_draws_PA_Ap_LLs_opt)
-# targets::tar_load(fit_7_draws_GL_Aps_LLs)
+#  targets::tar_load(fit_7_draws_GL_Aps_LLs)
+#  gl_draws <- fit_7_draws_GL_Aps_LLs
 # yml file ==================================================================
 
 #'@ title Write letters for multiple comparisons
