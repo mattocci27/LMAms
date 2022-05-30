@@ -375,6 +375,23 @@ list(
     )
   ),
 
+  tar_target(
+    loo_tbl, {
+      tibble(Model = names(loo_model),
+       LOOIC = sapply(loo_model, "[[", "looic"),
+       elpd = sapply(loo_model, "[[", "elpd_loo"),
+       N = lapply(loo_model, "[[", "pointwise") |> sapply(nrow)) |>
+        mutate(site = str_split_fixed(Model, "mcmc_", 2)[,2]) |>
+        mutate(site = str_split_fixed(site, "_", 2)[,1]) |>
+        arrange(LOOIC) |>
+        write_csv("data/loo.csv")
+      paste("data/loo.csv")
+    },
+    format = "file"
+  ),
+
+
+
   # best model for the full data
   tar_stan_mcmc(
     fit_20,
@@ -408,6 +425,11 @@ list(
     clean_pa_res(pa_res_csv)
   ),
 
+  tar_target(
+    para_tbl,
+    create_para_tbl(fit_7_draws_GL_Aps_LLs, fit_20_draws_PA_Ap_LLs_opt),
+    format = "file"
+  ),
 
   tar_target(
     r_vals_yml,

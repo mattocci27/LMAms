@@ -234,3 +234,58 @@ clean_pa_res <- function(pa_res_csv) {
     mutate(gr = factor(site_strata2,
       labels = c("Sun\nDry", "Shade\nDry", "Sun\nWet", "Shade\nWet")))
 }
+
+#' @title Table of the main text
+create_para_tbl <- function(gl_draws, pa_draws) {
+  # targets::tar_load(fit_7_draws_GL_Aps_LLs)
+ #draws <- fit_7_draws_GL_Aps_LLs
+  gl_draws2 <- gl_draws |>
+    dplyr::select(c("ap", "as", "bs", "gp", "gs"))
+  gl_tab <- bind_cols(
+    mean_ = apply(gl_draws2, 2, mean),
+    low = apply(gl_draws2, 2, \(x)quantile(x, 0.025)),
+    up = apply(gl_draws2, 2, \(x)quantile(x, 0.975))) |>
+    round(3) |>
+    mutate(sig = ifelse(low * up > 0, "sig", "ns")) |>
+    mutate(est = paste0(mean_, " [", low, ", ", up, "]")) |>
+    mutate(para = c("Effect of LMAp on *A*~area~ ($\\alpha_p$)",
+                    "Effect of LMAs on *A*~area~ ($\\alpha_s$)",
+                    "Effect of LMAs on LL ($\\beta_s$)",
+                    "Effect of LMAp on *R*~area~ ($\\gamma_p$)",
+                    "Effect of LMAs on *R*~area~ ($\\gamma_s$)"
+                    )) |>
+    dplyr::select(para, GLOPNET = est, sig1 = sig)
+
+  pa_draws2 <- pa_draws |>
+    dplyr::select(c("ap", "bs", "gp", "gs", "theta"))
+  pa_tab <- bind_cols(
+    mean_ = apply(pa_draws2, 2, mean),
+    low = apply(pa_draws2, 2, \(x)quantile(x, 0.025)),
+    up = apply(pa_draws2, 2, \(x)quantile(x, 0.975))) |>
+    round(3) |>
+    mutate(sig = ifelse(low * up > 0, "sig", "ns")) |>
+    mutate(est = paste0(mean_, " [", low, ", ", up, "]")) |>
+    mutate(para = c("Effect of LMAp on *A*~area~ ($\\alpha_p$)",
+                    "Effect of LMAs on LL ($\\beta_s$)",
+                    "Effect of LMAp on *R*~area~ ($\\gamma_p$)",
+                    "Effect of LMAs on *R*~area~ ($\\gamma_s$)",
+                    "Effect of light on LL ($\\theta$)"
+                    )) |>
+    dplyr::select(para, Panama = est, sig2 = sig)
+
+  glpa_tab <- full_join(gl_tab, pa_tab, by = "para") |>
+    dplyr::rename(Parameters = para) |>
+    mutate(GLOPNET = ifelse(sig1 == "sig",
+                          paste0("**", GLOPNET, "**"),
+                          GLOPNET)) |>
+    mutate(Panama = ifelse(sig2 == "sig",
+                          paste0("**", Panama, "**"),
+                          Panama)) |>
+    dplyr::select(Parameters, GLOPNET, Panama)
+
+  glpa_tab[is.na(glpa_tab)] <- "-"
+  glpa_tab |> write_csv("./data/para_tbl.csv")
+  paste("./data/para_tbl.csv")
+}
+
+
