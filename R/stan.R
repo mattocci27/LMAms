@@ -204,3 +204,33 @@ generate_pa_dat <- function(pa_full_csv, draws) {
 
   paste("data/PA_res.csv")
 }
+
+#' @title Generates csv file of GLOPNET for the subsequent analysis
+clean_gl_res <- function(gl_res_csv) {
+  gl <- read_csv(gl_res_csv)
+  gl |>
+    mutate(frac = LMAp / LMA) |>
+    mutate(DE = ifelse(is.na(DE), "U", DE)) |>
+    mutate(gr = factor(DE,
+                       labels = c("Deciduous",
+                                  "Evergreen",
+                                  "Unclassified"
+                                  )))
+}
+
+#' @title Generates csv file of paOPNET for the subsequent analysis
+clean_pa_res <- function(pa_res_csv) {
+  pa <- read_csv(pa_res_csv)
+  pa |>
+    mutate(frac = LMAp / LMA) |>
+    mutate(site_strata = factor(site_strata,
+            levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) %>%
+    mutate(site_strata2 = factor(site_strata,
+      labels = c("Sun-Wet",
+                 "Sun-Dry",
+                 "Shade-Wet",
+                 "Shade-Dry"
+                        ))) |>
+    mutate(gr = factor(site_strata2,
+      labels = c("Sun\nDry", "Shade\nDry", "Sun\nWet", "Shade\nWet")))
+}

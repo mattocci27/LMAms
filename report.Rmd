@@ -206,3 +206,10 @@ pa <- read_csv(pa_csv)
 
 targets::tar_load(pa_stan_dat)
 ```
+
+
+# Pipelines
+
+```{r}
+targets::tar_visnetwork()
+```
