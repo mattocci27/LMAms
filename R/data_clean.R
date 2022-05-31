@@ -1,6 +1,5 @@
 prepare_gl <- function(data) {
   d <- read.csv(data, skip = 10)
-
   data <- tibble(
     sp = d[, "Species"] %>% unlist(),
     DE = d[, "Decid.E.green"],
@@ -16,7 +15,8 @@ prepare_gl <- function(data) {
     filter(!is.na(LL)) |>
     filter(!is.na(LMA)) |>
     filter(!is.na(Aarea)) |>
-    filter(!is.na(Rarea))
+    filter(!is.na(Rarea)) |>
+    mutate(DE = ifelse(DE == "", "U", DE))
 
   ## each sample corresponds to each species
   data_clean <- data |>

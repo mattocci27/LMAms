@@ -6,17 +6,10 @@ generate_gl_stan <- function(data) {
   list_data <- list(
     N = nrow(data),
     obs = cbind(
-      # log(data[, "Aarea"] + data[, "Rarea"]),
-      # log(data[, "LL"]),
-      # log(data[, "Rarea"])
       log(data$Aarea + data$Rarea),
       log(data$LL),
       log(data$Rarea)
     ),
-    # LMA = data[, "LMA"],
-    # A = data[, "Aarea"],
-    # LL = data[, "LL"],
-    # R = data[, "Rarea"],
     LMA = data$LMA,
     A = data$Aarea,
     LL = data$LL,
@@ -62,18 +55,10 @@ generate_pa_stan <- function(data, full = FALSE) {
   list_data <- list(
     N = nrow(data),
     obs = cbind(
-      # log(data[, "Aarea"] + data[, "Rarea"]),
-      # log(data[, "LL"]),
-      # log(data[, "Rarea"])
       log(data$Aarea + data$Rarea),
       log(data$LL),
       log(data$Rarea)
     ),
-    # LMA = data[, "LMA"],
-    # LT = data[, "LT"],
-    # A = data[, "Aarea"],
-    # LL = data[, "LL"],
-    # R = data[, "Rarea"],
     LMA = data$LMA,
     LT = data$LT,
     A = data$Aarea,
@@ -83,7 +68,6 @@ generate_pa_stan <- function(data, full = FALSE) {
     gr = data$gr,
     J = data$gr %>% unique() %>% length(),
     q_lim = q_lim,
-    # leaf = as.numeric(as.factor(cata$strata)),
     leaf = ifelse(data$strata == "CAN", 1, 0),
     dry = ifelse(data$site == "PNM", 1, 0)
   )
@@ -94,29 +78,11 @@ generate_pa_stan <- function(data, full = FALSE) {
   list_data
 }
 
-#' @title
-simulate_data <- function(index_sim, data) {
-  tmp <- data |>
-    mutate(LMA = sample(data$LMA)) |>
-    mutate(LL = sample(data$LL)) |>
-    mutate(Aarea = sample(data$Aarea)) |>
-    mutate(Rarea = sample(data$Rarea))
-  while (min(tmp$Aarea - tmp$Rarea) < 0) {
-    tmp <- data |>
-      mutate(LMA = sample(data$LMA)) |>
-      mutate(LL = sample(data$LL)) |>
-      mutate(Aarea = sample(data$Aarea)) |>
-      mutate(Rarea = sample(data$Rarea))
-  }
-  sim <- basename(tempfile(pattern = "sim"))
-  tmp |>
-    mutate(sim)
-}
-
 #' @title Fit the Stan model to randomized data.
 #' @return list of cmdstan summary, draws, and diagnostics
 #' @param data Data frame, a single simulated dataset.
 #' @param model_file Path to the Stan model source file.
+#' @ref https://github.com/wlandau/targets-stan
 fit_rand_model <- function(stan_data, model_file, iter_warmup = 2000, iter_sampling = 2000) {
   model <- cmdstan_model(model_file)
   fit <- model$sample(
@@ -139,6 +105,7 @@ fit_rand_model <- function(stan_data, model_file, iter_warmup = 2000, iter_sampl
 #'   `readRDS()` and feed it to the `object` argument of `sampling()`.
 #' @param model_file Path to a Stan model file.
 #'   This is a text file with the model spceification.
+#' @ref https://github.com/wlandau/targets-stan
 #' @examples
 #' library(cmdstanr)
 #' compile_model("stan/model.stan")
@@ -151,6 +118,7 @@ compile_model <- function(model_file) {
 #' @description Used in the pipeline.
 #' @return The result of running the code.
 #' @param code Code to run quietly.
+#' @ref https://github.com/wlandau/targets-stan
 #' @examples
 #' library(cmdstanr)
 #' library(tidyverse)
@@ -163,7 +131,8 @@ quiet <- function(code) {
   suppressMessages(code)
 }
 
-#' @title
+#' @title Generate randomized dataset
+#' @return list of randomized dataset
 rand_fun <- function(n, data, list_data){
  # targets::tar_load(gl_rand_list)
   # gl_rand_df$sim
@@ -196,18 +165,6 @@ rand_fun <- function(n, data, list_data){
             dry = list_data$dry,
             DE = list_data$DE,
             LMA = temp$LMA)
-}
-
-#' @title Run mcmc for random data
-rand_fit <- function(data){
-  res <- stan(file = file,
-          data = data,
-          iter = n_iter,
-          warmup = n_warm,
-          thin = n_thin,
-          chains = n_chains,
-          control = list(adapt_delta = 0.99, max_treedepth = 15))
-  res
 }
 
 
