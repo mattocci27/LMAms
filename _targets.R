@@ -3,6 +3,7 @@ library(tarchetypes)
 library(tidyverse)
 library(stantargets)
 library(cmdstanr)
+library(furrr)
 
 source("R/data_clean.R")
 source("R/stan.R")
@@ -13,6 +14,7 @@ source("R/mass_prop.R")
 source("R/yml.R")
 source("R/t_yml.R")
 
+plan(multicore)
 options(clustermq.scheduler = "multicore")
 
 tar_option_set(packages = c(
@@ -111,11 +113,11 @@ list(
 
   tar_target(
     gl_stan_dat,
-    generate_gl_stan(gl_csv),
+    generate_gl_stan(read_csv(gl_csv)),
   ),
   tar_target(
     pa_stan_dat,
-    generate_pa_stan(pa_csv),
+    generate_pa_stan(read_csv(pa_csv)),
   ),
   tar_stan_mcmc(
     fit_1,
@@ -390,13 +392,69 @@ list(
     format = "file"
   ),
 
+  # random ------------------------
+  # tar_target(
+  #   index_sim,
+  #   seq_len(10) # Change the number of simulation batches here.
+  # ),
+  # tar_target(
+  #   gl_rand_df,
+  #   map_dfr(index_sim, simulate_data, read_csv(gl_csv)),
+  #   pattern = map(index_sim)
+  # ),
+  # tar_target(
+  #   GL_Aps_LLs,
+  #   compile_model("model/GL_Aps_LLs.stan"),
+  #   format = "file"
+  # ),
+  # tar_target(
+  #   fit_test,
+  #   map_sims(gl_rand_df, model_file = GL_Aps_LLs),
+  #   pattern = map(gl_rand_df)
+  # ),
 
+  tar_target(
+    gl_rand_list, {
+    data <- read_csv(gl_csv)
+    rand_data <- tibble(null_model = 1:10)
+    rand_data |>
+    mutate(data = future_map(1:10, rand_fun, data, gl_stan_dat))
+    }
+  ),
+  tar_target(
+    pa_rand_list, {
+    data <- read_csv(pa_csv)
+    rand_data <- tibble(null_model = 1:10)
+    rand_data |>
+    mutate(data = future_map(1:10, rand_fun, data, pa_stan_dat))
+    }
+  ),
+
+  tar_target(
+    GL_Aps_LLs,
+    compile_model("model/GL_Aps_LLs.stan"),
+    format = "file"
+  ),
+  tar_target(
+    gl_rand_fit,
+    future_map(gl_rand_list$data, fit_rand_model, GL_Aps_LLs, 2000, 2000)
+  ),
+  tar_target(
+    PA_Ap_LLs_opt,
+    compile_model("model/PA_Ap_LLs_opt.stan"),
+    format = "file"
+  ),
+  tar_target(
+    pa_rand_fit,
+    #fit_rand_model(pa_rand_list$data[[1]], PA_Ap_LLs_opt, 1, 1)
+    future_map(pa_rand_list$data, fit_rand_model, PA_Ap_LLs_opt, 2000, 2000)
+  ),
 
   # best model for the full data
   tar_stan_mcmc(
     fit_20,
     "stan/PA_Ap_LLs_opt.stan",
-    data = generate_pa_stan(pa_full_csv, full = TRUE),
+    data = generate_pa_stan(read_csv(pa_full_csv), full = TRUE),
     refresh = 0,
     chains = 4,
     parallel_chains = getOption("mc.cores", 4),
