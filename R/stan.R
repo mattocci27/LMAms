@@ -93,7 +93,7 @@ fit_rand_model <- function(stan_data, model_file, iter_warmup = 2000, iter_sampl
     chains = 4,
     parallel_chains = 4,
     refresh = 0)
-  list(summary = fit$summary(), draws = fit$daws(), diagnostics = fit$sampler_diagnostics())
+  list(summary = fit$summary(), draws = fit$draws(), diagnostics = fit$sampler_diagnostics())
 }
 
 #' @title Compile a Stan model and return a path to the compiled model output.
