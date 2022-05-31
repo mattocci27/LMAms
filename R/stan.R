@@ -1,41 +1,49 @@
 #' @title Generate stan data for GLOPNET
 generate_gl_stan <- function(data) {
-  dat <- read_csv(data) %>%
-    mutate(DE = ifelse(is.na(DE), "U", DE)) %>%
-    as.data.frame()
-
-  list_dat <- list(
-    N = nrow(dat),
+  # targets::tar_load(gl_csv)
+  # dat <- read_csv(gl_csv)
+  #dat <- read.csv(data)
+  list_data <- list(
+    N = nrow(data),
     obs = cbind(
-      log(dat[, "Aarea"] + dat[, "Rarea"]),
-      log(dat[, "LL"]),
-      log(dat[, "Rarea"])
+      # log(data[, "Aarea"] + data[, "Rarea"]),
+      # log(data[, "LL"]),
+      # log(data[, "Rarea"])
+      log(data$Aarea + data$Rarea),
+      log(data$LL),
+      log(data$Rarea)
     ),
-    LMA = dat[, "LMA"],
-    A = dat[, "Aarea"],
-    LL = dat[, "LL"],
-    R = dat[, "Rarea"],
+    # LMA = data[, "LMA"],
+    # A = data[, "Aarea"],
+    # LL = data[, "LL"],
+    # R = data[, "Rarea"],
+    LMA = data$LMA,
+    A = data$Aarea,
+    LL = data$LL,
+    R = data$Rarea,
     q_lim = 1,
     leaf = 1,
     dry = 1,
-    gr = as.numeric(as.factor(dat$DE))
+    DE = as.numeric(as.factor(data$DE)),
+    gr = as.numeric(as.factor(data$DE))
   )
 
-  list_dat$J <- list_dat$gr %>%
+  list_data$J <- list_data$gr %>%
     unique() %>%
     length()
 
-  list_dat$obs2 <- list_dat$obs
-  list_dat$E <- ifelse(dat$DE == "E", 1, 0)
-  list_dat$U <- ifelse(dat$DE == "U", 1, 0)
-  list_dat
+  list_data$obs2 <- list_data$obs
+  list_data$E <- ifelse(data$DE == "E", 1, 0)
+  list_data$U <- ifelse(data$DE == "U", 1, 0)
+  list_data
 }
 
 #' @title Generate stan data for Panama
 #' @par full TRUE removes LT from the list (default = FALSE)
 generate_pa_stan <- function(data, full = FALSE) {
-  # data <- pa_full_csv
-  dat <- read_csv(data) %>%
+#  data <- read_csv(pa_full_csv)
+  data <- data %>%
+  #dat <- read_csv(data) %>%
     filter(!is.na(LMA)) %>%
     filter(!is.na(Aarea)) %>%
     filter(!is.na(Rarea)) %>%
@@ -45,38 +53,163 @@ generate_pa_stan <- function(data, full = FALSE) {
       as.factor() %>%
       as.numeric())
 
-  q_lim <- dat %>%
+  q_lim <- data %>%
     filter(strata == "UNDER") %>%
     mutate(q = Rarea / Aarea) %>%
     summarize(max(q)) %>%
     as.numeric()
 
-  list_dat <- list(
-    N = nrow(dat),
+  list_data <- list(
+    N = nrow(data),
     obs = cbind(
-      log(dat[, "Aarea"] + dat[, "Rarea"]),
-      log(dat[, "LL"]),
-      log(dat[, "Rarea"])
+      # log(data[, "Aarea"] + data[, "Rarea"]),
+      # log(data[, "LL"]),
+      # log(data[, "Rarea"])
+      log(data$Aarea + data$Rarea),
+      log(data$LL),
+      log(data$Rarea)
     ),
-    LMA = dat[, "LMA"],
-    LT = dat[, "LT"],
-    A = dat[, "Aarea"],
-    LL = dat[, "LL"],
-    R = dat[, "Rarea"],
+    # LMA = data[, "LMA"],
+    # LT = data[, "LT"],
+    # A = data[, "Aarea"],
+    # LL = data[, "LL"],
+    # R = data[, "Rarea"],
+    LMA = data$LMA,
+    LT = data$LT,
+    A = data$Aarea,
+    LL = data$LL,
+    R = data$Rarea,
     DE = 1,
-    gr = dat$gr,
-    J = dat$gr %>% unique() %>% length(),
+    gr = data$gr,
+    J = data$gr %>% unique() %>% length(),
     q_lim = q_lim,
-    # leaf = as.numeric(as.factor(dat$strata)),
-    leaf = ifelse(dat$strata == "CAN", 1, 0),
-    dry = ifelse(dat$site == "PNM", 1, 0)
+    # leaf = as.numeric(as.factor(cata$strata)),
+    leaf = ifelse(data$strata == "CAN", 1, 0),
+    dry = ifelse(data$site == "PNM", 1, 0)
   )
   if (full) {
     # drop LT from the full data
-    list_dat <- list_dat[names(list_dat) != "LT"]
+    list_data <- list_data[names(list_data) != "LT"]
   }
-  list_dat
+  list_data
 }
+
+#' @title
+simulate_data <- function(index_sim, data) {
+  tmp <- data |>
+    mutate(LMA = sample(data$LMA)) |>
+    mutate(LL = sample(data$LL)) |>
+    mutate(Aarea = sample(data$Aarea)) |>
+    mutate(Rarea = sample(data$Rarea))
+  while (min(tmp$Aarea - tmp$Rarea) < 0) {
+    tmp <- data |>
+      mutate(LMA = sample(data$LMA)) |>
+      mutate(LL = sample(data$LL)) |>
+      mutate(Aarea = sample(data$Aarea)) |>
+      mutate(Rarea = sample(data$Rarea))
+  }
+  sim <- basename(tempfile(pattern = "sim"))
+  tmp |>
+    mutate(sim)
+}
+
+#' @title Fit the Stan model to randomized data.
+#' @return list of cmdstan summary, draws, and diagnostics
+#' @param data Data frame, a single simulated dataset.
+#' @param model_file Path to the Stan model source file.
+fit_rand_model <- function(stan_data, model_file, iter_warmup = 2000, iter_sampling = 2000) {
+  model <- cmdstan_model(model_file)
+  fit <- model$sample(
+    data = stan_data,
+    seed = 123,
+    iter_warmup = iter_warmup,
+    iter_sampling = iter_sampling,
+    chains = 4,
+    parallel_chains = 4,
+    refresh = 0)
+  list(summary = fit$summary(), draws = fit$daws(), diagnostics = fit$sampler_diagnostics())
+}
+
+#' @title Compile a Stan model and return a path to the compiled model output.
+#' @description We return the paths to the Stan model specification
+#'   and the compiled model file so `targets` can treat them as
+#'   dynamic files and compile the model if either file changes.
+#' @return Path to the compiled Stan model, which is just an RDS file.
+#'   To run the model, you can read this file into a new R session with
+#'   `readRDS()` and feed it to the `object` argument of `sampling()`.
+#' @param model_file Path to a Stan model file.
+#'   This is a text file with the model spceification.
+#' @examples
+#' library(cmdstanr)
+#' compile_model("stan/model.stan")
+compile_model <- function(model_file) {
+  quiet(cmdstan_model(model_file))
+  model_file
+}
+
+#' @title Suppress output and messages for code.
+#' @description Used in the pipeline.
+#' @return The result of running the code.
+#' @param code Code to run quietly.
+#' @examples
+#' library(cmdstanr)
+#' library(tidyverse)
+#' compile_model("stan/model.stan")
+#' quiet(fit_model("stan/model.stan", simulate_data_discrete()))
+#' out
+quiet <- function(code) {
+  sink(nullfile())
+  on.exit(sink())
+  suppressMessages(code)
+}
+
+#' @title
+rand_fun <- function(n, data, list_data){
+ # targets::tar_load(gl_rand_list)
+  # gl_rand_df$sim
+  set.seed(n * 123)
+  temp <- data.frame(data[,1:3],
+           LMA = sample(data$LMA),
+           #LMA = data$LMA,
+           LL = sample(data$LL),
+           Aarea = sample(data$Aarea),
+           Rarea = sample(data$Rarea)
+           )
+  while (min(temp$Aarea - temp$Rarea) < 0){
+  temp <- data.frame(data[,1:3],
+           LMA = sample(data$LMA),
+           #LMA = data$LMA,
+           LL = sample(data$LL),
+           Aarea = sample(data$Aarea),
+           Rarea = sample(data$Rarea)
+           )
+  }
+
+  temp$A_R <- temp$A - temp$R
+
+  list(N = list_data$N,
+            A = temp$Aarea,
+            LL = temp$LL,
+            R = temp$Rarea,
+            q_lim = list_data$q_lim,
+            leaf = list_data$leaf,
+            dry = list_data$dry,
+            DE = list_data$DE,
+            LMA = temp$LMA)
+}
+
+#' @title Run mcmc for random data
+rand_fit <- function(data){
+  res <- stan(file = file,
+          data = data,
+          iter = n_iter,
+          warmup = n_warm,
+          thin = n_thin,
+          chains = n_chains,
+          control = list(adapt_delta = 0.99, max_treedepth = 15))
+  res
+}
+
 
 #' @title Generate a txt file for _targets.R
 generate_tar_stan <- function(model, model_lma) {
