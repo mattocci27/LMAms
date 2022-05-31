@@ -393,26 +393,6 @@ list(
   ),
 
   # random ------------------------
-  # tar_target(
-  #   index_sim,
-  #   seq_len(10) # Change the number of simulation batches here.
-  # ),
-  # tar_target(
-  #   gl_rand_df,
-  #   map_dfr(index_sim, simulate_data, read_csv(gl_csv)),
-  #   pattern = map(index_sim)
-  # ),
-  # tar_target(
-  #   GL_Aps_LLs,
-  #   compile_model("model/GL_Aps_LLs.stan"),
-  #   format = "file"
-  # ),
-  # tar_target(
-  #   fit_test,
-  #   map_sims(gl_rand_df, model_file = GL_Aps_LLs),
-  #   pattern = map(gl_rand_df)
-  # ),
-
   tar_target(
     gl_rand_list, {
     data <- read_csv(gl_csv)
@@ -429,7 +409,6 @@ list(
     mutate(data = future_map(1:10, rand_fun, data, pa_stan_dat))
     }
   ),
-
   tar_target(
     GL_Aps_LLs,
     compile_model("model/GL_Aps_LLs.stan"),
@@ -437,7 +416,8 @@ list(
   ),
   tar_target(
     gl_rand_fit,
-    future_map(gl_rand_list$data, fit_rand_model, GL_Aps_LLs, 2000, 2000)
+    future_map(gl_rand_list$data, fit_rand_model, GL_Aps_LLs, 2000, 2000,
+    .options = furrr_options(seed = 123))
   ),
   tar_target(
     PA_Ap_LLs_opt,
@@ -447,7 +427,8 @@ list(
   tar_target(
     pa_rand_fit,
     #fit_rand_model(pa_rand_list$data[[1]], PA_Ap_LLs_opt, 1, 1)
-    future_map(pa_rand_list$data, fit_rand_model, PA_Ap_LLs_opt, 2000, 2000)
+    future_map(pa_rand_list$data, fit_rand_model, PA_Ap_LLs_opt, 2000, 2000,
+    .options = furrr_options(seed = 123))
   ),
 
   # best model for the full data
