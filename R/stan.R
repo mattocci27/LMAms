@@ -1,8 +1,5 @@
 #' @title Generate stan data for GLOPNET
 generate_gl_stan <- function(data) {
-  # targets::tar_load(gl_csv)
-  # dat <- read_csv(gl_csv)
-  #dat <- read.csv(data)
   list_data <- list(
     N = nrow(data),
     obs = cbind(
@@ -34,9 +31,7 @@ generate_gl_stan <- function(data) {
 #' @title Generate stan data for Panama
 #' @par full TRUE removes LT from the list (default = FALSE)
 generate_pa_stan <- function(data, full = FALSE) {
-#  data <- read_csv(pa_full_csv)
   data <- data %>%
-  #dat <- read_csv(data) %>%
     filter(!is.na(LMA)) %>%
     filter(!is.na(Aarea)) %>%
     filter(!is.na(Rarea)) %>%
@@ -134,9 +129,6 @@ quiet <- function(code) {
 #' @title Generate randomized dataset
 #' @return list of randomized dataset
 rand_fun <- function(n, data, list_data){
- # targets::tar_load(gl_rand_list)
-  # gl_rand_df$sim
-  set.seed(n * 123)
   temp <- data.frame(data[,1:3],
            LMA = sample(data$LMA),
            #LMA = data$LMA,

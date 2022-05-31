@@ -398,7 +398,8 @@ list(
     data <- read_csv(gl_csv)
     rand_data <- tibble(null_model = 1:10)
     rand_data |>
-    mutate(data = future_map(1:10, rand_fun, data, gl_stan_dat))
+    mutate(data = future_map(1:10, rand_fun, data, gl_stan_dat,
+      .options = furrr_options(seed = 123)))
     }
   ),
   tar_target(
@@ -406,7 +407,8 @@ list(
     data <- read_csv(pa_csv)
     rand_data <- tibble(null_model = 1:10)
     rand_data |>
-    mutate(data = future_map(1:10, rand_fun, data, pa_stan_dat))
+    mutate(data = future_map(1:10, rand_fun, data, pa_stan_dat,
+      .options = furrr_options(seed = 123)))
     }
   ),
   tar_target(
