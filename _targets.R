@@ -397,6 +397,11 @@ list(
     write_para_yml(fit_7_summary_GL_Aps_LLs),
     format = "file"
   ),
+  tar_target(
+    var_yml,
+    write_var_yml(fit_7_draws_GL_Aps_LLs, gl_res_dat, fit_20_draws_PA_Ap_LLs_opt, pa_res_dat),
+    format = "file"
+  ),
 
   # random ------------------------
   tar_target(
@@ -437,6 +442,17 @@ list(
     #fit_rand_model(pa_rand_list$data[[1]], PA_Ap_LLs_opt, 1, 1)
     future_map(pa_rand_list$data, fit_rand_model, PA_Ap_LLs_opt, 2000, 2000,
     .options = furrr_options(seed = 123))
+  ),
+
+  tar_target(
+    gl_rand_check,
+    tibble(rhat = sapply(gl_rand_fit, \(x) x$summary |> filter(rhat > 1.1) |> nrow()),
+      div = sapply(gl_rand_fit, \(x) x$diagnostics[,,2] |> apply(1, sum) |> sum()))
+  ),
+  tar_target(
+    pa_rand_check,
+    tibble(rhat = sapply(pa_rand_fit, \(x) x$summary |> filter(rhat > 1.1) |> nrow()),
+      div = sapply(pa_rand_fit, \(x) x$diagnostics[,,2] |> apply(1, sum) |> sum()))
   ),
 
   # best model for the full data

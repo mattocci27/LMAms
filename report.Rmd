@@ -207,6 +207,19 @@ pa <- read_csv(pa_csv)
 targets::tar_load(pa_stan_dat)
 ```
 
+# Diagnostics for randomized data
+
+There are too many divergent transitions.
+
+```{r}
+targets::tar_read(gl_rand_check)
+targets::tar_load(gl_rand_check)
+summary(gl_rand_check)
+
+targets::tar_read(pa_rand_check)
+targets::tar_load(pa_rand_check)
+summary(pa_rand_check)
+```
 
 # Pipelines
 
