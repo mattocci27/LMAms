@@ -390,3 +390,35 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
   close(out)
   paste("yml/r_val.yml")
 }
+
+#' @title Generates yml file for GL estimates
+#' @para fit_summary cmdstan summary (e.g., fit_7_summary_GL_Aps_LLs)
+write_para_yml <- function(fit_summary) {
+  # targets::tar_load(fit_7_summary_GL_Aps_LLs)
+  # fit_summary <- fit_7_summary_GL_Aps_LLs
+  a0 <- fit_summary |> filter(variable == "a0") |> pull(mean) |> round(2)
+  ap <- fit_summary |> filter(variable == "ap") |> pull(mean) |> round(2)
+  as <- fit_summary |> filter(variable == "as") |> pull(mean) |> round(2)
+  sig1 <- fit_summary |> filter(variable == "L_sigma[1]") |> pull(mean) |> round(2)
+
+  output <- "yml/para.yml"
+  out <- file(paste(output), "w") # write
+  writeLines(paste0("GL:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("  a0: ", a0),
+             out,
+             sep = "\n")
+  writeLines(paste0("  ap: ", ap),
+             out,
+             sep = "\n")
+  writeLines(paste0("  as: ", as),
+             out,
+             sep = "\n")
+  writeLines(paste0("  sig1: ", sig1),
+             out,
+             sep = "\n")
+  close(out)
+  paste(output)
+  paste("yml/para.yml")
+}

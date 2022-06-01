@@ -392,6 +392,12 @@ list(
     format = "file"
   ),
 
+  tar_target(
+    para_yml,
+    write_para_yml(fit_7_summary_GL_Aps_LLs),
+    format = "file"
+  ),
+
   # random ------------------------
   tar_target(
     gl_rand_list, {
@@ -476,6 +482,21 @@ list(
     r_vals_yml,
     write_r2(gl_res_csv, fit_7_draws_GL_Aps_LLs,
       pa_res_csv, fit_20_draws_PA_Ap_LLs_opt),
+    format = "file"
+  ),
+  tar_target(
+    hypo_plot, {
+      p <- hypo_point(para_yml)
+      ggsave(
+        "figs/hypo.png",
+       p,
+       dpi = 300,
+       height = 5,
+       width = 16,
+       units = "cm"
+      )
+        paste0("figs/hypo", c(".png"))
+    },
     format = "file"
   ),
 
