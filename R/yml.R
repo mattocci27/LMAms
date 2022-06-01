@@ -422,3 +422,67 @@ write_para_yml <- function(fit_summary) {
   paste(output)
   paste("yml/para.yml")
 }
+
+
+
+#' @para draws cmdstan draws
+#' @para data mcmc tibble (e.g., gl_res_dat )
+pmat_fun <- function(draws, data) {
+  id_dat <- data |>
+    pull(id) |>
+    str_split_fixed("_", 2)
+  id <- id_dat[,2] |> as.numeric()
+  pmat0 <- draws |>
+    janitor::clean_names() |>
+    dplyr::select(contains("p_")) |>
+    as.matrix()
+  pmat <- pmat0[, id]
+  pmat
+}
+
+#' @title wrapper funciton for write_var_yml
+#' @para pmat output of pmat_fun
+loop_fun <- function(i, pmat, LMA) {
+  LMAp <- pmat[i, ] * LMA
+  LMAs <- (1 - pmat[i, ]) * LMA
+  LMAp_var <- cov(LMAp, LMA)
+  LMAs_var <- cov(LMAs, LMA)
+  LMAs_var / var(LMA) * 100
+}
+
+#' @title write var yml
+#' @para gl_draws MCMC output (e.g., fit_7_draws_GL_Aps_LLs)
+#' @para gl_res_dat mcmc tibble
+#' @para pa_draws MCMC output (e.g., fit_20_draws_PA_Ap_LLs_opt)
+#' @para gl_pa_da mcmc tibble
+write_var_yml <- function(gl_draws, gl_res_dat, pa_draws, pa_res_dat) {
+  sun <- pa_res_dat |>
+    filter(strata == "CAN")
+  shade <-  pa_res_dat |>
+    filter(strata != "CAN")
+
+  output <- "yml/var.yml"
+  out <- file(paste(output), "w") # write
+  writeLines(paste0("GL: ",
+    sapply(1:8000, loop_fun, pmat_fun(gl_draws, gl_res_dat), gl_res_dat$LMA) |>
+     mean() |> round(1)),
+             out,
+             sep = "\n")
+  writeLines(paste0("sun: ",
+    sapply(1:8000, loop_fun, pmat_fun(pa_draws, sun), sun$LMA) |>
+      mean() |> round(1)),
+             out,
+             sep = "\n")
+  writeLines(paste0("shade: ",
+    sapply(1:8000, loop_fun, pmat_fun(pa_draws, shade), shade$LMA) |>
+      mean() |> round(1)),
+             out,
+             sep = "\n")
+  writeLines(paste0("PA: ",
+    sapply(1:8000, loop_fun, pmat_fun(pa_draws, pa_res_dat), pa_res_dat$LMA) |>
+      mean() |> round(1)),
+             out,
+             sep = "\n")
+  close(out)
+  paste(output)
+}

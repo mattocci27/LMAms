@@ -78,13 +78,19 @@ generate_pa_stan <- function(data, full = FALSE) {
 #' @param data Data frame, a single simulated dataset.
 #' @param model_file Path to the Stan model source file.
 #' @ref https://github.com/wlandau/targets-stan
-fit_rand_model <- function(stan_data, model_file, iter_warmup = 2000, iter_sampling = 2000) {
+fit_rand_model <- function(stan_data, model_file,
+                            iter_warmup = 2000,
+                            iter_sampling = 2000,
+                            adapt_delta = 0.99,
+                            max_treedepth = 15) {
   model <- cmdstan_model(model_file)
   fit <- model$sample(
     data = stan_data,
     seed = 123,
     iter_warmup = iter_warmup,
     iter_sampling = iter_sampling,
+    adapt_delta = adapt_delta,
+    max_treedepth = max_treedepth,
     chains = 4,
     parallel_chains = 4,
     refresh = 0)
