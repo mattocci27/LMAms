@@ -134,35 +134,42 @@ quiet <- function(code) {
 
 #' @title Generate randomized dataset
 #' @return list of randomized dataset
+#' @description We make sure that randomized data has
+#' zero covariane among tratis
+
 rand_fun <- function(n, data, list_data){
-  temp <- data.frame(data[,1:3],
-           LMA = sample(data$LMA),
-           #LMA = data$LMA,
-           LL = sample(data$LL),
-           Aarea = sample(data$Aarea),
-           Rarea = sample(data$Rarea)
-           )
-  while (min(temp$Aarea - temp$Rarea) < 0){
-  temp <- data.frame(data[,1:3],
-           LMA = sample(data$LMA),
-           #LMA = data$LMA,
-           LL = sample(data$LL),
-           Aarea = sample(data$Aarea),
-           Rarea = sample(data$Rarea)
-           )
+  a_pval <- cor.test(log(data$LMA), log(data$Aarea))$p.val
+  l_pval <- cor.test(log(data$LMA), log(data$LL))$p.val
+  r_pval <- cor.test(log(data$LMA), log(data$Rarea))$p.val
+  ar_min <- min(data$Aarea - data$Rarea)
+
+  while (ar_min < 0 | a_pval < 0.05 | l_pval < 0.05 | r_pval < 0.05) {
+    tmp <- data.frame(data[,1:3],
+             LMA = sample(data$LMA),
+             LL = sample(data$LL),
+             Aarea = sample(data$Aarea),
+             Rarea = sample(data$Rarea)
+             )
+    ar_min <- min(tmp$Aarea - tmp$Rarea)
+    a_pval <- cor.test(log(tmp$LMA), log(tmp$Aarea))$p.val
+    l_pval <- cor.test(log(tmp$LMA), log(tmp$LL))$p.val
+    r_pval <- cor.test(log(tmp$LMA), log(tmp$Rarea))$p.val
+    # paste("Aarea", a_pval) |> print()
+    # paste("Rarea", r_pval) |> print()
+    # paste("LL", l_pval) |> print()
   }
 
-  temp$A_R <- temp$A - temp$R
+  tmp$A_R <- tmp$A - tmp$R
 
   list(N = list_data$N,
-            A = temp$Aarea,
-            LL = temp$LL,
-            R = temp$Rarea,
+            A = tmp$Aarea,
+            LL = tmp$LL,
+            R = tmp$Rarea,
             q_lim = list_data$q_lim,
             leaf = list_data$leaf,
             dry = list_data$dry,
             DE = list_data$DE,
-            LMA = temp$LMA)
+            LMA = tmp$LMA)
 }
 
 

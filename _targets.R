@@ -119,6 +119,10 @@ list(
     pa_stan_dat,
     generate_pa_stan(read_csv(pa_csv)),
   ),
+  tar_target(
+    pa_stan_dat_full,
+    generate_pa_stan(read_csv(pa_full_csv), full = TRUE),
+  ),
   tar_stan_mcmc(
     fit_1,
     "stan/GL_LMA.stan",
@@ -415,10 +419,10 @@ list(
   ),
   tar_target(
     pa_rand_list, {
-    data <- read_csv(pa_csv)
+    data <- read_csv(pa_full_csv)
     rand_data <- tibble(null_model = 1:10)
     rand_data |>
-    mutate(data = future_map(1:10, rand_fun, data, pa_stan_dat,
+    mutate(data = future_map(1:10, rand_fun, data, pa_stan_dat_full,
       .options = furrr_options(seed = 123)))
     }
   ),
@@ -459,7 +463,7 @@ list(
   tar_stan_mcmc(
     fit_20,
     "stan/PA_Ap_LLs_opt.stan",
-    data = generate_pa_stan(read_csv(pa_full_csv), full = TRUE),
+    data = pa_stan_dat_full,
     refresh = 0,
     chains = 4,
     parallel_chains = getOption("mc.cores", 4),
