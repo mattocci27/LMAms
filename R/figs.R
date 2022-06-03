@@ -701,3 +701,66 @@ ps_point <- function(gl_res_dat, pa_res_dat, settings_yml, r_vals_yml, ci = FALS
     plot_annotation(tag_levels = "a")
 }
 
+#' @title Paired LMAp fraction for Panama
+pair_frac_line <- function(pa_res_dat) {
+  y_title <- bquote(atop("The fraction of total LMA",
+                             "comprised by LMAp ("*italic(f)*")"))
+  data <- pa_res_dat |>
+    count(sp) |>
+    filter(n >= 2) |>
+    inner_join(pa_res_dat, by = "sp") |>
+    mutate(LMAp_frac = LMAp / LMA) |>
+    mutate(site_strata = factor(site_strata,
+            levels = c("DRY_CAN",
+                       "DRY_UNDER",
+                       "WET_CAN",
+                       "WET_UNDER"))) |>
+    mutate(gr = factor(site_strata,
+      labels = c("Sun\nDry",
+                 "Shade\nDry",
+                 "Sun\nWet",
+                 "Shade\nWet"
+                        ))) |>
+    mutate(data = "(c) Panama: intra")
+
+  data |>
+    dplyr::select(sp, strata, site2, LMAp_frac) |>
+    mutate(strata = ifelse(strata == "CAN", "Sun", "Shade")) |>
+    mutate(strata = factor(strata, levels = c("Sun", "Shade"))) |>
+    mutate(site2 = ifelse(site2 == "DRY", "Dry", "Wet")) |>
+    ggplot(aes(gr = sp)) +
+    geom_line(aes(group = sp, x = strata, y = LMAp_frac)) +
+    geom_point(aes(x = strata, y = LMAp_frac)) +
+    ylab(y_title) +
+    xlab("") +
+    facet_wrap(~ site2) +
+    guides(col = "none") +
+    theme_LES()
+}
+
+
+#' @title Paired LMAp and LMAs for Panama
+pair_lma_line <- function(pa_res_dat) {
+  data <- pa_res_dat |>
+    count(sp) |>
+    filter(n >= 2) |>
+    inner_join(pa_res_dat, by = "sp") |>
+    dplyr::select(sp, strata, site2, LMA, LMAp, LMAs) |>
+    pivot_longer(cols = 4:6, names_to = "LMA", values_to = "val") |>
+    mutate(strata = ifelse(strata == "CAN", "Sun", "Shade")) |>
+    mutate(strata = factor(strata, levels = c("Sun", "Shade"))) |>
+    mutate(site2 = ifelse(site2 == "DRY", "Dry", "Wet")) |>
+    mutate(LMA = ifelse(LMA == "LMAp", "LMAp", LMA))
+
+  ggplot(data, aes(gr = sp)) +
+    geom_line(aes(group = sp, x = strata, y = val)) +
+    geom_point(aes(x = strata, y = val)) +
+    #ylab(my_y_title) +
+    xlab("") +
+    #facet_grid(LMA ~ site2) +
+    facet_grid(site2 ~ LMA) +
+    guides(col = "none") +
+    scale_y_log10() +
+    ylab(expression(atop(LMA~(g~m^{-2})))) +
+    theme_LES()
+}
