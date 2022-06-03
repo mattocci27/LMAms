@@ -62,26 +62,26 @@ targets::tar_load(fit_20_summary_PA_Ap_LLs_opt)
 Note: Model 6 (GL_Ap_LLps) didn't converge very well.
 
 ```{r}
-fit_1_summary_GL_LMA |> filter(rhat > 1.1)
-fit_2_summary_PA_LMA |> filter(rhat > 1.1)
-fit_3_summary_PA_LMA_opt |> filter(rhat > 1.1)
-fit_4_summary_GL_Ap_LLs |> filter(rhat > 1.1)
-fit_5_summary_GL_Aps_LLps |> filter(rhat > 1.1)
-fit_6_summary_GL_Ap_LLps |> filter(rhat > 1.1)
-fit_7_summary_GL_Aps_LLs |> filter(rhat > 1.1)
-fit_8_summary_PA_Ap_LLs |> filter(rhat > 1.1)
-fit_9_summary_PA_Aps_LLps |> filter(rhat > 1.1)
-fit_10_summary_PA_Ap_LLps |> filter(rhat > 1.1)
-fit_11_summary_PA_Aps_LLs |> filter(rhat > 1.1)
-fit_12_summary_PA_Ap_LLs_opt |> filter(rhat > 1.1)
-fit_13_summary_PA_Aps_LLps_opt |> filter(rhat > 1.1)
-fit_14_summary_PA_Ap_LLps_opt |> filter(rhat > 1.1)
-fit_15_summary_PA_Aps_LLs_opt |> filter(rhat > 1.1)
-fit_16_summary_PA_Ap_LDs |> filter(rhat > 1.1)
-fit_17_summary_PA_Ap_LDps |> filter(rhat > 1.1)
-fit_18_summary_PA_Ap_LDs_opt |> filter(rhat > 1.1)
-fit_19_summary_PA_Ap_LDps_opt |> filter(rhat > 1.1)
-fit_20_summary_PA_Ap_LLs_opt |> filter(rhat > 1.1)
+fit_1_summary_GL_LMA |> filter(rhat > 1.05)
+fit_2_summary_PA_LMA |> filter(rhat > 1.05)
+fit_3_summary_PA_LMA_opt |> filter(rhat > 1.05)
+fit_4_summary_GL_Ap_LLs |> filter(rhat > 1.05)
+fit_5_summary_GL_Aps_LLps |> filter(rhat > 1.05)
+fit_6_summary_GL_Ap_LLps |> filter(rhat > 1.05)
+fit_7_summary_GL_Aps_LLs |> filter(rhat > 1.05)
+fit_8_summary_PA_Ap_LLs |> filter(rhat > 1.05)
+fit_9_summary_PA_Aps_LLps |> filter(rhat > 1.05)
+fit_10_summary_PA_Ap_LLps |> filter(rhat > 1.05)
+fit_11_summary_PA_Aps_LLs |> filter(rhat > 1.05)
+fit_12_summary_PA_Ap_LLs_opt |> filter(rhat > 1.05)
+fit_13_summary_PA_Aps_LLps_opt |> filter(rhat > 1.05)
+fit_14_summary_PA_Ap_LLps_opt |> filter(rhat > 1.05)
+fit_15_summary_PA_Aps_LLs_opt |> filter(rhat > 1.05)
+fit_16_summary_PA_Ap_LDs |> filter(rhat > 1.05)
+fit_17_summary_PA_Ap_LDps |> filter(rhat > 1.05)
+fit_18_summary_PA_Ap_LDs_opt |> filter(rhat > 1.05)
+fit_19_summary_PA_Ap_LDps_opt |> filter(rhat > 1.05)
+fit_20_summary_PA_Ap_LLs_opt |> filter(rhat > 1.05)
 ```
 
 
@@ -167,46 +167,6 @@ loo::loo_compare(
 ```
 
 
-
-```{r,eval=FALSE}
-targets::tar_load(fit_4_draws_GL_Aps_LLs)
-draws <- fit_4_draws_GL_Aps_LLs |>
-  janitor::clean_names()
-
-p_dat <- draws |>
-  dplyr::select(contains("p_"))
-p_vec <- apply(p_dat, 2, median)
-
-p_vec_lo <- apply(p_dat, 2, function(x)quantile(x, 0.025))
-p_vec_up <- apply(p_dat, 2, function(x)quantile(x, 0.975))
-
-targets::tar_load(gl_csv)
-GL <- read_csv(gl_csv)
-
-GL <- GL |>
-  mutate(DE = ifelse(GL$DE == "", "U", as.character(DE)))
-
-GL <- GL |>
-  mutate(LMAp = LMA * p_vec) |>
-  mutate(LMAs = LMA - LMAp)  |>
-  mutate(LMAp_lo = LMA * p_vec_lo) |>
-  mutate(LMAp_up = LMA * p_vec_up) |>
-  mutate(LMAs_lo = LMA - LMAp_up) |>
-  mutate(LMAs_up = LMA - LMAp_lo)
-```
-
-
-```{r, eval=FALSE}
-targets::tar_load(gl_csv)
-gl <- read_csv(gl_csv)
-
-targets::tar_load(pa_csv)
-pa <- read_csv(pa_csv)
-
-
-targets::tar_load(pa_stan_dat)
-```
-
 # Diagnostics for randomized data
 
 There are too many divergent transitions.
@@ -219,6 +179,18 @@ summary(gl_rand_check)
 targets::tar_read(pa_rand_check)
 targets::tar_load(pa_rand_check)
 summary(pa_rand_check)
+```
+
+For GLOPNET, sim ID 1, 6, and 9 showed positive $alpha_p$ but those model did not converge based on Rhat.
+
+```{r}
+targets::tar_load(gl_rand_sig)
+
+gl_rand_sig
+
+gl_rand_sig |>
+  filter(sig == "sig") |>
+  filter(!str_detect(para, "0"))
 ```
 
 # Pipelines
