@@ -550,6 +550,36 @@ list(
     format = "file"
   ),
   tar_target(
+    gl_point_np_plot, {
+      p <- gl_point_np(gl_long_dat, settings_yml, r_vals_yml)
+      ggsave(
+        "figs/gl_point_np.png",
+       p,
+       dpi = 300,
+       height = 7.6,
+       width = 11.4,
+       units = "cm"
+      )
+        paste0("figs/gl_point_np", c(".png"))
+    },
+    format = "file"
+  ),
+  tar_target(
+    gl_point_np2_plot, {
+      p <- gl_point_np2(gl_long_dat, settings_yml, r_vals_yml)
+      ggsave(
+        "figs/gl_point_np2.png",
+       p,
+       dpi = 300,
+       height = 11.4,
+       width = 11.4,
+       units = "cm"
+      )
+        paste0("figs/gl_point_np2", c(".png"))
+    },
+    format = "file"
+  ),
+  tar_target(
     pa_point_plot, {
       p <- pa_point(pa_long_dat, settings_yml, r_vals_yml)
       ggsave(
@@ -597,6 +627,21 @@ list(
        units = "cm"
       )
       paste0("figs/pa_point_ll", c(".png"))
+    },
+    format = "file"
+  ),
+  tar_target(
+    ps_point_plot, {
+      p <- ps_point(gl_res_dat, pa_res_dat, settings_yml, r_vals_yml)
+      ggsave(
+        "figs/ps_point.png",
+       p,
+       dpi = 300,
+       height = 7,
+       width = 11.4,
+       units = "cm"
+      )
+        paste0("figs/ps_point", c(".png"))
     },
     format = "file"
   ),

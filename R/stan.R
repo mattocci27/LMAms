@@ -136,7 +136,6 @@ quiet <- function(code) {
 #' @return list of randomized dataset
 #' @description We make sure that randomized data has
 #' zero covariane among tratis
-
 rand_fun <- function(n, data, list_data){
   a_pval <- cor.test(log(data$LMA), log(data$Aarea))$p.val
   l_pval <- cor.test(log(data$LMA), log(data$LL))$p.val
