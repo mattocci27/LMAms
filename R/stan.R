@@ -382,4 +382,19 @@ create_para_tbl <- function(gl_draws, pa_draws) {
   paste("./data/para_tbl.csv")
 }
 
-
+#' @para para parameter name (e.g., "ap")
+#' @para rand_fit e.g., gl_rand_fit
+#' @para n sim ID
+#' @example
+#' list("a0", "ap", "as", "b0", "bs", "g0", "gp", "gs") |>
+#'  map_dfr(rand_summary, gl_rand_fit, 6)
+rand_summary <- function(para, rand_fit, n) {
+  tmp <- rand_fit[[n]]$draws
+  para_dbl <- tmp[, ,para] |> as.numeric()
+  tibble(para = para,
+    mean = mean(para_dbl),
+    lwr = quantile(para_dbl, 0.025),
+    upr = quantile(para_dbl, 0.975),
+    sim_id = n) |>
+    mutate(sig = ifelse(lwr * upr > 0, "sig", "ns"))
+}

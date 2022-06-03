@@ -156,11 +156,12 @@ gl_point_np2_plot|stem|e49f30372a15a7ea|14b26dbe32bbb29a|a6fe930316693c38|498748
 gl_point_p|function|83b95c4687304acc|||||||||||||||
 gl_point_p_plot|stem|463d1efda92a5b35|7f8e9528cf6e43da|23b4b7a204dd4de6|-6544467|figs/gl_point_p.png|t19146.3339130195s|5d39bb9fbd863a20|139755|file|local|vector|||0.349||
 gl_point_plot|stem|5b19d2a3c6d72edd|c4572458605e3398|91fe786c1f4083c2|-563918907|figs/gl_point.png|t19146.3262397861s|2282b9194e436bba|445745|file|local|vector|||0.522||
-gl_rand_check|stem|06edfdc57421dd6e|78eed6203e112479|d71b5fb124d531e8|-1869373137||t19145.1450557623s|253a8b79276e1ed4|185|rds|local|vector|||0.067||
+gl_rand_check|stem|539424b09f2e63aa|e3a46b7c2946f8d7|d71b5fb124d531e8|-1869373137||t19146.4605384197s|4b46e8ae20ede711|198|rds|local|vector|||0.158||
 gl_rand_div|stem|c873053730185a26|d1cb6d48d3382622|90e1914acb94038a|-1632430448||t19144.2498923228s|40b3a10246f0095b|83|rds|local|vector|||0.033||
 gl_rand_fit|stem|0c9e649838ec20e9|efca4b432eca8cc8|039ebdae777fbb46|-763087222||t19145.1449529829s|c482e2dbd5643d3e|884030860|rds|local|vector|||2322.944||
 gl_rand_list|stem|611eb96b4ca03d14|56f1c62c22ed3f07|17eb2d2e95840463|406067277||t19145.1174915896s|5d6207c23b862ad7|17016|rds|local|vector|||0.375||
 gl_rand_rhat|stem|426e83d13dbf8526|c69d363b31672a63|cc8f1911e29923ec|-463951164||t19144.2498928321s|1d635f53cb385f1d|65|rds|local|vector|||0.039||
+gl_rand_sig|stem|443507d1c91a3508|a2aa0283529fb285|a5e5f0e3a8be0639|-1110652888||t19146.4763672176s|9c9d09b389db89b7|2078|rds|local|vector|||0.267||
 gl_res_csv|stem|f037812e8410e3b3|bf4852a63c737eca|aa67fc5afe926339|-351715475|data/GL_res.csv|t19143.7071207608s|72a3fd8e0531b77f|47702|file|local|vector|||1.208||
 gl_res_dat|stem|7cc47c4f49871105|e21b94a8251d9398|d6377f48ea8e5115|-795717196||t19143.7071722431s|6e6e1d05e709d71d|20019|rds|local|vector|||3.251||
 gl_sim_fit|function|4065defa397fde3e|||||||||||||||
@@ -206,7 +207,7 @@ pa_point_ll_plot|stem|33d6649590797c00|f7a4edebb2cc7226|90dcfddf0fd404b0|1663107
 pa_point_npc|function|128ba7904d02ce1f|||||||||||||||
 pa_point_npc_plot|stem|6eecbaf93cc3101c|021d686be0733950|f6302b2d3959c34a|2064526033|figs/pa_point_npc.png|t19146.3894264998s|486b15d5c4407e45|463123|file|local|vector|||0.345||
 pa_point_plot|stem|e59c9b75a2bc796b|96eabbf4585ba1e6|14ada0139fffea97|-1015670699|figs/pa_point.png|t19146.3894224719s|25774a9724623d9f|499475|file|local|vector|||0.402||
-pa_rand_check|stem|cce3db77eabf27e6|cbb39e73068a4d3d|99b97127e5bda197|1540182644||t19145.1482897025s|ab284657d4bd29c6|211|rds|local|vector|||0.062||
+pa_rand_check|stem|6c44bf5cfa880ea0|e2737df64d6b8a4c|99b97127e5bda197|1540182644||t19146.4605737443s|ab284657d4bd29c6|211|rds|local|vector|||0.158||
 pa_rand_div|stem|2169bddd4d03dc77|42b9abd188f8c6a5|9503bf2b321fb70b|572185153||t19144.2499330642s|3e4acf685da8f273|84|rds|local|vector|||0.033||
 pa_rand_fit|stem|80e0126a09cf7ecc|49e22b2184d379f8|fc5cd83a4830514e|-966559687||t19145.1482120161s|66df588cb7fb265e|578619584|rds|local|vector|||2622.773||
 pa_rand_list|stem|ef6d929450e89d15|238eb7db6535a0aa|d799986b971dd83a|-77480186||t19145.1174913581s|5c74f446f63dfe84|14022|rds|local|vector|||0.398||
@@ -238,7 +239,8 @@ quant_fun|function|02e682e962eb4615|||||||||||||||
 quiet|function|7a0df942450ddbd2|||||||||||||||
 r_vals_yml|stem|3020ef8b1538f3a9|0ee20ec53513e4ca|48898c998915f7f3|-439820650|yml/r_val.yml|t19146.388128748s|0041adaab8b129d7|1422|file|local|vector|||7.936||
 rand_fun|function|9e0266d7b589dda2|||||||||||||||
-report|stem|b122d5030f9173e7|b1dac34fd0b6dc01|6dc907d12754d7bd|-237041703|report.html*report.Rmd|t19146.3512952479s|7721048ec9fc7444|1970554|file|local|vector|||5.924||
+rand_summary|function|4c4aaccd62bae143|||||||||||||||
+report|stem|c95b0110cfda9449|75f1b2481da64537|d49381d11025af0e|-237041703|report.html*report.Rmd|t19146.4887658692s|68878ab7687ee57e|1971412|file|local|vector|||5.955||
 scatter_plt|function|0be78b37e870ed78|||||||||||||||
 settings_yml|stem|2e5d64611d1dfd9d|a127041ac8f198f3|ef46db3751d8e999|259856933|yml/settings.yml|t19139.323854925s|0f05aa39aab40022|347|file|local|vector|||0.126||
 shade_mass_prop|stem|6b700ce2e09f8495|ef8b695a1f201f3c|e9811232f1951601|-1354953204||t19146.3881325443s|5910c7405d142d73|851|rds|local|vector|||14.2||
