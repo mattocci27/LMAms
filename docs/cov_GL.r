@@ -88,7 +88,7 @@ sfLibrary(MASS)
 sfExportAll()
 
 
-system.time(GL_sim <- sfLapply(1:100, 
+system.time(GL_sim <- sfLapply(1:100,
                                function(x)var_func(mu1 = log(94),
                                                    mu2 = log(73))))
 
