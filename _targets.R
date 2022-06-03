@@ -646,6 +646,40 @@ list(
     format = "file"
   ),
   tar_target(
+    pair_frac_plot, {
+      p <- pair_frac_line(pa_res_dat)
+      ggsave(
+        "figs/pair_frac.png",
+       p,
+       dpi = 300,
+       height = 7,
+       width = 7,
+       units = "cm"
+      )
+        paste0("figs/pair_frac", c(".png"))
+    },
+    format = "file"
+  ),
+  tar_target(
+    pair_lma_plot, {
+      p <- pair_lma_line(pa_res_dat)
+      ggsave(
+        "figs/pair_lma.png",
+       p,
+       dpi = 300,
+       height = 7,
+       width = 11.4,
+       units = "cm"
+      )
+        paste0("figs/pair_lma", c(".png"))
+    },
+    format = "file"
+  ),
+
+
+
+
+  tar_target(
     ps_point_95_ci_plot, {
       p <- ps_point(gl_res_dat, pa_res_dat, settings_yml, r_vals_yml, ci = TRUE)
       ggsave(

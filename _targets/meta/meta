@@ -216,6 +216,10 @@ pa_res_dat|stem|45124ca504730862|c6dac6249343b62b|8386686d55791881|1788934667||t
 pa_sim_fit|function|2d3a709f4e26a0a2|||||||||||||||
 pa_stan_dat|stem|5759d65e1dd684e2|df0c2d4be9fc8d41|1c2164c6847f575f|1782272369||t19143.6915991309s|c95aca5452b3790e|6205|rds|local|vector|||0.063||
 pa_stan_dat_full|stem|7ecd49c495957baf|b902102b84860119|39dfc53329979e9a|1620723557||t19144.3558530619s|8fa40fcf76ef7e98|7050|rds|local|vector|||0.269||
+pair_frac_line|function|c97e08336768a8e3|||||||||||||||
+pair_frac_plot|stem|68acfa6291816159|3703a304154b5cf5|1f933496874a3d09|-1854216697|figs/pair_frac.png|t19146.427749491s|602d85eb8e91ccf9|48018|file|local|vector|||0.291||
+pair_lma_line|function|cbdba1c51902efea|||||||||||||||
+pair_lma_plot|stem|bf4151e1199d01e7|006eb4a37352d2ac|0bc965db24d75699|1473210639|figs/pair_lma.png|t19146.4281607006s|ff5858abde0e9bb6|52960|file|local|vector|||0.356||
 para_tbl|stem|adef1f835edab2d3|767633e3dff567d8|6c0dde19762e7fa3|1962483027|./data/para_tbl.csv|t19143.7071191404s|8fdac5baae0b04f8|526|file|local|vector|||0.118||
 para_yml|stem|1e23654ba04ce917|f63df6b05757bf72|7c62da8bdf891890|-2145095100|yml/para.yml|t19144.2315541241s|b6d2e014b07bc296|51|file|local|vector|||0.033||
 pmat_fun|function|36a1a83db6ef6d37|||||||||||||||
