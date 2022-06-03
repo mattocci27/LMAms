@@ -450,13 +450,24 @@ list(
 
   tar_target(
     gl_rand_check,
-    tibble(rhat = sapply(gl_rand_fit, \(x) x$summary |> filter(rhat > 1.1) |> nrow()),
+    tibble(rhat = sapply(gl_rand_fit, \(x) x$summary |> filter(rhat > 1.05) |> nrow()),
       div = sapply(gl_rand_fit, \(x) x$diagnostics[,,2] |> apply(1, sum) |> sum()))
   ),
   tar_target(
     pa_rand_check,
-    tibble(rhat = sapply(pa_rand_fit, \(x) x$summary |> filter(rhat > 1.1) |> nrow()),
+    tibble(rhat = sapply(pa_rand_fit, \(x) x$summary |> filter(rhat > 1.05) |> nrow()),
       div = sapply(pa_rand_fit, \(x) x$diagnostics[,,2] |> apply(1, sum) |> sum()))
+  ),
+  tar_target(
+    gl_rand_sig, {
+      tmp <- NULL
+      for (i in 1:9) {
+        tmp <- bind_rows(tmp,
+        list("a0", "ap", "as", "b0", "bs", "g0", "gp", "gs") |>
+        map_dfr(rand_summary, gl_rand_fit, i))
+        }
+      tmp
+    }
   ),
 
   # best model for the full data
