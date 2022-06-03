@@ -646,6 +646,21 @@ list(
     format = "file"
   ),
   tar_target(
+    ps_point_95_ci_plot, {
+      p <- ps_point(gl_res_dat, pa_res_dat, settings_yml, r_vals_yml, ci = TRUE)
+      ggsave(
+        "figs/ps_point_95ci.png",
+       p,
+       dpi = 300,
+       height = 7,
+       width = 11.4,
+       units = "cm"
+      )
+        paste0("figs/ps_point_95ci", c(".png"))
+    },
+    format = "file"
+  ),
+  tar_target(
     vpart_plot, {
       p <- vpart_bar(gl_res_csv, pa_res_csv)
       ggsave(
