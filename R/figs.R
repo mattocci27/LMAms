@@ -99,9 +99,10 @@ lim_func <- \(data, LMA = TRUE) {
   }
   tmp |>
     ungroup() |>
-    mutate(mid_val = (max_val - min_val) / 2) %>%
-    mutate(min_val = 10^(min_val - mid_val * 0.1)) |>
-    mutate(max_val = 10^(max_val + mid_val * 0.1))
+    mutate(mid_val = (max_val - min_val) / 2) |>
+    mutate(min_val = 10^(min_val - abs(mid_val) * 0.15)) |>
+   # mutate(max_val = 10^(max_val)
+    mutate(max_val = 10^(max_val + abs(mid_val) * 0.15))
 }
 
 #' @title Base scatter plots for GL and Panama
@@ -143,7 +144,7 @@ scatter_plt <- function(data, lab1, settings_yml, GL = TRUE) {
             size = 8 * 5/14,
             show.legend = FALSE,
             color = "black") +
-  geom_text(data = lab1, aes(label = r_vals, x = val_max),
+  geom_text(data = lab1, aes(label = r_vals, x = val_max, y = val2),
             hjust = 1,
             vjust= 0.25,
             size = 8 * 5/14,
@@ -222,10 +223,6 @@ gen_pa_long <- function(pa_res_csv) {
 
 #' @title Scatter plots for GL
 gl_point <- function(gl_long_dat, settings_yml, r_vals_yml) {
-    # targets::tar_load(gl_long_dat)
-    # targets::tar_load(settings_yml)
-    # targets::tar_load(r_vals_yml)
-  # settings <- yaml::yaml.load_file(settings_yml)
   r_vals <- yaml::yaml.load_file(r_vals_yml)
   dat <- gl_long_dat |>
     filter(trait %in% c("LL", "Aarea", "Rarea"))
@@ -239,7 +236,7 @@ gl_point <- function(gl_long_dat, settings_yml, r_vals_yml) {
                      val = lim_gl$min_val %>% rep(3),
                      val_max = lim_gl$max_val %>% rep(3),
                      gr = "Evergreen",
-                     r_vals = r_vals$r_vals$gl %>% unlist,
+                     r_vals = r_vals$r_vals$GL %>% unlist,
                      trait2 = rep(lim_gl2$trait2, each = 3),
                      LMA = rep(lim_gl$LMA, 3)
                      ) |>
@@ -248,12 +245,106 @@ gl_point <- function(gl_long_dat, settings_yml, r_vals_yml) {
   scatter_plt(dat, lab1, settings_yml)
 }
 
+#' @title Scatter plots for GL (NP)
+# targets::tar_load(gl_long_dat)
+# targets::tar_load(settings_yml)
+# targets::tar_load(r_vals_yml)
+gl_point_np <- function(gl_long_dat, settings_yml, r_vals_yml) {
+  r_vals <- yaml::yaml.load_file(r_vals_yml)
+  dat <- gl_long_dat |>
+    filter(trait %in% c("Narea", "Parea")) |>
+    filter(!is.na(val2))
+
+  # dat |>
+  #   ggplot(aes(x = val, y = val2))  +
+  #   geom_point() +
+  #   facet_wrap(trait2 ~ LMA, scale = "free") +
+  #   scale_x_log10() +
+  #   scale_y_log10()
+
+  lim_gl <- lim_func(dat)
+  lim_gl2 <- lim_func(dat, LMA = FALSE)
+  r_vals <- r_vals$r_vals$GL_NP %>% unlist
+
+  lab1 <- tibble(lab = paste("(", letters[1:6], ")", sep = ""),
+                     val2 = lim_gl2$max_val %>% rep(each = 3),
+                    # val2 = Inf,
+                     val = lim_gl$min_val %>% rep(2),
+                     val_max = lim_gl$max_val %>% rep(2),
+                     gr = "Evergreen",
+                     r_vals = r_vals,
+                     #kr_vals = r_vals[4:6],
+                     trait2 = rep(lim_gl2$trait2, each = 3),
+                     LMA = rep(lim_gl$LMA, 2)
+                     ) |>
+    mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
+
+  scatter_plt(dat, lab1, settings_yml) +
+    scale_x_log10()
+   # scale_x_log10(breaks = my_breaks_x(), expand = c(0.1, 0))
+}
+
+#' @title Scatter plots for GL (P)
+gl_point_p <- function(gl_long_dat, settings_yml, r_vals_yml) {
+  r_vals <- yaml::yaml.load_file(r_vals_yml)
+  dat <- gl_long_dat |>
+    filter(trait %in% c("Parea")) |>
+    filter(!is.na(val2))
+
+  lim_gl <- lim_func(dat)
+  lim_gl2 <- lim_func(dat, LMA = FALSE)
+  r_vals <- r_vals$r_vals$GL_NP %>% unlist
+
+  lab1 <- tibble(lab = paste("(", letters[4:6], ")", sep = ""),
+                     val2 = lim_gl2$max_val %>% rep(each = 3),
+                    # val2 = Inf,
+                     val = lim_gl$min_val %>% rep(1),
+                     val_max = lim_gl$max_val %>% rep(1),
+                     gr = "Evergreen",
+                     r_vals = r_vals[4:6],
+                     trait2 = rep(lim_gl2$trait2, each = 3),
+                     LMA = rep(lim_gl$LMA, 1)
+                     ) |>
+    mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
+
+  scatter_plt(dat, lab1, settings_yml)
+}
+
+#' @title Scatter plots for GL (N)
+gl_point_n <- function(gl_long_dat, settings_yml, r_vals_yml) {
+  r_vals <- yaml::yaml.load_file(r_vals_yml)
+  dat <- gl_long_dat |>
+    filter(trait %in% c("Narea")) |>
+    filter(!is.na(val2))
+
+  lim_gl <- lim_func(dat)
+  lim_gl2 <- lim_func(dat, LMA = FALSE)
+  r_vals <- r_vals$r_vals$GL_NP %>% unlist
+
+  lab1 <- tibble(lab = paste("(", letters[1:3], ")", sep = ""),
+                     val2 = lim_gl2$max_val %>% rep(each = 3),
+                    # val2 = Inf,
+                     val = lim_gl$min_val %>% rep(1),
+                     val_max = lim_gl$max_val %>% rep(1),
+                     gr = "Evergreen",
+                     r_vals = r_vals[1:3],
+                     trait2 = rep(lim_gl2$trait2, each = 3),
+                     LMA = rep(lim_gl$LMA, 1)
+                     ) |>
+    mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
+
+  scatter_plt(dat, lab1, settings_yml)
+}
+
+#' @title Scatter plots for GL (Np) seperated version
+gl_point_np2 <- function(gl_long_dat, settings_yml, r_vals_yml) {
+  p1 <- gl_point_n(gl_long_dat, settings_yml, r_vals_yml)
+  p2 <- gl_point_p(gl_long_dat, settings_yml, r_vals_yml)
+  p1 / p2
+}
 
 #' @title Scatter plots for Panama
 pa_point <- function(pa_long_dat, settings_yml, r_vals_yml) {
-    # targets::tar_load(pa_long_dat)
-    # targets::tar_load(settings_yml)
-    # targets::tar_load(r_vals_yml)
   r_vals <- yaml::yaml.load_file(r_vals_yml)
   dat <- pa_long_dat |>
     filter(trait %in% c("LL", "Aarea", "Rarea"))
@@ -279,12 +370,10 @@ pa_point <- function(pa_long_dat, settings_yml, r_vals_yml) {
 
 #' @title Scatter plots for Panama (NPC)
 pa_point_npc <- function(pa_long_dat, settings_yml, r_vals_yml) {
-    # targets::tar_load(pa_long_dat)
-    # targets::tar_load(settings_yml)
-    # targets::tar_load(r_vals_yml)
   r_vals <- yaml::yaml.load_file(r_vals_yml)
   dat <- pa_long_dat |>
-    filter(trait %in% c("Narea", "Parea", "cell_area"))
+    filter(trait %in% c("Narea", "Parea", "cell_area")) |>
+    filter(!is.na(val2))
 
   lim_pa <- lim_func(dat)
   lim_pa2 <- lim_func(dat, LMA = FALSE)
@@ -542,19 +631,64 @@ box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
   p1 + p2 +
     plot_annotation(tag_levels = "a")
 }
-# box_main(gl_box_list, pa_box_trim_list, settings_yml)
 
-# targets::tar_load(gl_box_list)
-# targets::tar_load(pa_box_trim_list)
+#' @para data GLOPNET or Panama data with factored gr
+ps_point_wrapper <- function(data, settings, GL = TRUE) {
+  if (GL) {
+    fills <- c("Deciduous" = settings$fills$D,
+              "Evergreen" = settings$fills$E,
+              "Unclassified" = settings$fills$U)
 
-#box_main(gl_box_list, fills = fills)
+    cols <- c("Deciduous" = settings$colors$D,
+              "Evergreen" = settings$colors$E,
+              "Unclassified" = settings$colors$U)
+  } else {
+    fills <- c("Sun-Dry" = settings$fills$sun_dry,
+              "Sun-Wet" = settings$fills$sun_wet,
+              "Shade-Dry" = settings$fills$shade_dry,
+              "Shade-Wet" = settings$fills$shade_wet)
 
-# targets::tar_load(pa_res_csv)
-# pa_dat <- read_csv(pa_res_csv)
+    cols <- c("Sun-Dry" = settings$colors$sun_dry,
+              "Sun-Wet" = settings$colors$sun_wet,
+              "Shade-Dry" = settings$colors$shade_dry,
+              "Shade-Wet" = settings$colors$shade_wet)
+  }
+  ggplot(data, aes(x = LMAp, y = LMAs,
+                               fill = gr,
+                               col = gr)) +
+  geom_point(shape = 21) +
+  xlab(expression(atop(
+                LMAp~(g~m^{-2})))) +
+  ylab(expression(atop(
+                LMAs~(g~m^{-2})))) +
+  scale_fill_manual(values = fills, guide = "none") +
+  scale_colour_manual(values = cols, guide = "none") +
+  scale_x_log10(breaks = my_breaks_x(), expand = c(0.1, 0)) +
+  scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
+  theme_LES()
+}
 
-#  targets::tar_load(gl_res_dat)
-#  targets::tar_load(pa_res_dat)
+#' @para gl_res_dat GLOPNET res tibble
+#' @para pa_res_dat GLOPNET res tibble
+ps_point <- function(gl_res_dat, pa_res_dat, settings_yml, r_vals_yml) {
+  pa <- pa_res_dat |>
+    mutate(gr = factor(site_strata,
+      labels = c("Sun-Wet",
+                 "Sun-Dry",
+                 "Shade-Wet",
+                 "Shade-Dry"
+                        )))
+  print(pa$gr) |> summary()
+  print(pa$site_strata) |> summary()
+  r_vals <- yaml::yaml.load_file(r_vals_yml)
+  settings <- yaml::yaml.load_file(settings_yml)
+  p1 <- ps_point_wrapper(gl_res_dat, settings, GL = TRUE) +
+   labs(title = "GLOPNET \n",
+         subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$GL_LMAps$LMAs_LMAp)))
+  p2 <- ps_point_wrapper(pa, settings, GL = FALSE) +
+   labs(title = "Panama \n",
+         subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$PA_LMAps$LMAs_LMAp)))
+  p1 + p2 +
+    plot_annotation(tag_levels = "a")
+}
 
-#pa_res_dat$gr
-
-# gl_dat <- read_csv(gl_res_csv)

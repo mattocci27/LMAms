@@ -43,9 +43,9 @@ gl_rand_fit[[8]]$summary
 gl_rand_fit[[9]]$summary |>
   filter(rhat > 1.05)
 
-hoge <- gl_rand_fit[[12]]$draws
+hoge <- gl_rand_fit[[3]]$draws
 as <- hoge[, ,"as"]
-as.numeric(ap) |> quantile(0.025)
+as.numeric(as) |> quantile(0.975)
 
 apply(as, 2, \(x)quantile(x, 0.975))
 
