@@ -226,9 +226,10 @@ prep_pa_box_list|function|2f0ad027b0ecaecc|||||||||||||||
 prepare_gl|function|ccc8ee23c84df253|||||||||||||||
 prepare_leafhabit|function|14f89d69569b5692|||||||||||||||
 prepare_pa|function|f2d282baf17608fd|||||||||||||||
-ps_point|function|6d9ff6c431dd61d4|||||||||||||||
-ps_point_plot|stem|92d5af506a5a34e7|b006d04dc8bd9254|6c9791040800f3c1|-2115673479|figs/ps_point.png|t19146.3928667124s|1fea92a4545d8728|155407|file|local|vector|||0.326||
-ps_point_wrapper|function|849b7236356190b6|||||||||||||||
+ps_point|function|0014022c7bc4fc00|||||||||||||||
+ps_point_95_ci_plot|stem|e7d903dc3ea42b49|836cd46f4addabe2|7edf918265684138|782657403|figs/ps_point_95ci.png|t19146.3963465575s|99f77b084ed03525|129377|file|local|vector|||0.674||
+ps_point_plot|stem|92d5af506a5a34e7|b006d04dc8bd9254|7edf918265684138|-2115673479|figs/ps_point.png|t19146.3961062284s|1fea92a4545d8728|155407|file|local|vector|||0.419||
+ps_point_wrapper|function|964c1dff27607e10|||||||||||||||
 quant_fun|function|02e682e962eb4615|||||||||||||||
 quiet|function|7a0df942450ddbd2|||||||||||||||
 r_vals_yml|stem|3020ef8b1538f3a9|0ee20ec53513e4ca|48898c998915f7f3|-439820650|yml/r_val.yml|t19146.388128748s|0041adaab8b129d7|1422|file|local|vector|||7.936||

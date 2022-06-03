@@ -633,7 +633,7 @@ box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
 }
 
 #' @para data GLOPNET or Panama data with factored gr
-ps_point_wrapper <- function(data, settings, GL = TRUE) {
+ps_point_wrapper <- function(data, settings, GL = TRUE, ci = FALSE) {
   if (GL) {
     fills <- c("Deciduous" = settings$fills$D,
               "Evergreen" = settings$fills$E,
@@ -653,10 +653,9 @@ ps_point_wrapper <- function(data, settings, GL = TRUE) {
               "Shade-Dry" = settings$colors$shade_dry,
               "Shade-Wet" = settings$colors$shade_wet)
   }
-  ggplot(data, aes(x = LMAp, y = LMAs,
+  p <- ggplot(data, aes(x = LMAp, y = LMAs,
                                fill = gr,
                                col = gr)) +
-  geom_point(shape = 21) +
   xlab(expression(atop(
                 LMAp~(g~m^{-2})))) +
   ylab(expression(atop(
@@ -666,11 +665,21 @@ ps_point_wrapper <- function(data, settings, GL = TRUE) {
   scale_x_log10(breaks = my_breaks_x(), expand = c(0.1, 0)) +
   scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
   theme_LES()
+  if (ci) {
+    p +
+      geom_segment(aes(x = LMAp_lo, xend = LMAp_up, y = LMAs, yend = LMAs),
+       col = "grey60", size = 0.25) +
+      geom_segment(aes(x = LMAp, xend = LMAp, y = LMAs_lo, yend = LMAs_up),
+      col = "grey60", size = 0.25) +
+      geom_point(shape = 21)
+  } else {
+    p +  geom_point(shape = 21)
+  }
 }
 
 #' @para gl_res_dat GLOPNET res tibble
 #' @para pa_res_dat GLOPNET res tibble
-ps_point <- function(gl_res_dat, pa_res_dat, settings_yml, r_vals_yml) {
+ps_point <- function(gl_res_dat, pa_res_dat, settings_yml, r_vals_yml, ci = FALSE) {
   pa <- pa_res_dat |>
     mutate(gr = factor(site_strata,
       labels = c("Sun-Wet",
@@ -682,10 +691,10 @@ ps_point <- function(gl_res_dat, pa_res_dat, settings_yml, r_vals_yml) {
   print(pa$site_strata) |> summary()
   r_vals <- yaml::yaml.load_file(r_vals_yml)
   settings <- yaml::yaml.load_file(settings_yml)
-  p1 <- ps_point_wrapper(gl_res_dat, settings, GL = TRUE) +
+  p1 <- ps_point_wrapper(gl_res_dat, settings, GL = TRUE, ci = ci) +
    labs(title = "GLOPNET \n",
          subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$GL_LMAps$LMAs_LMAp)))
-  p2 <- ps_point_wrapper(pa, settings, GL = FALSE) +
+  p2 <- ps_point_wrapper(pa, settings, GL = FALSE, ci = ci) +
    labs(title = "Panama \n",
          subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$PA_LMAps$LMAs_LMAp)))
   p1 + p2 +
