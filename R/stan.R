@@ -398,3 +398,32 @@ rand_summary <- function(para, rand_fit, n) {
     sim_id = n) |>
     mutate(sig = ifelse(lwr * upr > 0, "sig", "ns"))
 }
+
+#' @title later
+create_sim_dat <- function() {
+  rho12 <- -0.58
+  rho23 <- -0.62
+  rho13 <- 0.55
+  sigma1 <- 0.4
+  sigma2 <- 0.3
+  sigma3 <- 0.3
+  x1 <- rnorm(n)
+  x2 <- rnorm(n, x1, 3) %>%
+    scale %>% as.numeric
+
+  cor.test(x1, x2)
+
+  mu1 <- a1 + a2 * x1
+  mu2 <- b1 + b2 * x2
+  mu3 <- c1 + c2 * x1 + c3 * x2
+
+  Sigma <- matrix(c(sigma1^2, rho12*sigma1*sigma2, rho13*sigma1*sigma3,
+      rho12*sigma1*sigma2, sigma2^2, rho23*sigma2*sigma3,
+      rho13*sigma1*sigma3, rho23*sigma2*sigma3, sigma3^2), ncol =3)
+
+  y_new <- NULL
+  for (i in 1:n){
+    y <- rmvnorm(1, c(mu1[i] + mu3[i], mu2[i], mu3[i]), Sigma)
+    y_new <- rbind(y_new, y)
+  }
+}
