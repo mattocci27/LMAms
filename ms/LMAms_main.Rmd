@@ -14,7 +14,7 @@ output:
     number_sections: no
     template: templates/eisvogel2.tex
     includes:
-        in_header: format.sty
+        in_header: templates/format.sty
     pandoc_args:
       - "--filter"
       - "pandoc-crossref"
@@ -43,16 +43,15 @@ tableTitle: 'Table'
 ---
 
 ```{r global_options, include=FALSE}
-knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
 ```{r}
 library(tidyverse)
-library(methods)
 library(knitr)
 library(kableExtra)
-source("rmd_func.r")
-var_val <- yaml::yaml.load_file("../var_val.yml")
+source("templates/rmd_func.R")
+var_val <- yaml::yaml.load_file("../yml/var.yml")
 ```
 
 **Running title**: Metabolic and structural leaf mass
@@ -409,13 +408,13 @@ The models here are the five moodel forms representing LL:
 (c) $\alpha_s = 0$  and $\beta_s > \beta_p$, and
 (d) $\alpha_p > \alpha_s$  and $\beta_s > \beta_p$.
 
-```{r lootab, eval=TRUE, echo=FALSE}
+```{r lootab, eval=FALSE, echo=FALSE}
 tab3 <- read_csv("../data/model_selection.csv") |>
   dplyr::select(-data)
 
 if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
   knitr::kable(tab3, format = "html", escape = FALSE) |>
-   kable_classic(full_width = FALSE) |>
+    kable_classic(full_width = FALSE) |>
     pack_rows("GLOPNET", 1, 5) |>
     pack_rows("Panama", 6, 19)
 } else if ("docx" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
@@ -439,7 +438,7 @@ Table 2.
 Posterior means [95% credible interval] of parameters for the best models. Model 1b (LMAp and LMAs) and Model 4a (LMAp, LMAs and light) are shown for GLOPNET and Panama data, respectively.
 Bold values are significantly different from zero based on the 95% credible interval.
 
-```{r paratab, echo=FALSE}
+```{r paratab, echo=FALSE, eval=FALSE}
 GLPAtab <- read_csv("../data/para_tbl.csv")
 
 if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
@@ -464,7 +463,7 @@ Example of a two-dimensional functional space that can result in either a two- o
 (C) One-dimensional relationship between *A*~max~ per-unit leaf mass and total LMA.
 LMAp and LMAs are simulated from a hypothetical scenario of lognormal distributions with medians of 80 and standard deviations of exp(0.8) and exp(0.7), and zero covariance.
 Variation in *A*~max~ values are derived from our analysis of the GLOPNET database. $A_{\mathrm{area} \, i}=1.81 \times \mathrm{LMAp}_i^{0.28}\mathrm{LMAs}^{-0.13}\epsilon_i$, where $\epsilon_i$ is log-normally distributed with log-mean with 0, log-scale parameter with 0.31 (see Methods and Results).
-](../figs/fig_hypo.png){#fig:Hplt}
+](../figs/hypo.png){#fig:Hplt}
 
 
 ![
@@ -473,7 +472,7 @@ Estimates are from the NAME Model (Eq. X).
 Leaf life span (LL), net photosynthetic rate per unit leaf area (*A*~area~), and dark respiration rate per unit leaf area (*R*~area~) are plotted against observed LMA, posterior means of LMAp and LMAs.
 Pearson correlation coefficients (*r*) for LMA (left column) and posterior means of Pearson correlation coefficients ($\bar{r}$) or partial correlation coefficients ($\bar{\rho}$) of LMAp (middle column) and LMAs (right column) are shown.
 Note that LL was modeled by LMAs alone.
-](../figs/GL_scatter.png){#fig:GLplt}
+](../figs/gl_point.png){#fig:GLplt}
 
 \newpage
 
@@ -483,7 +482,7 @@ Estimates are from the XXX Model (Eq. 6b).
 Details as in [@fig:GLplt].
 Results for other LL models are summarized in Table SX.
 Note that *A*~area~ and LL were modeled by LMAp and LMAs alone, respectively.
-](../figs/PA_scatter.png){#fig:PAplt}
+](../figs/pa_point.png){#fig:PAplt}
 
 
 \newpage
@@ -493,7 +492,7 @@ Observed vs. predicted leaf lifespan (LL) in the LL with light Model (Eq. 6b).
 Predicted LL values are posterior means.
 The dashed line indicates the 1:1 relationship.
 The *R*^2^ value is the posterior mean of Bayesian *R*^2^ [@Gelman2019].
-](../figs/LL_plot.png){#fig:LLplt}
+](../figs/pa_point_ll.png){#fig:LLplt}
 
 
 \newpage
@@ -521,7 +520,7 @@ Solid lines indicate simulated means and shaded regions indicate 95% CI.
 Each symbol indicates the estimated values from the empirical data.
 The photosynthetic rate (*A*~max~) is primarily mass-dependent (*b* > 0.5), primarily area-dependent (0.5 > *b* > 0) and purely area-dependent (*b* = 0) [@Osnas2018].
 Note that when *b* > 1, *A*~area~ dramatically increases with LMA, which is not realistic.
-](../figs/mass_prop_simple.png){#fig:massplt}
+](../figs/mass_prop_mv.png){#fig:massplt}
 
 \newpage
 
@@ -531,4 +530,4 @@ Note that sun and shade leaves align along a single relationship for *CL*~area~ 
 Pearson correlation coefficients (*r*) for LMA (left column) and partial correlation coefficients ($\rho$) of LMAp (middle column) and LMAs (right column) are shown.
 Analogous results were obtained for *N*~area~ and *P*~area~ for GLOPNET (Fig. S3).
 Results for other LL models are reported in Table SX.
-](../figs/PA_NPC.png){#fig:PA-NPC}
+](../figs/pa_point_npc.png){#fig:PA-NPC}
