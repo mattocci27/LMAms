@@ -1,3 +1,7 @@
+*
+!*/
+!*.*
+
 model/*.rds
 kitematic/*
 rmd/core

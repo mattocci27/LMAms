@@ -25,7 +25,7 @@ for d in config_data.get('configs', []):
   template.stream({
 #    'note': note,
     **d
-  }).dump('model/{}.stan'.format(d.get('model')))
+  }).dump('stan/{}.stan'.format(d.get('model')))
 
 with open('./templates/model_LMA.json') as f:
   config_data = json.load(f)
@@ -38,5 +38,5 @@ for d in config_data.get('configs', []):
 
   template.stream({
     **d
-  }).dump('model/{}.stan'.format(d.get('model')))
+  }).dump('stan/{}.stan'.format(d.get('model')))
 
