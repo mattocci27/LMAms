@@ -78,6 +78,20 @@
       "opt": "opt"
     },
     {
+      "model": "PA_Ap_LDs",
+      "site": "PA",
+      "LD": "LD",
+      "A": "LMAp",
+      "LL": "LMAs"
+    },
+    {
+      "model": "PA_Ap_LDps",
+      "site": "PA",
+      "LD": "LD",
+      "A": "LMAp",
+      "LL": "LMApLMAs"
+    },
+    {
       "model": "PA_Ap_LDs_opt",
       "site": "PA",
       "LD": "LD",
@@ -86,27 +100,11 @@
       "opt": "LDopt"
     },
     {
-      "model": "PA_Aps_LDps_opt",
-      "site": "PA",
-      "LD": "LD",
-      "A": "LMApLMAs",
-      "LL": "LMApLMAs",
-      "opt": "LDopt"
-    },
-    {
       "model": "PA_Ap_LDps_opt",
       "site": "PA",
       "LD": "LD",
       "A": "LMAp",
       "LL": "LMApLMAs",
-      "opt": "LDopt"
-    },
-    {
-      "model": "PA_Aps_LDs_opt",
-      "site": "PA",
-      "LD": "LD",
-      "A": "LMApLMAs",
-      "LL": "LMAs",
       "opt": "LDopt"
     }
     ]
