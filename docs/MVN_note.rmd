@@ -1,5 +1,3 @@
-
-
 ---
 title: "MVN for LMAp and LMAs"
 ---
