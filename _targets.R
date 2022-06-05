@@ -397,6 +397,12 @@ list(
   ),
 
   tar_target(
+    model_selection_csv,
+    write_model_selction(loo_tbl),
+    format = "file"
+  ),
+
+  tar_target(
     para_yml,
     write_para_yml(fit_7_summary_GL_Aps_LLs),
     format = "file"
@@ -428,7 +434,7 @@ list(
   ),
   tar_target(
     GL_Aps_LLs,
-    compile_model("model/GL_Aps_LLs.stan"),
+    compile_model("stan/GL_Aps_LLs.stan"),
     format = "file"
   ),
   tar_target(
@@ -438,7 +444,7 @@ list(
   ),
   tar_target(
     PA_Ap_LLs_opt,
-    compile_model("model/PA_Ap_LLs_opt.stan"),
+    compile_model("stan/PA_Ap_LLs_opt.stan"),
     format = "file"
   ),
   tar_target(
