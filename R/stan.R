@@ -427,3 +427,33 @@ create_sim_dat <- function() {
     y_new <- rbind(y_new, y)
   }
 }
+
+#' @para loo_tbl  csv file of loo
+write_model_selction <- function(loo_tbl) {
+  output <- "data/model_selection.csv"
+  d <- read_csv(loo_tbl)
+  d |>
+    mutate(no1 = case_when(
+      str_detect(Model, "LMA_opt") ~ 3,
+      str_detect(Model, "LL.*opt") ~ 4,
+      str_detect(Model, "LD.*opt") ~ 5,
+      str_detect(Model, "LL") ~ 2,
+      str_detect(Model, "LMA") ~ 1
+    )) |>
+    mutate(no2 = case_when(
+      str_detect(Model, "Ap.*LLs|Ap.*LDs") ~ "a",
+      str_detect(Model, "Aps.*LLs|Aps.*LDs") ~ "b",
+      str_detect(Model, "Ap.*LLps|Ap.*LDps") ~ "c",
+      str_detect(Model, "Aps.*LLps|Aps.*LDps") ~ "d",
+      TRUE ~ ""
+    )) |>
+    filter(!is.na(no1)) |>
+    rename(model_ori = Model) |>
+    mutate(Model = paste0(no1, no2)) |>
+    mutate(Data = ifelse(site == "PA", "Panama", "GLOPNET")) |>
+    dplyr::select(model_ori, Model, Data, N, LOOIC) |>
+    mutate(LOOIC = LOOIC |> round(1)) |>
+    write_csv(output)
+
+    paste(output)
+}
