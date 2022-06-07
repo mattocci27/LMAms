@@ -408,27 +408,28 @@ The models here are the five moodel forms representing LL:
 (c) $\alpha_s = 0$  and $\beta_s > \beta_p$, and
 (d) $\alpha_p > \alpha_s$  and $\beta_s > \beta_p$.
 
-```{r lootab, eval=FALSE, echo=FALSE}
-tab3 <- read_csv("../data/model_selection.csv") |>
-  dplyr::select(-data)
+```{r lootab, eval=TRUE, echo=FALSE}
+loo_tbl <- read_csv("../data/model_selection.csv")  |>
+  arrange(Data) |>
+  dplyr::select(Model, N, LOOIC)
 
 if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
-  knitr::kable(tab3, format = "html", escape = FALSE) |>
+  knitr::kable(loo_tbl, format = "html", escape = FALSE) |>
     kable_classic(full_width = FALSE) |>
     pack_rows("GLOPNET", 1, 5) |>
-    pack_rows("Panama", 6, 19)
+    pack_rows("Panama", 6, 17)
 } else if ("docx" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
-  tmp <- c("**GLOPNET**", rep("", 4), "**Panama**", rep("", 13))
-  tmp2 <- cbind(tmp, tab3)
+  tmp <- c("**GLOPNET**", rep("", 4), "**Panama**", rep("", 11))
+  tmp2 <- cbind(tmp, loo_tbl)
   colnames(tmp2)[1] <- ""
   tmp2 |>
     kable(format = "pipe", escape = FALSE)
 } else if ("latex" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
-  tab3 |>
-    kable(escape = FALSE, booktabs = TRUE) |>
+  loo_tbl |>
+    kable(format = "latex", escape = TRUE, booktabs = TRUE) |>
     kable_classic(full_width = FALSE) |>
     pack_rows("GLOPNET", 1, 5) |>
-    pack_rows("Panama", 6, 19)
+    pack_rows("Panama", 6, 17)
 }
 ```
 
@@ -438,7 +439,7 @@ Table 2.
 Posterior means [95% credible interval] of parameters for the best models. Model 1b (LMAp and LMAs) and Model 4a (LMAp, LMAs and light) are shown for GLOPNET and Panama data, respectively.
 Bold values are significantly different from zero based on the 95% credible interval.
 
-```{r paratab, echo=FALSE, eval=FALSE}
+```{r paratab, echo=FALSE, eval=TRUE}
 GLPAtab <- read_csv("../data/para_tbl.csv")
 
 if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
