@@ -184,7 +184,7 @@ mass_prop_sim|function|fd7bd0a2ba685b05|||||||||||||||
 mass_prop_sim_mv|function|1eb21cdf52364dbc|||||||||||||||
 model_json|stem|5402a61e7337b7c9|e5e2de428bcdfc0e|ef46db3751d8e999|-454647551|templates/model.json|t19148.3885642616s|a218c726606092c6|1925|file|local|vector|||0.124||
 model_lma_json|stem|e4918b0860c902ca|9bda75f57ceb1079|ef46db3751d8e999|2073361106|templates/model_LMA.json|t18914.6136159734s|334ec4c391c6746c|186|file|local|vector|||0.121||
-model_selection_csv|stem|acaab4ba93e591b1|baf86ce4b6245cf8|5e65acb7b535a522|-1163932704|data/model_selection.csv|t19148.3899197419s|ba984c08f1495aa7|768|file|local|vector|||0.258||
+model_selection_csv|stem|826e796c8a60ec86|baf86ce4b6245cf8|dbb8cee78ba87a03|-1163932704|data/model_selection.csv|t19150.4002099946s|ba984c08f1495aa7|768|file|local|vector|||0.584||
 mu_fun|function|66d9a14e318d8251|||||||||||||||
 my_breaks|function|f18396e8a2535b30|||||||||||||||
 my_breaks_x|function|45ba0619efca05ce|||||||||||||||
@@ -256,7 +256,7 @@ var_fun|function|4fc3ea90b7429a5c|||||||||||||||
 var_yml|stem|b4570863a06dd2b7|da8da8cbcfa17ece|f1fa6c360d434dcc|-1975825422|yml/var.yml|t19148.3885642616s|0f914b61b566807a|40|file|local|vector|||5.812||
 vpart_bar|function|b855feddc3ce91ea|||||||||||||||
 vpart_plot|stem|11d0f327cfd35630|d72421d9c75819a1|4aa98ad6df83bd00|786839690|figs/vpart.png|t19148.3885641691s|d9801d8eba5b1ca1|41763|file|local|vector|||0.58||
-write_model_selction|function|bef2c37c597449f1|||||||||||||||
+write_model_selction|function|2ac0d9084ca7f4ea|||||||||||||||
 write_para_yml|function|5ab688441cd3fe19|||||||||||||||
 write_r2|function|5b5f53e36d61f5d3|||||||||||||||
 write_t|function|43923ac790c59cad|||||||||||||||

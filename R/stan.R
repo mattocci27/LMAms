@@ -428,7 +428,7 @@ create_sim_dat <- function() {
   }
 }
 
-#' @para loo_tbl  csv file of loo
+#' @para loo_tbl csv file of loo
 write_model_selction <- function(loo_tbl) {
   output <- "data/model_selection.csv"
   d <- read_csv(loo_tbl)
@@ -440,11 +440,12 @@ write_model_selction <- function(loo_tbl) {
       str_detect(Model, "LL") ~ 2,
       str_detect(Model, "LMA") ~ 1
     )) |>
+  # because Ap is included Aps, this order is correct
     mutate(no2 = case_when(
-      str_detect(Model, "Ap.*LLs|Ap.*LDs") ~ "a",
       str_detect(Model, "Aps.*LLs|Aps.*LDs") ~ "b",
-      str_detect(Model, "Ap.*LLps|Ap.*LDps") ~ "c",
+      str_detect(Model, "Ap.*LLs|Ap.*LDs") ~ "a",
       str_detect(Model, "Aps.*LLps|Aps.*LDps") ~ "d",
+      str_detect(Model, "Ap.*LLps|Ap.*LDps") ~ "c",
       TRUE ~ ""
     )) |>
     filter(!is.na(no1)) |>
