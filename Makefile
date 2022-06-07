@@ -1,4 +1,5 @@
-all: ms/LMA.bib ms/LMA.bib ms/LMAms_main.pdf ms/LMAms_main-diffa1d4c64.tex
+all: ms/LMA.bib ms/LMAms_main.pdf ms/LMAms_main-diffa1d4c64.tex
+ms: ms/LMAms_main.pdf
 dif: ms/LMAms_main-diffa1d4c64.tex
 
 ms/LMA.bib: ~/LMA.bib

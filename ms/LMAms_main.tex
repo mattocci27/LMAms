@@ -893,11 +893,65 @@ The models here are the five moodel forms representing LL:
 (c) \(\alpha_s = 0\) and \(\beta_s > \beta_p\), and
 (d) \(\alpha_p > \alpha_s\) and \(\beta_s > \beta_p\).
 
+\begin{table}
+\centering
+\begin{tabular}{lrr}
+\toprule
+Model & N & LOOIC\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{3}{l}{\textbf{GLOPNET}}\\
+\hspace{1em}2b & 198 & 720.9\\
+\hspace{1em}2d & 198 & 751.9\\
+\hspace{1em}2a & 198 & 756.9\\
+\hspace{1em}2c & 198 & 763.5\\
+\hspace{1em}1 & 198 & 766.6\\
+\addlinespace[0.3em]
+\multicolumn{3}{l}{\textbf{Panama}}\\
+\hspace{1em}4a & 106 & 452.4\\
+\hspace{1em}5a & 106 & 466.8\\
+\hspace{1em}2c & 106 & 466.8\\
+\hspace{1em}4c & 106 & 479.7\\
+\hspace{1em}5c & 106 & 488.9\\
+\hspace{1em}4b & 106 & 498.3\\
+\hspace{1em}2a & 106 & 499.7\\
+\hspace{1em}3 & 106 & 503.3\\
+\hspace{1em}4d & 106 & 504.3\\
+\hspace{1em}2d & 106 & 515.7\\
+\hspace{1em}2b & 106 & 521.6\\
+\hspace{1em}1 & 106 & 528.4\\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \newpage
 
 Table 2.
 Posterior means {[}95\% credible interval{]} of parameters for the best models. Model 1b (LMAp and LMAs) and Model 4a (LMAp, LMAs and light) are shown for GLOPNET and Panama data, respectively.
 Bold values are significantly different from zero based on the 95\% credible interval.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4271}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2812}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2917}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+Parameters
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+GLOPNET
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Panama
+\end{minipage} \\
+\midrule
+\endhead
+Effect of LMAp on \emph{A}\textsubscript{area} (\(\alpha_p\)) & \textbf{0.283 {[}0.204, 0.364{]}} & \textbf{0.575 {[}0.428, 0.714{]}} \\
+Effect of LMAs on \emph{A}\textsubscript{area} (\(\alpha_s\)) & \textbf{-0.133 {[}-0.211, -0.06{]}} & - \\
+Effect of LMAs on LL (\(\beta_s\)) & \textbf{0.889 {[}0.762, 1.02{]}} & \textbf{0.349 {[}0.167, 0.528{]}} \\
+Effect of LMAp on \emph{R}\textsubscript{area} (\(\gamma_p\)) & \textbf{0.292 {[}0.199, 0.384{]}} & \textbf{0.627 {[}0.429, 0.828{]}} \\
+Effect of LMAs on \emph{R}\textsubscript{area} (\(\gamma_s\)) & 0.034 {[}-0.05, 0.118{]} & 0.036 {[}-0.208, 0.32{]} \\
+Effect of light on LL (\(\theta\)) & - & \textbf{-0.808 {[}-1.103, -0.512{]}} \\
+\bottomrule
+\end{longtable}
 
 \newpage
 
