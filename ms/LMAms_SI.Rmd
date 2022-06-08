@@ -1,0 +1,73 @@
+---
+title: "Katabuchi et al. Appendix S1-x: Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species"
+fontsize: 12pt
+geometry: margin=1in
+link-citations: yes
+csl: templates/ecology.csl
+bibliography: [LMA.bib]
+output:
+  bookdown::pdf_document2:
+    latex_engine: pdflatex
+    fig_caption: yes
+    keep_tex: yes
+    toc: no
+    number_sections: no
+    template: templates/eisvogel2.tex
+    includes:
+        in_header: templates/format.sty
+    pandoc_args:
+      - "--filter"
+      - "pandoc-crossref"
+  bookdown::word_document2:
+       fig_width: 6
+       reference_docx: templates/rmd_style.docx
+       pandoc_args:
+         - "--filter"
+         - "pandoc-crossref"
+  bookdown::html_document2:
+    fig_width: 6
+    fig_caption: yes
+    number_sections: no
+    pandoc_args:
+        - "--filter"
+        - "pandoc-crossref"
+        - "--mathml"
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r caching, include=FALSE}
+#library(methods)
+library(knitr)
+library(kableExtra)
+#source("rmd_func.r")
+```
+
+# Randomization
+
+hoge
+
+\newpage
+
+![
+Pearson correlation coefficients for posterior medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama datasets. The non-significant *r* values indicate that a single axis could not accurately represent the two-dimensional space. Symbols as in Main Text Figs. 1-2.
+](../figs/ps_point.png){#fig:LMAms}
+
+\newpage
+
+![
+Boxplots comparing leaf mass per area (LMA), photosynthetic leaf mass per area (LMAp; posterior means), and structural leaf mass per area (LMAs; posterior means) across sites (wet and dry) and canopy strata (sun and shade) in Panama.
+The results shown here include all leaves in the Panama dataset, whereas Fig. 5 in the main text only includes Panama species for which both sun and shade leaves were available.
+Boxplot symbols as in Fig. 5.
+Groups sharing the same letters are not significantly different (P > 0.05; t-tests).
+](../figs/box_frac.png){#fig:PAplt}
+
+\newpage
+
+
+![
+Measured traits related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; Narea and Parea) are positively correlated with LMA and with estimates (posterior means) of the photosynthetic and structural LMA components (LMAp and LMAs, respectively) in the GLOPNET dataset.
+LMAp yields stronger correlations and more consistent relationships compared to LMA and LMAs; e.g., evergreen and deciduous leaves align along a single relationship in panel b, but not in panels a or c.
+](../figs/gl_point_np2.png){#fig:glnp}
