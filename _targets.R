@@ -496,8 +496,8 @@ list(
         "figs/coef_rand.png",
        p,
        dpi = 300,
-       height = 20,
-       width = 20,
+       height = 15,
+       width = 15,
        units = "cm"
       )
         paste0("figs/coef_rand", c(".png"))

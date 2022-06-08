@@ -90,12 +90,63 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={Katabuchi et al.~Appendix S1-x: Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species},
+  pdftitle={Katabuchi et al., Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species},
   hidelinks,
   breaklinks=true,
   pdfcreator={LaTeX via pandoc with the Eisvogel template}}
 \urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+
+% Workaround/bugfix from jannick0.
+% See https://github.com/jgm/pandoc/issues/4302#issuecomment-360669013)
+% or https://github.com/Wandmalfarbe/pandoc-latex-template/issues/2
+%
+% Redefine the verbatim environment 'Highlighting' to break long lines (with
+% the help of fvextra). Redefinition is necessary because it is unlikely that
+% pandoc includes fvextra in the default template.
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,fontsize=\small,commandchars=\\\{\}}
+
 \usepackage{longtable,booktabs}
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -165,7 +216,7 @@
 \usepackage{xcolor}
 
 
-\title{Katabuchi et al.~Appendix S1-x: Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species}
+\title{Katabuchi et al., Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species}
 \date{}
 
 
@@ -277,7 +328,7 @@
 % variables for title and author
 %
 \usepackage{titling}
-\title{Katabuchi et al.~Appendix S1-x: Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species}
+\title{Katabuchi et al., Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species}
 \author{}
 
 %
@@ -315,9 +366,9 @@
 \fancypagestyle{eisvogel-header-footer}{
   \fancyhead{}
   \fancyfoot{}
-  \lhead[]{Katabuchi et al.~Appendix S1-x: Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species}
+  \lhead[]{Katabuchi et al., Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species}
   \chead[]{}
-  \rhead[Katabuchi et al.~Appendix S1-x: Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species]{}
+  \rhead[Katabuchi et al., Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species]{}
   %\lfoot[\thepage]{}
   \cfoot[]{}
   \cfoot[]{\thepage}
@@ -344,12 +395,156 @@
 
 
 
-\hypertarget{randomization}{%
-\section{Randomization}\label{randomization}}
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\newpage
 
-hoge
+\hypertarget{appendix-s0-randomaziation}{%
+\section{Appendix S0: Randomaziation}\label{appendix-s0-randomaziation}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{\{}
+  \DataTypeTok{int}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{} N;}
+  \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{}[N] LMA;}
+  \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{}[N] A;}
+  \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{}[N] R;}
+  \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{}[N] LL;}
+\NormalTok{\}}
+\KeywordTok{transformed data}\NormalTok{\{}
+  \DataTypeTok{vector}\NormalTok{[N] log\_A;}
+  \DataTypeTok{vector}\NormalTok{[N] log\_LL;}
+  \DataTypeTok{vector}\NormalTok{[N] log\_R;}
+  \DataTypeTok{matrix}\NormalTok{[N,}\DecValTok{3}\NormalTok{] obs;}
+  \DataTypeTok{vector}\NormalTok{[N] intercept;}
+  \ControlFlowTok{for}\NormalTok{ (n }\ControlFlowTok{in} \DecValTok{1}\NormalTok{:N)}
+\NormalTok{    intercept[n] = }\DecValTok{1}\NormalTok{;}
+\NormalTok{  log\_A = log(A);}
+\NormalTok{  log\_LL = log(LL);}
+\NormalTok{  log\_R = log(R);}
+  \CommentTok{// use net photosynthesis (A) instead of gross (A + R)}
+\NormalTok{  obs = append\_col(append\_col(log\_A, log\_LL), log\_R);}
+\NormalTok{\}}
+
+\KeywordTok{parameters}\NormalTok{\{}
+  \DataTypeTok{real}\NormalTok{ a0;}
+  \DataTypeTok{real}\NormalTok{ ap;}
+  \DataTypeTok{real}\NormalTok{\textless{}}\KeywordTok{upper}\NormalTok{=ap\textgreater{} as;}
+  \DataTypeTok{real}\NormalTok{ b0;}
+  \DataTypeTok{real}\NormalTok{ bs;}
+  \DataTypeTok{real}\NormalTok{ g0;}
+  \DataTypeTok{real}\NormalTok{ gp;}
+  \DataTypeTok{real}\NormalTok{ gs;}
+  \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{, }\KeywordTok{upper}\NormalTok{=}\DecValTok{1}\NormalTok{\textgreater{}[N] p;}
+  \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{}[}\DecValTok{3}\NormalTok{] L\_sigma;}
+  \DataTypeTok{cholesky\_factor\_corr}\NormalTok{[}\DecValTok{3}\NormalTok{] L\_Omega;}
+\NormalTok{\}}
+\KeywordTok{transformed parameters}\NormalTok{\{}
+  \DataTypeTok{matrix}\NormalTok{[N,}\DecValTok{3}\NormalTok{] Mu;}
+  \DataTypeTok{matrix}\NormalTok{[}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{] Z;}
+  \DataTypeTok{matrix}\NormalTok{[N,}\DecValTok{3}\NormalTok{] X;}
+  \DataTypeTok{matrix}\NormalTok{[N,}\DecValTok{3}\NormalTok{] L\_Sigma;}
+\NormalTok{  Z[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{] = a0;}
+\NormalTok{  Z[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{] = b0;}
+\NormalTok{  Z[}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{] = g0;}
+\NormalTok{  Z[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{] = ap;}
+\NormalTok{  Z[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{] = }\DecValTok{0}\NormalTok{;}
+\NormalTok{  Z[}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{] = gp;}
+\NormalTok{  Z[}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{] = as;}
+\NormalTok{  Z[}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{] = bs;}
+\NormalTok{  Z[}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{] = gs;}
+
+\NormalTok{  L\_Sigma = rep\_matrix(to\_row\_vector(}\FloatTok{0.5}\NormalTok{ * L\_sigma .* L\_sigma), N);}
+  \CommentTok{//log\_LMAp = log(LMA) + log(p);}
+  \CommentTok{//log\_LMAs = log(LMA) + log(1 {-} p);}
+  \CommentTok{//X = append\_col(append\_col(append\_col(intercept, log\_LMAp), log\_LMAs), leaf);}
+\NormalTok{  X = append\_col(append\_col(intercept, log(LMA) + log(p)), log(LMA) + log(}\DecValTok{1}\NormalTok{ {-} p));}
+\NormalTok{  Mu = X * Z {-} L\_Sigma;}
+\NormalTok{\}}
+\KeywordTok{model}\NormalTok{\{}
+  \CommentTok{// priors}
+\NormalTok{  a0 \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
+\NormalTok{  b0 \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
+\NormalTok{  g0 \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
+\NormalTok{  ap \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
+\NormalTok{  bs \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
+\NormalTok{  gp \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
+\NormalTok{  gs \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
+\NormalTok{  as \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
+\NormalTok{  p \textasciitilde{} beta(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{);}
+\NormalTok{  L\_Omega \textasciitilde{} lkj\_corr\_cholesky(}\DecValTok{2}\NormalTok{); }\CommentTok{//uniform of L\_Omega * L\_Omega\textquotesingle{}}
+\NormalTok{  L\_sigma \textasciitilde{} cauchy(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
+
+  \CommentTok{// model}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\NormalTok{:N)}
+     \KeywordTok{target +=}\NormalTok{ multi\_normal\_cholesky\_lpdf(obs[i,] | Mu[i,], diag\_pre\_multiply(L\_sigma, L\_Omega));}
+\NormalTok{\}}
+\KeywordTok{generated quantities}\NormalTok{ \{}
+  \DataTypeTok{vector}\NormalTok{[N] log\_lik;}
+  \DataTypeTok{real}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{={-}}\DecValTok{1}\NormalTok{, }\KeywordTok{upper}\NormalTok{=}\DecValTok{1}\NormalTok{\textgreater{} rho12;}
+  \DataTypeTok{real}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{={-}}\DecValTok{1}\NormalTok{, }\KeywordTok{upper}\NormalTok{=}\DecValTok{1}\NormalTok{\textgreater{} rho23;}
+  \DataTypeTok{real}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{={-}}\DecValTok{1}\NormalTok{, }\KeywordTok{upper}\NormalTok{=}\DecValTok{1}\NormalTok{\textgreater{} rho13;}
+  \DataTypeTok{cov\_matrix}\NormalTok{[}\DecValTok{3}\NormalTok{] Sigma;}
+\NormalTok{  Sigma = diag\_pre\_multiply(L\_sigma, L\_Omega)}
+\NormalTok{     * diag\_post\_multiply(L\_Omega\textquotesingle{}, L\_sigma);}
+\NormalTok{  rho12 = Sigma[}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{] * inv(L\_sigma[}\DecValTok{1}\NormalTok{] * L\_sigma[}\DecValTok{2}\NormalTok{]);}
+\NormalTok{  rho23 = Sigma[}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{] * inv(L\_sigma[}\DecValTok{2}\NormalTok{] * L\_sigma[}\DecValTok{3}\NormalTok{]);}
+\NormalTok{  rho13 = Sigma[}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{] * inv(L\_sigma[}\DecValTok{1}\NormalTok{] * L\_sigma[}\DecValTok{3}\NormalTok{]);}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\NormalTok{:N)}
+\NormalTok{   log\_lik[i] = multi\_normal\_cholesky\_lpdf(obs[i,] | Mu[i,], diag\_pre\_multiply(L\_sigma, L\_Omega));}
+\NormalTok{ \}}
+\end{Highlighting}
+\end{Shaded}
 
 \newpage
+
+\hypertarget{appendix-s1-randomaziation}{%
+\section{Appendix S1: Randomaziation}\label{appendix-s1-randomaziation}}
+
+\begin{longtable}[]{@{}lrrr@{}}
+\toprule
+Data & Simulation\_ID & Rhat & No\_divergence \\
+\midrule
+\endhead
+GLOPNET & 1 & 261 & 516 \\
+GLOPNET & 2 & 0 & 17 \\
+GLOPNET & 3 & 0 & 5 \\
+GLOPNET & 4 & 0 & 32 \\
+GLOPNET & 5 & 510 & 208 \\
+GLOPNET & 6 & 458 & 34 \\
+GLOPNET & 7 & 0 & 14 \\
+GLOPNET & 8 & 7 & 4 \\
+GLOPNET & 9 & 52 & 1 \\
+GLOPNET & 10 & 1086 & 25 \\
+Panama & 1 & 842 & 429 \\
+Panama & 2 & 657 & 14 \\
+Panama & 3 & 408 & 76 \\
+Panama & 4 & 846 & 44 \\
+Panama & 5 & 966 & 1213 \\
+Panama & 6 & 829 & 90 \\
+Panama & 7 & 262 & 73 \\
+Panama & 8 & 641 & 128 \\
+Panama & 9 & 900 & 77 \\
+Panama & 10 & 623 & 301 \\
+\bottomrule
+\end{longtable}
+
+\newpage
+
+\begin{figure}
+\hypertarget{fig:rand}{%
+\centering
+\includegraphics{../figs/coef_rand.png}
+\caption{Pearson correlation coefficients for posterior medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama datasets. The non-significant \emph{r} values indicate that a single axis could not accurately represent the two-dimensional space. Symbols as in Main Text Figs. 1-2.}\label{fig:rand}
+}
+\end{figure}
+
+\newpage
+
+\hypertarget{figure-s1}{%
+\section{Figure S1}\label{figure-s1}}
 
 \begin{figure}
 \hypertarget{fig:LMAms}{%
@@ -360,6 +555,9 @@ hoge
 \end{figure}
 
 \newpage
+
+\hypertarget{figure-s2}{%
+\section{Figure S2}\label{figure-s2}}
 
 \begin{figure}
 \hypertarget{fig:PAplt}{%
@@ -373,6 +571,9 @@ Groups sharing the same letters are not significantly different (P \textgreater{
 \end{figure}
 
 \newpage
+
+\hypertarget{figure-s3}{%
+\section{Figure S3}\label{figure-s3}}
 
 \begin{figure}
 \hypertarget{fig:glnp}{%

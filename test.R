@@ -22,8 +22,6 @@ gl_rand_fit[[12]]$summary |> head(20)
 lm(log(A) ~ log(LMA), dat) |> summary()
 lm(log(LL) ~ log(LMA), dat) |> summary()
 
-
-
 install.packages("bookdown")
 install.packages("bs4Dash")
 install.packages("gt")
