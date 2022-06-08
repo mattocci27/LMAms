@@ -489,7 +489,7 @@ The simplest of these forms is a multivariate power-law:
 
 where E{[}\(\cdot\){]} indicates expected value;
 the \(\alpha\), \(\beta\), and \(\gamma\) terms are fitted parameters;
-and the logarithms of \emph{A}\textsubscript{area}, LL, and \emph{R}\textsubscript{area} are assumed to have a multivariate normal distribution (see supplement).
+and the logarithms of \emph{A}\textsubscript{area}, LL, and \emph{R}\textsubscript{area} are assumed to have a multivariate normal distribution (Appendix S1).
 We assumed that:
 (i) \emph{A}\textsubscript{area} depends more strongly on metabolic leaf mass (LMAp: parameters \(\alpha_p\) Eq. 4) than structural leaf mass (LMAs: parameter \(\alpha_s\)), and
 (ii) LL depends more strongly on LMAs (\(\beta_s\) in Eqs. 6a-b) than LMAm (\(\beta_p\)).
@@ -541,14 +541,16 @@ To model LL for GLOPNET, we used Eq. (6a) (no light effects), because GLOPNET do
 To model LL for Panama, we used Eq. (6b) (light effects model), which was motivated by the negative intraspecific LL-LMA relationship observed in Panama (\protect\hyperlink{ref-Xu2017}{Xu et al. 2017}, \protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}) and elsewhere (\protect\hyperlink{ref-Lusk2008}{Lusk et al. 2008}, \protect\hyperlink{ref-Russo2016}{Russo and Kitajima 2016}).
 
 Posterior distributions of all parameters were estimated using the Hamiltonian Monte Carlo algorithm (HMC) implemented in Stan (\protect\hyperlink{ref-Carpenter2017}{Carpenter et al. 2017}).
+We used non-informative or weakly informative prior distributions (\protect\hyperlink{ref-Lemoine2019}{Lemoine 2019}).
 Prior distributions for the latent variables \emph{f}\textsubscript{i} (which are used to partition LMA into LMAp and LMAs according to Eqs. \eqref{eq:E-A}-\eqref{eq:E-R}) were non-informative uniform(0, 1) distributions, (i.e., LMA was partitioned based on patterns in the data).
+See Appendix S1 for more detail.
 The Stan code use to fit models is available from Github at: \href{https://github.com/mattocci27/xxx}{https://github.com/mattocci27/XXX}.
 Convergence of the posterior distribution was assessed with the Gelman-Rubin statistic with a convergence threshold of 1.05 for all parameters (\protect\hyperlink{ref-Gelman2013}{Gelman et al. 2013}).
 
 Because our statistical approach includes many parameters (one latent variable \emph{f\textsubscript{i}} to partition LMA into LMAp and LMAs for each leaf sample), we implemented tests with randomized data (\emph{n} = 10) to assess potential overfitting.
 We generated randomized datasets by randomizing all the trait values (LMA, \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and LL) across species.
 Thus, the randomized datasets had zero expected covariance among traits.
-Model results obtained from the randomized datasets did not convergent or showed divergent transitions {[}SX{]}.
+Model results obtained from the randomized datasets did not convergent or showed divergent transitions (Appendix S2).
 Divergent transitions suggest that estimates are based on the incomplete exploration of the simulated Hamiltonian trajectory and not trusted (\protect\hyperlink{ref-Betancourt2016}{Betancourt 2016}).
 (in a simple sentence: Model did not work).
 In contrast, models fit to observed data converged without divergent transitions and produced significant results for both GLOPNET and Panama (see Results).
@@ -773,6 +775,9 @@ Kitajima, K., S. J. Wright, and J. W. Westbrook. 2016. \href{https://doi.org/10.
 \leavevmode\vadjust pre{\hypertarget{ref-Kleyer2012}{}}%
 Kleyer, M., S. Dray, F. Bello, J. Lepš, R. J. Pakeman, B. Strauss, W. Thuiller, and S. Lavorel. 2012. \href{https://doi.org/10.1111/j.1654-1103.2012.01402.x}{Assessing species and community functional responses to environmental gradients: {Which} multivariate methods?} Journal of Vegetation Science 23:805--821.
 
+\leavevmode\vadjust pre{\hypertarget{ref-Lemoine2019}{}}%
+Lemoine, N. P. 2019. \href{https://doi.org/10.1111/oik.05985}{Moving beyond noninformative priors: Why and how to choose weakly informative priors in {Bayesian} analyses}. Oikos 128:912--928.
+
 \leavevmode\vadjust pre{\hypertarget{ref-Lloyd2013}{}}%
 Lloyd, J., K. Bloomfield, T. F. Domingues, and G. D. Farquhar. 2013. \href{https://doi.org/10.1111/nph.12281}{Photosynthetically relevant foliar traits correlating better on a mass vs an area basis: {Of} ecophysiological relevance or just a case of mathematical imperatives and statistical quicksand?} New Phytologist 199:311--321.
 
@@ -933,7 +938,7 @@ Bold values are significantly different from zero based on the 95\% credible int
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4271}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2812}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2917}}@{}}
-\toprule
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 Parameters
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -941,7 +946,7 @@ GLOPNET
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Panama
 \end{minipage} \\
-\midrule
+\midrule()
 \endhead
 Effect of LMAp on \emph{A}\textsubscript{area} (\(\alpha_p\)) & \textbf{0.283 {[}0.204, 0.364{]}} & \textbf{0.575 {[}0.428, 0.714{]}} \\
 Effect of LMAs on \emph{A}\textsubscript{area} (\(\alpha_s\)) & \textbf{-0.133 {[}-0.211, -0.06{]}} & - \\
@@ -949,7 +954,7 @@ Effect of LMAs on LL (\(\beta_s\)) & \textbf{0.889 {[}0.762, 1.02{]}} & \textbf{
 Effect of LMAp on \emph{R}\textsubscript{area} (\(\gamma_p\)) & \textbf{0.292 {[}0.199, 0.384{]}} & \textbf{0.627 {[}0.429, 0.828{]}} \\
 Effect of LMAs on \emph{R}\textsubscript{area} (\(\gamma_s\)) & 0.034 {[}-0.05, 0.118{]} & 0.036 {[}-0.208, 0.32{]} \\
 Effect of light on LL (\(\theta\)) & - & \textbf{-0.808 {[}-1.103, -0.512{]}} \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \newpage
