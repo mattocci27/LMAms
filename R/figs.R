@@ -609,6 +609,7 @@ box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
     ylab(my_y_title) +
     xlab("") +
     scale_fill_manual(values = fills, guide = "none") +
+    ylim(c(0.0, 1.0)) +
 #    scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
     theme_box() +
     theme(
@@ -623,7 +624,8 @@ box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
     ylab(my_y_title) +
     xlab("") +
     scale_fill_manual(values = fills, guide = "none") +
-   # scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
+    # scale_y_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0)) +
+    ylim(c(0.0, 1.0)) +
     theme_box() +
     theme(
       strip.background = element_blank()

@@ -486,7 +486,7 @@ coef_rand <- function(gl_rand_sig, gl_rand_check) {
     geom_hline(yintercept = 0) +
     facet_wrap(~para, scale = "free", labeller = label_parsed) +
     xlab("Simulation ID") +
-    ylab("Standradized coefficents") +
+    ylab("Standardized coefficents") +
     ggtitle("GLOPNET") +
     coord_flip() +
     theme_bw() +
