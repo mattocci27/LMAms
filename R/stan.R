@@ -485,7 +485,7 @@ coef_rand <- function(gl_rand_sig, gl_rand_check) {
      y = mean, ymin = lwr, ymax = upr, group = sim_id, col = cov)) +
     geom_hline(yintercept = 0) +
     facet_wrap(~para, scale = "free", labeller = label_parsed) +
-    xlab("Randomized ID") +
+    xlab("Simulation ID") +
     ylab("Standradized coefficents") +
     ggtitle("GLOPNET") +
     coord_flip() +
@@ -493,5 +493,6 @@ coef_rand <- function(gl_rand_sig, gl_rand_check) {
     theme(
        legend.position = c(0.8, 0.2),
        legend.title = element_blank(),
+       axis.text.x = element_text(angle = 45, vjust = 0.8)
     )
 }

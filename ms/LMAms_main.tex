@@ -543,7 +543,7 @@ To model LL for Panama, we used Eq. (6b) (light effects model), which was motiva
 Posterior distributions of all parameters were estimated using the Hamiltonian Monte Carlo algorithm (HMC) implemented in Stan (\protect\hyperlink{ref-Carpenter2017}{Carpenter et al. 2017}).
 Prior distributions for the latent variables \emph{f}\textsubscript{i} (which are used to partition LMA into LMAp and LMAs according to Eqs. \eqref{eq:E-A}-\eqref{eq:E-R}) were non-informative uniform(0, 1) distributions, (i.e., LMA was partitioned based on patterns in the data).
 The Stan code use to fit models is available from Github at: \href{https://github.com/mattocci27/xxx}{https://github.com/mattocci27/XXX}.
-Convergence of the posterior distribution was assessed with the Gelman-Rubin statistic with a convergence threshold of 1.1 for all parameters (\protect\hyperlink{ref-Gelman2013}{Gelman et al. 2013}).
+Convergence of the posterior distribution was assessed with the Gelman-Rubin statistic with a convergence threshold of 1.05 for all parameters (\protect\hyperlink{ref-Gelman2013}{Gelman et al. 2013}).
 
 Because our statistical approach includes many parameters (one latent variable \emph{f\textsubscript{i}} to partition LMA into LMAp and LMAs for each leaf sample), we implemented tests with randomized data (\emph{n} = 10) to assess potential overfitting.
 We generated randomized datasets by randomizing all the trait values (LMA, \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and LL) across species.
@@ -933,7 +933,7 @@ Bold values are significantly different from zero based on the 95\% credible int
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4271}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2812}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2917}}@{}}
-\toprule()
+\toprule
 \begin{minipage}[b]{\linewidth}\raggedright
 Parameters
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -941,7 +941,7 @@ GLOPNET
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Panama
 \end{minipage} \\
-\midrule()
+\midrule
 \endhead
 Effect of LMAp on \emph{A}\textsubscript{area} (\(\alpha_p\)) & \textbf{0.283 {[}0.204, 0.364{]}} & \textbf{0.575 {[}0.428, 0.714{]}} \\
 Effect of LMAs on \emph{A}\textsubscript{area} (\(\alpha_s\)) & \textbf{-0.133 {[}-0.211, -0.06{]}} & - \\
@@ -949,7 +949,7 @@ Effect of LMAs on LL (\(\beta_s\)) & \textbf{0.889 {[}0.762, 1.02{]}} & \textbf{
 Effect of LMAp on \emph{R}\textsubscript{area} (\(\gamma_p\)) & \textbf{0.292 {[}0.199, 0.384{]}} & \textbf{0.627 {[}0.429, 0.828{]}} \\
 Effect of LMAs on \emph{R}\textsubscript{area} (\(\gamma_s\)) & 0.034 {[}-0.05, 0.118{]} & 0.036 {[}-0.208, 0.32{]} \\
 Effect of light on LL (\(\theta\)) & - & \textbf{-0.808 {[}-1.103, -0.512{]}} \\
-\bottomrule()
+\bottomrule
 \end{longtable}
 
 \newpage

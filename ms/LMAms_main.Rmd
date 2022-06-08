@@ -223,7 +223,7 @@ To model LL for Panama, we used Eq. (6b) (light effects model), which was motiva
 Posterior distributions of all parameters were estimated using the Hamiltonian Monte Carlo algorithm (HMC) implemented in Stan [@Carpenter2017].
 Prior distributions for the latent variables *f*~i~ (which are used to partition LMA into LMAp and LMAs according to Eqs. \@ref(eq:E-A)-\@ref(eq:E-R)) were non-informative uniform(0, 1) distributions, (i.e., LMA was partitioned based on patterns in the data).
 The Stan code use to fit models is available from Github at: [https://github.com/mattocci27/XXX](https://github.com/mattocci27/xxx).
-Convergence of the posterior distribution was assessed with the Gelman-Rubin statistic with a convergence threshold of 1.1 for all parameters [@Gelman2013].
+Convergence of the posterior distribution was assessed with the Gelman-Rubin statistic with a convergence threshold of 1.05 for all parameters [@Gelman2013].
 
 Because our statistical approach includes many parameters (one latent variable *f~i~* to partition LMA into LMAp and LMAs for each leaf sample), we implemented tests with randomized data (*n* = 10) to assess potential overfitting.
 We generated randomized datasets by randomizing all the trait values (LMA, *A*~area~, *R*~area~ and LL) across species.

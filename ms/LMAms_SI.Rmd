@@ -1,23 +1,23 @@
 ---
-title: "Katabuchi et al. Appendix S1-x: Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species"
+title: "Katabuchi et al., Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species"
 fontsize: 12pt
 geometry: margin=1in
 link-citations: yes
 csl: templates/ecology.csl
 bibliography: [LMA.bib]
 output:
-  bookdown::pdf_document2:
-    latex_engine: pdflatex
-    fig_caption: yes
-    keep_tex: yes
-    toc: no
-    number_sections: no
-    template: templates/eisvogel2.tex
-    includes:
-        in_header: templates/format.sty
-    pandoc_args:
-      - "--filter"
-      - "pandoc-crossref"
+  # bookdown::pdf_document2:
+  #   latex_engine: pdflatex
+  #   fig_caption: yes
+  #   keep_tex: yes
+  #   toc: yes
+  #   number_sections: no
+  #   template: templates/eisvogel2.tex
+  #   includes:
+  #       in_header: templates/format.sty
+  #   pandoc_args:
+  #     - "--filter"
+  #     - "pandoc-crossref"
   bookdown::word_document2:
        fig_width: 6
        reference_docx: templates/rmd_style.docx
@@ -25,13 +25,20 @@ output:
          - "--filter"
          - "pandoc-crossref"
   bookdown::html_document2:
-    fig_width: 6
     fig_caption: yes
-    number_sections: no
+    theme: spacelab #readable #sandstone #spacelab #flatly
+    highlight: pygments #tango #kate
+    toc: TRUE
+    toc_depth: 2
+    number_sections: FALSE
+    toc_float:
+      collapsed: TRUE
+      smooth_scroll: TRUE
+      toc: true
     pandoc_args:
-        - "--filter"
-        - "pandoc-crossref"
-        - "--mathml"
+    - "--filter"
+    - "pandoc-crossref"
+    - "--mathml"
 ---
 
 ```{r global_options, include=FALSE}
@@ -42,20 +49,102 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 #library(methods)
 library(knitr)
 library(kableExtra)
+library(tidyverse)
 #source("rmd_func.r")
 ```
 
-# Randomization
+\newpage
 
-hoge
+# Appendix S1: Stan code for the final models
+
+We used independent and non-informative prior distributions for all parameters, including latent variables *f~i~* for each leaf sample.
+All priors were non-informative.
+The covariance matrix in Eq.\@ref(eq:MVN) in main text was decomposed as ${\bf \Sigma} = {\rm diag}({\bf \sigma}){\bf \Omega}{\rm diag}({\bf \sigma}) = {\rm diag}({\bf \sigma}){\bf LL}\prime {\rm diag}({\bf \sigma})$ using a Cholesky decomposition, where ${\bf \sigma}$ is a vector of $\sigma_{1}$, $\sigma_{2}$, and $\sigma_{3}$;  ${\bf \Omega}$ is a correlation matrix of $\rho_{12}$, $\rho_{13}$, and $\rho_{23}$; and **L** is a lower triangular matrix.
+Instead of assigning prior distributions on  directly, priors were assigned on  and **L** to avoid a strong dependence between  and  [@Lewandowski2009; @Alvarez2014].
+A prior for **L** was specified as a so-called LKJ distribution with shape parameter 1 [@Lewandowski2009], which is identical to a uniform distribution on the space of correlation matrices.
+Priors for  were specified as uniform distributions with range (0, 10,000).
+Priors for $\alpha, \beta_{1}, \beta_{2}$, *r~p~* and *r~s~* in Eqs. 4-6, 8-10, and 13-14 were specified as normal distributions with mean 0 and variance 10,000. Priors for fi in Eqs. (2, 3, 8-10, 14), and L in Eqs. (13-14) were specified as uniform distributions with range (0, 1).
+
+Alternative priors for *f~i~* were considered, but none were presented as main results, because the alternative priors produced statistical artifacts (Notes S4). In order to constrain the latent variables in our model, a natural choice is to implement hyper-parameters to describe prior means of the latent variables (e.g., different prior means of *f~i~* for deciduous vs evergreen leaves). However, analyses of simulated data suggest that using hyper-parameters in our model results in biased inference for *f~i~* as well as regression parameters (Notes S4).
+
+Models were fit using the Hamiltonian Monte Carlo algorithm (HMC) implemented in Stan [@Carpenter2017]. Posterior estimates were obtained from three independent chains of 20,000 iterations after a burn-in of 10,000 iterations, thinning at intervals of 20. The Stan code use to fit models are available from Github at: https://github.com/mattocci27/LMAmLMAs. Convergence of the posterior distribution was assessed with the Gelman-Rubin statistic with a convergence threshold of 1.1 for all diagnostics [@Gelman2014].
+
+## GLOPNET
+
+The best model for the GLOPNET dataset is (2) LMAp and LMAs, and (b) $\alpha_p > \alpha_s$ and $\beta_p = 0$.
+
+```{stan, output.var="hoge",file="../stan/GL_Aps_LLs.stan", eval=FALSE, echo=TRUE}
+```
+
+## Panama
+
+The best model for the Panama dataset is (4) LMAp, LMAs and light, and (a) $\alpha_s = 0$  and $\beta_p = 0$,
+
+```{stan, output.var="hoge",file="../stan/PA_Ap_LLs_opt.stan", eval=FALSE, echo=TRUE}
+```
+
+## All
+
+```{stan, output.var="hoge",file="../templates/model.jinja", eval=FALSE, echo=TRUE}
+```
 
 \newpage
+
+# Appendix S2: Randomization (including Table AS1 and Figure AS1)
+
+We generated 10 randomized datasets for each of the GLOPNET and the Panama datasets, and fit the best models (Appendix S1) to the randomized data.
+
+## Table AS1
+
+- No_large_Rhat: The number of parameters (including transformed parameters) that shows Rhat (Gelman-Rubin statistic) greater than 1.05.
+- No_divergence: The number of iterations that shows divergent transitions.
+
+```{r randtab, echo=FALSE, eval=TRUE}
+d <- read_csv("../data/rand.csv") |>
+  dplyr::select(Data = data, Simulation_ID = sim_id, No_large_Rhat = rhat, No_divergence = div)
+
+if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
+  # knitr::kable(d, format = "pipe", escape = FALSE) |>
+  kable(d) |>
+    kable_styling()
+    # kable_classic(full_width = FALSE)
+} else if ("docx" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
+  d |>
+    kable(format = "pipe", escape = FALSE) |>
+    kable_classic(full_width = FALSE)
+} else if ("latex" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
+  d |>
+    kable(format = "pipe", escape = FALSE) |>
+    kable_classic(full_width = FALSE)
+}
+```
+
+## Figure AS1
+
+Model results obtained from the randomized datasets did not convergent based on the Gelman-Rubin statistic or showed divergent transitions.
+
+Although divergent transitions suggesting that the posterior distribution is not relaible, we checked the regression coefficients for GLOPNET ($\alpha_{0, p, s}$, $\beta_{0, s}, and $\gamma_{0, p, s}$$).
+The simulation ID 2, 3, 4 and 7 were convergent based on the Gelman-Rubin statistic, but those randomized datasets did not show any patterns.
+Thus, the tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
+
+\newpage
+
+![
+Pearson correlation coefficients for posterior medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama datasets. The non-significant *r* values indicate that a single axis could not accurately represent the two-dimensional space. Symbols as in Main Text Figs. 1-2.
+](../figs/coef_rand.png){#fig:rand}
+
+
+\newpage
+
+# Figure S1
 
 ![
 Pearson correlation coefficients for posterior medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama datasets. The non-significant *r* values indicate that a single axis could not accurately represent the two-dimensional space. Symbols as in Main Text Figs. 1-2.
 ](../figs/ps_point.png){#fig:LMAms}
 
 \newpage
+
+# Figure S2
 
 ![
 Boxplots comparing leaf mass per area (LMA), photosynthetic leaf mass per area (LMAp; posterior means), and structural leaf mass per area (LMAs; posterior means) across sites (wet and dry) and canopy strata (sun and shade) in Panama.
@@ -66,6 +155,7 @@ Groups sharing the same letters are not significantly different (P > 0.05; t-tes
 
 \newpage
 
+# Figure S3
 
 ![
 Measured traits related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; Narea and Parea) are positively correlated with LMA and with estimates (posterior means) of the photosynthetic and structural LMA components (LMAp and LMAs, respectively) in the GLOPNET dataset.
