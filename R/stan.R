@@ -458,3 +458,40 @@ write_model_selction <- function(loo_tbl) {
 
     paste(output)
 }
+
+
+#' @para gl_rand_sig data including 95% CI
+#' @para gl_rand_check data with rhat and divergence
+coef_rand <- function(gl_rand_sig, gl_rand_check) {
+  data <- gl_rand_sig  |>
+   # filter(!str_detect(para, "0")) |>
+    full_join(gl_rand_check, by = "sim_id") |>
+    mutate(cov = ifelse(rhat == 0, "Converged", "Not converged")) |>
+    mutate(cov = factor(cov, levels = c("Not converged", "Converged"))) |>
+    mutate(sim_id_chr = paste0("sim-", sim_id)) |>
+    mutate(para = case_when(
+      para == "a0" ~ "alpha[0]",
+      para == "ap" ~ "alpha[p]",
+      para == "as" ~ "alpha[s]",
+      para == "b0" ~ "beta[0]",
+      para == "bs" ~ "beta[s]",
+      para == "g0" ~ "gamma[0]",
+      para == "gp" ~ "gamma[p]",
+      para == "gs" ~ "gamma[s]",
+      TRUE ~ para
+    ))
+  ggplot(data) +
+    geom_pointrange(aes(x = sim_id_chr,
+     y = mean, ymin = lwr, ymax = upr, group = sim_id, col = cov)) +
+    geom_hline(yintercept = 0) +
+    facet_wrap(~para, scale = "free", labeller = label_parsed) +
+    xlab("Randomized ID") +
+    ylab("Standradized coefficents") +
+    ggtitle("GLOPNET") +
+    coord_flip() +
+    theme_bw() +
+    theme(
+       legend.position = c(0.8, 0.2),
+       legend.title = element_blank(),
+    )
+}

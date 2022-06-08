@@ -88,4 +88,5 @@ ms/*.fls
 ms/*.fdb_latexmk
 
 ms/LMAms_main.fdb_latexmk
-ms/LMAms_main.fls
+ms/LMAms_main.fs
+test.R

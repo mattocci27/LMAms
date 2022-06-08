@@ -457,23 +457,52 @@ list(
   tar_target(
     gl_rand_check,
     tibble(rhat = sapply(gl_rand_fit, \(x) x$summary |> filter(rhat > 1.05) |> nrow()),
-      div = sapply(gl_rand_fit, \(x) x$diagnostics[,,2] |> apply(1, sum) |> sum()))
+      div = sapply(gl_rand_fit, \(x) x$diagnostics[,,2] |> apply(1, sum) |> sum()),
+      sim_id = 1:10,
+      data = "GLOPNET")
   ),
   tar_target(
     pa_rand_check,
     tibble(rhat = sapply(pa_rand_fit, \(x) x$summary |> filter(rhat > 1.05) |> nrow()),
-      div = sapply(pa_rand_fit, \(x) x$diagnostics[,,2] |> apply(1, sum) |> sum()))
+      div = sapply(pa_rand_fit, \(x) x$diagnostics[,,2] |> apply(1, sum) |> sum()),
+      sim_id = 1:10,
+      data = "Panama")
   ),
+  tar_target(
+    rand_csv, {
+      bind_rows(gl_rand_check, pa_rand_check) |>
+      write_csv("data/rand.csv")
+      paste("data/rand.csv")
+    },
+    format = "file"
+  ),
+
   tar_target(
     gl_rand_sig, {
       tmp <- NULL
-      for (i in 1:9) {
+      for (i in 1:10) {
         tmp <- bind_rows(tmp,
         list("a0", "ap", "as", "b0", "bs", "g0", "gp", "gs") |>
         map_dfr(rand_summary, gl_rand_fit, i))
         }
       tmp
     }
+  ),
+
+  tar_target(
+    coef_rand_plot, {
+      p <- coef_rand(gl_rand_sig, gl_rand_check)
+      ggsave(
+        "figs/coef_rand.png",
+       p,
+       dpi = 300,
+       height = 20,
+       width = 20,
+       units = "cm"
+      )
+        paste0("figs/coef_rand", c(".png"))
+    },
+    format = "file"
   ),
 
   # best model for the full data
