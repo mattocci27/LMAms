@@ -151,42 +151,33 @@ The models we considered combine @eq-LMA with functional forms that predict obse
 
 The simplest of these forms is a multivariate power-law:
 
-
 \begin{align}
 & \mathrm{E}[A_{\mathrm{area} \, i}]
-= \alpha_0\mathrm{LMAp}_{i}^{\alpha_p}\mathrm{LMAs}_i^{\alpha_s}  =  \alpha_0 (f_i \mathrm{LMA}_{i})^{\alpha_p} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\alpha_s} \label{eq:E-A} \\
+= \alpha_0\mathrm{LMAp}_{i}^{\alpha_p}\mathrm{LMAs}_i^{\alpha_s}  =  \alpha_0 (f_i \mathrm{LMA}_{i})^{\alpha_p} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\alpha_s} \label{eq:Aarea} \\
 & \mathrm{E}[R_{\mathrm{area} \, i}]
 = \gamma_0\mathrm{LMAp}_{i}^{\gamma_p} \mathrm{LMAs}_{i}^{\gamma_s}
-= \gamma_0 (f_i \mathrm{LMA}_{i})^{\gamma_p} \bigl\{(1-f_i)\mathrm{LMA}_{i}\bigr\}^{\gamma_s} \label{eq:E-R} \\
-& \mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAp}_{i}^{\beta_p} \mathrm{LMAs}_{i}^{\beta_s}   = \beta_0 (f_i \mathrm{LMA}_{i})^{\beta_p} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\beta_s} \tag{4a}  \\
-& \mathrm{E[LL}_i] = \beta_0\mathrm{LMAp}_{i}^{\beta_p} \mathrm{LMAs}_{i}^{\beta_s} exp(\theta Light_i) \stepcounter{equation}\tag{4b}
+= \gamma_0 (f_i \mathrm{LMA}_{i})^{\gamma_p} \bigl\{(1-f_i)\mathrm{LMA}_{i}\bigr\}^{\gamma_s} \label{eq:Rarea} \\
+& \mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAp}_{i}^{\beta_p} \mathrm{LMAs}_{i}^{\beta_s}  = \beta_0 (f_i \mathrm{LMA}_{i})^{\beta_p} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\beta_s} \label{eq:LL_pot} \tag{4a}  \\
+& \mathrm{E[LL}_i] = \beta_0\mathrm{LMAp}_{i}^{\beta_p} \mathrm{LMAs}_{i}^{\beta_s} exp(\theta Light_i)  \stepcounter{equation} \label{eq:LL_opt} \tag{4b}
 \end{align}
-
-
-hoge
-
-moge
-
-Equation \eqref{eq:LL_opt} is nice.
-
 
 where E[$\cdot$] indicates expected value;
 the $\alpha$, $\beta$, and $\gamma$ terms are fitted parameters;
 and the logarithms of *A*~area~, LL, and *R*~area~ are assumed to have a multivariate normal distribution (Appendix S1).
 We assumed that:
-(i) *A*~area~ depends more strongly on metabolic leaf mass (LMAp: parameters $\alpha_p$ Eq. 4) than structural leaf mass (LMAs: parameter $\alpha_s$), and
-(ii) LL depends more strongly on LMAs ($\beta_s$ in Eqs. 4a-b) than LMAm ($\beta_p$).
+(i) *A*~area~ depends more strongly on metabolic leaf mass (LMAp: parameters $\alpha_p$ in Eq. \ref{eq:Aarea}) than structural leaf mass (LMAs: parameter $\alpha_s$), and
+(ii) LL depends more strongly on LMAs ($\beta_s$ in Eqs. \ref{eq:LL_pot}-\ref{eq:LL_opt} ) than LMAm ($\beta_p$).
 In the first assumption, we constrained $\alpha_p$ > $\alpha_s$ or we set $\alpha_s$ to zero.
 In the second assumption, we constrained $\beta_s$ > $\beta_p$ or we set $\beta_p$ to zero.
 
-We also considered models in which LMAs in Eq. (4a) was replaced by leaf structural density (LMAs/LT, where LT is leaf thickness), which has been shown in some cases to be a good predictor for LL [@Kitajima2012; @Kitajima2013].
+We also considered models in which LMAs in Eq. \ref{eq:LL_pot}-\ref{eq:LL_opt} was replaced by leaf structural density (LMAs/LT, where LT is leaf thickness), which has been shown in some cases to be a good predictor for LL [@Kitajima2012; @Kitajima2013].
 In our analysis, models with leaf density yielded qualitatively similar results as those based on LMAs, but did not perform as well in the model evaluation (see below).
 Therefore, we only present results of the models with LMAs.
 
 Finally, we considered a functional form that accounts for the effects of light availability on LL.
 This light-dependent model is motivated by optimal LL theory, which predicts decreasing LL with increasing light availability (refs), and also by the often-observed ‘LMA counter-gradient’, whereby LL and LMA positively covary across species but negatively covary within species across light gradients [@Lusk2008; @Russo2016; @Osnas2018].
 Mechanistically modeling how light affects LL via leaf carbon balance [@Xu2017] is beyond the scope of our study.
-Instead, we introduced light effects in a simple way by modifying Eq. (4a) to Eq. (4b) where the dummy variable $Light_i$ is set to 1 for sun leaves and 0 for shade leaves, and $exp(\theta)$ is the sun:shade LL ratio.
+Instead, we introduced light effects in a simple way by modifying Eq. \ref{eq:LL_pot} to Eq. \ref{eq:LL_opt} where the dummy variable $Light_i$ is set to 1 for sun leaves and 0 for shade leaves, and $exp(\theta)$ is the sun:shade LL ratio.
 
 In summary, we have five model forms representing LL:
 (1) LMA,
@@ -217,9 +208,9 @@ Both datasets include additional traits that we used to interpret model results,
 
 ## Model estimation and evaluation
 
-We modeled *A*~area~ and *R*~area~ using Eqs. 4 and 5, respectively, for both GLOPNET and Panama.
-To model LL for GLOPNET, we used Eq. (6a) (no light effects), because GLOPNET does not report canopy position and thus primarily represents interspecific variation (see above).
-To model LL for Panama, we used Eq. (6b) (light effects model), which was motivated by the negative intraspecific LL-LMA relationship observed in Panama [@Xu2017; @Osnas2018] and elsewhere [@Lusk2008; @Russo2016].
+We modeled *A*~area~ and *R*~area~ using Eqs. \ref{eq:Aarea} and \ref{eq:Rarea}, respectively, for both GLOPNET and Panama.
+To model LL for GLOPNET, we used Eq. \ref{eq:LL_pot} (no light effects), because GLOPNET does not report canopy position and thus primarily represents interspecific variation (see above).
+To model LL for Panama, we used Eq. \ref{eq:LL_opt} (light effects model), which was motivated by the negative intraspecific LL-LMA relationship observed in Panama [@Xu2017; @Osnas2018] and elsewhere [@Lusk2008; @Russo2016].
 
 Posterior distributions of all parameters were estimated using the Hamiltonian Monte Carlo algorithm (HMC) implemented in Stan [@Carpenter2017].
 We used non-informative or weakly informative prior distributions [@Lemoine2019].
@@ -248,7 +239,7 @@ We used the following identity to estimate the relative contributions of LMAp an
 
 $$
 \mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2)
-$$ {#eq-hoge}
+$$ {#eq-var}
 
 
 where Var($\cdot$) is variance and Cov($\cdot$) is covariance.
@@ -258,22 +249,22 @@ We also partitioned variance of the posterior means of LMAp and LMAs into betwee
 
 ## Understanding relationships between photosynthetic capacity and LMA
 
-We applied our LMAp+LMAs model (Eq. \@ref(eq:E-A)) to simulated data to better understand relationships between photosynthetic capacity (*A*~max~) and LMA.
+We applied our LMAp+LMAs model to simulated data to better understand relationships between photosynthetic capacity (*A*~max~) and LMA (Eq. \ref{eq:Aarea}).
 The causes and interpretation of *A*~max~ vs. LMA relationships are controversial [@Westoby2013].
 Although *A*~max~ is often mass-normalized (e.g., @Wright2005; @Shipley2006; @Blonder2011), @Lloyd2013 argued that photosynthesis is an area-based process, and therefore *A*~max~ should be area-normalized when exploring trait relationships.
 Consistent with this argument, @Osnas2013 showed that across global species, variation in *A*~max~ is strongly dependent on leaf area, but only weakly dependent on leaf mass (after controlling for interspecific variation in leaf area).
 @Osnas2018 further showed that this result (strong area-dependence but weak mass-dependence of A across species) is most apparent within species groups in which LL is highly variable (‘Area-dependence and ‘mass-dependence’ refer to the degree to which whole-leaf trait values depend on leaf area and mass, respectively; see @Osnas2013, @Osnas2018).
 
-To better understand the factors affecting *A*~max~ vs. LMA relationships, we created simulated datasets in which we varied the following factors: the sensitivity of *A*~area~ to variation in LMAp (parameter $\alpha_p$ in Eq. \@ref(eq:E-A)); the sensitivity of *A*~area~ to LMAs (parameter $\alpha_s$ in Eq. \@ref(eq:E-A)), and the total LMA variance due to variance in LMAs.
+To better understand the factors affecting *A*~max~ vs. LMA relationships, we created simulated datasets in which we varied the following factors: the sensitivity of *A*~area~ to variation in LMAp (parameter $\alpha_p$ in Eq. \ref{eq:Aarea}); the sensitivity of *A*~area~ to LMAs (parameter $\alpha_s$ in Eq. \ref{eq:Aarea}), and the total LMA variance due to variance in LMAs.
 For each simulated dataset, we quantified the *A*~max~ vs. LMA relationship following @Osnas2018:
 
-\begin{align}
-A_{\mathrm{area} \, i} = a (LMA_i)^{b}\epsilon_i \tag{8}
-\end{align}
+$$
+A_{\mathrm{area} \, i} = a (LMA_i)^{b}\epsilon_i
+$$ {#eq-mass}
 
-where LMA is the sum of LMAp and LMAs (Eq. \@ref(eq:LMA)), *a* is a fitted constant, and *b* is an index of mass-dependence as illustrated by the following cases [@Osnas2013; @Osnas2018]: if *b* = 0, then *A*~area~ is independent of LMA, which implies that whole-leaf *A*~max~ is proportional to leaf area; conversely, if *b* = 1, then *A*~area~ is proportional to LMA, which implies that whole-leaf *A*~max~ is proportional to leaf mass.
+where LMA is the sum of LMAp and LMAs (@eq-LMA), *a* is a fitted constant, and *b* is an index of mass-dependence as illustrated by the following cases [@Osnas2013; @Osnas2018]: if *b* = 0, then *A*~area~ is independent of LMA, which implies that whole-leaf *A*~max~ is proportional to leaf area; conversely, if *b* = 1, then *A*~area~ is proportional to LMA, which implies that whole-leaf *A*~max~ is proportional to leaf mass.
 Intermediate cases (0 < *b* < 1), as well as more extreme cases (*b* $\leq$ 0 or *b* $\geq$ 1), are also possible.
-Note that although Eq. 8 uses area-normalized *A*~max~, equivalent results are obtained from mass-normalized *A*~max~ [@Osnas2018].
+Note that although @eq-mass uses area-normalized *A*~max~, equivalent results are obtained from mass-normalized *A*~max~ [@Osnas2018].
 
 We prepared LMAp and LMAs values based on the empirical estimates of these values from our GLOPNET and Panama analyses, with a sample size of 100.
 For simulations of GLOPNET and Panama sun leaves, LMAp values were generated by a random draw from a lognormal distribution with the empirical estimates of mean log(LMAp) and standard deviations of log(LMAp).
@@ -284,7 +275,7 @@ Similar to the GLOPNET and Panama sun leaves datasets, we fixed the empirical es
 The correlation coefficient was set to -0.4.
 
 For simulations of Panama shade leaves, LMAp and LMAs values were generated by a random draw from a multivariate normal distribution with the empirical estimates of mean log(LMAp) and standard deviations of log(LMAp), the empirical estimates of mean log(LMAs), and the estimated correlation value with log(LMAp) and log(LMAs), while with changing the standard deviation of log(LMAs) between log(1.01) and log(10).
-*A*~area~ was then generated based on LMAp, LMAs and estimated $\alpha_p$ and $\alpha_s$ values (Eq. 8) for each dataset.
+*A*~area~ was then generated based on LMAp, LMAs and estimated $\alpha_p$ and $\alpha_s$ values (@eq-mass) for each dataset.
 Using the above values, we calculated *b* for GLOPNET, Panama sun leaves and Panama shade leaves.
 We repeated these steps 1000 times.
 We compared the simulated results with the fractions of total LMA variance due to variance in LMAp and LMAs of the empirical data (see above).
@@ -304,7 +295,7 @@ For the Panama dataset, including the effect of light (sun vs. shade) imporved m
 All Panama results we report are for models including light effects unless stated otherwise.
 *A*~area~ and *R*~area~ had stronger and more positive correlations with LMAp than with LMA ([@fig-PAplt]a-f and Table 2).
 LL was not significantly correlated with LMA when all leaves were combined, but was strongly correlated with LMA for shade leaves at the dry site ([@fig-PAplt]g).
-There was a positive correlation between LL and LMAs ([@fig-PAplt]i), and this relationship was strengthened by accounting the effects of LL (Fig. 4; 2).
+There was a positive correlation between LL and LMAs ([@fig-PAplt]i), and this relationship was strengthened by accounting the effects of LL (@fig-LLplt).
 
 **2. Nearly all leaf dark respiration is associated with metabolic leaf tissue mass.**
 According to our model results, metabolic leaf mass (LMAp) accounted for nearly all leaf dark respiration; i.e., estimated dark respiration rate per-unit structural mass ($\gamma_s$) was close to zero in analyses of both GLOPNET and Panama data (Table 1).

@@ -148,13 +148,13 @@ In this model, LMA is assumed to have power-law relationships with *A*~area~, *R
 
 Next, we considered several models in which LMA is partitioned into additive metabolic and structural functions; i.e., we assume that the sum of metabolic leaf mass per area (LMAp) and structural leaf mass per area (LMAs) is equal to total observed LMA for leaf sample *i*:
 
-\begin{align}
+\begin{ali}
   &\mathrm{LMA}_{i} =\mathrm{LMAp}_{i} + \mathrm{LMAs}_{i} (\#eq:LMA)\\
   &\mathrm{LMAp}_{i} = f_{i} \mathrm{LMA}_{i} (\#eq:LMAp)\\
   &\mathrm{LMAs}_{i} = (1 - f_{i})  \mathrm{LMA}_{i}(\#eq:LMAs)
 \end{align}
 
-where the *f~i~* values -- the fractions of LMA comprised of LMAp for each sample *i* --  are estimated as latent variables in our modeling framework (see details below).
+where the *f~i~* values -- the fractions of LMA comprised ofｊLMAp for each sample *i* --  are estimated as latent variables in our modeling framework (see details below).
 The models we considered combine Eqns. \@ref(eq:LMA)-\@ref(eq:LMAs) with functional forms that predict observed values Amax, Rdark, and LL from the unobserved values LMAs and LMAp.
 
 The simplest of these forms is a multivariate power-law:
