@@ -24,7 +24,7 @@ format:
     keep-tex: true
     latex-clean: false
     pdf-engine: pdflatex
-    template: templates/eisvogel2.tex
+   # template: templates/eisvogel2.tex
 ---
 
 ```{r global_options, include=FALSE}
@@ -111,45 +111,45 @@ Model results obtained from the randomized datasets did not convergent based on 
 
 ## Figure AS1
 
+![
 Although divergent transitions suggesting that the posterior distribution is not reliable, we checked the regression coefficients for GLOPNET ($\alpha_{0, p, s}$, $\beta_{0, s}$, and $\gamma_{0, p, s}$ in Eqs. 4-6 in the main text).
 There are 10 independent simulations (randomizations) in total.
 The simulation ID 2, 3, 4 and 7 were convergent based on the Gelman-Rubin statistic, but those randomized datasets did not show any patterns.
 Thus, the tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
-
-![](../figs/coef_rand.png){#fig-rand}
+](../figs/coef_rand.png){#fig-rand}
 
 \newpage
 
-# Figure S1
+# Figure S2
 
+![
 Pearson correlation coefficients for posterior medians of LMAp vs LMAs in the (a) GLOPNET and (b) Panama datasets.
 The non-significant or weak *r* values indicate that a single axis could not accurately represent the two-dimensional space.
 Symbols as in Main Text Figs. 1-2.
+](../figs/ps_point.png){#fig-LMAp_LMAs}
 
-![](../figs/ps_point.png){#fig-LMAp_LMAs}
-
-
-\newpage
-
-# Figure S2
-
-Boxplots comparing leaf mass per area (LMA), photosynthetic leaf mass per area (LMAp; posterior means), and structural leaf mass per area (LMAs; posterior means) across sites (wet and dry) and canopy strata (sun and shade) in Panama.
-The results shown here include all leaves in the Panama dataset, whereas Fig. 5 in the main text only includes Panama species for which both sun and shade leaves were available.
-Boxplot symbols as in Fig. 5.
-Groups sharing the same letters are not significantly different (P > 0.05; t-tests).
-
-![](../figs/box_frac.png){#fig-box_frac}
 
 \newpage
 
 # Figure S2
 
+![
 Boxplots comparing leaf mass per area (LMA), photosynthetic leaf mass per area (LMAp; posterior means), and structural leaf mass per area (LMAs; posterior means) across sites (wet and dry) and canopy strata (sun and shade) in Panama.
 The results shown here include all leaves in the Panama dataset, whereas Fig. 5 in the main text only includes Panama species for which both sun and shade leaves were available.
 Boxplot symbols as in Fig. 5.
 Groups sharing the same letters are not significantly different (P > 0.05; t-tests).
+](../figs/box_frac.png){#fig-box_frac}
 
-![](../figs/box_frac.png){#fig-box_frac2}
+\newpage
+
+# Figure S2
+
+![
+Boxplots comparing leaf mass per area (LMA), photosynthetic leaf mass per area (LMAp; posterior means), and structural leaf mass per area (LMAs; posterior means) across sites (wet and dry) and canopy strata (sun and shade) in Panama.
+The results shown here include all leaves in the Panama dataset, whereas Fig. 5 in the main text only includes Panama species for which both sun and shade leaves were available.
+Boxplot symbols as in Fig. 5.
+Groups sharing the same letters are not significantly different (P > 0.05; t-tests).
+](../figs/box_frac.png){#fig-box_frac2}
 
 \newpage
 
@@ -161,10 +161,10 @@ Mass-prop
 
 # Figure S4
 
+![
 Measured traits related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are positively correlated with LMA and with estimates (posterior means) of the photosynthetic and structural LMA components (LMAp and LMAs, respectively) in the GLOPNET dataset.
 LMAp yields stronger correlations and more consistent relationships compared to LMA and LMAs; e.g., evergreen and deciduous leaves align along a single relationship in panel b, but not in panels a or c.
-
-![](../figs/gl_point_np2.png){#fig-glnp}
+](../figs/gl_point_np2.png){#fig-glnp}
 
 # Appendix S3: Stan code
 

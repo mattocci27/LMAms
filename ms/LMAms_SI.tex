@@ -1,63 +1,18 @@
-%%
-% Copyright (c) 2017 - 2020, Pascal Wagler;
-% Copyright (c) 2014 - 2020, John MacFarlane
-%
-% All rights reserved.
-%
-% Redistribution and use in source and binary forms, with or without
-% modification, are permitted provided that the following conditions
-% are met:
-%
-% - Redistributions of source code must retain the above copyright
-% notice, this list of conditions and the following disclaimer.
-%
-% - Redistributions in binary form must reproduce the above copyright
-% notice, this list of conditions and the following disclaimer in the
-% documentation and/or other materials provided with the distribution.
-%
-% - Neither the name of John MacFarlane nor the names of other
-% contributors may be used to endorse or promote products derived
-% from this software without specific prior written permission.
-%
-% THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-% "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-% LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-% FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-% COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-% INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-% BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-% LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-% CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-% LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
-% ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-% POSSIBILITY OF SUCH DAMAGE.
-%%
-
-%%
-% This is the Eisvogel pandoc LaTeX template.
-%
-% For usage information and examples visit the official GitHub page:
-% https://github.com/Wandmalfarbe/pandoc-latex-template
-%%
-
-\DeclareUnicodeCharacter{2212}{-}
-
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-\PassOptionsToPackage{dvipsnames,svgnames*,x11names*,table}{xcolor}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
 \documentclass[
   12pt,
-  a4paper,
-,tablecaptionabove
-]{scrartcl}
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{setspace}
-\setstretch{1.2}
-\usepackage{amssymb,amsmath}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -83,23 +38,19 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\definecolor{default-linkcolor}{HTML}{A50000}
-\definecolor{default-filecolor}{HTML}{A50000}
-\definecolor{default-citecolor}{HTML}{4077C0}
-\definecolor{default-urlcolor}{HTML}{4077C0}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Katabuchi et al., Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species},
-  colorlinks=true,
-  linkcolor=blue,
-  filecolor=default-filecolor,
-  citecolor=default-citecolor,
-  urlcolor=default-urlcolor,
-  breaklinks=true,
-  pdfcreator={LaTeX via pandoc with the Eisvogel template}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -141,17 +92,9 @@
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
-% Workaround/bugfix from jannick0.
-% See https://github.com/jgm/pandoc/issues/4302#issuecomment-360669013)
-% or https://github.com/Wandmalfarbe/pandoc-latex-template/issues/2
-%
-% Redefine the verbatim environment 'Highlighting' to break long lines (with
-% the help of fvextra). Redefinition is necessary because it is unlikely that
-% pandoc includes fvextra in the default template.
-\usepackage{fvextra}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,fontsize=\small,commandchars=\\\{\}}
-
-\usepackage{longtable,booktabs}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
 \makeatletter
@@ -160,8 +103,6 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
-% add backlinks to footnote references, cf. https://tex.stackexchange.com/questions/302266/make-footnote-clickable-both-ways
-\usepackage{footnotebackref}
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -171,24 +112,33 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
-% Make \paragraph and \subparagraph free-standing
-\ifx\paragraph\undefined\else
-  \let\oldparagraph\paragraph
-  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-  \let\oldsubparagraph\subparagraph
-  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-% Make use of float-package and set default placement for figures to H.
-% The option H means 'PUT IT HERE' (as  opposed to the standard h option which means 'You may put it here if you like').
-\usepackage{float}
-\floatplacement{figure}{H}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -204,6 +154,7 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
+\KOMAoption{captions}{tableheading}
 \makeatletter
 \makeatother
 \makeatletter
@@ -255,216 +206,30 @@
 \makeatother
 \makeatletter
 \makeatother
-
-\newlength{\cslhangindent}
-\setlength{\cslhangindent}{1.5em}
-\newlength{\csllabelwidth}
-\setlength{\csllabelwidth}{3em}
-\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
- {% don't indent paragraphs
-  \setlength{\parindent}{0pt}
-  % turn on hanging indent if param 1 is 1
-  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
-  % set entry spacing
-  \ifnum #2 > 0
-  \setlength{\parskip}{#2\baselineskip}
-  \fi
- }%
- {}
-\usepackage{calc}
-\newcommand{\CSLBlock}[1]{#1\hfill\break}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
-\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
-
-\title{Katabuchi et al., Decomposing leaf mass into metabolic and
-structural components explains divergent patterns of trait variation
-within and among plant species}
-\date{}
-
-
-%%
-%% added
-%%
-
-%
-% language specification
-%
-% If no language is specified, use English as the default main document language.
-%
-
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-  \usepackage[shorthands=off,main=english]{babel}
-\else
-    % Workaround for bug in Polyglossia that breaks `\familydefault` when `\setmainlanguage` is used.
-  % See https://github.com/Wandmalfarbe/pandoc-latex-template/issues/8
-  % See https://github.com/reutenauer/polyglossia/issues/186
-  % See https://github.com/reutenauer/polyglossia/issues/127
-  \renewcommand*\familydefault{\sfdefault}
-    % load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
-  \usepackage{polyglossia}
-  \setmainlanguage[]{english}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Katabuchi et al., Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
 
-
-
-%
-% for the background color of the title page
-%
-
-%
-% break urls
-%
-\PassOptionsToPackage{hyphens}{url}
-
-%
-% When using babel or polyglossia with biblatex, loading csquotes is recommended
-% to ensure that quoted texts are typeset according to the rules of your main language.
-%
-\usepackage{csquotes}
-
-%
-% captions
-%
-%\definecolor{caption-color}{HTML}{777777}
-\definecolor{caption-color}{HTML}{37474F}
-%\usepackage[font={stretch=1.2}, textfont={color=caption-color}, position=top, skip=4mm, labelfont=bf, singlelinecheck=false, justification=raggedright]{caption}
-\usepackage[font={stretch=1}, textfont={color=caption-color}, position=top, skip=2mm, labelfont=bf, singlelinecheck=false, justification=raggedright]{caption}
-\setcapindent{0em}
-
-%
-% blockquote
-%
-\definecolor{blockquote-border}{RGB}{221,221,221}
-\definecolor{blockquote-text}{RGB}{119,119,119}
-\usepackage{mdframed}
-\newmdenv[rightline=false,bottomline=false,topline=false,linewidth=3pt,linecolor=blockquote-border,skipabove=\parskip]{customblockquote}
-\renewenvironment{quote}{\begin{customblockquote}\list{}{\rightmargin=0em\leftmargin=0em}%
-\item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\endlist\end{customblockquote}}
-
-%
-% Source Sans Pro as the de­fault font fam­ily
-% Source Code Pro for monospace text
-%
-% 'default' option sets the default
-% font family to Source Sans Pro, not \sfdefault.
-%
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-    \usepackage[default]{sourcesanspro}
-  \usepackage{sourcecodepro}
-  %\usepackage{}
-  \else % if not pdftex
-    \usepackage[default]{sourcesanspro}
-  \usepackage{sourcecodepro}
-  %\usepackage{}
-
-  % XeLaTeX specific adjustments for straight quotes: https://tex.stackexchange.com/a/354887
-  % This issue is already fixed (see https://github.com/silkeh/latex-sourcecodepro/pull/5) but the
-  % fix is still unreleased.
-  % TODO: Remove this workaround when the new version of sourcecodepro is released on CTAN.
-  \ifxetex
-    \makeatletter
-    \defaultfontfeatures[\ttfamily]
-      { Numbers   = \sourcecodepro@figurestyle,
-        Scale     = \SourceCodePro@scale,
-        Extension = .otf }
-    \setmonofont
-      [ UprightFont    = *-\sourcecodepro@regstyle,
-        ItalicFont     = *-\sourcecodepro@regstyle It,
-        BoldFont       = *-\sourcecodepro@boldstyle,
-        BoldItalicFont = *-\sourcecodepro@boldstyle It ]
-      {SourceCodePro}
-    \makeatother
-  \fi
-  \fi
-
-%
-% heading color
-%
-\definecolor{heading-color}{RGB}{40,40,40}
-\addtokomafont{section}{\color{heading-color}}
-% When using the classes report, scrreprt, book,
-% scrbook or memoir, uncomment the following line.
-%\addtokomafont{chapter}{\color{heading-color}}
-
-%
-% variables for title and author
-%
-\usepackage{titling}
 \title{Katabuchi et al., Decomposing leaf mass into metabolic and
 structural components explains divergent patterns of trait variation
 within and among plant species}
 \author{}
-
-%
-% tables
-%
-
-\definecolor{table-row-color}{HTML}{F5F5F5}
-\definecolor{table-rule-color}{HTML}{999999}
-
-%\arrayrulecolor{black!40}
-\arrayrulecolor{table-rule-color}     % color of \toprule, \midrule, \bottomrule
-\setlength\heavyrulewidth{0.3ex}      % thickness of \toprule, \bottomrule
-\renewcommand{\arraystretch}{1.3}     % spacing (padding)
-
-
-%
-% remove paragraph indention
-%
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-
-%
-%
-% Listings
-%
-%
-
-
-%
-% header and footer
-%
-\usepackage{fancyhdr}
-
-\fancypagestyle{eisvogel-header-footer}{
-  \fancyhead{}
-  \fancyfoot{}
-  \lhead[]{Katabuchi et al., Decomposing leaf mass into metabolic and
-structural components explains divergent patterns of trait variation
-within and among plant species}
-  \chead[]{}
-  \rhead[Katabuchi et al., Decomposing leaf mass into metabolic and
-structural components explains divergent patterns of trait variation
-within and among plant species]{}
-  %\lfoot[\thepage]{}
-  \cfoot[]{}
-  \cfoot[]{\thepage}
-  \renewcommand{\headrulewidth}{0.0pt}
- % \renewcommand{\footrulewidth}{0.0pt}
- % \renewcommand{\headrulewidth}{0.4pt}
- % \renewcommand{\footrulewidth}{0.4pt}
-}
-\pagestyle{eisvogel-header-footer}
-
-%%
-%% end added
-%%
+\date{}
 
 \begin{document}
-
-%%
-%% begin titlepage
-%%
-
-%%
-%% end titlepage
-%%
-
-
-
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, breakable, interior hidden, borderline west={3pt}{0pt}{shadecolor}, frame hidden, sharp corners, enhanced]}{\end{tcolorbox}}\fi
+\maketitle
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, interior hidden, enhanced, sharp corners, frame hidden]}{\end{tcolorbox}}\fi
 
 \newpage
 
@@ -589,61 +354,88 @@ based on the Gelman-Rubin statistic or showed divergent transitions.
 \hypertarget{figure-as1}{%
 \subsection{Figure AS1}\label{figure-as1}}
 
-Although divergent transitions suggesting that the posterior
-distribution is not reliable, we checked the regression coefficients for
-GLOPNET (\(\alpha_{0, p, s}\), \(\beta_{0, s}\), and
+\begin{figure}
+
+{\centering \includegraphics{../figs/coef_rand.png}
+
+}
+
+\caption{\label{fig-rand}Although divergent transitions suggesting that
+the posterior distribution is not reliable, we checked the regression
+coefficients for GLOPNET (\(\alpha_{0, p, s}\), \(\beta_{0, s}\), and
 \(\gamma_{0, p, s}\) in Eqs. 4-6 in the main text). There are 10
 independent simulations (randomizations) in total. The simulation ID 2,
 3, 4 and 7 were convergent based on the Gelman-Rubin statistic, but
 those randomized datasets did not show any patterns. Thus, the tests
 with randomized data indicate that our model is not inherently prone to
-overfitting or to producing patterns from noise.
+overfitting or to producing patterns from noise.}
 
-\includegraphics{../figs/coef_rand.png}
-
-\newpage
-
-\hypertarget{figure-s1}{%
-\section{Figure S1}\label{figure-s1}}
-
-Pearson correlation coefficients for posterior medians of LMAp vs LMAs
-in the (a) GLOPNET and (b) Panama datasets. The non-significant or weak
-\emph{r} values indicate that a single axis could not accurately
-represent the two-dimensional space. Symbols as in Main Text Figs. 1-2.
-
-\includegraphics{../figs/ps_point.png}
+\end{figure}
 
 \newpage
 
 \hypertarget{figure-s2}{%
 \section{Figure S2}\label{figure-s2}}
 
-Boxplots comparing leaf mass per area (LMA), photosynthetic leaf mass
-per area (LMAp; posterior means), and structural leaf mass per area
-(LMAs; posterior means) across sites (wet and dry) and canopy strata
-(sun and shade) in Panama. The results shown here include all leaves in
-the Panama dataset, whereas Fig. 5 in the main text only includes Panama
-species for which both sun and shade leaves were available. Boxplot
-symbols as in Fig. 5. Groups sharing the same letters are not
-significantly different (P \textgreater{} 0.05; t-tests).
+\begin{figure}
 
-\includegraphics{../figs/box_frac.png}
+{\centering \includegraphics{../figs/ps_point.png}
+
+}
+
+\caption{\label{fig-LMAp_LMAs}Pearson correlation coefficients for
+posterior medians of LMAp vs LMAs in the (a) GLOPNET and (b) Panama
+datasets. The non-significant or weak \emph{r} values indicate that a
+single axis could not accurately represent the two-dimensional space.
+Symbols as in Main Text Figs. 1-2.}
+
+\end{figure}
 
 \newpage
 
 \hypertarget{figure-s2-1}{%
 \section{Figure S2}\label{figure-s2-1}}
 
-Boxplots comparing leaf mass per area (LMA), photosynthetic leaf mass
-per area (LMAp; posterior means), and structural leaf mass per area
-(LMAs; posterior means) across sites (wet and dry) and canopy strata
-(sun and shade) in Panama. The results shown here include all leaves in
-the Panama dataset, whereas Fig. 5 in the main text only includes Panama
-species for which both sun and shade leaves were available. Boxplot
-symbols as in Fig. 5. Groups sharing the same letters are not
-significantly different (P \textgreater{} 0.05; t-tests).
+\begin{figure}
 
-\includegraphics{../figs/box_frac.png}
+{\centering \includegraphics{../figs/box_frac.png}
+
+}
+
+\caption{\label{fig-box_frac}Boxplots comparing leaf mass per area
+(LMA), photosynthetic leaf mass per area (LMAp; posterior means), and
+structural leaf mass per area (LMAs; posterior means) across sites (wet
+and dry) and canopy strata (sun and shade) in Panama. The results shown
+here include all leaves in the Panama dataset, whereas Fig. 5 in the
+main text only includes Panama species for which both sun and shade
+leaves were available. Boxplot symbols as in Fig. 5. Groups sharing the
+same letters are not significantly different (P \textgreater{} 0.05;
+t-tests).}
+
+\end{figure}
+
+\newpage
+
+\hypertarget{figure-s2-2}{%
+\section{Figure S2}\label{figure-s2-2}}
+
+\begin{figure}
+
+{\centering \includegraphics{../figs/box_frac.png}
+
+}
+
+\caption{\label{fig-box_frac2}Boxplots comparing leaf mass per area
+(LMA), photosynthetic leaf mass per area (LMAp; posterior means), and
+structural leaf mass per area (LMAs; posterior means) across sites (wet
+and dry) and canopy strata (sun and shade) in Panama. The results shown
+here include all leaves in the Panama dataset, whereas Fig. 5 in the
+main text only includes Panama species for which both sun and shade
+leaves were available. Boxplot symbols as in Fig. 5. Groups sharing the
+same letters are not significantly different (P \textgreater{} 0.05;
+t-tests).}
+
+\end{figure}
 
 \newpage
 
@@ -657,16 +449,23 @@ Mass-prop
 \hypertarget{figure-s4}{%
 \section{Figure S4}\label{figure-s4}}
 
-Measured traits related to photosynthesis and metabolism (nitrogen and
-phosphorus per-unit leaf area; \emph{N}\textsubscript{area} and
-\emph{P}\textsubscript{area}) are positively correlated with LMA and
-with estimates (posterior means) of the photosynthetic and structural
-LMA components (LMAp and LMAs, respectively) in the GLOPNET dataset.
-LMAp yields stronger correlations and more consistent relationships
-compared to LMA and LMAs; e.g., evergreen and deciduous leaves align
-along a single relationship in panel b, but not in panels a or c.
+\begin{figure}
 
-\includegraphics{../figs/gl_point_np2.png}
+{\centering \includegraphics{../figs/gl_point_np2.png}
+
+}
+
+\caption{\label{fig-glnp}Measured traits related to photosynthesis and
+metabolism (nitrogen and phosphorus per-unit leaf area;
+\emph{N}\textsubscript{area} and \emph{P}\textsubscript{area}) are
+positively correlated with LMA and with estimates (posterior means) of
+the photosynthetic and structural LMA components (LMAp and LMAs,
+respectively) in the GLOPNET dataset. LMAp yields stronger correlations
+and more consistent relationships compared to LMA and LMAs; e.g.,
+evergreen and deciduous leaves align along a single relationship in
+panel b, but not in panels a or c.}
+
+\end{figure}
 
 \hypertarget{appendix-s3-stan-code}{%
 \section{Appendix S3: Stan code}\label{appendix-s3-stan-code}}
@@ -911,5 +710,7 @@ correlation matrices based on vines and extended onion method}. Journal
 of Multivariate Analysis 100:1989--2001.
 
 \end{CSLReferences}
+
+
 
 \end{document}

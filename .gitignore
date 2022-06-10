@@ -74,8 +74,8 @@ ms/cache/
 .local/
 .npm
 node_modules/
-*.aux
 *.pdf
+*.log
 *.sif
 rda/
 
