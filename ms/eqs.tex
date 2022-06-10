@@ -118,7 +118,7 @@ A_{\mathrm{area} \, i} = a (LMA_i)^{b}\epsilon_i (\#eq:mass)
 
 
 \begin{align}
-  
+
 & A_{\mathrm{area} \; i}
 = \alpha_0\mathrm{LMAm}_{i}^{\alpha_m} (\mathrm{LMAs}_{i}/ \mathrm{LT}_{i})^{\alpha_s}\epsilon_{1i}\\
 
@@ -129,3 +129,22 @@ A_{\mathrm{area} \, i} = a (LMA_i)^{b}\epsilon_i (\#eq:mass)
 \end{align}
 
 \end{document}
+
+$$
+\begin{aligned}
+  &\mathrm{LMA}_{i} =\mathrm{LMAp}_{i} + \mathrm{LMAs}_{i} \\
+  &\mathrm{LMAp}_{i} = f_{i} \mathrm{LMA}_{i} \\
+  &\mathrm{LMAs}_{i} = (1 - f_{i})  \mathrm{LMA}_{i}
+\end{aligned}
+$$ {#eq-LMA}
+
+\begin{align}
+  & \mathrm{E}[A_{\mathrm{area} \, i}]
+  = \alpha_0\mathrm{LMAp}_{i}^{\alpha_p}\mathrm{LMAs}_i^{\alpha_s}  =  \alpha_0 (f_i \mathrm{LMA}_{i})^{\alpha_p} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\alpha_s} \label{eq:E-A} \\
+  & \mathrm{E}[R_{\mathrm{area} \, i]
+  = \gamma_0\mathrm{LMAp}_{i}^{\gamma_p} \mathrm{LMAs}_{i}^{\gamma_s}
+  = \gamma_0 (f_i \mathrm{LMA}_{i})^{\gamma_p} \bigl\{(1-f_i)\mathrm{LMA}_{i}\bigr\}^{\gamma_s} \label{eq:E-R} \\
+  & \mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAp}_{i}^{\beta_p} \mathrm{LMAs}_{i}^{\beta_s}   = \beta_0 (f_i \mathrm{LMA}_{i})^{\beta_p} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\beta_s} \tag{4a} \label{eq:LL_pot} \\
+  & \mathrm{E[LL}_i] = \beta_0\mathrm{LMAp}_{i}^{\beta_p} \mathrm{LMAs}_{i}^{\beta_s} exp(\theta Light_i) \tag{4b} \label{eq:LL_opt}
+ \end{align}
+
