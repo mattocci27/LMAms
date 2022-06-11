@@ -870,6 +870,21 @@ list(
     format = "file"
   ),
   tar_target(
+    box_inter_plot, {
+      p <- box_inter(pa_box_list, settings_yml)
+      ggsave(
+        "figs/box_inter.png",
+       p,
+       dpi = 300,
+       height = 6,
+       width = 11.7,
+       units = "cm"
+      )
+      paste0("figs/box_inter", c(".png"))
+    },
+    format = "file"
+  ),
+  tar_target(
     box_frac_plot, {
       p <- box_frac(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml)
       ggsave(
