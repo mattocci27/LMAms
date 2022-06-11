@@ -86,9 +86,9 @@ var_fun <- function(LMAs, LMAp) {
 }
 
 get_mean <- function(data, para_str)  {
- data |>
-  filter(variable == para_str) |>
-  pull(mean)
+  data |>
+    filter(variable == para_str) |>
+    pull(mean)
 }
 
 #' @para data gl_res_csv or pa_res_csv
@@ -126,6 +126,51 @@ mass_prop_sim <- function(data, para, n_sim = 1000, n_samp = 100,
   lwr <- apply(b, 1, \(x)(quantile(x, 0.025)))
   tibble(mean = mean_, upr = upr, lwr = lwr,
               LMAs_var_mean, site = site)
+}
+
+#' @para data gl_res_csv or pa_res_csv
+#' @para para mcmc summary (e.g.  fit_7_summary_GL_Aps_LLs)
+mass_prop_sim_grad_each <- function(ap, as, a0, data, n_sim = 1000, n_samp = 100,
+                   x_len = 20, site = "GLOPNET", seed = 123) {
+  set.seed(seed)
+  mu <- mu_fun(data$LMAp)
+  mu2 <- mu_fun(data$LMAs)
+  sig <- sig_fun(data$LMAp)
+  LMAs_var <- NULL
+  b <- NULL
+  for (i in 1:n_sim) {
+    LMAp <- rlnorm(n_samp, mu, sig)
+    tmp <- seq(log(1.01), log(10), length = x_len)
+    LMAs <- map(tmp, \(x) rlnorm(n_samp, mu2, x))
+    LMAs_var <- cbind(LMAs_var, map_dbl(LMAs, var_fun, LMAp))
+    b <- cbind(b, map_dbl(LMAs, gl_sim_fit,
+      LMAp,
+      a0,
+      ap,
+      as
+    ))
+  }
+  LMAs_var_mean <- apply(LMAs_var, 1, mean)
+  mean_ <- apply(b, 1, mean)
+  upr <- apply(b, 1, \(x)(quantile(x, 0.975)))
+  lwr <- apply(b, 1, \(x)(quantile(x, 0.025)))
+  tibble(mean = mean_, upr = upr, lwr = lwr,
+              LMAs_var_mean, site = site)
+}
+
+#' @para gl_res_csv gl_res_csv
+#' @para summary_mcmc mcmc summary (e.g.  fit_7_summary_GL_Aps_LLs)
+#' @para ap vector for ap (e.g., c(0.1, 0.5, 1.0))
+#' @para as vector for as e.g., get_mean(fit_7_summary_GL_Aps_LLs, "as") |> rep(3)
+mass_prop_sim_grad <- function(gl_res_csv, summary_mcmc, ap, as, n_sim = 1000, x_len = 20) {
+  a0 <- get_mean(summary_mcmc, "a0")
+#                   ap = c(0.1, 0.5, 1.0)
+#                   as = get_mean(fit_7_summary_GL_Aps_LLs, "as") |> rep(3)
+  pmap_dfr(list(ap, as), mass_prop_sim_grad_each,
+    a0 = a0,
+    data = read_csv(gl_res_csv),
+    n_sim = n_sim) |>
+      mutate(para_id = rep(seq(1, length(ap)), each = x_len))
 }
 
 #' @title Simulation for mass prop (MVN)
