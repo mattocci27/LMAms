@@ -571,6 +571,31 @@ box_main <- function(gl_box_list, pa_box_trim_list, settings_yml) {
   p1 / p2
 }
 
+#' @title boxplot for SI
+#' @para pa_box_list list with data and lab
+box_inter <- function(pa_box_list, settings_yml) {
+  settings <- yaml::yaml.load_file(settings_yml)
+  fills2 <- c("Sun\nDry" = settings$fills$sun_dry,
+            "Sun\nWet" = settings$fills$sun_wet,
+            "Shade\nDry" = settings$fills$shade_dry,
+            "Shade\nWet" = settings$fills$shade_wet,
+            "Rand" = settings$fills$R)
+  cols2 <- c("Sun\nDry" = settings$colors$sun_dry,
+            "Sun\nWet" = settings$colors$sun_wet,
+            "Shade\nDry" = settings$colors$shade_dry,
+            "Shade\nWet" = settings$colors$shade_wet,
+            "Rand" = settings$colors$R)
+  p2 <- box_fun(pa_box_list, fills2) +
+       scale_colour_manual(values = cols2, guide = "none") +
+       ylab(expression(atop("Panama",
+                   LMA~(g~m^{-2})))) +
+  theme(
+    strip.background = element_blank(),
+    strip.text.x = element_text(colour = NA) # invinsible strip
+        )
+  p2
+}
+
 #' @title Boxplot for LMAp fraction (LMAp / LMA)
 box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
   # targets::tar_load(pa_inter_box_dat)
