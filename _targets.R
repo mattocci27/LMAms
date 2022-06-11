@@ -768,6 +768,15 @@ list(
     mass_prop_sim(
       read_csv(gl_res_csv), fit_7_summary_GL_Aps_LLs, n_sim = 1000)
   ),
+
+  tar_target(
+    gl_mass_prop_grad_ap,
+    mass_prop_sim_grad(gl_res_csv, fit_7_summary_GL_Aps_LLs,
+                     ap = c(0.1, 0.5, 1.0),
+                     as = get_mean(fit_7_summary_GL_Aps_LLs, "as") |> rep(3),
+                     n_sim = 1000)
+  ),
+
   tar_target(
     sun_mass_prop,
     mass_prop_sim(read_csv(pa_res_csv) |> filter(strata == "CAN"),
