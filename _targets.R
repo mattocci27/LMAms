@@ -770,10 +770,18 @@ list(
   ),
 
   tar_target(
-    gl_mass_prop_grad_ap,
+    mass_prop_grad_ap,
     mass_prop_sim_grad(gl_res_csv, fit_7_summary_GL_Aps_LLs,
                      ap = c(0.1, 0.5, 1.0),
                      as = get_mean(fit_7_summary_GL_Aps_LLs, "as") |> rep(3),
+                     n_sim = 1000)
+  ),
+
+  tar_target(
+    mass_prop_grad_as,
+    mass_prop_sim_grad(gl_res_csv, fit_7_summary_GL_Aps_LLs,
+                     ap = get_mean(fit_7_summary_GL_Aps_LLs, "ap") |> rep(3),
+                     as = c(-0.5, 0, 0.5),
                      n_sim = 1000)
   ),
 
@@ -833,6 +841,23 @@ list(
     },
     format = "file"
   ),
+
+  tar_target(
+    mass_sim_plot, {
+      p <- mass_sim_point(mass_prop_grad_ap, mass_prop_grad_as)
+      ggsave(
+        "figs/mass_sim.png",
+       p,
+       dpi = 300,
+       height = 6,
+       width = 6,
+       units = "cm"
+      )
+      paste0("figs/mass_sim", c(".png"))
+    },
+    format = "file"
+  ),
+
   # boxplot ------------------------------------------------------
   tar_target(
     gl_box_dat,
@@ -914,4 +939,3 @@ list(
   )
 
 )
-
