@@ -155,7 +155,7 @@ mass_prop_sim_grad_each <- function(ap, as, a0, data, n_sim = 1000, n_samp = 100
   upr <- apply(b, 1, \(x)(quantile(x, 0.975)))
   lwr <- apply(b, 1, \(x)(quantile(x, 0.025)))
   tibble(mean = mean_, upr = upr, lwr = lwr,
-              LMAs_var_mean, site = site)
+              LMAs_var_mean, site = site, a0, ap, as)
 }
 
 #' @para gl_res_csv gl_res_csv
@@ -163,6 +163,7 @@ mass_prop_sim_grad_each <- function(ap, as, a0, data, n_sim = 1000, n_samp = 100
 #' @para ap vector for ap (e.g., c(0.1, 0.5, 1.0))
 #' @para as vector for as e.g., get_mean(fit_7_summary_GL_Aps_LLs, "as") |> rep(3)
 mass_prop_sim_grad <- function(gl_res_csv, summary_mcmc, ap, as, n_sim = 1000, x_len = 20) {
+  para_id <- rep(seq(1, length(ap)), each = x_len)
   a0 <- get_mean(summary_mcmc, "a0")
 #                   ap = c(0.1, 0.5, 1.0)
 #                   as = get_mean(fit_7_summary_GL_Aps_LLs, "as") |> rep(3)
@@ -170,7 +171,7 @@ mass_prop_sim_grad <- function(gl_res_csv, summary_mcmc, ap, as, n_sim = 1000, x
     a0 = a0,
     data = read_csv(gl_res_csv),
     n_sim = n_sim) |>
-      mutate(para_id = rep(seq(1, length(ap)), each = x_len))
+      mutate(para_id = para_id)
 }
 
 #' @title Simulation for mass prop (MVN)
@@ -261,4 +262,31 @@ mass_prop_point <- function(mass_obs_dat, sim1, sim2, sim3) {
           legend.text = element_text(size = 8),
           legend.title = element_text(size = 8)
     )
+}
+
+#' @para ap_sim_dat e.g., mass_prop_grad_ap
+mass_sim_point <- function(ap_sim_dat, as_sim_dat) {
+  p1 <- ggplot(data = ap_sim_dat) +
+    geom_ribbon(aes(ymin = lwr, ymax = upr,
+                    x = LMAs_var_mean,
+                    fill = factor(ap)),
+                alpha = 0.4)  +
+    geom_line(aes(y = mean, x = LMAs_var_mean, col = factor(ap))) +
+    labs(
+      color = expression(alpha[p]),
+      fill = expression(alpha[p]))
+
+  p2 <- ggplot(data = as_sim_dat) +
+      geom_ribbon(aes(ymin = lwr, ymax = upr,
+                      x = LMAs_var_mean,
+                      fill = factor(as)),
+                  alpha = 0.4)  +
+      geom_line(aes(y = mean, x = LMAs_var_mean, col = factor(as))) +
+      theme_LES() +
+      labs(
+        color = expression(alpha[s]),
+        fill = expression(alpha[s]))
+
+  p1 + p2
+
 }
