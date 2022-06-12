@@ -841,6 +841,21 @@ list(
     },
     format = "file"
   ),
+  tar_target(
+    mass_prop_comp_plot, {
+      p <- mass_prop_comp_point(shade_mass_prop_mv, shade_mass_prop)
+      ggsave(
+        "figs/mass_prop_comp.png",
+       p,
+       dpi = 300,
+       height = 6,
+       width = 6,
+       units = "cm"
+      )
+      paste0("figs/mass_prop_comp", c(".png"))
+    },
+    format = "file"
+  ),
 
   tar_target(
     mass_sim_plot, {
