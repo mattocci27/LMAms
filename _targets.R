@@ -849,8 +849,8 @@ list(
         "figs/mass_sim.png",
        p,
        dpi = 300,
-       height = 6,
-       width = 6,
+       height = 5,
+       width = 10,
        units = "cm"
       )
       paste0("figs/mass_sim", c(".png"))

@@ -264,7 +264,9 @@ mass_prop_point <- function(mass_obs_dat, sim1, sim2, sim3) {
     )
 }
 
+#' @title mass deps with changing ap and as
 #' @para ap_sim_dat e.g., mass_prop_grad_ap
+#' @para as_sim_dat e.g., mass_prop_grad_as
 mass_sim_point <- function(ap_sim_dat, as_sim_dat) {
   p1 <- ggplot(data = ap_sim_dat) +
     geom_ribbon(aes(ymin = lwr, ymax = upr,
@@ -277,16 +279,19 @@ mass_sim_point <- function(ap_sim_dat, as_sim_dat) {
       fill = expression(alpha[p]))
 
   p2 <- ggplot(data = as_sim_dat) +
-      geom_ribbon(aes(ymin = lwr, ymax = upr,
-                      x = LMAs_var_mean,
-                      fill = factor(as)),
-                  alpha = 0.4)  +
-      geom_line(aes(y = mean, x = LMAs_var_mean, col = factor(as))) +
-      theme_LES() +
-      labs(
-        color = expression(alpha[s]),
-        fill = expression(alpha[s]))
+    geom_ribbon(aes(ymin = lwr, ymax = upr,
+                    x = LMAs_var_mean,
+                    fill = factor(as)),
+                alpha = 0.4)  +
+    geom_line(aes(y = mean, x = LMAs_var_mean, col = factor(as))) +
+    labs(
+      color = expression(alpha[s]),
+      fill = expression(alpha[s]))
 
-  p1 + p2
-
+  p1 + p2 +
+    plot_annotation(tag_levels = "a") &
+    ylab(expression(Mass~dependency~(italic(b)))) &
+    xlab("Relative variance of LMAs (%)") &
+    theme_LES() &
+    theme(legend.title = element_text(size = 8))
 }
