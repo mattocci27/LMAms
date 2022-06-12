@@ -229,7 +229,7 @@ within and among plant species}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, interior hidden, enhanced, sharp corners, frame hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, enhanced, borderline west={3pt}{0pt}{shadecolor}, sharp corners, boxrule=0pt, interior hidden, frame hidden]}{\end{tcolorbox}}\fi
 
 \newpage
 
@@ -398,11 +398,11 @@ Symbols as in Main Text Figs. 1-2.}
 
 \begin{figure}
 
-{\centering \includegraphics{../figs/box_frac.png}
+{\centering \includegraphics{../figs/box_inter.png}
 
 }
 
-\caption{\label{fig-box_frac}Boxplots comparing leaf mass per area
+\caption{\label{fig-box_inter}Boxplots comparing leaf mass per area
 (LMA), photosynthetic leaf mass per area (LMAp; posterior means), and
 structural leaf mass per area (LMAs; posterior means) across sites (wet
 and dry) and canopy strata (sun and shade) in Panama. The results shown
@@ -425,15 +425,27 @@ t-tests).}
 
 }
 
-\caption{\label{fig-box_frac2}Boxplots comparing leaf mass per area
-(LMA), photosynthetic leaf mass per area (LMAp; posterior means), and
-structural leaf mass per area (LMAs; posterior means) across sites (wet
-and dry) and canopy strata (sun and shade) in Panama. The results shown
-here include all leaves in the Panama dataset, whereas Fig. 5 in the
-main text only includes Panama species for which both sun and shade
-leaves were available. Boxplot symbols as in Fig. 5. Groups sharing the
-same letters are not significantly different (P \textgreater{} 0.05;
-t-tests).}
+\caption{\label{fig-box_frac}Boxplots comparing posterior medians of the
+latent variable f (the fraction of total LMA comprised by LMAm) across
+deciduous (D) and evergreen (E) leaves in GLOPNET and Panama, and across
+sites (wet and dry) and canopy strata (sun and shade) in Panama. Note
+that LMAm = f × LMA, and LMAs = (1 -- f) × LMA. (a) Deciduous and
+evergreen leaves in the GLOPNET dataset; (b) deciduous and evergreen
+leaves for Panama species for which both sun and shade leaves were
+available; (c) leaves for Panama species for which both sun and shade
+leaves were available; and (d) all leaves for Panama. At the dry Panama
+site, the increase in LMA from shade to sun (Fig. 4) is due to roughly
+equal proportional increases in LMAm and LMAs (because f is similar
+between sun and shade), whereas at the wet Panama site, the increase in
+LMA from shade to sun (Fig. 4) is due primarily to increased LMAm
+(because f is greater in sun than shade). GLOPNET results are for the
+Potential LL Model (Eq. 5), and Panama results are for the Optimal LL
+Model with site effects (Eq. 13 and Supporting Information, Section
+3.1). The center line in each box indicates the median, upper and lower
+box edges indicate the interquartile range, whiskers show 1.5 times the
+interquartile range, and points are outliers. Groups sharing the same
+letters are not significantly different (P \textgreater{} 0.05;
+t-tests).''\}}
 
 \end{figure}
 
@@ -442,7 +454,30 @@ t-tests).}
 \hypertarget{figure-s3}{%
 \section{Figure S3}\label{figure-s3}}
 
-Mass-prop
+\begin{figure}
+
+{\centering \includegraphics{../figs/mass_prop_sim.png}
+
+}
+
+\caption{\label{fig-mass_prop_sim}Mass\_prop.}
+
+\end{figure}
+
+\newpage
+
+\hypertarget{figure-s3-1}{%
+\section{Figure S3}\label{figure-s3-1}}
+
+\begin{figure}
+
+{\centering \includegraphics{../figs/mass_prop_comp.png}
+
+}
+
+\caption{\label{fig-mass_prop_comp}Mass\_prop 2. hoge hoge.}
+
+\end{figure}
 
 \newpage
 
