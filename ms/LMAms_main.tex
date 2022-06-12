@@ -405,7 +405,7 @@
 
 
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, enhanced, breakable, interior hidden, sharp corners, frame hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, borderline west={3pt}{0pt}{shadecolor}, frame hidden, boxrule=0pt, enhanced, breakable, sharp corners]}{\end{tcolorbox}}\fi
 
 \textbf{Running title}: Metabolic and structural leaf mass
 
@@ -1038,10 +1038,11 @@ senstivity of \emph{A}\textsubscript{max} to variation in LMAp and LMAs
 (\(\alpha_p\) and \(\alpha_s\)) and covariance between LMAp and LMAs,
 also affect the relationship between mass-dependence of
 \emph{A}\textsubscript{max} and LMAs variance (Fig.~\ref{fig-massplt},
-Fig. SX). Although relative variance of LMAs was intermediate in GLOPNET
-(51.4\%), interspecific variation in \emph{A}\textsubscript{max} among
-leaves in GLOPNET tended to be area-dependent because of their lower
-\(\alpha_p\) and negative \(\alpha_s\). Interspecific variation in
+Fig. S\ref{fig-mass_prop_sim}-\ref{fig-mass_prop_comp}). Although
+relative variance of LMAs was intermediate in GLOPNET (51.4\%),
+interspecific variation in \emph{A}\textsubscript{max} among leaves in
+GLOPNET tended to be area-dependent because of their lower \(\alpha_p\)
+and negative \(\alpha_s\). Interspecific variation in
 \emph{A}\textsubscript{max} in sun and shade leaves in the Panama data
 was area-dependent because of their large variance in LMAs
 (Fig.~\ref{fig-massplt}).
@@ -1051,7 +1052,7 @@ correlated with LMAp, and cellulose per-unit leaf area is strongly
 correlated with LMAs.} In the GLOPNET dataset,
 \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} had strong
 positive correlations with LMAp, but only weak correlations with LMAs
-(Fig. S4). Similarly, in the Panama dataset,
+(Fig. S\ref{fig-glnp}). Similarly, in the Panama dataset,
 \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} had strong
 positive correlations with LMAp, but were not correlated with LMAs
 (Fig.~\ref{fig-PA-NPC}). In contrast, cellulose per-unit leaf area
@@ -1166,13 +1167,13 @@ LMAs axis that determines potential LL through its effects on leaf
 toughness (\protect\hyperlink{ref-Kleyer2012}{Kleyer et al. 2012}). In
 the datasets we analyzed (the global flora and tropical trees in
 Panama), these two axes are only weakly correlated with each other (Fig.
-S5), which suggests that trait-based approaches to global ecosystem
-modeling (\protect\hyperlink{ref-Scheiter2013}{Scheiter et al. 2013},
-\protect\hyperlink{ref-Wullschleger2014}{Wullschleger et al. 2014})
-could consider these as independent axes. For example, to simulate
-individual competing trees which from diverse community of growth
-strategies (\protect\hyperlink{ref-Sakschewski2015}{Sakschewski et al.
-2015}, \protect\hyperlink{ref-Sakschewski2016}{Sakschewski et al.
+S\ref{#fig-LMAp_LMAs}), which suggests that trait-based approaches to
+global ecosystem modeling (\protect\hyperlink{ref-Scheiter2013}{Scheiter
+et al. 2013}, \protect\hyperlink{ref-Wullschleger2014}{Wullschleger et
+al. 2014}) could consider these as independent axes. For example, to
+simulate individual competing trees which from diverse community of
+growth strategies (\protect\hyperlink{ref-Sakschewski2015}{Sakschewski
+et al. 2015}, \protect\hyperlink{ref-Sakschewski2016}{Sakschewski et al.
 2016}), it would be possible to draw LMAp and LMAs values from
 distributions with realistic ranges instead of a single LMA
 distribution.

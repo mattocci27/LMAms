@@ -314,14 +314,14 @@ Evergreen leaves have higher fraction of LMAs compared to deciduous leaves both 
 **4. LMA variance components determine the area- vs. mass-dependence of leaf photosynthetic capacity (*A*~max~).**
 Analysis of simulated data showed that the percent of LMA variation due to LMAp vs. LMAs variation determined the area- vs. mass-dependence of *A*~max~ (i.e., the degree to which whole-leaf *A*~max~ depends on leaf area or mass; @Osnas2013; @Osnas2018).
 Generally, mass-dependence of *A*~max~ decreases with LMAs variance ([@fig-massplt]).
-Other factors, including the senstivity of *A*~max~ to variation in LMAp and LMAs ($\alpha_p$ and $\alpha_s$) and covariance between LMAp and LMAs, also affect the relationship between mass-dependence of *A*~max~ and LMAs variance ([@fig-massplt], Fig. SX).
+Other factors, including the senstivity of *A*~max~ to variation in LMAp and LMAs ($\alpha_p$ and $\alpha_s$) and covariance between LMAp and LMAs, also affect the relationship between mass-dependence of *A*~max~ and LMAs variance ([@fig-massplt], Fig. S\ref{fig-mass_prop_sim}-\ref{fig-mass_prop_comp}).
 Although relative variance of LMAs was intermediate in GLOPNET (`r var_val$GL`%), interspecific variation in *A*~max~ among leaves in GLOPNET tended to be area-dependent because of their lower $\alpha_p$ and negative $\alpha_s$.
 Interspecific variation in *A*~max~ in sun and shade leaves in the Panama data was area-dependent because of their large variance in LMAs ([@fig-massplt]).
 
 **5. Nitrogen and phosphorus per-unit leaf area are strongly correlated with LMAp, and cellulose per-unit leaf area is strongly correlated with LMAs.**
-In the GLOPNET dataset, *N*~area~ and *P*~area~ had strong positive correlations with LMAp, but only weak correlations with LMAs (Fig. S4).
+In the GLOPNET dataset, *N*~area~ and *P*~area~ had strong positive correlations with LMAp, but only weak correlations with LMAs (Fig. S\ref{fig-glnp}).
 Similarly, in the Panama dataset, *N*~area~ and *P*~area~ had strong positive correlations with LMAp, but were not correlated with LMAs ([@fig-PA-NPC]).
-In contrast, cellulose per-unit leaf area (*CL*~area~), which was available for the Panama dataset but not for GLOPNET, had a strong positive correlation with LMAs, and a weak positive correlation with LMAp (F[@fig-PA-NPC]).
+In contrast, cellulose per-unit leaf area (*CL*~area~), which was available for the Panama dataset but not for GLOPNET, had a strong positive correlation with LMAs, and a weak positive correlation with LMAp ([@fig-PA-NPC]).
 *CL*~area~ was more strongly correlated with LMA than with LMAp or LMAs, but sun and shade leaves aligned along a common *CL*~area~-LMAs relationship, as opposed to being offset for LMA and LMAp ([@fig-PA-NPC]g-i).
 
 # Discussion
@@ -352,7 +352,7 @@ The improved predictions and understanding provided by decomposing LMA into phot
 @Lloyd2013 argued that the apparent dominance of a single LES axis is an artifact of expressing area-dependent leaf traits on a per-mass basis, and @Osnas2013 demonstrated that across the global flora, traits related to photosynthesis and metabolism are indeed area-dependent.
 Intraspecific patterns in trait variation, which contrast with interspecific patterns, pose additional challenges for a one-dimensional view of leaf functional diversity. Our analysis shows that considering two primary axes of leaf trait variation (photosynthesis and structure) provides improved quantitative predictions and insights compared to LES of a single dominant axis.
 Our results point to a simple two-dimensional framework for representing leaf functional diversity in global ecosystem models: a LMAp axis that determines *A*~max~, accounts for nearly all *R*~dark~ (see rp and rs estimates in Table S1) and a LMAs axis that determines potential LL through its effects on leaf toughness [@Kleyer2012].
-In the datasets we analyzed (the global flora and tropical trees in Panama), these two axes are only weakly correlated with each other (Fig. S5), which suggests that trait-based approaches to global ecosystem modeling [@Scheiter2013; @Wullschleger2014] could consider these as independent axes.
+In the datasets we analyzed (the global flora and tropical trees in Panama), these two axes are only weakly correlated with each other (Fig. S\ref{#fig-LMAp_LMAs}), which suggests that trait-based approaches to global ecosystem modeling [@Scheiter2013; @Wullschleger2014] could consider these as independent axes.
 For example, to simulate individual competing trees which from diverse community of growth strategies [@Sakschewski2015; @Sakschewski2016], it would be possible to draw LMAp and LMAs values from distributions with realistic ranges instead of a single LMA distribution.
 
 Our statistical decomposition of LMA into metabolic and structural components provides important insights, but additional insights and accuracy could be gained by a more mechanistic modeling approach.

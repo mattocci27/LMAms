@@ -5,7 +5,7 @@ dif: ms/LMAms_main-diffa1d4c64.tex
 ms/LMA.bib: ~/LMA.bib
 	cp $< $@
 
-ms/LMAms_main.pdf: ms/LMAms_main.qmd
+ms/LMAms_main.pdf: ms/LMAms_main.qmd ms/LMAms_SI.aux
 	quarto render $< --to pdf
 
 ms/LMAms_main.docx: ms/LMAms_main.qmd
