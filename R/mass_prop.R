@@ -227,8 +227,6 @@ mass_prop_point <- function(mass_obs_dat, sim1, sim2, sim3) {
   #sim3[20 ,3] <- -1
   #sim_dat[20 ,3] <- -1
 
-  sim_dat |> as.data.frame()
-
   fills <- c("GLOPNET" = "#008B00",
               "Sun" = "#1874CD",
               "Shade" = "gray"
@@ -294,4 +292,37 @@ mass_sim_point <- function(ap_sim_dat, as_sim_dat) {
     xlab("Relative variance of LMAs (%)") &
     theme_LES() &
     theme(legend.title = element_text(size = 8))
+}
+
+#' @para sim1 Panama shade mv
+#' @para sim2 Panama shade normal
+mass_prop_comp_point <- function(sim1, sim2) {
+  sim1 <- sim1 |>
+    mutate(site = "MVN")
+  sim2 <- sim2 |>
+    mutate(site = "N")
+  sim_dat <- bind_rows(sim1, sim2)
+
+  ggplot(data = sim_dat) +
+    geom_ribbon(aes(ymin = lwr, ymax = upr,
+                    x = LMAs_var_mean,
+                    fill = site),
+                alpha = 0.4)  +
+    geom_line(aes(y = mean, x = LMAs_var_mean, col = site)) +
+#    scale_fill_manual(values = fills, name = "Parameter") +
+    scale_y_continuous(breaks = c(0, 0.5, 1, 2)) +
+    # scale_color_manual(values = cols, name = "Parameter") +
+    # scale_shape_discrete(name = "Parameter")  +
+    ylab(expression(Mass~dependency~(italic(b)))) +
+    xlab("Relative variance of LMAs (%)") +
+    labs(color = "Model", fill = "Model") +
+    theme_LES() +
+    theme(legend.position = c(0.75, 0.66),
+          legend.key.size = unit(0.5, "cm"),
+          legend.spacing.y = unit(0.1, "cm"),
+          legend.text.align = 0,
+          legend.key.height = unit(0.2, "cm"),
+          legend.text = element_text(size = 8),
+          legend.title = element_text(size = 8)
+    )
 }
