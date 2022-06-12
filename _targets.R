@@ -861,14 +861,14 @@ list(
     mass_sim_plot, {
       p <- mass_sim_point(mass_prop_grad_ap, mass_prop_grad_as)
       ggsave(
-        "figs/mass_sim.png",
+        "figs/mass_prop_sim.png",
        p,
        dpi = 300,
        height = 5,
        width = 10,
        units = "cm"
       )
-      paste0("figs/mass_sim", c(".png"))
+      paste0("figs/mass_prop_sim", c(".png"))
     },
     format = "file"
   ),

@@ -309,7 +309,7 @@ Thus, the higher total LMA in evergreen leaves in GLOPNET ([@fig-boxplt]) was pr
 In the Panama dataset, light (sun vs. shade) explains the majority of variance in LMAp but not LMAs, and site (wet/dry) explains 33% of variance in LMAs ([@fig-vpart]).
 Sun leaves have both greater LMAp and LMAs than shade leaves, but the differences in LMAp were more apparent ([@fig-boxplt]).
 Thus, variation in LMAp plays a more important role within species than among species.
-Evergreen leaves have higher fraction of LMAs compared to deciduous leaves both in the Panama and the GLOPNET dataset (Fig. S2).
+Evergreen leaves have higher fraction of LMAs compared to deciduous leaves both in the Panama and the GLOPNET dataset (Fig. S\ref{fig-box_frac}).
 
 **4. LMA variance components determine the area- vs. mass-dependence of leaf photosynthetic capacity (*A*~max~).**
 Analysis of simulated data showed that the percent of LMA variation due to LMAp vs. LMAs variation determined the area- vs. mass-dependence of *A*~max~ (i.e., the degree to which whole-leaf *A*~max~ depends on leaf area or mass; @Osnas2013; @Osnas2018).

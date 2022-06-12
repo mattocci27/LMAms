@@ -9,6 +9,85 @@ library(cmdstanr)
 targets::tar_load(gl_csv)
 targets::tar_load(gl_stan_dat)
 targets::tar_load(pa_rand_list)
+fit_7_mcmc_GL_Aps_LLs
+targets::tar_load(fit_7_summary_GL_Aps_LLs)
+
+targets::tar_load(shade_mass_prop_mv)
+
+shade_mass_prop_mv |> mutate(site = "mv")
+
+sim_dat <- gl_mass_prop_grad_ap
+sim_dat |>
+  mutate(ap_fac = (bquote(alpha~"ab")))
+ap <- sim_dat$ap |> unique()
+
+p1 <- ggplot(data = ap_sim_dat) +
+    geom_ribbon(aes(ymin = lwr, ymax = upr,
+                    x = LMAs_var_mean,
+                    fill = factor(ap)),
+                alpha = 0.4)  +
+    geom_line(aes(y = mean, x = LMAs_var_mean, col = factor(ap))) +
+    labs(
+      color = expression(alpha[p]),
+      fill = expression(alpha[p]))
+
+p2 <- ggplot(data = as_sim_dat) +
+    geom_ribbon(aes(ymin = lwr, ymax = upr,
+                    x = LMAs_var_mean,
+                    fill = factor(as)),
+                alpha = 0.4)  +
+    geom_line(aes(y = mean, x = LMAs_var_mean, col = factor(as))) +
+    labs(
+      color = expression(alpha[s]),
+      fill = expression(alpha[s]))
+
+
+
+    scale_color_manual(
+      values = c("1", "2", "3"),
+      labels = c(
+        as.expression(bquote(alpha[p] == .(ap[1]))),
+        as.expression(bquote(alpha[p] == .(ap[2]))),
+        as.expression(bquote(alpha[p] == .(ap[3])))
+    )) +
+    scale_fill_manual(
+      values = c("1", "2", "3"),
+      labels = c(
+        as.expression(bquote(alpha[p] == .(ap[1]))),
+        as.expression(bquote(alpha[p] == .(ap[2]))),
+        as.expression(bquote(alpha[p] == .(ap[3])))
+    ))
+
+
+targets::tar_load(gl_mass_prop_grad_as)
+sim_dat2 <- gl_mass_prop_grad_as
+as <- sim_dat2$as |> unique()
+
+ggplot(data = sim_dat2) +
+    geom_ribbon(aes(ymin = lwr, ymax = upr,
+                    x = LMAs_var_mean,
+                    fill = as.factor(para_id)),
+                alpha = 0.4)  +
+    geom_line(aes(y = mean, x = LMAs_var_mean, col = as.factor(para_id))) +
+    scale_color_manual(
+      values = c("1", "2", "3"),
+      labels = c(
+        as.expression(bquote(alpha[s] == .(as[1]))),
+        as.expression(bquote(alpha[s] == .(as[2]))),
+        as.expression(bquote(alpha[s] == .(as[3])))
+    )) +
+    scale_fill_manual(
+      values = c("1", "2", "3"),
+      labels = c(
+        as.expression(bquote(alpha[s] == .(as[1]))),
+        as.expression(bquote(alpha[s] == .(as[2]))),
+        as.expression(bquote(alpha[s] == .(as[3])))
+    ))
+
+
+
+fit_7_summary_GL_Aps_LLs |>
+  filter(str_detect(variable, "rho"))
 
 targets::tar_load(gl_rand_list)
 targets::tar_load(gl_rand_fit)
