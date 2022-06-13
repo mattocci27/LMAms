@@ -64,7 +64,6 @@ transformed parameters{
   matrix[3,3] Z;
   matrix[N,3] X;
 {% endif %}
-  matrix[N,3] L_Sigma;
   Z[1,1] = a0;
   Z[1,2] = b0;
   Z[1,3] = g0;
@@ -99,7 +98,6 @@ transformed parameters{
   Z[4,3] = 0;
 {% endif %}
 
-  L_Sigma = rep_matrix(to_row_vector(0.5 * L_sigma .* L_sigma), N);
   //log_LMAp = log(LMA) + log(p);
   //log_LMAs = log(LMA) + log(1 - p);
   //X = append_col(append_col(append_col(intercept, log_LMAp), log_LMAs), leaf);
@@ -117,7 +115,7 @@ transformed parameters{
 {% else %}
   X = append_col(append_col(intercept, log(LMA) + log(p)), log(LMA) + log(1 - p));
 {% endif %}
-  Mu = X * Z - L_Sigma;
+  Mu = X * Z;
 }
 model{
   // priors

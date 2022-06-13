@@ -32,7 +32,6 @@ parameters{
 }
 transformed parameters{
   matrix[N,3] Mu;
-  matrix[N,3] L_Sigma;
   matrix[3,3] Z;
   Z[1,1] = z[1];
   Z[1,2] = z[2];
@@ -43,8 +42,7 @@ transformed parameters{
   Z[3,1] = 0;
   Z[3,2] = z[7];
   Z[3,3] = 0;
-  L_Sigma = rep_matrix(to_row_vector(0.5 * L_sigma .* L_sigma), N);
-  Mu = X * Z - L_Sigma;
+  Mu = X * Z;
 }
 model{
   // priors
