@@ -35,6 +35,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(knitr)
 library(kableExtra)
 library(tidyverse)
+para <- yaml::yaml.load_file("../yml/para.yml")
 ```
 
 \newpage
@@ -121,6 +122,42 @@ Thus, the tests with randomized data indicate that our model is not inherently p
 
 \newpage
 
+# Appendix S3: Simulation for mass dependency of *A*~area~
+
+
+$$
+A_{\mathrm{area} \, i} = \alpha_0\mathrm{LMAp}_{i}^{\alpha_p}\mathrm{LMAs}_i^{\alpha_s}
+$$
+
+
+$$
+\mathrm{LMAp}_{i} \sim N(ln(40), \sigma)
+$$
+
+$$
+\mathrm{LMAs}_{i} \sim N(ln(40), \sigma)
+$$
+
+
+$$
+\left(
+\begin{array}{ccc}
+\mathrm{ln}[\mathrm{LMAp} \, i]\\
+\mathrm{ln}[\mathrm{LMAs} \, i]
+\end{array}
+\right)
+\sim \mathrm{MVN}
+\left(
+\begin{array}{rrr}
+\ln(40)\\
+\ln(40) &, \mathbf{\Sigma}
+\end{array}
+\right) \tag{S3}
+$$
+
+
+\newpage
+
 # Figure S1
 
 ![
@@ -143,7 +180,6 @@ Groups sharing the same letters are not significantly different (P > 0.05; t-tes
 
 \newpage
 
-
 # Figure S3
 
 ![
@@ -163,12 +199,17 @@ Groups sharing the same letters are not significantly different (P > 0.05; t-tes
 # Figure S4
 
 ![
-The relationships between mass dependency (*b* in Eq. 5 in the main tex) and relative variance in LMAs to LMA for the different ranges of the scaling exponent $\alpha_p$ and $\alpha_s$.
+The relationships between mass dependency (*b* in Eq. 5 in the main text) and relative variance in LMAs to LMA for the different ranges of the scaling exponent $\alpha_p$ and $\alpha_s$.
 **a**, the scaling exponent $\alpha_p$ vary from 0.1 to 1.0 while the scaling exponent $\alpha_s$ is constant ($\alpha_s$ = xx).
 **b**, the scaling exponent $\alpha_s$ vary from -0.5 to 0.5 while the scaling exponent $\alpha_p$ is constant ($\alpha_p$ = xx).
 Solid lines indicate simulated means and shaded regions indicate 95% CI.
 The photosynthetic rate (*A*~max~) is primarily mass-dependent (*b* > 0.5), primarily area-dependent (0.5 > *b* > 0) and purely area-dependent (*b* = 0) [@Osnas2018].
 Note that when *b* > 1, *A*~area~ dramatically increases with LMA, which is not realistic.
+Parameter settings:
+$\alpha_0$ = `r para$GL$a0`,
+$\alpha_p$ = `r para$GL$ap`,
+$\alpha_s$ = `r para$GL$as`, and
+$\sigma$ = `r para$GL$sig1`.
 ](../figs/mass_prop_sim.png){#fig-mass_prop_sim}
 
 \newpage
@@ -178,6 +219,11 @@ Note that when *b* > 1, *A*~area~ dramatically increases with LMA, which is not 
 ![
 The relationships between mass dependency (*b* in Eq. 5 in the main tex) and relative variance in LMAs to LMA for the simulated dataset gerenated by a normal distribution (N) and a multivariate normal distribution (MVN).
 Parameter settings:
+$\alpha_0$ = `r para$PA$a0`,
+$\alpha_p$ = `r para$PA$ap`,
+$\alpha_s$ = 0,
+$\sigma$ = `r para$PA$sig1`, and
+$\rho$ = -0.4,
 ](../figs/mass_prop_comp.png){#fig-mass_prop_comp}
 
 \newpage
