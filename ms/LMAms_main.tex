@@ -405,7 +405,7 @@
 
 
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, frame hidden, borderline west={3pt}{0pt}{shadecolor}, interior hidden, breakable]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, sharp corners, breakable, interior hidden, frame hidden]}{\end{tcolorbox}}\fi
 
 \textbf{Running title}: Metabolic and structural leaf mass
 
@@ -435,20 +435,6 @@ Tulane University, New Orleans, LA 70118 USA
 
 \textsuperscript{6} \textbf{Corresponding Author}: E-mail:
 mattocci27@gmail.com
-
-fig-LMAp\_LMAs: \ref{fig-LMAp_LMAs}
-
-fig-hoge: \ref{fig-hoge}
-
-fig-box\_inter: \ref{fig-box_inter}
-
-fig-box\_frac: \ref{fig-box_frac}
-
-figure-as1: \ref{figure-as1}
-
-table-as1: \ref{table-as1}
-
-figure-s1: \ref{figure-s1}
 
 \newpage
 
@@ -1180,7 +1166,7 @@ LMAs axis that determines potential LL through its effects on leaf
 toughness (\protect\hyperlink{ref-Kleyer2012}{Kleyer et al. 2012}). In
 the datasets we analyzed (the global flora and tropical trees in
 Panama), these two axes are only weakly correlated with each other (Fig.
-S\ref{#fig-LMAp_LMAs}), which suggests that trait-based approaches to
+S\ref{fig-LMAp_LMAs}), which suggests that trait-based approaches to
 global ecosystem modeling (\protect\hyperlink{ref-Scheiter2013}{Scheiter
 et al. 2013}, \protect\hyperlink{ref-Wullschleger2014}{Wullschleger et
 al. 2014}) could consider these as independent axes. For example, to
@@ -1742,13 +1728,13 @@ log-scale parameter with 0.31 (see Methods and Results).}
 }
 
 \caption{\label{fig-GLplt}Observed and estimated leaf-trait
-relationships in the global GLOPNET dataset. Estimates are from the NAME
-Model (Eq. X). Leaf life span (LL), net photosynthetic rate per unit
-leaf area (\emph{A}\textsubscript{area}), and dark respiration rate per
-unit leaf area (\emph{R}\textsubscript{area}) are plotted against
-observed LMA, posterior means of LMAp and LMAs. Pearson correlation
-coefficients (\emph{r}) for LMA (left column) and posterior means of
-Pearson correlation coefficients (\(\bar{r}\)) or partial correlation
+relationships in the global GLOPNET dataset. Estimates are from Model 2b
+(Table 1). Leaf life span (LL), net photosynthetic rate per unit leaf
+area (\emph{A}\textsubscript{area}), and dark respiration rate per unit
+leaf area (\emph{R}\textsubscript{area}) are plotted against observed
+LMA, posterior means of LMAp and LMAs. Pearson correlation coefficients
+(\emph{r}) for LMA (left column) and posterior means of Pearson
+correlation coefficients (\(\bar{r}\)) or partial correlation
 coefficients (\(\bar{\rho}\)) of LMAp (middle column) and LMAs (right
 column) are shown. Note that LL was modeled by LMAs alone.}
 
@@ -1763,11 +1749,10 @@ column) are shown. Note that LL was modeled by LMAs alone.}
 }
 
 \caption{\label{fig-PAplt}Observed and estimated leaf-trait
-relationships in the Panama dataset. Estimates are from the XXX Model
-(Eq. 6b). Details as in Fig.~\ref{fig-GLplt}. Results for other LL
-models are summarized in Table SX. Note that
-\emph{A}\textsubscript{area} and LL were modeled by LMAp and LMAs alone,
-respectively.}
+relationships in the Panama dataset. Estimates are from Model 4a (Table
+1). Details as in Fig.~\ref{fig-GLplt}. Results for other LL models are
+summarized in Table SX. Note that \emph{A}\textsubscript{area} and LL
+were modeled by LMAp and LMAs alone, respectively.}
 
 \end{figure}
 
@@ -1780,7 +1765,7 @@ respectively.}
 }
 
 \caption{\label{fig-LLplt}Observed vs.~predicted leaf lifespan (LL) in
-the LL with light Model (Eq. 6b). Predicted LL values are posterior
+the LL with light Model (Model 4a). Predicted LL values are posterior
 means. The dashed line indicates the 1:1 relationship. The
 \emph{R}\textsuperscript{2} value is the posterior mean of Bayesian
 \emph{R}\textsuperscript{2} (\protect\hyperlink{ref-Gelman2019}{Gelman
@@ -1824,8 +1809,8 @@ t-tests). To isolate the effects of intraspecific variation (i.e.,
 plastic responses to light), the Panama results shown here only include
 species for which both sun and shade leaves were available.
 Qualitatively similar results were obtained when all Panama species were
-included (Fig. SX). Note that the vertical axis is on a
-log\textsubscript{10} scale.}
+included (Fig. S\ref{fig-box_inter}). Note that the vertical axis is on
+a log\textsubscript{10} scale.}
 
 \end{figure}
 
@@ -1838,11 +1823,11 @@ log\textsubscript{10} scale.}
 }
 
 \caption{\label{fig-massplt}The relationships between mass dependency
-(\emph{b} in Eq. 8) and relative variance in LMAs to LMA for the global
-GLOPNET dataset, sun leaves in Panama, and shade leaves in Panama. Solid
-lines indicate simulated means and shaded regions indicate 95\% CI. Each
-symbol indicates the estimated values from the empirical data. The
-photosynthetic rate (\emph{A}\textsubscript{max}) is primarily
+(\emph{b} in Eq.~\ref{eq-var}) and relative variance in LMAs to LMA for
+the global GLOPNET dataset, sun leaves in Panama, and shade leaves in
+Panama. Solid lines indicate simulated means and shaded regions indicate
+95\% CI. Each symbol indicates the estimated values from the empirical
+data. The photosynthetic rate (\emph{A}\textsubscript{max}) is primarily
 mass-dependent (\emph{b} \textgreater{} 0.5), primarily area-dependent
 (0.5 \textgreater{} \emph{b} \textgreater{} 0) and purely area-dependent
 (\emph{b} = 0) (\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
@@ -1876,8 +1861,10 @@ correlation coefficients (\emph{r}) for LMA (left column) and partial
 correlation coefficients (\(\rho\)) of LMAp (middle column) and LMAs
 (right column) are shown. Analogous results were obtained for
 \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} for
-GLOPNET (Fig. S3). Results for other LL models are reported in Table
-SX.}
+GLOPNET (Fig. S\ref{fig-glnp}). Results for other LL models are reported
+in Table SX. Analogous results were obtained for
+\emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} for
+GLOPNET (Fig. S\ref{fig-glnp}).}
 
 \end{figure}
 

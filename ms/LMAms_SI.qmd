@@ -146,7 +146,6 @@ Groups sharing the same letters are not significantly different (P > 0.05; t-tes
 
 # Figure S3
 
-
 ![
 Boxplots comparing posterior medians of the latent variable f (the fraction of total LMA comprised by LMAm) across deciduous (D) and evergreen (E) leaves in GLOPNET and Panama, and across sites (wet and dry) and canopy strata (sun and shade) in Panama. Note that LMAm = f × LMA, and LMAs = (1 – f) × LMA.
 (a) Deciduous and evergreen leaves in the GLOPNET dataset;
@@ -164,7 +163,12 @@ Groups sharing the same letters are not significantly different (P > 0.05; t-tes
 # Figure S4
 
 ![
-Mass_prop.
+The relationships between mass dependency (*b* in Eq. 5 in the main tex) and relative variance in LMAs to LMA for the different ranges of the scaling exponent $\alpha_p$ and $\alpha_s$.
+**a**, the scaling exponent $\alpha_p$ vary from 0.1 to 1.0 while the scaling exponent $\alpha_s$ is constant ($\alpha_s$ = xx).
+**b**, the scaling exponent $\alpha_s$ vary from -0.5 to 0.5 while the scaling exponent $\alpha_p$ is constant ($\alpha_p$ = xx).
+Solid lines indicate simulated means and shaded regions indicate 95% CI.
+The photosynthetic rate (*A*~max~) is primarily mass-dependent (*b* > 0.5), primarily area-dependent (0.5 > *b* > 0) and purely area-dependent (*b* = 0) [@Osnas2018].
+Note that when *b* > 1, *A*~area~ dramatically increases with LMA, which is not realistic.
 ](../figs/mass_prop_sim.png){#fig-mass_prop_sim}
 
 \newpage
@@ -172,8 +176,8 @@ Mass_prop.
 # Figure S5
 
 ![
-Mass_prop 2.
-hoge hoge.
+The relationships between mass dependency (*b* in Eq. 5 in the main tex) and relative variance in LMAs to LMA for the simulated dataset gerenated by a normal distribution (N) and a multivariate normal distribution (MVN).
+Parameter settings:
 ](../figs/mass_prop_comp.png){#fig-mass_prop_comp}
 
 \newpage
@@ -182,7 +186,7 @@ hoge hoge.
 
 ![
 Measured traits related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are positively correlated with LMA and with estimates (posterior means) of the photosynthetic and structural LMA components (LMAp and LMAs, respectively) in the GLOPNET dataset.
-LMAp yields stronger correlations and more consistent relationships compared to LMA and LMAs; e.g., evergreen and deciduous leaves align along a single relationship in panel b, but not in panels a or c.
+LMAp yields more consistent relationships compared to LMA and LMAs; e.g., evergreen and deciduous leaves align along a single relationship in panel b, but not in panels a or c.
 ](../figs/gl_point_np2.png){#fig-glnp}
 
 # Appendix S3: Stan code
