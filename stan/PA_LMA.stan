@@ -30,9 +30,7 @@ parameters{
 }
 transformed parameters{
   matrix[N,3] Mu;
-  matrix[N,3] L_Sigma;
-  L_Sigma = rep_matrix(to_row_vector(0.5 * L_sigma .* L_sigma), N);
-  Mu = X * Z - L_Sigma;
+  Mu = X * Z;
 }
 model{
   // priors
