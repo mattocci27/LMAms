@@ -109,18 +109,19 @@ Model results obtained from the randomized datasets did not convergent based on 
 
 \newpage
 
-## Figure AS1
+# Figure AS1
 
-![
 Although divergent transitions suggesting that the posterior distribution is not reliable, we checked the regression coefficients for GLOPNET ($\alpha_{0, p, s}$, $\beta_{0, s}$, and $\gamma_{0, p, s}$ in Eqs. 4-6 in the main text).
 There are 10 independent simulations (randomizations) in total.
 The simulation ID 2, 3, 4 and 7 were convergent based on the Gelman-Rubin statistic, but those randomized datasets did not show any patterns.
 Thus, the tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
-](../figs/coef_rand.png){#fig-rand}
+![
+](../figs/coef_rand.png)
+
 
 \newpage
 
-# Figure S2
+# Figure S1
 
 ![
 Pearson correlation coefficients for posterior medians of LMAp vs LMAs in the (a) GLOPNET and (b) Panama datasets.
@@ -143,7 +144,7 @@ Groups sharing the same letters are not significantly different (P > 0.05; t-tes
 \newpage
 
 
-# Figure S2
+# Figure S3
 
 
 ![
@@ -160,7 +161,7 @@ Groups sharing the same letters are not significantly different (P > 0.05; t-tes
 
 \newpage
 
-# Figure S3
+# Figure S4
 
 ![
 Mass_prop.
@@ -168,7 +169,7 @@ Mass_prop.
 
 \newpage
 
-# Figure S3
+# Figure S5
 
 ![
 Mass_prop 2.
@@ -177,7 +178,7 @@ hoge hoge.
 
 \newpage
 
-# Figure S4
+# Figure S6
 
 ![
 Measured traits related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are positively correlated with LMA and with estimates (posterior means) of the photosynthetic and structural LMA components (LMAp and LMAs, respectively) in the GLOPNET dataset.
