@@ -229,7 +229,7 @@ within and among plant species}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, interior hidden, breakable, sharp corners, frame hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, sharp corners, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, breakable, interior hidden, enhanced]}{\end{tcolorbox}}\fi
 
 \newpage
 
@@ -367,6 +367,40 @@ overfitting or to producing patterns from noise.
 
 \newpage
 
+\hypertarget{appendix-s3-simulation-for-mass-dependency-of-aarea}{%
+\section{\texorpdfstring{Appendix S3: Simulation for mass dependency of
+\emph{A}\textsubscript{area}}{Appendix S3: Simulation for mass dependency of Aarea}}\label{appendix-s3-simulation-for-mass-dependency-of-aarea}}
+
+\[
+A_{\mathrm{area} \, i} = \alpha_0\mathrm{LMAp}_{i}^{\alpha_p}\mathrm{LMAs}_i^{\alpha_s}
+\]
+
+\[
+\mathrm{LMAp}_{i} \sim N(ln(40), \sigma)
+\]
+
+\[
+\mathrm{LMAs}_{i} \sim N(ln(40), \sigma)
+\]
+
+\[
+\left(
+\begin{array}{ccc}
+\mathrm{ln}[\mathrm{LMAp} \, i]\\
+\mathrm{ln}[\mathrm{LMAs} \, i]
+\end{array}
+\right)
+\sim \mathrm{MVN}
+\left(
+\begin{array}{rrr}
+\ln(40)\\
+\ln(40) &, \mathbf{\Sigma}
+\end{array}
+\right) \tag{S3}
+\]
+
+\newpage
+
 \hypertarget{figure-s1}{%
 \section{Figure S1}\label{figure-s1}}
 
@@ -454,7 +488,7 @@ t-tests).''\}}
 }
 
 \caption{\label{fig-mass_prop_sim}The relationships between mass
-dependency (\emph{b} in Eq. 5 in the main tex) and relative variance in
+dependency (\emph{b} in Eq. 5 in the main text) and relative variance in
 LMAs to LMA for the different ranges of the scaling exponent
 \(\alpha_p\) and \(\alpha_s\). \textbf{a}, the scaling exponent
 \(\alpha_p\) vary from 0.1 to 1.0 while the scaling exponent
@@ -467,7 +501,9 @@ rate (\emph{A}\textsubscript{max}) is primarily mass-dependent (\emph{b}
 \emph{b} \textgreater{} 0) and purely area-dependent (\emph{b} = 0)
 (\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}). Note that when
 \emph{b} \textgreater{} 1, \emph{A}\textsubscript{area} dramatically
-increases with LMA, which is not realistic.}
+increases with LMA, which is not realistic. Parameter settings:
+\(\alpha_0\) = 1.82, \(\alpha_p\) = 0.28, \(\alpha_s\) = -0.13, and
+\(\sigma\) = 0.31.}
 
 \end{figure}
 
@@ -485,7 +521,9 @@ increases with LMA, which is not realistic.}
 \caption{\label{fig-mass_prop_comp}The relationships between mass
 dependency (\emph{b} in Eq. 5 in the main tex) and relative variance in
 LMAs to LMA for the simulated dataset gerenated by a normal distribution
-(N) and a multivariate normal distribution (MVN). Parameter settings:}
+(N) and a multivariate normal distribution (MVN). Parameter settings:
+\(\alpha_0\) = 0.33, \(\alpha_p\) = 0.58, \(\alpha_s\) = 0, \(\sigma\) =
+0.27, and \(\rho\) = -0.4,}
 
 \end{figure}
 
