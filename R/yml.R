@@ -392,14 +392,21 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
 }
 
 #' @title Generates yml file for GL estimates
-#' @para fit_summary cmdstan summary (e.g., fit_7_summary_GL_Aps_LLs)
-write_para_yml <- function(fit_summary) {
+#' @para gl_summary cmdstan summary (e.g., fit_7_summary_GL_Aps_LLs)
+#' @para pa_summary cmdstan summary
+write_para_yml <- function(gl_summary, pa_summary) {
   # targets::tar_load(fit_7_summary_GL_Aps_LLs)
   # fit_summary <- fit_7_summary_GL_Aps_LLs
-  a0 <- fit_summary |> filter(variable == "a0") |> pull(mean) |> round(2)
-  ap <- fit_summary |> filter(variable == "ap") |> pull(mean) |> round(2)
-  as <- fit_summary |> filter(variable == "as") |> pull(mean) |> round(2)
-  sig1 <- fit_summary |> filter(variable == "L_sigma[1]") |> pull(mean) |> round(2)
+
+  a0 <- gl_summary |> filter(variable == "a0") |> pull(mean) |> round(2)
+  ap <- gl_summary |> filter(variable == "ap") |> pull(mean) |> round(2)
+  as <- gl_summary |> filter(variable == "as") |> pull(mean) |> round(2)
+  sig1 <- gl_summary |> filter(variable == "L_sigma[1]") |> pull(mean) |> round(2)
+
+  a0_pa <- pa_summary |> filter(variable == "a0") |> pull(mean) |> round(2)
+  ap_pa <- pa_summary |> filter(variable == "ap") |> pull(mean) |> round(2)
+  as_pa <- pa_summary |> filter(variable == "as") |> pull(mean) |> round(2)
+  sig1_pa <- pa_summary |> filter(variable == "L_sigma[1]") |> pull(mean) |> round(2)
 
   output <- "yml/para.yml"
   out <- file(paste(output), "w") # write
@@ -416,6 +423,22 @@ write_para_yml <- function(fit_summary) {
              out,
              sep = "\n")
   writeLines(paste0("  sig1: ", sig1),
+             out,
+             sep = "\n")
+
+  writeLines(paste0("PA:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("  a0: ", a0_pa),
+             out,
+             sep = "\n")
+  writeLines(paste0("  ap: ", ap_pa),
+             out,
+             sep = "\n")
+  writeLines(paste0("  as: ", as_pa),
+             out,
+             sep = "\n")
+  writeLines(paste0("  sig1: ", sig1_pa),
              out,
              sep = "\n")
   close(out)

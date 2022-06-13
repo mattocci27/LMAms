@@ -404,7 +404,7 @@ list(
 
   tar_target(
     para_yml,
-    write_para_yml(fit_7_summary_GL_Aps_LLs),
+    write_para_yml(fit_7_summary_GL_Aps_LLs, fit_20_summary_PA_Ap_LLs_opt),
     format = "file"
   ),
   tar_target(
