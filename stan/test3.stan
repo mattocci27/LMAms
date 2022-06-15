@@ -5,6 +5,7 @@ data{
   vector<lower=0>[N] A;
   vector<lower=0>[N] R;
   vector<lower=0>[N] LL;
+  vector<lower=0>[N] leaf;
 }
 transformed data{
   vector[N] log_A;
@@ -24,34 +25,40 @@ transformed data{
 parameters{
   real a0;
   real ap;
-  real as;
   real b0;
   real bs;
   real g0;
   real gp;
   real gs;
+  real theta;
   vector<lower=0, upper=1>[N] p;
   vector<lower=0>[3] L_sigma;
   cholesky_factor_corr[3] L_Omega;
 }
 transformed parameters{
   matrix[N,3] Mu;
-  matrix[3,3] Z;
-  matrix[N,3] X;
+  matrix[4,3] Z;
+  matrix[N,4] X;
   Z[1,1] = a0;
   Z[1,2] = b0;
   Z[1,3] = g0;
   Z[2,1] = ap;
   Z[2,2] = 0;
   Z[2,3] = gp;
-  Z[3,1] = as;
+  Z[3,1] = 0;
   Z[3,2] = bs;
   Z[3,3] = gs;
+  Z[4,1] = 0;
+  Z[4,2] = theta;
+  Z[4,3] = 0;
 
   //log_LMAp = log(LMA) + log(p);
   //log_LMAs = log(LMA) + log(1 - p);
   //X = append_col(append_col(append_col(intercept, log_LMAp), log_LMAs), leaf);
-  X = append_col(append_col(intercept, log(LMA) + log(p)), log(LMA) + log(1 - p));
+  X = append_col(append_col(append_col(intercept,
+    log(LMA) + log(p)),
+    log(LMA) + log(1 - p)),
+     leaf);
   Mu = X * Z;
 }
 model{
@@ -63,9 +70,9 @@ model{
   bs ~ normal(0, 5);
   gp ~ normal(0, 5);
   gs ~ normal(0, 5);
-  as ~ normal(0, 5);
+  theta ~ normal(0, 5);
   p ~ beta(1, 1);
-  L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
+  L_Omega ~ lkj_corr_cholesky(1); //uniform of L_Omega * L_Omega'
   L_sigma ~ cauchy(0, 2.5);
 
   // model

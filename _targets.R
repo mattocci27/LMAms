@@ -132,7 +132,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -144,7 +144,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -156,7 +156,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -168,7 +168,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -180,7 +180,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -192,7 +192,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 3000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -204,7 +204,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -216,7 +216,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.999,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -228,7 +228,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.999,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -240,7 +240,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.999,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -252,7 +252,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -264,7 +264,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -276,7 +276,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.999,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -288,7 +288,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.999,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -300,7 +300,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -312,7 +312,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.999,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -324,7 +324,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.999,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -336,7 +336,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.999,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -348,10 +348,58 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.999,
     max_treedepth = 15,
     seed = 123),
 
+  tar_stan_mcmc(
+    test1,
+    "stan/test.stan",
+    data = pa_stan_dat,
+    refresh = 0,
+    chains = 4,
+    parallel_chains = getOption("mc.cores", 4),
+    iter_warmup = 2000,
+    iter_sampling = 2000,
+    adapt_delta = 0.999,
+    max_treedepth = 15,
+    seed = 123),
+  tar_stan_mcmc(
+    test2,
+    "stan/test2.stan",
+    data = pa_stan_dat,
+    refresh = 0,
+    chains = 4,
+    parallel_chains = getOption("mc.cores", 4),
+    iter_warmup = 2000,
+    iter_sampling = 2000,
+    adapt_delta = 0.999,
+    max_treedepth = 15,
+    seed = 123),
+  tar_stan_mcmc(
+    test3,
+    "stan/test3.stan",
+    data = pa_stan_dat,
+    refresh = 0,
+    chains = 4,
+    parallel_chains = getOption("mc.cores", 4),
+    iter_warmup = 2000,
+    iter_sampling = 2000,
+    adapt_delta = 0.999,
+    max_treedepth = 15,
+    seed = 123),
+  tar_stan_mcmc(
+    test4,
+    "stan/test4.stan",
+    data = pa_stan_dat,
+    refresh = 0,
+    chains = 4,
+    parallel_chains = getOption("mc.cores", 4),
+    iter_warmup = 2000,
+    iter_sampling = 2000,
+    adapt_delta = 0.999,
+    max_treedepth = 15,
+    seed = 123),
 
   tar_target(
     loo_model,
@@ -442,17 +490,17 @@ list(
     future_map(gl_rand_list$data, fit_rand_model, GL_Aps_LLs, 2000, 2000,
     .options = furrr_options(seed = 123))
   ),
-  tar_target(
-    PA_Ap_LLs_opt,
-    compile_model("stan/PA_Ap_LLs_opt.stan"),
-    format = "file"
-  ),
-  tar_target(
-    pa_rand_fit,
-    #fit_rand_model(pa_rand_list$data[[1]], PA_Ap_LLs_opt, 1, 1)
-    future_map(pa_rand_list$data, fit_rand_model, PA_Ap_LLs_opt, 2000, 2000,
-    .options = furrr_options(seed = 123))
-  ),
+  # tar_target(
+  #   PA_Ap_LLs_opt,
+  #   compile_model("stan/PA_Ap_LLs_opt.stan"),
+  #   format = "file"
+  # ),
+  # tar_target(
+  #   pa_rand_fit,
+  #   #fit_rand_model(pa_rand_list$data[[1]], PA_Ap_LLs_opt, 1, 1)
+  #   future_map(pa_rand_list$data, fit_rand_model, PA_Ap_LLs_opt, 2000, 2000,
+  #   .options = furrr_options(seed = 123))
+  # ),
 
   tar_target(
     gl_rand_check,
@@ -461,21 +509,21 @@ list(
       sim_id = 1:10,
       data = "GLOPNET")
   ),
-  tar_target(
-    pa_rand_check,
-    tibble(rhat = sapply(pa_rand_fit, \(x) x$summary |> filter(rhat > 1.05) |> nrow()),
-      div = sapply(pa_rand_fit, \(x) x$diagnostics[,,2] |> apply(1, sum) |> sum()),
-      sim_id = 1:10,
-      data = "Panama")
-  ),
-  tar_target(
-    rand_csv, {
-      bind_rows(gl_rand_check, pa_rand_check) |>
-      write_csv("data/rand.csv")
-      paste("data/rand.csv")
-    },
-    format = "file"
-  ),
+  # tar_target(
+  #   pa_rand_check,
+  #   tibble(rhat = sapply(pa_rand_fit, \(x) x$summary |> filter(rhat > 1.05) |> nrow()),
+  #     div = sapply(pa_rand_fit, \(x) x$diagnostics[,,2] |> apply(1, sum) |> sum()),
+  #     sim_id = 1:10,
+  #     data = "Panama")
+  # ),
+  # tar_target(
+  #   rand_csv, {
+  #     bind_rows(gl_rand_check, pa_rand_check) |>
+  #     write_csv("data/rand.csv")
+  #     paste("data/rand.csv")
+  #   },
+  #   format = "file"
+  # ),
 
   tar_target(
     gl_rand_sig, {
@@ -515,7 +563,7 @@ list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.99,
+    adapt_delta = 0.999,
     max_treedepth = 15,
     seed = 123),
 
