@@ -179,7 +179,8 @@ targets::tar_load(pa_rand_check)
 summary(pa_rand_check)
 ```
 
-For GLOPNET, sim ID 1, 6, and 9 showed positive $\alpha_p$ but those model did not converge based on Rhat.
+
+None of the randomized datasets did converge.
 
 ```{r}
 targets::tar_load(gl_rand_sig)
@@ -190,6 +191,20 @@ gl_rand_sig |>
   filter(sig == "sig") |>
   filter(!str_detect(para, "0"))
 ```
+
+```{r}
+targets::tar_load(pa_rand_sig)
+
+pa_rand_sig
+
+pa_rand_sig |>
+  filter(sig == "sig") |>
+  filter(!str_detect(para, "0"))
+```
+
+![](figs/coef_rand.png)
+
+![](figs/coef_rand_pa.png)
 
 # Computing Environment
 
