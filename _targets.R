@@ -488,9 +488,22 @@ list(
     }
   ),
 
+
   tar_target(
-    coef_rand_plot, {
-      p <- coef_rand(gl_rand_sig, gl_rand_check)
+    pa_rand_sig, {
+      tmp <- NULL
+      for (i in 1:10) {
+        tmp <- bind_rows(tmp,
+        list("a0", "ap", "b0", "bs", "g0", "gp", "gs") |>
+        map_dfr(rand_summary, pa_rand_fit, i))
+        }
+      tmp
+    }
+  ),
+
+  tar_target(
+    coef_rand_gl_plot, {
+      p <- coef_rand(gl_rand_sig, gl_rand_check, site = "GLOPNET")
       ggsave(
         "figs/coef_rand.png",
        p,
@@ -500,6 +513,22 @@ list(
        units = "cm"
       )
         paste0("figs/coef_rand", c(".png"))
+    },
+    format = "file"
+  ),
+
+  tar_target(
+    coef_rand_pa_plot, {
+      p <- coef_rand(pa_rand_sig, pa_rand_check, site = "Panama")
+      ggsave(
+        "figs/coef_rand_pa.png",
+       p,
+       dpi = 300,
+       height = 15,
+       width = 15,
+       units = "cm"
+      )
+        paste0("figs/coef_rand_pa", c(".png"))
     },
     format = "file"
   ),

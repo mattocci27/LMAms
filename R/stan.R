@@ -481,7 +481,7 @@ write_model_selction <- function(loo_tbl) {
 
 #' @para gl_rand_sig data including 95% CI
 #' @para gl_rand_check data with rhat and divergence
-coef_rand <- function(gl_rand_sig, gl_rand_check) {
+coef_rand <- function(gl_rand_sig, gl_rand_check, site = site) {
   data <- gl_rand_sig  |>
    # filter(!str_detect(para, "0")) |>
     full_join(gl_rand_check, by = "sim_id") |>
@@ -506,7 +506,7 @@ coef_rand <- function(gl_rand_sig, gl_rand_check) {
     facet_wrap(~para, scale = "free", labeller = label_parsed) +
     xlab("Simulation ID") +
     ylab("Standardized coefficents") +
-    ggtitle("GLOPNET") +
+    ggtitle(site) +
     coord_flip() +
     theme_bw() +
     theme(
