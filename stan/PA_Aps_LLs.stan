@@ -24,7 +24,7 @@ transformed data{
 parameters{
   real a0;
   real ap;
-  real<upper=ap> as;
+  real as;
   real b0;
   real bs;
   real g0;
@@ -66,7 +66,7 @@ model{
   as ~ normal(0, 5);
   p ~ beta(1, 1);
   L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
-  L_sigma ~ cauchy(0, 5);
+  L_sigma ~ cauchy(0, 2.5);
 
   // model
   for (i in 1:N)

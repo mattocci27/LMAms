@@ -120,7 +120,6 @@ div_check(fit_8_diagnostics_PA_Ap_LLs)
 div_check(fit_9_diagnostics_PA_Aps_LLps)
 div_check(fit_10_diagnostics_PA_Ap_LLps)
 div_check(fit_11_diagnostics_PA_Aps_LLs)
-div_check(fit_12_diagnostics_PA_Ap_LLs_opt)
 div_check(fit_13_diagnostics_PA_Aps_LLps_opt)
 div_check(fit_14_diagnostics_PA_Ap_LLps_opt)
 div_check(fit_15_diagnostics_PA_Aps_LLs_opt)
@@ -130,7 +129,6 @@ div_check(fit_18_diagnostics_PA_Ap_LDs_opt)
 div_check(fit_19_diagnostics_PA_Ap_LDps_opt)
 div_check(fit_20_diagnostics_PA_Ap_LLs_opt)
 ```
-
 
 Model 4: GL_Ap_LLs is best for GLOPNET.
 
@@ -181,7 +179,7 @@ targets::tar_load(pa_rand_check)
 summary(pa_rand_check)
 ```
 
-For GLOPNET, sim ID 1, 6, and 9 showed positive $alpha_p$ but those model did not converge based on Rhat.
+For GLOPNET, sim ID 1, 6, and 9 showed positive $\alpha_p$ but those model did not converge based on Rhat.
 
 ```{r}
 targets::tar_load(gl_rand_sig)
@@ -191,6 +189,12 @@ gl_rand_sig
 gl_rand_sig |>
   filter(sig == "sig") |>
   filter(!str_detect(para, "0"))
+```
+
+# Computing Environment
+
+```{r}
+devtools::session_info()
 ```
 
 # Pipelines

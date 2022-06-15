@@ -30,15 +30,19 @@ transformed data{
 parameters{
   real a0;
   real ap;
-{% if A == 'LMApLMAs' %}
+{% if A == 'LMApLMAs' and LL == 'LMApLMAs' %}
   real<upper=ap> as;
+{% elif A == 'LMApLMAs' %}
+  real as;
 {% endif %}
   real b0;
 {% if LL == 'LMApLMAs' %}
   real bp;
 {% endif %}
-{% if LL == 'LMApLMAs' %}
+{% if A == 'LMApLMAs' and LL == 'LMApLMAs' %}
   real <lower=bp> bs;
+{% elif LL == 'LMApLMAs' %}
+  real bs;
 {% else %}
   real bs;
 {% endif %}
@@ -143,7 +147,7 @@ model{
 {% endif %}
   p ~ beta(1, 1);
   L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
-  L_sigma ~ cauchy(0, 5);
+  L_sigma ~ cauchy(0, 2.5);
 
   // model
   for (i in 1:N)

@@ -81,7 +81,7 @@ generate_pa_stan <- function(data, full = FALSE) {
 fit_rand_model <- function(stan_data, model_file,
                             iter_warmup = 2000,
                             iter_sampling = 2000,
-                            adapt_delta = 0.99,
+                            adapt_delta = 0.999,
                             max_treedepth = 15) {
   model <- cmdstan_model(model_file)
   fit <- model$sample(
@@ -136,14 +136,27 @@ quiet <- function(code) {
 #' @return list of randomized dataset
 #' @description We make sure that randomized data has
 #' zero covariane among tratis
+#' @example
+# library(tidyverse)
+# n <- 2
+# targets::tar_load(gl_stan_dat)
+# list_data <- gl_stan_dat
+# targets::tar_load(gl_csv)
+# data <- read_csv(gl_csv)
+# rand_fun(2, data, list_data)
 rand_fun <- function(n, data, list_data){
   a_pval <- cor.test(log(data$LMA), log(data$Aarea))$p.val
   l_pval <- cor.test(log(data$LMA), log(data$LL))$p.val
   r_pval <- cor.test(log(data$LMA), log(data$Rarea))$p.val
+  al_pval <- cor.test(log(data$LL), log(data$Aarea))$p.val
+  rl_pval <- cor.test(log(data$Rarea), log(data$LL))$p.val
+  ar_pval <- cor.test(log(data$Aarea), log(data$Rarea))$p.val
+
   ar_min <- min(data$Aarea - data$Rarea)
 
-  while (ar_min < 0 | a_pval < 0.05 | l_pval < 0.05 | r_pval < 0.05) {
-    tmp <- data.frame(data[,1:3],
+  while (ar_min < 0 | a_pval < 0.1 | l_pval < 0.1 | r_pval < 0.1 |
+    al_pval < 0.1 | rl_pval < 0.1 | ar_pval < 0.1) {
+    tmp <- data.frame(data[, 1:3],
              LMA = sample(data$LMA),
              LL = sample(data$LL),
              Aarea = sample(data$Aarea),
@@ -153,9 +166,15 @@ rand_fun <- function(n, data, list_data){
     a_pval <- cor.test(log(tmp$LMA), log(tmp$Aarea))$p.val
     l_pval <- cor.test(log(tmp$LMA), log(tmp$LL))$p.val
     r_pval <- cor.test(log(tmp$LMA), log(tmp$Rarea))$p.val
+    al_pval <- cor.test(log(tmp$LL), log(tmp$Aarea))$p.val
+    rl_pval <- cor.test(log(tmp$Rarea), log(tmp$LL))$p.val
+    ar_pval <- cor.test(log(tmp$Aarea), log(tmp$Rarea))$p.val
     # paste("Aarea", a_pval) |> print()
     # paste("Rarea", r_pval) |> print()
     # paste("LL", l_pval) |> print()
+    # paste("Aarea-LL", al_pval) |> print()
+    # paste("Rarea-LL", rl_pval) |> print()
+    # paste("Aarea-Rarea", ar_pval) |> print()
   }
 
   tmp$A_R <- tmp$A - tmp$R
@@ -214,7 +233,7 @@ generate_tar_stan <- function(model, model_lma) {
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),',
       tmp,
