@@ -6,6 +6,23 @@ library(tidyverse)
 library(stantargets)
 library(cmdstanr)
 
+hoge |>
+  filter(!is.na(warnings)) |>
+  tail()
+
+targets::tar_load(gl_rand_list)
+d <- gl_rand_list$data[[10]]
+
+lm(log(A) ~ log(LMA), d) |> summary()
+lm(log(LL) ~ log(LMA), d) |> summary()
+lm(log(R) ~ log(LMA), d) |> summary()
+
+plot(R ~ LMA, log = "xy", data = d)
+
+lm(log(A) ~ log(LL), d) |> summary()
+lm(log(A) ~ log(R), d) |> summary()
+lm(log(LL) ~ log(R), d) |> summary()
+
 targets::tar_load(gl_csv)
 targets::tar_load(gl_stan_dat)
 targets::tar_load(pa_rand_list)
@@ -95,8 +112,8 @@ targets::tar_load(gl_rand_sig)
 targets::tar_load(gl_rand_check)
 targets::tar_load(pa_rand_sig)
 targets::tar_load(pa_rand_check)
-dat <- gl_rand_list$data[[12]]
-gl_rand_fit[[12]]$summary |> head(20)
+dat <- gl_rand_list$data[[10]]
+gl_rand_fit[[10]]$summary |> head(20)
 
 lm(log(A) ~ log(LMA), dat) |> summary()
 lm(log(LL) ~ log(LMA), dat) |> summary()

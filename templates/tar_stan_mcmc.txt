@@ -7,7 +7,7 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -19,7 +19,7 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -31,7 +31,7 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -43,7 +43,7 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -55,7 +55,7 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -67,7 +67,7 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -79,7 +79,7 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -91,7 +91,7 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -103,7 +103,7 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -115,7 +115,7 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -127,7 +127,7 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -139,7 +139,7 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -151,7 +151,7 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -163,7 +163,7 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -175,7 +175,7 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -187,7 +187,7 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -199,7 +199,7 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -211,7 +211,7 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),
   tar_stan_mcmc(
@@ -223,6 +223,6 @@
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 1,
     iter_sampling = 1,
-    adapt_delta = 0.99,
+    adapt_delta = 0.9,
     max_treedepth = 15,
     seed = 123),

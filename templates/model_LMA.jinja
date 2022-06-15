@@ -70,7 +70,7 @@ model{
 {% endif %}
   p ~ beta(1, 1);
   L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
-  L_sigma ~ cauchy(0, 5);
+  L_sigma ~ cauchy(0, 2.5);
 
   // model
   for (i in 1:N)
@@ -90,3 +90,4 @@ generated quantities {
   for (i in 1:N)
    log_lik[i] = multi_normal_cholesky_lpdf(obs[i,] | Mu[i,], diag_pre_multiply(L_sigma, L_Omega));
  }
+
