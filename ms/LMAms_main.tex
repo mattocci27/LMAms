@@ -405,7 +405,7 @@
 
 
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, enhanced, borderline west={3pt}{0pt}{shadecolor}, breakable, boxrule=0pt, frame hidden, interior hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, borderline west={3pt}{0pt}{shadecolor}, frame hidden, interior hidden, boxrule=0pt, enhanced, breakable]}{\end{tcolorbox}}\fi
 
 \textbf{Running title}: Metabolic and structural leaf mass
 
@@ -696,9 +696,13 @@ mass (LMAp: parameters \(\alpha_p\) in Eq. \ref{eq:Aarea}) than
 structural leaf mass (LMAs: parameter \(\alpha_s\)), and (ii) LL depends
 more strongly on LMAs (\(\beta_s\) in Eqs.
 \ref{eq:LL_pot}-\ref{eq:LL_opt} ) than LMAm (\(\beta_p\)). In the first
-assumption, we constrained \(\alpha_p\) \textgreater{} \(\alpha_s\) or
-we set \(\alpha_s\) to zero. In the second assumption, we constrained
-\(\beta_s\) \textgreater{} \(\beta_p\) or we set \(\beta_p\) to zero.
+assumption, we set \(\alpha_s\) to zero or we tested if \(\alpha_p\) is
+greater than \(\alpha_s\). In the second assumption, we set \(\beta_p\)
+to zero or we tested if \(\beta_s\) is greater than \(\beta_p\). When we
+used all of the four scaling parameters (i.e., \(\alpha_p\),
+\(\alpha_s\), \(\beta_p\), and \(\beta_s\)), we constrained \(\alpha_p\)
+\textgreater{} \(\alpha_s\) and \(\beta_s\) \textgreater{} \(\beta_p\)
+to avoid the invariance of the likelihood.
 
 We also considered models in which LMAs in Eq.
 \ref{eq:LL_pot}-\ref{eq:LL_opt} was replaced by leaf structural density
@@ -729,9 +733,9 @@ and \(exp(\theta)\) is the sun:shade LL ratio.
 In summary, we have five model forms representing LL: (1) LMA, (2) LMAp
 and LMAs, (3) LMA and light, (4) LMAp, LMAs and light, and (5) LMAp,
 LMAs/LT and light, with four types of parameter restrictions: (a)
-\(\alpha_s = 0\) and \(\beta_p = 0\), (b) \(\alpha_p > \alpha_s\) and
-\(\beta_p = 0\), (c) \(\alpha_s = 0\) and \(\beta_s > \beta_p\), and (d)
-\(\alpha_p > \alpha_s\) and \(\beta_s > \beta_p\) (Table 1).
+\(\alpha_s = 0\) and \(\beta_p = 0\), (b) \(\beta_p = 0\), (c)
+\(\alpha_s = 0\), and (d) \(\alpha_p > \alpha_s\) and
+\(\beta_s > \beta_p\) (Table 1).
 
 \hypertarget{datasets}{%
 \subsection{Datasets}\label{datasets}}
@@ -1039,7 +1043,7 @@ senstivity of \emph{A}\textsubscript{max} to variation in LMAp and LMAs
 also affect the relationship between mass-dependence of
 \emph{A}\textsubscript{max} and LMAs variance (Fig.~\ref{fig-massplt},
 Fig. S\ref{fig-mass_prop_sim}-\ref{fig-mass_prop_comp}). Although
-relative variance of LMAs was intermediate in GLOPNET (51.4\%),
+relative variance of LMAs was intermediate in GLOPNET (51.6\%),
 interspecific variation in \emph{A}\textsubscript{max} among leaves in
 GLOPNET tended to be area-dependent because of their lower \(\alpha_p\)
 and negative \(\alpha_s\). Interspecific variation in
@@ -1095,7 +1099,7 @@ LMAp is small or similar to variance in LMAs, (ii) the effects of LMAp
 and LMAs on \emph{A}\textsubscript{area} (\(\alpha_p\) and \(\alpha_s\))
 are small, (iii) or combinations of those (Fig. Fig.~\ref{fig-massplt}).
 Consistent with this explanation, the assemblage we examined where LMAs
-counted for the highest fraction of total LMA variation (93.1\% for
+counted for the highest fraction of total LMA variation (92.3\% for
 Panama shade leaves) is also the assembled with the highest degree of
 trait area-dependence (\protect\hyperlink{ref-Osnas2018}{Osnas et al.
 2018}). Our results also suggest that high degree of trait
@@ -1616,9 +1620,8 @@ better predictive accuracy. The models here are the five moodel forms
 representing LL: (1) LMA, (2) LMAp and LMAs, (3) LMA and light, (4)
 LMAp, LMAs and light, and (5) LMAp, LMAs/LT and light, with four types
 of parameter restrictions: (a) \(\alpha_s = 0\) and \(\beta_p = 0\), (b)
-\(\alpha_p > \alpha_s\) and \(\beta_p = 0\), (c) \(\alpha_s = 0\) and
-\(\beta_s > \beta_p\), and (d) \(\alpha_p > \alpha_s\) and
-\(\beta_s > \beta_p\).
+\(\beta_p = 0\), (c) \(\alpha_s = 0\), and (d) \(\alpha_p > \alpha_s\)
+and \(\beta_s > \beta_p\).
 
 \begin{table}
 \centering
@@ -1628,25 +1631,25 @@ Model & N & LOOIC\\
 \midrule
 \addlinespace[0.3em]
 \multicolumn{3}{l}{\textbf{GLOPNET}}\\
-\hspace{1em}2b & 198 & 720.9\\
-\hspace{1em}2d & 198 & 751.9\\
-\hspace{1em}2a & 198 & 756.9\\
-\hspace{1em}2c & 198 & 763.5\\
-\hspace{1em}1 & 198 & 766.6\\
+\hspace{1em}2b & 198 & 721.2\\
+\hspace{1em}2a & 198 & 759.8\\
+\hspace{1em}2d & 198 & 761.8\\
+\hspace{1em}2c & 198 & 765.0\\
+\hspace{1em}1 & 198 & 766.4\\
 \addlinespace[0.3em]
 \multicolumn{3}{l}{\textbf{Panama}}\\
-\hspace{1em}4a & 106 & 452.4\\
-\hspace{1em}5a & 106 & 466.8\\
-\hspace{1em}2c & 106 & 466.8\\
-\hspace{1em}4c & 106 & 479.7\\
-\hspace{1em}5c & 106 & 488.9\\
-\hspace{1em}4b & 106 & 498.3\\
-\hspace{1em}2a & 106 & 499.7\\
-\hspace{1em}3 & 106 & 503.3\\
-\hspace{1em}4d & 106 & 504.3\\
-\hspace{1em}2d & 106 & 515.7\\
-\hspace{1em}2b & 106 & 521.6\\
-\hspace{1em}1 & 106 & 528.4\\
+\hspace{1em}4a & 106 & 455.6\\
+\hspace{1em}2c & 106 & 472.3\\
+\hspace{1em}5a & 106 & 473.5\\
+\hspace{1em}4c & 106 & 485.1\\
+\hspace{1em}5c & 106 & 493.5\\
+\hspace{1em}2a & 106 & 500.3\\
+\hspace{1em}4d & 106 & 502.7\\
+\hspace{1em}3 & 106 & 502.7\\
+\hspace{1em}4b & 106 & 503.3\\
+\hspace{1em}2d & 106 & 517.0\\
+\hspace{1em}2b & 106 & 522.8\\
+\hspace{1em}1 & 106 & 528.2\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1661,8 +1664,8 @@ interval.
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4271}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2812}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2917}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2917}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2812}}@{}}
 \toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 Parameters
@@ -1674,17 +1677,17 @@ Panama
 \midrule()
 \endhead
 Effect of LMAp on \emph{A}\textsubscript{area} (\(\alpha_p\)) &
-\textbf{0.283 {[}0.204, 0.364{]}} & \textbf{0.575 {[}0.428, 0.714{]}} \\
+\textbf{0.282 {[}0.204, 0.36{]}} & \textbf{0.563 {[}0.414, 0.715{]}} \\
 Effect of LMAs on \emph{A}\textsubscript{area} (\(\alpha_s\)) &
-\textbf{-0.133 {[}-0.211, -0.06{]}} & - \\
-Effect of LMAs on LL (\(\beta_s\)) & \textbf{0.889 {[}0.762, 1.02{]}} &
-\textbf{0.349 {[}0.167, 0.528{]}} \\
+\textbf{-0.131 {[}-0.201, -0.058{]}} & - \\
+Effect of LMAs on LL (\(\beta_s\)) & \textbf{0.888 {[}0.761, 1.018{]}} &
+\textbf{0.359 {[}0.185, 0.53{]}} \\
 Effect of LMAp on \emph{R}\textsubscript{area} (\(\gamma_p\)) &
-\textbf{0.292 {[}0.199, 0.384{]}} & \textbf{0.627 {[}0.429, 0.828{]}} \\
-Effect of LMAs on \emph{R}\textsubscript{area} (\(\gamma_s\)) & 0.034
-{[}-0.05, 0.118{]} & 0.036 {[}-0.208, 0.32{]} \\
-Effect of light on LL (\(\theta\)) & - & \textbf{-0.808 {[}-1.103,
--0.512{]}} \\
+\textbf{0.289 {[}0.202, 0.38{]}} & \textbf{0.648 {[}0.445, 0.843{]}} \\
+Effect of LMAs on \emph{R}\textsubscript{area} (\(\gamma_s\)) & 0.035
+{[}-0.045, 0.115{]} & -0.005 {[}-0.245, 0.282{]} \\
+Effect of light on LL (\(\theta\)) & - & \textbf{-0.807 {[}-1.085,
+-0.53{]}} \\
 \bottomrule()
 \end{longtable}
 

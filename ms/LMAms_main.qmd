@@ -169,8 +169,9 @@ and the logarithms of *A*~area~, LL, and *R*~area~ are assumed to have a multiva
 We assumed that:
 (i) *A*~area~ depends more strongly on metabolic leaf mass (LMAp: parameters $\alpha_p$ in Eq. \ref{eq:Aarea}) than structural leaf mass (LMAs: parameter $\alpha_s$), and
 (ii) LL depends more strongly on LMAs ($\beta_s$ in Eqs. \ref{eq:LL_pot}-\ref{eq:LL_opt} ) than LMAm ($\beta_p$).
-In the first assumption, we constrained $\alpha_p$ > $\alpha_s$ or we set $\alpha_s$ to zero.
-In the second assumption, we constrained $\beta_s$ > $\beta_p$ or we set $\beta_p$ to zero.
+In the first assumption, we set $\alpha_s$ to zero or we tested if $\alpha_p$ is greater than $\alpha_s$.
+In the second assumption, we set $\beta_p$ to zero or we tested if $\beta_s$ is greater than $\beta_p$.
+When we used all of the four scaling parameters (i.e., $\alpha_p$, $\alpha_s$, $\beta_p$, and $\beta_s$), we constrained $\alpha_p$ > $\alpha_s$ and $\beta_s$ > $\beta_p$ to avoid the invariance of the likelihood.
 
 We also considered models in which LMAs in Eq. \ref{eq:LL_pot}-\ref{eq:LL_opt} was replaced by leaf structural density (LMAs/LT, where LT is leaf thickness), which has been shown in some cases to be a good predictor for LL [@Kitajima2012; @Kitajima2013].
 In our analysis, models with leaf density yielded qualitatively similar results as those based on LMAs, but did not perform as well in the model evaluation (see below).
@@ -189,8 +190,8 @@ In summary, we have five model forms representing LL:
 (5) LMAp, LMAs/LT and light,
 with four types of parameter restrictions:
 (a) $\alpha_s = 0$  and $\beta_p = 0$,
-(b) $\alpha_p > \alpha_s$  and $\beta_p = 0$,
-(c) $\alpha_s = 0$  and $\beta_s > \beta_p$, and
+(b) $\beta_p = 0$,
+(c) $\alpha_s = 0$, and
 (d) $\alpha_p > \alpha_s$  and $\beta_s > \beta_p$ (Table 1).
 
 ## Datasets
@@ -400,8 +401,8 @@ The models here are the five moodel forms representing LL:
 (4) LMAp, LMAs and light, and
 (5) LMAp, LMAs/LT and light, with four types of parameter restrictions:
 (a) $\alpha_s = 0$  and $\beta_p = 0$,
-(b) $\alpha_p > \alpha_s$  and $\beta_p = 0$,
-(c) $\alpha_s = 0$  and $\beta_s > \beta_p$, and
+(b) $\beta_p = 0$,
+(c) $\alpha_s = 0$, and
 (d) $\alpha_p > \alpha_s$  and $\beta_s > \beta_p$.
 
 ```{r lootab, eval=TRUE, echo=FALSE}
