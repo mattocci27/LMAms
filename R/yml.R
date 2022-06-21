@@ -394,7 +394,26 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
 #' @title Generates yml file for GL estimates
 #' @para gl_summary cmdstan summary (e.g., fit_7_summary_GL_Aps_LLs)
 #' @para pa_summary cmdstan summary
-write_para_yml <- function(gl_summary, pa_summary) {
+write_para_yml <- function(gl_summary, pa_summary, gl_res_csv, pa_res_csv) {
+  gl <- read_csv(gl_res_csv)
+  pa <- read_csv(pa_res_csv)
+  sun <- pa |>
+    filter(strata == "CAN")
+  shade <- pa |>
+    filter(strata != "CAN")
+
+  LMAp_mu_gl <- log(gl$LMAp) |> mean() |> exp() |> round(1)
+  LMAs_mu_gl <- log(gl$LMAs) |> mean() |> exp() |> round(1)
+  LMAp_sig_gl <- log(gl$LMAp) |> sd() |> exp() |> round(2)
+
+  LMAp_mu_sun <- log(sun$LMAp) |> mean() |> exp() |> round(1)
+  LMAs_mu_sun <- log(sun$LMAs) |> mean() |> exp() |> round(1)
+  LMAp_sig_sun <- log(sun$LMAp) |> sd() |> exp() |> round(2)
+
+  LMAp_mu_shade <- log(shade$LMAp) |> mean() |> exp() |> round(1)
+  LMAs_mu_shade <- log(shade$LMAs) |> mean() |> exp() |> round(1)
+  LMAp_sig_shade <- log(shade$LMAp) |> sd() |> exp() |> round(2)
+
   # targets::tar_load(fit_7_summary_GL_Aps_LLs)
   # fit_summary <- fit_7_summary_GL_Aps_LLs
 
@@ -425,6 +444,15 @@ write_para_yml <- function(gl_summary, pa_summary) {
   writeLines(paste0("  sig1: ", sig1),
              out,
              sep = "\n")
+  writeLines(paste0("  LMAp_mu_gl: ", LMAp_mu_gl),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMAs_mu_gl: ", LMAs_mu_gl),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMAp_sig_gl: ", LMAp_sig_gl),
+             out,
+             sep = "\n")
 
   writeLines(paste0("PA:"),
              out,
@@ -439,6 +467,24 @@ write_para_yml <- function(gl_summary, pa_summary) {
              out,
              sep = "\n")
   writeLines(paste0("  sig1: ", sig1_pa),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMAp_mu_sun: ", LMAp_mu_sun),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMAs_mu_sun: ", LMAs_mu_sun),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMAp_sig_sun: ", LMAp_sig_sun),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMAp_mu_shade: ", LMAp_mu_shade),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMAs_mu_shade: ", LMAs_mu_shade),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMAp_sig_shade: ", LMAp_sig_shade),
              out,
              sep = "\n")
   close(out)
