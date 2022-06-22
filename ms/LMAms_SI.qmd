@@ -47,9 +47,9 @@ The logarithms of *A*~area~, *R*~area~, and LL for leaf sample *i* were assumed 
 \begin{align}
 \left(
 \begin{array}{ccc}
-\mathrm{ln}[A_{\mathrm{area} \, i}]\\
-\mathrm{ln}[R_{\mathrm{area} \, i}] \\
-\mathrm{ln}[\mathrm{LL}_i]
+\mathrm{ln}(A_{\mathrm{area} \, i})\\
+\mathrm{ln}(R_{\mathrm{area} \, i}) \\
+\mathrm{ln}(\mathrm{LL}_i)
 \end{array}
 \right)
 \sim \mathrm{MVN}
@@ -124,37 +124,84 @@ Thus, the tests with randomized data indicate that our model is not inherently p
 
 # Appendix S3: Simulation for mass dependency of *A*~area~
 
+To simulate mass dependency of *A*~area~, we simulated LMAp and LMAs values using normal distibutions (N) for GLPONET and sun leaves of Panama with a sample size of 100:
 
 $$
-A_{\mathrm{area} \, i} = \alpha_0\mathrm{LMAp}_{i}^{\alpha_p}\mathrm{LMAs}_i^{\alpha_s}
-$$
-
-
-$$
-\mathrm{LMAp}_{i} \sim N(ln(40), \sigma)
+\mathrm{ln}(\mathrm{LMAp}_{i}) \sim N(\mathrm{ln}(\mu_p), \sigma_p)
 $$
 
 $$
-\mathrm{LMAs}_{i} \sim N(ln(40), \sigma)
+\mathrm{ln}(\mathrm{LMAs}_{i}) \sim N(\mathrm{ln}(\mu_s), \sigma_s)
 $$
 
+where
+$\mu_p$ and $\mu_s$ are the mean of LMAp and LMAs on the log-scale, respectively, and
+$\sigma_p$ and $\sigma_s$ are the standard deviation of LMAp and LMAs on the log-scale, respectively.
+
+Because there was a weak positive correlation between LMAp and LMAs values of shade leaves in Panama, LMAp and LMAs values were simulated using a multivairate normal distribution (MVN):
 
 $$
-\left(
-\begin{array}{ccc}
-\mathrm{ln}[\mathrm{LMAp} \, i]\\
-\mathrm{ln}[\mathrm{LMAs} \, i]
-\end{array}
-\right)
+\begin{bmatrix}
+\mathrm{ln}(\mathrm{LMAp}_{i})\\
+\mathrm{ln}(\mathrm{LMAs}_{i})
+\end{bmatrix}
 \sim \mathrm{MVN}
-\left(
-\begin{array}{rrr}
-\ln(40)\\
-\ln(40) &, \mathbf{\Sigma}
-\end{array}
-\right) \tag{S3}
+\left[
+\begin{matrix}
+\ln(\mu_{p})\\
+\ln(\mu_{s})
+\end{matrix}
+,\mathbf{\Sigma}
+\right]
+\tag{S3}
 $$
 
+$$
+\mathbf{\Sigma} = \
+\begin{bmatrix}
+\sigma_p^2 & \rho \sigma_p \sigma_s \\
+\rho \sigma_p \sigma_s & \sigma_s^2 \\
+\end{bmatrix}
+$$
+
+where $\Sigma$ is the covariance matrix of ln(LMAp) and ln(LMAs),
+$\rho$ is the correlation coefficient between ln(LMAp) and ln(LMAs).
+
+We used the empirical estimates for $\mu_p$, $\mu_s$, $\sigma_p$, and $\rho$ while with changing $\sigma_s$ between ln(1.01) and ln(10).
+*A*~area~ was then generated based the values obtianed from the above simulation:
+
+$$
+\mathrm{ln}(A_{\mathrm{area} \, i}) = \mathrm{ln}(\alpha_0) + \alpha_p\mathrm{ln}(\mathrm{LMAp}_{i}) + \alpha_s\mathrm{ln}(\mathrm{LMAs}_{i}).
+$$
+
+Parameter settings are as following,
+GLOPNET:
+$\mu_p$ = `r para$GL$LMAp_mu_gl`,
+$\mu_s$ = `r para$GL$LMAs_mu_gl`,
+$\sigma_p$ = `r para$GL$LMAp_sig_gl`,
+$\alpha_p$ = `r para$GL$ap`,
+$\alpha_s$ = `r para$GL$as`,
+sun leaves in Panama:
+$\mu_p$ = `r para$PA$LMAp_mu_sun`,
+$\mu_s$ = `r para$PA$LMAs_mu_sun`,
+$\sigma_p$ = `r para$PA$LMAp_sig_sun`, and
+$\alpha_p$ = `r para$PA$ap`,
+$\alpha_s$ = 0,
+shade leaves in Panama:
+$\mu_p$ = `r para$PA$LMAp_mu_shade`,
+$\mu_s$ = `r para$PA$LMAs_mu_shade`,
+$\sigma_p$ = `r para$PA$LMAp_sig_shade`,
+$\alpha_p$ = `r para$PA$ap`,
+$\alpha_s$ = 0,
+$\rho$ = 0.4.
+
+We finally calculated mass dependicy (*b*) using the following ordinary least square regression:
+
+$$
+\mathrm{ln}(A_{\mathrm{area} \, i}) = \mathrm{ln}(a) + b \mathrm{ln}(\mathrm{LMA}_{i}).
+$$ {#eq-mass}
+
+We repeated these steps 1000 times.
 
 \newpage
 
