@@ -5,6 +5,8 @@ geometry: margin=1in
 link-citations: yes
 csl: templates/ecology.csl
 bibliography: [LMA.bib]
+crossref:
+  eq-prefix: Eq.
 format:
   html:
     theme: spacelab #readable #sandstone #spacelab #flatly
@@ -110,11 +112,11 @@ Model results obtained from the randomized datasets did not convergent based on 
 
 \newpage
 
-# Figure AS1
+## Figure AS1
 
-Although divergent transitions suggesting that the posterior distribution is not reliable, we checked the regression coefficients for GLOPNET ($\alpha_{0, p, s}$, $\beta_{0, s}$, and $\gamma_{0, p, s}$ in Eqs. 4-6 in the main text).
+Although many parameters showed large Rhat values, which suggests that the posterior distributions were not converged well, we checked the regression coefficients for GLOPNET ($\alpha_{0, p, s}$, $\beta_{0, s}$, and $\gamma_{0, p, s}$ in Eqs. 4-6 in the main text).
 There are 10 independent simulations (randomizations) in total.
-The simulation ID 2, 3, 4 and 7 were convergent based on the Gelman-Rubin statistic, but those randomized datasets did not show any patterns.
+The scaling parameters in the randomized datasets did not show any patterns.
 Thus, the tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
 ![
 ](../figs/coef_rand.png)
@@ -124,7 +126,7 @@ Thus, the tests with randomized data indicate that our model is not inherently p
 
 # Appendix S3: Simulation for mass dependency of *A*~area~
 
-To simulate mass dependency of *A*~area~, we simulated LMAp and LMAs values using normal distibutions (N) for GLPONET and sun leaves of Panama with a sample size of 100:
+To simulate mass dependency of *A*~area~, we generated LMAp and LMAs values for leaf sample *i* using normal distibutions (N) for GLPONET and sun leaves of Panama with a sample size of 100:
 
 $$
 \mathrm{ln}(\mathrm{LMAp}_{i}) \sim N(\mathrm{ln}(\mu_p), \sigma_p)
@@ -138,7 +140,7 @@ where
 $\mu_p$ and $\mu_s$ are the mean of LMAp and LMAs on the log-scale, respectively, and
 $\sigma_p$ and $\sigma_s$ are the standard deviation of LMAp and LMAs on the log-scale, respectively.
 
-Because there was a weak positive correlation between LMAp and LMAs values of shade leaves in Panama, LMAp and LMAs values were simulated using a multivairate normal distribution (MVN):
+Because there was a weak negative correlation between LMAp and LMAs values of shade leaves in Panama, LMAp and LMAs values were generated using a multivairate normal distribution (MVN):
 
 $$
 \begin{bmatrix}
@@ -153,7 +155,6 @@ $$
 \end{matrix}
 ,\mathbf{\Sigma}
 \right]
-\tag{S3}
 $$
 
 $$
@@ -193,13 +194,13 @@ $\mu_s$ = `r para$PA$LMAs_mu_shade`,
 $\sigma_p$ = `r para$PA$LMAp_sig_shade`,
 $\alpha_p$ = `r para$PA$ap`,
 $\alpha_s$ = 0,
-$\rho$ = 0.4.
+$\rho$ = -0.4.
 
 We finally calculated mass dependicy (*b*) using the following ordinary least square regression:
 
 $$
 \mathrm{ln}(A_{\mathrm{area} \, i}) = \mathrm{ln}(a) + b \mathrm{ln}(\mathrm{LMA}_{i}).
-$$ {#eq-mass}
+$$
 
 We repeated these steps 1000 times.
 
@@ -247,16 +248,16 @@ Groups sharing the same letters are not significantly different (P > 0.05; t-tes
 
 ![
 The relationships between mass dependency (*b* in Eq. 5 in the main text) and relative variance in LMAs to LMA for the different ranges of the scaling exponent $\alpha_p$ and $\alpha_s$.
-**a**, the scaling exponent $\alpha_p$ vary from 0.1 to 1.0 while the scaling exponent $\alpha_s$ is constant ($\alpha_s$ = xx).
-**b**, the scaling exponent $\alpha_s$ vary from -0.5 to 0.5 while the scaling exponent $\alpha_p$ is constant ($\alpha_p$ = xx).
+**a**, the scaling exponent $\alpha_p$ vary from 0.1 to 1.0 while the scaling exponent $\alpha_s$ is constant ($\alpha_s$ = `r para$GL$as`,).
+**b**, the scaling exponent $\alpha_s$ vary from -0.5 to 0.5 while the scaling exponent $\alpha_p$ is constant ($\alpha_p$ = `r para$GL$ap`,).
 Solid lines indicate simulated means and shaded regions indicate 95% CI.
 The photosynthetic rate (*A*~max~) is primarily mass-dependent (*b* > 0.5), primarily area-dependent (0.5 > *b* > 0) and purely area-dependent (*b* = 0) [@Osnas2018].
-Note that when *b* > 1, *A*~area~ dramatically increases with LMA, which is not realistic.
+Note that when *b* > 1, *A*~area~ dramatically increase with LMA, which is not realistic.
 Parameter settings:
 $\alpha_0$ = `r para$GL$a0`,
-$\alpha_p$ = `r para$GL$ap`,
-$\alpha_s$ = `r para$GL$as`, and
-$\sigma$ = `r para$GL$sig1`.
+$\mu_p$ = `r para$GL$LMAp_mu_gl`,
+$\mu_s$ = `r para$GL$LMAs_mu_gl`,
+$\sigma_p$ = `r para$GL$LMAp_sig_gl`.
 ](../figs/mass_prop_sim.png){#fig-mass_prop_sim}
 
 \newpage
@@ -269,7 +270,9 @@ Parameter settings:
 $\alpha_0$ = `r para$PA$a0`,
 $\alpha_p$ = `r para$PA$ap`,
 $\alpha_s$ = 0,
-$\sigma$ = `r para$PA$sig1`, and
+$\mu_p$ = `r para$PA$LMAp_mu_shade`,
+$\mu_s$ = `r para$PA$LMAs_mu_shade`,
+$\sigma_p$ = `r para$PA$LMAp_sig_shade`, and
 $\rho$ = -0.4,
 ](../figs/mass_prop_comp.png){#fig-mass_prop_comp}
 
@@ -282,11 +285,11 @@ Measured traits related to photosynthesis and metabolism (nitrogen and phosphoru
 LMAp yields more consistent relationships compared to LMA and LMAs; e.g., evergreen and deciduous leaves align along a single relationship in panel b, but not in panels a or c.
 ](../figs/gl_point_np2.png){#fig-glnp}
 
-# Appendix S3: Stan code
+# Appendix S4: Stan code
 
 ## Stan code for the GLOPNET dataset
 
-The best model for the GLOPNET dataset is (2) LMAp and LMAs, and (b) $\alpha_p > \alpha_s$ and $\beta_p = 0$.
+The best model for the GLOPNET dataset is (2) LMAp and LMAs, and (b) $\beta_p = 0$.
 
 ```{stan, output.var="hoge",file="../stan/GL_Aps_LLs.stan", eval=FALSE, echo=TRUE}
 ```

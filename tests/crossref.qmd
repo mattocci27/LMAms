@@ -1,0 +1,44 @@
+---
+title: Cross References
+link-citations: yes
+crossref:
+  eq-prefix: Eq.
+format:
+  html:
+    theme: spacelab #readable #sandstone #spacelab #flatly
+    toc: true
+    toc-depth: 2
+    toc-title: Contents
+    self-contained: true
+    smooth-scroll: true
+    highlight-style: github
+  pdf:
+    toc: false
+    keep-tex: true
+    latex-clean: false
+    pdf-engine: pdflatex
+---
+
+
+# Equations
+
+$$
+x_i \sim N(\mu, \sigma)
+$$ {#eq-norm}
+
+
+$$
+y_i \sim Pois(\lambda)
+$$ {#eq-pois}
+
+@eq-norm is a normal distribution.
+
+
+@eq-pois is a Poisson distribution.
+
+
+Eq. S[-@eq-norm] is a normal distribution.
+
+
+Eq. S[-@eq-pois] is a Poisson distribution.
+

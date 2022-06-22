@@ -229,7 +229,7 @@ within and among plant species}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, interior hidden, breakable, enhanced, boxrule=0pt, sharp corners, frame hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, breakable, borderline west={3pt}{0pt}{shadecolor}, sharp corners, interior hidden, boxrule=0pt, frame hidden]}{\end{tcolorbox}}\fi
 
 \newpage
 
@@ -244,9 +244,9 @@ assumed to have a multivariate normal distribution as following:
 \begin{align}
 \left(
 \begin{array}{ccc}
-\mathrm{ln}[A_{\mathrm{area} \, i}]\\
-\mathrm{ln}[R_{\mathrm{area} \, i}] \\
-\mathrm{ln}[\mathrm{LL}_i]
+\mathrm{ln}(A_{\mathrm{area} \, i})\\
+\mathrm{ln}(R_{\mathrm{area} \, i}) \\
+\mathrm{ln}(\mathrm{LL}_i)
 \end{array}
 \right)
 \sim \mathrm{MVN}
@@ -352,18 +352,17 @@ based on the Gelman-Rubin statistic or showed divergent transitions.
 \newpage
 
 \hypertarget{figure-as1}{%
-\section{Figure AS1}\label{figure-as1}}
+\subsection{Figure AS1}\label{figure-as1}}
 
-Although divergent transitions suggesting that the posterior
-distribution is not reliable, we checked the regression coefficients for
-GLOPNET (\(\alpha_{0, p, s}\), \(\beta_{0, s}\), and
-\(\gamma_{0, p, s}\) in Eqs. 4-6 in the main text). There are 10
-independent simulations (randomizations) in total. The simulation ID 2,
-3, 4 and 7 were convergent based on the Gelman-Rubin statistic, but
-those randomized datasets did not show any patterns. Thus, the tests
-with randomized data indicate that our model is not inherently prone to
-overfitting or to producing patterns from noise.
-\includegraphics{../figs/coef_rand.png}
+Although many parameters showed large Rhat values, which suggests that
+the posterior distributions were not converged well, we checked the
+regression coefficients for GLOPNET (\(\alpha_{0, p, s}\),
+\(\beta_{0, s}\), and \(\gamma_{0, p, s}\) in Eqs. 4-6 in the main
+text). There are 10 independent simulations (randomizations) in total.
+The scaling parameters in the randomized datasets did not show any
+patterns. Thus, the tests with randomized data indicate that our model
+is not inherently prone to overfitting or to producing patterns from
+noise. \includegraphics{../figs/coef_rand.png}
 
 \newpage
 
@@ -371,33 +370,77 @@ overfitting or to producing patterns from noise.
 \section{\texorpdfstring{Appendix S3: Simulation for mass dependency of
 \emph{A}\textsubscript{area}}{Appendix S3: Simulation for mass dependency of Aarea}}\label{appendix-s3-simulation-for-mass-dependency-of-aarea}}
 
+To simulate mass dependency of \emph{A}\textsubscript{area}, we
+generated LMAp and LMAs values for leaf sample \emph{i} using normal
+distibutions (N) for GLPONET and sun leaves of Panama with a sample size
+of 100:
+
 \[
-A_{\mathrm{area} \, i} = \alpha_0\mathrm{LMAp}_{i}^{\alpha_p}\mathrm{LMAs}_i^{\alpha_s}
+\mathrm{ln}(\mathrm{LMAp}_{i}) \sim N(\mathrm{ln}(\mu_p), \sigma_p)
 \]
 
 \[
-\mathrm{LMAp}_{i} \sim N(ln(40), \sigma)
+\mathrm{ln}(\mathrm{LMAs}_{i}) \sim N(\mathrm{ln}(\mu_s), \sigma_s)
 \]
 
-\[
-\mathrm{LMAs}_{i} \sim N(ln(40), \sigma)
-\]
+where \(\mu_p\) and \(\mu_s\) are the mean of LMAp and LMAs on the
+log-scale, respectively, and \(\sigma_p\) and \(\sigma_s\) are the
+standard deviation of LMAp and LMAs on the log-scale, respectively.
+
+Because there was a weak negative correlation between LMAp and LMAs
+values of shade leaves in Panama, LMAp and LMAs values were generated
+using a multivairate normal distribution (MVN):
 
 \[
-\left(
-\begin{array}{ccc}
-\mathrm{ln}[\mathrm{LMAp} \, i]\\
-\mathrm{ln}[\mathrm{LMAs} \, i]
-\end{array}
-\right)
+\begin{bmatrix}
+\mathrm{ln}(\mathrm{LMAp}_{i})\\
+\mathrm{ln}(\mathrm{LMAs}_{i})
+\end{bmatrix}
 \sim \mathrm{MVN}
-\left(
-\begin{array}{rrr}
-\ln(40)\\
-\ln(40) &, \mathbf{\Sigma}
-\end{array}
-\right) \tag{S3}
+\left[
+\begin{matrix}
+\ln(\mu_{p})\\
+\ln(\mu_{s})
+\end{matrix}
+,\mathbf{\Sigma}
+\right]
 \]
+
+\[
+\mathbf{\Sigma} = \
+\begin{bmatrix}
+\sigma_p^2 & \rho \sigma_p \sigma_s \\
+\rho \sigma_p \sigma_s & \sigma_s^2 \\
+\end{bmatrix}
+\]
+
+where \(\Sigma\) is the covariance matrix of ln(LMAp) and ln(LMAs),
+\(\rho\) is the correlation coefficient between ln(LMAp) and ln(LMAs).
+
+We used the empirical estimates for \(\mu_p\), \(\mu_s\), \(\sigma_p\),
+and \(\rho\) while with changing \(\sigma_s\) between ln(1.01) and
+ln(10). \emph{A}\textsubscript{area} was then generated based the values
+obtianed from the above simulation:
+
+\[
+\mathrm{ln}(A_{\mathrm{area} \, i}) = \mathrm{ln}(\alpha_0) + \alpha_p\mathrm{ln}(\mathrm{LMAp}_{i}) + \alpha_s\mathrm{ln}(\mathrm{LMAs}_{i}).
+\]
+
+Parameter settings are as following, GLOPNET: \(\mu_p\) = 58.8,
+\(\mu_s\) = 63.1, \(\sigma_p\) = 2.12, \(\alpha_p\) = 0.28, \(\alpha_s\)
+= -0.13, sun leaves in Panama: \(\mu_p\) = 45.7, \(\mu_s\) = 30.6,
+\(\sigma_p\) = 1.51, and \(\alpha_p\) = 0.56, \(\alpha_s\) = 0, shade
+leaves in Panama: \(\mu_p\) = 8.4, \(\mu_s\) = 24.5, \(\sigma_p\) =
+1.84, \(\alpha_p\) = 0.56, \(\alpha_s\) = 0, \(\rho\) = -0.4.
+
+We finally calculated mass dependicy (\emph{b}) using the following
+ordinary least square regression:
+
+\[
+\mathrm{ln}(A_{\mathrm{area} \, i}) = \mathrm{ln}(a) + b \mathrm{ln}(\mathrm{LMA}_{i}).
+\]
+
+We repeated these steps 1000 times.
 
 \newpage
 
@@ -492,18 +535,18 @@ dependency (\emph{b} in Eq. 5 in the main text) and relative variance in
 LMAs to LMA for the different ranges of the scaling exponent
 \(\alpha_p\) and \(\alpha_s\). \textbf{a}, the scaling exponent
 \(\alpha_p\) vary from 0.1 to 1.0 while the scaling exponent
-\(\alpha_s\) is constant (\(\alpha_s\) = xx). \textbf{b}, the scaling
-exponent \(\alpha_s\) vary from -0.5 to 0.5 while the scaling exponent
-\(\alpha_p\) is constant (\(\alpha_p\) = xx). Solid lines indicate
-simulated means and shaded regions indicate 95\% CI. The photosynthetic
-rate (\emph{A}\textsubscript{max}) is primarily mass-dependent (\emph{b}
-\textgreater{} 0.5), primarily area-dependent (0.5 \textgreater{}
-\emph{b} \textgreater{} 0) and purely area-dependent (\emph{b} = 0)
-(\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}). Note that when
-\emph{b} \textgreater{} 1, \emph{A}\textsubscript{area} dramatically
-increases with LMA, which is not realistic. Parameter settings:
-\(\alpha_0\) = 1.77, \(\alpha_p\) = 0.28, \(\alpha_s\) = -0.13, and
-\(\sigma\) = 0.31.}
+\(\alpha_s\) is constant (\(\alpha_s\) = -0.13,). \textbf{b}, the
+scaling exponent \(\alpha_s\) vary from -0.5 to 0.5 while the scaling
+exponent \(\alpha_p\) is constant (\(\alpha_p\) = 0.28,). Solid lines
+indicate simulated means and shaded regions indicate 95\% CI. The
+photosynthetic rate (\emph{A}\textsubscript{max}) is primarily
+mass-dependent (\emph{b} \textgreater{} 0.5), primarily area-dependent
+(0.5 \textgreater{} \emph{b} \textgreater{} 0) and purely area-dependent
+(\emph{b} = 0) (\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
+Note that when \emph{b} \textgreater{} 1, \emph{A}\textsubscript{area}
+dramatically increase with LMA, which is not realistic. Parameter
+settings: \(\alpha_0\) = 1.77, \(\mu_p\) = 58.8, \(\mu_s\) = 63.1,
+\(\sigma_p\) = 2.12.}
 
 \end{figure}
 
@@ -522,8 +565,8 @@ increases with LMA, which is not realistic. Parameter settings:
 dependency (\emph{b} in Eq. 5 in the main tex) and relative variance in
 LMAs to LMA for the simulated dataset gerenated by a normal distribution
 (N) and a multivariate normal distribution (MVN). Parameter settings:
-\(\alpha_0\) = 0.33, \(\alpha_p\) = 0.56, \(\alpha_s\) = 0, \(\sigma\) =
-0.29, and \(\rho\) = -0.4,}
+\(\alpha_0\) = 0.33, \(\alpha_p\) = 0.56, \(\alpha_s\) = 0, \(\mu_p\) =
+8.4, \(\mu_s\) = 24.5, \(\sigma_p\) = 1.84, and \(\rho\) = -0.4,}
 
 \end{figure}
 
@@ -550,15 +593,15 @@ or c.}
 
 \end{figure}
 
-\hypertarget{appendix-s3-stan-code}{%
-\section{Appendix S3: Stan code}\label{appendix-s3-stan-code}}
+\hypertarget{appendix-s4-stan-code}{%
+\section{Appendix S4: Stan code}\label{appendix-s4-stan-code}}
 
 \hypertarget{stan-code-for-the-glopnet-dataset}{%
 \subsection{Stan code for the GLOPNET
 dataset}\label{stan-code-for-the-glopnet-dataset}}
 
 The best model for the GLOPNET dataset is (2) LMAp and LMAs, and (b)
-\(\alpha_p > \alpha_s\) and \(\beta_p = 0\).
+\(\beta_p = 0\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
