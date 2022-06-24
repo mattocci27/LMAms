@@ -1,8 +1,8 @@
-GIT = a1d4c64
+GIT = d375604
 MAIN = ms/LMAms_main
 SI = ms/LMAms_SI
 all: $(MAIN).pdf $(MAIN).docx $(SI).html $(SI).docx
-diff: ms/LMAms_main-diff$(GIT).tex
+diff: ms/LMAms_main-diff$(GIT).pdf
 
 $(MAIN).pdf: $(MAIN).qmd $(SI).aux
 	quarto render $< --to pdf
@@ -23,8 +23,8 @@ $(SI).docx: $(SI).qmd
 # 	cp $< $@
 
 ms/LMAms_main-diff$(GIT).pdf: ms/LMAms_main.tex
-	latexdiff-vc --git --flatten --force -r $(GIT) $^
-#	cd ms; pdflatex LMAms_main-diff$(GIT).tex
+	latexdiff-vc --git --flatten --force -r $(GIT) $^ ; \
+	cd ms; pdflatex LMAms_main-diff$(GIT).tex
 
 
 .PHONY: clean

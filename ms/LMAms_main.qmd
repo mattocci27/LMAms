@@ -31,6 +31,8 @@ format:
       text: |
         \usepackage{xr}
         \externaldocument{LMAms_SI}
+        \usepackage{lineno}
+        \linenumbers
 ---
 
 ```{r global_options, include=FALSE}
