@@ -1,0 +1,16 @@
+\contentsline {section}{\nonumberline Appendix S1: Prior information}{2}{section*.3}%
+\contentsline {section}{\nonumberline Appendix S2: Randomization (including Table AS1 and Figure AS1)}{3}{section*.7}%
+\contentsline {subsection}{\nonumberline Table AS1}{3}{subsection*.9}%
+\contentsline {subsection}{\nonumberline Figure AS1}{4}{subsection*.11}%
+\contentsline {section}{\nonumberline Appendix S3: Simulation for mass dependency of \emph {A}\textsubscript {area}}{5}{section*.13}%
+\contentsline {section}{\nonumberline Figure S1}{6}{section*.15}%
+\contentsline {section}{\nonumberline Figure S2}{7}{section*.18}%
+\contentsline {section}{\nonumberline Figure S3}{8}{section*.21}%
+\contentsline {section}{\nonumberline Figure S4}{9}{section*.24}%
+\contentsline {section}{\nonumberline Figure S5}{10}{section*.27}%
+\contentsline {section}{\nonumberline Figure S6}{11}{section*.30}%
+\contentsline {section}{\nonumberline Appendix S4: Stan code}{11}{section*.33}%
+\contentsline {subsection}{\nonumberline Stan code for the GLOPNET dataset}{11}{subsection*.35}%
+\contentsline {subsection}{\nonumberline Stan code for the Panama dataset}{14}{subsection*.37}%
+\contentsline {section}{References}{16}{section*.38}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
