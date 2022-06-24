@@ -22,7 +22,7 @@ format:
     highlight-style: github
     html-math-method: katex
   pdf:
-    toc: false
+    toc: true
     keep-tex: true
     latex-clean: false
     pdf-engine: pdflatex
