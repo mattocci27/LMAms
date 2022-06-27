@@ -395,6 +395,32 @@ list(
     format = "file"
   ),
 
+  tar_stan_mcmc(
+    fit_beta,
+    "stan/GL_beta.stan",
+    data = gl_stan_dat,
+    refresh = 0,
+    chains = 4,
+    parallel_chains = getOption("mc.cores", 4),
+    iter_warmup = 2000,
+    iter_sampling = 2000,
+    adapt_delta = 0.99,
+    max_treedepth = 15,
+    seed = 123),
+
+  tar_stan_mcmc(
+    fit_h,
+    "stan/GL_h.stan",
+    data = gl_stan_dat,
+    refresh = 0,
+    chains = 4,
+    parallel_chains = getOption("mc.cores", 4),
+    iter_warmup = 2000,
+    iter_sampling = 2000,
+    adapt_delta = 0.9,
+    max_treedepth = 15,
+    seed = 123),
+
   tar_target(
     model_selection_csv,
     write_model_selction(loo_tbl),
@@ -553,6 +579,7 @@ list(
     generate_gl_dat(gl_csv, fit_7_draws_GL_Aps_LLs),
     format = "file"
   ),
+
   tar_target(
     pa_res_csv,
     generate_pa_dat(pa_full_csv, fit_20_draws_PA_Ap_LLs_opt),

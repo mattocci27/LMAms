@@ -1,0 +1,83 @@
+---
+Title: "Variance"
+author: "Masatoshi Katabuchi"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+format:
+  html:
+    theme: spacelab #readable #sandstone #spacelab #flatly
+    toc: true
+    toc-depth: 2
+    toc-title: Contents
+    self-contained: true
+    smooth-scroll: true
+    highlight-style: github
+---
+
+
+```{r}
+library(tidyverse)
+theme_set(theme_bw())
+mean_fun <- function(mu, sig) exp(mu + 0.5 * sig ^2)
+var_fun <- function(mu, sig) (exp(sig^2) - 1) * exp(2 * mu + sig^2)
+sd_fun <- function(mu, sig) sqrt(var_fun(mu, sig))
+```
+
+# Normal distribution
+
+## Parameters
+
+```{r}
+set.seed(123)
+mu <- 3
+sig <- 2
+library(tictoc)
+n <- 1e+8
+tic()
+y <- rnorm(n, mu, sig)
+toc()
+sd(exp(y))
+
+mean1 <- NULL
+sd1 <- NULL
+for (i in 1:1000) {
+  y <- rnorm(n, mu, sig)
+  mean1[i] <- mean(exp(y))
+  sd1[i] <- sd(exp(y))
+}
+mean2 <- mean_fun(mu, sig)
+sd2 <- sd_fun(mu, sig)
+```
+
+## Density
+
+```{r}
+d <- tibble(mean1, sd1)
+
+ggplot(d, aes(mean1)) +
+  geom_density() +
+  geom_vline(xintercept = mean2, col = "red") +
+  geom_vline(xintercept = median(mean1), lty = 2, col = "blue") +
+  geom_vline(xintercept = mean(mean1), col = "blue")
+
+ggplot(d, aes(sd1)) +
+  geom_density() +
+  geom_vline(xintercept = sd2, col = "red")  +
+  geom_vline(xintercept = median(sd1), lty = 2, col = "blue") +
+  geom_vline(xintercept = mean(sd1), col = "blue")
+```
+
+
+
+```{r}
+library(tidyverse)
+d <- read_csv("data/GL_res.csv")
+
+var(log(d$LMA))
+var(log(d$LMAp))
+var(log(d$LMAs))
+
+var((d$LMA))
+var((d$LMAp))
+var((d$LMAs))
+
+```
