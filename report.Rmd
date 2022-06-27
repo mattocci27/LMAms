@@ -57,6 +57,8 @@ targets::tar_load(fit_17_summary_PA_Ap_LDps)
 targets::tar_load(fit_18_summary_PA_Ap_LDs_opt)
 targets::tar_load(fit_19_summary_PA_Ap_LDps_opt)
 targets::tar_load(fit_20_summary_PA_Ap_LLs_opt)
+targets::tar_load(fit_beta_summary_GL_beta)
+targets::tar_load(fit_h_summary_GL_h)
 ```
 
 Note: Model 6 (GL_Ap_LLps) didn't converge very well.
@@ -82,6 +84,12 @@ fit_17_summary_PA_Ap_LDps |> filter(rhat > 1.05)
 fit_18_summary_PA_Ap_LDs_opt |> filter(rhat > 1.05)
 fit_19_summary_PA_Ap_LDps_opt |> filter(rhat > 1.05)
 fit_20_summary_PA_Ap_LLs_opt |> filter(rhat > 1.05)
+fit_beta_summary_GL_beta |> filter(rhat > 1.05) |> DT::datatable()
+fit_h_summary_GL_h |> filter(rhat > 1.05)
+```
+
+```{r}
+fit_h_summary_GL_h |> DT::datatable()
 ```
 
 
@@ -106,6 +114,8 @@ targets::tar_load(fit_17_diagnostics_PA_Ap_LDps)
 targets::tar_load(fit_18_diagnostics_PA_Ap_LDs_opt)
 targets::tar_load(fit_19_diagnostics_PA_Ap_LDps_opt)
 targets::tar_load(fit_20_diagnostics_PA_Ap_LLs_opt)
+targets::tar_load(fit_beta_diagnostics_GL_beta)
+targets::tar_load(fit_h_diagnostics_GL_h)
 ```
 
 ```{r}
@@ -128,6 +138,8 @@ div_check(fit_17_diagnostics_PA_Ap_LDps)
 div_check(fit_18_diagnostics_PA_Ap_LDs_opt)
 div_check(fit_19_diagnostics_PA_Ap_LDps_opt)
 div_check(fit_20_diagnostics_PA_Ap_LLs_opt)
+div_check(fit_beta_diagnostics_GL_beta)
+div_check(fit_h_diagnostics_GL_h)
 ```
 
 Model 4: GL_Ap_LLs is best for GLOPNET.

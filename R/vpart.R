@@ -62,3 +62,6 @@ vpart_bar <- function(gl_res_csv, pa_res_csv) {
     ylab("Explained variance (%)") &
     xlab("")
 }
+
+#' @title rlnorm simluation
+#'
