@@ -694,9 +694,9 @@ ps_point_wrapper <- function(data, settings, GL = TRUE, ci = FALSE) {
   theme_LES()
   if (ci) {
     p +
-      geom_segment(aes(x = LMAp_lo, xend = LMAp_up, y = LMAs, yend = LMAs),
+      geom_segment(aes(x = LMAp_lwr, xend = LMAp_upr, y = LMAs, yend = LMAs),
        col = "grey60", size = 0.25) +
-      geom_segment(aes(x = LMAp, xend = LMAp, y = LMAs_lo, yend = LMAs_up),
+      geom_segment(aes(x = LMAp, xend = LMAp, y = LMAs_lwr, yend = LMAs_upr),
       col = "grey60", size = 0.25) +
       geom_point(shape = 21)
   } else {
