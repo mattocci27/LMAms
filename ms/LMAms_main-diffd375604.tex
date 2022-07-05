@@ -1,7 +1,7 @@
 %%
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL /var/folders/1v/_ypjfm2d71bf8nf01_2jk2t00000gn/T/i6itdR77Vl/latexdiff-vc-d375604/ms/LMAms_main.tex   Mon Feb 28 18:21:51 2022
-%DIF ADD ms/LMAms_main.tex                                                                                    Fri Jun 24 15:40:42 2022
+%DIF DEL /tmp/eCrLM1hutD/latexdiff-vc-d375604/ms/LMAms_main.tex   Mon Feb 28 19:21:51 2022
+%DIF ADD ms/LMAms_main.tex                                        Tue Jul  5 18:04:06 2022
 % Copyright (c) 2017 - 2020, Pascal Wagler;
 % Copyright (c) 2014 - 2020, John MacFarlane
 %
@@ -147,7 +147,7 @@
 \usepackage{float}
 \floatplacement{figure}{H}
 
-%DIF 128-134d141
+%DIF 128-150d141
 %DIF < \usepackage{times}
 %DIF < \usepackage{setspace}
 %DIF < %\doublespacing
@@ -155,6 +155,22 @@
 %DIF < \linenumbers
 %DIF < \usepackage{amsmath}
 %DIF < 
+%DIF < \usepackage{booktabs}
+%DIF < \usepackage{longtable}
+%DIF < \usepackage{array}
+%DIF < \usepackage{multirow}
+%DIF < \usepackage{wrapfig}
+%DIF < \usepackage{float}
+%DIF < \usepackage{colortbl}
+%DIF < \usepackage{pdflscape}
+%DIF < \usepackage{tabu}
+%DIF < \usepackage{threeparttable}
+%DIF < \usepackage{threeparttablex}
+%DIF < \usepackage[normalem]{ulem}
+%DIF < \usepackage{makecell}
+%DIF < \usepackage{xcolor}
+%DIF < % \usepackage{array}
+%DIF < %\usepackage[T1]{fontenc}
 %DIF -------
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -170,24 +186,7 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-%DIF 149-164c155-209
-%DIF < % \usepackage{array}
-%DIF < %\usepackage[T1]{fontenc}
-%DIF < \usepackage{booktabs}
-%DIF < \usepackage{longtable}
-%DIF < \usepackage{array}
-%DIF < \usepackage{multirow}
-%DIF < \usepackage{wrapfig}
-%DIF < \usepackage{float}
-%DIF < \usepackage{colortbl}
-%DIF < \usepackage{pdflscape}
-%DIF < \usepackage{tabu}
-%DIF < \usepackage{threeparttable}
-%DIF < \usepackage{threeparttablex}
-%DIF < \usepackage[normalem]{ulem}
-%DIF < \usepackage{makecell}
-%DIF < \usepackage{xcolor}
-%DIF -------
+%DIF 165a155-209
 \usepackage{xr} %DIF > 
 \externaldocument{LMAms_SI} %DIF > 
 \usepackage{lineno} %DIF > 
@@ -495,7 +494,7 @@
 \DeclareRobustCommand{\DIFaddendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
 \DeclareRobustCommand{\DIFdelbeginFL}{\DIFOdelbeginFL \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
 \DeclareRobustCommand{\DIFdelendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
-%DIF COLORLISTINGS PREAMBLE %DIF PREAMBLE
+%DIF LISTINGS PREAMBLE %DIF PREAMBLE
 \RequirePackage{listings} %DIF PREAMBLE
 \RequirePackage{color} %DIF PREAMBLE
 \lstdefinelanguage{DIFcode}{ %DIF PREAMBLE
@@ -525,7 +524,7 @@
 
 
 
-\DIFaddbegin \ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, breakable, frame hidden, boxrule=0pt, enhanced, borderline west={3pt}{0pt}{shadecolor}, sharp corners]}{\end{tcolorbox}}\fi
+\DIFaddbegin \ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, breakable, boxrule=0pt, frame hidden, enhanced, interior hidden, sharp corners]}{\end{tcolorbox}}\fi
 
 \DIFaddend \textbf{Running title}: Metabolic and structural leaf mass
 
@@ -554,9 +553,8 @@ City Pl., Washington, DC 20521
 Tulane University, New Orleans, LA 70118 USA
 
 \textsuperscript{6} \textbf{Corresponding Author}: E-mail:
-\DIFdelbegin \href{mailto:mattocci27@gmail.com}{%DIFDELCMD < \nolinkurl{mattocci27@gmail.com}%%%
-}
-%DIFAUXCMD
+\DIFdelbegin %DIFDELCMD < \href{mailto:mattocci27@gmail.com}{\nolinkurl{mattocci27@gmail.com}}
+%DIFDELCMD < %%%
 \DIFdelend \DIFaddbegin \DIFadd{mattocci27@gmail.com
 }\DIFaddend 
 
@@ -800,7 +798,9 @@ area (LMAs) is equal to total observed LMA for leaf sample \emph{i}:
 where the \emph{f\textsubscript{i}} values -- the fractions of LMA
 comprised of LMAp for each sample \emph{i} -- are estimated as latent
 variables in our modeling framework (see details below). The models we
-considered combine \DIFdelbegin \DIFdel{Eqns.\eqref{eq:LMA}-\eqref{eq:LMAs} }\DIFdelend \DIFaddbegin \DIFadd{Eq.~\ref{eq-LMA} }\DIFaddend with functional forms that predict
+considered combine \DIFdelbegin \DIFdel{Eqns.}%DIFDELCMD < \eqref{eq:LMA}%%%
+\DIFdel{-}%DIFDELCMD < \eqref{eq:LMAs} %%%
+\DIFdelend \DIFaddbegin \DIFadd{Eq.~\ref{eq-LMA} }\DIFaddend with functional forms that predict
 observed values Amax, Rdark, and LL from the unobserved values LMAs and
 LMAp.
 
@@ -835,9 +835,9 @@ assumption, we \DIFdelbegin \DIFdel{constrained \(\alpha_p\) \textgreater{} \(\a
 greater than \(\alpha_s\)}\DIFaddend . In the second assumption, we \DIFdelbegin \DIFdel{constrained }\DIFdelend \DIFaddbegin \DIFadd{set \(\beta_p\)
 to zero or we tested if }\DIFaddend \(\beta_s\) \DIFdelbegin \DIFdel{\textgreater{} }\DIFdelend \DIFaddbegin \DIFadd{is greater than }\DIFaddend \(\beta_p\)\DIFdelbegin \DIFdel{or we set }\DIFdelend \DIFaddbegin \DIFadd{. When we
 used all of the four scaling parameters (i.e., \(\alpha_p\),
-\(\alpha_s\), }\DIFaddend \(\beta_p\)\DIFdelbegin \DIFdel{to zero}\DIFdelend \DIFaddbegin \DIFadd{, and \(\beta_s\)), we constrained \(\alpha_p\)
-\textgreater{} \(\alpha_s\) and \(\beta_s\) \textgreater{} \(\beta_p\)
-to avoid the invariance of the likelihood}\DIFaddend .
+\(\alpha_s\), \(\beta_p\), and \(\beta_s\)), we constrained \(\alpha_p\)
+\textgreater{} \(\alpha_s\) and \(\beta_s\) \textgreater{} }\DIFaddend \(\beta_p\)
+to \DIFdelbegin \DIFdel{zero}\DIFdelend \DIFaddbegin \DIFadd{avoid the invariance of the likelihood}\DIFaddend .
 
 We also considered models in which LMAs in Eq.
 \DIFdelbegin \DIFdel{(6a) }\DIFdelend \DIFaddbegin \DIFadd{\ref{eq:LL_pot}-\ref{eq:LL_opt} }\DIFaddend was replaced by leaf structural density
@@ -924,11 +924,13 @@ m\textsuperscript{-2}) in both datasets, leaf habit in GLOPNET
 evaluation}\label{model-estimation-and-evaluation}}
 
 We modeled \emph{A}\textsubscript{area} and \emph{R}\textsubscript{area}
-using Eqs. \DIFdelbegin \DIFdel{\eqref{eq:E-A} and \eqref{eq:E-R}}\DIFdelend \DIFaddbegin \DIFadd{\ref{eq:Aarea} and \ref{eq:Rarea}}\DIFaddend , respectively, for both
-GLOPNET and Panama. To model LL for GLOPNET, we used Eq. \DIFdelbegin \DIFdel{(6a) (}\DIFdelend \DIFaddbegin \DIFadd{\ref{eq:LL_pot}
-(}\DIFaddend no light effects), because GLOPNET does not report canopy position and
+using Eqs. \DIFdelbegin %DIFDELCMD < \eqref{eq:E-A} %%%
+\DIFdel{and }%DIFDELCMD < \eqref{eq:E-R}%%%
+\DIFdelend \DIFaddbegin \DIFadd{\ref{eq:Aarea} and \ref{eq:Rarea}}\DIFaddend , respectively, for both
+GLOPNET and Panama. To model LL for GLOPNET, we used Eq. \DIFdelbegin \DIFdel{(6a) }\DIFdelend \DIFaddbegin \DIFadd{\ref{eq:LL_pot}
+}\DIFaddend (no light effects), because GLOPNET does not report canopy position and
 thus primarily represents interspecific variation (see above). To model
-LL for Panama, we used Eq. \DIFdelbegin \DIFdel{(6b) (}\DIFdelend \DIFaddbegin \DIFadd{\ref{eq:LL_opt} (}\DIFaddend light effects model), which
+LL for Panama, we used Eq. \DIFdelbegin \DIFdel{(6b) }\DIFdelend \DIFaddbegin \DIFadd{\ref{eq:LL_opt} }\DIFaddend (light effects model), which
 was motivated by the negative intraspecific LL-LMA relationship observed
 in Panama (\protect\hyperlink{ref-Xu2017}{Xu et al. 2017},
 \protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}) and elsewhere
@@ -941,12 +943,14 @@ Hamiltonian Monte Carlo algorithm (HMC) implemented in Stan
 non-informative or weakly informative prior distributions
 (}\protect\hyperlink{ref-Lemoine2019}{Lemoine 2019}\DIFadd{). }\DIFaddend Prior distributions
 for the latent variables \emph{f}\textsubscript{i} (which are used to
-partition LMA into LMAp and LMAs according to Eqs. \DIFdelbegin \DIFdel{\eqref{eq:E-A}-\eqref{eq:E-R}) }\DIFdelend \DIFaddbegin \DIFadd{4-6 }\DIFaddend were
+partition LMA into LMAp and LMAs according to Eqs. \DIFdelbegin %DIFDELCMD < \eqref{eq:E-A}%%%
+\DIFdel{-}%DIFDELCMD < \eqref{eq:E-R}%%%
+\DIFdel{) }\DIFdelend \DIFaddbegin \DIFadd{4-6 }\DIFaddend were
 non-informative uniform(0, 1) distributions, (i.e., LMA was partitioned
 based on patterns in the data). See \DIFdelbegin \DIFdel{supplement X }\DIFdelend \DIFaddbegin \DIFadd{Appendix S1 }\DIFaddend for more detail. The
 Stan code use to fit models is available from Github at:
-\DIFdelbegin %DIFDELCMD < \href{https://github.com/mattocci27/LMApLMAs}{%%%
-\DIFdelend \DIFaddbegin \href{https://github.com/mattocci27/xxx}{\DIFaddend https://github.com/mattocci27/XXX}.
+\DIFdelbegin %DIFDELCMD < \href{https://github.com/mattocci27/LMApLMAs}{https://github.com/mattocci27/XXX}%%%
+\DIFdelend \DIFaddbegin \href{https://github.com/mattocci27/xxx}{https://github.com/mattocci27/XXX}\DIFaddend .
 Convergence of the posterior distribution was assessed with the
 Gelman-Rubin statistic with a convergence threshold of \DIFdelbegin \DIFdel{1.1 }\DIFdelend \DIFaddbegin \DIFadd{1.05 }\DIFaddend for all
 parameters (\protect\hyperlink{ref-Gelman2013}{Gelman et al. 2013}).
@@ -1014,10 +1018,10 @@ using ANOVA.
 and
 LMA}\label{understanding-relationships-between-photosynthetic-capacity-and-lma}}
 
-We applied our LMAp+LMAs model \DIFdelbegin \DIFdel{(Eq. \eqref{eq:E-A}) }\DIFdelend to simulated data to better understand
+We applied our LMAp+LMAs model \DIFdelbegin \DIFdel{(Eq. }%DIFDELCMD < \eqref{eq:E-A}%%%
+\DIFdel{) }\DIFdelend to simulated data to better understand
 relationships between photosynthetic capacity
-(\emph{A}\textsubscript{max}) and LMA \DIFdelbegin \DIFdel{.
-}\DIFdelend \DIFaddbegin \DIFadd{(Eq. \ref{eq:Aarea}). }\DIFaddend The causes
+(\emph{A}\textsubscript{max}) and LMA \DIFaddbegin \DIFadd{(Eq. \ref{eq:Aarea})}\DIFaddend . The causes
 and interpretation of \emph{A}\textsubscript{max} vs.~LMA relationships
 are controversial (\protect\hyperlink{ref-Westoby2013}{Westoby et al.
 2013}). Although \emph{A}\textsubscript{max} is often mass-normalized
@@ -1044,9 +1048,11 @@ respectively; see Osnas et al.
 To better understand the factors affecting \emph{A}\textsubscript{max}
 vs.~LMA relationships, we created simulated datasets in which we varied
 the following factors: the sensitivity of \emph{A}\textsubscript{area}
-to variation in LMAp (parameter \(\alpha_p\) in Eq. \DIFdelbegin \DIFdel{\eqref{eq:E-A}}\DIFdelend \DIFaddbegin \DIFadd{\ref{eq:Aarea}}\DIFaddend ); the
+to variation in LMAp (parameter \(\alpha_p\) in Eq. \DIFdelbegin %DIFDELCMD < \eqref{eq:E-A}%%%
+\DIFdelend \DIFaddbegin \DIFadd{\ref{eq:Aarea}}\DIFaddend ); the
 sensitivity of \emph{A}\textsubscript{area} to LMAs (parameter
-\(\alpha_s\) in Eq. \DIFdelbegin \DIFdel{\eqref{eq:E-A}}\DIFdelend \DIFaddbegin \DIFadd{\ref{eq:Aarea}}\DIFaddend ), and the total LMA variance due to
+\(\alpha_s\) in Eq. \DIFdelbegin %DIFDELCMD < \eqref{eq:E-A}%%%
+\DIFdelend \DIFaddbegin \DIFadd{\ref{eq:Aarea}}\DIFaddend ), and the total LMA variance due to
 variance in LMAs. For each simulated dataset, we quantified the
 \emph{A}\textsubscript{max} vs.~LMA relationship following Osnas et al.
 (\protect\hyperlink{ref-Osnas2018}{2018}):
@@ -1058,7 +1064,8 @@ variance in LMAs. For each simulated dataset, we quantified the
 A_{\mathrm{area} \, i} = a (LMA_i)^{b}\epsilon_i
 }\label{eq-mass}}\end{equation}\DIFaddend 
 
-where LMA is the sum of LMAp and LMAs (Eq.\DIFdelbegin \DIFdel{\eqref{eq:LMA}}\DIFdelend \DIFaddbegin \DIFadd{~\ref{eq-LMA}}\DIFaddend ), \emph{a} is a
+where LMA is the sum of LMAp and LMAs (Eq.\DIFdelbegin %DIFDELCMD < \eqref{eq:LMA}%%%
+\DIFdelend \DIFaddbegin \DIFadd{~\ref{eq-LMA}}\DIFaddend ), \emph{a} is a
 fitted constant, and \emph{b} is an index of mass-dependence as
 illustrated by the following cases
 (\protect\hyperlink{ref-Osnas2013}{Osnas et al. 2013},
@@ -1523,9 +1530,9 @@ species and community functional responses to environmental gradients:
 23:805--821.
 
 \leavevmode\vadjust pre{\DIFaddbegin \hypertarget{ref-Lemoine2019}{}}%DIF > 
-\DIFadd{Lemoine, N. P. 2019. }\href{https://doi.org/10.1111/oik.05985}{\DIFadd{Moving
+\DIFadd{Lemoine, N. P. 2019. }\href{https://doi.org/10.1111/oik.05985}{Moving
 beyond noninformative priors: Why and how to choose weakly informative
-priors in }{\DIFadd{Bayesian}} \DIFadd{analyses}}\DIFadd{. Oikos 128:912--928.
+priors in {Bayesian} analyses}\DIFadd{. Oikos 128:912--928.
 }
 
 \leavevmode\vadjust \DIFadd{pre}{\DIFaddend \hypertarget{ref-Lloyd2013}{}}%
@@ -1787,19 +1794,19 @@ and \(\beta_s > \beta_p\).
 \hspace{1em}5a & 106 & \DIFdelbeginFL \DIFdelFL{469.7}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{473.5}\DIFaddendFL \\
 \hspace{1em}\DIFdelbeginFL \DIFdelFL{2c }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{4c }\DIFaddendFL & 106 & \DIFdelbeginFL \DIFdelFL{474.1}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{485.1}\DIFaddendFL \\
 \hspace{1em}5c & 106 & \DIFdelbeginFL \DIFdelFL{486.7}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{493.5}\DIFaddendFL \\
-\hspace{1em}2a & 106 & \DIFdelbeginFL \DIFdelFL{497.1}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{500.3}\DIFaddendFL \\
-\hspace{1em}\DIFdelbeginFL \DIFdelFL{4b }%DIFDELCMD < & %%%
-\DIFdelFL{106 }%DIFDELCMD < & %%%
-\DIFdelFL{500.2}%DIFDELCMD < \\
+\hspace{1em}2a & 106 & \DIFdelbeginFL \DIFdelFL{497.1}%DIFDELCMD < \\
 %DIFDELCMD < %%%
-\DIFdelFL{\hspace{1em}}\DIFdelendFL 4d & 106 & \DIFdelbeginFL \DIFdelFL{501.4}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{502.7}\DIFaddendFL \\
-\hspace{1em}\DIFdelbeginFL \DIFdelFL{3a }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{3 }\DIFaddendFL & 106 & \DIFdelbeginFL \DIFdelFL{503.4}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{502.7}\DIFaddendFL \\
-\hspace{1em}\DIFdelbeginFL \DIFdelFL{5d }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{4b }\DIFaddendFL & 106 & \DIFdelbeginFL \DIFdelFL{504.1}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{503.3}\DIFaddendFL \\
-\hspace{1em}\DIFdelbeginFL \DIFdelFL{5b }%DIFDELCMD < & %%%
+\DIFdelFL{\hspace{1em}4b }%DIFDELCMD < & %%%
 \DIFdelFL{106 }%DIFDELCMD < & %%%
-\DIFdelFL{508.6}%DIFDELCMD < \\
+\DIFdelFL{500.2}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{500.3}\DIFaddendFL \\
+\hspace{1em}4d & 106 & \DIFdelbeginFL \DIFdelFL{501.4}%DIFDELCMD < \\
 %DIFDELCMD < %%%
-\DIFdelFL{\hspace{1em}}\DIFdelendFL 2d & 106 & \DIFdelbeginFL \DIFdelFL{516.8}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{517.0}\DIFaddendFL \\
+\DIFdelFL{\hspace{1em}3a }%DIFDELCMD < & %%%
+\DIFdelFL{106 }%DIFDELCMD < & %%%
+\DIFdelFL{503.4}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{502.7}\DIFaddendFL \\
+\hspace{1em}\DIFdelbeginFL \DIFdelFL{5d }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{3 }\DIFaddendFL & 106 & \DIFdelbeginFL \DIFdelFL{504.1}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{502.7}\DIFaddendFL \\
+\hspace{1em}\DIFdelbeginFL \DIFdelFL{5b }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{4b }\DIFaddendFL & 106 & \DIFdelbeginFL \DIFdelFL{508.6}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{503.3}\DIFaddendFL \\
+\hspace{1em}2d & 106 & \DIFdelbeginFL \DIFdelFL{516.8}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{517.0}\DIFaddendFL \\
 \hspace{1em}2b & 106 & \DIFdelbeginFL \DIFdelFL{518.1}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{522.8}\DIFaddendFL \\
 \hspace{1em}1 & 106 & \DIFdelbeginFL \DIFdelFL{528.5}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{528.2}\DIFaddendFL \\
 \bottomrule
