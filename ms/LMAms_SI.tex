@@ -229,7 +229,7 @@ within and among plant species}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, enhanced, sharp corners, breakable, borderline west={3pt}{0pt}{shadecolor}, interior hidden, boxrule=0pt]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, sharp corners, frame hidden, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, breakable, enhanced]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -329,26 +329,26 @@ fit the best models (Appendix S1) to the randomized data.
 Data & Simulation\_ID & No\_large\_Rhat & No\_divergence \\
 \midrule()
 \endhead
-GLOPNET & 1 & 239 & 2 \\
-GLOPNET & 2 & 78 & 4 \\
-GLOPNET & 3 & 14 & 0 \\
-GLOPNET & 4 & 420 & 0 \\
-GLOPNET & 5 & 13 & 1 \\
-GLOPNET & 6 & 4 & 0 \\
-GLOPNET & 7 & 1 & 0 \\
-GLOPNET & 8 & 10 & 0 \\
-GLOPNET & 9 & 19 & 1 \\
-GLOPNET & 10 & 228 & 22 \\
-Panama & 1 & 784 & 103 \\
-Panama & 2 & 606 & 40 \\
-Panama & 3 & 687 & 19 \\
-Panama & 4 & 616 & 101 \\
-Panama & 5 & 726 & 0 \\
-Panama & 6 & 752 & 225 \\
-Panama & 7 & 771 & 69 \\
-Panama & 8 & 680 & 18 \\
-Panama & 9 & 832 & 28 \\
-Panama & 10 & 681 & 18 \\
+GLOPNET & 1 & 84 & 128 \\
+GLOPNET & 2 & 279 & 115 \\
+GLOPNET & 3 & 29 & 43 \\
+GLOPNET & 4 & 58 & 133 \\
+GLOPNET & 5 & 57 & 119 \\
+GLOPNET & 6 & 24 & 353 \\
+GLOPNET & 7 & 283 & 26 \\
+GLOPNET & 8 & 190 & 23 \\
+GLOPNET & 9 & 39 & 73 \\
+GLOPNET & 10 & 635 & 68 \\
+Panama & 1 & 875 & 229 \\
+Panama & 2 & 1019 & 171 \\
+Panama & 3 & 726 & 867 \\
+Panama & 4 & 1025 & 993 \\
+Panama & 5 & 822 & 325 \\
+Panama & 6 & 1163 & 2997 \\
+Panama & 7 & 926 & 783 \\
+Panama & 8 & 931 & 110 \\
+Panama & 9 & 1082 & 163 \\
+Panama & 10 & 755 & 81 \\
 \bottomrule()
 \end{longtable}
 
@@ -678,7 +678,7 @@ The best model for the GLOPNET dataset is (2) LMAp and LMAs, and (b)
 \NormalTok{  gs \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
 \NormalTok{  as \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
 \NormalTok{  p \textasciitilde{} beta(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{);}
-\NormalTok{  L\_Omega \textasciitilde{} lkj\_corr\_cholesky(}\DecValTok{2}\NormalTok{); }\CommentTok{//uniform of L\_Omega * L\_Omega\textquotesingle{}}
+\NormalTok{  L\_Omega \textasciitilde{} lkj\_corr\_cholesky(}\DecValTok{2}\NormalTok{);}
 \NormalTok{  L\_sigma \textasciitilde{} cauchy(}\DecValTok{0}\NormalTok{, }\FloatTok{2.5}\NormalTok{);}
 
   \CommentTok{// model}
@@ -691,6 +691,10 @@ The best model for the GLOPNET dataset is (2) LMAp and LMAs, and (b)
   \DataTypeTok{real}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{={-}}\DecValTok{1}\NormalTok{, }\KeywordTok{upper}\NormalTok{=}\DecValTok{1}\NormalTok{\textgreater{} rho23;}
   \DataTypeTok{real}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{={-}}\DecValTok{1}\NormalTok{, }\KeywordTok{upper}\NormalTok{=}\DecValTok{1}\NormalTok{\textgreater{} rho13;}
   \DataTypeTok{cov\_matrix}\NormalTok{[}\DecValTok{3}\NormalTok{] Sigma;}
+  \DataTypeTok{vector}\NormalTok{[N] log\_LMAp;}
+  \DataTypeTok{vector}\NormalTok{[N] log\_LMAs;}
+\NormalTok{  log\_LMAp = log(LMA) + log(p);}
+\NormalTok{  log\_LMAs = log(LMA) + log(}\DecValTok{1}\NormalTok{ {-} p);}
 \NormalTok{  Sigma = diag\_pre\_multiply(L\_sigma, L\_Omega)}
 \NormalTok{     * diag\_post\_multiply(L\_Omega\textquotesingle{}, L\_sigma);}
 \NormalTok{  rho12 = Sigma[}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{] * inv(L\_sigma[}\DecValTok{1}\NormalTok{] * L\_sigma[}\DecValTok{2}\NormalTok{]);}
@@ -785,7 +789,7 @@ The best model for the Panama dataset is (4) LMAp, LMAs and light, and
 \NormalTok{  gs \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
 \NormalTok{  theta \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
 \NormalTok{  p \textasciitilde{} beta(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{);}
-\NormalTok{  L\_Omega \textasciitilde{} lkj\_corr\_cholesky(}\DecValTok{2}\NormalTok{); }\CommentTok{//uniform of L\_Omega * L\_Omega\textquotesingle{}}
+\NormalTok{  L\_Omega \textasciitilde{} lkj\_corr\_cholesky(}\DecValTok{2}\NormalTok{);}
 \NormalTok{  L\_sigma \textasciitilde{} cauchy(}\DecValTok{0}\NormalTok{, }\FloatTok{2.5}\NormalTok{);}
 
   \CommentTok{// model}
@@ -798,6 +802,10 @@ The best model for the Panama dataset is (4) LMAp, LMAs and light, and
   \DataTypeTok{real}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{={-}}\DecValTok{1}\NormalTok{, }\KeywordTok{upper}\NormalTok{=}\DecValTok{1}\NormalTok{\textgreater{} rho23;}
   \DataTypeTok{real}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{={-}}\DecValTok{1}\NormalTok{, }\KeywordTok{upper}\NormalTok{=}\DecValTok{1}\NormalTok{\textgreater{} rho13;}
   \DataTypeTok{cov\_matrix}\NormalTok{[}\DecValTok{3}\NormalTok{] Sigma;}
+  \DataTypeTok{vector}\NormalTok{[N] log\_LMAp;}
+  \DataTypeTok{vector}\NormalTok{[N] log\_LMAs;}
+\NormalTok{  log\_LMAp = log(LMA) + log(p);}
+\NormalTok{  log\_LMAs = log(LMA) + log(}\DecValTok{1}\NormalTok{ {-} p);}
 \NormalTok{  Sigma = diag\_pre\_multiply(L\_sigma, L\_Omega)}
 \NormalTok{     * diag\_post\_multiply(L\_Omega\textquotesingle{}, L\_sigma);}
 \NormalTok{  rho12 = Sigma[}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{] * inv(L\_sigma[}\DecValTok{1}\NormalTok{] * L\_sigma[}\DecValTok{2}\NormalTok{]);}

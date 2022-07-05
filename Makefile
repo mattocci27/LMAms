@@ -1,7 +1,7 @@
 GIT = d375604
 MAIN = ms/LMAms_main
 SI = ms/LMAms_SI
-all: $(MAIN).pdf $(MAIN).docx $(SI).html $(SI).docx
+all: $(MAIN).pdf $(MAIN).docx $(SI).pdf $(SI).docx
 diff: ms/LMAms_main-diff$(GIT).pdf
 
 $(MAIN).pdf: $(MAIN).qmd $(SI).aux
@@ -13,8 +13,8 @@ $(MAIN).docx: $(MAIN).qmd
 $(SI).pdf $(SI).aux: $(SI).qmd
 	quarto render $< --to pdf
 
-$(SI).html: $(SI).qmd
-	quarto render $< --to html
+$(SI).pdf: $(SI).qmd
+	quarto render $< --to pdf
 
 $(SI).docx: $(SI).qmd
 	quarto render $< --to docx
