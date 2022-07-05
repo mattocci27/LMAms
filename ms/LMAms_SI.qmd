@@ -26,7 +26,17 @@ format:
     keep-tex: true
     latex-clean: false
     pdf-engine: pdflatex
-   # template: templates/eisvogel2.tex
+    include-in-header:
+      text: |
+        \usepackage{float}
+        \usepackage{booktabs}
+        \usepackage{colortbl}
+        \usepackage{fancyhdr}
+        \pagestyle{fancy}
+        \usepackage[default]{sourcesanspro}
+        \usepackage{sourcecodepro}
+        \fancypagestyle{plain}{\pagestyle{fancy}}
+        \fancyhead[RE,RO]{Katabuchi \textit{et al}.  Appendix}
 ---
 
 ```{r global_options, include=FALSE}
