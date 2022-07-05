@@ -37,7 +37,7 @@ Requirements:
 - cmdstan 2.29.2
 - quarto
 - latexdiff
-- R (4.2.0)
+- R (4.2.1)
 	- renv (`renv::restore()` will install all the R packages)
 
 ### Running code in Apptainer (Linux)
