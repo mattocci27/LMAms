@@ -18,7 +18,7 @@ format:
     smooth-scroll: true
     highlight-style: github
   docx:
-    toc: true
+    toc: false
     number-sections: false
     highlight-style: github
     html-math-method: katex
