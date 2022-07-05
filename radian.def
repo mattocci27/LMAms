@@ -15,13 +15,6 @@ From: mattocci/radian:4.2.1
   DEBIAN_FRONTEND=noninteractive
   export RENV_VERSION=0.15.5
 
-  # apt-get update -q -y \
-  #   && apt-get install --no-install-recommends --fix-missing -y \
-  #     libzmq3-dev \
-  #     libxt6 \
-  #   && apt-get autoremove -y \
-  #   && apt-get clean all
-
   # Add renv settings for global cache as well as linux distro specific
 	# directory hierarchy in cache (optional but useful)
  	echo "#renv settings\nRENV_PATHS_PREFIX_AUTO = TRUE\nRENV_PATHS_CACHE=/home/mattocci/renv" >> /usr/local/lib/R/etc/Renviron.site

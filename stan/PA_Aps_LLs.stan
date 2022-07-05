@@ -65,7 +65,7 @@ model{
   gs ~ normal(0, 5);
   as ~ normal(0, 5);
   p ~ beta(1, 1);
-  L_Omega ~ lkj_corr_cholesky(2); //uniform of L_Omega * L_Omega'
+  L_Omega ~ lkj_corr_cholesky(2);
   L_sigma ~ cauchy(0, 2.5);
 
   // model
@@ -78,6 +78,10 @@ generated quantities {
   real<lower=-1, upper=1> rho23;
   real<lower=-1, upper=1> rho13;
   cov_matrix[3] Sigma;
+  vector[N] log_LMAp;
+  vector[N] log_LMAs;
+  log_LMAp = log(LMA) + log(p);
+  log_LMAs = log(LMA) + log(1 - p);
   Sigma = diag_pre_multiply(L_sigma, L_Omega)
      * diag_post_multiply(L_Omega', L_sigma);
   rho12 = Sigma[1, 2] * inv(L_sigma[1] * L_sigma[2]);

@@ -7,29 +7,30 @@ quant_fun <- function(x) c(mean = mean(x),
 write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
   registerDoParallel(cores = 24)
   # targets::tar_load(fit_7_draws_GL_Aps_LLs)
+  # gl_draws <- fit_7_draws_GL_Aps_LLs
   # targets::tar_load(gl_res_csv)
   GL <- read_csv(gl_res_csv)
 
-  # gl_draws <- fit_7_draws_GL_Aps_LLs
-  gl_draws <- gl_draws |>
-    janitor::clean_names()
-  N <- nrow(gl_draws)
-  pmat <- gl_draws |>
-    dplyr::select(contains("p_")) |>
+  log_LMAp_mat <- gl_draws |>
+    dplyr::select(contains("LMAp")) |>
     as.matrix()
+  log_LMAs_mat <- gl_draws |>
+    dplyr::select(contains("LMAs")) |>
+    as.matrix()
+  n <- nrow(gl_draws)
 
-  res_fun <- \(i){
-    LMAp <- pmat[i,] * GL$LMA
-    LMAs <- GL$LMA - LMAp
+  res_fun <- function(i){
+    log_LMAp <- log_LMAp_mat[i,]
+    log_LMAs <- log_LMAs_mat[i,]
 
-    fit_m <- lm(log(LMAs) ~ log(LMAp))
-    fit_s <- lm(log(LMAp) ~ log(LMAs))
-    fit_Am <- lm(log(GL$Aarea) ~ log(LMAp))
-    fit_As <- lm(log(GL$Aarea) ~ log(LMAs))
-    fit_Rm <- lm(log(GL$Rarea) ~ log(LMAp))
-    fit_Rs <- lm(log(GL$Rarea) ~ log(LMAs))
-    fit_Lm <- lm(log(GL$LL) ~ log(LMAp))
-    fit_Ls <- lm(log(GL$LL) ~ log(LMAs))
+    fit_m <- lm(log_LMAs ~ log_LMAp)
+    fit_s <- lm(log_LMAp ~ log_LMAs)
+    fit_Am <- lm(log(GL$Aarea) ~ log_LMAp)
+    fit_As <- lm(log(GL$Aarea) ~ log_LMAs)
+    fit_Rm <- lm(log(GL$Rarea) ~ log_LMAp)
+    fit_Rs <- lm(log(GL$Rarea) ~ log_LMAs)
+    fit_Lm <- lm(log(GL$LL) ~ log_LMAp)
+    fit_Ls <- lm(log(GL$LL) ~ log_LMAs)
 
     res_m  <- residuals(fit_m)
     res_s  <- residuals(fit_s)
@@ -38,16 +39,16 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
     res_Rm  <- residuals(fit_Rm)
     res_Rs  <- residuals(fit_Rs)
 
-    r_LMAp_LMAs <- cor(log(LMAp), log(LMAs))
+    r_LMAp_LMAs <- cor(log_LMAp, log_LMAs)
     r_Am <- cor(res_s, res_As)# Aarea-LMAm
     r_As <- cor(res_m, res_Am)# Aarea-LMAs
     r_Rm <- cor(res_s, res_Rs)
     r_Rs <- cor(res_m, res_Rm)
-    r_Ls <- cor(log(LMAs), log(GL$LL))
+    r_Ls <- cor(log_LMAs, log(GL$LL))
     c(r_Am, r_As, r_Rm, r_Rs, r_Ls, r_LMAp_LMAs)
   }
 
-  bb <- foreach (i = 1:N, .combine = rbind)  %dopar% res_fun(i)
+  bb <- foreach (i = 1:n, .combine = rbind)  %dopar% res_fun(i)
   rownames(bb) <- NULL
   r_Am <- bb[,1]
   r_As <- bb[,2]
@@ -79,39 +80,42 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
   # targets::tar_load(pa_res_csv)
   PA <- read_csv(pa_res_csv)
 
+  log_LMAp_mat <- pa_draws |>
+    dplyr::select(contains("LMAp")) |>
+    as.matrix()
+  log_LMAs_mat <- pa_draws |>
+    dplyr::select(contains("LMAs")) |>
+    as.matrix()
+  # clean names at this point
   pa_draws <- pa_draws |>
     janitor::clean_names()
-
-  pmat <- pa_draws |>
-    dplyr::select(contains("p_")) |>
-    as.matrix()
   mu2 <- pa_draws |>
     dplyr::select(contains("mu")) |>
     as.matrix()
 
   res_fun2 <- \(i){
-    LMAp <- pmat[i,] * PA$LMA
-    LMAs <- PA$LMA - LMAp
+    log_LMAp <- log_LMAp_mat[i,]
+    log_LMAs <- log_LMAs_mat[i,]
 
-    fit_m <- lm(log(LMAs) ~ log(LMAp))
-    fit_s <- lm(log(LMAp) ~ log(LMAs))
-    fit_Rm <- lm(log(PA$Rarea) ~ log(LMAp))
-    fit_Rs <- lm(log(PA$Rarea) ~ log(LMAs))
+    fit_m <- lm(log_LMAs ~ log_LMAp)
+    fit_s <- lm(log_LMAp ~ log_LMAs)
+    fit_Rm <- lm(log(PA$Rarea) ~ log_LMAp)
+    fit_Rs <- lm(log(PA$Rarea) ~ log_LMAs)
 
     res_m  <- residuals(fit_m)
     res_s  <- residuals(fit_s)
     res_Rm  <- residuals(fit_Rm)
     res_Rs  <- residuals(fit_Rs)
 
-    r_LMAp_LMAs <- cor(log(LMAp), log(LMAs))
-    r_Am <- cor(log(LMAp), log(PA$Aarea))# Aarea-LMAm
+    r_LMAp_LMAs <- cor(log_LMAp, log_LMAs)
+    r_Am <- cor(log_LMAp, log(PA$Aarea))# Aarea-LMAm
     r_Rm <- cor(res_s, res_Rs)
     r_Rs <- cor(res_m, res_Rm)
-    r_Ls <- cor(log(LMAs), log(PA$LL))
+    r_Ls <- cor(log_LMAs, log(PA$LL))
     c(r_Am, r_Rm, r_Rs, r_Ls, r_LMAp_LMAs)
   }
 
-  bb2 <- foreach(i = 1:N, .combine = rbind)  %dopar% res_fun2(i)
+  bb2 <- foreach(i = 1:n, .combine = rbind)  %dopar% res_fun2(i)
   rownames(bb2) <- NULL
   r_Am <- bb2[,1]
   r_Rm <- bb2[,2]

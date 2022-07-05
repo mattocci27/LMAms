@@ -82,6 +82,7 @@ fit_rand_model <- function(stan_data, model_file,
                             iter_warmup = 2000,
                             iter_sampling = 2000,
                             adapt_delta = 0.999,
+                            #adapt_delta = 0.8,
                             max_treedepth = 15) {
   model <- cmdstan_model(model_file)
   fit <- model$sample(
@@ -261,22 +262,25 @@ div_check <- function(diags) {
 generate_gl_dat <- function(gl_csv, draws) {
   # targets::tar_load(gl_csv)
   GL <- read_csv(gl_csv)
-  draws <- draws |>
-    janitor::clean_names()
-  p_dat <- draws |>
-    dplyr::select(contains("p_"))
-  p_vec <- apply(p_dat, 2, mean)
-  p_vec_lo <- apply(p_dat, 2, function(x) quantile(x, 0.025))
-  p_vec_up <- apply(p_dat, 2, function(x) quantile(x, 0.975))
+  LMAp_dat <- draws |>
+    dplyr::select(contains("LMAp"))
+  LMAs_dat <- draws |>
+    dplyr::select(contains("LMAs"))
+  LMAp_mean <- apply(exp(LMAp_dat), 2, mean)
+  LMAp_lwr <- apply(exp(LMAp_dat), 2, \(x) quantile(x, 0.025))
+  LMAp_upr <- apply(exp(LMAp_dat), 2, \(x) quantile(x, 0.975))
+  LMAs_mean <- apply(exp(LMAs_dat), 2, mean)
+  LMAs_lwr <- apply(exp(LMAs_dat), 2, \(x) quantile(x, 0.025))
+  LMAs_upr <- apply(exp(LMAs_dat), 2, \(x) quantile(x, 0.975))
   GL <- GL |>
     mutate(DE = ifelse(GL$DE == "", "U", as.character(DE)))
   GL |>
-    mutate(LMAp = LMA * p_vec) |>
-    mutate(LMAs = LMA - LMAp) |>
-    mutate(LMAp_lo = LMA * p_vec_lo) |>
-    mutate(LMAp_up = LMA * p_vec_up) |>
-    mutate(LMAs_lo = LMA - LMAp_up) |>
-    mutate(LMAs_up = LMA - LMAp_lo) |>
+    mutate(LMAp = LMAp_mean) |>
+    mutate(LMAp_lwr = LMAp_lwr) |>
+    mutate(LMAp_upr = LMAp_upr) |>
+    mutate(LMAs = LMAs_mean) |>
+    mutate(LMAs_lwr = LMAs_lwr) |>
+    mutate(LMAs_upr = LMAs_upr) |>
     mutate(id = paste0("gl_", 1:nrow(GL))) |>
     write_csv("data/GL_res.csv")
   paste("data/GL_res.csv")
@@ -288,14 +292,19 @@ generate_pa_dat <- function(pa_full_csv, draws) {
   # targets::tar_load(pa_full_csv)
   # targets::tar_load(fit_20_draws_PA_Ap_LLs_opt)
   # draws <- fit_20_draws_PA_Ap_LLs_opt
-  draws <- draws |>
-    janitor::clean_names()
-  p_dat <- draws |>
-    dplyr::select(contains("p_"))
-  p_vec <- apply(p_dat, 2, mean)
-  p_vec_lo <- apply(p_dat, 2, function(x) quantile(x, 0.025))
-  p_vec_up <- apply(p_dat, 2, function(x) quantile(x, 0.975))
+  LMAp_dat <- draws |>
+    dplyr::select(contains("LMAp"))
+  LMAs_dat <- draws |>
+    dplyr::select(contains("LMAs"))
+  LMAp_mean <- apply(exp(LMAp_dat), 2, mean)
+  LMAp_lwr <- apply(exp(LMAp_dat), 2, \(x) quantile(x, 0.025))
+  LMAp_upr <- apply(exp(LMAp_dat), 2, \(x) quantile(x, 0.975))
+  LMAs_mean <- apply(exp(LMAs_dat), 2, mean)
+  LMAs_lwr <- apply(exp(LMAs_dat), 2, \(x) quantile(x, 0.025))
+  LMAs_upr <- apply(exp(LMAs_dat), 2, \(x) quantile(x, 0.975))
+
   mu_dat <- draws |>
+    janitor::clean_names() |>
     dplyr::select(contains("mu_")) |>
     dplyr::select(ends_with("_2"))
   PA <- read_csv(pa_full_csv)
@@ -303,12 +312,12 @@ generate_pa_dat <- function(pa_full_csv, draws) {
     mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) |>
     mutate(site_strata = paste(site2, strata, sep = "_"))
   PA |>
-    mutate(LMAp = LMA * p_vec) |>
-    mutate(LMAs = LMA - LMAp) |>
-    mutate(LMAp_lo = LMA * p_vec_lo) |>
-    mutate(LMAp_up = LMA * p_vec_up) |>
-    mutate(LMAs_lo = LMA - LMAp_up) |>
-    mutate(LMAs_up = LMA - LMAp_lo) |>
+    mutate(LMAp = LMAp_mean) |>
+    mutate(LMAp_lwr = LMAp_lwr) |>
+    mutate(LMAp_upr = LMAp_upr) |>
+    mutate(LMAs = LMAs_mean) |>
+    mutate(LMAs_lwr = LMAs_lwr) |>
+    mutate(LMAs_upr = LMAs_upr) |>
     mutate(Mu2 = apply(mu_dat, 2, mean)) |>
     mutate(Mu2_lo = apply(mu_dat, 2, \(x) quantile(x, 0.025))) |>
     mutate(Mu2_up = apply(mu_dat, 2, \(x) quantile(x, 0.975))) |>

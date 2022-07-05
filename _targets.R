@@ -395,31 +395,31 @@ list(
     format = "file"
   ),
 
-  tar_stan_mcmc(
-    fit_beta,
-    "stan/GL_beta.stan",
-    data = gl_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.99,
-    max_treedepth = 15,
-    seed = 123),
+  # tar_stan_mcmc(
+  #   fit_beta,
+  #   "stan/GL_beta.stan",
+  #   data = gl_stan_dat,
+  #   refresh = 0,
+  #   chains = 4,
+  #   parallel_chains = getOption("mc.cores", 4),
+  #   iter_warmup = 2000,
+  #   iter_sampling = 2000,
+  #   adapt_delta = 0.99,
+  #   max_treedepth = 15,
+  #   seed = 123),
 
-  tar_stan_mcmc(
-    fit_h,
-    "stan/GL_h.stan",
-    data = gl_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.9,
-    max_treedepth = 15,
-    seed = 123),
+  # tar_stan_mcmc(
+  #   fit_h,
+  #   "stan/GL_h.stan",
+  #   data = gl_stan_dat,
+  #   refresh = 0,
+  #   chains = 4,
+  #   parallel_chains = getOption("mc.cores", 4),
+  #   iter_warmup = 2000,
+  #   iter_sampling = 2000,
+  #   adapt_delta = 0.9,
+  #   max_treedepth = 15,
+  #   seed = 123),
 
   tar_target(
     model_selection_csv,
@@ -465,7 +465,7 @@ list(
   ),
   tar_target(
     gl_rand_fit,
-    future_map(gl_rand_list$data, fit_rand_model, GL_Aps_LLs, 2000, 2000,
+    future_map(gl_rand_list$data, fit_rand_model, GL_Aps_LLs, 2000, 2000, 0.9,
     .options = furrr_options(seed = 123))
   ),
   tar_target(
@@ -476,7 +476,7 @@ list(
   tar_target(
     pa_rand_fit,
     #fit_rand_model(pa_rand_list$data[[1]], PA_Ap_LLs_opt, 1, 1)
-    future_map(pa_rand_list$data, fit_rand_model, PA_Ap_LLs_opt, 2000, 2000,
+    future_map(pa_rand_list$data, fit_rand_model, PA_Ap_LLs_opt, 2000, 2000, 0.9,
     .options = furrr_options(seed = 123))
   ),
 
@@ -1003,10 +1003,10 @@ list(
       paste0("figs/box_frac", c(".png"))
     },
     format = "file"
-  ),
-  tar_render(
-    report,
-    "report.Rmd"
-  )
+  )#,
+  # tar_render(
+  #   report,
+  #   "report.Rmd"
+  # )
 
 )

@@ -80,7 +80,8 @@ node_modules/
 rda/
 
 # For now
-#*.png
+*.png
+figs/*.png
 
 *.fdb*
 *.gz
