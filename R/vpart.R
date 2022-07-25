@@ -1,8 +1,16 @@
 #' @title Variance patitoning
-vpart_bar <- function(gl_res_csv, pa_res_csv) {
+vpart_bar <- function(gl_res_csv, pa_res_csv, intra = FALSE) {
 #  targets::tar_load(pa_res_csv)
 #  targets::tar_load(gl_res_csv)
   PA <- read_csv(pa_res_csv)
+
+  if (intra) {
+    PA <- PA |>
+        count(sp) |>
+        filter(n >= 2) |>
+        inner_join(PA, by = "sp")
+  }
+
   GL <- read_csv(gl_res_csv)
 
   tmp <- aov(log(LMAp) ~ site + strata, PA) |>
