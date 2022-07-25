@@ -811,6 +811,21 @@ list(
     },
     format = "file"
   ),
+  tar_target(
+    vpart_intra_plot, {
+      p <- vpart_bar(gl_res_csv, pa_res_csv, intra = TRUE)
+      ggsave(
+        "figs/vpart_intra.png",
+       p,
+       dpi = 300,
+       height = 6,
+       width = 10,
+       units = "cm"
+      )
+      paste0("figs/vpart_intra", c(".png"))
+    },
+    format = "file"
+  ),
   # mass prop ----------------------------------------------------
   tar_target(
     mass_obs_dat,
