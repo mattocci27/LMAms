@@ -1018,10 +1018,9 @@ list(
       paste0("figs/box_frac", c(".png"))
     },
     format = "file"
-  )#,
-  # tar_render(
-  #   report,
-  #   "report.Rmd"
-  # )
-
+  ),
+  tar_render(
+    report,
+    "report.Rmd"
+  )
 )

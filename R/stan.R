@@ -308,6 +308,25 @@ generate_pa_dat <- function(pa_full_csv, draws) {
     dplyr::select(contains("mu_")) |>
     dplyr::select(ends_with("_2"))
   PA <- read_csv(pa_full_csv)
+
+  # for the partial correlation of LL vs. LMAs, controlling for light.
+  light <- ifelse(PA$strata == "CAN", 1, 0)
+  log_LMAs_mat <- draws |>
+    dplyr::select(contains("LMAs")) |>
+    as.matrix()
+
+  res_fun <- function(x, light) {
+    fit_s <- lm(x ~ light)
+    res_s <- residuals(fit_s)
+    res_s
+  }
+
+  res_s_mat <- apply(log_LMAs_mat, 1, res_fun,  light)
+
+  res_s <- apply(res_s_mat, 1, mean)
+  fit_Ls <- lm(log(PA$LL) ~ light)
+  res_Ls <- residuals(fit_Ls)
+
   PA <- PA |>
     mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) |>
     mutate(site_strata = paste(site2, strata, sep = "_"))
@@ -322,6 +341,7 @@ generate_pa_dat <- function(pa_full_csv, draws) {
     mutate(Mu2_lo = apply(mu_dat, 2, \(x) quantile(x, 0.025))) |>
     mutate(Mu2_up = apply(mu_dat, 2, \(x) quantile(x, 0.975))) |>
     mutate(id = paste0("pa_", 1:nrow(PA))) |>
+    mutate(res_LL_light = res_Ls, res_LMAs_light = res_s) |>
     write_csv("data/PA_res.csv")
 
   paste("data/PA_res.csv")
@@ -524,3 +544,6 @@ coef_rand <- function(gl_rand_sig, gl_rand_check, site = site) {
        axis.text.x = element_text(angle = 45, vjust = 0.8)
     )
 }
+
+#' @title Generate data for LL partial plot
+
