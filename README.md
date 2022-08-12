@@ -52,7 +52,6 @@ To build Apptainer containers:
 
 ```bash
 sudo apptainer build radian.sif radian.def
-sudo apptainer build tinytex.sif tinytex.def
 ```
 
 To run analysis:
