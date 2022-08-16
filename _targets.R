@@ -78,7 +78,7 @@ list(
   ),
   tar_target(
     pa_full_csv,
-    prepare_pa(fiber_file, pa_file),
+    prepare_pa(fiber_file, pa_file, leafhabit_file),
     format = "file"
   ),
   tar_target(
@@ -93,11 +93,11 @@ list(
     },
     format = "file"
   ),
-  tar_target(
-    pa_lh_csv,
-    prepare_leafhabit(pa_file, leafhabit_file),
-    format = "file"
-  ),
+  # tar_target(
+  #   pa_lh_csv,
+  #   prepare_leafhabit(pa_file, leafhabit_file),
+  #   format = "file"
+  # ),
   tar_target(
     tar_stan_txt,
     generate_tar_stan(model_json, model_lma_json),
@@ -354,7 +354,8 @@ list(
 
   tar_target(
     loo_model,
-    mclapply(
+    #mclapply(
+    lapply(
       list(
         fit_1_mcmc_GL_LMA    = fit_1_mcmc_GL_LMA,
         fit_2_mcmc_PA_LMA    = fit_2_mcmc_PA_LMA,
