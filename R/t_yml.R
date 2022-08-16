@@ -1,6 +1,6 @@
 #' @title Pairwise t-test for LMA
 #' @para LMA vector of LMA
-#' @para group group name (e.g., "DE")
+#' @para group group name (e.g., "leaf_habit")
 p_group <- function(LMA, group, log = TRUE) {
   if (log) LMA <- log(LMA)
   moge <- pairwise.t.test(LMA, group, p.adjust.method = "bonferroni")$p.value
@@ -26,11 +26,11 @@ p_group <- function(LMA, group, log = TRUE) {
 #' @para draws MCMC output (e.g., fit_7_draws_GL_Aps_LLs)
 #' @para data boxplot data (e.g., pa_inter_box_dat)
 #' @para x name of variancle (e.g., "frac", "LMAp", "LMAs")
-#' @para group group name (e.g., "DE")
+#' @para group group name (e.g., "leaf_habit")
 p_group2 <- function(draws,
           data,
           x,
-          group = c("DE", "site_strata2")
+          group = c("leaf_habit", "site_strata2")
           ){
   id_dat <- data |>
     pull(id) |>
@@ -67,10 +67,10 @@ p_group2 <- function(draws,
 p_post <- function(pmat,
           data,
           x,
-          group = c("DE", "site_strata2")
+          group = c("leaf_habit", "site_strata2")
           ){
 
-  if (group == "DE") {
+  if (group == "leaf_habit") {
     m <- array(dim = c(2, 2, nrow(pmat)))
     alpha <- 1
   } else {
@@ -120,19 +120,16 @@ p_post <- function(pmat,
 }
 
 #' @title Preaprea data for boxplot and t-test (Panama - short)
-prep_pa_box_dat <- function(pa_res_csv, pa_lh_csv, intra = TRUE) {
+prep_pa_box_dat <- function(pa_res_csv, intra = TRUE) {
   pa <- read_csv(pa_res_csv) |>
-    mutate(frac = LMAp / LMA)
-  pa_lh <- read_csv(pa_lh_csv) |>
-    rename(DE = LeafHabit) %>%
-    mutate(DE = ifelse(DE == "evergreen", "E", DE)) %>%
-    mutate(DE = ifelse(DE == "deciduous", "D", DE)) %>%
-    dplyr::select(sp, DE)
+    mutate(frac = LMAp / LMA) |>
+    mutate(leaf_habit = ifelse(leaf_habit == "evergreen", "E", leaf_habit)) |>
+    mutate(leaf_habit = ifelse(leaf_habit == "deciduous", "D", leaf_habit))
+
   pa_inter <- pa |>
     count(sp) |>
    # filter(n >= 2) |>
     inner_join(pa, by = "sp") |>
-    left_join(pa_lh, by = "sp") |>
     mutate(site_strata2 = case_when(
       site_strata == "DRY_CAN" ~ "Sun_Dry",
       site_strata == "DRY_UNDER" ~ "Shade_Dry",
@@ -160,10 +157,10 @@ prep_pa_box_dat <- function(pa_res_csv, pa_lh_csv, intra = TRUE) {
 prep_gl_box_dat <- function(gl_res_csv) {
   gl <- read_csv(gl_res_csv) |>
     mutate(frac = LMAp / LMA) |>
-    mutate(gr = factor(DE,
+    mutate(gr = factor(leaf_habit,
                      levels = c("D", "E")))
   gl_de <- gl |>
-    filter(DE != "U")
+    filter(leaf_habit != "U")
   gl_de
 }
 
@@ -197,27 +194,27 @@ write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
 
 
 # GL
-  GL_LMA <- p_group(gl_box_dat$LMA, gl_box_dat$DE)
+  GL_LMA <- p_group(gl_box_dat$LMA, gl_box_dat$leaf_habit)
   GL_LMAp <- p_group2(gl_draws, "LMAp",
-                      group = "DE", data = gl_box_dat)
+                      group = "leaf_habit", data = gl_box_dat)
   GL_LMAs <- p_group2(gl_draws, "LMAs",
-                      group = "DE", data = gl_box_dat)
+                      group = "leaf_habit", data = gl_box_dat)
 
-# DE
+# leaf_habit
   GL_frac <- p_group2(gl_draws, "frac",
-                      group = "DE", data = gl_box_dat)
+                      group = "leaf_habit", data = gl_box_dat)
   PA_frac <- p_group2(pa_draws, "frac",
-                      group = "DE", data = pa_intra_box_dat)
+                      group = "leaf_habit", data = pa_intra_box_dat)
 
 
 # all
   PA_frac2 <- p_group2(pa_draws, "frac",
-                      group = "DE", data = pa_inter_box_dat)
+                      group = "leaf_habit", data = pa_inter_box_dat)
   PA_cell2 <- p_group(pa_inter_box_dat$cell_mass, pa_inter_box_dat$site_strata2)
 
 # intra
   PA_frac3 <- p_group2(pa_draws, "frac",
-                      group = "DE", data = pa_intra_box_dat)
+                      group = "leaf_habit", data = pa_intra_box_dat)
   PA_cell3 <- p_group(pa_intra_box_dat$cell_mass, pa_intra_box_dat$site_strata2)
 
 

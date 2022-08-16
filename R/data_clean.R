@@ -2,8 +2,8 @@ prepare_gl <- function(data) {
   d <- read.csv(data, skip = 10)
   data <- tibble(
     sp = d[, "Species"] %>% unlist(),
-    DE = d[, "Decid.E.green"],
-    GF = d[, "GF"],
+    leaf_habit = d[, "Decid.E.green"],
+    growth_form = d[, "GF"],
     BIOME = d[, "BIOME"],
     LL = 10^d[, "log.LL"],
     LMA = 10^d[, "log.LMA"],
@@ -16,11 +16,11 @@ prepare_gl <- function(data) {
     filter(!is.na(LMA)) |>
     filter(!is.na(Aarea)) |>
     filter(!is.na(Rarea)) |>
-    mutate(DE = ifelse(DE == "", "U", DE))
+    mutate(leaf_habit = ifelse(leaf_habit == "", "U", leaf_habit))
 
   ## each sample corresponds to each species
   data_clean <- data |>
-    group_by(sp, DE, GF) |>
+    group_by(sp, leaf_habit, growth_form) |>
     summarise_at(
       .vars = vars(
         LL,

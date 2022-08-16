@@ -31,6 +31,11 @@ tar_option_set(packages = c(
   "multcompView"
 ))
 
+tar_option_set(
+  garbage_collection = TRUE,
+  memory = "transient"
+)
+
 # check if it's inside a container
 if (file.exists("/.dockerenv") | file.exists("/.singularity.d/startscript")) {
   Sys.setenv(CMDSTAN = "/opt/cmdstan/cmdstan-2.29.2")
@@ -974,11 +979,11 @@ list(
   ),
   tar_target(
     pa_inter_box_dat,
-    prep_pa_box_dat(pa_res_csv, pa_lh_csv, intra = FALSE)
+    prep_pa_box_dat(pa_res_csv, intra = FALSE)
   ),
   tar_target(
     pa_intra_box_dat,
-    prep_pa_box_dat(pa_res_csv, pa_lh_csv, intra = TRUE)
+    prep_pa_box_dat(pa_res_csv, intra = TRUE)
   ),
   tar_target(
     letters_yml,

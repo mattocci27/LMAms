@@ -14,8 +14,8 @@ generate_gl_stan <- function(data) {
     q_lim = 1,
     leaf = 1,
     dry = 1,
-    DE = as.numeric(as.factor(data$DE)),
-    gr = as.numeric(as.factor(data$DE))
+    leaf_habit = as.numeric(as.factor(data$leaf_habit)),
+    gr = as.numeric(as.factor(data$leaf_habit))
   )
 
   list_data$J <- list_data$gr %>%
@@ -23,8 +23,8 @@ generate_gl_stan <- function(data) {
     length()
 
   list_data$obs2 <- list_data$obs
-  list_data$E <- ifelse(data$DE == "E", 1, 0)
-  list_data$U <- ifelse(data$DE == "U", 1, 0)
+  list_data$E <- ifelse(data$leaf_habit == "E", 1, 0)
+  list_data$U <- ifelse(data$leaf_habit == "U", 1, 0)
   list_data
 }
 
@@ -59,7 +59,7 @@ generate_pa_stan <- function(data, full = FALSE) {
     A = data$Aarea,
     LL = data$LL,
     R = data$Rarea,
-    DE = 1,
+    leaf_habit = 1,
     gr = data$gr,
     J = data$gr %>% unique() %>% length(),
     q_lim = q_lim,
@@ -187,7 +187,7 @@ rand_fun <- function(n, data, list_data){
             q_lim = list_data$q_lim,
             leaf = list_data$leaf,
             dry = list_data$dry,
-            DE = list_data$DE,
+            leaf_habit = list_data$leaf_habit,
             LMA = tmp$LMA)
 }
 
@@ -273,7 +273,7 @@ generate_gl_dat <- function(gl_csv, draws) {
   LMAs_lwr <- apply(exp(LMAs_dat), 2, \(x) quantile(x, 0.025))
   LMAs_upr <- apply(exp(LMAs_dat), 2, \(x) quantile(x, 0.975))
   GL <- GL |>
-    mutate(DE = ifelse(GL$DE == "", "U", as.character(DE)))
+    mutate(leaf_habit = ifelse(GL$leaf_habit == "", "U", as.character(leaf_habit)))
   GL |>
     mutate(LMAp = LMAp_mean) |>
     mutate(LMAp_lwr = LMAp_lwr) |>
@@ -352,8 +352,8 @@ clean_gl_res <- function(gl_res_csv) {
   gl <- read_csv(gl_res_csv)
   gl |>
     mutate(frac = LMAp / LMA) |>
-    mutate(DE = ifelse(is.na(DE), "U", DE)) |>
-    mutate(gr = factor(DE,
+    mutate(leaf_habit = ifelse(is.na(leaf_habit), "U", leaf_habit)) |>
+    mutate(gr = factor(leaf_habit,
                        labels = c("Deciduous",
                                   "Evergreen",
                                   "Unclassified"
