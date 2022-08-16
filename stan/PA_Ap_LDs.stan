@@ -51,7 +51,9 @@ transformed parameters{
   //log_LMAp = log(LMA) + log(p);
   //log_LMAs = log(LMA) + log(1 - p);
   //X = append_col(append_col(append_col(intercept, log_LMAp), log_LMAs), leaf);
-  X = append_col(append_col(intercept, log(LMA) + log(p)), log(LMA) + log(1 - p));
+  X = append_col(append_col(intercept,
+    log(LMA) + log(p)),
+    log(LMA) + log(1 - p) - log(LT) - 3 * log(10));
   Mu = X * Z;
 }
 model{

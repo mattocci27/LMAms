@@ -116,6 +116,10 @@ transformed parameters{
     log(LMA) + log(p)),
     log(LMA) + log(1 - p)),
      leaf);
+{% elif LD == "LD" %}
+  X = append_col(append_col(intercept,
+    log(LMA) + log(p)),
+    log(LMA) + log(1 - p) - log(LT) - 3 * log(10));
 {% else %}
   X = append_col(append_col(intercept, log(LMA) + log(p)), log(LMA) + log(1 - p));
 {% endif %}
