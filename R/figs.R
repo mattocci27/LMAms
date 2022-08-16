@@ -465,6 +465,80 @@ pa_point_ll <- function(pa_res_csv, settings_yml, r_vals_yml) {
           )
 }
 
+#' @title Scatter plots for Panama (LL partial)
+pa_point_par_ll <- function(pa_res_csv, settings_yml, r_vals_yml) {
+  # library(tidyverse)
+  # targets::tar_load(pa_res_csv)
+  # targets::tar_load(settings_yml)
+  # targets::tar_load(r_vals_yml)
+  dat <- read_csv(pa_res_csv) |>
+  mutate(site_strata = factor(site_strata,
+          levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) |>
+  mutate(gr = factor(site_strata,
+    labels = c("Sun-Wet",
+               "Sun-Dry",
+               "Shade-Wet",
+               "Shade-Dry"
+                      )))
+  settings <- yaml::yaml.load_file(settings_yml)
+  r_vals <- yaml::yaml.load_file(r_vals_yml)
+  fills <- c(
+   "Sun-Dry" = settings$fills$sun_dry,
+   "Sun-Wet" = settings$fills$sun_wet,
+   "Shade-Dry" = settings$fills$shade_dry,
+   "Shade-Wet" = settings$fills$shade_wet
+  )
+
+  cols <- c(
+   "Sun-Dry" = settings$colors$sun_dry,
+   "Sun-Wet" = settings$colors$sun_wet,
+   "Shade-Dry" = settings$colors$shade_dry,
+   "Shade-Wet" = settings$colors$shade_wet
+  )
+
+  labLL <- tibble(
+     res_LMAs_light = 1,
+     val = min(dat$res_LMAs_light),
+     val_max = max(dat$res_LMAs_light),
+     gr = "Sun-Dry",
+     r_vals = r_vals$r_vals$PA_par$LMAs_LL
+   )
+
+  ggplot(dat, aes(y = res_LL_light,
+                  x = res_LMAs_light,
+                  fill = gr, col = gr)) +
+   geom_point(shape = 21) +
+   scale_fill_manual(values = fills) +
+   scale_colour_manual(values = cols) +
+   ylab("LL regressed on light") +
+   xlab("Residuals of LMAs regressed on light") +
+   geom_abline(aes(slope = 1, intercept = 0),
+               lty = 2,
+               lwd = 0.25,
+               col = "gray20") +
+   geom_text(data = labLL,
+             aes(label = r_vals, x = val_max, y = -1.7),
+             colour = "black",
+             hjust = 1.2,
+             vjust = 0,
+             parse = TRUE,
+             show.legend = FALSE) +
+   coord_fixed() +
+   coord_cartesian(xlim = c(-2, max(labLL$val_max)),
+    ylim = c(-2, labLL$val_max)) +
+   theme_LES() +
+   theme(
+     legend.position = c(0.2, 0.85),
+     axis.title.x = element_text(margin = margin(t = 1,
+                                                 b = 1,
+                                                 l = 0,
+                                                 r = 0)),
+     axis.title.y = element_text(margin = margin(t = 1,
+                                                 b = 1,
+                                                 l = 1,
+                                                 r = 1))
+         )
+}
 
 prep_gl_box_list <- function(gl_res_dat, letters_yml) {
   data <- gl_res_dat |>
