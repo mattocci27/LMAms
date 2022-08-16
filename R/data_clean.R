@@ -33,8 +33,8 @@ prepare_gl <- function(data) {
       .funs = \(x)mean(x, na.rm = TRUE)
     )
 
-  write_csv(data_clean, "./data/GL_data.csv")
-  paste("./data/GL_data.csv")
+  write_csv(data_clean, "./data/gl_data.csv")
+  paste("./data/gl_data.csv")
 }
 
 prepare_pa <- function(fiber, leaf, habit) {
@@ -121,42 +121,6 @@ prepare_pa <- function(fiber, leaf, habit) {
       cell_mass, cell_area, cell_vol
     )
 
-  write_csv(d5, "./data/PA_data_full.csv")
-  paste("./data/PA_data_full.csv")
+  write_csv(d5, "./data/pa_data_full.csv")
+  paste("./data/pa_data_full.csv")
 }
-
-
-prepare_leafhabit <- function(leaf, habit) {
-  d2 <- read_csv(leaf) |>
-    dplyr::select(
-      sp = "SP4$", # "SITE$", "STRATA$",
-      genus = "GENUS$",
-      genus1 = "GENUS1$",
-      species = "SPECIES$",
-      species1 = "SPECIES1$"
-    ) |>
-    mutate(name = str_c(genus, "_", species)) |>
-    mutate(name1 = str_c(genus1, "_", species1)) |>
-    unique() |>
-    mutate(name = ifelse(is.na(name), name1, name)) |>
-    dplyr::select(sp, genus, species, name)
-
-  # habit <- read_csv("./data-raw/Osnas2018_S1.csv") |>
-  habit2 <- read_csv(habit) |>
-    # dplyr::select(Genus, Species, LeafHabit, Site, Stratum)
-    dplyr::select(genus = Genus, species = Species, LeafHabit) |>
-    mutate(name = str_c(genus, "_", species)) |>
-    select(name, LeafHabit) |>
-    unique()
-
-  d3 <- full_join(d2, habit2, by = "name")
-
-  taxa <- d3 |>
-    filter(!is.na(sp)) |>
-    filter(!is.na(genus)) |>
-    filter(!is.na(LeafHabit))
-
-  write_csv(taxa, "./data/PA_LH.csv")
-  paste("./data/PA_LH.csv")
-}
-

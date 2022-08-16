@@ -93,8 +93,8 @@ list(
       d |>
         filter(!is.na(LD)) |>
         filter(!is.na(LT)) |>
-        write_csv("data/PA_data.csv")
-      paste("data/PA_data.csv")
+        write_csv("data/pa_data.csv")
+      paste("data/pa_data.csv")
     },
     format = "file"
   ),
