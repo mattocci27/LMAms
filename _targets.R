@@ -733,6 +733,28 @@ list(
     format = "file"
   ),
   tar_target(
+    pa_point_par_ll_plot, {
+      p <- pa_point_par_ll(pa_res_csv, settings_yml, r_vals_yml)
+      ggsave(
+        "figs/pa_point_par_ll.png",
+       p,
+       dpi = 300,
+       height = 6.7,
+       width = 6.7,
+       units = "cm"
+      )
+      ggsave(
+        "figs/pa_point_par_ll.pdf",
+        p,
+        height = 6.7,
+        width = 6.7,
+        units = "cm"
+        )
+        paste0("figs/pa_point_par_ll", c(".png", ".pdf"))
+    },
+    format = "file"
+  ),
+  tar_target(
     ps_point_plot, {
       p <- ps_point(gl_res_dat, pa_res_dat, settings_yml, r_vals_yml)
       ggsave(

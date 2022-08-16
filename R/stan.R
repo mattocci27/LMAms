@@ -507,7 +507,6 @@ write_model_selction <- function(loo_tbl) {
     paste(output)
 }
 
-
 #' @para gl_rand_sig data including 95% CI
 #' @para gl_rand_check data with rhat and divergence
 coef_rand <- function(gl_rand_sig, gl_rand_check, site = site) {

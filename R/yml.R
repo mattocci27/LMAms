@@ -75,8 +75,9 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
                           " [", GL_cor_tbl[1,2], ", ",
                           GL_cor_tbl[1,3], "]")
   #PA data --------------------------------------------
+  # library(tidyverse)
   # targets::tar_load(fit_20_draws_PA_Ap_LLs_opt)
-#  pa_draws <- fit_20_draws_PA_Ap_LLs_opt
+  # pa_draws <- fit_20_draws_PA_Ap_LLs_opt
   # targets::tar_load(pa_res_csv)
   PA <- read_csv(pa_res_csv)
 
@@ -92,6 +93,24 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
   mu2 <- pa_draws |>
     dplyr::select(contains("mu")) |>
     as.matrix()
+
+  # for the partial correlation of LL vs. LMAs, controlling for light.
+  light <- ifelse(PA$strata == "CAN", 1, 0)
+
+  par_fun <- function(x, light) {
+    fit_s <- lm(x ~ light)
+    res_s <- residuals(fit_s)
+    res_s
+  }
+
+  res_s_mat <- apply(log_LMAs_mat, 1, par_fun,  light)
+
+  res_s <- apply(res_s_mat, 1, mean)
+  fit_Ls <- lm(log(PA$LL) ~ light)
+  res_Ls <- residuals(fit_Ls)
+
+  par_LMAs_LL <- cor(res_s, res_Ls) |> round(2)
+  # ------------------------------------
 
   res_fun2 <- \(i){
     log_LMAp <- log_LMAp_mat[i,]
@@ -324,7 +343,6 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
              out,
              sep = "\n")
 
-
   writeLines(paste0("  PA_LMAps:"),
              out,
              sep = "\n")
@@ -381,16 +399,15 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
                     ,"'"),
              out,
              sep = "\n")
-# writeLines(paste0("    A_R2: '",
-#            bayes_R2_PA("A", chr = TRUE),
-#            "'"),
-#            out,
-#            sep = "\n")
-# writeLines(paste0("    R_R2: '",
-#            bayes_R2_PA("R", chr = TRUE),
-#            "'"),
-#            out,
-#            sep = "\n")
+  writeLines(paste0("  PA_par:"),
+             out,
+             sep = "\n")
+  # writeLines(paste0("    LMAs_LL: 'italic(rho) == ",
+  writeLines(paste0("    LMAs_LL: 'italic(bar(\u03c1)) == ",
+                    par_LMAs_LL,
+                    "'"),
+             out,
+             sep = "\n")
   close(out)
   paste("yml/r_val.yml")
 }

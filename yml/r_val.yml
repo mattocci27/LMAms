@@ -42,3 +42,5 @@ r_vals:
     LMAs_cell_area: 'italic(r) == 0.58'
   PA_R2:
     LL_R2: 'italic(R^2) == 0.45'
+  PA_par:
+    LMAs_LL: 'italic(bar(ρ)) == 0.66'
