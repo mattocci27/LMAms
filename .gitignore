@@ -2,6 +2,7 @@
 !*/
 !*.*
 
+
 model/*.rds
 kitematic/*
 rmd/core
@@ -61,10 +62,18 @@ vignettes/*.pdf
 #gce
 /gce
 
-*.docx*
-*.ipynb*
+# binary files
 *.html
+*.ipynb
+
+*.pdf
+*.png
+*.eps
+
+*.docx
 *.pptx
+*.xls
+*.xlsx
 
 #figs/
 *.err
@@ -79,10 +88,6 @@ node_modules/
 *.sif
 rda/
 
-# For now
-*.png
-figs/*.png
-
 *.fdb*
 *.gz
 ms/*.fls
@@ -91,3 +96,4 @@ ms/*.fdb_latexmk
 ms/LMAms_main.fdb_latexmk
 ms/LMAms_main.fs
 test.R
+test.sh
