@@ -282,8 +282,8 @@ generate_gl_dat <- function(gl_csv, draws) {
     mutate(LMAs_lwr = LMAs_lwr) |>
     mutate(LMAs_upr = LMAs_upr) |>
     mutate(id = paste0("gl_", 1:nrow(GL))) |>
-    write_csv("data/GL_res.csv")
-  paste("data/GL_res.csv")
+    write_csv("data/gl_res.csv")
+  paste("data/gl_res.csv")
 }
 
 #' @title Generates csv file of Panama for the subsequent analysis
@@ -342,9 +342,8 @@ generate_pa_dat <- function(pa_full_csv, draws) {
     mutate(Mu2_up = apply(mu_dat, 2, \(x) quantile(x, 0.975))) |>
     mutate(id = paste0("pa_", 1:nrow(PA))) |>
     mutate(res_LL_light = res_Ls, res_LMAs_light = res_s) |>
-    write_csv("data/PA_res.csv")
-
-  paste("data/PA_res.csv")
+    write_csv("data/pa_res.csv")
+  paste("data/pa_res.csv")
 }
 
 #' @title Generates csv file of GLOPNET for the subsequent analysis
