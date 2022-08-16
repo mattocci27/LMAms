@@ -3,7 +3,7 @@ PA_SI:
     Sun_Dry: a
     Shade_Dry: b
     Sun_Wet: c
-    Shade_Wet: d
+    Shade_Wet: b
   LMAp:
     Sun_Dry: a
     Shade_Dry: b
@@ -19,7 +19,7 @@ PA:
     Sun_Dry: a
     Shade_Dry: b
     Sun_Wet: c
-    Shade_Wet: d
+    Shade_Wet: b
   LMAp:
     Sun_Dry: a
     Shade_Dry: b

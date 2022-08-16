@@ -43,12 +43,12 @@ vpart_bar <- function(gl_res_csv, pa_res_csv, intra = FALSE) {
                      legend.text = element_text(size = 8),
                )
 
-  tmp <- aov(log(LMAp) ~ DE, GL) |>
+  tmp <- aov(log(LMAp) ~ leaf_habit, GL) |>
     summary()
   tmp2 <- tmp[[1]][[2]]
   GL_LMAp <- tmp2/sum(tmp2) * 100
 
-  tmp <- aov(log(LMAs) ~ DE, GL) |>
+  tmp <- aov(log(LMAs) ~ leaf_habit, GL) |>
     summary()
   tmp2 <- tmp[[1]][[2]]
   GL_LMAs <- tmp2/sum(tmp2) * 100

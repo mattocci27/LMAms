@@ -163,15 +163,15 @@ scatter_plt <- function(data, lab1, settings_yml, GL = TRUE) {
 #' @title Generates long data for ggplot (GLOPNET)
 gen_gl_long <- function(gl_res_csv) {
   read_csv(gl_res_csv) |>
-    mutate(DE = ifelse(is.na(DE), "U", as.character(DE))) |>
-    mutate(gr = factor(DE,
+    mutate(leaf_habit = ifelse(is.na(leaf_habit), "U", as.character(leaf_habit))) |>
+    mutate(gr = factor(leaf_habit,
                        labels = c("Deciduous",
                                   "Evergreen",
                                   "Unclassified"
                                   ))) |>
     pivot_longer(c(LMA, LMAs, LMAp), names_to = "LMA", values_to = "val") |>
     pivot_longer(c(Aarea, Rarea, LL, Narea, Parea), names_to = "trait", values_to = "val2") |>
-    # mutate(DE = factor(DE,
+    # mutate(leaf_habit = factor(leaf_habit,
     #         levels = c("D", "E", "U"))) %>%
     mutate(LMA = factor(LMA,
       labels = c("LMA", "LMAp", "LMAs"))) %>%
@@ -194,7 +194,7 @@ gen_pa_long <- function(pa_res_csv) {
     pivot_longer(c(LMA, LMAs, LMAp), names_to = "LMA", values_to = "val") |>
     pivot_longer(c(Aarea, Rarea, LL, Narea, Parea, cell_area),
       names_to = "trait", values_to = "val2") |>
-    # mutate(DE = factor(DE,
+    # mutate(leaf_habit = factor(leaf_habit,
     #         levels = c("D", "E", "U"))) |>
     mutate(LMA = factor(LMA,
       labels = c("LMA", "LMAp", "LMAs"))) |>
@@ -542,8 +542,8 @@ pa_point_par_ll <- function(pa_res_csv, settings_yml, r_vals_yml) {
 
 prep_gl_box_list <- function(gl_res_dat, letters_yml) {
   data <- gl_res_dat |>
-    filter(DE != "U") |>
-    dplyr::select(sp, DE, gr, LMA, LMAp, LMAs) |>
+    filter(leaf_habit != "U") |>
+    dplyr::select(sp, leaf_habit, gr, LMA, LMAp, LMAs) |>
     pivot_longer(LMA:LMAs, names_to = "LMA", values_to = "val") |>
     unique() |>
     mutate(gr = ifelse(gr == "Deciduous", "Dec", "Eve"))
@@ -561,11 +561,11 @@ prep_gl_box_list <- function(gl_res_dat, letters_yml) {
 prep_pa_box_list <- function(pa_inter_box_dat, letters_yml, trim = TRUE) {
   # targets::tar_load(pa_inter_box_dat)
   # targets::tar_load(letters_yml)
-  # pa_inter_box_dat$DE
+  # pa_inter_box_dat$leaf_habit
   # pa_inter_box_dat$n
   p_letters <- yaml::yaml.load_file(letters_yml)
   data <- pa_inter_box_dat |>
-    dplyr::select(sp, n, DE, gr, LMA, LMAp, LMAs) |>
+    dplyr::select(sp, n, leaf_habit, gr, LMA, LMAp, LMAs) |>
     pivot_longer(LMA:LMAs, names_to = "LMA", values_to = "val") |>
     #dplyr::select(gr, val, LMA) |>
     unique()
@@ -685,22 +685,22 @@ box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
                            "comprised by LMAp ("*italic(f)*")"))
 
   lab1 <- gl_box_dat |>
-    group_by(DE) |>
+    group_by(leaf_habit) |>
     summarize(frac = max(frac)) |>
     ungroup() |>
     mutate(lab = p_letters$Frac$GL
            |> unlist())
 
   lab2 <- pa_intra_box_dat |>
-    filter(!is.na(DE)) |>
-    group_by(DE) |>
+    filter(!is.na(leaf_habit)) |>
+    group_by(leaf_habit) |>
     summarize(frac = max(frac)) |>
     ungroup() |>
     mutate(lab = p_letters$Frac$PA
            |> unlist())
 
   p1 <- ggplot(gl_box_dat,
-    aes(x = DE, y = frac, fill = DE)) +
+    aes(x = leaf_habit, y = frac, fill = leaf_habit)) +
     geom_boxplot(outlier.shape = 21, outlier.size = 1) +
     geom_text(data = lab1, aes(label = lab),
               vjust = -1,
@@ -715,7 +715,7 @@ box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
       strip.background = element_blank()
           )
   p2 <- ggplot(pa_intra_box_dat,
-    aes(x = DE, y = frac, fill = DE)) +
+    aes(x = leaf_habit, y = frac, fill = leaf_habit)) +
     geom_boxplot(outlier.shape = 21, outlier.size = 1) +
     geom_text(data = lab2, aes(label = lab),
               vjust = -1,
