@@ -91,9 +91,9 @@ generated quantities {
   real<lower=-1, upper=1> rho13;
   cov_matrix[3] Sigma;
   vector[N] log_LMAp;
-  vector[N] log_LMAs;
+  vector[N] log_LDs;
   log_LMAp = log(LMA) + log(p);
-  log_LMAs = log(LMA) + log(1 - p);
+  log_LDs = log(LMA) + log(1 - p) - log(LT) - 3 * log(10);
   Sigma = diag_pre_multiply(L_sigma, L_Omega)
      * diag_post_multiply(L_Omega', L_sigma);
   rho12 = Sigma[1, 2] * inv(L_sigma[1] * L_sigma[2]);
