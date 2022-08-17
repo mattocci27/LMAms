@@ -38,7 +38,7 @@ prepare_gl <- function(data) {
 }
 
 # there two types of SLA. In our analysis, both mass and area-normalization are
-# based on SLA_LEAF (not disc)
+# based on SLA_DISC (not leaf) following Osnas et al. 2018
 # AMAXMASS: Mass-based Amax
 # AMAX: Area-based Amax
 # RESPMASS: Mass-based RESP
@@ -55,34 +55,23 @@ prepare_pa <- function(fiber, leaf, habit) {
   d <- read_csv(leaf)
 
   d2 <- d |>
-    dplyr::select(
-      "SP4$", "SITE$", "STRATA$",
-      genus = "GENUS$",
-      species = "SPECIES$",
-      SLA_LEAF, LIFETIME, AMAXMASS, RESPMASS, AMAX, RESP,
-      N_PCT, P_PCT, LFTHICK, LAMTUF, LFTHICK, MDRBTUF, VEINTUF
-    ) |>
+    rename(genus = "GENUS$") |>
+    rename(species = "SPECIES$") |>
     rename(Amass = AMAXMASS) |>
     rename(Rmass = RESPMASS) |>
-    # rename(Aarea = AMAX) |>
-    # rename(Rarea = RESP) |>
     rename(LT = LFTHICK) |>
     rename(sp = `SP4$`) |>
     rename(site = `SITE$`) |>
     rename(strata = `STRATA$`) |>
     mutate(site = ifelse(site == "PNM", "PNM", "PNSL")) |>
     mutate(strata = ifelse(strata == "CANOPY", "CAN", "UNDER")) |>
-    mutate(LMA = 1 / SLA_LEAF * 10000) |>
-    # mutate(LMA_DISC = 1 / SLA_DISC * 10000) |>
+    mutate(LMA = 1 / SLA_DISC * 10000) |>
     mutate(LL = LIFETIME * 12 / 365) |>
     mutate(AMAX_re = LMA * Amass / 1000) |>
     mutate(Aarea = ifelse(is.na(AMAX), AMAX_re, AMAX)) |>
     mutate(RESP_re = LMA * Rmass / 1000) |>
     mutate(Rarea = ifelse(is.na(RESP), RESP_re, RESP)) |>
     mutate(Rarea = ifelse(RESP < 0, RESP_re, RESP)) |>
-    # mutate(Aarea_DISC = LMA * Amass / 1000) |>
-    # mutate(Rarea = LMA * Rmass / 1000) |>
-    #mutate(Rarea_DISC = LMA * Rmass / 1000) |>
     mutate(sp_site_strata = paste(sp, site, strata, sep = "_")) |>
     mutate(Narea = LMA * N_PCT / 1000) |>
     mutate(Parea = LMA * P_PCT / 1000) |>

@@ -221,6 +221,41 @@ gen_pa_long <- function(pa_res_csv) {
     arrange(gr)
 }
 
+#' @title Generates long data for ggplot (Panama)
+gen_pa_ld_long <- function(pa_res_ld_csv) {
+  #targets::tar_load(pa_res_csv)
+  read_csv(pa_res_ld_csv) |>
+    pivot_longer(c(LMA, LMAs, LDs, LMAp), names_to = "LMA", values_to = "val") |>
+    pivot_longer(c(Aarea, Rarea, LL, Narea, Parea, cell_area),
+      names_to = "trait", values_to = "val2") |>
+    # mutate(leaf_habit = factor(leaf_habit,
+    #         levels = c("D", "E", "U"))) |>
+    mutate(LMA = factor(LMA,
+      labels = c("LMA", "LMAp", "LMAs", "LDs"))) |>
+    mutate(LMA = factor(LMA,
+      labels = c("LMA~(~g~m^{-2})", "LMAp~(~g~m^{-2})",
+       "LMAs~(~g~m^{-2})", "LDs~(~g~cm^{-3})"))) |>
+    mutate(site_strata = factor(site_strata,
+            levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) |>
+    mutate(trait = factor(trait,
+      levels = c("Aarea", "Rarea", "LL", "Narea", "Parea", "cell_area"))) |>
+    mutate(trait2 = factor(trait,
+      labels = c("italic(A)[area]~(~mu~mol~m^{-2}~s^{-1})",
+                 "italic(R)[area]~(~mu~mol~m^{-2}~s^{-1})",
+                 "LL~(months)",
+                 "italic(N)[area]~(~g~m^{-2})",
+                 "italic(P)[area]~(~g~m^{-2})",
+                 "italic(CL)[area]~(~g~m^{-2})"
+                 ))) |>
+    mutate(gr = factor(site_strata,
+      labels = c("Sun-Wet",
+                 "Sun-Dry",
+                 "Shade-Wet",
+                 "Shade-Dry"
+                        ))) |>
+    arrange(gr)
+}
+
 #' @title Scatter plots for GL
 gl_point <- function(gl_long_dat, settings_yml, r_vals_yml) {
   r_vals <- yaml::yaml.load_file(r_vals_yml)
@@ -367,6 +402,30 @@ pa_point <- function(pa_long_dat, settings_yml, r_vals_yml) {
   scatter_plt(dat, lab1, settings_yml, GL = FALSE)
 }
 
+#' @title Scatter plots for Panama
+pa_ld_point <- function(pa_long_dat, settings_yml, r_vals_yml) {
+  r_vals <- yaml::yaml.load_file(r_vals_yml)
+  dat <- pa_long_dat |>
+    filter(trait %in% c("LL", "Aarea", "Rarea")) |>
+    filter(LMA != "LDs~(~g~cm^{-3})")
+
+  lim_pa <- lim_func(dat)
+  lim_pa2 <- lim_func(dat, LMA = FALSE)
+
+  lab1 <- tibble(lab = paste("(", letters[1:9], ")", sep = ""),
+                     val2 = lim_pa2$max_val %>% rep(each = 3),
+                    # val2 = Inf,
+                     val = lim_pa$min_val %>% rep(3),
+                     val_max = lim_pa$max_val %>% rep(3),
+                     gr = "Sun-Dry",
+                     r_vals = r_vals$r_vals$PA %>% unlist,
+                     trait2 = rep(lim_pa2$trait2, each = 3),
+                     LMA = rep(lim_pa$LMA, 3)
+                     ) |>
+    mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
+
+  scatter_plt(dat, lab1, settings_yml, GL = FALSE)
+}
 
 #' @title Scatter plots for Panama (NPC)
 pa_point_npc <- function(pa_long_dat, settings_yml, r_vals_yml) {
