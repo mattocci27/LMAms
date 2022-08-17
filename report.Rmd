@@ -172,12 +172,13 @@ There are too many divergent transitions.
 
 ```{r}
 targets::tar_read(gl_rand_check)
-targets::tar_load(gl_rand_check)
 summary(gl_rand_check)
 
-targets::tar_read(pa_rand_check)
 targets::tar_load(pa_rand_check)
 summary(pa_rand_check)
+
+targets::tar_read(pa_rand_ld_check)
+summary(pa_rand_ld_check)
 ```
 
 
@@ -203,9 +204,28 @@ pa_rand_sig |>
   filter(!str_detect(para, "0"))
 ```
 
+```{r}
+targets::tar_load(pa_rand_ld_sig)
+
+pa_rand_ld_sig
+
+pa_rand_ld_sig |>
+  filter(sig == "sig") |>
+  filter(!str_detect(para, "0"))
+```
+
+```{r, include=FALSE}
+targets::tar_load(pa_rand_ld_list)
+hoge <- pa_rand_ld_list$data[[7]]
+```
+
+
+
 ![](figs/coef_rand.png)
 
 ![](figs/coef_rand_pa.png)
+
+![](figs/coef_rand_pa_ld.png)
 
 # Computing Environment
 
