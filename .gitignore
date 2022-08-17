@@ -95,8 +95,8 @@ ms/*.fdb_latexmk
 
 ms/LMAms_main.fdb_latexmk
 ms/LMAms_main.fs
-test.R
 test.sh
+test.R
 
 data
 data-raw
