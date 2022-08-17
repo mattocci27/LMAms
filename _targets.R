@@ -465,6 +465,15 @@ list(
     }
   ),
   tar_target(
+    pa_rand_ld_list, {
+    data <- read_csv(pa_csv)
+    rand_data <- tibble(null_model = 1:10)
+    rand_data |>
+    mutate(data = future_map(1:10, rand_fun, data, pa_stan_dat, ld = TRUE,
+      .options = furrr_options(seed = 123)))
+    }
+  ),
+  tar_target(
     GL_Aps_LLs,
     compile_model("stan/GL_Aps_LLs.stan"),
     format = "file"
@@ -480,9 +489,20 @@ list(
     format = "file"
   ),
   tar_target(
+    PA_Ap_LDs_opt,
+    compile_model("stan/PA_Ap_LDs_opt.stan"),
+    format = "file"
+  ),
+  tar_target(
     pa_rand_fit,
     #fit_rand_model(pa_rand_list$data[[1]], PA_Ap_LLs_opt, 1, 1)
     future_map(pa_rand_list$data, fit_rand_model, PA_Ap_LLs_opt, 2000, 2000, 0.9,
+    .options = furrr_options(seed = 123))
+  ),
+  tar_target(
+    pa_rand_ld_fit,
+    # fit_rand_model(pa_rand_ld_list$data[[1]], PA_Ap_LDs_opt, 1, 1)
+    future_map(pa_rand_ld_list$data, fit_rand_model, PA_Ap_LDs_opt, 2000, 2000, 0.9,
     .options = furrr_options(seed = 123))
   ),
 
@@ -501,8 +521,15 @@ list(
       data = "Panama")
   ),
   tar_target(
+    pa_rand_ld_check,
+    tibble(rhat = sapply(pa_rand_ld_fit, \(x) x$summary |> filter(rhat > 1.05) |> nrow()),
+      div = sapply(pa_rand_ld_fit, \(x) x$diagnostics[,,2] |> apply(1, sum) |> sum()),
+      sim_id = 1:10,
+      data = "Panama_LD")
+  ),
+  tar_target(
     rand_csv, {
-      bind_rows(gl_rand_check, pa_rand_check) |>
+      bind_rows(gl_rand_check, pa_rand_check, pa_rand_ld_check) |>
       write_csv("data/rand.csv")
       paste("data/rand.csv")
     },
@@ -520,8 +547,6 @@ list(
       tmp
     }
   ),
-
-
   tar_target(
     pa_rand_sig, {
       tmp <- NULL
@@ -529,6 +554,17 @@ list(
         tmp <- bind_rows(tmp,
         list("a0", "ap", "b0", "bs", "g0", "gp", "gs") |>
         map_dfr(rand_summary, pa_rand_fit, i))
+        }
+      tmp
+    }
+  ),
+  tar_target(
+    pa_rand_ld_sig, {
+      tmp <- NULL
+      for (i in 1:10) {
+        tmp <- bind_rows(tmp,
+        list("a0", "ap", "b0", "bs", "g0", "gp", "gs") |>
+        map_dfr(rand_summary, pa_rand_ld_fit, i))
         }
       tmp
     }
@@ -565,6 +601,21 @@ list(
     },
     format = "file"
   ),
+  tar_target(
+    coef_rand_pa_ld_plot, {
+      p <- coef_rand(pa_rand_ld_sig, pa_rand_ld_check, site = "Panama")
+      ggsave(
+        "figs/coef_rand_pa_ld.png",
+       p,
+       dpi = 300,
+       height = 15,
+       width = 15,
+       units = "cm"
+      )
+        paste0("figs/coef_rand_pa_ld", c(".png"))
+    },
+    format = "file"
+  ),
 
   # best model for the full data
   tar_stan_mcmc(
@@ -588,7 +639,13 @@ list(
 
   tar_target(
     pa_res_csv,
-    generate_pa_dat(pa_full_csv, fit_20_draws_PA_Ap_LLs_opt),
+    generate_pa_dat(pa_full_csv, pa_csv, fit_20_draws_PA_Ap_LLs_opt),
+    format = "file"
+  ),
+  tar_target(
+    pa_res_ld_csv,
+    generate_pa_dat(pa_full_csv, pa_csv,
+    fit_18_draws_PA_Ap_LDs_opt, ld = TRUE),
     format = "file"
   ),
   tar_target(
@@ -635,6 +692,10 @@ list(
   tar_target(
     pa_long_dat,
     gen_pa_long(pa_res_csv)
+  ),
+  tar_target(
+    pa_ld_long_dat,
+    gen_pa_ld_long(pa_res_ld_csv)
   ),
   tar_target(
     gl_point_plot, {
@@ -705,6 +766,27 @@ list(
       #   width = 8,
       #   height = 4)
         paste0("figs/pa_point", c(".png"))
+    },
+    format = "file"
+  ),
+  tar_target(
+    pa_ld_point_plot, {
+      p <- pa_ld_point(pa_ld_long_dat, settings_yml, r_vals_yml)
+      ggsave(
+        "figs/pa_ld_point.png",
+       p,
+       dpi = 300,
+       height = 11.4,
+       width = 11.4,
+       units = "cm"
+      )
+      # ggsave(
+      #   "figs/petiole.pdf",
+      #   p,
+      #   device = cairo_pdf,
+      #   width = 8,
+      #   height = 4)
+        paste0("figs/pa_ld_point", c(".png"))
     },
     format = "file"
   ),
