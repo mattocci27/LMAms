@@ -37,6 +37,14 @@ prepare_gl <- function(data) {
   paste("./data/gl_data.csv")
 }
 
+# there two types of SLA. In our analysis, both mass and area-normalization are
+# based on SLA_LEAF (not disc)
+# AMAXMASS: Mass-based Amax
+# AMAX: Area-based Amax
+# RESPMASS: Mass-based RESP
+# RESP: Area-based RESP
+#
+# `mutate(Aarea = LMA * Amass / 1000)` works too.
 prepare_pa <- function(fiber, leaf, habit) {
   fiber <- read_csv(fiber)
 
@@ -46,19 +54,18 @@ prepare_pa <- function(fiber, leaf, habit) {
 
   d <- read_csv(leaf)
 
-  # there two types of SLA. In our analysis, both mass and area-normalization are
-  # based on SLA_LEAF (not disc)
   d2 <- d |>
     dplyr::select(
       "SP4$", "SITE$", "STRATA$",
       genus = "GENUS$",
       species = "SPECIES$",
-      SLA_LEAF, LIFETIME, AMAXMASS, RESPMASS, AMAX,
+      SLA_LEAF, LIFETIME, AMAXMASS, RESPMASS, AMAX, RESP,
       N_PCT, P_PCT, LFTHICK, LAMTUF, LFTHICK, MDRBTUF, VEINTUF
     ) |>
     rename(Amass = AMAXMASS) |>
     rename(Rmass = RESPMASS) |>
-    rename(Amax = AMAX) |>
+    rename(Aarea = AMAX) |>
+    rename(Rarea = RESP) |>
     rename(LT = LFTHICK) |>
     rename(sp = `SP4$`) |>
     rename(site = `SITE$`) |>
@@ -68,9 +75,9 @@ prepare_pa <- function(fiber, leaf, habit) {
     mutate(LMA = 1 / SLA_LEAF * 10000) |>
     # mutate(LMA_DISC = 1 / SLA_DISC * 10000) |>
     mutate(LL = LIFETIME * 12 / 365) |>
-    mutate(Aarea = LMA * Amass / 1000) |>
+    # mutate(Aarea = LMA * Amass / 1000) |>
     # mutate(Aarea_DISC = LMA * Amass / 1000) |>
-    mutate(Rarea = LMA * Rmass / 1000) |>
+    # mutate(Rarea = LMA * Rmass / 1000) |>
     #mutate(Rarea_DISC = LMA * Rmass / 1000) |>
     mutate(sp_site_strata = paste(sp, site, strata, sep = "_")) |>
     mutate(Narea = LMA * N_PCT / 1000) |>
