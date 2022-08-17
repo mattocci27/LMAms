@@ -64,8 +64,8 @@ prepare_pa <- function(fiber, leaf, habit) {
     ) |>
     rename(Amass = AMAXMASS) |>
     rename(Rmass = RESPMASS) |>
-    rename(Aarea = AMAX) |>
-    rename(Rarea = RESP) |>
+    # rename(Aarea = AMAX) |>
+    # rename(Rarea = RESP) |>
     rename(LT = LFTHICK) |>
     rename(sp = `SP4$`) |>
     rename(site = `SITE$`) |>
@@ -75,7 +75,11 @@ prepare_pa <- function(fiber, leaf, habit) {
     mutate(LMA = 1 / SLA_LEAF * 10000) |>
     # mutate(LMA_DISC = 1 / SLA_DISC * 10000) |>
     mutate(LL = LIFETIME * 12 / 365) |>
-    # mutate(Aarea = LMA * Amass / 1000) |>
+    mutate(AMAX_re = LMA * Amass / 1000) |>
+    mutate(Aarea = ifelse(is.na(AMAX), AMAX_re, AMAX)) |>
+    mutate(RESP_re = LMA * Rmass / 1000) |>
+    mutate(Rarea = ifelse(is.na(RESP), RESP_re, RESP)) |>
+    mutate(Rarea = ifelse(RESP < 0, RESP_re, RESP)) |>
     # mutate(Aarea_DISC = LMA * Amass / 1000) |>
     # mutate(Rarea = LMA * Rmass / 1000) |>
     #mutate(Rarea_DISC = LMA * Rmass / 1000) |>
