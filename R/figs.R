@@ -636,7 +636,7 @@ prep_pa_box_list <- function(pa_inter_box_dat, letters_yml, trim = TRUE) {
     summarize(val = max(val) * 0.9) |>
     ungroup() |>
     arrange(LMA) |>
-    mutate(lab = p_letters$PA
+    mutate(lab = p_letters$PA_intra
            |> unlist())
   list(data = data, lab = lab1)
 }

@@ -983,8 +983,18 @@ list(
     prep_pa_box_dat(pa_res_csv, intra = TRUE)
   ),
   tar_target(
+    pa_inter_de_box_dat,
+    prep_pa_box_dat(pa_res_csv, intra = FALSE, sun = FALSE)
+  ),
+  tar_target(
+    pa_intra_de_box_dat,
+    prep_pa_box_dat(pa_res_csv, intra = TRUE, sun = FALSE)
+  ),
+  tar_target(
     letters_yml,
-    write_t(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat, fit_7_draws_GL_Aps_LLs, fit_20_draws_PA_Ap_LLs_opt),
+    write_t(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
+      pa_inter_de_box_dat, pa_intra_de_box_dat,
+      fit_7_draws_GL_Aps_LLs, fit_20_draws_PA_Ap_LLs_opt),
     format = "file"
   ),
   tar_target(
