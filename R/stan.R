@@ -14,8 +14,8 @@ generate_gl_stan <- function(data) {
     q_lim = 1,
     leaf = 1,
     dry = 1,
-    DE = as.numeric(as.factor(data$DE)),
-    gr = as.numeric(as.factor(data$DE))
+    leaf_habit = as.numeric(as.factor(data$leaf_habit)),
+    gr = as.numeric(as.factor(data$leaf_habit))
   )
 
   list_data$J <- list_data$gr %>%
@@ -23,8 +23,8 @@ generate_gl_stan <- function(data) {
     length()
 
   list_data$obs2 <- list_data$obs
-  list_data$E <- ifelse(data$DE == "E", 1, 0)
-  list_data$U <- ifelse(data$DE == "U", 1, 0)
+  list_data$E <- ifelse(data$leaf_habit == "E", 1, 0)
+  list_data$U <- ifelse(data$leaf_habit == "U", 1, 0)
   list_data
 }
 
@@ -59,7 +59,7 @@ generate_pa_stan <- function(data, full = FALSE) {
     A = data$Aarea,
     LL = data$LL,
     R = data$Rarea,
-    DE = 1,
+    leaf_habit = 1,
     gr = data$gr,
     J = data$gr %>% unique() %>% length(),
     q_lim = q_lim,
@@ -145,7 +145,7 @@ quiet <- function(code) {
 # targets::tar_load(gl_csv)
 # data <- read_csv(gl_csv)
 # rand_fun(2, data, list_data)
-rand_fun <- function(n, data, list_data){
+rand_fun <- function(n, data, list_data, ld = FALSE){
   a_pval <- cor.test(log(data$LMA), log(data$Aarea))$p.val
   l_pval <- cor.test(log(data$LMA), log(data$LL))$p.val
   r_pval <- cor.test(log(data$LMA), log(data$Rarea))$p.val
@@ -180,15 +180,17 @@ rand_fun <- function(n, data, list_data){
 
   tmp$A_R <- tmp$A - tmp$R
 
-  list(N = list_data$N,
+  list_dat <- list(N = list_data$N,
             A = tmp$Aarea,
             LL = tmp$LL,
             R = tmp$Rarea,
             q_lim = list_data$q_lim,
             leaf = list_data$leaf,
             dry = list_data$dry,
-            DE = list_data$DE,
+            leaf_habit = list_data$leaf_habit,
             LMA = tmp$LMA)
+  if (ld) list_dat$LT <- data$LT
+  list_dat
 }
 
 
@@ -273,7 +275,7 @@ generate_gl_dat <- function(gl_csv, draws) {
   LMAs_lwr <- apply(exp(LMAs_dat), 2, \(x) quantile(x, 0.025))
   LMAs_upr <- apply(exp(LMAs_dat), 2, \(x) quantile(x, 0.975))
   GL <- GL |>
-    mutate(DE = ifelse(GL$DE == "", "U", as.character(DE)))
+    mutate(leaf_habit = ifelse(GL$leaf_habit == "", "U", as.character(leaf_habit)))
   GL |>
     mutate(LMAp = LMAp_mean) |>
     mutate(LMAp_lwr = LMAp_lwr) |>
@@ -282,16 +284,20 @@ generate_gl_dat <- function(gl_csv, draws) {
     mutate(LMAs_lwr = LMAs_lwr) |>
     mutate(LMAs_upr = LMAs_upr) |>
     mutate(id = paste0("gl_", 1:nrow(GL))) |>
-    write_csv("data/GL_res.csv")
-  paste("data/GL_res.csv")
+    write_csv("data/gl_res.csv")
+  paste("data/gl_res.csv")
 }
 
 #' @title Generates csv file of Panama for the subsequent analysis
-generate_pa_dat <- function(pa_full_csv, draws) {
+#' @ld  Use LDs or LMAs. LMAs has 130 rows and LDS has 108 rows (default = FALSE)
+generate_pa_dat <- function(pa_full_csv, pa_csv, draws, ld = FALSE) {
   # library(tidyverse)
   # targets::tar_load(pa_full_csv)
+  # targets::tar_load(pa_csv)
   # targets::tar_load(fit_20_draws_PA_Ap_LLs_opt)
-  # draws <- fit_20_draws_PA_Ap_LLs_opt
+  # targets::tar_load(fit_18_draws_PA_Ap_LDs_opt)
+  # draws_ll <- fit_20_draws_PA_Ap_LLs_opt
+  # draws <- fit_18_draws_PA_Ap_LDs_opt
   LMAp_dat <- draws |>
     dplyr::select(contains("LMAp"))
   LMAs_dat <- draws |>
@@ -303,14 +309,23 @@ generate_pa_dat <- function(pa_full_csv, draws) {
   LMAs_lwr <- apply(exp(LMAs_dat), 2, \(x) quantile(x, 0.025))
   LMAs_upr <- apply(exp(LMAs_dat), 2, \(x) quantile(x, 0.975))
 
+  pa <- read_csv(pa_full_csv)
+  if (ld) {
+    LDs_dat <- draws |>
+      dplyr::select(contains("LDs"))
+    LDs_mean <- apply(exp(LDs_dat), 2, mean)
+    LDs_lwr <- apply(exp(LDs_dat), 2, \(x) quantile(x, 0.025))
+    LDs_upr <- apply(exp(LDs_dat), 2, \(x) quantile(x, 0.975))
+    pa <- read_csv(pa_csv)
+  }
+
   mu_dat <- draws |>
     janitor::clean_names() |>
     dplyr::select(contains("mu_")) |>
     dplyr::select(ends_with("_2"))
-  PA <- read_csv(pa_full_csv)
 
   # for the partial correlation of LL vs. LMAs, controlling for light.
-  light <- ifelse(PA$strata == "CAN", 1, 0)
+  light <- ifelse(pa$strata == "CAN", 1, 0)
   log_LMAs_mat <- draws |>
     dplyr::select(contains("LMAs")) |>
     as.matrix()
@@ -321,16 +336,23 @@ generate_pa_dat <- function(pa_full_csv, draws) {
     res_s
   }
 
-  res_s_mat <- apply(log_LMAs_mat, 1, res_fun,  light)
+  if (ld) {
+    log_LDs_mat <- draws |>
+      dplyr::select(contains("LDs")) |>
+      as.matrix()
+    res_s_mat <- apply(log_LDs_mat, 1, res_fun,  light)
+  } else {
+    res_s_mat <- apply(log_LMAs_mat, 1, res_fun,  light)
+  }
 
   res_s <- apply(res_s_mat, 1, mean)
-  fit_Ls <- lm(log(PA$LL) ~ light)
+  fit_Ls <- lm(log(pa$LL) ~ light)
   res_Ls <- residuals(fit_Ls)
 
-  PA <- PA |>
+  pa <- pa |>
     mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) |>
     mutate(site_strata = paste(site2, strata, sep = "_"))
-  PA |>
+  pa2 <- pa |>
     mutate(LMAp = LMAp_mean) |>
     mutate(LMAp_lwr = LMAp_lwr) |>
     mutate(LMAp_upr = LMAp_upr) |>
@@ -340,11 +362,21 @@ generate_pa_dat <- function(pa_full_csv, draws) {
     mutate(Mu2 = apply(mu_dat, 2, mean)) |>
     mutate(Mu2_lo = apply(mu_dat, 2, \(x) quantile(x, 0.025))) |>
     mutate(Mu2_up = apply(mu_dat, 2, \(x) quantile(x, 0.975))) |>
-    mutate(id = paste0("pa_", 1:nrow(PA))) |>
+    mutate(id = paste0("pa_", 1:nrow(pa)))
+  if (ld) {
+   pa2 <- pa2 |>
+    mutate(LDs = LDs_mean) |>
+    mutate(LDs_lwr = LDs_lwr) |>
+    mutate(LDs_upr = LDs_upr) |>
+    mutate(res_LL_light = res_Ls, res_LDs_light = res_s) |>
+    write_csv("data/pa_res_ld.csv")
+   paste("data/pa_res_ld.csv")
+  } else {
+   pa2 <- pa2 |>
     mutate(res_LL_light = res_Ls, res_LMAs_light = res_s) |>
-    write_csv("data/PA_res.csv")
-
-  paste("data/PA_res.csv")
+    write_csv("data/pa_res.csv")
+   paste("data/pa_res.csv")
+  }
 }
 
 #' @title Generates csv file of GLOPNET for the subsequent analysis
@@ -352,8 +384,8 @@ clean_gl_res <- function(gl_res_csv) {
   gl <- read_csv(gl_res_csv)
   gl |>
     mutate(frac = LMAp / LMA) |>
-    mutate(DE = ifelse(is.na(DE), "U", DE)) |>
-    mutate(gr = factor(DE,
+    mutate(leaf_habit = ifelse(is.na(leaf_habit), "U", leaf_habit)) |>
+    mutate(gr = factor(leaf_habit,
                        labels = c("Deciduous",
                                   "Evergreen",
                                   "Unclassified"

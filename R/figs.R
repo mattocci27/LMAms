@@ -163,15 +163,15 @@ scatter_plt <- function(data, lab1, settings_yml, GL = TRUE) {
 #' @title Generates long data for ggplot (GLOPNET)
 gen_gl_long <- function(gl_res_csv) {
   read_csv(gl_res_csv) |>
-    mutate(DE = ifelse(is.na(DE), "U", as.character(DE))) |>
-    mutate(gr = factor(DE,
+    mutate(leaf_habit = ifelse(is.na(leaf_habit), "U", as.character(leaf_habit))) |>
+    mutate(gr = factor(leaf_habit,
                        labels = c("Deciduous",
                                   "Evergreen",
                                   "Unclassified"
                                   ))) |>
     pivot_longer(c(LMA, LMAs, LMAp), names_to = "LMA", values_to = "val") |>
     pivot_longer(c(Aarea, Rarea, LL, Narea, Parea), names_to = "trait", values_to = "val2") |>
-    # mutate(DE = factor(DE,
+    # mutate(leaf_habit = factor(leaf_habit,
     #         levels = c("D", "E", "U"))) %>%
     mutate(LMA = factor(LMA,
       labels = c("LMA", "LMAp", "LMAs"))) %>%
@@ -194,12 +194,47 @@ gen_pa_long <- function(pa_res_csv) {
     pivot_longer(c(LMA, LMAs, LMAp), names_to = "LMA", values_to = "val") |>
     pivot_longer(c(Aarea, Rarea, LL, Narea, Parea, cell_area),
       names_to = "trait", values_to = "val2") |>
-    # mutate(DE = factor(DE,
+    # mutate(leaf_habit = factor(leaf_habit,
     #         levels = c("D", "E", "U"))) |>
     mutate(LMA = factor(LMA,
       labels = c("LMA", "LMAp", "LMAs"))) |>
     mutate(LMA = factor(LMA,
       labels = c("LMA~(~g~m^{-2})", "LMAp~(~g~m^{-2})", "LMAs~(~g~m^{-2})"))) |>
+    mutate(site_strata = factor(site_strata,
+            levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) |>
+    mutate(trait = factor(trait,
+      levels = c("Aarea", "Rarea", "LL", "Narea", "Parea", "cell_area"))) |>
+    mutate(trait2 = factor(trait,
+      labels = c("italic(A)[area]~(~mu~mol~m^{-2}~s^{-1})",
+                 "italic(R)[area]~(~mu~mol~m^{-2}~s^{-1})",
+                 "LL~(months)",
+                 "italic(N)[area]~(~g~m^{-2})",
+                 "italic(P)[area]~(~g~m^{-2})",
+                 "italic(CL)[area]~(~g~m^{-2})"
+                 ))) |>
+    mutate(gr = factor(site_strata,
+      labels = c("Sun-Wet",
+                 "Sun-Dry",
+                 "Shade-Wet",
+                 "Shade-Dry"
+                        ))) |>
+    arrange(gr)
+}
+
+#' @title Generates long data for ggplot (Panama)
+gen_pa_ld_long <- function(pa_res_ld_csv) {
+  #targets::tar_load(pa_res_csv)
+  read_csv(pa_res_ld_csv) |>
+    pivot_longer(c(LMA, LMAs, LDs, LMAp), names_to = "LMA", values_to = "val") |>
+    pivot_longer(c(Aarea, Rarea, LL, Narea, Parea, cell_area),
+      names_to = "trait", values_to = "val2") |>
+    # mutate(leaf_habit = factor(leaf_habit,
+    #         levels = c("D", "E", "U"))) |>
+    mutate(LMA = factor(LMA,
+      labels = c("LMA", "LMAp", "LMAs", "LDs"))) |>
+    mutate(LMA = factor(LMA,
+      labels = c("LMA~(~g~m^{-2})", "LMAp~(~g~m^{-2})",
+       "LMAs~(~g~m^{-2})", "LDs~(~g~cm^{-3})"))) |>
     mutate(site_strata = factor(site_strata,
             levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) |>
     mutate(trait = factor(trait,
@@ -367,6 +402,30 @@ pa_point <- function(pa_long_dat, settings_yml, r_vals_yml) {
   scatter_plt(dat, lab1, settings_yml, GL = FALSE)
 }
 
+#' @title Scatter plots for Panama
+pa_ld_point <- function(pa_long_dat, settings_yml, r_vals_yml) {
+  r_vals <- yaml::yaml.load_file(r_vals_yml)
+  dat <- pa_long_dat |>
+    filter(trait %in% c("LL", "Aarea", "Rarea")) |>
+    filter(LMA != "LDs~(~g~cm^{-3})")
+
+  lim_pa <- lim_func(dat)
+  lim_pa2 <- lim_func(dat, LMA = FALSE)
+
+  lab1 <- tibble(lab = paste("(", letters[1:9], ")", sep = ""),
+                     val2 = lim_pa2$max_val %>% rep(each = 3),
+                    # val2 = Inf,
+                     val = lim_pa$min_val %>% rep(3),
+                     val_max = lim_pa$max_val %>% rep(3),
+                     gr = "Sun-Dry",
+                     r_vals = r_vals$r_vals$PA %>% unlist,
+                     trait2 = rep(lim_pa2$trait2, each = 3),
+                     LMA = rep(lim_pa$LMA, 3)
+                     ) |>
+    mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
+
+  scatter_plt(dat, lab1, settings_yml, GL = FALSE)
+}
 
 #' @title Scatter plots for Panama (NPC)
 pa_point_npc <- function(pa_long_dat, settings_yml, r_vals_yml) {
@@ -542,8 +601,8 @@ pa_point_par_ll <- function(pa_res_csv, settings_yml, r_vals_yml) {
 
 prep_gl_box_list <- function(gl_res_dat, letters_yml) {
   data <- gl_res_dat |>
-    filter(DE != "U") |>
-    dplyr::select(sp, DE, gr, LMA, LMAp, LMAs) |>
+    filter(leaf_habit != "U") |>
+    dplyr::select(sp, leaf_habit, gr, LMA, LMAp, LMAs) |>
     pivot_longer(LMA:LMAs, names_to = "LMA", values_to = "val") |>
     unique() |>
     mutate(gr = ifelse(gr == "Deciduous", "Dec", "Eve"))
@@ -561,11 +620,11 @@ prep_gl_box_list <- function(gl_res_dat, letters_yml) {
 prep_pa_box_list <- function(pa_inter_box_dat, letters_yml, trim = TRUE) {
   # targets::tar_load(pa_inter_box_dat)
   # targets::tar_load(letters_yml)
-  # pa_inter_box_dat$DE
+  # pa_inter_box_dat$leaf_habit
   # pa_inter_box_dat$n
   p_letters <- yaml::yaml.load_file(letters_yml)
   data <- pa_inter_box_dat |>
-    dplyr::select(sp, n, DE, gr, LMA, LMAp, LMAs) |>
+    dplyr::select(sp, n, leaf_habit, gr, LMA, LMAp, LMAs) |>
     pivot_longer(LMA:LMAs, names_to = "LMA", values_to = "val") |>
     #dplyr::select(gr, val, LMA) |>
     unique()
@@ -685,22 +744,22 @@ box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
                            "comprised by LMAp ("*italic(f)*")"))
 
   lab1 <- gl_box_dat |>
-    group_by(DE) |>
+    group_by(leaf_habit) |>
     summarize(frac = max(frac)) |>
     ungroup() |>
     mutate(lab = p_letters$Frac$GL
            |> unlist())
 
   lab2 <- pa_intra_box_dat |>
-    filter(!is.na(DE)) |>
-    group_by(DE) |>
+    filter(!is.na(leaf_habit)) |>
+    group_by(leaf_habit) |>
     summarize(frac = max(frac)) |>
     ungroup() |>
     mutate(lab = p_letters$Frac$PA
            |> unlist())
 
   p1 <- ggplot(gl_box_dat,
-    aes(x = DE, y = frac, fill = DE)) +
+    aes(x = leaf_habit, y = frac, fill = leaf_habit)) +
     geom_boxplot(outlier.shape = 21, outlier.size = 1) +
     geom_text(data = lab1, aes(label = lab),
               vjust = -1,
@@ -715,7 +774,7 @@ box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
       strip.background = element_blank()
           )
   p2 <- ggplot(pa_intra_box_dat,
-    aes(x = DE, y = frac, fill = DE)) +
+    aes(x = leaf_habit, y = frac, fill = leaf_habit)) +
     geom_boxplot(outlier.shape = 21, outlier.size = 1) +
     geom_text(data = lab2, aes(label = lab),
               vjust = -1,

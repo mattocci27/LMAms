@@ -31,6 +31,11 @@ tar_option_set(packages = c(
   "multcompView"
 ))
 
+tar_option_set(
+  garbage_collection = TRUE,
+  memory = "transient"
+)
+
 # check if it's inside a container
 if (file.exists("/.dockerenv") | file.exists("/.singularity.d/startscript")) {
   Sys.setenv(CMDSTAN = "/opt/cmdstan/cmdstan-2.29.2")
@@ -78,7 +83,7 @@ list(
   ),
   tar_target(
     pa_full_csv,
-    prepare_pa(fiber_file, pa_file),
+    prepare_pa(fiber_file, pa_file, leafhabit_file),
     format = "file"
   ),
   tar_target(
@@ -88,16 +93,16 @@ list(
       d |>
         filter(!is.na(LD)) |>
         filter(!is.na(LT)) |>
-        write_csv("data/PA_data.csv")
-      paste("data/PA_data.csv")
+        write_csv("data/pa_data.csv")
+      paste("data/pa_data.csv")
     },
     format = "file"
   ),
-  tar_target(
-    pa_lh_csv,
-    prepare_leafhabit(pa_file, leafhabit_file),
-    format = "file"
-  ),
+  # tar_target(
+  #   pa_lh_csv,
+  #   prepare_leafhabit(pa_file, leafhabit_file),
+  #   format = "file"
+  # ),
   tar_target(
     tar_stan_txt,
     generate_tar_stan(model_json, model_lma_json),
@@ -354,7 +359,8 @@ list(
 
   tar_target(
     loo_model,
-    mclapply(
+    #mclapply(
+    lapply(
       list(
         fit_1_mcmc_GL_LMA    = fit_1_mcmc_GL_LMA,
         fit_2_mcmc_PA_LMA    = fit_2_mcmc_PA_LMA,
@@ -479,7 +485,6 @@ list(
     future_map(pa_rand_list$data, fit_rand_model, PA_Ap_LLs_opt, 2000, 2000, 0.9,
     .options = furrr_options(seed = 123))
   ),
-
   tar_target(
     gl_rand_check,
     tibble(rhat = sapply(gl_rand_fit, \(x) x$summary |> filter(rhat > 1.05) |> nrow()),
@@ -514,8 +519,6 @@ list(
       tmp
     }
   ),
-
-
   tar_target(
     pa_rand_sig, {
       tmp <- NULL
@@ -582,7 +585,7 @@ list(
 
   tar_target(
     pa_res_csv,
-    generate_pa_dat(pa_full_csv, fit_20_draws_PA_Ap_LLs_opt),
+    generate_pa_dat(pa_full_csv, pa_csv, fit_20_draws_PA_Ap_LLs_opt),
     format = "file"
   ),
   tar_target(
@@ -973,11 +976,11 @@ list(
   ),
   tar_target(
     pa_inter_box_dat,
-    prep_pa_box_dat(pa_res_csv, pa_lh_csv, intra = FALSE)
+    prep_pa_box_dat(pa_res_csv, intra = FALSE)
   ),
   tar_target(
     pa_intra_box_dat,
-    prep_pa_box_dat(pa_res_csv, pa_lh_csv, intra = TRUE)
+    prep_pa_box_dat(pa_res_csv, intra = TRUE)
   ),
   tar_target(
     letters_yml,
