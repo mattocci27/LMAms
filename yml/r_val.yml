@@ -19,28 +19,28 @@ r_vals:
   GL_LMAps:
     LMAs_LMAp: '-0.03 [-0.11, 0.05]'
   PA:
-    LMA_Aarea: 'italic(r) == 0.67'
-    LMAp_Aarea: 'italic(bar(r)) == 0.88'
+    LMA_Aarea: 'italic(r) == 0.66'
+    LMAp_Aarea: 'italic(bar(r)) == 0.9'
     LMAs_Aaera: "italic(bar(r)) == 'NA'"
-    LMA_Rarea: 'italic(r) == 0.5'
-    LMAp_Rarea: 'italic(bar(rho)) == 0.71'
-    LMAs_Rarea: 'italic(bar(rho)) == -0.05'
+    LMA_Rarea: 'italic(r) == 0.49'
+    LMAp_Rarea: 'italic(bar(rho)) == 0.66'
+    LMAs_Rarea: 'italic(bar(rho)) == 0.02'
     LMA_LL: 'italic(r) == -0.03'
     LMAp_LL: "italic(bar(r)) == 'NA'"
-    LMAs_LL: 'italic(bar(r)) == 0.44'
+    LMAs_LL: 'italic(bar(r)) == 0.43'
   PA_LMAps:
-    LMAs_LMAp: '-0.16 [-0.25, -0.06]'
+    LMAs_LMAp: '-0.16 [-0.26, -0.06]'
   PA_NP:
-    LMA_Narea: 'italic(r) == 0.74'
-    LMAp_Narea: 'italic(r) == 0.83'
-    LMAs_Narea: 'italic(r) == 0.19'
-    LMA_Parea: 'italic(r) == 0.62'
-    LMAp_Parea: 'italic(r) == 0.77'
-    LMAs_Parea: 'italic(r) == 0.06'
+    LMA_Narea: 'italic(r) == 0.79'
+    LMAp_Narea: 'italic(r) == 0.85'
+    LMAs_Narea: 'italic(r) == 0.22'
+    LMA_Parea: 'italic(r) == 0.69'
+    LMAp_Parea: 'italic(r) == 0.81'
+    LMAs_Parea: 'italic(r) == 0.11'
     LMA_cell_area: 'italic(r) == 0.81'
-    LMAp_cell_area: 'italic(r) == 0.53'
-    LMAs_cell_area: 'italic(r) == 0.58'
+    LMAp_cell_area: 'italic(r) == 0.52'
+    LMAs_cell_area: 'italic(r) == 0.57'
   PA_R2:
     LL_R2: 'italic(R^2) == 0.45'
   PA_par:
-    LMAs_LL: 'italic(bar(ρ)) == 0.66'
+    LMAs_LL: 'italic(bar(ρ)) == 0.65'

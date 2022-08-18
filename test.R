@@ -1,30 +1,29 @@
 library(tidyverse)
+targets::tar_load(loo_model)
 
-targets::tar_load(fit_20_draws_PA_Ap_LLs_opt)
-targets::tar_load(fit_20_summary_PA_Ap_LLs_opt)
-pa_draws <- fit_20_draws_PA_Ap_LLs_opt
+d <- read_csv("data-raw/leaf_traits.csv")
 
+d2 <- d |>
+  janitor::clean_names() |>
+  mutate(lma = 1 / sla_leaf * 10000) |>
+  mutate(amax_re = lma * amaxmass / 1000) |>
+  mutate(resp_re = lma * respmass / 1000)
 
-targets::tar_load(pa_res_csv)
-pa <- read_csv(pa_res_csv)
+d2 |>
+  dplyr::select(resp, resp_re) |>
+  #dplyr::select(amax, amax_re, resp, resp_re) |>
+  # mutate(Aarea = ifelse(is.na(amax), amax_re, amax)) |>
+  mutate(Rarea = ifelse(is.na(resp), resp_re, resp)) |>
+  mutate(Rarea = ifelse(resp < 0, resp_re, resp)) |>
+  as.data.frame()
 
+names(loo_model)
+sapply(loo_model, "[[", "looic")
 
-light <- ifelse(pa$strata == "CAN", 1, 0)
-log_LMAs_mat <- pa_draws |>
-  dplyr::select(contains("LMAs")) |>
-  as.matrix()
+d <- read_csv("data/pa_res_ld.csv")
+d <- read_csv("data/pa_res.csv")
 
-res_fun <- function(x, light) {
-  fit_s <- lm(x ~ light)
-  res_s <- residuals(fit_s)
-  res_s
-}
-
-tic()
-res_s_mat <- apply(log_LMAs_mat, 1, res_fun,  light)
-toc()
-
-res_s <- apply(hoge, 1, mean)
-fit_Ls <- lm(log(pa$LL) ~ light)
-res_Ls <- residuals(fit_Ls)
-tibble(res_LL = res_Ls, res_LMAs = res_s)
+ggplot(d, aes(x = LMAs, y = Aarea)) +
+  geom_point() +
+  scale_x_log10() +
+  scale_y_log10()
