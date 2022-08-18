@@ -13,6 +13,7 @@ source("R/vpart.R")
 source("R/mass_prop.R")
 source("R/yml.R")
 source("R/t_yml.R")
+source("R/tar_stan_mcmc_list.R")
 
 plan(multicore)
 options(clustermq.scheduler = "multicore")
@@ -79,6 +80,14 @@ raw_data_list <- list(
   )
 )
 
+# generate_tar_stan_list <- list(
+#   tar_target(
+#     tar_stan_txt,
+#     generate_tar_stan(model_json, model_lma_json),
+#     format = "file"
+#   )
+# )
+
 # main analysis ----------------------------------
 main_list <- list(
   tar_target(
@@ -114,18 +123,12 @@ main_list <- list(
     format = "file"
   ),
   tar_target(
-    tar_stan_txt,
-    generate_tar_stan(model_json, model_lma_json),
-    format = "file"
-  ),
-  tar_target(
     settings_yml,
     "yml/settings.yml",
     format = "file"
   ),
 
   # stan -------------------------------------------------
-
   tar_target(
     gl_stan_dat,
     generate_gl_stan(read_csv(gl_csv)),
@@ -138,234 +141,6 @@ main_list <- list(
     pa_stan_dat_full,
     generate_pa_stan(read_csv(pa_full_csv), full = TRUE),
   ),
-  tar_stan_mcmc(
-    fit_1,
-    "stan/GL_LMA.stan",
-    data = gl_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.9,
-    max_treedepth = 15,
-    seed = 123),
-  tar_stan_mcmc(
-    fit_2,
-    "stan/PA_LMA.stan",
-    data = pa_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.9,
-    max_treedepth = 15,
-    seed = 123),
-  tar_stan_mcmc(
-    fit_3,
-    "stan/PA_LMA_opt.stan",
-    data = pa_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.9,
-    max_treedepth = 15,
-    seed = 123),
-  tar_stan_mcmc(
-    fit_4,
-    "stan/GL_Ap_LLs.stan",
-    data = gl_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.9,
-    max_treedepth = 15,
-    seed = 123),
-  tar_stan_mcmc(
-    fit_5,
-    "stan/GL_Aps_LLps.stan",
-    data = gl_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.9,
-    max_treedepth = 15,
-    seed = 123),
-  tar_stan_mcmc(
-    fit_6,
-    "stan/GL_Ap_LLps.stan",
-    data = gl_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 3000,
-    iter_sampling = 2000,
-    adapt_delta = 0.9,
-    max_treedepth = 15,
-    seed = 123),
-  tar_stan_mcmc(
-    fit_7,
-    "stan/GL_Aps_LLs.stan",
-    data = gl_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.9,
-    max_treedepth = 15,
-    seed = 123),
-  tar_stan_mcmc(
-    fit_8,
-    "stan/PA_Ap_LLs.stan",
-    data = pa_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.999,
-    max_treedepth = 15,
-    seed = 123),
-  tar_stan_mcmc(
-    fit_9,
-    "stan/PA_Aps_LLps.stan",
-    data = pa_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.999,
-    max_treedepth = 15,
-    seed = 123),
-  tar_stan_mcmc(
-    fit_10,
-    "stan/PA_Ap_LLps.stan",
-    data = pa_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.999,
-    max_treedepth = 15,
-    seed = 123),
-  tar_stan_mcmc(
-    fit_11,
-    "stan/PA_Aps_LLs.stan",
-    data = pa_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.9,
-    max_treedepth = 15,
-    seed = 123),
-  tar_stan_mcmc(
-    fit_12,
-    "stan/PA_Ap_LLs_opt.stan",
-    data = pa_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.9,
-    max_treedepth = 15,
-    seed = 123),
-  tar_stan_mcmc(
-    fit_13,
-    "stan/PA_Aps_LLps_opt.stan",
-    data = pa_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.999,
-    max_treedepth = 15,
-    seed = 123),
-  tar_stan_mcmc(
-    fit_14,
-    "stan/PA_Ap_LLps_opt.stan",
-    data = pa_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.999,
-    max_treedepth = 15,
-    seed = 123),
-  tar_stan_mcmc(
-    fit_15,
-    "stan/PA_Aps_LLs_opt.stan",
-    data = pa_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.9,
-    max_treedepth = 15,
-    seed = 123),
-  tar_stan_mcmc(
-    fit_16,
-    "stan/PA_Ap_LDs.stan",
-    data = pa_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.999,
-    max_treedepth = 15,
-    seed = 123),
-  tar_stan_mcmc(
-    fit_17,
-    "stan/PA_Ap_LDps.stan",
-    data = pa_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.999,
-    max_treedepth = 15,
-    seed = 123),
-  tar_stan_mcmc(
-    fit_18,
-    "stan/PA_Ap_LDs_opt.stan",
-    data = pa_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.999,
-    max_treedepth = 15,
-    seed = 123),
-  tar_stan_mcmc(
-    fit_19,
-    "stan/PA_Ap_LDps_opt.stan",
-    data = pa_stan_dat,
-    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.999,
-    max_treedepth = 15,
-    seed = 123),
 
   tar_target(
     loo_model,
@@ -1066,7 +841,10 @@ main_list <- list(
   tar_render(
     report,
     "report.Rmd"
-  )
+  ),
+  NULL
 )
 
-append(raw_data_list, main_list)
+targets <- append(raw_data_list, tar_stan_mcmc_list)
+# targets <- append(targets, tar_stan_mcmc_list)
+append(targets, main_list)
