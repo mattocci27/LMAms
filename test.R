@@ -21,9 +21,10 @@ names(loo_model)
 sapply(loo_model, "[[", "looic")
 
 d <- read_csv("data/pa_res_ld.csv")
+
+library(tidyverse)
 d <- read_csv("data/pa_res.csv")
 
-ggplot(d, aes(x = LMAs, y = Aarea)) +
-  geom_point() +
-  scale_x_log10() +
+ggplot(d, aes(y = LMAp, x = leaf_habit)) +
+  geom_boxplot() +
   scale_y_log10()
