@@ -44,8 +44,9 @@ if (file.exists("/.dockerenv") | file.exists("/.singularity.d/startscript")) {
 
 cmdstan_version()
 
-list(
-  # data cleaning ----------------------------------
+# data cleaning ----------------------------------
+# this list can be removed later
+raw_data_list <- list(
   tar_target(
     fiber_file,
     "data-raw/fiber_analysis.csv",
@@ -67,6 +68,20 @@ list(
     format = "file"
   ),
   tar_target(
+    gl_csv_raw,
+    prepare_gl(gl_file),
+    format = "file"
+  ),
+  tar_target(
+    pa_full_csv_raw,
+    prepare_pa(fiber_file, pa_file, leafhabit_file),
+    format = "file"
+  )
+)
+
+# main analysis ----------------------------------
+main_list <- list(
+  tar_target(
     model_json,
     "templates/model.json",
     format = "file"
@@ -78,12 +93,12 @@ list(
   ),
   tar_target(
     gl_csv,
-    prepare_gl(gl_file),
+    "data/gl_data.csv",
     format = "file"
   ),
   tar_target(
     pa_full_csv,
-    prepare_pa(fiber_file, pa_file, leafhabit_file),
+    "data/pa_data_full.csv",
     format = "file"
   ),
   tar_target(
@@ -98,11 +113,6 @@ list(
     },
     format = "file"
   ),
-  # tar_target(
-  #   pa_lh_csv,
-  #   prepare_leafhabit(pa_file, leafhabit_file),
-  #   format = "file"
-  # ),
   tar_target(
     tar_stan_txt,
     generate_tar_stan(model_json, model_lma_json),
@@ -359,7 +369,6 @@ list(
 
   tar_target(
     loo_model,
-    #mclapply(
     lapply(
       list(
         fit_1_mcmc_GL_LMA    = fit_1_mcmc_GL_LMA,
@@ -1059,3 +1068,5 @@ list(
     "report.Rmd"
   )
 )
+
+append(raw_data_list, main_list)
