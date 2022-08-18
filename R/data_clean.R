@@ -71,7 +71,7 @@ prepare_pa <- function(fiber, leaf, habit) {
     mutate(Aarea = ifelse(is.na(AMAX), AMAX_re, AMAX)) |>
     mutate(RESP_re = LMA * Rmass / 1000) |>
     mutate(Rarea = ifelse(is.na(RESP), RESP_re, RESP)) |>
-    mutate(Rarea = ifelse(RESP < 0, RESP_re, RESP)) |>
+    mutate(Rarea = ifelse(Rarea < 0, RESP_re, Rarea)) |>
     mutate(sp_site_strata = paste(sp, site, strata, sep = "_")) |>
     mutate(Narea = LMA * N_PCT / 1000) |>
     mutate(Parea = LMA * P_PCT / 1000) |>
@@ -80,7 +80,7 @@ prepare_pa <- function(fiber, leaf, habit) {
       LAMTUF = LAMTUF / 1000, MDRBTUF = MDRBTUF / 1000,
       VEINTUF = VEINTUF / 1000
     ) |>
-    filter(Rarea > 0)
+  filter(Rarea > 0)
 
   d3 <- left_join(d2, fiber2, by = c(
     "sp" = "sp",
