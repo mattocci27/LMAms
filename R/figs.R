@@ -1,3 +1,28 @@
+
+#' @title ggsave for targets
+my_ggsave <- function(filename, plot, units = c("in", "cm",
+        "mm", "px"), height = NA, width = NA, dpi = 300, ...) {
+  ggsave(
+    filename = paste0(filename, ".png"),
+    plot = plot,
+    height = height,
+    width = width,
+    units = units,
+    dpi = dpi,
+    ...
+  )
+  ggsave(
+    filename = paste0(filename, ".pdf"),
+    plot = plot,
+    height = height,
+    width = width,
+    units = units,
+    dpi = dpi,
+    ...
+  )
+  paste0(filename, c(".png", ".pdf"))
+}
+
 #' @title Hypothetical relationships
 hypo_point <- function(para_yml, n = 200, seed = 123) {
  targets::tar_load(para_yml)
@@ -924,3 +949,4 @@ pair_lma_line <- function(pa_res_dat) {
     ylab(expression(atop(LMA~(g~m^{-2})))) +
     theme_LES()
 }
+

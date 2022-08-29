@@ -1,0 +1,231 @@
+---
+title: report
+author: "Masatoshi Katabuchi"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+format:
+  html:
+    # fig_caption: yes
+    theme: cosmo #readable #sandstone #spacelab #flatly
+    # highlight: pygments #tango #kate
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    # fontsize: medium
+    # toc_float:
+    #  collapsed: TRUE
+    #  smooth_scroll: TRUE
+    #  toc: true
+---
+
+```{r global_options, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE,
+  cache = FALSE,
+  fig.align = "center",
+  fig.show = "hold"
+)
+```
+
+```{r}
+library(tidyverse)
+library(targets)
+library(kableExtra)
+library(here)
+source(here("R", "stan.R"))
+```
+
+# MCMC diagnostics
+
+```{r}
+targets::tar_load(gl_summary_GL_LMA)
+targets::tar_load(pa_summary_PA_LMA)
+targets::tar_load(pa_summary_PA_LMA_opt)
+targets::tar_load(gl_summary_GL_Ap_LLs)
+targets::tar_load(gl_summary_GL_Aps_LLps)
+targets::tar_load(gl_summary_GL_Ap_LLps)
+targets::tar_load(gl_summary_GL_Aps_LLs)
+targets::tar_load(pa_summary_PA_Ap_LLs)
+targets::tar_load(pa_summary_PA_Aps_LLps)
+targets::tar_load(pa_summary_PA_Ap_LLps)
+targets::tar_load(pa_summary_PA_Aps_LLs)
+targets::tar_load(pa_summary_PA_Ap_LLs_opt)
+targets::tar_load(pa_summary_PA_Aps_LLps_opt)
+targets::tar_load(pa_summary_PA_Ap_LLps_opt)
+targets::tar_load(pa_summary_PA_Aps_LLs_opt)
+targets::tar_load(pa_summary_PA_Ap_LDs)
+targets::tar_load(pa_summary_PA_Ap_LDps)
+targets::tar_load(pa_summary_PA_Ap_LDs_opt)
+targets::tar_load(pa_summary_PA_Ap_LDps_opt)
+targets::tar_load(pa_summary_PA_Ap_LLs_opt)
+```
+
+
+Note: Model 6 (GL_Ap_LLps) didn't converge very well.
+
+```{r}
+gl_summary_GL_LMA |> filter(rhat > 1.05)
+pa_summary_PA_LMA |> filter(rhat > 1.05)
+pa_summary_PA_LMA_opt |> filter(rhat > 1.05)
+gl_summary_GL_Ap_LLs |> filter(rhat > 1.05)
+gl_summary_GL_Aps_LLps |> filter(rhat > 1.05)
+gl_summary_GL_Ap_LLps |> filter(rhat > 1.05)
+gl_summary_GL_Aps_LLs |> filter(rhat > 1.05)
+pa_summary_PA_Ap_LLs |> filter(rhat > 1.05)
+pa_summary_PA_Aps_LLps |> filter(rhat > 1.05)
+pa_summary_PA_Ap_LLps |> filter(rhat > 1.05)
+pa_summary_PA_Aps_LLs |> filter(rhat > 1.05)
+pa_summary_PA_Ap_LLs_opt |> filter(rhat > 1.05)
+pa_summary_PA_Aps_LLps_opt |> filter(rhat > 1.05)
+pa_summary_PA_Ap_LLps_opt |> filter(rhat > 1.05)
+pa_summary_PA_Aps_LLs_opt |> filter(rhat > 1.05)
+pa_summary_PA_Ap_LDs |> filter(rhat > 1.05)
+pa_summary_PA_Ap_LDps |> filter(rhat > 1.05)
+pa_summary_PA_Ap_LDs_opt |> filter(rhat > 1.05)
+pa_summary_PA_Ap_LDps_opt |> filter(rhat > 1.05)
+pa_summary_PA_Ap_LLs_opt |> filter(rhat > 1.05)
+```
+
+
+
+```{r}
+targets::tar_load(gl_diagnostics_GL_LMA)
+targets::tar_load(pa_diagnostics_PA_LMA)
+targets::tar_load(pa_diagnostics_PA_LMA_opt)
+targets::tar_load(gl_diagnostics_GL_Ap_LLs)
+targets::tar_load(gl_diagnostics_GL_Aps_LLps)
+targets::tar_load(gl_diagnostics_GL_Ap_LLps)
+targets::tar_load(gl_diagnostics_GL_Aps_LLs)
+targets::tar_load(pa_diagnostics_PA_Ap_LLs)
+targets::tar_load(pa_diagnostics_PA_Aps_LLps)
+targets::tar_load(pa_diagnostics_PA_Ap_LLps)
+targets::tar_load(pa_diagnostics_PA_Aps_LLs)
+targets::tar_load(pa_diagnostics_PA_Ap_LLs_opt)
+targets::tar_load(pa_diagnostics_PA_Aps_LLps_opt)
+targets::tar_load(pa_diagnostics_PA_Ap_LLps_opt)
+targets::tar_load(pa_diagnostics_PA_Aps_LLs_opt)
+targets::tar_load(pa_diagnostics_PA_Ap_LDs)
+targets::tar_load(pa_diagnostics_PA_Ap_LDps)
+targets::tar_load(pa_diagnostics_PA_Ap_LDs_opt)
+targets::tar_load(pa_diagnostics_PA_Ap_LDps_opt)
+targets::tar_load(pa_diagnostics_PA_Ap_LLs_opt)
+```
+
+
+```{r}
+div_check(gl_diagnostics_GL_LMA)
+div_check(pa_diagnostics_PA_LMA)
+div_check(pa_diagnostics_PA_LMA_opt)
+div_check(gl_diagnostics_GL_Ap_LLs)
+div_check(gl_diagnostics_GL_Aps_LLps)
+div_check(gl_diagnostics_GL_Ap_LLps)
+div_check(gl_diagnostics_GL_Aps_LLs)
+div_check(pa_diagnostics_PA_Ap_LLs)
+div_check(pa_diagnostics_PA_Aps_LLps)
+div_check(pa_diagnostics_PA_Ap_LLps)
+div_check(pa_diagnostics_PA_Aps_LLs)
+div_check(pa_diagnostics_PA_Ap_LLs_opt)
+div_check(pa_diagnostics_PA_Aps_LLps_opt)
+div_check(pa_diagnostics_PA_Ap_LLps_opt)
+div_check(pa_diagnostics_PA_Aps_LLs_opt)
+div_check(pa_diagnostics_PA_Ap_LDs)
+div_check(pa_diagnostics_PA_Ap_LDps)
+div_check(pa_diagnostics_PA_Ap_LDs_opt)
+div_check(pa_diagnostics_PA_Ap_LDps_opt)
+div_check(pa_diagnostics_PA_Ap_LLs_opt)
+tar_read(div_check_list_gl_diagnostics_GL_Ap_LLs)
+```
+
+
+
+Model 4: GL_Ap_LLs is best for GLOPNET.
+
+```{r}
+targets::tar_load(loo_gl)
+loo::loo_compare(
+   loo_gl[[1]],
+   model2 = loo_gl[[2]],
+   model3 = loo_gl[[3]],
+   model4 = loo_gl[[4]],
+   model5 = loo_gl[[5]]) |>
+  print()
+```
+
+
+Model 12: PA_Ap_LLs_opt is best for Panama.
+
+```{r}
+targets::tar_load(loo_pa)
+loo::loo_compare(
+  loo_pa[[1]],
+  model2 = loo_pa[[2]],
+  model3 = loo_pa[[3]],
+  model4 = loo_pa[[4]],
+  model5 = loo_pa[[5]],
+  model6 = loo_pa[[6]],
+  model7 = loo_pa[[7]],
+  model8 = loo_pa[[8]],
+  model9 = loo_pa[[9]],
+  model10 = loo_pa[[10]],
+  model11 = loo_pa[[11]],
+  model12 = loo_pa[[12]],
+  model13 = loo_pa[[13]],
+  model14 = loo_pa[[14]]) |>
+  print()
+```
+
+
+# Diagnostics for randomized data
+
+There are too many divergent transitions.
+
+```{r}
+targets::tar_load(gl_rand_check)
+summary(gl_rand_check)
+
+targets::tar_load(pa_rand_check)
+summary(pa_rand_check)
+```
+
+
+None of the randomized datasets did converge.
+
+```{r}
+targets::tar_load(gl_rand_sig)
+
+gl_rand_sig
+
+gl_rand_sig |>
+  filter(sig == "sig") |>
+  filter(!str_detect(para, "0"))
+```
+
+```{r}
+targets::tar_load(pa_rand_sig)
+
+pa_rand_sig
+
+pa_rand_sig |>
+  filter(sig == "sig") |>
+  filter(!str_detect(para, "0"))
+```
+
+
+![](figs/coef_rand.png)
+
+![](figs/coef_rand_pa.png)
+
+
+# Computing Environment
+
+```{r}
+devtools::session_info()
+```
+
+# Pipelines
+
+```{r, fig.width=20, fig.height=20}
+targets::tar_visnetwork()
+```
