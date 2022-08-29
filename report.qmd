@@ -34,7 +34,32 @@ library(tidyverse)
 library(targets)
 library(kableExtra)
 library(here)
+library(jsonlite)
 source(here("R", "stan.R"))
+```
+
+```{r}
+tar_load(model_json)
+tar_load(model_lma_json)
+
+model <- fromJSON(model_json)$config
+model_lma <- fromJSON(model_lma_json)$config
+model_lma2 <- model_lma |>
+  mutate(site = ifelse(str_detect(model, "GL"), "GL", "PA"))
+model2 <- full_join(model_lma2, model, by = c("site", "model", "opt"))
+
+gl_stan_names <- str_c("stan/",
+  model2 |>
+    filter(site == "GL") |>
+    pull(model),
+  ".stan")
+
+pa_stan_names <- str_c("stan/",
+  model2 |>
+    filter(site == "PA") |>
+    pull(model),
+  ".stan")
+
 ```
 
 # MCMC diagnostics
