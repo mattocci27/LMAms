@@ -4,6 +4,7 @@ library(tidyverse)
 library(stantargets)
 library(cmdstanr)
 library(furrr)
+library(jsonlite)
 
 source("R/data_clean.R")
 source("R/stan.R")
@@ -141,15 +142,15 @@ main_list <- list(
     pa_stan_dat_full,
     generate_pa_stan(read_csv(pa_full_csv), full = TRUE),
   ),
+  tar_target(
+    stan_names,
+    generate_stan_names(model_json, model_lma_json)
+  ),
 
   tar_stan_mcmc(
     gl,
-    # c("stan/GL_LMA.stan", "stan/GL_Ap_LLs.stan", "stan/GL_Aps_LLps.stan",
-    # "stan/GL_Ap_LLps.stan", "stan/GL_Aps_LLs.stan"),
-    str_c(
-      "stan/GL_",
-      c("LMA", "Ap_LLs", "Aps_LLps", "Ap_LLps", "Aps_LLs"),
-      ".stan"),
+    generate_stan_names("templates/model.json",
+      "templates/model_LMA.json")$gl_stan_names,
     data = gl_stan_dat,
     refresh = 0,
     chains = 4,
@@ -161,21 +162,8 @@ main_list <- list(
     seed = 123),
   tar_stan_mcmc(
     pa,
-    c(
-     "stan/PA_Ap_LDps.stan",
-     "stan/PA_Ap_LDps_opt.stan",
-     "stan/PA_Ap_LDs.stan",
-     "stan/PA_Ap_LDs_opt.stan",
-     "stan/PA_Ap_LLps.stan",
-     "stan/PA_Ap_LLps_opt.stan",
-     "stan/PA_Ap_LLs.stan",
-     "stan/PA_Ap_LLs_opt.stan",
-     "stan/PA_Aps_LLps.stan",
-     "stan/PA_Aps_LLps_opt.stan",
-     "stan/PA_Aps_LLs.stan",
-     "stan/PA_Aps_LLs_opt.stan",
-     "stan/PA_LMA.stan",
-     "stan/PA_LMA_opt.stan"),
+    generate_stan_names("templates/model.json",
+      "templates/model_LMA.json")$pa_stan_names,
     data = pa_stan_dat,
     refresh = 0,
     chains = 4,
@@ -224,27 +212,9 @@ main_list <- list(
   ),
 
   tar_map(
-    values = list(diagnostics = rlang::syms(c(
-      "gl_diagnostics_GL_LMA",
-      "pa_diagnostics_PA_LMA",
-      "pa_diagnostics_PA_LMA_opt",
-      "gl_diagnostics_GL_Ap_LLs",
-      "gl_diagnostics_GL_Aps_LLps",
-      "gl_diagnostics_GL_Ap_LLps",
-      "gl_diagnostics_GL_Aps_LLs",
-      "pa_diagnostics_PA_Ap_LLs",
-      "pa_diagnostics_PA_Aps_LLps",
-      "pa_diagnostics_PA_Ap_LLps",
-      "pa_diagnostics_PA_Aps_LLs",
-      "pa_diagnostics_PA_Ap_LLs_opt",
-      "pa_diagnostics_PA_Aps_LLps_opt",
-      "pa_diagnostics_PA_Ap_LLps_opt",
-      "pa_diagnostics_PA_Aps_LLs_opt",
-      "pa_diagnostics_PA_Ap_LDs",
-      "pa_diagnostics_PA_Ap_LDps",
-      "pa_diagnostics_PA_Ap_LDs_opt",
-      "pa_diagnostics_PA_Ap_LDps_opt"
-    ))),
+    values = list(diagnostics = rlang::syms(
+    generate_stan_names("templates/model.json",
+      "templates/model_LMA.json")$diagnostics_names)),
     tar_target(div_check_list, div_check(diagnostics))
   ),
 

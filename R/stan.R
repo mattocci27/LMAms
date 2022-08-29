@@ -1,3 +1,36 @@
+
+#' @title Generate stan file names
+generate_stan_names <- function(model_json, model_lma_json) {
+  model <- fromJSON(model_json)$config
+  model_lma <- fromJSON(model_lma_json)$config
+  model_lma2 <- model_lma |>
+    mutate(site = ifelse(str_detect(model, "GL"), "GL", "PA"))
+  model2 <- full_join(model_lma2, model, by = c("site", "model", "opt"))
+
+  gl_stan_names <- str_c("stan/",
+    model2 |>
+      filter(site == "GL") |>
+      pull(model),
+    ".stan")
+
+  pa_stan_names <- str_c("stan/",
+    model2 |>
+      filter(site == "PA") |>
+      pull(model),
+    ".stan")
+  diagnostics_names <- str_c(
+    str_to_lower(model2$site),
+    "diagnostics",
+    model2$model,
+    sep = "_"
+    )
+  list(
+    gl_stan_names = gl_stan_names,
+    pa_stan_names = pa_stan_names,
+    diagnostics_names = diagnostics_names
+    )
+}
+
 #' @title Generate stan data for GLOPNET
 generate_gl_stan <- function(data) {
   list_data <- list(
