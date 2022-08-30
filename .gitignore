@@ -100,3 +100,5 @@ test.R
 
 data
 data-raw/*.csv
+
+*.csv

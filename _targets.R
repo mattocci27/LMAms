@@ -30,7 +30,8 @@ tar_option_set(packages = c(
   "doParallel",
   "foreach",
   "httpgd",
-  "multcompView"
+  "multcompView",
+  "quarto"
 ))
 
 tar_option_set(
@@ -218,6 +219,15 @@ main_list <- list(
     tar_target(div_check_list, div_check(diagnostics))
   ),
 
+  tar_map(
+    values = list(summary = rlang::syms(
+    generate_stan_names("templates/model.json",
+      "templates/model_LMA.json")$summary_names)),
+    tar_target(summary_rhat, {
+      summary |> filter(rhat > 1.05)
+    })
+  ),
+
   tar_target(
     loo_tbl, {
       loo_model <- append(loo_gl, loo_pa)
@@ -279,6 +289,54 @@ main_list <- list(
   ),
 
   # random ------------------------
+
+  tar_stan_mcmc_rep_summary(
+    name = gl_rand_summary,
+    stan_files = "stan/GL_Aps_LLs.stan",
+    data = generate_sim_data(data = read_csv(gl_csv)),
+    chains = 4,
+    iter_warmup = 2000,
+    iter_sampling = 2000,
+    adapt_delta = 0.999,
+    max_treedepth = 15,
+    batches = 10,
+    reps = 1,
+    parallel_chains = getOption("mc.cores", 1),
+    seed = 123,
+    output_dir = "log",
+    variables = NULL,
+    summaries = list(
+     ~posterior::quantile2(.x, probs = c(0.025, 0.05, 0.25, 0.5, 0.75, 0.95, 0.975)),
+     mean = ~mean(.x),
+     rhat = ~posterior::rhat(.x),
+     ess_bulk = ~posterior::ess_bulk(.x),
+     ess_tail = ~posterior::ess_tail(.x)
+    )
+  ),
+  tar_stan_mcmc_rep_summary(
+    name = pa_rand_summary,
+    stan_files = "stan/PA_Ap_LLs_opt.stan",
+    data = generate_sim_data(data = read_csv(pa_csv), gl = FALSE),
+    chains = 4,
+    iter_warmup = 2000,
+    iter_sampling = 2000,
+    adapt_delta = 0.999,
+    max_treedepth = 15,
+    batches = 10,
+    reps = 1,
+    parallel_chains = getOption("mc.cores", 1),
+    seed = 123,
+    output_dir = "log",
+    variables = NULL,
+    summaries = list(
+     ~posterior::quantile2(.x, probs = c(0.025, 0.05, 0.25, 0.5, 0.75, 0.95, 0.975)),
+     mean = ~mean(.x),
+     rhat = ~posterior::rhat(.x),
+     ess_bulk = ~posterior::ess_bulk(.x),
+     ess_tail = ~posterior::ess_tail(.x)
+    )
+  ),
+
   tar_target(
     gl_rand_list, {
     data <- read_csv(gl_csv)
@@ -397,7 +455,7 @@ main_list <- list(
 
   # best model for the full data
   tar_stan_mcmc(
-    fit_20,
+    pa_full,
     "stan/PA_Ap_LLs_opt.stan",
     data = pa_stan_dat_full,
     refresh = 0,
@@ -417,7 +475,7 @@ main_list <- list(
 
   tar_target(
     pa_res_csv,
-    generate_pa_dat(pa_full_csv, pa_csv, fit_20_draws_PA_Ap_LLs_opt),
+    generate_pa_dat(pa_full_csv, pa_csv, pa_full_draws_PA_Ap_LLs_opt),
     format = "file"
   ),
   tar_target(
@@ -431,14 +489,14 @@ main_list <- list(
 
   tar_target(
     para_tbl,
-    create_para_tbl(gl_draws_GL_Aps_LLs, fit_20_draws_PA_Ap_LLs_opt),
+    create_para_tbl(gl_draws_GL_Aps_LLs, pa_full_draws_PA_Ap_LLs_opt),
     format = "file"
   ),
 
   tar_target(
     r_vals_yml,
     write_r2(gl_res_csv, gl_draws_GL_Aps_LLs,
-      pa_res_csv, fit_20_draws_PA_Ap_LLs_opt),
+      pa_res_csv, pa_full_draws_PA_Ap_LLs_opt),
     format = "file"
   ),
   tar_target(
@@ -655,7 +713,7 @@ main_list <- list(
     mass_obs_dat,
     gen_mass_point_dat(
       gl_res_csv, pa_res_csv,
-      gl_summary_GL_Aps_LLs, fit_20_summary_PA_Ap_LLs_opt
+      gl_summary_GL_Aps_LLs, pa_full_summary_PA_Ap_LLs_opt
     )
   ),
   tar_target(
@@ -683,7 +741,7 @@ main_list <- list(
   tar_target(
     sun_mass_prop,
     mass_prop_sim(read_csv(pa_res_csv) |> filter(strata == "CAN"),
-      fit_20_summary_PA_Ap_LLs_opt,
+      pa_full_summary_PA_Ap_LLs_opt,
       gl = FALSE, n_sim = 1000,
       site = "Sun"
     )
@@ -691,7 +749,7 @@ main_list <- list(
   tar_target(
     shade_mass_prop,
     mass_prop_sim(read_csv(pa_res_csv) |> filter(strata != "CAN"),
-      fit_20_summary_PA_Ap_LLs_opt,
+      pa_full_summary_PA_Ap_LLs_opt,
       gl = FALSE, n_sim = 1000,
       site = "Shade"
     )
@@ -699,7 +757,7 @@ main_list <- list(
   tar_target(
     shade_mass_prop_mv,
     mass_prop_sim_mv(read_csv(pa_res_csv) |> filter(strata != "CAN"),
-      fit_20_summary_PA_Ap_LLs_opt,
+      pa_full_summary_PA_Ap_LLs_opt,
       n_sim = 1000,
       site = "Shade"
     )
@@ -789,7 +847,7 @@ main_list <- list(
     letters_yml,
     write_t(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
       pa_inter_de_box_dat, pa_intra_de_box_dat,
-      gl_draws_GL_Aps_LLs, fit_20_draws_PA_Ap_LLs_opt),
+      gl_draws_GL_Aps_LLs, pa_full_draws_PA_Ap_LLs_opt),
     format = "file"
   ),
   tar_target(
@@ -846,10 +904,10 @@ main_list <- list(
     },
     format = "file"
   ),
-  # tar_quarto(
-  #   report,
-  #   "report.qmd"
-  # ),
+  tar_quarto(
+    report,
+    "report.qmd"
+  ),
   NULL
 )
 

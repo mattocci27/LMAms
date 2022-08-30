@@ -2,6 +2,7 @@
 title: report
 author: "Masatoshi Katabuchi"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
+fontsize: 12pt
 format:
   html:
     # fig_caption: yes
@@ -10,6 +11,7 @@ format:
     toc: true
     toc-depth: 2
     number-sections: true
+    smooth-scroll: true
     # fontsize: medium
     # toc_float:
     #  collapsed: TRUE
@@ -64,108 +66,56 @@ pa_stan_names <- str_c("stan/",
 
 # MCMC diagnostics
 
+Note: Some models that we didn't used didn't converge very well.
+
 ```{r}
-targets::tar_load(gl_summary_GL_LMA)
-targets::tar_load(pa_summary_PA_LMA)
-targets::tar_load(pa_summary_PA_LMA_opt)
-targets::tar_load(gl_summary_GL_Ap_LLs)
-targets::tar_load(gl_summary_GL_Aps_LLps)
-targets::tar_load(gl_summary_GL_Ap_LLps)
-targets::tar_load(gl_summary_GL_Aps_LLs)
-targets::tar_load(pa_summary_PA_Ap_LLs)
-targets::tar_load(pa_summary_PA_Aps_LLps)
-targets::tar_load(pa_summary_PA_Ap_LLps)
-targets::tar_load(pa_summary_PA_Aps_LLs)
-targets::tar_load(pa_summary_PA_Ap_LLs_opt)
-targets::tar_load(pa_summary_PA_Aps_LLps_opt)
-targets::tar_load(pa_summary_PA_Ap_LLps_opt)
-targets::tar_load(pa_summary_PA_Aps_LLs_opt)
-targets::tar_load(pa_summary_PA_Ap_LDs)
-targets::tar_load(pa_summary_PA_Ap_LDps)
-targets::tar_load(pa_summary_PA_Ap_LDs_opt)
-targets::tar_load(pa_summary_PA_Ap_LDps_opt)
-targets::tar_load(pa_summary_PA_Ap_LLs_opt)
+tar_read(summary_rhat_gl_summary_GL_LMA)
+tar_read(summary_rhat_pa_summary_PA_LMA)
+tar_read(summary_rhat_pa_summary_PA_LMA_opt)
+tar_read(summary_rhat_gl_summary_GL_Ap_LLs)
+tar_read(summary_rhat_gl_summary_GL_Aps_LLps)
+tar_read(summary_rhat_gl_summary_GL_Ap_LLps)
+tar_read(summary_rhat_gl_summary_GL_Aps_LLs)
+tar_read(summary_rhat_pa_summary_PA_Ap_LLs)
+tar_read(summary_rhat_pa_summary_PA_Aps_LLps)
+tar_read(summary_rhat_pa_summary_PA_Ap_LLps)
+tar_read(summary_rhat_pa_summary_PA_Aps_LLs)
+tar_read(summary_rhat_pa_summary_PA_Ap_LLs_opt)
+tar_read(summary_rhat_pa_summary_PA_Aps_LLps_opt)
+tar_read(summary_rhat_pa_summary_PA_Ap_LLps_opt)
+tar_read(summary_rhat_pa_summary_PA_Aps_LLs_opt)
+tar_read(summary_rhat_pa_summary_PA_Ap_LDs)
+tar_read(summary_rhat_pa_summary_PA_Ap_LDps)
+tar_read(summary_rhat_pa_summary_PA_Ap_LDs_opt)
+tar_read(summary_rhat_pa_summary_PA_Ap_LDps_opt)
+tar_read(summary_rhat_pa_summary_PA_Ap_LLs_opt)
 ```
 
-
-Note: Model 6 (GL_Ap_LLps) didn't converge very well.
-
 ```{r}
-gl_summary_GL_LMA |> filter(rhat > 1.05)
-pa_summary_PA_LMA |> filter(rhat > 1.05)
-pa_summary_PA_LMA_opt |> filter(rhat > 1.05)
-gl_summary_GL_Ap_LLs |> filter(rhat > 1.05)
-gl_summary_GL_Aps_LLps |> filter(rhat > 1.05)
-gl_summary_GL_Ap_LLps |> filter(rhat > 1.05)
-gl_summary_GL_Aps_LLs |> filter(rhat > 1.05)
-pa_summary_PA_Ap_LLs |> filter(rhat > 1.05)
-pa_summary_PA_Aps_LLps |> filter(rhat > 1.05)
-pa_summary_PA_Ap_LLps |> filter(rhat > 1.05)
-pa_summary_PA_Aps_LLs |> filter(rhat > 1.05)
-pa_summary_PA_Ap_LLs_opt |> filter(rhat > 1.05)
-pa_summary_PA_Aps_LLps_opt |> filter(rhat > 1.05)
-pa_summary_PA_Ap_LLps_opt |> filter(rhat > 1.05)
-pa_summary_PA_Aps_LLs_opt |> filter(rhat > 1.05)
-pa_summary_PA_Ap_LDs |> filter(rhat > 1.05)
-pa_summary_PA_Ap_LDps |> filter(rhat > 1.05)
-pa_summary_PA_Ap_LDs_opt |> filter(rhat > 1.05)
-pa_summary_PA_Ap_LDps_opt |> filter(rhat > 1.05)
-pa_summary_PA_Ap_LLs_opt |> filter(rhat > 1.05)
-```
-
-
-
-```{r}
-targets::tar_load(gl_diagnostics_GL_LMA)
-targets::tar_load(pa_diagnostics_PA_LMA)
-targets::tar_load(pa_diagnostics_PA_LMA_opt)
-targets::tar_load(gl_diagnostics_GL_Ap_LLs)
-targets::tar_load(gl_diagnostics_GL_Aps_LLps)
-targets::tar_load(gl_diagnostics_GL_Ap_LLps)
-targets::tar_load(gl_diagnostics_GL_Aps_LLs)
-targets::tar_load(pa_diagnostics_PA_Ap_LLs)
-targets::tar_load(pa_diagnostics_PA_Aps_LLps)
-targets::tar_load(pa_diagnostics_PA_Ap_LLps)
-targets::tar_load(pa_diagnostics_PA_Aps_LLs)
-targets::tar_load(pa_diagnostics_PA_Ap_LLs_opt)
-targets::tar_load(pa_diagnostics_PA_Aps_LLps_opt)
-targets::tar_load(pa_diagnostics_PA_Ap_LLps_opt)
-targets::tar_load(pa_diagnostics_PA_Aps_LLs_opt)
-targets::tar_load(pa_diagnostics_PA_Ap_LDs)
-targets::tar_load(pa_diagnostics_PA_Ap_LDps)
-targets::tar_load(pa_diagnostics_PA_Ap_LDs_opt)
-targets::tar_load(pa_diagnostics_PA_Ap_LDps_opt)
-targets::tar_load(pa_diagnostics_PA_Ap_LLs_opt)
-```
-
-
-```{r}
-div_check(gl_diagnostics_GL_LMA)
-div_check(pa_diagnostics_PA_LMA)
-div_check(pa_diagnostics_PA_LMA_opt)
-div_check(gl_diagnostics_GL_Ap_LLs)
-div_check(gl_diagnostics_GL_Aps_LLps)
-div_check(gl_diagnostics_GL_Ap_LLps)
-div_check(gl_diagnostics_GL_Aps_LLs)
-div_check(pa_diagnostics_PA_Ap_LLs)
-div_check(pa_diagnostics_PA_Aps_LLps)
-div_check(pa_diagnostics_PA_Ap_LLps)
-div_check(pa_diagnostics_PA_Aps_LLs)
-div_check(pa_diagnostics_PA_Ap_LLs_opt)
-div_check(pa_diagnostics_PA_Aps_LLps_opt)
-div_check(pa_diagnostics_PA_Ap_LLps_opt)
-div_check(pa_diagnostics_PA_Aps_LLs_opt)
-div_check(pa_diagnostics_PA_Ap_LDs)
-div_check(pa_diagnostics_PA_Ap_LDps)
-div_check(pa_diagnostics_PA_Ap_LDs_opt)
-div_check(pa_diagnostics_PA_Ap_LDps_opt)
-div_check(pa_diagnostics_PA_Ap_LLs_opt)
+tar_read(div_check_list_gl_diagnostics_GL_LMA)
+tar_read(div_check_list_pa_diagnostics_PA_LMA)
+tar_read(div_check_list_pa_diagnostics_PA_LMA_opt)
 tar_read(div_check_list_gl_diagnostics_GL_Ap_LLs)
+tar_read(div_check_list_gl_diagnostics_GL_Aps_LLps)
+tar_read(div_check_list_gl_diagnostics_GL_Ap_LLps)
+tar_read(div_check_list_gl_diagnostics_GL_Aps_LLs)
+tar_read(div_check_list_pa_diagnostics_PA_Ap_LLs)
+tar_read(div_check_list_pa_diagnostics_PA_Aps_LLps)
+tar_read(div_check_list_pa_diagnostics_PA_Ap_LLps)
+tar_read(div_check_list_pa_diagnostics_PA_Aps_LLs)
+tar_read(div_check_list_pa_diagnostics_PA_Ap_LLs_opt)
+tar_read(div_check_list_pa_diagnostics_PA_Aps_LLps_opt)
+tar_read(div_check_list_pa_diagnostics_PA_Ap_LLps_opt)
+tar_read(div_check_list_pa_diagnostics_PA_Aps_LLs_opt)
+tar_read(div_check_list_pa_diagnostics_PA_Ap_LDs)
+tar_read(div_check_list_pa_diagnostics_PA_Ap_LDps)
+tar_read(div_check_list_pa_diagnostics_PA_Ap_LDs_opt)
+tar_read(div_check_list_pa_diagnostics_PA_Ap_LDps_opt)
+tar_read(div_check_list_pa_diagnostics_PA_Ap_LLs_opt)
 ```
 
 
-
-Model 4: GL_Ap_LLs is best for GLOPNET.
+GL_Aps_LLs (`model5`) is best for GLOPNET.
 
 ```{r}
 targets::tar_load(loo_gl)
@@ -178,8 +128,8 @@ loo::loo_compare(
   print()
 ```
 
-
-Model 12: PA_Ap_LLs_opt is best for Panama.
+PA_Ap_LLs_opt (`model7`) is best for Panama.
+PA_Ap_LDs_opt (`model13`) is the second best.
 
 ```{r}
 targets::tar_load(loo_pa)
