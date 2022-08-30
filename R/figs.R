@@ -20,7 +20,7 @@ my_ggsave <- function(filename, plot, units = c("in", "cm",
     dpi = dpi,
     ...
   )
-  paste0(filename, c(".png", ".pdf"))
+  str_c(filename, c(".png", ".pdf"))
 }
 
 #' @title Hypothetical relationships
