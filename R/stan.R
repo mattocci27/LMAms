@@ -226,6 +226,53 @@ rand_fun <- function(n, data, list_data, ld = FALSE){
   list_dat
 }
 
+rand_fun2 <- function(data, ld = FALSE){
+  a_pval <- cor.test(log(data$LMA), log(data$Aarea))$p.val
+  l_pval <- cor.test(log(data$LMA), log(data$LL))$p.val
+  r_pval <- cor.test(log(data$LMA), log(data$Rarea))$p.val
+  al_pval <- cor.test(log(data$LL), log(data$Aarea))$p.val
+  rl_pval <- cor.test(log(data$Rarea), log(data$LL))$p.val
+  ar_pval <- cor.test(log(data$Aarea), log(data$Rarea))$p.val
+
+  ar_min <- min(data$Aarea - data$Rarea)
+
+  while (ar_min < 0 | a_pval < 0.1 | l_pval < 0.1 | r_pval < 0.1 |
+    al_pval < 0.1 | rl_pval < 0.1 | ar_pval < 0.1) {
+    tmp <- data.frame(data[, 1:3],
+             LMA = sample(data$LMA),
+             LL = sample(data$LL),
+             Aarea = sample(data$Aarea),
+             Rarea = sample(data$Rarea)
+             )
+    ar_min <- min(tmp$Aarea - tmp$Rarea)
+    a_pval <- cor.test(log(tmp$LMA), log(tmp$Aarea))$p.val
+    l_pval <- cor.test(log(tmp$LMA), log(tmp$LL))$p.val
+    r_pval <- cor.test(log(tmp$LMA), log(tmp$Rarea))$p.val
+    al_pval <- cor.test(log(tmp$LL), log(tmp$Aarea))$p.val
+    rl_pval <- cor.test(log(tmp$Rarea), log(tmp$LL))$p.val
+    ar_pval <- cor.test(log(tmp$Aarea), log(tmp$Rarea))$p.val
+    # paste("Aarea", a_pval) |> print()
+    # paste("Rarea", r_pval) |> print()
+    # paste("LL", l_pval) |> print()
+    # paste("Aarea-LL", al_pval) |> print()
+    # paste("Rarea-LL", rl_pval) |> print()
+    # paste("Aarea-Rarea", ar_pval) |> print()
+  }
+
+  tmp$A_R <- tmp$A - tmp$R
+
+  list_dat <- list(N = nrow(tmp),
+            A = tmp$Aarea,
+            LL = tmp$LL,
+            R = tmp$Rarea,
+            leaf_habit = 1,
+            q_lim = 0.4,
+            leaf = ifelse(data$strata == "CAN", 1, 0),
+            dry = ifelse(data$site == "PNM", 1, 0),
+            LMA = tmp$LMA)
+  # if (ld) list_dat$LT <- data$LT
+  list_dat
+}
 
 #' @title Generate tar_stan_mcmc_list.R
 # generate_tar_stan <- function(model, model_lma) {
