@@ -12,7 +12,6 @@ generate_stan_names <- function(model_json, model_lma_json) {
       filter(site == "GL") |>
       pull(model),
     ".stan")
-
   pa_stan_names <- str_c("stan/",
     model2 |>
       filter(site == "PA") |>
@@ -24,9 +23,16 @@ generate_stan_names <- function(model_json, model_lma_json) {
     model2$model,
     sep = "_"
     )
+  summary_names <- str_c(
+    str_to_lower(model2$site),
+    "summary",
+    model2$model,
+    sep = "_"
+    )
   list(
     gl_stan_names = gl_stan_names,
     pa_stan_names = pa_stan_names,
+    summary_names = summary_names,
     diagnostics_names = diagnostics_names
     )
 }
@@ -226,7 +232,7 @@ rand_fun <- function(n, data, list_data, ld = FALSE){
   list_dat
 }
 
-rand_fun2 <- function(data, ld = FALSE){
+generate_sim_data <- function(data, gl = TRUE){
   a_pval <- cor.test(log(data$LMA), log(data$Aarea))$p.val
   l_pval <- cor.test(log(data$LMA), log(data$LL))$p.val
   r_pval <- cor.test(log(data$LMA), log(data$Rarea))$p.val
@@ -251,27 +257,22 @@ rand_fun2 <- function(data, ld = FALSE){
     al_pval <- cor.test(log(tmp$LL), log(tmp$Aarea))$p.val
     rl_pval <- cor.test(log(tmp$Rarea), log(tmp$LL))$p.val
     ar_pval <- cor.test(log(tmp$Aarea), log(tmp$Rarea))$p.val
-    # paste("Aarea", a_pval) |> print()
-    # paste("Rarea", r_pval) |> print()
-    # paste("LL", l_pval) |> print()
-    # paste("Aarea-LL", al_pval) |> print()
-    # paste("Rarea-LL", rl_pval) |> print()
-    # paste("Aarea-Rarea", ar_pval) |> print()
   }
 
   tmp$A_R <- tmp$A - tmp$R
 
-  list_dat <- list(N = nrow(tmp),
+  list_data <- list(N = nrow(tmp),
             A = tmp$Aarea,
             LL = tmp$LL,
             R = tmp$Rarea,
-            leaf_habit = 1,
-            q_lim = 0.4,
-            leaf = ifelse(data$strata == "CAN", 1, 0),
-            dry = ifelse(data$site == "PNM", 1, 0),
             LMA = tmp$LMA)
-  # if (ld) list_dat$LT <- data$LT
-  list_dat
+  if (gl) {
+    list_data$leaf <- 1
+  } else {
+    list_data$leaf <- ifelse(data$strata == "CAN", 1, 0)
+  }
+  # if (ld) list_data$LT <- data$LT
+  list_data
 }
 
 #' @title Generate tar_stan_mcmc_list.R
