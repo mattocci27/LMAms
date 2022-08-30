@@ -313,75 +313,6 @@ main_list <- list(
     format = "file"
   ),
 
-  tar_stan_mcmc_rep_summary(
-    name = pa_rand_summary,
-    stan_files = "stan/PA_Ap_LLs_opt.stan",
-    data = rand_fun2(data = read_csv(pa_csv)),
-    chains = 4,
-    iter_warmup = 1,
-    iter_sampling = 1,
-    adapt_delta = 0.999,
-    max_treedepth = 15,
-    batches = 5,
-    reps = 2,
-    seed = 123,
-    variables = NULL,
-    summaries = list(
-     ~posterior::quantile2(.x, probs = c(0.025, 0.05, 0.25, 0.5, 0.75, 0.95, 0.975)),
-     mean = ~mean(.x),
-     rhat = ~posterior::rhat(.x),
-     ess_bulk = ~posterior::ess_bulk(.x),
-     ess_tail = ~posterior::ess_tail(.x)
-    )
-  ),
-  # tar_stan_mcmc_rep_summary(
-  #   name = gl_rand_summary,
-  #   stan_files = "stan/GL_Aps_LLs.stan",
-  #   data = read_csv(gl_csv) |> rand_fun(gl_stan_data),
-  #   chains = 4,
-  #   iter_warmup = 1,
-  #   iter_sampling = 1,
-  #   adapt_delta = 0.999,
-  #   max_treedepth = 15,
-  #   batches = 5,
-  #   reps = 2,
-  #   seed = 123,
-  #   variables = NULL,
-  #   summaries = list(
-  #    ~posterior::quantile2(.x, probs = c(0.025, 0.05, 0.25, 0.5, 0.75, 0.95, 0.975)),
-  #    mean = ~mean(.x),
-  #    rhat = ~posterior::rhat(.x),
-  #    ess_bulk = ~posterior::ess_bulk(.x),
-  #    ess_tail = ~posterior::ess_tail(.x)
-  #   )
-  # ),
-  tar_stan_mcmc_rep_diagnostics(
-    name = pa_rand_diagnostics,
-    stan_files = "stan/PA_Ap_LLs_opt.stan",
-    data = read_csv(pa_csv) |> rand_fun2(),
-    chains = 4,
-    iter_warmup = 1,
-    iter_sampling = 1,
-    adapt_delta = 0.999,
-    max_treedepth = 15,
-    batches = 5,
-    reps = 2,
-    seed = 123
-  ),
-  # tar_stan_mcmc_rep_diagnostics(
-  #   name = gl_rand_diagnostics,
-  #   stan_files = "stan/GL_Aps_LLs.stan",
-  #   data = read_csv(gl_csv) |> generate_gl_stan(),
-  #   chains = 4,
-  #   iter_warmup = 1,
-  #   iter_sampling = 1,
-  #   adapt_delta = 0.999,
-  #   max_treedepth = 15,
-  #   batches = 5,
-  #   reps = 2,
-  #   seed = 123
-  # ),
-
   tar_target(
     pa_rand_fit,
     #fit_rand_model(pa_rand_list$data[[1]], PA_Ap_LLs_opt, 1, 1)
@@ -437,15 +368,14 @@ main_list <- list(
   tar_target(
     coef_rand_gl_plot, {
       p <- coef_rand(gl_rand_sig, gl_rand_check, site = "GLOPNET")
-      ggsave(
-        "figs/coef_rand.png",
+      my_ggsave(
+        "figs/coef_rand",
        p,
        dpi = 300,
        height = 15,
        width = 15,
        units = "cm"
       )
-        paste0("figs/coef_rand", c(".png"))
     },
     format = "file"
   ),
@@ -453,15 +383,14 @@ main_list <- list(
   tar_target(
     coef_rand_pa_plot, {
       p <- coef_rand(pa_rand_sig, pa_rand_check, site = "Panama")
-      ggsave(
-        "figs/coef_rand_pa.png",
+      my_ggsave(
+        "figs/coef_rand_pa",
        p,
        dpi = 300,
        height = 15,
        width = 15,
        units = "cm"
       )
-        paste0("figs/coef_rand_pa", c(".png"))
     },
     format = "file"
   ),
@@ -515,15 +444,14 @@ main_list <- list(
   tar_target(
     hypo_plot, {
       p <- hypo_point(para_yml)
-      ggsave(
-        "figs/hypo.png",
+      my_ggsave(
+        "figs/hypo",
        p,
        dpi = 300,
        height = 5,
        width = 16,
        units = "cm"
       )
-        paste0("figs/hypo", c(".png"))
     },
     format = "file"
   ),
@@ -539,169 +467,140 @@ main_list <- list(
   tar_target(
     gl_point_plot, {
       p <- gl_point(gl_long_dat, settings_yml, r_vals_yml)
-      ggsave(
-        "figs/gl_point.png",
+      my_ggsave(
+        "figs/gl_point",
        p,
        dpi = 300,
        height = 11.4,
        width = 11.4,
        units = "cm"
       )
-      # ggsave(
-      #   "figs/petiole.pdf",
-      #   p,
-      #   device = cairo_pdf,
-      #   width = 8,
-      #   height = 4)
-        paste0("figs/gl_point", c(".png"))
     },
     format = "file"
   ),
   tar_target(
     gl_point_np_plot, {
       p <- gl_point_np(gl_long_dat, settings_yml, r_vals_yml)
-      ggsave(
-        "figs/gl_point_np.png",
+      my_ggsave(
+        "figs/gl_point_np",
        p,
        dpi = 300,
        height = 7.6,
        width = 11.4,
        units = "cm"
       )
-        paste0("figs/gl_point_np", c(".png"))
     },
     format = "file"
   ),
   tar_target(
     gl_point_np2_plot, {
       p <- gl_point_np2(gl_long_dat, settings_yml, r_vals_yml)
-      ggsave(
-        "figs/gl_point_np2.png",
+      my_ggsave(
+        "figs/gl_point_np2",
        p,
        dpi = 300,
        height = 11.4,
        width = 11.4,
        units = "cm"
       )
-        paste0("figs/gl_point_np2", c(".png"))
     },
     format = "file"
   ),
   tar_target(
     pa_point_plot, {
       p <- pa_point(pa_long_dat, settings_yml, r_vals_yml)
-      ggsave(
-        "figs/pa_point.png",
+      my_ggsave(
+        "figs/pa_point",
        p,
        dpi = 300,
        height = 11.4,
        width = 11.4,
        units = "cm"
       )
-      # ggsave(
-      #   "figs/petiole.pdf",
-      #   p,
-      #   device = cairo_pdf,
-      #   width = 8,
-      #   height = 4)
-        paste0("figs/pa_point", c(".png"))
     },
     format = "file"
   ),
   tar_target(
     pa_point_npc_plot, {
       p <- pa_point_npc(pa_long_dat, settings_yml, r_vals_yml)
-      ggsave(
-        "figs/pa_point_npc.png",
+      my_ggsave(
+        "figs/pa_point_npc",
        p,
        dpi = 300,
        height = 11.4,
        width = 11.4,
        units = "cm"
       )
-      paste0("figs/pa_point_npc", c(".png"))
     },
     format = "file"
   ),
   tar_target(
     pa_point_ll_plot, {
       p <- pa_point_ll(pa_res_csv, settings_yml, r_vals_yml)
-      ggsave(
-        "figs/pa_point_ll.png",
+      my_ggsave(
+        "figs/pa_point_ll",
        p,
        dpi = 300,
        height = 6.7,
        width = 6.7,
        units = "cm"
       )
-      paste0("figs/pa_point_ll", c(".png"))
     },
     format = "file"
   ),
   tar_target(
     pa_point_par_ll_plot, {
       p <- pa_point_par_ll(pa_res_csv, settings_yml, r_vals_yml)
-      ggsave(
-        "figs/pa_point_par_ll.png",
+      my_ggsave(
+        "figs/pa_point_par_ll",
        p,
        dpi = 300,
        height = 6.7,
        width = 6.7,
        units = "cm"
       )
-      ggsave(
-        "figs/pa_point_par_ll.pdf",
-        p,
-        height = 6.7,
-        width = 6.7,
-        units = "cm"
-        )
-        paste0("figs/pa_point_par_ll", c(".png", ".pdf"))
     },
     format = "file"
   ),
   tar_target(
     ps_point_plot, {
       p <- ps_point(gl_res_dat, pa_res_dat, settings_yml, r_vals_yml)
-      ggsave(
-        "figs/ps_point.png",
+      my_ggsave(
+        "figs/ps_point",
        p,
        dpi = 300,
        height = 7,
        width = 11.4,
        units = "cm"
       )
-        paste0("figs/ps_point", c(".png"))
     },
     format = "file"
   ),
   tar_target(
     pair_frac_plot, {
       p <- pair_frac_line(pa_res_dat)
-      ggsave(
-        "figs/pair_frac.png",
+      my_ggsave(
+        "figs/pair_frac",
        p,
        dpi = 300,
        height = 7,
        width = 7,
        units = "cm"
       )
-        paste0("figs/pair_frac", c(".png"))
     },
     format = "file"
   ),
   tar_target(
     pair_lma_plot, {
       p <- pair_lma_line(pa_res_dat)
-      ggsave(
-        "figs/pair_lma.png",
+      my_ggsave(
+        "figs/pair_lma",
        p,
        dpi = 300,
        height = 7,
        width = 11.4,
        units = "cm"
       )
-        paste0("figs/pair_lma", c(".png"))
     },
     format = "file"
   ),
@@ -712,45 +611,42 @@ main_list <- list(
   tar_target(
     ps_point_95_ci_plot, {
       p <- ps_point(gl_res_dat, pa_res_dat, settings_yml, r_vals_yml, ci = TRUE)
-      ggsave(
-        "figs/ps_point_95ci.png",
+      my_ggsave(
+        "figs/ps_point_95ci",
        p,
        dpi = 300,
        height = 7,
        width = 11.4,
        units = "cm"
       )
-        paste0("figs/ps_point_95ci", c(".png"))
     },
     format = "file"
   ),
   tar_target(
     vpart_plot, {
       p <- vpart_bar(gl_res_csv, pa_res_csv)
-      ggsave(
-        "figs/vpart.png",
+      my_ggsave(
+        "figs/vpart",
        p,
        dpi = 300,
        height = 6,
        width = 10,
        units = "cm"
       )
-      paste0("figs/vpart", c(".png"))
     },
     format = "file"
   ),
   tar_target(
     vpart_intra_plot, {
       p <- vpart_bar(gl_res_csv, pa_res_csv, intra = TRUE)
-      ggsave(
-        "figs/vpart_intra.png",
+      my_ggsave(
+        "figs/vpart_intra",
        p,
        dpi = 300,
        height = 6,
        width = 10,
        units = "cm"
       )
-      paste0("figs/vpart_intra", c(".png"))
     },
     format = "file"
   ),
@@ -812,15 +708,14 @@ main_list <- list(
     mass_prop_plot, {
       p <- mass_prop_point(mass_obs_dat,
         gl_mass_prop, sun_mass_prop, shade_mass_prop)
-      ggsave(
-        "figs/mass_prop.png",
+      my_ggsave(
+        "figs/mass_prop",
        p,
        dpi = 300,
        height = 6,
        width = 6,
        units = "cm"
       )
-      paste0("figs/mass_prop", c(".png"))
     },
     format = "file"
   ),
@@ -828,30 +723,28 @@ main_list <- list(
     mass_prop_mv_plot, {
       p <- mass_prop_point(mass_obs_dat,
         gl_mass_prop, sun_mass_prop, shade_mass_prop_mv)
-      ggsave(
-        "figs/mass_prop_mv.png",
+      my_ggsave(
+        "figs/mass_prop_mv",
        p,
        dpi = 300,
        height = 6,
        width = 6,
        units = "cm"
       )
-      paste0("figs/mass_prop_mv", c(".png"))
     },
     format = "file"
   ),
   tar_target(
     mass_prop_comp_plot, {
       p <- mass_prop_comp_point(shade_mass_prop_mv, shade_mass_prop)
-      ggsave(
-        "figs/mass_prop_comp.png",
+      my_ggsave(
+        "figs/mass_prop_comp",
        p,
        dpi = 300,
        height = 6,
        width = 6,
        units = "cm"
       )
-      paste0("figs/mass_prop_comp", c(".png"))
     },
     format = "file"
   ),
@@ -859,15 +752,14 @@ main_list <- list(
   tar_target(
     mass_sim_plot, {
       p <- mass_sim_point(mass_prop_grad_ap, mass_prop_grad_as)
-      ggsave(
-        "figs/mass_prop_sim.png",
+      my_ggsave(
+        "figs/mass_prop_sim",
        p,
        dpi = 300,
        height = 5,
        width = 10,
        units = "cm"
       )
-      paste0("figs/mass_prop_sim", c(".png"))
     },
     format = "file"
   ),
@@ -915,45 +807,42 @@ main_list <- list(
   tar_target(
     box_main_plot, {
       p <- box_main(gl_box_list, pa_box_trim_list, settings_yml)
-      ggsave(
-        "figs/box_main.png",
+      my_ggsave(
+        "figs/box_main",
        p,
        dpi = 300,
        height = 11.7,
        width = 11.7,
        units = "cm"
       )
-      paste0("figs/box_main", c(".png"))
     },
     format = "file"
   ),
   tar_target(
     box_inter_plot, {
       p <- box_inter(pa_box_list, settings_yml)
-      ggsave(
-        "figs/box_inter.png",
+      my_ggsave(
+        "figs/box_inter",
        p,
        dpi = 300,
        height = 6,
        width = 11.7,
        units = "cm"
       )
-      paste0("figs/box_inter", c(".png"))
     },
     format = "file"
   ),
   tar_target(
     box_frac_plot, {
       p <- box_frac(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml)
-      ggsave(
-        "figs/box_frac.png",
+      my_ggsave(
+        "figs/box_frac",
        p,
        dpi = 300,
        height = 6,
        width = 10,
        units = "cm"
       )
-      paste0("figs/box_frac", c(".png"))
     },
     format = "file"
   ),

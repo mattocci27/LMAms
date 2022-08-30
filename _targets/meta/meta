@@ -1,17 +1,17 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
 .Random.seed|object|1f3f820c4bb6e512|||||||||||||||
 box_frac|function|5597aba13e869794|||||||||||||||
-box_frac_plot|stem|54d4945bec9a1b2f|9fe35956d5c04ce4|6448fb9d91b5731d|843593401|figs/box_frac.png|t19222.4743835243s|bb7a6b0925cd2ee1|36294|file|local|vector|||0.252||
+box_frac_plot|stem|ea46b29b54aab4aa|7d56255b45e1860e|a2b16f43ec0abc7c|843593401|figs/box_frac.png*figs/box_frac.pdf|t19234.3395422755s|9d4318185ede087a|41540|file|local|vector|||0.343||
 box_fun|function|8e36771edc98036b|||||||||||||||
 box_inter|function|3e54e275c6cbdd8b|||||||||||||||
-box_inter_plot|stem|94f05cb4566ed7af|7bb29e181e77a166|023d9fb735a53839|-1748355284|figs/box_inter.png|t19222.1651712777s|20be069957e3b751|42015|file|local|vector|||0.25||
+box_inter_plot|stem|77c8c1081f6a7be3|025b9eb5492bf76d|86e7684375c19e95|-1748355284|figs/box_inter.png*figs/box_inter.pdf|t19234.3395588961s|a353ecb257e5e99c|48303|file|local|vector|||0.369||
 box_main|function|ab8b397d3d9c952f|||||||||||||||
-box_main_plot|stem|2ed4742a3e0c597e|c703f1bc4e53049f|e0b9ae7e2d05d537|-2106369894|figs/box_main.png|t19222.4753239615s|618aa078b81cd805|74902|file|local|vector|||0.728||
+box_main_plot|stem|0bb474f22e9a4df0|c9b716f83a96828c|56f128d57ffb32a7|-2106369894|figs/box_main.png*figs/box_main.pdf|t19234.3395316272s|336797f3904afa92|82291|file|local|vector|||0.848||
 clean_gl_res|function|ada0c4c9d3eed928|||||||||||||||
 clean_pa_res|function|38e51ae7c3409859|||||||||||||||
 coef_rand|function|885b38879adde6f6|||||||||||||||
-coef_rand_gl_plot|stem|ddea4295ecb41e25|1de49c4e68d42e31|557deb6468bd2a9e|-1631839972|figs/coef_rand.png|t19222.0873599358s|e437d79162e576d8|217970|file|local|vector|||0.416||
-coef_rand_pa_plot|stem|7c97618026497f99|26f196ba16522da5|2d76a2ad38b85e96|1136022281|figs/coef_rand_pa.png|t19222.0873369725s|ffb296fc93b2b443|205356|file|local|vector|||0.391||
+coef_rand_gl_plot|stem|28fa2c8c8fc7031c|651f1cd7a4f41a88|8963fbcb7254a054|-1631839972|figs/coef_rand.png*figs/coef_rand.pdf|t19234.3395469052s|1666c145499c1e96|231725|file|local|vector|||0.869||
+coef_rand_pa_plot|stem|505f059efef6c275|084e6b0d49c55463|35a7dcf0b429cb35|1136022281|figs/coef_rand_pa.png*figs/coef_rand_pa.pdf|t19234.3395292661s|717725f806f51e49|218117|file|local|vector|||0.759||
 compile_model|function|440cd3c27c638fb3|||||||||||||||
 create_para_tbl|function|94c93b76aae1bf3e|||||||||||||||
 create_sim_dat|function|9923a4d4cf6dc0e9|||||||||||||||
@@ -88,11 +88,11 @@ gl_mcmc_GL_LMA|stem|afd0fb6ac70052a9|d2d903d21b839167|18117e47df1049f3|-96477747
 gl_point|function|f34af61a1c3e9b4e|||||||||||||||
 gl_point_n|function|990374a33fe0925f|||||||||||||||
 gl_point_np|function|d91dcde743024d4e|||||||||||||||
-gl_point_np_plot|stem|e2636107c87cf535|088f33f89c0e9d7d|9a613439414621c2|1220081628|figs/gl_point_np.png|t19222.474229169s|a595261821e2a02f|243984|file|local|vector|||0.299||
+gl_point_np_plot|stem|74b414ae654d80ea|b58e28214d4870d3|82013c12e7942928|1220081628|figs/gl_point_np.png*figs/gl_point_np.pdf|t19234.3394974138s|5ff76f7ca6d2e697|296356|file|local|vector|||0.659||
 gl_point_np2|function|a897aa32bbeff89b|||||||||||||||
-gl_point_np2_plot|stem|b7eeed2152e66e41|14b26dbe32bbb29a|0c451b231091781f|498748882|figs/gl_point_np2.png|t19222.4751530782s|a49909ad449552b7|292774|file|local|vector|||0.892||
+gl_point_np2_plot|stem|a5f21c2352b6a32d|c741a1099a48e002|6eb87655a6fd0612|498748882|figs/gl_point_np2.png*figs/gl_point_np2.pdf|t19234.3395608869s|21aeb313a0c2ab60|346125|file|local|vector|||1.027||
 gl_point_p|function|83b95c4687304acc|||||||||||||||
-gl_point_plot|stem|9efcf44f53acead3|c4572458605e3398|0ec0de15b9456f2e|-563918907|figs/gl_point.png|t19222.4751310407s|59f94595a5ddeb65|445273|file|local|vector|||0.783||
+gl_point_plot|stem|5115cd35f80148c9|c0aac9928d6634f3|6c26312f9aaccd08|-563918907|figs/gl_point.png*figs/gl_point.pdf|t19234.3395002379s|095115c09267bb73|553531|file|local|vector|||0.792|font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81|
 gl_rand_check|stem|65e59664e50f97cf|83eddacd8be21ade|1fc69bb6fb9bbe8a|-1869373137||t19220.3807478692s|2da9ea27cba6664b|285|rds|local|vector|||0.063||
 gl_rand_diagnostics_batch|stem|9604e56ca69f0dc7|3c1d043758575eed|b5b3f3f1f2ebd7e9|1666218198||t19234.2658783475s|bf160f080fbf1dbb|99|rds|local|vector||gl_rand_diagnostics_batch_ccba877f*gl_rand_diagnostics_batch_084b9b29*gl_rand_diagnostics_batch_91e9ed7e*gl_rand_diagnostics_batch_0af15e67*gl_rand_diagnostics_batch_06d3c0ed|0.001||
 gl_rand_diagnostics_data|pattern|4e950ba634a9eef9|a88a972984d4e98b||-1447403144||||52310|qs|local|list||gl_rand_diagnostics_data_2454683f*gl_rand_diagnostics_data_d0dff8ac*gl_rand_diagnostics_data_29d2208f*gl_rand_diagnostics_data_e87b8abc*gl_rand_diagnostics_data_6f117d9b|1.267||
@@ -129,7 +129,7 @@ gl_summary_GL_Ap_LLs|stem|d0ceedc741d58aa2|45b42c5d2f59c891|6337b7e7700fd323|-76
 gl_summary_GL_Aps_LLps|stem|fd21e0c82ced687d|7780a62e40258bf6|c52663caed54c1fb|-1205191067||t19233.6217799351s|3ce324cd065db0a6|123525|fst_tbl|local|vector|||22.139||
 gl_summary_GL_Aps_LLs|stem|8f9bcb03e5025ea1|ac6c510a46850f1e|83b6f3b016f46abc|-1248653443||t19233.6211392309s|a618c82e5bdcce8f|126244|fst_tbl|local|vector|||23.755||
 gl_summary_GL_LMA|stem|a2b7613ba8f77543|c78748b67aa5b6d8|08045b3e5c1b4cec|-847466089||t19233.6203653766s|f8c84fb6d8ed2403|82208|fst_tbl|local|vector|||17.578||
-hypo_plot|stem|e7caca2744034024|b8aba517c9636139|f395b91bc378d22b|153825164|figs/hypo.png|t19234.2662195109s|5f283c5c0b3671dc|224990|file|local|vector|||1.723||
+hypo_plot|stem|e0aea125ce081207|61ccaea9e87e8f5b|1a925b1fa4016fb3|153825164|figs/hypo.png*figs/hypo.pdf|t19234.3395169511s|33a1ac63ce7348c1|272066|file|local|vector|||0.51||
 hypo_point|function|c6026661fd942492|||||||||||||||
 hypo_points|function|db7bbd3deb8b14ec|||||||||||||||
 leafhabit_file|stem|f9cfd330e326f550|7edb38a1aa7d74b4|ef46db3751d8e999|1077799091|data-raw/Osnas2018_S1.csv|t19220.3816625125s|9c3f694b1092d9a9|26723|file|local|vector|||0.119||
@@ -139,20 +139,20 @@ loo_gl|stem|cb769f10c0c1ead0|cf9358be0fdfaf18|0f57d0ade2b40b5d|912089437||t19233
 loo_pa|stem|d090ca64e214eea6|b24b92344f65fa4e|c0cfbf7b804f5c54|223441926||t19234.2752772464s|065d606ca9aebb15|64915|rds|local|vector|||18.334|Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.|
 loo_tbl|stem|c696e20a406490d1|34da902135551be2|996f7ec1a74ca28d|407372657|data/loo.csv|t19234.275282339s|33d5b6a054f849fe|1250|file|local|vector|||0.021|Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.|
 loop_fun|function|e782174d67e21a66|||||||||||||||
-main_list|object|aab127df18439294|||||||||||||||
+main_list|object|52e3159fe1277750|||||||||||||||
 mass_obs_dat|stem|c40a9cf8aff57643|d4ed2675824d6597|01ab8b1fa5386784|1286691598||t19233.6211481662s|fdec9ce76e2bcbf8|316|rds|local|vector|||0.101||
-mass_prop_comp_plot|stem|dbc46f38bd48bafb|286a3a2a476f885f|39716a22878f76e1|596824706|figs/mass_prop_comp.png|t19222.0872966941s|e3dc9b895ab3f40a|53023|file|local|vector|||0.235||
+mass_prop_comp_plot|stem|7d1e82260fd67682|4f1e9595baed0b40|3d95d73fa2282a57|596824706|figs/mass_prop_comp.png*figs/mass_prop_comp.pdf|t19234.3395106084s|01c8791335e7895c|58755|file|local|vector|||0.347||
 mass_prop_comp_point|function|809f7edf73f398ef|||||||||||||||
 mass_prop_grad_ap|stem|edacb274eab589a1|f16f6dcb6da7d985|56f3518e3ffa44e0|370299678||t19233.6214150684s|9567d7304968c361|1901|rds|local|vector|||23.321||
 mass_prop_grad_as|stem|1628b70215b1c797|420ddc0197514a19|4e26f29039974c1e|78622809||t19233.6214189574s|5ae3a95bcad297bf|1888|rds|local|vector|||23.651||
-mass_prop_mv_plot|stem|4d7d31559f5f01d3|49cad13433951abb|c93ce93cd49153b4|1305084211|figs/mass_prop_mv.png|t19222.4741935664s|af777cf288f0d7f0|63518|file|local|vector|||0.149||
-mass_prop_plot|stem|99fa2d4fa64e478b|39d88386575e66a1|da654d76faabee04|97853178|figs/mass_prop.png|t19222.4742019462s|4a74278f80955ec7|62555|file|local|vector|||0.135||
+mass_prop_mv_plot|stem|027487285a901f20|2f55b77aaf00711a|a686aa0321c21023|1305084211|figs/mass_prop_mv.png*figs/mass_prop_mv.pdf|t19234.3395129695s|581cfc040b9bd1ca|69921|file|local|vector|||0.266||
+mass_prop_plot|stem|a76f9de5e2fc3ce5|52da7b53ea571cc0|db1468785c015f03|97853178|figs/mass_prop.png*figs/mass_prop.pdf|t19234.3394782931s|419cec4734223548|69098|file|local|vector|||0.389||
 mass_prop_point|function|28c11ff5c85a8ce7|||||||||||||||
 mass_prop_sim|function|70324d15e6b48f07|||||||||||||||
 mass_prop_sim_grad|function|ff7856a0aad1caf4|||||||||||||||
 mass_prop_sim_grad_each|function|20a06106165dc1ee|||||||||||||||
 mass_prop_sim_mv|function|8a5a5a4f55c38c13|||||||||||||||
-mass_sim_plot|stem|08031abbe84d58a2|d3d00fbdaaa33d52|5d73d87b3a2a736f|1529278605|figs/mass_prop_sim.png|t19222.4751392353s|a5a78cfcd2e2de1e|74339|file|local|vector|||0.406||
+mass_sim_plot|stem|9ca8a87591817d90|28cdad89fb38eb18|d1f1db7c68ea04f5|1529278605|figs/mass_prop_sim.png*figs/mass_prop_sim.pdf|t19234.3394793116s|01285228577dd61c|81962|file|local|vector|||0.652||
 mass_sim_point|function|97e86f9357c2eb6f|||||||||||||||
 model_json|stem|5402a61e7337b7c9|e5e2de428bcdfc0e|ef46db3751d8e999|-454647551|templates/model.json|t19220.6263164447s|a218c726606092c6|1925|file|local|vector|||0.124||
 model_lma_json|stem|e4918b0860c902ca|9bda75f57ceb1079|ef46db3751d8e999|2073361106|templates/model_LMA.json|t19220.3786123743s|334ec4c391c6746c|186|file|local|vector|||0.121||
@@ -160,7 +160,7 @@ model_selection_csv|stem|5fefce33934ff292|baf86ce4b6245cf8|892700eed355e2c1|-116
 mu_fun|function|66d9a14e318d8251|||||||||||||||
 my_breaks|function|f18396e8a2535b30|||||||||||||||
 my_breaks_x|function|45ba0619efca05ce|||||||||||||||
-my_ggsave|function|2ec22f415a516e53|||||||||||||||
+my_ggsave|function|f95c949784d28668|||||||||||||||
 my_rlnorm|function|887f7fc84a338b42|||||||||||||||
 p_group|function|f47ab0b8fdfa9255|||||||||||||||
 p_group2|function|7369f0e86bbf3156|||||||||||||||
@@ -237,12 +237,12 @@ pa_mcmc_PA_LMA|stem|9465c13d0d5afde6|e0a585aa8830d234|db7a28f2e23a74ab|115451513
 pa_mcmc_PA_LMA_opt|stem|bd6724d6b7b693cd|48d439115db1b0d9|56d267e14a3347aa|-1265426445||t19234.2612237739s|ecb0c6af8504e025|29891531|qs|local|vector|||270.869|validate_csv is deprecated. Please use diagnostics instead.|
 pa_point|function|847075c0306047d1|||||||||||||||
 pa_point_ll|function|f9875abc032da4d8|||||||||||||||
-pa_point_ll_plot|stem|d86cbf840da95f00|f7a4edebb2cc7226|900df5a2394caa60|1663107487|figs/pa_point_ll.png|t19222.4752116906s|85f4144a651f2dda|109392|file|local|vector|||0.323||
+pa_point_ll_plot|stem|912bb86abbe4a1ca|c109479fa92e572b|da53e83c082a1cd2|1663107487|figs/pa_point_ll.png*figs/pa_point_ll.pdf|t19234.3395198215s|45a2c2caeb6f0ec3|122503|file|local|vector|||0.376||
 pa_point_npc|function|128ba7904d02ce1f|||||||||||||||
-pa_point_npc_plot|stem|59a7d5359c93b1b7|021d686be0733950|e012cf9245328780|2064526033|figs/pa_point_npc.png|t19222.4751680785s|d94848f8890b1fb5|468055|file|local|vector|||0.683||
+pa_point_npc_plot|stem|0943f51ff773d379|cf62d75ffeb66868|2b4f32b8b1f2f76e|2064526033|figs/pa_point_npc.png*figs/pa_point_npc.pdf|t19234.3395647296s|8de8a598b99daba5|535934|file|local|vector|||0.772||
 pa_point_par_ll|function|a43c9ab110f6efec|||||||||||||||
-pa_point_par_ll_plot|stem|e9733aa93f47d062|d31bdbd97d444145|a1d579657dc3d01e|364798485|figs/pa_point_par_ll.png*figs/pa_point_par_ll.pdf|t19222.4752044682s|576684577cbfc34c|129765|file|local|vector|||0.54|font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81|
-pa_point_plot|stem|1298d47a354da58a|96eabbf4585ba1e6|90d1f38147d3b69b|-1015670699|figs/pa_point.png|t19222.474218428s|a22612b7de937b8c|499828|file|local|vector|||0.418||
+pa_point_par_ll_plot|stem|506cf49aad525301|610f0dccb2f83a56|086b2b4e58acfa38|364798485|figs/pa_point_par_ll.png*figs/pa_point_par_ll.pdf|t19234.339494173s|576684577cbfc34c|129765|file|local|vector|||0.504|font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81|
+pa_point_plot|stem|e96b22457772d7b2|6db4fb6a87a6968a|fc83840031be903f|-1015670699|figs/pa_point.png*figs/pa_point.pdf|t19234.3395449607s|b5faec347527dbe9|573155|file|local|vector|||0.831|font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81|
 pa_rand_check|stem|44dc026d74da5c98|02b722c4b58484d9|487d86e33ba385d1|1540182644||t19221.7529861922s|2da9ea27cba6664b|285|rds|local|vector|||0.064||
 pa_rand_diagnostics_batch|stem|9604e56ca69f0dc7|3c1d043758575eed|b5b3f3f1f2ebd7e9|-1872700788||t19234.26589682s|bf160f080fbf1dbb|99|rds|local|vector||pa_rand_diagnostics_batch_ccba877f*pa_rand_diagnostics_batch_084b9b29*pa_rand_diagnostics_batch_91e9ed7e*pa_rand_diagnostics_batch_0af15e67*pa_rand_diagnostics_batch_06d3c0ed|0||
 pa_rand_diagnostics_data|pattern|208fa2384058e497|de9baefffa5a030e||-1124937450||||30510|qs|local|list||pa_rand_diagnostics_data_109f4559*pa_rand_diagnostics_data_322f3d5f*pa_rand_diagnostics_data_af275b17*pa_rand_diagnostics_data_2cf7061e*pa_rand_diagnostics_data_aaf85039|1.336||
@@ -296,9 +296,9 @@ pa_summary_PA_Aps_LLs_opt|stem|e8116fa17e7533a8|235b613533395f2f|e6909ea97e9bf0b
 pa_summary_PA_LMA|stem|e38dbc2eaf9a495c|0cda5ef30b59d517|01591abd5a79adc0|1957213103||t19234.2732909538s|1aaa7bf42b773530|45754|fst_tbl|local|vector|||11.066||
 pa_summary_PA_LMA_opt|stem|06c88bfc43a1884d|e5fe7e48a726e602|0f318a90ebad4d28|-1410888180||t19234.273549286s|d0d59fca8869944f|47038|fst_tbl|local|vector|||12.212||
 pair_frac_line|function|c97e08336768a8e3|||||||||||||||
-pair_frac_plot|stem|91579e68498e23ad|3703a304154b5cf5|bea1de868d42551e|-1854216697|figs/pair_frac.png|t19222.0873378058s|8ad864a0f527c50a|47516|file|local|vector|||0.252||
+pair_frac_plot|stem|78c4fa3fe000c6a5|38b02d7c149383d6|5746094de0518e7f|-1854216697|figs/pair_frac.png*figs/pair_frac.pdf|t19234.3395485719s|aa3c2f88b0f4d19b|55058|file|local|vector|||0.234||
 pair_lma_line|function|cbdba1c51902efea|||||||||||||||
-pair_lma_plot|stem|6cba7493c31dda97|006eb4a37352d2ac|5bfc1068ebeb3b82|1473210639|figs/pair_lma.png|t19222.0873288242s|9f1c0f2a2d3ad4ed|52609|file|local|vector|||0.201||
+pair_lma_plot|stem|76d1f2d9f61b7da2|9d6c6e19c56d0b9b|b659f696fc9ca0ed|1473210639|figs/pair_lma.png*figs/pair_lma.pdf|t19234.3394933396s|b86718c70d9530a9|65748|file|local|vector|||0.558||
 para_tbl|stem|9a7ea107e3d85133|f8bcd0cfe39d27b8|8ad321d89317ddd8|1962483027|./data/para_tbl.csv|t19233.6209060792s|f1200f896ae9e733|525|file|local|vector|||0.11||
 para_yml|stem|6f6c1abae5a40373|1ca6d6259769e391|67409179897cf423|-2145095100|yml/para.yml|t19234.2661114997s|cb2068761c31cd19|278|file|local|vector|||1.108||
 pmat_fun|function|36a1a83db6ef6d37|||||||||||||||
@@ -310,8 +310,8 @@ prepare_gl|function|43563b1e024dfb8f|||||||||||||||
 prepare_leafhabit|function|89fd5d483185178c|||||||||||||||
 prepare_pa|function|689a2373906559df|||||||||||||||
 ps_point|function|02732ee233dc5642|||||||||||||||
-ps_point_95_ci_plot|stem|ce310b40b280b6e6|836cd46f4addabe2|67bab8950c09d14e|782657403|figs/ps_point_95ci.png|t19222.4741726863s|b00cedf16f482e4c|130293|file|local|vector|||0.406||
-ps_point_plot|stem|56888defd37a7b5b|b006d04dc8bd9254|67bab8950c09d14e|-2115673479|figs/ps_point.png|t19222.4752493766s|f399699abd4463ed|155497|file|local|vector|||0.358||
+ps_point_95_ci_plot|stem|dd66f32f5ad05f4b|38b2b30876ee12ea|5e6d8df8c958f2ef|782657403|figs/ps_point_95ci.png*figs/ps_point_95ci.pdf|t19234.3395409792s|9d26dff98748dd0f|162711|file|local|vector|||0.602||
+ps_point_plot|stem|fac93c43ecb7998b|9522cc5e4efe6287|5e6d8df8c958f2ef|-2115673479|figs/ps_point.png*figs/ps_point.pdf|t19234.3395636184s|97a13c1db45f19d3|180571|file|local|vector|||0.417||
 ps_point_wrapper|function|36c78f71d2e9ca36|||||||||||||||
 quant_fun|function|02e682e962eb4615|||||||||||||||
 quiet|function|7a0df942450ddbd2|||||||||||||||
@@ -351,8 +351,8 @@ theme_LES|function|31a5383ed994f86b|||||||||||||||
 var_fun|function|0faeda0032c4462e|||||||||||||||
 var_yml|stem|593fca08624ff069|edbad86a5af0bdbf|914e14eb0a3b06ec|-1975825422|yml/var.yml|t19234.2663442816s|de1c6d017cb4e8a8|38|file|local|vector|||11.006||
 vpart_bar|function|124c6bc4f59f9589|||||||||||||||
-vpart_intra_plot|stem|f6c3e5a613544e12|9907061182273676|e62042d846c91b70|310851035|figs/vpart_intra.png|t19222.4752763679s|9d53ff7704c19ea5|42032|file|local|vector|||0.299||
-vpart_plot|stem|802d07c679be0524|d72421d9c75819a1|e62042d846c91b70|786839690|figs/vpart.png|t19222.4744009321s|cd497360b01ffb90|42003|file|local|vector|||0.287||
+vpart_intra_plot|stem|8cf552537251aa70|6d2e786a856fb68f|ea381a89feac38ae|310851035|figs/vpart_intra.png*figs/vpart_intra.pdf|t19234.3394865803s|2f0958f061b6a1b5|46893|file|local|vector|||0.501||
+vpart_plot|stem|81b609f9bae37596|2f3ac1569807bd18|ea381a89feac38ae|786839690|figs/vpart.png*figs/vpart.pdf|t19234.3395440348s|a5de157e1e5aca82|46866|file|local|vector|||0.384||
 write_model_selction|function|2ac0d9084ca7f4ea|||||||||||||||
 write_para_yml|function|0c83616f88347ec1|||||||||||||||
 write_r2|function|ac7f9ce651b492b4|||||||||||||||
