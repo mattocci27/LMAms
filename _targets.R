@@ -170,7 +170,7 @@ main_list <- list(
     parallel_chains = getOption("mc.cores", 4),
     iter_warmup = 2000,
     iter_sampling = 2000,
-    adapt_delta = 0.9,
+    adapt_delta = 0.999,
     max_treedepth = 15,
     seed = 123),
 
@@ -312,6 +312,76 @@ main_list <- list(
     compile_model("stan/PA_Ap_LLs_opt.stan"),
     format = "file"
   ),
+
+  tar_stan_mcmc_rep_summary(
+    name = pa_rand_summary,
+    stan_files = "stan/PA_Ap_LLs_opt.stan",
+    data = rand_fun2(data = read_csv(pa_csv)),
+    chains = 4,
+    iter_warmup = 1,
+    iter_sampling = 1,
+    adapt_delta = 0.999,
+    max_treedepth = 15,
+    batches = 5,
+    reps = 2,
+    seed = 123,
+    variables = NULL,
+    summaries = list(
+     ~posterior::quantile2(.x, probs = c(0.025, 0.05, 0.25, 0.5, 0.75, 0.95, 0.975)),
+     mean = ~mean(.x),
+     rhat = ~posterior::rhat(.x),
+     ess_bulk = ~posterior::ess_bulk(.x),
+     ess_tail = ~posterior::ess_tail(.x)
+    )
+  ),
+  # tar_stan_mcmc_rep_summary(
+  #   name = gl_rand_summary,
+  #   stan_files = "stan/GL_Aps_LLs.stan",
+  #   data = read_csv(gl_csv) |> rand_fun(gl_stan_data),
+  #   chains = 4,
+  #   iter_warmup = 1,
+  #   iter_sampling = 1,
+  #   adapt_delta = 0.999,
+  #   max_treedepth = 15,
+  #   batches = 5,
+  #   reps = 2,
+  #   seed = 123,
+  #   variables = NULL,
+  #   summaries = list(
+  #    ~posterior::quantile2(.x, probs = c(0.025, 0.05, 0.25, 0.5, 0.75, 0.95, 0.975)),
+  #    mean = ~mean(.x),
+  #    rhat = ~posterior::rhat(.x),
+  #    ess_bulk = ~posterior::ess_bulk(.x),
+  #    ess_tail = ~posterior::ess_tail(.x)
+  #   )
+  # ),
+  tar_stan_mcmc_rep_diagnostics(
+    name = pa_rand_diagnostics,
+    stan_files = "stan/PA_Ap_LLs_opt.stan",
+    data = read_csv(pa_csv) |> rand_fun2(),
+    chains = 4,
+    iter_warmup = 1,
+    iter_sampling = 1,
+    adapt_delta = 0.999,
+    max_treedepth = 15,
+    batches = 5,
+    reps = 2,
+    seed = 123
+  ),
+  # tar_stan_mcmc_rep_diagnostics(
+  #   name = gl_rand_diagnostics,
+  #   stan_files = "stan/GL_Aps_LLs.stan",
+  #   data = read_csv(gl_csv) |> generate_gl_stan(),
+  #   chains = 4,
+  #   iter_warmup = 1,
+  #   iter_sampling = 1,
+  #   adapt_delta = 0.999,
+  #   max_treedepth = 15,
+  #   batches = 5,
+  #   reps = 2,
+  #   seed = 123
+  # ),
+
   tar_target(
     pa_rand_fit,
     #fit_rand_model(pa_rand_list$data[[1]], PA_Ap_LLs_opt, 1, 1)
@@ -887,10 +957,10 @@ main_list <- list(
     },
     format = "file"
   ),
-  tar_quarto(
-    report,
-    "report.qmd"
-  ),
+  # tar_quarto(
+  #   report,
+  #   "report.qmd"
+  # ),
   NULL
 )
 
