@@ -337,6 +337,35 @@ main_list <- list(
     )
   ),
 
+  tar_map_rep(
+    name = gl_sim_summary,
+    command = fit_sim_model(
+      stan_data = generate_sim_data(data = read_csv(gl_csv), gl = TRUE),
+      GL_Aps_LLs,
+      iter_warmup = 2000,
+      iter_sampling = 2000,
+      adapt_delta = 0.999,
+      max_treedepth = 15,
+      parallel_chains = 1,
+      seed = 123),
+      batches = 10,
+      reps = 1
+  ),
+  tar_map_rep(
+    name = pa_sim_summary,
+    command = fit_sim_model(
+      stan_data = generate_sim_data(data = read_csv(pa_csv), gl = FALSE),
+      PA_Ap_LLs_opt,
+      iter_warmup = 2000,
+      iter_sampling = 2000,
+      adapt_delta = 0.999,
+      max_treedepth = 15,
+      parallel_chains = 1,
+      seed = 123),
+    batches = 10,
+    reps = 1
+  ),
+
   tar_target(
     gl_rand_list, {
     data <- read_csv(gl_csv)
