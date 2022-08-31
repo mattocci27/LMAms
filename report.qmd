@@ -157,24 +157,66 @@ loo::loo_compare(
 ```{r,eval=FALSE}
 targets::tar_load(gl_sim_summary)
 targets::tar_load(pa_sim_summary)
-targets::tar_read(gl_sim_summary)
-targets::tar_read(gl_sim_summary, branches = 4)
-targets::tar_read(gl_sim_div)
-targets::tar_read(pa_sim_div)
-targets::tar_read(gl_sim_data) |> str()
-targets::tar_read(gl_sim_para_summary, branches = 1)
 
-gl_sim_para <- NULL
-pa_sim_para <- NULL
+gl_sim_summary |> str()
+gl_sim_summary_branch <- NULL
+pa_sim_summary_branch <- NULL
 for (i in 1:10) {
-  targets::tar_load(gl_sim_para_summary, i)
-  gl_sim_para_summary$id <- str_c("id", i)
-  gl_sim_para <- bind_rows(gl_sim_para, gl_sim_para_summary)
+  targets::tar_load(gl_sim_summary, i)
+  if (i < 10) {
+    gl_sim_summary$branch <- str_c("branch_0", i)
+  } else {
+    gl_sim_summary$branch <- str_c("branch_", i)
+  }
+  gl_sim_summary_branch <- bind_rows(gl_sim_summary_branch, gl_sim_summary)
 
-  targets::tar_load(pa_sim_para_summary, i)
-  pa_sim_para_summary$id <- str_c("id", i)
-  pa_sim_para <- bind_rows(pa_sim_para, pa_sim_para_summary)
+  targets::tar_load(pa_sim_summary, i)
+  if (i < 10) {
+    pa_sim_summary$branch <- str_c("branch_0", i)
+  } else {
+    pa_sim_summary$branch <- str_c("branch_", i)
+  }
+  pa_sim_summary_branch <- bind_rows(pa_sim_summary_branch, pa_sim_summary)
 }
+
+gl_sim_summary_branch |>
+  filter(rhat > 1.1) |>
+  count(branch) |>
+  full_join(gl_sim_summary_branch |>
+    filter(variable == "lp__")) |>
+  dplyr::select(branch, num_rhat = n, num_divergent)
+
+
+pa_sim_summary_branch |>
+  filter(rhat > 1.1) |>
+  count(branch) |>
+  full_join(pa_sim_summary_branch |>
+    filter(variable == "lp__")) |>
+  dplyr::select(branch, num_rhat = n, num_divergent)
+
+```
+
+```{r}
+para <- expand_grid(a = c("a", "b", "g"), b = c("0", "p", "s")) |>
+  mutate(para = str_c(a, b)) |>
+  pull(para)
+
+gl_sim_summary_branch |>
+  mutate(site = "GL") |>
+    filter(variable %in% c(para, "theta")) |>
+    mutate(para = case_when(
+      variable == "a0" ~ "alpha[0]",
+      variable == "ap" ~ "alpha[p]",
+      variable == "as" ~ "alpha[s]",
+      variable == "b0" ~ "beta[0]",
+      variable == "bs" ~ "beta[s]",
+      variable == "g0" ~ "gamma[0]",
+      variable == "gp" ~ "gamma[p]",
+      variable == "gs" ~ "gamma[s]",
+      variable == "theta" ~ "theta",
+      TRUE ~ variable
+    ))
+
 
 ```
 
@@ -216,7 +258,7 @@ pa_rand_sig |>
 
 ![](figs/coef_rand_pa.png)
 
-```{r}
+```{r, eval=FALSE}
 tar_load(gl_rand_summary)
 tar_load(pa_rand_summary)
 gl_rand_summary
