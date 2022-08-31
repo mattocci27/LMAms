@@ -154,6 +154,30 @@ loo::loo_compare(
 
 # Diagnostics for randomized data
 
+```{r,eval=FALSE}
+targets::tar_load(gl_sim_summary)
+targets::tar_load(pa_sim_summary)
+targets::tar_read(gl_sim_summary)
+targets::tar_read(gl_sim_summary, branches = 4)
+targets::tar_read(gl_sim_div)
+targets::tar_read(pa_sim_div)
+targets::tar_read(gl_sim_data) |> str()
+targets::tar_read(gl_sim_para_summary, branches = 1)
+
+gl_sim_para <- NULL
+pa_sim_para <- NULL
+for (i in 1:10) {
+  targets::tar_load(gl_sim_para_summary, i)
+  gl_sim_para_summary$id <- str_c("id", i)
+  gl_sim_para <- bind_rows(gl_sim_para, gl_sim_para_summary)
+
+  targets::tar_load(pa_sim_para_summary, i)
+  pa_sim_para_summary$id <- str_c("id", i)
+  pa_sim_para <- bind_rows(pa_sim_para, pa_sim_para_summary)
+}
+
+```
+
 There are too many divergent transitions.
 
 ```{r}

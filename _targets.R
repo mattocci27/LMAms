@@ -376,6 +376,26 @@ main_list <- list(
       seed = 123),
     pattern = map(pa_sim_data)
   ),
+  tar_target(
+    gl_sim_div,
+    max(gl_sim_summary$num_divergent),
+    pattern = map(gl_sim_summary)
+  ),
+  tar_target(
+    pa_sim_div,
+    max(pa_sim_summary$num_divergent),
+    pattern = map(pa_sim_summary)
+  ),
+  tar_target(
+    gl_sim_para_summary,
+    extract_sim_summary(gl_sim_summary),
+    pattern = map(gl_sim_summary)
+  ),
+  tar_target(
+    pa_sim_para_summary,
+    extract_sim_summary(pa_sim_summary),
+    pattern = map(pa_sim_summary)
+  ),
 
   tar_target(
     gl_rand_list, {
