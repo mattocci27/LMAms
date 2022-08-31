@@ -192,6 +192,73 @@ pa_rand_sig |>
 
 ![](figs/coef_rand_pa.png)
 
+```{r}
+tar_load(gl_rand_summary)
+tar_load(pa_rand_summary)
+gl_rand_summary
+
+para <-   expand_grid(a = c("a", "b", "g"), b = c("0", "p", "s")) |>
+  mutate(para = str_c(a, b)) |>
+  pull(para)
+
+gl_rand_summary <- gl_rand_summary |>
+  # filter(q2.5 * q97.5 > 0) |>
+  # filter(variable %in% c(para, "theta")) |>
+  mutate(site = "GL")
+
+pa_rand_summary <- pa_rand_summary |>
+  # filter(q2.5 * q97.5 > 0) |>
+  # filter(variable %in% c(para, "theta")) |>
+  mutate(site = "PA")
+
+rand_summary <- bind_rows(gl_rand_summary, pa_rand_summary)
+
+rand_summary |>
+  group_by(.rep, .name, site) |>
+  summarize(rhat_max = max(rhat, na.rm = TRUE)) |>
+  arrange(site)
+
+rand_summary |>
+  filter(variable %in% c(para, "theta")) |>
+  filter(q5 * q95 > 0) |> pull(variable)
+
+data <- pa_rand_summary |>
+  mutate(sim_id = as.factor(.rep) |> as.numeric() |> as.character()) |>
+  filter(variable %in% c(para, "theta")) |>
+    mutate(para = case_when(
+      variable == "a0" ~ "alpha[0]",
+      variable == "ap" ~ "alpha[p]",
+      variable == "as" ~ "alpha[s]",
+      variable == "b0" ~ "beta[0]",
+      variable == "bs" ~ "beta[s]",
+      variable == "g0" ~ "gamma[0]",
+      variable == "gp" ~ "gamma[p]",
+      variable == "gs" ~ "gamma[s]",
+      variable == "theta" ~ "theta",
+      TRUE ~ variable
+    ))
+
+site <- "PANAMA"
+
+  ggplot(data) +
+    geom_pointrange(aes(x = sim_id,
+     y = mean, ymin = q2.5, ymax = q97.5, group = sim_id)) +
+    geom_hline(yintercept = 0) +
+    facet_wrap(~para, scale = "free", labeller = label_parsed) +
+    xlab("Simulation ID") +
+    ylab("Standardized coefficents") +
+    ggtitle(site) +
+    coord_flip() +
+    theme_bw() +
+    theme(
+       legend.position = c(0.8, 0.2),
+       legend.title = element_blank(),
+       axis.text.x = element_text(angle = 45, vjust = 0.8)
+    )
+
+
+```
+
 
 # Computing Environment
 
@@ -199,8 +266,9 @@ pa_rand_sig |>
 devtools::session_info()
 ```
 
+
 # Pipelines
 
-```{r, fig.width=20, fig.height=20}
+```{r, fig.width=20, fig.height=20, eval=FALSE}
 targets::tar_visnetwork()
 ```

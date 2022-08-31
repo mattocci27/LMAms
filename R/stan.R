@@ -137,6 +137,46 @@ fit_rand_model <- function(stan_data, model_file,
   list(summary = fit$summary(), draws = fit$draws(), diagnostics = fit$sampler_diagnostics())
 }
 
+#' @title Fit the Stan model to randomized data.
+#' @return dataframe of cmdstan customized summary with diagnostics
+#' @param data Data frame, a single simulated dataset.
+#' @param model_file Path to the Stan model source file.
+#' @ref https://github.com/wlandau/targets-stan
+fit_sim_model <- function(stan_data, model_file,
+                            iter_warmup = 1,
+                            iter_sampling = 1,
+                            adapt_delta = 0.9,
+                            max_treedepth = 15,
+                            chains = 4,
+                            parallel_chains = 1,
+                            refresh = 0,
+                            seed = 123) {
+  model <- cmdstan_model(model_file)
+  fit <- model$sample(
+    data = stan_data,
+    seed = seed,
+    iter_warmup = iter_warmup,
+    iter_sampling = iter_sampling,
+    adapt_delta = adapt_delta,
+    max_treedepth = max_treedepth,
+    chains = chains,
+    parallel_chains = parallel_chains,
+    refresh = refresh)
+
+  summary_ <- posterior::summarise_draws(fit,
+    mean = ~mean(.x),
+    sd = ~sd(.x),
+    mad = ~mad(.x),
+    ~posterior::quantile2(.x, probs = c(0.025, 0.05, 0.25, 0.5, 0.75, 0.95, 0.975)),
+    posterior::default_convergence_measures())
+
+  diagnostic_summary_ <- fit$diagnostic_summary()
+  summary_ |>
+    mutate(num_divergent = sum(diagnostic_summary_$num_divergent)) |>
+    mutate(num_max_treedepth = sum(diagnostic_summary_$num_max_treedepth))
+}
+
+
 #' @title Compile a Stan model and return a path to the compiled model output.
 #' @description We return the paths to the Stan model specification
 #'   and the compiled model file so `targets` can treat them as
@@ -669,6 +709,48 @@ coef_rand <- function(gl_rand_sig, gl_rand_check, site = site) {
        legend.title = element_blank(),
        axis.text.x = element_text(angle = 45, vjust = 0.8)
     )
+}
+
+#' @para gl_rand_sig data including 95% CI
+#' @para gl_rand_check data with rhat and divergence
+coef_rand2 <- function(rand_summary, site) {
+
+
+
+  data <- gl_rand_sig  |>
+   # filter(!kkstr_detect(para, "0")) |>
+    full_join(gl_rand_check, by = "sim_id") |>
+    mutate(cov = ifelse(rhat == 0, "Converged", "Not converged")) |>
+    mutate(cov = factor(cov, levels = c("Not converged", "Converged"))) |>
+    mutate(sim_id_chr = paste0("sim-", sim_id)) |>
+    mutate(para = case_when(
+      para == "a0" ~ "alpha[0]",
+      para == "ap" ~ "alpha[p]",
+      para == "as" ~ "alpha[s]",
+      para == "b0" ~ "beta[0]",
+      para == "bs" ~ "beta[s]",
+      para == "g0" ~ "gamma[0]",
+      para == "gp" ~ "gamma[p]",
+      para == "gs" ~ "gamma[s]",
+      TRUE ~ para
+    ))
+
+  ggplot(data) +
+    geom_pointrange(aes(x = sim_id_chr,
+     y = mean, ymin = lwr, ymax = upr, group = sim_id, col = cov)) +
+    geom_hline(yintercept = 0) +
+    facet_wrap(~para, scale = "free", labeller = label_parsed) +
+    xlab("Simulation ID") +
+    ylab("Standardized coefficents") +
+    ggtitle(site) +
+    coord_flip() +
+    theme_bw() +
+    theme(
+       legend.position = c(0.8, 0.2),
+       legend.title = element_blank(),
+       axis.text.x = element_text(angle = 45, vjust = 0.8)
+    )
+
 }
 
 #' @title Generate data for LL partial plot
