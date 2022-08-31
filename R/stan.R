@@ -753,5 +753,16 @@ coef_rand2 <- function(rand_summary, site) {
 
 }
 
+
+extract_sim_summary <- function(data) {
+  para <- expand_grid(a = c("a", "b", "g"), b = c("0", "p", "s")) |>
+    mutate(para = str_c(a, b)) |>
+    pull(para)
+  data |>
+    # filter(q2.5 * q97.5 > 0) |>
+    filter(variable %in% c(para, "theta"))
+}
+
+
 #' @title Generate data for LL partial plot
 
