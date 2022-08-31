@@ -337,10 +337,23 @@ main_list <- list(
     )
   ),
 
-  tar_map_rep(
-    name = gl_sim_summary,
+  # use this as `pattern`
+  tar_target(sim_rep, seq(1, 10)),
+
+  tar_target(
+    gl_sim_data,
+    generate_sim_data(data = read_csv(gl_csv), gl = TRUE),
+    pattern = map(sim_rep)
+  ),
+  tar_target(
+    pa_sim_data,
+    generate_sim_data(data = read_csv(pa_csv), gl = FALSE),
+    pattern = map(sim_rep)
+  ),
+  tar_target(
+    gl_sim_summary,
     command = fit_sim_model(
-      stan_data = generate_sim_data(data = read_csv(gl_csv), gl = TRUE),
+      gl_sim_data,
       GL_Aps_LLs,
       iter_warmup = 2000,
       iter_sampling = 2000,
@@ -348,13 +361,12 @@ main_list <- list(
       max_treedepth = 15,
       parallel_chains = 1,
       seed = 123),
-      batches = 10,
-      reps = 1
+    pattern = map(gl_sim_data)
   ),
-  tar_map_rep(
-    name = pa_sim_summary,
+  tar_target(
+    pa_sim_summary,
     command = fit_sim_model(
-      stan_data = generate_sim_data(data = read_csv(pa_csv), gl = FALSE),
+      pa_sim_data,
       PA_Ap_LLs_opt,
       iter_warmup = 2000,
       iter_sampling = 2000,
@@ -362,8 +374,7 @@ main_list <- list(
       max_treedepth = 15,
       parallel_chains = 1,
       seed = 123),
-    batches = 10,
-    reps = 1
+    pattern = map(pa_sim_data)
   ),
 
   tar_target(
