@@ -244,32 +244,6 @@ main_list <- list(
     format = "file"
   ),
 
-  # tar_stan_mcmc(
-  #   fit_beta,
-  #   "stan/GL_beta.stan",
-  #   data = gl_stan_dat,
-  #   refresh = 0,
-  #   chains = 4,
-  #   parallel_chains = getOption("mc.cores", 4),
-  #   iter_warmup = 2000,
-  #   iter_sampling = 2000,
-  #   adapt_delta = 0.99,
-  #   max_treedepth = 15,
-  #   seed = 123),
-
-  # tar_stan_mcmc(
-  #   fit_h,
-  #   "stan/GL_h.stan",
-  #   data = gl_stan_dat,
-  #   refresh = 0,
-  #   chains = 4,
-  #   parallel_chains = getOption("mc.cores", 4),
-  #   iter_warmup = 2000,
-  #   iter_sampling = 2000,
-  #   adapt_delta = 0.9,
-  #   max_treedepth = 15,
-  #   seed = 123),
-
   tar_target(
     model_selection_csv,
     write_model_selction(loo_tbl),
@@ -288,57 +262,21 @@ main_list <- list(
     format = "file"
   ),
 
-  # random ------------------------
+  # simluation ------------------------
 
-  tar_stan_mcmc_rep_summary(
-    name = gl_rand_summary,
-    stan_files = "stan/GL_Aps_LLs.stan",
-    data = generate_sim_data(data = read_csv(gl_csv)),
-    chains = 4,
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.999,
-    max_treedepth = 15,
-    batches = 10,
-    reps = 1,
-    parallel_chains = getOption("mc.cores", 1),
-    seed = 123,
-    output_dir = "log",
-    variables = NULL,
-    summaries = list(
-     ~posterior::quantile2(.x, probs = c(0.025, 0.05, 0.25, 0.5, 0.75, 0.95, 0.975)),
-     mean = ~mean(.x),
-     rhat = ~posterior::rhat(.x),
-     ess_bulk = ~posterior::ess_bulk(.x),
-     ess_tail = ~posterior::ess_tail(.x)
-    )
-  ),
-  tar_stan_mcmc_rep_summary(
-    name = pa_rand_summary,
-    stan_files = "stan/PA_Ap_LLs_opt.stan",
-    data = generate_sim_data(data = read_csv(pa_csv), gl = FALSE),
-    chains = 4,
-    iter_warmup = 2000,
-    iter_sampling = 2000,
-    adapt_delta = 0.999,
-    max_treedepth = 15,
-    batches = 10,
-    reps = 1,
-    parallel_chains = getOption("mc.cores", 1),
-    seed = 123,
-    output_dir = "log",
-    variables = NULL,
-    summaries = list(
-     ~posterior::quantile2(.x, probs = c(0.025, 0.05, 0.25, 0.5, 0.75, 0.95, 0.975)),
-     mean = ~mean(.x),
-     rhat = ~posterior::rhat(.x),
-     ess_bulk = ~posterior::ess_bulk(.x),
-     ess_tail = ~posterior::ess_tail(.x)
-    )
-  ),
-
-  # use this as `pattern`
+  # use `sim_rep` as `pattern`
   tar_target(sim_rep, seq(1, 10)),
+
+  tar_target(
+    GL_Aps_LLs,
+    compile_model("stan/GL_Aps_LLs.stan"),
+    format = "file"
+  ),
+  tar_target(
+    PA_Ap_LLs_opt,
+    compile_model("stan/PA_Ap_LLs_opt.stan"),
+    format = "file"
+  ),
 
   tar_target(
     gl_sim_data,
@@ -377,16 +315,6 @@ main_list <- list(
     pattern = map(pa_sim_data)
   ),
   tar_target(
-    gl_sim_div,
-    max(gl_sim_summary$num_divergent),
-    pattern = map(gl_sim_summary)
-  ),
-  tar_target(
-    pa_sim_div,
-    max(pa_sim_summary$num_divergent),
-    pattern = map(pa_sim_summary)
-  ),
-  tar_target(
     gl_sim_para_summary,
     extract_sim_summary(gl_sim_summary),
     pattern = map(gl_sim_summary)
@@ -397,121 +325,36 @@ main_list <- list(
     pattern = map(pa_sim_summary)
   ),
 
-  tar_target(
-    gl_rand_list, {
-    data <- read_csv(gl_csv)
-    rand_data <- tibble(null_model = 1:10)
-    rand_data |>
-    mutate(data = future_map(1:10, rand_fun, data, gl_stan_dat,
-      .options = furrr_options(seed = 123)))
-    }
-  ),
-  tar_target(
-    pa_rand_list, {
-    data <- read_csv(pa_full_csv)
-    rand_data <- tibble(null_model = 1:10)
-    rand_data |>
-    mutate(data = future_map(1:10, rand_fun, data, pa_stan_dat_full,
-      .options = furrr_options(seed = 123)))
-    }
-  ),
-  tar_target(
-    GL_Aps_LLs,
-    compile_model("stan/GL_Aps_LLs.stan"),
-    format = "file"
-  ),
-  tar_target(
-    gl_rand_fit,
-    future_map(gl_rand_list$data, fit_rand_model, GL_Aps_LLs, 2000, 2000, 0.9,
-    .options = furrr_options(seed = 123))
-  ),
-  tar_target(
-    PA_Ap_LLs_opt,
-    compile_model("stan/PA_Ap_LLs_opt.stan"),
-    format = "file"
-  ),
 
-  tar_target(
-    pa_rand_fit,
-    #fit_rand_model(pa_rand_list$data[[1]], PA_Ap_LLs_opt, 1, 1)
-    future_map(pa_rand_list$data, fit_rand_model, PA_Ap_LLs_opt, 2000, 2000, 0.9,
-    .options = furrr_options(seed = 123))
-  ),
-  tar_target(
-    gl_rand_check,
-    tibble(rhat = sapply(gl_rand_fit, \(x) x$summary |> filter(rhat > 1.05) |> nrow()),
-      div = sapply(gl_rand_fit, \(x) x$diagnostics[,,2] |> apply(1, sum) |> sum()),
-      sim_id = 1:10,
-      data = "GLOPNET")
-  ),
-  tar_target(
-    pa_rand_check,
-    tibble(rhat = sapply(pa_rand_fit, \(x) x$summary |> filter(rhat > 1.05) |> nrow()),
-      div = sapply(pa_rand_fit, \(x) x$diagnostics[,,2] |> apply(1, sum) |> sum()),
-      sim_id = 1:10,
-      data = "Panama")
-  ),
-  tar_target(
-    rand_csv, {
-      bind_rows(gl_rand_check, pa_rand_check) |>
-      write_csv("data/rand.csv")
-      paste("data/rand.csv")
-    },
-    format = "file"
-  ),
+  # tar_target(
+  #   coef_rand_gl_plot, {
+  #     p <- coef_rand(gl_rand_sig, gl_rand_check, site = "GLOPNET")
+  #     my_ggsave(
+  #       "figs/coef_rand",
+  #      p,
+  #      dpi = 300,
+  #      height = 15,
+  #      width = 15,
+  #      units = "cm"
+  #     )
+  #   },
+  #   format = "file"
+  # ),
 
-  tar_target(
-    gl_rand_sig, {
-      tmp <- NULL
-      for (i in 1:10) {
-        tmp <- bind_rows(tmp,
-        list("a0", "ap", "as", "b0", "bs", "g0", "gp", "gs") |>
-        map_dfr(rand_summary, gl_rand_fit, i))
-        }
-      tmp
-    }
-  ),
-  tar_target(
-    pa_rand_sig, {
-      tmp <- NULL
-      for (i in 1:10) {
-        tmp <- bind_rows(tmp,
-        list("a0", "ap", "b0", "bs", "g0", "gp", "gs") |>
-        map_dfr(rand_summary, pa_rand_fit, i))
-        }
-      tmp
-    }
-  ),
-
-  tar_target(
-    coef_rand_gl_plot, {
-      p <- coef_rand(gl_rand_sig, gl_rand_check, site = "GLOPNET")
-      my_ggsave(
-        "figs/coef_rand",
-       p,
-       dpi = 300,
-       height = 15,
-       width = 15,
-       units = "cm"
-      )
-    },
-    format = "file"
-  ),
-
-  tar_target(
-    coef_rand_pa_plot, {
-      p <- coef_rand(pa_rand_sig, pa_rand_check, site = "Panama")
-      my_ggsave(
-        "figs/coef_rand_pa",
-       p,
-       dpi = 300,
-       height = 15,
-       width = 15,
-       units = "cm"
-      )
-    },
-    format = "file"
-  ),
+  # tar_target(
+  #   coef_rand_pa_plot, {
+  #     p <- coef_rand(pa_rand_sig, pa_rand_check, site = "Panama")
+  #     my_ggsave(
+  #       "figs/coef_rand_pa",
+  #      p,
+  #      dpi = 300,
+  #      height = 15,
+  #      width = 15,
+  #      units = "cm"
+  #     )
+  #   },
+  #   format = "file"
+  # ),
 
   # best model for the full data
   tar_stan_mcmc(
@@ -964,10 +807,10 @@ main_list <- list(
     },
     format = "file"
   ),
-  tar_quarto(
-    report,
-    "report.qmd"
-  ),
+  # tar_quarto(
+  #   report,
+  #   "report.qmd"
+  # ),
   NULL
 )
 
