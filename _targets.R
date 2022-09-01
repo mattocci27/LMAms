@@ -82,13 +82,6 @@ raw_data_list <- list(
   )
 )
 
-# generate_tar_stan_list <- list(
-#   tar_target(
-#     tar_stan_txt,
-#     generate_tar_stan(model_json, model_lma_json),
-#     format = "file"
-#   )
-# )
 
 # main analysis ----------------------------------
 main_list <- list(
@@ -155,12 +148,23 @@ main_list <- list(
     data = gl_stan_dat,
     refresh = 0,
     chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
+    parallel_chains = 1,
     iter_warmup = 2000,
     iter_sampling = 2000,
     adapt_delta = 0.9,
     max_treedepth = 15,
-    seed = 123),
+    seed = 123,
+    return_draws = TRUE,
+    return_diagnostics = TRUE,
+    return_summary = TRUE,
+    summaries = list(
+      mean = ~mean(.x),
+      sd = ~sd(.x),
+      mad = ~mad(.x),
+      ~posterior::quantile2(.x, probs = c(0.025, 0.05, 0.25, 0.5, 0.75, 0.95, 0.975)),
+      posterior::default_convergence_measures()
+      )
+  ),
   tar_stan_mcmc(
     pa,
     generate_stan_names("templates/model.json",
@@ -168,13 +172,23 @@ main_list <- list(
     data = pa_stan_dat,
     refresh = 0,
     chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
+    parallel_chains = 1,
     iter_warmup = 2000,
     iter_sampling = 2000,
     adapt_delta = 0.999,
     max_treedepth = 15,
-    seed = 123),
-
+    seed = 123,
+    return_draws = TRUE,
+    return_diagnostics = TRUE,
+    return_summary = TRUE,
+    summaries = list(
+      mean = ~mean(.x),
+      sd = ~sd(.x),
+      mad = ~mad(.x),
+      ~posterior::quantile2(.x, probs = c(0.025, 0.05, 0.25, 0.5, 0.75, 0.95, 0.975)),
+      posterior::default_convergence_measures()
+      )
+  ),
   tar_target(
     loo_gl,
     lapply(
@@ -315,46 +329,52 @@ main_list <- list(
     pattern = map(pa_sim_data)
   ),
   tar_target(
-    gl_sim_para_summary,
-    extract_sim_summary(gl_sim_summary),
-    pattern = map(gl_sim_summary)
+    gl_para_summary,
+    extract_sim_summary(gl_sim_summary)
   ),
   tar_target(
-    pa_sim_para_summary,
-    extract_sim_summary(pa_sim_summary),
-    pattern = map(pa_sim_summary)
+    pa_para_summary,
+    extract_sim_summary(pa_sim_summary)
+  ),
+  tar_target(
+    gl_sim_diagnostics,
+    extract_sim_diagnostics(gl_sim_summary)
+  ),
+  tar_target(
+    pa_sim_diagnostics,
+    extract_sim_diagnostics(pa_sim_summary)
   ),
 
 
-  # tar_target(
-  #   coef_rand_gl_plot, {
-  #     p <- coef_rand(gl_rand_sig, gl_rand_check, site = "GLOPNET")
-  #     my_ggsave(
-  #       "figs/coef_rand",
-  #      p,
-  #      dpi = 300,
-  #      height = 15,
-  #      width = 15,
-  #      units = "cm"
-  #     )
-  #   },
-  #   format = "file"
-  # ),
+  tar_target(
+    coef_sim_gl_plot, {
+      p <- coef_sim(gl_para_summary, site = "GLOPNET")
+      my_ggsave(
+        "figs/coef_sim_gl",
+       p,
+       dpi = 300,
+       height = 15,
+       width = 15,
+       units = "cm"
+      )
+    },
+    format = "file"
+  ),
 
-  # tar_target(
-  #   coef_rand_pa_plot, {
-  #     p <- coef_rand(pa_rand_sig, pa_rand_check, site = "Panama")
-  #     my_ggsave(
-  #       "figs/coef_rand_pa",
-  #      p,
-  #      dpi = 300,
-  #      height = 15,
-  #      width = 15,
-  #      units = "cm"
-  #     )
-  #   },
-  #   format = "file"
-  # ),
+  tar_target(
+    coef_sim_pa_plot, {
+      p <- coef_sim(pa_para_summary, site = "Panama")
+      my_ggsave(
+        "figs/coef_sim_pa",
+       p,
+       dpi = 300,
+       height = 15,
+       width = 15,
+       units = "cm"
+      )
+    },
+    format = "file"
+  ),
 
   # best model for the full data
   tar_stan_mcmc(
@@ -368,8 +388,15 @@ main_list <- list(
     iter_sampling = 2000,
     adapt_delta = 0.999,
     max_treedepth = 15,
-    seed = 123),
-
+    seed = 123,
+    summaries = list(
+      mean = ~mean(.x),
+      sd = ~sd(.x),
+      mad = ~mad(.x),
+      ~posterior::quantile2(.x, probs = c(0.025, 0.05, 0.25, 0.5, 0.75, 0.95, 0.975)),
+      posterior::default_convergence_measures()
+      )
+    ),
   tar_target(
     gl_res_csv,
     generate_gl_dat(gl_csv, gl_draws_GL_Aps_LLs),
@@ -807,10 +834,10 @@ main_list <- list(
     },
     format = "file"
   ),
-  # tar_quarto(
-  #   report,
-  #   "report.qmd"
-  # ),
+  tar_quarto(
+    report,
+    "report.qmd"
+  ),
   NULL
 )
 

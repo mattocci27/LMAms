@@ -40,30 +40,6 @@ library(jsonlite)
 source(here("R", "stan.R"))
 ```
 
-```{r}
-tar_load(model_json)
-tar_load(model_lma_json)
-
-model <- fromJSON(model_json)$config
-model_lma <- fromJSON(model_lma_json)$config
-model_lma2 <- model_lma |>
-  mutate(site = ifelse(str_detect(model, "GL"), "GL", "PA"))
-model2 <- full_join(model_lma2, model, by = c("site", "model", "opt"))
-
-gl_stan_names <- str_c("stan/",
-  model2 |>
-    filter(site == "GL") |>
-    pull(model),
-  ".stan")
-
-pa_stan_names <- str_c("stan/",
-  model2 |>
-    filter(site == "PA") |>
-    pull(model),
-  ".stan")
-
-```
-
 # MCMC diagnostics
 
 Note: Some models that we didn't used didn't converge very well.
@@ -114,7 +90,6 @@ tar_read(div_check_list_pa_diagnostics_PA_Ap_LDps_opt)
 tar_read(div_check_list_pa_diagnostics_PA_Ap_LLs_opt)
 ```
 
-
 GL_Aps_LLs (`model5`) is best for GLOPNET.
 
 ```{r}
@@ -154,176 +129,20 @@ loo::loo_compare(
 
 # Diagnostics for randomized data
 
-```{r,eval=FALSE}
-targets::tar_load(gl_sim_summary)
-targets::tar_load(pa_sim_summary)
-
-gl_sim_summary |> str()
-gl_sim_summary_branch <- NULL
-pa_sim_summary_branch <- NULL
-for (i in 1:10) {
-  targets::tar_load(gl_sim_summary, i)
-  if (i < 10) {
-    gl_sim_summary$branch <- str_c("branch_0", i)
-  } else {
-    gl_sim_summary$branch <- str_c("branch_", i)
-  }
-  gl_sim_summary_branch <- bind_rows(gl_sim_summary_branch, gl_sim_summary)
-
-  targets::tar_load(pa_sim_summary, i)
-  if (i < 10) {
-    pa_sim_summary$branch <- str_c("branch_0", i)
-  } else {
-    pa_sim_summary$branch <- str_c("branch_", i)
-  }
-  pa_sim_summary_branch <- bind_rows(pa_sim_summary_branch, pa_sim_summary)
-}
-
-gl_sim_summary_branch |>
-  filter(rhat > 1.1) |>
-  count(branch) |>
-  full_join(gl_sim_summary_branch |>
-    filter(variable == "lp__")) |>
-  dplyr::select(branch, num_rhat = n, num_divergent)
-
-
-pa_sim_summary_branch |>
-  filter(rhat > 1.1) |>
-  count(branch) |>
-  full_join(pa_sim_summary_branch |>
-    filter(variable == "lp__")) |>
-  dplyr::select(branch, num_rhat = n, num_divergent)
-
-```
-
-```{r}
-para <- expand_grid(a = c("a", "b", "g"), b = c("0", "p", "s")) |>
-  mutate(para = str_c(a, b)) |>
-  pull(para)
-
-gl_sim_summary_branch |>
-  mutate(site = "GL") |>
-    filter(variable %in% c(para, "theta")) |>
-    mutate(para = case_when(
-      variable == "a0" ~ "alpha[0]",
-      variable == "ap" ~ "alpha[p]",
-      variable == "as" ~ "alpha[s]",
-      variable == "b0" ~ "beta[0]",
-      variable == "bs" ~ "beta[s]",
-      variable == "g0" ~ "gamma[0]",
-      variable == "gp" ~ "gamma[p]",
-      variable == "gs" ~ "gamma[s]",
-      variable == "theta" ~ "theta",
-      TRUE ~ variable
-    ))
-
-
-```
-
 There are too many divergent transitions.
-
-```{r}
-targets::tar_load(gl_rand_check)
-summary(gl_rand_check)
-
-targets::tar_load(pa_rand_check)
-summary(pa_rand_check)
-```
-
-
 None of the randomized datasets did converge.
 
-```{r}
-targets::tar_load(gl_rand_sig)
-
-gl_rand_sig
-
-gl_rand_sig |>
-  filter(sig == "sig") |>
-  filter(!str_detect(para, "0"))
-```
-
-```{r}
-targets::tar_load(pa_rand_sig)
-
-pa_rand_sig
-
-pa_rand_sig |>
-  filter(sig == "sig") |>
-  filter(!str_detect(para, "0"))
+```{r,eval=FALSE}
+targets::tar_read(gl_sim_diagnostics)
+targets::tar_read(pa_sim_diagnostics)
+targets::tar_read(gl_para_summary)
+targets::tar_read(pa_para_summary)
 ```
 
 
-![](figs/coef_rand.png)
+![](figs/coef_sim_gl.png)
 
-![](figs/coef_rand_pa.png)
-
-```{r, eval=FALSE}
-tar_load(gl_rand_summary)
-tar_load(pa_rand_summary)
-gl_rand_summary
-
-para <-   expand_grid(a = c("a", "b", "g"), b = c("0", "p", "s")) |>
-  mutate(para = str_c(a, b)) |>
-  pull(para)
-
-gl_rand_summary <- gl_rand_summary |>
-  # filter(q2.5 * q97.5 > 0) |>
-  # filter(variable %in% c(para, "theta")) |>
-  mutate(site = "GL")
-
-pa_rand_summary <- pa_rand_summary |>
-  # filter(q2.5 * q97.5 > 0) |>
-  # filter(variable %in% c(para, "theta")) |>
-  mutate(site = "PA")
-
-rand_summary <- bind_rows(gl_rand_summary, pa_rand_summary)
-
-rand_summary |>
-  group_by(.rep, .name, site) |>
-  summarize(rhat_max = max(rhat, na.rm = TRUE)) |>
-  arrange(site)
-
-rand_summary |>
-  filter(variable %in% c(para, "theta")) |>
-  filter(q5 * q95 > 0) |> pull(variable)
-
-data <- pa_rand_summary |>
-  mutate(sim_id = as.factor(.rep) |> as.numeric() |> as.character()) |>
-  filter(variable %in% c(para, "theta")) |>
-    mutate(para = case_when(
-      variable == "a0" ~ "alpha[0]",
-      variable == "ap" ~ "alpha[p]",
-      variable == "as" ~ "alpha[s]",
-      variable == "b0" ~ "beta[0]",
-      variable == "bs" ~ "beta[s]",
-      variable == "g0" ~ "gamma[0]",
-      variable == "gp" ~ "gamma[p]",
-      variable == "gs" ~ "gamma[s]",
-      variable == "theta" ~ "theta",
-      TRUE ~ variable
-    ))
-
-site <- "PANAMA"
-
-  ggplot(data) +
-    geom_pointrange(aes(x = sim_id,
-     y = mean, ymin = q2.5, ymax = q97.5, group = sim_id)) +
-    geom_hline(yintercept = 0) +
-    facet_wrap(~para, scale = "free", labeller = label_parsed) +
-    xlab("Simulation ID") +
-    ylab("Standardized coefficents") +
-    ggtitle(site) +
-    coord_flip() +
-    theme_bw() +
-    theme(
-       legend.position = c(0.8, 0.2),
-       legend.title = element_blank(),
-       axis.text.x = element_text(angle = 45, vjust = 0.8)
-    )
-
-
-```
+![](figs/coef_sim_pa.png)
 
 
 # Computing Environment
