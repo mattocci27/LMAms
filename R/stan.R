@@ -555,29 +555,31 @@ coef_rand <- function(gl_rand_sig, gl_rand_check, site = site) {
 
 #' @para gl_rand_sig data including 95% CI
 #' @para gl_rand_check data with rhat and divergence
-coef_rand2 <- function(rand_summary, site) {
+coef_sim <- function(sim_para_summary, site) {
 
-  data <- gl_rand_sig  |>
+  data <- sim_para_summary  |>
    # filter(!kkstr_detect(para, "0")) |>
-    full_join(gl_rand_check, by = "sim_id") |>
-    mutate(cov = ifelse(rhat == 0, "Converged", "Not converged")) |>
-    mutate(cov = factor(cov, levels = c("Not converged", "Converged"))) |>
-    mutate(sim_id_chr = paste0("sim-", sim_id)) |>
+    # mutate(cov = ifelse(rhat == 0, "Converged", "Not converged")) |>
+    # mutate(cov = factor(cov, levels = c("Not converged", "Converged"))) |>
+    mutate(sim_id_no = as.factor(data_id) |>
+       as.numeric() |>
+       str_pad(2, pad = 0)) |>
+    mutate(sim_id = paste0("sim-", sim_id_no)) |>
     mutate(para = case_when(
-      para == "a0" ~ "alpha[0]",
-      para == "ap" ~ "alpha[p]",
-      para == "as" ~ "alpha[s]",
-      para == "b0" ~ "beta[0]",
-      para == "bs" ~ "beta[s]",
-      para == "g0" ~ "gamma[0]",
-      para == "gp" ~ "gamma[p]",
-      para == "gs" ~ "gamma[s]",
-      TRUE ~ para
+      variable == "a0" ~ "alpha[0]",
+      variable == "ap" ~ "alpha[p]",
+      variable == "as" ~ "alpha[s]",
+      variable == "b0" ~ "beta[0]",
+      variable == "bs" ~ "beta[s]",
+      variable == "g0" ~ "gamma[0]",
+      variable == "gp" ~ "gamma[p]",
+      variable == "gs" ~ "gamma[s]",
+      TRUE ~ variable
     ))
 
   ggplot(data) +
-    geom_pointrange(aes(x = sim_id_chr,
-     y = mean, ymin = lwr, ymax = upr, group = sim_id, col = cov)) +
+    geom_pointrange(aes(x = sim_id,
+     y = mean, ymin = q2.5, ymax = q97.5, group = sim_id)) +
     geom_hline(yintercept = 0) +
     facet_wrap(~para, scale = "free", labeller = label_parsed) +
     xlab("Simulation ID") +
@@ -593,13 +595,26 @@ coef_rand2 <- function(rand_summary, site) {
 
 }
 
-extract_sim_summary <- function(data) {
+#' @title Extract parameters from dynamic branches of sim_summary
+#' @para sim_summary dynamic branches of sim_summary
+extract_sim_summary <- function(sim_summary) {
   para <- expand_grid(a = c("a", "b", "g"), b = c("0", "p", "s")) |>
     mutate(para = str_c(a, b)) |>
     pull(para)
-  data |>
+  sim_summary |>
     # filter(q2.5 * q97.5 > 0) |>
     filter(variable %in% c(para, "theta"))
+}
+
+#' @title Extract summary diagnostics from dynamic branches of sim_summary
+#' @para sim_summary dynamic branches of sim_summary
+extract_sim_diagnostics <- function(sim_summary) {
+  sim_summary |>
+    filter(rhat > 1.1) |>
+    count(data_id) |>
+    full_join(sim_summary |>
+      filter(variable == "lp__")) |>
+    dplyr::select(data_id, num_rhat = n, num_divergent)
 }
 
 
