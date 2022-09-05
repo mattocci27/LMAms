@@ -813,7 +813,7 @@ main_list <- list(
   ),
   tar_target(
     box_intra_plot, {
-      p <- box_intra(gl_box_list, pa_box_trim_list, settings_yml)
+      p <- box_intra(gl_box_list, pa_box_trim_de_list, pa_box_trim_list, settings_yml)
       my_ggsave(
         "figs/box_intra",
        p,
@@ -827,12 +827,12 @@ main_list <- list(
   ),
   tar_target(
     box_inter_plot, {
-      p <- box_inter(pa_box_list, settings_yml)
+      p <- box_inter(pa_box_de_list, pa_box_list, settings_yml)
       my_ggsave(
         "figs/box_inter",
        p,
        dpi = 300,
-       height = 6,
+       height = 11.7,
        width = 11.7,
        units = "cm"
       )
