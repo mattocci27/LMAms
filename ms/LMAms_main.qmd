@@ -510,7 +510,7 @@ Groups sharing the same letters are not significantly different (P > 0.05; t-tes
 To isolate the effects of intraspecific variation (i.e., plastic responses to light), the Panama results shown here only include species for which both sun and shade leaves were available.
 Qualitatively similar results were obtained when all Panama species were included (Fig. S\ref{fig-box_inter}).
 Note that the vertical axis is on a log~10~ scale.
-](../figs/box_main.png){#fig-boxplt}
+](../figs/box_intra.png){#fig-boxplt}
 
 \newpage
 

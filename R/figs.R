@@ -652,6 +652,7 @@ prep_pa_box_list <- function(pa_inter_box_dat, letters_yml, type = c("PA_inter",
   data <- pa_inter_box_dat |>
     dplyr::select(sp, n, leaf_habit, gr, LMA, LMAp, LMAs) |>
     filter(!is.na(leaf_habit)) |>
+    mutate(leaf_habit = ifelse(leaf_habit == "D", "Dec", "Eve")) |>
     pivot_longer(LMA:LMAs, names_to = "LMA", values_to = "val") |>
     #dplyr::select(gr, val, LMA) |>
     unique()
@@ -694,23 +695,28 @@ theme_box <- function(base_size = 9,
 
 
 #' @title boxplot
-box_fun <- function(gl_box_list, fills, ylab = "GLOPNET") {
-  ggplot(gl_box_list$data, aes(x = gr, y = val, fill = gr)) +
-    geom_boxplot(outlier.shape = 21, outlier.size = 1) +
-    geom_text(data = gl_box_list$lab, aes(label = lab),
-              vjust = -1,
+box_fun <- function(gl_box_list, cols, fills, ylab = "GLOPNET") {
+  ggplot(gl_box_list$data, aes(x = gr, y = val)) +
+    geom_boxplot(aes(fill = gr, col = gr), outlier.shape = 21, outlier.size = 1) +
+    geom_text(data = gl_box_list$lab,
+              aes(label = lab),
+              vjust = 0,
+              hjust = -0.5,
               size = 8 * 5/14) +
     facet_grid(.~ LMA) +
     xlab("") +
     scale_fill_manual(values = fills, guide = "none") +
-    scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
+    scale_colour_manual(values = cols, guide = "none") +
+   # scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
+    scale_y_log10() +
     theme_box()
 }
 
 #' @title boxplot
 #' @para gl_box_list list with data and lab
-box_intra <- function(gl_box_list, pa_box_trim_list, settings_yml) {
+box_intra <- function(gl_box_list, pa_box_trim_de_list, pa_box_trim_list, settings_yml) {
   settings <- yaml::yaml.load_file(settings_yml)
+  cols <- rep("black", 3)
   fills <- c("Dec" = settings$fills$D,
             "Eve" = settings$fills$E,
             "Unclassified" = settings$fills$U)
@@ -724,24 +730,48 @@ box_intra <- function(gl_box_list, pa_box_trim_list, settings_yml) {
             "Shade\nDry" = settings$colors$shade_dry,
             "Shade\nWet" = settings$colors$shade_wet,
             "Rand" = settings$colors$R)
-  p1 <- box_fun(gl_box_list, fills) +
+
+  # tar_load(gl_box_list)
+  # gl_box_list
+  p1 <- box_fun(gl_box_list, cols, fills) +
        ylab(expression(atop("GLOPNET",
-                   LMA~(g~m^{-2}))))
-  p2 <- box_fun(pa_box_trim_list, fills2) +
-       scale_colour_manual(values = cols2, guide = "none") +
+                   LMA~(g~m^{-2})))) +
+       coord_cartesian(ylim = c(min(gl_box_list$data$val),
+       max(gl_box_list$data$val) * 1.2))
+  p2 <- box_fun(pa_box_trim_de_list, cols, fills) +
+      #  scale_colour_manual(values = cols2, guide = "none") +
        ylab(expression(atop("Panama",
                    LMA~(g~m^{-2})))) +
-  theme(
-    strip.background = element_blank(),
-    strip.text.x = element_text(colour = NA) # invinsible strip
-        ) # +
-  p1 / p2
+       coord_cartesian(ylim = c(min(pa_box_trim_de_list$data$val),
+       max(pa_box_trim_de_list$data$val) * 1.2)) +
+    theme(
+      strip.background = element_blank(),
+      strip.text.x = element_text(colour = NA) # invinsible strip
+          )
+  p3 <- box_fun(pa_box_trim_list, cols2, fills2) +
+      #  scale_colour_manual(values = cols2, guide = "none") +
+       coord_cartesian(ylim = c(min(pa_box_trim_list$data$val),
+       max(pa_box_trim_list$data$val) * 1.2)) +
+       ylab(expression(atop("Panama",
+                   LMA~(g~m^{-2})))) +
+    theme(
+      strip.background = element_blank(),
+      strip.text.x = element_text(colour = NA) # invinsible strip
+          )
+
+  p1 / p2 / p3 +
+    plot_annotation(tag_levels = "a")
+    # theme(plot.margin = margin(-1, 0, 0, 0))
 }
 
 #' @title boxplot for SI
 #' @para pa_box_list list with data and lab
-box_inter <- function(pa_box_list, settings_yml) {
+box_inter <- function(pa_box_de_list, pa_box_list, settings_yml) {
   settings <- yaml::yaml.load_file(settings_yml)
+  cols <- rep("black", 3)
+  fills <- c("Dec" = settings$fills$D,
+            "Eve" = settings$fills$E,
+            "Unclassified" = settings$fills$U)
   fills2 <- c("Sun\nDry" = settings$fills$sun_dry,
             "Sun\nWet" = settings$fills$sun_wet,
             "Shade\nDry" = settings$fills$shade_dry,
@@ -752,15 +782,24 @@ box_inter <- function(pa_box_list, settings_yml) {
             "Shade\nDry" = settings$colors$shade_dry,
             "Shade\nWet" = settings$colors$shade_wet,
             "Rand" = settings$colors$R)
-  p2 <- box_fun(pa_box_list, fills2) +
-       scale_colour_manual(values = cols2, guide = "none") +
+
+  p1 <- box_fun(pa_box_de_list, cols, fills) +
+       ylab(expression(atop("Panama",
+                   LMA~(g~m^{-2})))) +
+    theme(
+      strip.background = element_blank(),
+      strip.text.x = element_text(colour = NA) # invinsible strip
+          )
+
+  p2 <- box_fun(pa_box_list, cols2, fills2) +
        ylab(expression(atop("Panama",
                    LMA~(g~m^{-2})))) +
   theme(
     strip.background = element_blank(),
     strip.text.x = element_text(colour = NA) # invinsible strip
         )
-  p2
+  p1 / p2 +
+    plot_annotation(tag_levels = "a")
 }
 
 #' @title Boxplot for LMAp fraction (LMAp / LMA)
