@@ -1,3 +1,42 @@
+
+#' @title Generate stan file names
+generate_stan_names <- function(model_json, model_lma_json) {
+  model <- fromJSON(model_json)$config
+  model_lma <- fromJSON(model_lma_json)$config
+  model_lma2 <- model_lma |>
+    mutate(site = ifelse(str_detect(model, "GL"), "GL", "PA"))
+  model2 <- full_join(model_lma2, model, by = c("site", "model", "opt"))
+
+  gl_stan_names <- str_c("stan/",
+    model2 |>
+      filter(site == "GL") |>
+      pull(model),
+    ".stan")
+  pa_stan_names <- str_c("stan/",
+    model2 |>
+      filter(site == "PA") |>
+      pull(model),
+    ".stan")
+  diagnostics_names <- str_c(
+    str_to_lower(model2$site),
+    "diagnostics",
+    model2$model,
+    sep = "_"
+    )
+  summary_names <- str_c(
+    str_to_lower(model2$site),
+    "summary",
+    model2$model,
+    sep = "_"
+    )
+  list(
+    gl_stan_names = gl_stan_names,
+    pa_stan_names = pa_stan_names,
+    summary_names = summary_names,
+    diagnostics_names = diagnostics_names
+    )
+}
+
 #' @title Generate stan data for GLOPNET
 generate_gl_stan <- function(data) {
   list_data <- list(
@@ -74,29 +113,45 @@ generate_pa_stan <- function(data, full = FALSE) {
 }
 
 #' @title Fit the Stan model to randomized data.
-#' @return list of cmdstan summary, draws, and diagnostics
+#' @return dataframe of cmdstan customized summary with diagnostics
 #' @param data Data frame, a single simulated dataset.
 #' @param model_file Path to the Stan model source file.
 #' @ref https://github.com/wlandau/targets-stan
-fit_rand_model <- function(stan_data, model_file,
-                            iter_warmup = 2000,
-                            iter_sampling = 2000,
-                            adapt_delta = 0.999,
-                            #adapt_delta = 0.8,
-                            max_treedepth = 15) {
+fit_sim_model <- function(stan_data, model_file,
+                            iter_warmup = 1,
+                            iter_sampling = 1,
+                            adapt_delta = 0.9,
+                            max_treedepth = 15,
+                            chains = 4,
+                            parallel_chains = 1,
+                            refresh = 0,
+                            seed = 123) {
   model <- cmdstan_model(model_file)
   fit <- model$sample(
     data = stan_data,
-    seed = 123,
+    seed = seed,
     iter_warmup = iter_warmup,
     iter_sampling = iter_sampling,
     adapt_delta = adapt_delta,
     max_treedepth = max_treedepth,
-    chains = 4,
-    parallel_chains = 4,
-    refresh = 0)
-  list(summary = fit$summary(), draws = fit$draws(), diagnostics = fit$sampler_diagnostics())
+    chains = chains,
+    parallel_chains = parallel_chains,
+    refresh = refresh)
+
+  summary_ <- posterior::summarise_draws(fit,
+    mean = ~mean(.x),
+    sd = ~sd(.x),
+    mad = ~mad(.x),
+    ~posterior::quantile2(.x, probs = c(0.025, 0.05, 0.25, 0.5, 0.75, 0.95, 0.975)),
+    posterior::default_convergence_measures())
+
+  diagnostic_summary_ <- fit$diagnostic_summary()
+  summary_ |>
+    mutate(num_divergent = sum(diagnostic_summary_$num_divergent)) |>
+    mutate(num_max_treedepth = sum(diagnostic_summary_$num_max_treedepth)) |>
+    mutate(data_id = targets::tar_name())
 }
+
 
 #' @title Compile a Stan model and return a path to the compiled model output.
 #' @description We return the paths to the Stan model specification
@@ -139,13 +194,10 @@ quiet <- function(code) {
 #' zero covariane among tratis
 #' @example
 # library(tidyverse)
-# n <- 2
-# targets::tar_load(gl_stan_dat)
-# list_data <- gl_stan_dat
 # targets::tar_load(gl_csv)
 # data <- read_csv(gl_csv)
-# rand_fun(2, data, list_data)
-rand_fun <- function(n, data, list_data, ld = FALSE){
+# generate_sim_data(data)
+generate_sim_data <- function(data, gl = TRUE){
   a_pval <- cor.test(log(data$LMA), log(data$Aarea))$p.val
   l_pval <- cor.test(log(data$LMA), log(data$LL))$p.val
   r_pval <- cor.test(log(data$LMA), log(data$Rarea))$p.val
@@ -170,80 +222,22 @@ rand_fun <- function(n, data, list_data, ld = FALSE){
     al_pval <- cor.test(log(tmp$LL), log(tmp$Aarea))$p.val
     rl_pval <- cor.test(log(tmp$Rarea), log(tmp$LL))$p.val
     ar_pval <- cor.test(log(tmp$Aarea), log(tmp$Rarea))$p.val
-    # paste("Aarea", a_pval) |> print()
-    # paste("Rarea", r_pval) |> print()
-    # paste("LL", l_pval) |> print()
-    # paste("Aarea-LL", al_pval) |> print()
-    # paste("Rarea-LL", rl_pval) |> print()
-    # paste("Aarea-Rarea", ar_pval) |> print()
   }
 
   tmp$A_R <- tmp$A - tmp$R
 
-  list_dat <- list(N = list_data$N,
+  list_data <- list(N = nrow(tmp),
             A = tmp$Aarea,
             LL = tmp$LL,
             R = tmp$Rarea,
-            q_lim = list_data$q_lim,
-            leaf = list_data$leaf,
-            dry = list_data$dry,
-            leaf_habit = list_data$leaf_habit,
             LMA = tmp$LMA)
-  if (ld) list_dat$LT <- data$LT
-  list_dat
-}
-
-
-#' @title Generate a txt file for _targets.R
-generate_tar_stan <- function(model, model_lma) {
-  model <- fromJSON(model)$config
-  # model_lma <- fromJSON("templates/model_LMA.json")$config
-  # model <- fromJSON("templates/model.json")$config
-  model_lma <- fromJSON(model_lma)$config
-  model_lma2 <- model_lma |>
-    mutate(site = ifelse(str_detect(model, "GL"), "GL", "PA"))
-
-  model2 <- full_join(model_lma2, model, by = c("site", "model", "opt"))
-
-  model_n <- nrow(model2)
-
-  model3 <- model2 |>
-    mutate(fit = paste("fit", 1:model_n, sep = "_")) |>
-    mutate(stan = paste0("stan/", model, ".stan")) |>
-    mutate(data = ifelse(site == "GL", "gl_stan_dat", "pa_stan_dat"))
-
-  tmp <- "templates/tar_stan_mcmc.txt"
-  for (i in 1:nrow(model3)) {
-    if (i == 1) {
-      write_lines("  tar_stan_mcmc(", tmp, append = FALSE)
-    } else {
-      write_lines("  tar_stan_mcmc(", tmp, append = TRUE)
-    }
-    write_lines(
-      paste0("    ", model3$fit[i]), tmp, ",\n",
-      append = TRUE
-    )
-    write_lines(
-      paste0('    "', model3$stan[i]), tmp, '",\n',
-      append = TRUE
-    )
-    write_lines(
-      paste0("    data = ", model3$data[i]), tmp, ",\n",
-      append = TRUE
-    )
-    write_lines('    refresh = 0,
-    chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
-    iter_warmup = 1,
-    iter_sampling = 1,
-    adapt_delta = 0.9,
-    max_treedepth = 15,
-    seed = 123),',
-      tmp,
-      append = TRUE
-    )
+  if (gl) {
+    list_data$leaf <- 1
+  } else {
+    list_data$leaf <- ifelse(data$strata == "CAN", 1, 0)
   }
-  paste(tmp)
+  # if (ld) list_data$LT <- data$LT
+  list_data
 }
 
 #' @title Check divergence from draws
@@ -258,7 +252,6 @@ div_check <- function(diags) {
     "iterations ended with a divergence", n1 / n2 * 100, "%"
   ))
 }
-
 
 #' @title Generates csv file of GLOPNET for the subsequent analysis
 generate_gl_dat <- function(gl_csv, draws) {
@@ -462,22 +455,6 @@ create_para_tbl <- function(gl_draws, pa_draws) {
   paste("./data/para_tbl.csv")
 }
 
-#' @para para parameter name (e.g., "ap")
-#' @para rand_fit e.g., gl_rand_fit
-#' @para n sim ID
-#' @example
-#' list("a0", "ap", "as", "b0", "bs", "g0", "gp", "gs") |>
-#'  map_dfr(rand_summary, gl_rand_fit, 6)
-rand_summary <- function(para, rand_fit, n) {
-  tmp <- rand_fit[[n]]$draws
-  para_dbl <- tmp[, ,para] |> as.numeric()
-  tibble(para = para,
-    mean = mean(para_dbl),
-    lwr = quantile(para_dbl, 0.025),
-    upr = quantile(para_dbl, 0.975),
-    sim_id = n) |>
-    mutate(sig = ifelse(lwr * upr > 0, "sig", "ns"))
-}
 
 #' @title later
 create_sim_dat <- function() {
@@ -575,6 +552,91 @@ coef_rand <- function(gl_rand_sig, gl_rand_check, site = site) {
        axis.text.x = element_text(angle = 45, vjust = 0.8)
     )
 }
+
+#' @para gl_rand_sig data including 95% CI
+#' @para gl_rand_check data with rhat and divergence
+coef_sim <- function(sim_para_summary, site) {
+
+  data <- sim_para_summary  |>
+   # filter(!kkstr_detect(para, "0")) |>
+    # mutate(cov = ifelse(rhat == 0, "Converged", "Not converged")) |>
+    # mutate(cov = factor(cov, levels = c("Not converged", "Converged"))) |>
+    mutate(sim_id_no = as.factor(data_id) |>
+       as.numeric() |>
+       str_pad(2, pad = 0)) |>
+    mutate(sim_id = paste0("sim-", sim_id_no)) |>
+    mutate(para = case_when(
+      variable == "a0" ~ "alpha[0]",
+      variable == "ap" ~ "alpha[p]",
+      variable == "as" ~ "alpha[s]",
+      variable == "b0" ~ "beta[0]",
+      variable == "bs" ~ "beta[s]",
+      variable == "g0" ~ "gamma[0]",
+      variable == "gp" ~ "gamma[p]",
+      variable == "gs" ~ "gamma[s]",
+      TRUE ~ variable
+    ))
+
+  ggplot(data) +
+    geom_pointrange(aes(x = sim_id,
+     y = mean, ymin = q2.5, ymax = q97.5, group = sim_id)) +
+    geom_hline(yintercept = 0) +
+    facet_wrap(~para, scale = "free", labeller = label_parsed) +
+    xlab("Simulation ID") +
+    ylab("Standardized coefficents") +
+    ggtitle(site) +
+    coord_flip() +
+    theme_bw() +
+    theme(
+       legend.position = c(0.8, 0.2),
+       legend.title = element_blank(),
+       axis.text.x = element_text(angle = 45, vjust = 0.8)
+    )
+
+}
+
+#' @title Extract parameters from dynamic branches of sim_summary
+#' @para sim_summary dynamic branches of sim_summary
+extract_sim_summary <- function(sim_summary) {
+  para <- expand_grid(a = c("a", "b", "g"), b = c("0", "p", "s")) |>
+    mutate(para = str_c(a, b)) |>
+    pull(para)
+  sim_summary |>
+    # filter(q2.5 * q97.5 > 0) |>
+    filter(variable %in% c(para, "theta"))
+}
+
+#' @title Extract summary diagnostics from dynamic branches of sim_summary
+#' @para sim_summary dynamic branches of sim_summary
+extract_sim_diagnostics <- function(sim_summary) {
+  sim_summary |>
+    filter(rhat > 1.1) |>
+    count(data_id) |>
+    full_join(sim_summary |>
+      filter(variable == "lp__")) |>
+    dplyr::select(data_id, num_rhat = n, num_divergent)
+}
+
+
+#' @title Get posterior estimates mcmc summary
+#' @param data data frame, summary of mcmc
+#' @param row variable name (e.g., "theta")
+#' @param col summary name (e.g., "mean", "q50")
+get_para <- function(data, row, col) {
+  data |>
+    mutate_if(is.numeric, \(x) round(x, 2)) |>
+    mutate_if(is.numeric, \(x) format(x, nsmall = 2)) |>
+    filter(variable == {{row}}) |>
+    pull({{col}})
+}
+
+#' @title write_csv for targets
+#' @inheritParams readr::write_csv
+my_write_csv <- function(x, path, append = FALSE, col_names = !append) {
+    write_csv(x, path, append = FALSE, col_names = !append)
+    paste(path)
+}
+
 
 #' @title Generate data for LL partial plot
 

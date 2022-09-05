@@ -99,4 +99,6 @@ test.sh
 test.R
 
 data
-data-raw
+data-raw/*.csv
+
+*.csv

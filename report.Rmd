@@ -1,9 +1,9 @@
 ---
-title: report
+Title: "your title"
 author: "Masatoshi Katabuchi"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
-output:
-  html_document:
+format:
+  html:
     fig_caption: yes
     theme: spacelab #readable #sandstone #spacelab #flatly
     highlight: pygments #tango #kate
