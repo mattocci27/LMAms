@@ -811,6 +811,7 @@ main_list <- list(
     pa_box_de_list,
     prep_pa_box_list(pa_inter_box_dat, letters_yml, type = "PA_inter_de")
   ),
+
   tar_target(
     box_intra_plot, {
       p <- box_intra(gl_box_list, pa_box_trim_de_list, pa_box_trim_list, settings_yml)
@@ -825,6 +826,36 @@ main_list <- list(
     },
     format = "file"
   ),
+
+  tar_target(
+    box_de_plot, {
+      p <- box_de(gl_box_list, pa_box_trim_de_list, settings_yml)
+      my_ggsave(
+        "figs/box_de",
+       p,
+       dpi = 300,
+       height = 11.7,
+       width = 11.7,
+       units = "cm"
+      )
+    },
+    format = "file"
+  ),
+  tar_target(
+    box_pa_plot, {
+      p <- box_pa(pa_box_trim_list, settings_yml)
+      my_ggsave(
+        "figs/box_pa",
+       p,
+       dpi = 300,
+       height = 6,
+       width = 11.7,
+       units = "cm"
+      )
+    },
+    format = "file"
+  ),
+
   tar_target(
     box_inter_plot, {
       p <- box_inter(pa_box_de_list, pa_box_list, settings_yml)
@@ -839,6 +870,7 @@ main_list <- list(
     },
     format = "file"
   ),
+
   tar_target(
     box_frac_plot, {
       p <- box_frac(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml)

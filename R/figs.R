@@ -707,12 +707,66 @@ box_fun <- function(gl_box_list, cols, fills, ylab = "GLOPNET") {
     xlab("") +
     scale_fill_manual(values = fills, guide = "none") +
     scale_colour_manual(values = cols, guide = "none") +
-   # scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
-    scale_y_log10() +
+    scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
     theme_box()
 }
 
-#' @title boxplot
+#' @title Boxplot for eve/dec
+#' @para gl_box_list list with data and lab
+box_de <- function(gl_box_list, pa_box_trim_de_list, settings_yml) {
+  settings <- yaml::yaml.load_file(settings_yml)
+  cols <- rep("black", 3)
+  fills <- c("Dec" = settings$fills$D,
+            "Eve" = settings$fills$E,
+            "Unclassified" = settings$fills$U)
+
+  # tar_load(gl_box_list)
+  # gl_box_list
+  p1 <- box_fun(gl_box_list, cols, fills) +
+       ylab(expression(atop("GLOPNET",
+                   LMA~(g~m^{-2}))))
+
+  p2 <- box_fun(pa_box_trim_de_list, cols, fills) +
+      #  scale_colour_manual(values = cols2, guide = "none") +
+       ylab(expression(atop("Panama",
+                   LMA~(g~m^{-2})))) +
+    theme(
+      strip.background = element_blank(),
+      strip.text.x = element_text(colour = NA) # invinsible strip
+          )
+
+  p1 / p2  +
+    plot_annotation(tag_levels = "a")
+}
+
+#' @title Boxplot for Panama intra sun/shade
+#' @para gl_box_list list with data and lab
+box_pa <- function(pa_box_trim_list, settings_yml) {
+  settings <- yaml::yaml.load_file(settings_yml)
+  fills <- c("Sun\nDry" = settings$fills$sun_dry,
+            "Sun\nWet" = settings$fills$sun_wet,
+            "Shade\nDry" = settings$fills$shade_dry,
+            "Shade\nWet" = settings$fills$shade_wet,
+            "Rand" = settings$fills$R)
+  cols <- c("Sun\nDry" = settings$colors$sun_dry,
+            "Sun\nWet" = settings$colors$sun_wet,
+            "Shade\nDry" = settings$colors$shade_dry,
+            "Shade\nWet" = settings$colors$shade_wet,
+            "Rand" = settings$colors$R)
+
+
+  p <- box_fun(pa_box_trim_list, cols, fills) +
+       ylab(expression(atop("Panama",
+                   LMA~(g~m^{-2})))) +
+    theme(
+      strip.background = element_blank(),
+      strip.text.x = element_text(colour = NA) # invinsible strip
+          )
+  p
+}
+
+
+#' @title Boxplot for Panama inter eve/dec and sun/shade
 #' @para gl_box_list list with data and lab
 box_intra <- function(gl_box_list, pa_box_trim_de_list, pa_box_trim_list, settings_yml) {
   settings <- yaml::yaml.load_file(settings_yml)
@@ -738,6 +792,7 @@ box_intra <- function(gl_box_list, pa_box_trim_de_list, pa_box_trim_list, settin
                    LMA~(g~m^{-2})))) +
        coord_cartesian(ylim = c(min(gl_box_list$data$val),
        max(gl_box_list$data$val) * 1.2))
+
   p2 <- box_fun(pa_box_trim_de_list, cols, fills) +
       #  scale_colour_manual(values = cols2, guide = "none") +
        ylab(expression(atop("Panama",
