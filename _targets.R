@@ -276,6 +276,17 @@ main_list <- list(
     format = "file"
   ),
 
+  tar_target(
+    gl_para_all_csv,
+    my_write_csv(gl_summary_GL_Aps_LLs, "data/gl_para_all.csv"),
+    format = "file"
+  ),
+  tar_target(
+    pa_para_all_csv,
+    my_write_csv(pa_summary_PA_Ap_LLs_opt, "data/pa_para_all.csv"),
+    format = "file"
+  ),
+
   # simluation ------------------------
 
   # use `sim_rep` as `pattern`
@@ -618,7 +629,7 @@ main_list <- list(
        p,
        dpi = 300,
        height = 6,
-       width = 10,
+       width = 11,
        units = "cm"
       )
     },

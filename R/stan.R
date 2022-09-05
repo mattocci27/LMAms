@@ -618,5 +618,25 @@ extract_sim_diagnostics <- function(sim_summary) {
 }
 
 
+#' @title Get posterior estimates mcmc summary
+#' @param data data frame, summary of mcmc
+#' @param row variable name (e.g., "theta")
+#' @param col summary name (e.g., "mean", "q50")
+get_para <- function(data, row, col) {
+  data |>
+    mutate_if(is.numeric, \(x) round(x, 2)) |>
+    mutate_if(is.numeric, \(x) format(x, nsmall = 2)) |>
+    filter(variable == {{row}}) |>
+    pull({{col}})
+}
+
+#' @title write_csv for targets
+#' @inheritParams readr::write_csv
+my_write_csv <- function(x, path, append = FALSE, col_names = !append) {
+    write_csv(x, path, append = FALSE, col_names = !append)
+    paste(path)
+}
+
+
 #' @title Generate data for LL partial plot
 
