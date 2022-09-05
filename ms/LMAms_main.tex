@@ -407,7 +407,7 @@
 
 
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, interior hidden, breakable, frame hidden, sharp corners, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, interior hidden, sharp corners, frame hidden, enhanced, borderline west={3pt}{0pt}{shadecolor}, breakable]}{\end{tcolorbox}}\fi
 
 \textbf{Running title}: Metabolic and structural leaf mass
 
@@ -1019,12 +1019,12 @@ function accounts for nearly all leaf maintenance respiration.
 sun leaves have both greater LMAp and LMAs than shade leaves.} Evergreen
 vs.~decidous explains the majority of variance in LMAs but not LMAp in
 GLOPNET (Fig.~\ref{fig-vpart}). Thus, the higher total LMA in evergreen
-leaves in GLOPNET (Fig.~\ref{fig-boxplt}) was primarily due to
+leaves in GLOPNET (Fig.~\ref{fig-boxplt_de}) was primarily due to
 differences in LMAs. In the Panama dataset, light (sun vs.~shade)
 explains the majority of variance in LMAp but not LMAs, and site
 (wet/dry) explains 33\% of variance in LMAs (Fig.~\ref{fig-vpart}). Sun
 leaves have both greater LMAp and LMAs than shade leaves, but the
-differences in LMAp were more apparent (Fig.~\ref{fig-boxplt}). Thus,
+differences in LMAp were more apparent (Fig.~\ref{fig-boxplt_pa}). Thus,
 variation in LMAp plays a more important role within species than among
 species. Evergreen leaves have higher fraction of LMAs compared to
 deciduous leaves both in the Panama and the GLOPNET dataset (Fig.
@@ -1101,7 +1101,7 @@ LMAp is small or similar to variance in LMAs, (ii) the effects of LMAp
 and LMAs on \emph{A}\textsubscript{area} (\(\alpha_p\) and \(\alpha_s\))
 are small, (iii) or combinations of those (Fig. Fig.~\ref{fig-massplt}).
 Consistent with this explanation, the assemblage we examined where LMAs
-counted for the highest fraction of total LMA variation (92.3\% for
+counted for the highest fraction of total LMA variation (-80\% for
 Panama shade leaves) is also the assembled with the highest degree of
 trait area-dependence (\protect\hyperlink{ref-Osnas2018}{Osnas et al.
 2018}). Our results also suggest that high degree of trait
@@ -1142,9 +1142,9 @@ of palisade mesophyll cells with increasing light availability
 (\protect\hyperlink{ref-Onoda2008}{Onoda et al. 2008},
 \protect\hyperlink{ref-Terashima2011}{Terashima et al. 2011}) -- is also
 associated with an increase in LMAs from shade to sun (Fig.
-Fig.~\ref{fig-boxplt}). This positive covariance between LMAp and LMAs
-within species means that per-area values of LMAp-proportional traits
-(e.g., \emph{A}\textsubscript{area}) have a strong, positive
+Fig.~\ref{fig-boxplt_pa}). This positive covariance between LMAp and
+LMAs within species means that per-area values of LMAp-proportional
+traits (e.g., \emph{A}\textsubscript{area}) have a strong, positive
 relationship with total LMA, which implies trait mass-proportionality
 (\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
 
@@ -1326,11 +1326,6 @@ woodland species}. New Phytologist 193:409--419.
 Gelman, A., J. B. Carlin, H. S. Stern, D. B. Dunson, A. Vehtari, and D.
 B. Rubin. 2013. Bayesian {Data Analysis}, {Third Edition}. {Taylor \&
 Francis}.
-
-\leavevmode\vadjust pre{\hypertarget{ref-Gelman2019}{}}%
-Gelman, A., B. Goodrich, J. Gabry, and A. Vehtari. 2019.
-\href{https://doi.org/10.1080/00031305.2018.1549100}{R-squared for
-{Bayesian Regression Models}}. The American Statistician 73:307--309.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Huntingford2017}{}}%
 Huntingford, C., O. K. Atkin, A. Martinez-de la Torre, L. M. Mercado, M.
@@ -1636,22 +1631,22 @@ Model & N & LOOIC\\
 \hspace{1em}2b & 198 & 721.2\\
 \hspace{1em}2a & 198 & 759.8\\
 \hspace{1em}2d & 198 & 761.8\\
-\hspace{1em}2c & 198 & 765.0\\
+\hspace{1em}2c & 198 & 764.2\\
 \hspace{1em}1 & 198 & 766.4\\
 \addlinespace[0.3em]
 \multicolumn{3}{l}{\textbf{Panama}}\\
-\hspace{1em}4a & 106 & 455.6\\
-\hspace{1em}2c & 106 & 472.3\\
-\hspace{1em}5a & 106 & 473.5\\
-\hspace{1em}4c & 106 & 485.1\\
-\hspace{1em}5c & 106 & 493.5\\
+\hspace{1em}4a & 106 & 461.0\\
+\hspace{1em}5a & 106 & 472.3\\
+\hspace{1em}2c & 106 & 478.2\\
+\hspace{1em}4c & 106 & 487.2\\
 \hspace{1em}2a & 106 & 500.3\\
-\hspace{1em}4d & 106 & 502.7\\
-\hspace{1em}3 & 106 & 502.7\\
-\hspace{1em}4b & 106 & 503.3\\
-\hspace{1em}2d & 106 & 517.0\\
-\hspace{1em}2b & 106 & 522.8\\
-\hspace{1em}1 & 106 & 528.2\\
+\hspace{1em}5c & 106 & 502.1\\
+\hspace{1em}4b & 106 & 508.2\\
+\hspace{1em}4d & 106 & 508.6\\
+\hspace{1em}3 & 106 & 510.1\\
+\hspace{1em}2b & 106 & 526.7\\
+\hspace{1em}2d & 106 & 526.9\\
+\hspace{1em}1 & 106 & 536.8\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1679,17 +1674,17 @@ Panama
 \midrule()
 \endhead
 Effect of LMAp on \emph{A}\textsubscript{area} (\(\alpha_p\)) &
-\textbf{0.282 {[}0.204, 0.36{]}} & \textbf{0.563 {[}0.414, 0.715{]}} \\
+\textbf{0.282 {[}0.204, 0.36{]}} & \textbf{0.578 {[}0.429, 0.723{]}} \\
 Effect of LMAs on \emph{A}\textsubscript{area} (\(\alpha_s\)) &
 \textbf{-0.131 {[}-0.201, -0.058{]}} & - \\
 Effect of LMAs on LL (\(\beta_s\)) & \textbf{0.888 {[}0.761, 1.018{]}} &
-\textbf{0.359 {[}0.185, 0.53{]}} \\
+\textbf{0.352 {[}0.17, 0.531{]}} \\
 Effect of LMAp on \emph{R}\textsubscript{area} (\(\gamma_p\)) &
-\textbf{0.289 {[}0.202, 0.38{]}} & \textbf{0.648 {[}0.445, 0.843{]}} \\
+\textbf{0.289 {[}0.202, 0.38{]}} & \textbf{0.612 {[}0.388, 0.823{]}} \\
 Effect of LMAs on \emph{R}\textsubscript{area} (\(\gamma_s\)) & 0.035
-{[}-0.045, 0.115{]} & -0.005 {[}-0.245, 0.282{]} \\
-Effect of light on LL (\(\theta\)) & - & \textbf{-0.807 {[}-1.085,
--0.53{]}} \\
+{[}-0.045, 0.115{]} & 0.038 {[}-0.25, 0.351{]} \\
+Effect of light on LL (\(\theta\)) & - & \textbf{-0.83 {[}-1.116,
+-0.538{]}} \\
 \bottomrule()
 \end{longtable}
 
@@ -1700,7 +1695,7 @@ Effect of light on LL (\(\theta\)) & - & \textbf{-0.807 {[}-1.085,
 
 \begin{figure}
 
-{\centering \includegraphics{../figs/hypo.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/hypo.png}
 
 }
 
@@ -1728,7 +1723,7 @@ log-scale parameter with 0.31 (see Methods and Results).}
 
 \begin{figure}
 
-{\centering \includegraphics{../figs/gl_point.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/gl_point.png}
 
 }
 
@@ -1749,7 +1744,7 @@ column) are shown. Note that LL was modeled by LMAs alone.}
 
 \begin{figure}
 
-{\centering \includegraphics{../figs/pa_point.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/pa_point.png}
 
 }
 
@@ -1765,16 +1760,14 @@ were modeled by LMAp and LMAs alone, respectively.}
 
 \begin{figure}
 
-{\centering \includegraphics{../figs/pa_point_ll.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/pa_point_par_ll.png}
 
 }
 
-\caption{\label{fig-LLplt}Observed vs.~predicted leaf lifespan (LL) in
-the LL with light Model (Model 4a). Predicted LL values are posterior
-means. The dashed line indicates the 1:1 relationship. The
-\emph{R}\textsuperscript{2} value is the posterior mean of Bayesian
-\emph{R}\textsuperscript{2} (\protect\hyperlink{ref-Gelman2019}{Gelman
-et al. 2019}).}
+\caption{\label{fig-LLplt}Relationship between residuals of leaf
+lifespan (LL) against light and residuals of LMAs against light. The
+dashed line indicates the 1:1 relationship. The posterior means of the
+partial correlation coefficient (\(\bar{\rho}\)) is shown.}
 
 \end{figure}
 
@@ -1782,14 +1775,14 @@ et al. 2019}).}
 
 \begin{figure}
 
-{\centering \includegraphics{../figs/vpart.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/vpart_intra.png}
 
 }
 
 \caption{\label{fig-vpart}Variance partitioning on LMA components
 between and within leaf habits (evergreen vs.~deciuous) for the GLOPNET
-dataset, and between and within sites (wet vs.~dry) and light (sun
-vs.~shade) for the Panama dataset.}
+dataset and the Panama dataset, and between and within sites (wet
+vs.~dry) and light (sun vs.~shade) for the Panama dataset.}
 
 \end{figure}
 
@@ -1797,25 +1790,24 @@ vs.~shade) for the Panama dataset.}
 
 \begin{figure}
 
-{\centering \includegraphics{../figs/box_main.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/box_de.png}
 
 }
 
-\caption{\label{fig-boxplt}Boxplots comparing leaf mass per area (LMA)
-and posterior medians of photosynthetic and structural LMA components
-(LMAp and LMAs, respectively) across deciduous (D) and evergreen (E)
-leaves in the GLOPNET dataset (top), and across sites (wet and dry) and
-canopy strata (sun and shade) in the Panama dataset (bottom). The center
-line in each box indicates the median, upper and lower box edges
-indicate the interquartile range, whiskers show 1.5 times the
-interquartile range, and points are outliers. Groups sharing the same
-letters are not significantly different (P \textgreater{} 0.05;
+\caption{\label{fig-boxplt_de}Boxplots comparing leaf mass per area
+(LMA) and posterior medians of photosynthetic and structural LMA
+components (LMAp and LMAs, respectively) across deciduous (D) and
+evergreen (E) leaves in the GLOPNET dataset (a) and in the Panama
+dataset (b). The center line in each box indicates the median, upper and
+lower box edges indicate the interquartile range, whiskers show 1.5
+times the interquartile range, and points are outliers. Groups sharing
+the same letters are not significantly different (P \textgreater{} 0.05;
 t-tests). To isolate the effects of intraspecific variation (i.e.,
 plastic responses to light), the Panama results shown here only include
-species for which both sun and shade leaves were available.
-Qualitatively similar results were obtained when all Panama species were
-included (Fig. S\ref{fig-box_inter}). Note that the vertical axis is on
-a log\textsubscript{10} scale.}
+species for which both sun and shade leaves were available
+(\textbf{revise this text}). Qualitatively similar results were obtained
+when all Panama species were included (Fig. S\ref{fig-box_inter}). Note
+that the vertical axis is on a log\textsubscript{10} scale.}
 
 \end{figure}
 
@@ -1823,7 +1815,27 @@ a log\textsubscript{10} scale.}
 
 \begin{figure}
 
-{\centering \includegraphics{../figs/mass_prop_mv.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/box_pa.png}
+
+}
+
+\caption{\label{fig-boxplt_pa}Boxplots comparing leaf mass per area
+(LMA) and posterior medians of photosynthetic and structural LMA
+components (LMAp and LMAs, respectively across sites (wet and dry) and
+canopy strata (sun and shade) in the Panama dataset (bottom). To isolate
+the effects of intraspecific variation (i.e., plastic responses to
+light), the Panama results shown here only include species for which
+both sun and shade leaves were available. Qualitatively similar results
+were obtained when all Panama species were included (Fig.
+S\ref{fig-box_inter}). Details as for Fig.~\ref{fig-boxplt_de}}
+
+\end{figure}
+
+\newpage
+
+\begin{figure}
+
+{\centering \includegraphics{/home/mattocci/LMAms/figs/mass_prop_mv.png}
 
 }
 
@@ -1845,7 +1857,7 @@ dramatically increases with LMA, which is not realistic.}
 
 \begin{figure}
 
-{\centering \includegraphics{../figs/pa_point_npc.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/pa_point_npc.png}
 
 }
 

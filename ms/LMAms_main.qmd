@@ -308,9 +308,9 @@ Thus, although building costs are likely similar for different leaf chemical com
 
 **3. Evergreen leaves have greater LMAs than deciduous leaves, and sun leaves have both greater LMAp and LMAs than shade leaves.**
 Evergreen vs. decidous explains the majority of variance in LMAs but not LMAp in GLOPNET ([@fig-vpart]).
-Thus, the higher total LMA in evergreen leaves in GLOPNET ([@fig-boxplt]) was primarily due to differences in LMAs.
+Thus, the higher total LMA in evergreen leaves in GLOPNET ([@fig-boxplt_de]) was primarily due to differences in LMAs.
 In the Panama dataset, light (sun vs. shade) explains the majority of variance in LMAp but not LMAs, and site (wet/dry) explains 33% of variance in LMAs ([@fig-vpart]).
-Sun leaves have both greater LMAp and LMAs than shade leaves, but the differences in LMAp were more apparent ([@fig-boxplt]).
+Sun leaves have both greater LMAp and LMAs than shade leaves, but the differences in LMAp were more apparent ([@fig-boxplt_pa]).
 Thus, variation in LMAp plays a more important role within species than among species.
 Evergreen leaves have higher fraction of LMAs compared to deciduous leaves both in the Panama and the GLOPNET dataset (Fig. S\ref{fig-box_frac}).
 
@@ -348,7 +348,7 @@ The scaling slope $\alpha_p$ less than 1 (Table 2) suggests a diminishing return
 
 Decomposing LMA also provides insights as to why intraspecific patterns of trait variation differ from those observed across species.
 In contrast to interspecific LMA variation, our analysis suggests that LMAp contributes half or more of the intraspecific increase in LMA from shade to sun (Figs. [@fig-massplt] and SX).
-The increase in LMAp from shade to sun – which likely reflects an increase in the size and number of palisade mesophyll cells with increasing light availability [@Onoda2008; @Terashima2011] – is also associated with an increase in LMAs from shade to sun (Fig. [@fig-boxplt]).
+The increase in LMAp from shade to sun – which likely reflects an increase in the size and number of palisade mesophyll cells with increasing light availability [@Onoda2008; @Terashima2011] – is also associated with an increase in LMAs from shade to sun (Fig. [@fig-boxplt_pa]).
 This positive covariance between LMAp and LMAs within species means that per-area values of LMAp-proportional traits (e.g., *A*~area~) have a strong, positive relationship with total LMA, which implies trait mass-proportionality [@Osnas2018].
 
 The improved predictions and understanding provided by decomposing LMA into photosynthetic and structural components challenge the view that leaf functional diversity can be accurately represented by a single leaf economics spectrum (LES) axis [@Wright2004a].
@@ -463,7 +463,7 @@ Example of a two-dimensional functional space that can result in either a two- o
 (C) One-dimensional relationship between *A*~max~ per-unit leaf mass and total LMA.
 LMAp and LMAs are simulated from a hypothetical scenario of lognormal distributions with medians of 80 and standard deviations of exp(0.8) and exp(0.7), and zero covariance.
 Variation in *A*~max~ values are derived from our analysis of the GLOPNET database. $A_{\mathrm{area} \, i}=1.81 \times \mathrm{LMAp}_i^{0.28}\mathrm{LMAs}^{-0.13}\epsilon_i$, where $\epsilon_i$ is log-normally distributed with log-mean with 0, log-scale parameter with 0.31 (see Methods and Results).
-](../figs/hypo.png){#fig-Hplt}
+](`r here::here("figs/hypo.png")`){#fig-Hplt}
 
 
 ![
@@ -472,7 +472,7 @@ Estimates are from Model 2b (Table 1).
 Leaf life span (LL), net photosynthetic rate per unit leaf area (*A*~area~), and dark respiration rate per unit leaf area (*R*~area~) are plotted against observed LMA, posterior means of LMAp and LMAs.
 Pearson correlation coefficients (*r*) for LMA (left column) and posterior means of Pearson correlation coefficients ($\bar{r}$) or partial correlation coefficients ($\bar{\rho}$) of LMAp (middle column) and LMAs (right column) are shown.
 Note that LL was modeled by LMAs alone.
-](../figs/gl_point.png){#fig-GLplt}
+](`r here::here("figs/gl_point.png")`){#fig-GLplt}
 
 \newpage
 
@@ -482,37 +482,46 @@ Estimates are from Model 4a (Table 1).
 Details as in [@fig-GLplt].
 Results for other LL models are summarized in Table SX.
 Note that *A*~area~ and LL were modeled by LMAp and LMAs alone, respectively.
-](../figs/pa_point.png){#fig-PAplt}
+](`r here::here("figs/pa_point.png")`){#fig-PAplt}
 
 
 \newpage
 
 ![
-Observed vs. predicted leaf lifespan (LL) in the LL with light Model (Model 4a).
-Predicted LL values are posterior means.
+Relationship between residuals of leaf lifespan (LL) against light and residuals of LMAs against light.
 The dashed line indicates the 1:1 relationship.
-The *R*^2^ value is the posterior mean of Bayesian *R*^2^ [@Gelman2019].
-](../figs/pa_point_ll.png){#fig-LLplt}
+The posterior means of the partial correlation coefficient ($\bar{\rho}$) is shown.
+](`r here::here("figs/pa_point_par_ll.png")`){#fig-LLplt}
 
 
 \newpage
 
 ![
-Variance partitioning on LMA components between and within leaf habits (evergreen vs. deciuous) for the GLOPNET dataset, and between and within sites (wet vs. dry) and light (sun vs. shade) for the Panama dataset.
-](../figs/vpart.png){#fig-vpart}
+Variance partitioning on LMA components between and within leaf habits (evergreen vs. deciuous) for the GLOPNET dataset and the Panama dataset, and between and within sites (wet vs. dry) and light (sun vs. shade) for the Panama dataset.
+](`r here::here("figs/vpart_intra.png")`){#fig-vpart}
 
 \newpage
 
 ![
-Boxplots comparing leaf mass per area (LMA) and posterior medians of photosynthetic and structural LMA components (LMAp and LMAs, respectively) across deciduous (D) and evergreen (E) leaves in the GLOPNET dataset (top), and across sites (wet and dry) and canopy strata (sun and shade) in the Panama dataset (bottom).
+Boxplots comparing leaf mass per area (LMA) and posterior medians of photosynthetic and structural LMA components (LMAp and LMAs, respectively) across deciduous (D) and evergreen (E) leaves in the GLOPNET dataset (a) and in the Panama dataset (b).
 The center line in each box indicates the median, upper and lower box edges indicate the interquartile range, whiskers show 1.5 times the interquartile range, and points are outliers.
 Groups sharing the same letters are not significantly different (P > 0.05; t-tests).
-To isolate the effects of intraspecific variation (i.e., plastic responses to light), the Panama results shown here only include species for which both sun and shade leaves were available.
+To isolate the effects of intraspecific variation (i.e., plastic responses to light), the Panama results shown here only include species for which both sun and shade leaves were available (**revise this text**).
 Qualitatively similar results were obtained when all Panama species were included (Fig. S\ref{fig-box_inter}).
 Note that the vertical axis is on a log~10~ scale.
-](../figs/box_intra.png){#fig-boxplt}
+](`r here::here("figs/box_de.png")`){#fig-boxplt_de}
 
 \newpage
+
+![
+Boxplots comparing leaf mass per area (LMA) and posterior medians of photosynthetic and structural LMA components (LMAp and LMAs, respectively across sites (wet and dry) and canopy strata (sun and shade) in the Panama dataset (bottom).
+To isolate the effects of intraspecific variation (i.e., plastic responses to light), the Panama results shown here only include species for which both sun and shade leaves were available.
+Qualitatively similar results were obtained when all Panama species were included (Fig. S\ref{fig-box_inter}).
+Details as for [@fig-boxplt_de]
+](`r here::here("figs/box_pa.png")`){#fig-boxplt_pa}
+
+\newpage
+
 
 ![
 The relationships between mass dependency (*b* in @eq-var) and relative variance in LMAs to LMA for the global GLOPNET dataset, sun leaves in Panama, and shade leaves in Panama.
@@ -520,7 +529,7 @@ Solid lines indicate simulated means and shaded regions indicate 95% CI.
 Each symbol indicates the estimated values from the empirical data.
 The photosynthetic rate (*A*~max~) is primarily mass-dependent (*b* > 0.5), primarily area-dependent (0.5 > *b* > 0) and purely area-dependent (*b* = 0) [@Osnas2018].
 Note that when *b* > 1, *A*~area~ dramatically increases with LMA, which is not realistic.
-](../figs/mass_prop_mv.png){#fig-massplt}
+](`r here::here("figs/mass_prop_mv.png")`){#fig-massplt}
 
 \newpage
 
@@ -531,4 +540,4 @@ Pearson correlation coefficients (*r*) for LMA (left column) and partial correla
 Analogous results were obtained for *N*~area~ and *P*~area~ for GLOPNET (Fig. S\ref{fig-glnp}).
 Results for other LL models are reported in Table SX.
 Analogous results were obtained for *N*~area~ and *P*~area~ for GLOPNET (Fig. S\ref{fig-glnp}).
-](../figs/pa_point_npc.png){#fig-PA-NPC}
+](`r here::here("figs/pa_point_npc.png")`){#fig-PA-NPC}
