@@ -642,7 +642,8 @@ prep_gl_box_list <- function(gl_res_dat, letters_yml) {
   list(data = data, lab = lab1)
 }
 
-prep_pa_box_list <- function(pa_inter_box_dat, letters_yml, trim = TRUE) {
+#prep_pa_box_list <- function(pa_inter_box_dat, letters_yml, trim = TRUE, de = FALSE) {
+prep_pa_box_list <- function(pa_inter_box_dat, letters_yml, type = c("PA_inter", "PA_intra", "PA_inter_de", "PA_intra_de")) {
   # targets::tar_load(pa_inter_box_dat)
   # targets::tar_load(letters_yml)
   # pa_inter_box_dat$leaf_habit
@@ -650,18 +651,26 @@ prep_pa_box_list <- function(pa_inter_box_dat, letters_yml, trim = TRUE) {
   p_letters <- yaml::yaml.load_file(letters_yml)
   data <- pa_inter_box_dat |>
     dplyr::select(sp, n, leaf_habit, gr, LMA, LMAp, LMAs) |>
+    filter(!is.na(leaf_habit)) |>
     pivot_longer(LMA:LMAs, names_to = "LMA", values_to = "val") |>
     #dplyr::select(gr, val, LMA) |>
     unique()
-  if (trim) {
+
+  if (str_detect(type, "intra")) {
     data <- data |> filter(n >= 2)
   }
+  if (str_detect(type, "de")) {
+    data <- data |> mutate(gr = leaf_habit)
+  }
+
+  # type <- "PA_intra"
+  # p_letters[paste(type)]
   lab1 <- data |>
     group_by(gr, LMA) |>
     summarize(val = max(val) * 0.9) |>
     ungroup() |>
     arrange(LMA) |>
-    mutate(lab = p_letters$PA_intra
+    mutate(lab = p_letters[paste(type)]
            |> unlist())
   list(data = data, lab = lab1)
 }
@@ -700,7 +709,7 @@ box_fun <- function(gl_box_list, fills, ylab = "GLOPNET") {
 
 #' @title boxplot
 #' @para gl_box_list list with data and lab
-box_main <- function(gl_box_list, pa_box_trim_list, settings_yml) {
+box_intra <- function(gl_box_list, pa_box_trim_list, settings_yml) {
   settings <- yaml::yaml.load_file(settings_yml)
   fills <- c("Dec" = settings$fills$D,
             "Eve" = settings$fills$E,
