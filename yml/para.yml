@@ -7,10 +7,10 @@ GL:
   LMAs_mu_gl: 63.1
   LMAp_sig_gl: 2.12
 PA:
-  a0: 0.29
-  ap: 0.58
+  a0: 0.33
+  ap: 0.56
   as: 
-  sig1: 0.27
+  sig1: 0.24
   LMAp_mu_sun: 45.1
   LMAs_mu_sun: 31
   LMAp_sig_sun: 1.53

@@ -1,0 +1,159 @@
+---
+title: report
+author: "Masatoshi Katabuchi"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+fontsize: 12pt
+format:
+  html:
+    # fig_caption: yes
+    theme: cosmo #readable #sandstone #spacelab #flatly
+    # highlight: pygments #tango #kate
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    smooth-scroll: true
+    # fontsize: medium
+    # toc_float:
+    #  collapsed: TRUE
+    #  smooth_scroll: TRUE
+    #  toc: true
+---
+
+```{r global_options, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE,
+  cache = FALSE,
+  fig.align = "center",
+  fig.show = "hold"
+)
+```
+
+```{r}
+library(tidyverse)
+library(targets)
+library(kableExtra)
+library(here)
+library(jsonlite)
+source(here("R", "stan.R"))
+```
+
+# MCMC diagnostics
+
+Note: Some models that we didn't used didn't converge very well.
+
+```{r}
+tar_read(summary_rhat_gl_summary_GL_LMA)
+tar_read(summary_rhat_pa_summary_PA_LMA)
+tar_read(summary_rhat_pa_summary_PA_LMA_opt)
+tar_read(summary_rhat_gl_summary_GL_Ap_LLs)
+tar_read(summary_rhat_gl_summary_GL_Aps_LLps)
+tar_read(summary_rhat_gl_summary_GL_Ap_LLps)
+tar_read(summary_rhat_gl_summary_GL_Aps_LLs)
+tar_read(summary_rhat_pa_summary_PA_Ap_LLs)
+tar_read(summary_rhat_pa_summary_PA_Aps_LLps)
+tar_read(summary_rhat_pa_summary_PA_Ap_LLps)
+tar_read(summary_rhat_pa_summary_PA_Aps_LLs)
+tar_read(summary_rhat_pa_summary_PA_Ap_LLs_opt)
+tar_read(summary_rhat_pa_summary_PA_Aps_LLps_opt)
+tar_read(summary_rhat_pa_summary_PA_Ap_LLps_opt)
+tar_read(summary_rhat_pa_summary_PA_Aps_LLs_opt)
+tar_read(summary_rhat_pa_summary_PA_Ap_LDs)
+tar_read(summary_rhat_pa_summary_PA_Ap_LDps)
+tar_read(summary_rhat_pa_summary_PA_Ap_LDs_opt)
+tar_read(summary_rhat_pa_summary_PA_Ap_LDps_opt)
+tar_read(summary_rhat_pa_summary_PA_Ap_LLs_opt)
+```
+
+```{r}
+tar_read(div_check_list_gl_diagnostics_GL_LMA)
+tar_read(div_check_list_pa_diagnostics_PA_LMA)
+tar_read(div_check_list_pa_diagnostics_PA_LMA_opt)
+tar_read(div_check_list_gl_diagnostics_GL_Ap_LLs)
+tar_read(div_check_list_gl_diagnostics_GL_Aps_LLps)
+tar_read(div_check_list_gl_diagnostics_GL_Ap_LLps)
+tar_read(div_check_list_gl_diagnostics_GL_Aps_LLs)
+tar_read(div_check_list_pa_diagnostics_PA_Ap_LLs)
+tar_read(div_check_list_pa_diagnostics_PA_Aps_LLps)
+tar_read(div_check_list_pa_diagnostics_PA_Ap_LLps)
+tar_read(div_check_list_pa_diagnostics_PA_Aps_LLs)
+tar_read(div_check_list_pa_diagnostics_PA_Ap_LLs_opt)
+tar_read(div_check_list_pa_diagnostics_PA_Aps_LLps_opt)
+tar_read(div_check_list_pa_diagnostics_PA_Ap_LLps_opt)
+tar_read(div_check_list_pa_diagnostics_PA_Aps_LLs_opt)
+tar_read(div_check_list_pa_diagnostics_PA_Ap_LDs)
+tar_read(div_check_list_pa_diagnostics_PA_Ap_LDps)
+tar_read(div_check_list_pa_diagnostics_PA_Ap_LDs_opt)
+tar_read(div_check_list_pa_diagnostics_PA_Ap_LDps_opt)
+tar_read(div_check_list_pa_diagnostics_PA_Ap_LLs_opt)
+```
+
+GL_Aps_LLs (`model5`) is best for GLOPNET.
+
+```{r}
+targets::tar_load(loo_gl)
+loo::loo_compare(
+   loo_gl[[1]],
+   model2 = loo_gl[[2]],
+   model3 = loo_gl[[3]],
+   model4 = loo_gl[[4]],
+   model5 = loo_gl[[5]]) |>
+  print()
+```
+
+PA_Ap_LLs_opt (`model7`) is best for Panama.
+PA_Ap_LDs_opt (`model13`) is the second best.
+
+```{r}
+targets::tar_load(loo_pa)
+loo::loo_compare(
+  loo_pa[[1]],
+  model2 = loo_pa[[2]],
+  model3 = loo_pa[[3]],
+  model4 = loo_pa[[4]],
+  model5 = loo_pa[[5]],
+  model6 = loo_pa[[6]],
+  model7 = loo_pa[[7]],
+  model8 = loo_pa[[8]],
+  model9 = loo_pa[[9]],
+  model10 = loo_pa[[10]],
+  model11 = loo_pa[[11]],
+  model12 = loo_pa[[12]],
+  model13 = loo_pa[[13]],
+  model14 = loo_pa[[14]]) |>
+  print()
+```
+
+
+# Diagnostics for randomized data
+
+There are too many divergent transitions.
+None of the randomized datasets did converge.
+
+```{r,eval=FALSE}
+targets::tar_read(gl_sim_diagnostics)
+targets::tar_read(pa_sim_diagnostics)
+targets::tar_read(gl_para_summary)
+targets::tar_read(pa_para_summary)
+```
+
+
+![](figs/coef_sim_gl.png)
+
+![](figs/coef_sim_pa.png)
+
+
+# Computing Environment
+
+```{r}
+devtools::session_info()
+```
+
+
+# Pipelines
+
+```{r, fig.width=20, fig.height=20, eval=FALSE}
+targets::tar_visnetwork()
+```
