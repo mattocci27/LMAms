@@ -797,17 +797,25 @@ main_list <- list(
   ),
   tar_target(
     pa_box_trim_list,
-    prep_pa_box_list(pa_intra_box_dat, letters_yml)
+    prep_pa_box_list(pa_intra_box_dat, letters_yml, type = "PA_intra")
   ),
   tar_target(
     pa_box_list,
-    prep_pa_box_list(pa_inter_box_dat, letters_yml, trim = FALSE)
+    prep_pa_box_list(pa_inter_box_dat, letters_yml, type = "PA_inter")
   ),
   tar_target(
-    box_main_plot, {
-      p <- box_main(gl_box_list, pa_box_trim_list, settings_yml)
+    pa_box_trim_de_list,
+    prep_pa_box_list(pa_intra_box_dat, letters_yml, type = "PA_intra_de")
+  ),
+  tar_target(
+    pa_box_de_list,
+    prep_pa_box_list(pa_inter_box_dat, letters_yml, type = "PA_inter_de")
+  ),
+  tar_target(
+    box_intra_plot, {
+      p <- box_intra(gl_box_list, pa_box_trim_list, settings_yml)
       my_ggsave(
-        "figs/box_main",
+        "figs/box_intra",
        p,
        dpi = 300,
        height = 11.7,
