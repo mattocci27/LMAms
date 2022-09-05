@@ -1,74 +1,93 @@
 #' @title Variance patitoning
 vpart_bar <- function(gl_res_csv, pa_res_csv, intra = FALSE) {
-#  targets::tar_load(pa_res_csv)
-#  targets::tar_load(gl_res_csv)
-  PA <- read_csv(pa_res_csv)
+  # library(targets)
+  # library(tidyverse)
+  # targets::tar_load(pa_res_csv)
+  # targets::tar_load(gl_res_csv)
+
+  pa <- read_csv(pa_res_csv)
 
   if (intra) {
-    PA <- PA |>
+    pa <- pa |>
         count(sp) |>
         filter(n >= 2) |>
-        inner_join(PA, by = "sp")
+        inner_join(pa, by = "sp")
   }
 
-  GL <- read_csv(gl_res_csv)
+  gl <- read_csv(gl_res_csv) |>
+    filter(leaf_habit != "U")
 
-  tmp <- aov(log(LMAp) ~ site + strata, PA) |>
-    summary()
-  tmp2 <- tmp[[1]][[2]]
-  PA_LMAp <- tmp2/sum(tmp2) * 100
+  var_ <- function(data, y, x) {
+    fo <- str_c("log(", y, ") ~", x)
+    tmp <- aov(as.formula(fo), data) |>
+     summary()
+    tmp2 <- tmp[[1]]$`Sum Sq`
+    tmp2 / sum(tmp2) * 100
+  }
 
-  tmp <- aov(log(LMAs) ~ site + strata, PA) |>
-    summary()
-  tmp2 <- tmp[[1]][[2]]
-  PA_LMAs <- tmp2/sum(tmp2) * 100
+  gl_eve_var <- bind_rows(
+    LMAp = var_(gl, "LMAp", "leaf_habit"),
+    LMAs = var_(gl, "LMAs", "leaf_habit"),
+    fct = c("Eve/Dec", "Residuals"))
+
+  pa_eve_var <- bind_rows(
+    LMAp = var_(pa, "LMAp", "leaf_habit"),
+    LMAs = var_(pa, "LMAs", "leaf_habit"),
+    fct = c("Eve/Dec", "Residuals"))
+
+  pa_leaf_var <- bind_rows(
+    LMAp = var_(pa, "LMAp", "site + strata"),
+    LMAs = var_(pa, "LMAs", "site + strata"),
+    fct = c("Wet/Dry", "Sun/Shade", "Residuals"))
 
   my_col <- RColorBrewer::brewer.pal(4, "RdBu")
   my_col <- my_col[-1]
   my_col <- c(my_col, "#9E9E9E")
   names(my_col) <- c("Eve/Dec", "Sun/Shade", "Wet/Dry", "Residuals")
 
-#"#F4A582" "#92C5DE" "#0571B0" "#9E9E9E"
+  vpart_gl_eve <- gl_eve_var |>
+    pivot_longer(1:2) |>
+    mutate(fct = factor(fct, c("Residuals", "Eve/Dec"))) |>
+    ggplot(aes(x = name, y = value, fill = fct)) +
+      geom_col() +
+      ggtitle("GLOPNET") +
+      scale_fill_manual(values = my_col) +
+      theme_LES() +
+      theme(
+            legend.position = "none",
+            legend.text = element_text(size = 8),
+      )
 
-  vpart_PA <- bind_rows(LMAp = PA_LMAp, LMAs = PA_LMAs,
-                        fct = c("Wet/Dry", "Sun/Shade", "Residuals")) |>
-             pivot_longer(1:2) |>
-             ggplot(aes(x = name, y = value, fill = fct)) +
-               geom_col() +
-               ggtitle("Panama") +
-               scale_fill_manual(values = my_col) +
-               theme_LES() +
-               theme(
-                     legend.position = "right",
-                     legend.text = element_text(size = 8),
-               )
+  vpart_pa_eve <- pa_eve_var |>
+    pivot_longer(1:2) |>
+    mutate(fct = factor(fct, c("Residuals", "Eve/Dec"))) |>
+    ggplot(aes(x = name, y = value, fill = fct)) +
+      geom_col() +
+      ggtitle("Panama") +
+      scale_fill_manual(values = my_col) +
+      theme_LES() +
+      theme(
+            legend.position = "none",
+            legend.text = element_text(size = 8),
+      )
 
-  tmp <- aov(log(LMAp) ~ leaf_habit, GL) |>
-    summary()
-  tmp2 <- tmp[[1]][[2]]
-  GL_LMAp <- tmp2/sum(tmp2) * 100
+  vpart_pa_leaf <- pa_leaf_var |>
+    pivot_longer(1:2) |>
+    ggplot(aes(x = name, y = value, fill = fct)) +
+      geom_col() +
+      ggtitle("Panama") +
+      scale_fill_manual(values = my_col) +
+      theme_LES() +
+      theme(
+            legend.position = "bottom",
+            legend.justification = 1,
+            legend.text = element_text(size = 8),
+      )
 
-  tmp <- aov(log(LMAs) ~ leaf_habit, GL) |>
-    summary()
-  tmp2 <- tmp[[1]][[2]]
-  GL_LMAs <- tmp2/sum(tmp2) * 100
-
-  vpart_GL <- bind_rows(LMAp = GL_LMAp, LMAs = GL_LMAs,
-                        fct = c("Eve/Dec", "Residuals")) |>
-             mutate(fct = factor(fct, c("Residuals", "Eve/Dec"))) |>
-             pivot_longer(1:2) |>
-             ggplot(aes(x = name, y = value, fill = fct)) +
-               geom_col() +
-               ggtitle("GLOPNET") +
-               theme_LES() +
-               scale_fill_manual(values = my_col) +
-               theme(legend.spacing.x = unit(0.1, "cm"),
-                     legend.position = "none"
-               )
-
-  vpart_GL + vpart_PA &
-    ylab("Explained variance (%)") &
-    xlab("")
+   vpart_gl_eve + vpart_pa_eve + vpart_pa_leaf +
+      plot_annotation(tag_levels = "a") &
+      ylab("Explained variance (%)") &
+      xlab("")
 }
 
 #' @title rlnorm simluation
