@@ -24,10 +24,8 @@ tar_option_set(packages = c(
   "patchwork",
   "parallel",
   "janitor",
-  "extrafont",
   "loo",
   "jsonlite",
-  "doParallel",
   "foreach",
   "httpgd",
   "multcompView",
@@ -272,7 +270,7 @@ main_list <- list(
   ),
   tar_target(
     var_yml,
-    write_var_yml(gl_draws_GL_Aps_LLs, gl_res_dat, pa_draws_PA_Ap_LLs_opt, pa_res_dat),
+    write_var_yml(gl_draws_GL_Aps_LLs, gl_res_dat, pa_full_draws_PA_Ap_LLs_opt, pa_res_dat),
     format = "file"
   ),
 
@@ -355,7 +353,11 @@ main_list <- list(
     pa_sim_diagnostics,
     extract_sim_diagnostics(pa_sim_summary)
   ),
-
+  tar_target(
+    sim_summary_diagnostics_csv,
+    generate_summary_diagnostics(gl_sim_diagnostics, pa_sim_diagnostics, "data/sim_summary_diagnostics.csv"),
+    format = "file"
+  ),
 
   tar_target(
     coef_sim_gl_plot, {

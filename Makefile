@@ -1,4 +1,4 @@
-GIT = d375604
+GIT = ce3856c6
 MAIN = ms/LMAms_main
 SI = ms/LMAms_SI
 all: $(MAIN).pdf $(MAIN).docx $(SI).pdf $(SI).docx
@@ -11,9 +11,6 @@ $(MAIN).docx: $(MAIN).qmd
 	quarto render $< --to docx
 
 $(SI).pdf $(SI).aux: $(SI).qmd
-	quarto render $< --to pdf
-
-$(SI).pdf: $(SI).qmd
 	quarto render $< --to pdf
 
 $(SI).docx: $(SI).qmd

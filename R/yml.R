@@ -524,13 +524,13 @@ pmat_fun <- function(draws, data) {
   id <- id_dat[,2] |> as.numeric()
   pmat0 <- draws |>
     janitor::clean_names() |>
-    dplyr::select(contains("p_")) |>
+    dplyr::select(starts_with("p_")) |>
     as.matrix()
   pmat <- pmat0[, id]
   pmat
 }
 
-#' @title wrapper funciton for write_var_yml
+#' @title wrapper function for write_var_yml
 #' @para pmat output of pmat_fun
 loop_fun <- function(i, pmat, LMA) {
   LMAp <- pmat[i, ] * LMA
@@ -541,35 +541,70 @@ loop_fun <- function(i, pmat, LMA) {
 }
 
 #' @title write var yml
-#' @para gl_draws MCMC output (e.g., fit_7_draws_GL_Aps_LLs)
+#' @para gl_draws MCMC output (e.g., gl_draws_GL_Aps_LLs)
 #' @para gl_res_dat mcmc tibble
-#' @para pa_draws MCMC output (e.g., fit_20_draws_PA_Ap_LLs_opt)
+#' @para pa_full_draws MCMC output (e.g., pa_full_draws_PA_Ap_LLs_opt)
 #' @para gl_pa_da mcmc tibble
-write_var_yml <- function(gl_draws, gl_res_dat, pa_draws, pa_res_dat) {
+write_var_yml <- function(gl_draws, gl_res_dat, pa_full_draws, pa_res_dat) {
+  niter <- nrow(gl_draws)
+
   sun <- pa_res_dat |>
     filter(strata == "CAN")
   shade <-  pa_res_dat |>
     filter(strata != "CAN")
 
+  gl_res_dat2 <- gl_res_dat |>
+   filter(leaf_habit != "U")
+
+  pa_res_dat_intra <- pa_res_dat |>
+    count(sp) |>
+    filter(n > 1) |>
+    left_join(pa_res_dat)
+
+  sun_intra <- pa_res_dat_intra |>
+    filter(strata == "CAN")
+  shade_intra <-  pa_res_dat_intra |>
+    filter(strata != "CAN")
+
   output <- "yml/var.yml"
   out <- file(paste(output), "w") # write
   writeLines(paste0("GL: ",
-    sapply(1:8000, loop_fun, pmat_fun(gl_draws, gl_res_dat), gl_res_dat$LMA) |>
+    sapply(1:niter, loop_fun, pmat_fun(gl_draws, gl_res_dat), gl_res_dat$LMA) |>
+     mean() |> round(1)),
+             out,
+             sep = "\n")
+  writeLines(paste0("GL_DE: ",
+    sapply(1:niter, loop_fun, pmat_fun(gl_draws, gl_res_dat2), gl_res_dat2$LMA) |>
      mean() |> round(1)),
              out,
              sep = "\n")
   writeLines(paste0("sun: ",
-    sapply(1:8000, loop_fun, pmat_fun(pa_draws, sun), sun$LMA) |>
+    sapply(1:niter, loop_fun, pmat_fun(pa_full_draws, sun), sun$LMA) |>
       mean() |> round(1)),
              out,
              sep = "\n")
   writeLines(paste0("shade: ",
-    sapply(1:8000, loop_fun, pmat_fun(pa_draws, shade), shade$LMA) |>
+    sapply(1:niter, loop_fun, pmat_fun(pa_full_draws, shade), shade$LMA) |>
       mean() |> round(1)),
              out,
              sep = "\n")
   writeLines(paste0("PA: ",
-    sapply(1:8000, loop_fun, pmat_fun(pa_draws, pa_res_dat), pa_res_dat$LMA) |>
+    sapply(1:niter, loop_fun, pmat_fun(pa_full_draws, pa_res_dat), pa_res_dat$LMA) |>
+      mean() |> round(1)),
+             out,
+             sep = "\n")
+  writeLines(paste0("sun_intra: ",
+    sapply(1:niter, loop_fun, pmat_fun(pa_full_draws, sun_intra), sun_intra$LMA) |>
+      mean() |> round(1)),
+             out,
+             sep = "\n")
+  writeLines(paste0("shade_intra: ",
+    sapply(1:niter, loop_fun, pmat_fun(pa_full_draws, shade_intra), shade_intra$LMA) |>
+      mean() |> round(1)),
+             out,
+             sep = "\n")
+  writeLines(paste0("PA_intra: ",
+    sapply(1:niter, loop_fun, pmat_fun(pa_full_draws, pa_res_dat_intra), pa_res_dat_intra$LMA) |>
       mean() |> round(1)),
              out,
              sep = "\n")

@@ -1,5 +1,5 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-.Random.seed|object|46d84fc87bedafdf|||||||||||||||
+.Random.seed|object|67355efa1f0cb65b|||||||||||||||
 box_de|function|bc12498925127161|||||||||||||||
 box_de_plot|stem|b4b50ea95f1679b1|1aef55ee04609397|e786c7f24e41f289|-1431179943|figs/box_de.png*figs/box_de.pdf|t19240.4283099724s|9c0ccb01af91e8a3|73099|file|local|vector|||0.802||
 box_frac|function|5597aba13e869794|||||||||||||||
@@ -19,9 +19,9 @@ coef_rand|function|885b38879adde6f6|||||||||||||||
 coef_rand_gl_plot|stem|28fa2c8c8fc7031c|651f1cd7a4f41a88|8963fbcb7254a054|-1631839972|figs/coef_rand.png*figs/coef_rand.pdf|t19234.3395469052s|1666c145499c1e96|231725|file|local|vector|||0.869||
 coef_rand_pa_plot|stem|505f059efef6c275|084e6b0d49c55463|35a7dcf0b429cb35|1136022281|figs/coef_rand_pa.png*figs/coef_rand_pa.pdf|t19234.3395292661s|717725f806f51e49|218117|file|local|vector|||0.759||
 coef_rand2|function|7883f939d194f020|||||||||||||||
-coef_sim|function|30b62c8524db13a8|||||||||||||||
-coef_sim_gl_plot|stem|9f454355967c7699|d666fc902219a3d2|7d671ef35f0d6a99|-1572470765|figs/coef_sim_gl.png*figs/coef_sim_gl.pdf|t19236.6735319086s|41b592b912af4d2a|120386|file|local|vector|||0.85||
-coef_sim_pa_plot|stem|e04d23f8508ba33b|b35dad366642ac91|ef20aa141e25409d|-1296678365|figs/coef_sim_pa.png*figs/coef_sim_pa.pdf|t19236.6735310752s|9342037e22ba5f92|119981|file|local|vector|||1.168||
+coef_sim|function|ce9924b007fefcfc|||||||||||||||
+coef_sim_gl_plot|stem|425dfb43a576a9c3|d666fc902219a3d2|3b44deef89dc2c6e|-1572470765|figs/coef_sim_gl.png*figs/coef_sim_gl.pdf|t19241.3717036435s|6a47ec818489e8ee|260461|file|local|vector|||0.849||
+coef_sim_pa_plot|stem|19b92eeaab501e53|b35dad366642ac91|71192e91cc926acb|-1296678365|figs/coef_sim_pa.png*figs/coef_sim_pa.pdf|t19241.3717190141s|01c502c832451cf3|264453|file|local|vector|||0.836||
 compile_model|function|440cd3c27c638fb3|||||||||||||||
 create_para_tbl|function|94c93b76aae1bf3e|||||||||||||||
 create_sim_dat|function|9923a4d4cf6dc0e9|||||||||||||||
@@ -66,11 +66,13 @@ generate_pa_dat|function|b16096989d750268|||||||||||||||
 generate_pa_stan|function|e0db29760dbd250d|||||||||||||||
 generate_sim_data|function|f0a2da6b23e38302|||||||||||||||
 generate_stan_names|function|aa1aa57dbc04241e|||||||||||||||
+generate_summary_diagnostics|function|ff69a256d576748d|||||||||||||||
 generate_tar_stan|function|d8cd8cacade20bdd|||||||||||||||
 generate_tar_stan_list|object|7886e807e7eb0e69|||||||||||||||
 generate_tar_stan2|function|4f7e0688064fdf8f|||||||||||||||
 get_mean|function|2af86116f6badbc9|||||||||||||||
 get_para|function|99c51990e384826e|||||||||||||||
+get_post_para|function|99f861bd3f66fcdd|||||||||||||||
 GL_Aps_LLs|stem|34f51f99fccf6090|88a1fdda16ffa5fa|d08213f484b3e9b9|501086049|stan/GL_Aps_LLs.stan|t19221.0840380728s|6fb3c810a1ffa136|2214|file|local|vector|||30.876||
 gl_box_dat|stem|f26e78f2fb728da4|36ea0674ecab2832|e4bf8834fa352c2f|1962969056||t19222.472170741s|42203c6a818ae1c9|15350|rds|local|vector|||0.346||
 gl_box_list|stem|a51df6fa233c71d2|336729f3744522c9|f328871d913af470|-465775566||t19222.4743872281s|de7972873bfeb78b|5794|rds|local|vector|||0.03||
@@ -218,7 +220,7 @@ loo_gl|stem|cb769f10c0c1ead0|cf9358be0fdfaf18|85c629a78d9a5d3d|912089437||t19236
 loo_pa|stem|d090ca64e214eea6|b24b92344f65fa4e|528353e15b18121d|223441926||t19236.6161114325s|065d606ca9aebb15|64915|rds|local|vector|||13.554|Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.. Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.|
 loo_tbl|stem|c696e20a406490d1|34da902135551be2|996f7ec1a74ca28d|407372657|data/loo.csv|t19234.275282339s|33d5b6a054f849fe|1250|file|local|vector|||0.021|Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing looic using  is deprecated and will be removed in a future release. Please extract the looic estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.. Accessing elpd_loo using  is deprecated and will be removed in a future release. Please extract the elpd_loo estimate from the estimates component instead.|
 loop_fun|function|e782174d67e21a66|||||||||||||||
-main_list|object|2629ebb6261f6871|||||||||||||||
+main_list|object|e5fced1cee46c4d6|||||||||||||||
 mass_obs_dat|stem|c40a9cf8aff57643|57a3ff74c4a27a26|776223edadface0a|1286691598||t19236.6093278984s|fdec9ce76e2bcbf8|316|rds|local|vector|||0.461||
 mass_prop_comp_plot|stem|7d1e82260fd67682|4f1e9595baed0b40|3d95d73fa2282a57|596824706|figs/mass_prop_comp.png*figs/mass_prop_comp.pdf|t19234.3395106084s|01c8791335e7895c|58755|file|local|vector|||0.347||
 mass_prop_comp_point|function|809f7edf73f398ef|||||||||||||||
@@ -443,8 +445,8 @@ pair_frac_plot|stem|78c4fa3fe000c6a5|38b02d7c149383d6|5746094de0518e7f|-18542166
 pair_lma_line|function|cbdba1c51902efea|||||||||||||||
 pair_lma_plot|stem|76d1f2d9f61b7da2|9d6c6e19c56d0b9b|b659f696fc9ca0ed|1473210639|figs/pair_lma.png*figs/pair_lma.pdf|t19234.3394933396s|b86718c70d9530a9|65748|file|local|vector|||0.558||
 para_tbl|stem|9a7ea107e3d85133|8f058db9f3f7ce12|c788cbc9bd699a4d|1962483027|./data/para_tbl.csv|t19234.4113280224s|f1200f896ae9e733|525|file|local|vector|||0.195||
-para_yml|stem|6f6c1abae5a40373|1ca6d6259769e391|6a899045b6050477|-2145095100|yml/para.yml|t19236.6126979525s|cb2068761c31cd19|278|file|local|vector|||0.213||
-pmat_fun|function|36a1a83db6ef6d37|||||||||||||||
+para_yml|stem|6f6c1abae5a40373|1ca6d6259769e391|6a899045b6050477|-2145095100|yml/para.yml|t19241.3405386259s|cb2068761c31cd19|278|file|local|vector|||0.255||
+pmat_fun|function|1976fc441b153cf3|||||||||||||||
 prep_gl_box_dat|function|1f8041378b14f179|||||||||||||||
 prep_gl_box_list|function|01683e85b33edbf2|||||||||||||||
 prep_pa_box_dat|function|790712cf3f9fdf6c|||||||||||||||
@@ -463,14 +465,15 @@ rand_csv|stem|b99c705640a8fb0f|5fa86c5062c92bb3|873568c8cc69ba79|-521003990|data
 rand_fun|function|d93afbbe8134dc0c|||||||||||||||
 rand_fun2|function|a97257ca057b5d1a|||||||||||||||
 rand_summary|function|4c4aaccd62bae143|||||||||||||||
-raw_data_list|object|a3f3585b0953d90b|||||||||||||||
-report|stem|3086cf63665a6f9c|ff57e8e890eafdda|c8d6395ea99ecb4f|-237041703|report_files*report.html*report.qmd|t19236.6749031807s|8ee95be0d9262b7d|78394|file|local|vector|||4.638||
+raw_data_list|object|288c143017d86225|||||||||||||||
+report|stem|3086cf63665a6f9c|ff57e8e890eafdda|c8d6395ea99ecb4f|-237041703|report_files*report.html*report.qmd|t19241.3190957467s|8ee95be0d9262b7d|78394|file|local|vector|||4.638||
 scatter_plt|function|0be78b37e870ed78|||||||||||||||
 settings_yml|stem|2e5d64611d1dfd9d|a127041ac8f198f3|ef46db3751d8e999|259856933|yml/settings.yml|t19220.3786123743s|0f05aa39aab40022|347|file|local|vector|||0.126||
 shade_mass_prop|stem|2862929aee5a8381|0cf08756f5b556e4|af75f82a6cf66c45|-1354953204||t19236.607673103s|dff923d388a70b81|856|rds|local|vector|||20.709||
 shade_mass_prop_mv|stem|c9993ba5cdf22529|32e3976988fd0657|4e6973d26cab6a86|1020602843||t19236.6075958795s|85d1e02283cfd189|523|rds|local|vector|||14.278||
 sig_fun|function|8558a305af9609b5|||||||||||||||
 sim_rep|stem|39b13a2984def58c|bcd44babff96c951|9040422997a211cc|-523907342||t19235.3191526399s|bf160f080fbf1dbb|99|rds|local|vector||sim_rep_ccba877f*sim_rep_084b9b29*sim_rep_91e9ed7e*sim_rep_0af15e67*sim_rep_06d3c0ed*sim_rep_280e29c8*sim_rep_37587497*sim_rep_ad604bd2*sim_rep_320243db*sim_rep_9641ec09|0.088||
+sim_summary_diagnostics_csv|stem|98a8dbd9698da616|3239a66d54751856|7e7233329c15508b|494561418|data/sim_summary_diagnostics.csv|t19241.341280906s|4234d4d3d176dfdc|445|file|local|vector|||0.149||
 stan_names|stem|263c88a2358c742b|142e1b42d31dea86|f30bc21addadd5d6|25657830||t19239.6766102971s|c8cda3a0d78c66fb|406|rds|local|vector|||0.09||
 summary_names|stem|3c7b6f29712a1dd3|e44dd6643729640d|4bb2bbff345e22c9|1501975317||t19235.5769381466s|0cf7d46830a37596|201|rds|local|vector|||0.01||
 summary_rhat_gl_summary_GL_Ap_LLps|stem|89e22cc674f72e55|56acb8001ea2c463|c6faf1337bf16d06|130156278||t19236.6105507885s|c64bd1f228783223|7071|rds|local|vector|||0.006||
@@ -498,7 +501,7 @@ targets|object|0cdc802bf3d62992|||||||||||||||
 theme_box|function|50ba34bb3d38c0e4|||||||||||||||
 theme_LES|function|31a5383ed994f86b|||||||||||||||
 var_fun|function|0faeda0032c4462e|||||||||||||||
-var_yml|stem|593fca08624ff069|edbad86a5af0bdbf|914e14eb0a3b06ec|-1975825422|yml/var.yml|t19234.2663442816s|de1c6d017cb4e8a8|38|file|local|vector|||11.006||
+var_yml|stem|1a1ad0764252a17c|35507d84beb1efd9|8e27a0d5ba8d8203|-1975825422|yml/var.yml|t19241.419115296s|f0d5811415b6b792|97|file|local|vector|||6.887||
 vpart_bar|function|9d0ef478dea13f8b|||||||||||||||
 vpart_intra_plot|stem|2771230607474db9|6d2e786a856fb68f|1a28c27269da5c62|310851035|figs/vpart_intra.png*figs/vpart_intra.pdf|t19240.3280766704s|2054b01697086420|47627|file|local|vector|||0.798||
 vpart_plot|stem|14221772e76977f6|7ceebfdc752e4f32|1a28c27269da5c62|786839690|figs/vpart.png*figs/vpart.pdf|t19240.328077689s|0a9e83f0d4212b0a|48067|file|local|vector|||0.776||
@@ -506,4 +509,4 @@ write_model_selction|function|2ac0d9084ca7f4ea|||||||||||||||
 write_para_yml|function|0c83616f88347ec1|||||||||||||||
 write_r2|function|ac7f9ce651b492b4|||||||||||||||
 write_t|function|92ee382d26363668|||||||||||||||
-write_var_yml|function|f9f529365c36228f|||||||||||||||
+write_var_yml|function|83b39534d433432f|||||||||||||||

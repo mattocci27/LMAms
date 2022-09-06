@@ -7,6 +7,8 @@ csl: templates/ecology.csl
 bibliography: [LMA.bib]
 crossref:
   eq-prefix: Eq.
+  fig-title: Fig. S
+  fig-prefix: Fig. S
 format:
   html:
     theme: spacelab #readable #sandstone #spacelab #flatly
@@ -35,6 +37,9 @@ format:
         \pagestyle{fancy}
         \usepackage[default]{sourcesanspro}
         \usepackage{sourcecodepro}
+        \usepackage{fvextra}
+        \linenumbers
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
         \fancypagestyle{plain}{\pagestyle{fancy}}
         \fancyhead[RE,RO]{Katabuchi \textit{et al}.  Appendix}
 ---
@@ -47,6 +52,8 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(knitr)
 library(kableExtra)
 library(tidyverse)
+library(here)
+here::i_am("ms/LMAms_SI.qmd")
 para <- yaml::yaml.load_file("../yml/para.yml")
 ```
 
@@ -75,7 +82,7 @@ The logarithms of *A*~area~, *R*~area~, and LL for leaf sample *i* were assumed 
 \end{align}
 
 where E[$\cdot$] indicates expected value; $\boldsymbol{\Sigma}$ indicates a covariance matrix.
-Expected values are based on Eqs. 1-6 in the main text.
+Expected values are based on Eqs. 2-4 in the main text.
 
 We used non-informative or weakly informative prior distributions [@Lemoine2019].
 The covariance mkatrix in Eq. S1 was decomposed as ${\mathbf \Sigma} = {\mathrm diag}({\mathbf \sigma}){\mathbf \Omega}{\mathrm diag}({\mathbf \sigma}) = {\mathrm diag}({\mathbf \sigma}){\mathbf L}{\mathbf L}\prime {\mathrm diag}({\mathbf \sigma})$ using a Cholesky decomposition, where ${\mathbf \sigma}$ is a vector of $\sigma_{1}$, $\sigma_{2}$, and $\sigma_{3}$;  ${\mathbf \Omega}$ is a correlation matrix of $\rho_{12}$, $\rho_{13}$, and $\rho_{23}$; and **L** is a lower triangular matrix.
@@ -84,7 +91,7 @@ A prior for **L** was specified as a so-called LKJ distribution with shape param
 A prior for ${\mathrm diag}({\mathbf \sigma})$ was specified as a Half-Cauchy distribution with location 0 and scale 5, which is weakly informative and allows for occasional large coefficients while still performing a reasonable amount of shrinkage for coefficients near zero [@Gelman2008].
 A prior for $\mathbf{\sigma}$ was specified as a Half-Cauchy distribution with location 0 and scale 5, which is weakly informative and allows for occasional large coefficients while still performing a reasonable amount of shrinkage for coefficients near zero [@Gelman2008].
 Priors for $\alpha_{0,p,s}$, $\beta_{0,p,s}$, and $\gamma_{0,p,s}$ in Eqs. 4-6 were weakly informative and specified as normal distributions with mean 0 and standard deviation 5.
-Priors for *f~i~* in Eqs. 4-6 were non-informative and specified as uniform distributions with range (0, 1).
+Priors for *f~i~* in Eqs. 1-4 were non-informative and specified as uniform distributions with range (0, 1).
 
 
 \newpage
@@ -95,12 +102,12 @@ We generated 10 randomized datasets for each of the GLOPNET and the Panama datas
 
 ## Table AS1
 
-- No_large_Rhat: The number of parameters (including transformed parameters) that shows Rhat (Gelman-Rubin statistic) greater than 1.05.
+- No_large_Rhat: The number of parameters (including transformed parameters) that shows Rhat (Gelman-Rubin statistic) greater than 1.1.
 - No_divergence: The number of iterations that shows divergent transitions.
 
 ```{r randtab, echo=FALSE, eval=TRUE}
-d <- read_csv("../data/rand.csv") |>
-  dplyr::select(Data = data, Simulation_ID = sim_id, No_large_Rhat = rhat, No_divergence = div)
+d <- read_csv(here("data/sim_summary_diagnostics.csv")) #|>
+  # dplyr::select(Data = data, Simulation_ID = sim_id, No_large_Rhat = rhat, No_divergence = div)
 
 if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
   # knitr::kable(d, format = "pipe", escape = FALSE) |>
@@ -118,19 +125,29 @@ if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
 }
 ```
 
-Model results obtained from the randomized datasets did not convergent based on the Gelman-Rubin statistic or showed divergent transitions.
+Most of the model results obtained from the randomized datasets did not convergent based on the Gelman-Rubin statistic or showed divergent transitions.
 
 \newpage
 
 ## Figure AS1
 
-Although many parameters showed large Rhat values, which suggests that the posterior distributions were not converged well, we checked the regression coefficients for GLOPNET ($\alpha_{0, p, s}$, $\beta_{0, s}$, and $\gamma_{0, p, s}$ in Eqs. 4-6 in the main text).
+Although many parameters showed large Rhat values, which suggests that the posterior distributions were not converged well, we checked the regression coefficients for the GLOPNET dataset ($\alpha_{0, p, s}$, $\beta_{0, s}$, and $\gamma_{0, p, s}$ in Eqs. 2-4 in the main text).
 There are 10 independent simulations (randomizations) in total.
-The scaling parameters in the randomized datasets did not show any patterns.
+Points and lines indicate posterior means and 95% credible intervals (CIs), respectively.
+Although intercepts were significant, the scaling parameters in the randomized datasets did not show any patterns.
 Thus, the tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
 ![
-](../figs/coef_rand.png)
+](`r here("figs/coef_sim_gl.png")`)
 
+\newpage
+
+## Figure AS2
+
+We also checked the regression coefficients for the Panama dataset ($\alpha_{0, p}$, $\beta_{0, s}$, $\gamma_{0, p, s}$ and $\theta$ in Eqs. 2-4 in the main text).
+Details as for Figure AS1.
+The scaling parameters in the randomized datasets did not show any patterns
+![
+](`r here("figs/coef_sim_pa.png")`)
 
 \newpage
 
@@ -222,7 +239,7 @@ We repeated these steps 1000 times.
 Pearson correlation coefficients for posterior medians of LMAp vs LMAs in the (a) GLOPNET and (b) Panama datasets.
 The non-significant or weak *r* values indicate that a single axis could not accurately represent the two-dimensional space.
 Symbols as in Main Text Figs. 1-2.
-](../figs/ps_point.png){#fig-LMAp_LMAs}
+](`r here("figs/ps_point.png")`){#fig-LMAp_LMAs}
 
 
 \newpage
@@ -234,7 +251,7 @@ Boxplots comparing leaf mass per area (LMA), photosynthetic leaf mass per area (
 The results shown here include all leaves in the Panama dataset, whereas Fig. 5 in the main text only includes Panama species for which both sun and shade leaves were available.
 Boxplot symbols as in Fig. 5.
 Groups sharing the same letters are not significantly different (P > 0.05; t-tests).
-](../figs/box_inter.png){#fig-box_inter}
+](`r here("figs/box_inter.png")`){#fig-box_inter}
 
 \newpage
 
@@ -249,8 +266,7 @@ Boxplots comparing posterior medians of the latent variable f (the fraction of t
 GLOPNET results are for the Potential LL Model (Eq. 5), and Panama results are for the Optimal LL Model with site effects (Eq. 13 and Supporting Information, Section 3.1).
 The center line in each box indicates the median, upper and lower box edges indicate the interquartile range, whiskers show 1.5 times the interquartile range, and points are outliers.
 Groups sharing the same letters are not significantly different (P > 0.05; t-tests)."}
-
-](../figs/box_frac.png){#fig-box_frac}
+](`r here("figs/box_frac.png")`){#fig-box_frac}
 
 \newpage
 
@@ -268,7 +284,7 @@ $\alpha_0$ = `r para$GL$a0`,
 $\mu_p$ = `r para$GL$LMAp_mu_gl`,
 $\mu_s$ = `r para$GL$LMAs_mu_gl`,
 $\sigma_p$ = `r para$GL$LMAp_sig_gl`.
-](../figs/mass_prop_sim.png){#fig-mass_prop_sim}
+](`r here("figs/mass_prop_sim.png")`){#fig-mass_prop_sim}
 
 \newpage
 
@@ -284,7 +300,7 @@ $\mu_p$ = `r para$PA$LMAp_mu_shade`,
 $\mu_s$ = `r para$PA$LMAs_mu_shade`,
 $\sigma_p$ = `r para$PA$LMAp_sig_shade`, and
 $\rho$ = -0.4,
-](../figs/mass_prop_comp.png){#fig-mass_prop_comp}
+](`r here("figs/mass_prop_comp.png")`){#fig-mass_prop_comp}
 
 \newpage
 
@@ -293,7 +309,7 @@ $\rho$ = -0.4,
 ![
 Measured traits related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are positively correlated with LMA and with estimates (posterior means) of the photosynthetic and structural LMA components (LMAp and LMAs, respectively) in the GLOPNET dataset.
 LMAp yields more consistent relationships compared to LMA and LMAs; e.g., evergreen and deciduous leaves align along a single relationship in panel b, but not in panels a or c.
-](../figs/gl_point_np2.png){#fig-glnp}
+](`r here("figs/gl_point_np2.png")`){#fig-gl_point_np2}
 
 # Appendix S4: Stan code
 
@@ -301,14 +317,14 @@ LMAp yields more consistent relationships compared to LMA and LMAs; e.g., evergr
 
 The best model for the GLOPNET dataset is (2) LMAp and LMAs, and (b) $\beta_p = 0$.
 
-```{stan, output.var="hoge",file="../stan/GL_Aps_LLs.stan", eval=FALSE, echo=TRUE}
+```{stan, output.var="hoge",file=here('stan/GL_Aps_LLs.stan'), eval=FALSE, echo=TRUE}
 ```
 
 ## Stan code for the Panama dataset
 
 The best model for the Panama dataset is (4) LMAp, LMAs and light, and (a) $\alpha_s = 0$  and $\beta_p = 0$,
 
-```{stan, output.var="hoge",file="../stan/PA_Ap_LLs_opt.stan", eval=FALSE, echo=TRUE}
+```{stan, output.var="hoge",file=here('stan/PA_Ap_LLs_opt.stan'), eval=FALSE, echo=TRUE}
 ```
 
 # References
