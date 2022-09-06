@@ -464,7 +464,7 @@ Example of a two-dimensional functional space that can result in either a two- o
 (B) Two-dimensional relationship between photosynthetic capacity (*A*~max~) per-unit leaf area and total LMA (equal to LMAp + LMAs).
 (C) One-dimensional relationship between *A*~max~ per-unit leaf mass and total LMA.
 LMAp and LMAs are simulated from a hypothetical scenario of lognormal distributions with medians of 80 and standard deviations of exp(0.8) and exp(0.7), and zero covariance.
-Variation in *A*~max~ values are derived from our analysis of the GLOPNET database. $A_{\mathrm{area} \, i}=1.81 \times \mathrm{LMAp}_i^{0.28}\mathrm{LMAs}^{-0.13}\epsilon_i$, where $\epsilon_i$ is log-normally distributed with log-mean with 0, log-scale parameter with 0.31 (see Methods and Results).
+Variation in *A*~max~ values are derived from our analysis of the GLOPNET database. $A_{\mathrm{area} \, i}=1.77 \times \mathrm{LMAp}_i^{0.28}\mathrm{LMAs}^{-0.13}\epsilon_i$, where $\epsilon_i$ is log-normally distributed with log-mean with 0, log-scale parameter with 0.31 (see Methods and Results).
 ](../figs/hypo.png){#fig:Hplt}
 
 

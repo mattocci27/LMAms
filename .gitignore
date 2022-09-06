@@ -104,3 +104,4 @@ data-raw/*.csv
 *.csv
 
 rsync.sh
+*.Rd

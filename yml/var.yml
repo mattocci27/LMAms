@@ -1,4 +1,8 @@
 GL: 51.6
-sun: 1.1
-shade: -80
-PA: -5.4
+GL_DE: 47.2
+sun: 66.1
+shade: 93.4
+PA: 50.7
+sun_intra: 72
+shade_intra: 99.6
+PA_intra: 48

@@ -75,17 +75,6 @@
       "Hash": "32e79b908fda56ee57fe518a8d37b864",
       "Requirements": []
     },
-    "RcppEigen": {
-      "Package": "RcppEigen",
-      "Version": "0.3.3.9.2",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Hash": "4c86baed78388ceb06f88e3e9a1d87f5",
-      "Requirements": [
-        "Matrix",
-        "Rcpp"
-      ]
-    },
     "RcppParallel": {
       "Package": "RcppParallel",
       "Version": "5.1.5",
@@ -101,17 +90,6 @@
       "Repository": "RSPM",
       "Hash": "8c4137a9ab70de4787d57758f8190617",
       "Requirements": []
-    },
-    "StanHeaders": {
-      "Package": "StanHeaders",
-      "Version": "2.21.0-7",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Hash": "0459d4dd7a8c239be18469a30c23dd4b",
-      "Requirements": [
-        "RcppEigen",
-        "RcppParallel"
-      ]
     },
     "abind": {
       "Package": "abind",
@@ -915,16 +893,6 @@
         "vctrs"
       ]
     },
-    "gridExtra": {
-      "Package": "gridExtra",
-      "Version": "2.3",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Hash": "7d7f283939f563670a697165b2cf5560",
-      "Requirements": [
-        "gtable"
-      ]
-    },
     "gt": {
       "Package": "gt",
       "Version": "0.6.0",
@@ -1105,14 +1073,6 @@
       "Source": "Repository",
       "Repository": "RSPM",
       "Hash": "6154ec2223172bce8162d4153cda21f7",
-      "Requirements": []
-    },
-    "inline": {
-      "Package": "inline",
-      "Version": "0.3.19",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Hash": "1deaf1de3eac7e1d3377954b3a283652",
       "Requirements": []
     },
     "isoband": {
@@ -1381,7 +1341,7 @@
       "Package": "nlme",
       "Version": "3.1-159",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "4a0b3a68f846cb999ff0e8e519524fbb",
       "Requirements": [
         "lattice"
@@ -1431,14 +1391,6 @@
         "ggplot2",
         "gtable"
       ]
-    },
-    "pbmcapply": {
-      "Package": "pbmcapply",
-      "Version": "1.5.1",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Hash": "bf173fb42b60f8f404f7a9f9c3f95d0d",
-      "Requirements": []
     },
     "pillar": {
       "Package": "pillar",
@@ -1507,16 +1459,6 @@
         "rprojroot",
         "rstudioapi",
         "withr"
-      ]
-    },
-    "plyr": {
-      "Package": "plyr",
-      "Version": "1.8.7",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Hash": "9c17c6ee41639ebdc1d7266546d3b627",
-      "Requirements": [
-        "Rcpp"
       ]
     },
     "posterior": {
@@ -1831,25 +1773,6 @@
         "packrat",
         "rstudioapi",
         "yaml"
-      ]
-    },
-    "rstan": {
-      "Package": "rstan",
-      "Version": "2.21.5",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Hash": "61f94b51fc49feea6637bb09e7ac81f3",
-      "Requirements": [
-        "BH",
-        "Rcpp",
-        "RcppEigen",
-        "RcppParallel",
-        "StanHeaders",
-        "ggplot2",
-        "gridExtra",
-        "inline",
-        "loo",
-        "pkgbuild"
       ]
     },
     "rstudioapi": {

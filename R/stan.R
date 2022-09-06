@@ -556,7 +556,6 @@ coef_rand <- function(gl_rand_sig, gl_rand_check, site = site) {
 #' @para gl_rand_sig data including 95% CI
 #' @para gl_rand_check data with rhat and divergence
 coef_sim <- function(sim_para_summary, site) {
-
   data <- sim_para_summary  |>
    # filter(!kkstr_detect(para, "0")) |>
     # mutate(cov = ifelse(rhat == 0, "Converged", "Not converged")) |>
@@ -575,24 +574,25 @@ coef_sim <- function(sim_para_summary, site) {
       variable == "gp" ~ "gamma[p]",
       variable == "gs" ~ "gamma[s]",
       TRUE ~ variable
-    ))
+    )) |>
+    mutate(sig = ifelse(q2.5 * q97.5 > 0, "Significant", "Non-significant"))
 
   ggplot(data) +
-    geom_pointrange(aes(x = sim_id,
-     y = mean, ymin = q2.5, ymax = q97.5, group = sim_id)) +
     geom_hline(yintercept = 0) +
+    geom_pointrange(aes(x = sim_id,
+     y = mean, ymin = q2.5, ymax = q97.5, group = sim_id, col = sig)) +
+    # scale_colour_manual(values = c("#008B00", "#1874CD")) +
     facet_wrap(~para, scale = "free", labeller = label_parsed) +
     xlab("Simulation ID") +
-    ylab("Standardized coefficents") +
+    ylab("Coefficients") +
     ggtitle(site) +
+    labs(colour = "") +
     coord_flip() +
     theme_bw() +
     theme(
        legend.position = c(0.8, 0.2),
-       legend.title = element_blank(),
        axis.text.x = element_text(angle = 45, vjust = 0.8)
     )
-
 }
 
 #' @title Extract parameters from dynamic branches of sim_summary
@@ -617,15 +617,49 @@ extract_sim_diagnostics <- function(sim_summary) {
     dplyr::select(data_id, num_rhat = n, num_divergent)
 }
 
+#' @title Generates summary diagnostics
+#' @para gl_sim_diagnostics
+#' @para pa_sim_diagnostics
+generate_summary_diagnostics <- function(gl_sim_diagnostics, pa_sim_diagnostics, file) {
+  gl <- gl_sim_diagnostics |>
+      mutate(sim_id_no = as.factor(data_id) |>
+         as.numeric() |>
+         str_pad(2, pad = 0)) |>
+      mutate(sim_id = paste0("sim-", sim_id_no)) |>
+      mutate(Data = "GLOPNET")
+
+  pa <- pa_sim_diagnostics |>
+      mutate(sim_id_no = as.factor(data_id) |>
+         as.numeric() |>
+         str_pad(2, pad = 0)) |>
+      mutate(sim_id = paste0("sim-", sim_id_no)) |>
+      mutate(Data = "Panama")
+
+  d <- bind_rows(gl, pa) |>
+    arrange(sim_id) |>
+    arrange(Data) |>
+    mutate(num_rhat = replace_na(num_rhat, 0)) |>
+    dplyr::select(
+      Data,
+      Simulation_ID = sim_id,
+      No_large_Rhat = num_rhat,
+      No_divergence = num_divergent
+    )
+
+    my_write_csv(d, file)
+
+}
 
 #' @title Get posterior estimates mcmc summary
 #' @param data data frame, summary of mcmc
 #' @param row variable name (e.g., "theta")
 #' @param col summary name (e.g., "mean", "q50")
-get_para <- function(data, row, col) {
+#' @param digits integer indicating the number of decimal places
+#' @param nsmall the minimum number of digits to the right of the decimal point
+get_post_para <- function(data, row, col, digits = 2, nsmall = 2) {
   data |>
-    mutate_if(is.numeric, \(x) round(x, 2)) |>
-    mutate_if(is.numeric, \(x) format(x, nsmall = 2)) |>
+    mutate_if(is.numeric, \(x) round(x, digits = digits)) |>
+    mutate_if(is.numeric, \(x) format(x, nsmall = nsmall)) |>
     filter(variable == {{row}}) |>
     pull({{col}})
 }

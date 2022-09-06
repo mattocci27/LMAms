@@ -1,4 +1,7 @@
 %%
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL /tmp/LsU7Jp0eC9/latexdiff-vc-ce3856c6/ms/LMAms_main.tex   Mon Sep  5 19:45:08 2022
+%DIF ADD ms/LMAms_main.tex                                         Mon Sep  5 23:57:57 2022
 % Copyright (c) 2017 - 2020, Pascal Wagler;
 % Copyright (c) 2014 - 2020, John MacFarlane
 %
@@ -394,6 +397,87 @@
 %%
 %% end added
 %%
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFaddtex}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdeltex}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+\providecommand{\DIFmodbegin}{} %DIF PREAMBLE
+\providecommand{\DIFmodend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF HYPERREF PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{\texorpdfstring{\DIFaddtex{#1}}{#1}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{\texorpdfstring{\DIFdeltex{#1}}{}} %DIF PREAMBLE
+\newcommand{\DIFscaledelfig}{0.5}
+%DIF HIGHLIGHTGRAPHICS PREAMBLE %DIF PREAMBLE
+\RequirePackage{settobox} %DIF PREAMBLE
+\RequirePackage{letltxmacro} %DIF PREAMBLE
+\newsavebox{\DIFdelgraphicsbox} %DIF PREAMBLE
+\newlength{\DIFdelgraphicswidth} %DIF PREAMBLE
+\newlength{\DIFdelgraphicsheight} %DIF PREAMBLE
+% store original definition of \includegraphics %DIF PREAMBLE
+\LetLtxMacro{\DIFOincludegraphics}{\includegraphics} %DIF PREAMBLE
+\newcommand{\DIFaddincludegraphics}[2][]{{\color{blue}\fbox{\DIFOincludegraphics[#1]{#2}}}} %DIF PREAMBLE
+\newcommand{\DIFdelincludegraphics}[2][]{% %DIF PREAMBLE
+\sbox{\DIFdelgraphicsbox}{\DIFOincludegraphics[#1]{#2}}% %DIF PREAMBLE
+\settoboxwidth{\DIFdelgraphicswidth}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\settoboxtotalheight{\DIFdelgraphicsheight}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\scalebox{\DIFscaledelfig}{% %DIF PREAMBLE
+\parbox[b]{\DIFdelgraphicswidth}{\usebox{\DIFdelgraphicsbox}\\[-\baselineskip] \rule{\DIFdelgraphicswidth}{0em}}\llap{\resizebox{\DIFdelgraphicswidth}{\DIFdelgraphicsheight}{% %DIF PREAMBLE
+\setlength{\unitlength}{\DIFdelgraphicswidth}% %DIF PREAMBLE
+\begin{picture}(1,1)% %DIF PREAMBLE
+\thicklines\linethickness{2pt} %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\framebox(1,1){}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\line( 1,1){1}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,1){\line(1,-1){1}}}% %DIF PREAMBLE
+\end{picture}% %DIF PREAMBLE
+}\hspace*{3pt}}} %DIF PREAMBLE
+} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbegin}{\DIFaddbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddend}{\DIFaddend} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbegin}{\DIFdelbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelend}{\DIFdelend} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbegin}{\DIFOaddbegin \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbegin}{\DIFOdelbegin \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbeginFL}{\DIFaddbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddendFL}{\DIFaddendFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbeginFL}{\DIFdelbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelendFL}{\DIFdelendFL} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbeginFL}{\DIFOaddbeginFL \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbeginFL}{\DIFOdelbeginFL \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+%DIF LISTINGS PREAMBLE %DIF PREAMBLE
+\RequirePackage{listings} %DIF PREAMBLE
+\RequirePackage{color} %DIF PREAMBLE
+\lstdefinelanguage{DIFcode}{ %DIF PREAMBLE
+%DIF DIFCODE_UNDERLINE %DIF PREAMBLE
+  moredelim=[il][\color{red}\sout]{\%DIF\ <\ }, %DIF PREAMBLE
+  moredelim=[il][\color{blue}\uwave]{\%DIF\ >\ } %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstdefinestyle{DIFverbatimstyle}{ %DIF PREAMBLE
+	language=DIFcode, %DIF PREAMBLE
+	basicstyle=\ttfamily, %DIF PREAMBLE
+	columns=fullflexible, %DIF PREAMBLE
+	keepspaces=true %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim}{\lstset{style=DIFverbatimstyle}}{} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim*}{\lstset{style=DIFverbatimstyle,showspaces=true}}{} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
 
 \begin{document}
 
@@ -407,7 +491,8 @@
 
 
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, enhanced, frame hidden, sharp corners, breakable]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\DIFdelbegin %DIFDELCMD < \renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, interior hidden, sharp corners, frame hidden, enhanced, borderline west={3pt}{0pt}{shadecolor}, breakable]}{\end{tcolorbox}}%%%
+\DIFdelend \DIFaddbegin \renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, enhanced, boxrule=0pt, breakable, borderline west={3pt}{0pt}{shadecolor}, frame hidden, sharp corners]}{\end{tcolorbox}}\DIFaddend \fi
 
 \textbf{Running title}: Metabolic and structural leaf mass
 
@@ -1101,7 +1186,7 @@ LMAp is small or similar to variance in LMAs, (ii) the effects of LMAp
 and LMAs on \emph{A}\textsubscript{area} (\(\alpha_p\) and \(\alpha_s\))
 are small, (iii) or combinations of those (Fig. Fig.~\ref{fig-massplt}).
 Consistent with this explanation, the assemblage we examined where LMAs
-counted for the highest fraction of total LMA variation (93.4\% for
+counted for the highest fraction of total LMA variation (-80\% for
 Panama shade leaves) is also the assembled with the highest degree of
 trait area-dependence (\protect\hyperlink{ref-Osnas2018}{Osnas et al.
 2018}). Our results also suggest that high degree of trait
@@ -1715,7 +1800,7 @@ lognormal distributions with medians of 80 and standard deviations of
 exp(0.8) and exp(0.7), and zero covariance. Variation in
 \emph{A}\textsubscript{max} values are derived from our analysis of the
 GLOPNET database.
-\(A_{\mathrm{area} \, i}=1.77 \times \mathrm{LMAp}_i^{0.28}\mathrm{LMAs}^{-0.13}\epsilon_i\),
+\DIFdelbeginFL \DIFdelFL{\(A_{\mathrm{area} \, i}=1.81 \times \mathrm{LMAp}_i^{0.28}\mathrm{LMAs}^{-0.13}\epsilon_i\)}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{\(A_{\mathrm{area} \, i}=1.77 \times \mathrm{LMAp}_i^{0.28}\mathrm{LMAs}^{-0.13}\epsilon_i\)}\DIFaddendFL ,
 where \(\epsilon_i\) is log-normally distributed with log-mean with 0,
 log-scale parameter with 0.31 (see Methods and Results).}
 
@@ -1750,10 +1835,10 @@ column) are shown. Note that LL was modeled by LMAs alone.}
 
 \caption{\label{fig-PAplt}Observed and estimated leaf-trait
 relationships in the Panama dataset. Estimates are from Model 4a (Table
-1). Details as for Fig.~\ref{fig-GLplt}. Results for other LL models are
+1). Details as \DIFdelbeginFL \DIFdelFL{in }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{for }\DIFaddendFL Fig.~\ref{fig-GLplt}. Results for other LL models are
 summarized in Table SX. Note that \emph{A}\textsubscript{area} and LL
-were modeled by LMAp and LMAs alone, respectively. The results shown
-here include all leaves in the Panama dataset.}
+were modeled by LMAp and LMAs alone, respectively. \DIFaddbeginFL \DIFaddFL{The entire datset is
+used.}\DIFaddendFL }
 
 \end{figure}
 
@@ -1766,11 +1851,10 @@ here include all leaves in the Panama dataset.}
 }
 
 \caption{\label{fig-LLplt}Relationship between residuals of leaf
-lifespan (LL) against light and residuals of LMAs against light in the
-Panama dataset. The dashed line indicates the 1:1 relationship. The
-posterior means of the partial correlation coefficient (\(\bar{\rho}\))
-is shown. The results shown here include all leaves in the Panama
-dataset.}
+lifespan (LL) against light and residuals of LMAs against light. The
+dashed line indicates the 1:1 relationship. The posterior means of the
+partial correlation coefficient (\(\bar{\rho}\)) is shown. \DIFaddbeginFL \DIFaddFL{The entire
+datset is used.}\DIFaddendFL }
 
 \end{figure}
 
@@ -1785,10 +1869,10 @@ dataset.}
 \caption{\label{fig-vpart}Variance partitioning on LMA components
 between and within leaf habits (evergreen vs.~deciuous) for the GLOPNET
 dataset and the Panama dataset, and between and within sites (wet
-vs.~dry) and light (sun vs.~shade) for the Panama dataset. To isolate
+vs.~dry) and light (sun vs.~shade) for the Panama dataset. \DIFaddbeginFL \DIFaddFL{To isolate
 the effects of intraspecific variation (i.e., plastic responses to
 light), the Panama results shown here only include species for which
-both sun and shade leaves were available.}
+both sun and shade leaves were available.}\DIFaddendFL }
 
 \end{figure}
 
@@ -1808,8 +1892,10 @@ dataset (b). The center line in each box indicates the median, upper and
 lower box edges indicate the interquartile range, whiskers show 1.5
 times the interquartile range, and points are outliers. Groups sharing
 the same letters are not significantly different (P \textgreater{} 0.05;
-t-tests). The Panama results only include species for which both sun and
-shade leaves were available. Qualitatively similar results were obtained
+t-tests). \DIFdelbeginFL \DIFdelFL{To isolate the effects of intraspecific variation (i.e.,
+plastic responses to light), the }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{The }\DIFaddendFL Panama results \DIFdelbeginFL \DIFdelFL{shown here }\DIFdelendFL only include species for which both sun and
+shade leaves were available\DIFdelbeginFL \DIFdelFL{(}\textbf{\DIFdelFL{revise this text}}%DIFAUXCMD
+\DIFdelFL{)}\DIFdelendFL . Qualitatively similar results were obtained
 when all Panama species were included (Fig. S\ref{fig-box_inter}). Note
 that the vertical axis is on a log\textsubscript{10} scale.}
 
@@ -1826,11 +1912,13 @@ that the vertical axis is on a log\textsubscript{10} scale.}
 \caption{\label{fig-boxplt_pa}Boxplots comparing leaf mass per area
 (LMA) and posterior medians of photosynthetic and structural LMA
 components (LMAp and LMAs, respectively across sites (wet and dry) and
-canopy strata (sun and shade) in the Panama dataset (bottom). The Panama
-results only include species for which both sun and shade leaves were
+canopy strata (sun and shade) in the Panama dataset (bottom). \DIFdelbeginFL \DIFdelFL{To isolate
+the effects of intraspecific variation (i.e., plastic responses to
+light), the }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{The }\DIFaddendFL Panama
+results \DIFdelbeginFL \DIFdelFL{shown here }\DIFdelendFL only include species for which both sun and shade leaves were
 available. Qualitatively similar results were obtained when all Panama
 species were included (Fig. S\ref{fig-box_inter}). Details as for
-Fig.~\ref{fig-boxplt_de}.}
+Fig.~\ref{fig-boxplt_de}\DIFaddbeginFL \DIFaddFL{.}\DIFaddendFL }
 
 \end{figure}
 
@@ -1881,10 +1969,12 @@ correlation coefficients (\emph{r}) for LMA (left column) and partial
 correlation coefficients (\(\rho\)) of LMAp (middle column) and LMAs
 (right column) are shown. Analogous results were obtained for
 \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} for
-GLOPNET (Fig. S\ref{fig-glnp}). The results shown here include all
-leaves for which \emph{N}\textsubscript{area},
-\emph{P}\textsubscript{area} and \emph{CL}\textsubscript{area} are
-available.}
+GLOPNET (Fig. S\ref{fig-glnp}). \DIFdelbeginFL \DIFdelFL{Results for other LL models are reported
+in Table SX. Analogous results were obtained for
+}\emph{\DIFdelFL{N}}%DIFAUXCMD
+\DIFdelFL{\textsubscript{area} and }\emph{\DIFdelFL{P}}%DIFAUXCMD
+\DIFdelFL{\textsubscript{area} for
+GLOPNET (Fig. S\ref{fig-glnp})}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{The entire datset is used}\DIFaddendFL .}
 
 \end{figure}
 
