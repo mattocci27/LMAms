@@ -1,16 +1,17 @@
-\contentsline {section}{\nonumberline Appendix S1: Prior information}{2}{section*.2}%
-\contentsline {section}{\nonumberline Appendix S2: Randomization (including Table AS1 and Figure AS1)}{3}{section*.5}%
-\contentsline {subsection}{\nonumberline Table AS1}{3}{section*.6}%
-\contentsline {subsection}{\nonumberline Figure AS1}{4}{section*.7}%
-\contentsline {subsection}{\nonumberline Figure AS2}{5}{section*.8}%
-\contentsline {section}{\nonumberline Appendix S3: Simulation for mass dependency of \emph {A}\textsubscript {area}}{6}{section*.9}%
-\contentsline {section}{\nonumberline Figure S1}{7}{section*.10}%
-\contentsline {section}{\nonumberline Figure S2}{8}{section*.12}%
-\contentsline {section}{\nonumberline Figure S3}{9}{section*.14}%
-\contentsline {section}{\nonumberline Figure S4}{10}{section*.16}%
-\contentsline {section}{\nonumberline Figure S5}{11}{section*.18}%
-\contentsline {section}{\nonumberline Figure S6}{12}{section*.20}%
-\contentsline {section}{\nonumberline Appendix S4: Stan code}{12}{section*.22}%
-\contentsline {subsection}{\nonumberline Stan code for the GLOPNET dataset}{12}{section*.23}%
-\contentsline {subsection}{\nonumberline Stan code for the Panama dataset}{15}{section*.24}%
-\contentsline {section}{References}{17}{section*.25}%
+\contentsline {section}{\nonumberline Appendix S1: Prior information}{2}{section*.3}%
+\contentsline {section}{\nonumberline Appendix S2: Randomization (including Table AS1 and Figure AS1)}{3}{section*.7}%
+\contentsline {subsection}{\nonumberline Table AS1}{3}{subsection*.9}%
+\contentsline {subsection}{\nonumberline Figure AS1}{4}{subsection*.11}%
+\contentsline {subsection}{\nonumberline Figure AS2}{5}{subsection*.13}%
+\contentsline {section}{\nonumberline Appendix S3: Simulation for mass dependency of \emph {A}\textsubscript {area}}{6}{section*.15}%
+\contentsline {section}{\nonumberline Figure S1}{7}{section*.17}%
+\contentsline {section}{\nonumberline Figure S2}{8}{section*.20}%
+\contentsline {section}{\nonumberline Figure S3}{9}{section*.23}%
+\contentsline {section}{\nonumberline Figure S4}{10}{section*.26}%
+\contentsline {section}{\nonumberline Figure S5}{11}{section*.29}%
+\contentsline {section}{\nonumberline Figure S6}{12}{section*.32}%
+\contentsline {section}{\nonumberline Appendix S4: Stan code}{12}{section*.35}%
+\contentsline {subsection}{\nonumberline Stan code for the GLOPNET dataset}{12}{subsection*.37}%
+\contentsline {subsection}{\nonumberline Stan code for the Panama dataset}{13}{subsection*.39}%
+\contentsline {section}{References}{14}{section*.40}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

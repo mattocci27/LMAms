@@ -42,7 +42,6 @@ format:
         \usepackage{fvextra}
         \linenumbers
         \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
-        \fancypagestyle{plain}{\pagestyle{fancy}}
         \fancyhead[RE,RO]{Katabuchi \textit{et al}.  Appendix}
 ---
 

@@ -232,7 +232,7 @@ Convergence of the posterior distribution was assessed with the Gelman-Rubin sta
 Because our statistical approach includes many parameters (one latent variable *f~i~* to partition LMA into LMAp and LMAs for each leaf sample), we implemented tests with randomized data (*n* = 10) to assess potential overfitting.
 We generated randomized datasets by randomizing all the trait values (LMA, *A*~area~, *R*~area~ and LL) across species.
 Thus, the randomized datasets had zero expected covariance among traits.
-Model results obtained from the randomized datasets did not convergent, showed divergent transitions or converged but didn't show significant patterns in the scaling parameters (Appendix S2).
+Model results obtained from the randomized datasets did not convergent, showed divergent transitions or converged but did not show significant patterns in the scaling parameters (Appendix S2).
 Divergent transitions suggest that estimates are based on the incomplete exploration of the simulated Hamiltonian trajectory and not trusted [@Betancourt2016].
 In contrast, models fit to observed data converged without divergent transitions and produced significant results for both GLOPNET and Panama (see Results).
 Thus, the tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
