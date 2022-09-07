@@ -1,10 +1,9 @@
-#' @title Variance patitoning
+#' @title Variance partitioning
 vpart_bar <- function(gl_res_csv, pa_res_csv, intra = FALSE) {
   # library(targets)
   # library(tidyverse)
   # targets::tar_load(pa_res_csv)
   # targets::tar_load(gl_res_csv)
-
   pa <- read_csv(pa_res_csv)
 
   if (intra) {
@@ -90,5 +89,64 @@ vpart_bar <- function(gl_res_csv, pa_res_csv, intra = FALSE) {
       xlab("")
 }
 
-#' @title rlnorm simluation
-#'
+write_vpart_csv <- function(gl_res_csv, pa_res_csv, file, intra = FALSE) {
+  # library(targets)
+  # library(tidyverse)
+  # targets::tar_load(pa_res_csv)
+  # targets::tar_load(gl_res_csv)
+  pa <- read_csv(pa_res_csv)
+
+  if (intra) {
+    pa <- pa |>
+        count(sp) |>
+        filter(n >= 2) |>
+        inner_join(pa, by = "sp")
+  }
+
+  gl <- read_csv(gl_res_csv) |>
+    filter(leaf_habit != "U")
+
+  var_ <- function(data, y, x) {
+    fo <- str_c("log(", y, ") ~", x)
+    tmp <- aov(as.formula(fo), data) |>
+     summary()
+    tmp2 <- tmp[[1]]$`Sum Sq`
+    tmp2 / sum(tmp2) * 100
+  }
+
+  gl_eve_var <- bind_rows(
+    LMAp = var_(gl, "LMAp", "leaf_habit"),
+    LMAs = var_(gl, "LMAs", "leaf_habit"),
+    fct = c("Eve/Dec", "Residuals")) |>
+    mutate(dataset = "gl_de")
+
+  pa_eve_var <- bind_rows(
+    LMAp = var_(pa, "LMAp", "leaf_habit"),
+    LMAs = var_(pa, "LMAs", "leaf_habit"),
+    fct = c("Eve/Dec", "Residuals")) |>
+    mutate(dataset = "pa_de")
+
+  pa_leaf_var <- bind_rows(
+    LMAp = var_(pa, "LMAp", "site + strata"),
+    LMAs = var_(pa, "LMAs", "site + strata"),
+    fct = c("Wet/Dry", "Sun/Shade", "Residuals")) |>
+    mutate(dataset = "pa_leaf")
+
+  bind_rows(gl_eve_var, pa_eve_var, pa_leaf_var) |>
+    write_csv(file)
+  paste(file)
+}
+
+
+# d <- read_csv("data/vpart_intra.csv")
+# file <- "data/vpart_intra.csv"
+get_vpart_para <- function(file, LMA, group, dataset, digits = 2, nsmall = 2) {
+  d <- read_csv(file)
+  d |>
+    mutate_if(is.numeric, \(x) round(x, digits = digits)) |>
+    mutate_if(is.numeric, \(x) format(x, nsmall = nsmall)) |>
+    filter(dataset == {{dataset}}) |>
+    filter(fct == {{group}}) |>
+    pull({{LMA}})
+}
+

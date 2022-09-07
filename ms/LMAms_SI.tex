@@ -154,6 +154,8 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
+\usepackage{xr}
+\externaldocument{LMAms_main}
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{colortbl}
@@ -241,7 +243,7 @@ within and among plant species}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, breakable, enhanced, boxrule=0pt, sharp corners, frame hidden, interior hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, interior hidden, sharp corners, breakable, frame hidden, borderline west={3pt}{0pt}{shadecolor}, enhanced]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -488,7 +490,7 @@ We repeated these steps 1000 times.
 posterior medians of LMAp vs LMAs in the (a) GLOPNET and (b) Panama
 datasets. The non-significant or weak \emph{r} values indicate that a
 single axis could not accurately represent the two-dimensional space.
-Symbols as in Main Text Figs. 1-2.}
+Symbols as in Main Text Figs. \ref{fig-GLplt}-\ref{fig-PAplt}}
 
 \end{figure}
 
@@ -507,11 +509,12 @@ Symbols as in Main Text Figs. 1-2.}
 (LMA), photosynthetic leaf mass per area (LMAp; posterior means), and
 structural leaf mass per area (LMAs; posterior means) across sites (wet
 and dry) and canopy strata (sun and shade) in Panama. The results shown
-here include all leaves in the Panama dataset, whereas Fig. 5 in the
-main text only includes Panama species for which both sun and shade
-leaves were available. Boxplot symbols as in Fig. 5. Groups sharing the
-same letters are not significantly different (P \textgreater{} 0.05;
-t-tests).}
+here include all leaves in the Panama dataset, whereas Figs.
+\ref{fig-boxplt_de}-\ref{fig-boxplt_pa} in the main text only include
+Panama species for which both sun and shade leaves were available.
+Boxplot symbols as in Figs. \ref{fig-boxplt_de}-\ref{fig-boxplt_pa}.
+Groups sharing the same letters are not significantly different (P
+\textgreater{} 0.05; t-tests).}
 
 \end{figure}
 
@@ -527,26 +530,24 @@ t-tests).}
 }
 
 \caption{\label{fig-box_frac}Boxplots comparing posterior medians of the
-latent variable f (the fraction of total LMA comprised by LMAm) across
+latent variable f (the fraction of total LMA comprised by LMAp) across
 deciduous (D) and evergreen (E) leaves in GLOPNET and Panama, and across
 sites (wet and dry) and canopy strata (sun and shade) in Panama. Note
-that LMAm = f × LMA, and LMAs = (1 -- f) × LMA. (a) Deciduous and
+that LMAp = f × LMA, and LMAs = (1 -- f) × LMA. (a) Deciduous and
 evergreen leaves in the GLOPNET dataset; (b) deciduous and evergreen
 leaves for Panama species for which both sun and shade leaves were
 available; (c) leaves for Panama species for which both sun and shade
 leaves were available; and (d) all leaves for Panama. At the dry Panama
-site, the increase in LMA from shade to sun (Fig. 4) is due to roughly
-equal proportional increases in LMAm and LMAs (because f is similar
-between sun and shade), whereas at the wet Panama site, the increase in
-LMA from shade to sun (Fig. 4) is due primarily to increased LMAm
-(because f is greater in sun than shade). GLOPNET results are for the
-Potential LL Model (Eq. 5), and Panama results are for the Optimal LL
-Model with site effects (Eq. 13 and Supporting Information, Section
-3.1). The center line in each box indicates the median, upper and lower
-box edges indicate the interquartile range, whiskers show 1.5 times the
-interquartile range, and points are outliers. Groups sharing the same
-letters are not significantly different (P \textgreater{} 0.05;
-t-tests).''\}}
+site, the increase in LMA from shade to sun (Fig. \ref{fig-boxplt_pa})
+is due to roughly equal proportional increases in LMAp and LMAs (because
+f is similar between sun and shade), whereas at the wet Panama site, the
+increase in LMA from shade to sun (Fig. \ref{fig-boxplt_pa}) is due
+primarily to increased LMAp (because f is greater in sun than shade).
+The best model in the table 1 were used. The center line in each box
+indicates the median, upper and lower box edges indicate the
+interquartile range, whiskers show 1.5 times the interquartile range,
+and points are outliers. Groups sharing the same letters are not
+significantly different (P \textgreater{} 0.05; t-tests).''\}}
 
 \end{figure}
 
@@ -562,8 +563,8 @@ t-tests).''\}}
 }
 
 \caption{\label{fig-mass_prop_sim}The relationships between mass
-dependency (\emph{b} in Eq. 5 in the main text) and relative variance in
-LMAs to LMA for the different ranges of the scaling exponent
+dependency (\emph{b} in Eq. \ref{eq-mass} in the main text) and relative
+variance in LMAs to LMA for the different ranges of the scaling exponent
 \(\alpha_p\) and \(\alpha_s\). \textbf{a}, the scaling exponent
 \(\alpha_p\) vary from 0.1 to 1.0 while the scaling exponent
 \(\alpha_s\) is constant (\(\alpha_s\) = -0.13,). \textbf{b}, the
@@ -593,11 +594,12 @@ settings: \(\alpha_0\) = 1.77, \(\mu_p\) = 58.8, \(\mu_s\) = 63.1,
 }
 
 \caption{\label{fig-mass_prop_comp}The relationships between mass
-dependency (\emph{b} in Eq. 5 in the main tex) and relative variance in
-LMAs to LMA for the simulated dataset gerenated by a normal distribution
-(N) and a multivariate normal distribution (MVN). Parameter settings:
-\(\alpha_0\) = 0.33, \(\alpha_p\) = 0.56, \(\alpha_s\) = 0, \(\mu_p\) =
-8.6, \(\mu_s\) = 24, \(\sigma_p\) = 1.88, and \(\rho\) = -0.4,}
+dependency (\emph{b} in Eq. \ref{eq-mass} in the main tex) and relative
+variance in LMAs to LMA for the simulated dataset gerenated by a normal
+distribution (N) and a multivariate normal distribution (MVN). Parameter
+settings: \(\alpha_0\) = 0.33, \(\alpha_p\) = 0.56, \(\alpha_s\) = 0,
+\(\mu_p\) = 8.6, \(\mu_s\) = 24, \(\sigma_p\) = 1.88, and \(\rho\) =
+-0.4,}
 
 \end{figure}
 

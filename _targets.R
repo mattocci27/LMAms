@@ -651,6 +651,18 @@ main_list <- list(
     },
     format = "file"
   ),
+
+  tar_target(
+    vpart_csv,
+    write_vpart_csv(gl_res_csv, pa_res_csv, "data/vpart_inter.csv", intra = FALSE),
+    format = "file"
+  ),
+  tar_target(
+    vpart_intra_csv,
+    write_vpart_csv(gl_res_csv, pa_res_csv, "data/vpart_intra.csv", intra = TRUE),
+    format = "file"
+  ),
+
   # mass prop ----------------------------------------------------
   tar_target(
     mass_obs_dat,
