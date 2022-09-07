@@ -1,7 +1,7 @@
 %%
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL /tmp/LsU7Jp0eC9/latexdiff-vc-ce3856c6/ms/LMAms_main.tex   Mon Sep  5 19:45:08 2022
-%DIF ADD ms/LMAms_main.tex                                         Mon Sep  5 23:57:57 2022
+%DIF DEL /tmp/pZAowtryfg/latexdiff-vc-ce3856c6/ms/LMAms_main.tex   Mon Sep  5 19:45:08 2022
+%DIF ADD ms/LMAms_main.tex                                         Wed Sep  7 18:57:04 2022
 % Copyright (c) 2017 - 2020, Pascal Wagler;
 % Copyright (c) 2014 - 2020, John MacFarlane
 %
@@ -492,7 +492,7 @@
 
 
 \ifdefined\Shaded\DIFdelbegin %DIFDELCMD < \renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, interior hidden, sharp corners, frame hidden, enhanced, borderline west={3pt}{0pt}{shadecolor}, breakable]}{\end{tcolorbox}}%%%
-\DIFdelend \DIFaddbegin \renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, enhanced, boxrule=0pt, breakable, borderline west={3pt}{0pt}{shadecolor}, frame hidden, sharp corners]}{\end{tcolorbox}}\DIFaddend \fi
+\DIFdelend \DIFaddbegin \renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, interior hidden, boxrule=0pt, breakable, enhanced, frame hidden, borderline west={3pt}{0pt}{shadecolor}]}{\end{tcolorbox}}\DIFaddend \fi
 
 \textbf{Running title}: Metabolic and structural leaf mass
 
@@ -523,12 +523,15 @@ Tulane University, New Orleans, LA 70118 USA
 \textsuperscript{6} \textbf{Corresponding Author}: E-mail:
 mattocci27@gmail.com
 
-\newpage
+\DIFdelbegin %DIFDELCMD < \newpage
+%DIFDELCMD < 
 
-\hypertarget{abstract}{%
-\section{Abstract}\label{abstract}}
+%DIFDELCMD < \hypertarget{abstract}{%
+%DIFDELCMD < \section{Abstract}\label{abstract}}
+%DIFDELCMD < 
 
-\begin{itemize}
+%DIFDELCMD < %%%
+\DIFdelend \begin{itemize}
 \item
   Across the global flora, photosynthetic and metabolic rates depend
   more strongly on leaf area than leaf mass. In contrast, intraspecific
@@ -910,18 +913,19 @@ datasets by randomizing all the trait values (LMA,
 \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and LL)
 across species. Thus, the randomized datasets had zero expected
 covariance among traits. Model results obtained from the randomized
-datasets did not convergent or showed divergent transitions (Appendix
-S2). Divergent transitions suggest that estimates are based on the
-incomplete exploration of the simulated Hamiltonian trajectory and not
-trusted (\protect\hyperlink{ref-Betancourt2016}{Betancourt 2016}). (in a
-simple sentence: Model did not work). In contrast, models fit to
-observed data converged without divergent transitions and produced
-significant results for both GLOPNET and Panama (see Results). Thus, the
-tests with randomized data indicate that our model is not inherently
-prone to overfitting or to producing patterns from noise. We therefore
-assume that estimates of LMAp and LMAs obtained from the GLOPNET and
-Panama datasets reflect meaningful patterns in the observations and
-allow for meaningful tests of our hypotheses.
+datasets did not convergent\DIFdelbegin \DIFdel{or }\DIFdelend \DIFaddbegin \DIFadd{, }\DIFaddend showed divergent transitions \DIFaddbegin \DIFadd{or converged
+but did not show significant patterns in the scaling parameters
+}\DIFaddend (Appendix S2). Divergent transitions suggest that estimates are based on
+the incomplete exploration of the simulated Hamiltonian trajectory and
+not trusted (\protect\hyperlink{ref-Betancourt2016}{Betancourt 2016}).
+\DIFdelbegin \DIFdel{(in a
+simple sentence: Model did not work). }\DIFdelend In contrast, models fit to observed data converged without divergent
+transitions and produced significant results for both GLOPNET and Panama
+(see Results). Thus, the tests with randomized data indicate that our
+model is not inherently prone to overfitting or to producing patterns
+from noise. We therefore assume that estimates of LMAp and LMAs obtained
+from the GLOPNET and Panama datasets reflect meaningful patterns in the
+observations and allow for meaningful tests of our hypotheses.
 
 Instead of using exact leave-one-out cross-validation (LOO), which is a
 robust way to compare models with different numbers of parameters but
@@ -941,21 +945,28 @@ predictive accuracy shows a smaller LOO Information Criterion (LOOIC).
 \subsection{Partitioning LMA variance into metabolic and structural
 components}\label{partitioning-lma-variance-into-metabolic-and-structural-components}}
 
-We used the following identity to estimate the relative contributions of
+We \DIFdelbegin \DIFdel{used the following identity to estimate the relative contributions of
 LMAp and LMAs to LMA variance, where again LMA = LMAp + LMAs:
+}%DIFDELCMD < 
 
-\begin{equation}\protect\hypertarget{eq-var}{}{
+%DIFDELCMD < %%%
+\begin{displaymath}\DIFdel{\protect\hypertarget{eq-var}{}{
 \mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2)
-}\label{eq-var}\end{equation}
+}%DIFDELCMD < \label{eq-var}%%%
+}\end{displaymath}%DIFAUXCMD
+%DIFDELCMD < 
 
-where Var(\(\cdot\)) is variance and Cov(\(\cdot\)) is covariance. Thus,
+%DIFDELCMD < %%%
+\DIFdel{where Var(\(\cdot\)) is variance and Cov(\(\cdot\)) is covariance. Thus,
 the fractions of total LMA variance due to variance in LMAp and LMAs are
 Cov(LMA, LMAp)/Var(LMA) and Cov(LMA, LMAs)/Var(LMA), respectively.
+}%DIFDELCMD < 
 
-We also partitioned variance of the posterior means of LMAp and LMAs
-into between group (evergreen vs.~deciduous for GLOPNET, and dry vs.~wet
-sites and sun vs.~shade leaves for Panama) and within group components
-using ANOVA.
+%DIFDELCMD < %%%
+\DIFdel{We also }\DIFdelend partitioned variance of the posterior means of LMAp and LMAs into
+between group (evergreen vs.~deciduous for GLOPNET \DIFaddbegin \DIFadd{and Panama}\DIFaddend , and dry
+vs.~wet sites and sun vs.~shade leaves for Panama) and within group
+components using ANOVA.
 
 \hypertarget{understanding-relationships-between-photosynthetic-capacity-and-lma}{%
 \subsection{Understanding relationships between photosynthetic capacity
@@ -1048,9 +1059,22 @@ standard deviation of log(LMAs) between log(1.01) and log(10).
 estimated \(\alpha_p\) and \(\alpha_s\) values (Eq.~\ref{eq-mass}) for
 each dataset. Using the above values, we calculated \emph{b} for
 GLOPNET, Panama sun leaves and Panama shade leaves. We repeated these
-steps 1000 times. We compared the simulated results with the fractions
-of total LMA variance due to variance in LMAp and LMAs of the empirical
-data (see above).
+steps 1000 times.
+\DIFdelbegin \DIFdel{We }\DIFdelend \DIFaddbegin 
+
+\DIFadd{Finally, we }\DIFaddend compared the simulated results with the fractions of total
+LMA variance due to variance in LMAp and LMAs of the empirical data\DIFdelbegin \DIFdel{(see above)}\DIFdelend \DIFaddbegin \DIFadd{. We
+used the following identity to estimate the relative contributions of
+LMAp and LMAs to LMA variance, where again LMA = LMAp + LMAs:
+}
+
+\begin{equation}\DIFadd{\protect\hypertarget{eq-var}{}{
+\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2)
+}\label{eq-var}}\end{equation}
+
+\DIFadd{where Var(\(\cdot\)) is variance and Cov(\(\cdot\)) is covariance. Thus,
+the fractions of total LMA variance due to variance in LMAp and LMAs are
+Cov(LMA, LMAp)/Var(LMA) and Cov(LMA, LMAs)/Var(LMA), respectively}\DIFaddend .
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
@@ -1102,18 +1126,18 @@ function accounts for nearly all leaf maintenance respiration.
 
 \textbf{3. Evergreen leaves have greater LMAs than deciduous leaves, and
 sun leaves have both greater LMAp and LMAs than shade leaves.} Evergreen
-vs.~decidous explains the majority of variance in LMAs but not LMAp in
-GLOPNET (Fig.~\ref{fig-vpart}). Thus, the higher total LMA in evergreen
-leaves in GLOPNET (Fig.~\ref{fig-boxplt_de}) was primarily due to
-differences in LMAs. In the Panama dataset, light (sun vs.~shade)
-explains the majority of variance in LMAp but not LMAs, and site
-(wet/dry) explains 33\% of variance in LMAs (Fig.~\ref{fig-vpart}). Sun
-leaves have both greater LMAp and LMAs than shade leaves, but the
-differences in LMAp were more apparent (Fig.~\ref{fig-boxplt_pa}). Thus,
-variation in LMAp plays a more important role within species than among
-species. Evergreen leaves have higher fraction of LMAs compared to
-deciduous leaves both in the Panama and the GLOPNET dataset (Fig.
-S\ref{fig-box_frac}).
+vs.~decidous explains the \DIFdelbegin \DIFdel{majority of variance }\DIFdelend \DIFaddbegin \DIFadd{large variance (39.0\%) }\DIFaddend in LMAs but not LMAp
+in GLOPNET (Fig.~\ref{fig-vpart}). Thus, the higher total LMA in
+evergreen leaves in GLOPNET (Fig.~\ref{fig-boxplt_de}) was primarily due
+to differences in LMAs. In the Panama dataset, light (sun vs.~shade)
+explains the majority of variance in LMAp \DIFaddbegin \DIFadd{(75.6\%) }\DIFaddend but not LMAs \DIFaddbegin \DIFadd{(18.3\%)
+}\DIFaddend , and site (wet/dry) explains \DIFdelbegin \DIFdel{33}\DIFdelend \DIFaddbegin \DIFadd{25.9}\DIFaddend \% of variance in LMAs
+(Fig.~\ref{fig-vpart}). Sun leaves have both greater LMAp and LMAs than
+shade leaves, but the differences in LMAp were more apparent
+(Fig.~\ref{fig-boxplt_pa}). Thus, variation in LMAp plays a more
+important role within species than among species. Evergreen leaves have
+higher fraction of LMAs compared to deciduous leaves both in the Panama
+and the GLOPNET dataset (Fig. S\ref{fig-box_frac}).
 
 \textbf{4. LMA variance components determine the area-
 vs.~mass-dependence of leaf photosynthetic capacity
@@ -1143,7 +1167,7 @@ correlated with LMAp, and cellulose per-unit leaf area is strongly
 correlated with LMAs.} In the GLOPNET dataset,
 \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} had strong
 positive correlations with LMAp, but only weak correlations with LMAs
-(Fig. S\ref{fig-glnp}). Similarly, in the Panama dataset,
+(Fig. S\DIFdelbegin \DIFdel{\ref{fig-glnp}}\DIFdelend \DIFaddbegin \DIFadd{\ref{fig-gl_point_np2}}\DIFaddend ). Similarly, in the Panama dataset,
 \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} had strong
 positive correlations with LMAp, but were not correlated with LMAs
 (Fig.~\ref{fig-PA-NPC}). In contrast, cellulose per-unit leaf area
@@ -1186,7 +1210,7 @@ LMAp is small or similar to variance in LMAs, (ii) the effects of LMAp
 and LMAs on \emph{A}\textsubscript{area} (\(\alpha_p\) and \(\alpha_s\))
 are small, (iii) or combinations of those (Fig. Fig.~\ref{fig-massplt}).
 Consistent with this explanation, the assemblage we examined where LMAs
-counted for the highest fraction of total LMA variation (-80\% for
+counted for the highest fraction of total LMA variation (\DIFdelbegin \DIFdel{-80}\DIFdelend \DIFaddbegin \DIFadd{93.4}\DIFaddend \% for
 Panama shade leaves) is also the assembled with the highest degree of
 trait area-dependence (\protect\hyperlink{ref-Osnas2018}{Osnas et al.
 2018}). Our results also suggest that high degree of trait
@@ -1775,10 +1799,12 @@ Effect of light on LL (\(\theta\)) & - & \textbf{-0.83 {[}-1.116,
 
 \newpage
 
-\hypertarget{figures}{%
-\section{Figures}\label{figures}}
+\DIFdelbegin %DIFDELCMD < \hypertarget{figures}{%
+%DIFDELCMD < \section{Figures}\label{figures}}
+%DIFDELCMD < 
 
-\begin{figure}
+%DIFDELCMD < %%%
+\DIFdelend \begin{figure}
 
 {\centering \includegraphics{/home/mattocci/LMAms/figs/hypo.png}
 
@@ -1837,8 +1863,8 @@ column) are shown. Note that LL was modeled by LMAs alone.}
 relationships in the Panama dataset. Estimates are from Model 4a (Table
 1). Details as \DIFdelbeginFL \DIFdelFL{in }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{for }\DIFaddendFL Fig.~\ref{fig-GLplt}. Results for other LL models are
 summarized in Table SX. Note that \emph{A}\textsubscript{area} and LL
-were modeled by LMAp and LMAs alone, respectively. \DIFaddbeginFL \DIFaddFL{The entire datset is
-used.}\DIFaddendFL }
+were modeled by LMAp and LMAs alone, respectively. \DIFaddbeginFL \DIFaddFL{The results shown
+here include all leaves in the Panama dataset.}\DIFaddendFL }
 
 \end{figure}
 
@@ -1851,10 +1877,11 @@ used.}\DIFaddendFL }
 }
 
 \caption{\label{fig-LLplt}Relationship between residuals of leaf
-lifespan (LL) against light and residuals of LMAs against light. The
-dashed line indicates the 1:1 relationship. The posterior means of the
-partial correlation coefficient (\(\bar{\rho}\)) is shown. \DIFaddbeginFL \DIFaddFL{The entire
-datset is used.}\DIFaddendFL }
+lifespan (LL) against light and residuals of LMAs against light \DIFaddbeginFL \DIFaddFL{in the
+Panama dataset}\DIFaddendFL . The dashed line indicates the 1:1 relationship. The
+posterior means of the partial correlation coefficient (\(\bar{\rho}\))
+is shown. \DIFaddbeginFL \DIFaddFL{The results shown here include all leaves in the Panama
+dataset.}\DIFaddendFL }
 
 \end{figure}
 
@@ -1970,11 +1997,11 @@ correlation coefficients (\(\rho\)) of LMAp (middle column) and LMAs
 (right column) are shown. Analogous results were obtained for
 \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} for
 GLOPNET (Fig. S\ref{fig-glnp}). \DIFdelbeginFL \DIFdelFL{Results for other LL models are reported
-in Table SX. Analogous results were obtained for
-}\emph{\DIFdelFL{N}}%DIFAUXCMD
-\DIFdelFL{\textsubscript{area} and }\emph{\DIFdelFL{P}}%DIFAUXCMD
-\DIFdelFL{\textsubscript{area} for
-GLOPNET (Fig. S\ref{fig-glnp})}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{The entire datset is used}\DIFaddendFL .}
+in Table SX. Analogous }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{The }\DIFaddendFL results \DIFdelbeginFL \DIFdelFL{were obtained }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{shown here include all
+leaves }\DIFaddendFL for \DIFaddbeginFL \DIFaddFL{which }\DIFaddendFL \emph{N}\textsubscript{area}\DIFdelbeginFL \DIFdelFL{and }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{,
+}\DIFaddendFL \emph{P}\textsubscript{area} \DIFdelbeginFL \DIFdelFL{for
+GLOPNET (Fig. S\ref{fig-glnp})}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{and }\emph{\DIFaddFL{CL}}\DIFaddFL{\textsubscript{area} are
+available}\DIFaddendFL .}
 
 \end{figure}
 
