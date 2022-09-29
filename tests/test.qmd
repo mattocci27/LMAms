@@ -1,0 +1,133 @@
+```{r}
+library(tidyverse)
+library(targets)
+
+tar_load(pa_res_csv)
+tar_load(gl_res_csv)
+
+pa <- read_csv(pa_res_csv)
+
+fit_np <- lm(log(Narea) ~ log(LMAp), pa)
+fit_ns <- lm(log(Narea) ~ log(LMAs), pa)
+fit_php <- lm(log(Parea) ~ log(LMAp), pa)
+fit_phs <- lm(log(Parea) ~ log(LMAs), pa)
+fit_cp <- lm(log(cell_area) ~ log(LMAp), pa)
+fit_cs <- lm(log(cell_area) ~ log(LMAs), pa)
+fit_ps <- lm(log(LMAp) ~ log(LMAs), pa)
+fit_sp <- lm(log(LMAs) ~ log(LMAp), pa)
+
+tmp1 <- tibble(
+  Narea_LMAs_removed = residuals(fit_ns),
+  Narea_LMAp_removed = residuals(fit_np),
+  Parea_LMAs_removed = residuals(fit_phs),
+  Parea_LMAp_removed = residuals(fit_php),
+  LMAp_LMAs_removed = residuals(fit_ps),
+  LMAs_LMAp_removed = residuals(fit_sp),
+  id = as.character(1:nrow(pa))
+)
+
+tmp2 <- tibble(
+  cell_area_LMAs_removed = residuals(fit_cs),
+  cell_area_LMAp_removed = residuals(fit_cp),
+  id = residuals(fit_cp) |> names()
+)
+
+data <- full_join(tmp1, tmp2) |>
+  mutate(site = pa$site2) |>
+  mutate(strata = pa$strata)  |>
+  mutate(site_strata = str_c(site, "_", strata)) |>
+  mutate(site_strata = factor(site_strata,
+          levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) %>%
+  mutate(gr = factor(site_strata,
+    labels = c("Sun-Wet",
+               "Sun-Dry",
+               "Shade-Wet",
+               "Shade-Dry"
+                      )))
+
+
+  tar_load(settings_yml)
+  settings <- yaml::yaml.load_file(settings_yml)
+
+    fills <- c(
+   "Sun-Dry" = settings$fills$sun_dry,
+   "Sun-Wet" = settings$fills$sun_wet,
+   "Shade-Dry" = settings$fills$shade_dry,
+   "Shade-Wet" = settings$fills$shade_wet
+  )
+
+  cols <- c(
+   "Sun-Dry" = settings$colors$sun_dry,
+   "Sun-Wet" = settings$colors$sun_wet,
+   "Shade-Dry" = settings$colors$shade_dry,
+   "Shade-Wet" = settings$colors$shade_wet
+  )
+
+
+p1 <- ggplot(data, aes(
+  x = LMAp_LMAs_removed,
+  y = Narea_LMAs_removed,
+  col = gr,
+  fill = gr)) +
+  geom_point(shape = 21) +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols)
+
+p2 <- ggplot(data, aes(
+  x = LMAp_LMAs_removed,
+  y = Parea_LMAs_removed,
+  col = gr,
+  fill = gr)) +
+  geom_point(shape = 21) +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols)
+
+p3 <- ggplot(data, aes(
+  x = LMAp_LMAs_removed,
+  y = cell_area_LMAs_removed,
+  col = gr,
+  fill = gr)) +
+  geom_point(shape = 21) +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols)
+
+p4 <- ggplot(data, aes(
+  x = LMAs_LMAp_removed,
+  y = Narea_LMAp_removed,
+  col = gr,
+  fill = gr)) +
+  geom_point(shape = 21) +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols)
+
+p5 <- ggplot(data, aes(
+  x = LMAs_LMAp_removed,
+  y = Parea_LMAp_removed,
+  col = gr,
+  fill = gr)) +
+  geom_point(shape = 21) +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols)
+
+p6 <- ggplot(data, aes(
+  x = LMAs_LMAp_removed,
+  y = cell_area_LMAp_removed,
+  col = gr,
+  fill = gr)) +
+  geom_point(shape = 21) +
+  scale_fill_manual(values = fills) +
+  scale_colour_manual(values = cols)
+
+
+p <- (p1 + p4) /
+(p2 + p5) /
+(p3 + p6) &
+theme_bw() #&
+# theme(legend.position = "none")
+
+ggsave("figs/partial_traits_panama.pdf", p, width = 8, height = 7)
+
+lm(cell_area_LMAs_removed ~ LMAp_LMAs_removed, data) |> summary()
+lm(cell_area_LMAp_removed ~ LMAs_LMAp_removed, data) |> summary()
+
+```
