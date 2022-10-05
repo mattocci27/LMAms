@@ -154,10 +154,10 @@ The scaling parameters in the randomized datasets did not show any patterns
 
 # Appendix S3: Simulation for mass dependency of *A*~area~
 
-To simulate mass dependency of *A*~area~, we generated LMAp and LMAs values for leaf sample *i* using normal distibutions (N) for GLPONET and sun leaves of Panama with a sample size of 100:
+To simulate mass dependency of *A*~area~, we generated LMAm and LMAs values for leaf sample *i* using normal distibutions (N) for GLPONET and sun leaves of Panama with a sample size of 100:
 
 $$
-\mathrm{ln}(\mathrm{LMAp}_{i}) \sim N(\mathrm{ln}(\mu_p), \sigma_p)
+\mathrm{ln}(\mathrm{LMAm}_{i}) \sim N(\mathrm{ln}(\mu_p), \sigma_p)
 $$
 
 $$
@@ -165,14 +165,14 @@ $$
 $$
 
 where
-$\mu_p$ and $\mu_s$ are the mean of LMAp and LMAs on the log-scale, respectively, and
-$\sigma_p$ and $\sigma_s$ are the standard deviation of LMAp and LMAs on the log-scale, respectively.
+$\mu_p$ and $\mu_s$ are the mean of LMAm and LMAs on the log-scale, respectively, and
+$\sigma_p$ and $\sigma_s$ are the standard deviation of LMAm and LMAs on the log-scale, respectively.
 
-Because there was a weak negative correlation between LMAp and LMAs values of shade leaves in Panama, LMAp and LMAs values were generated using a multivairate normal distribution (MVN):
+Because there was a weak negative correlation between LMAm and LMAs values of shade leaves in Panama, LMAm and LMAs values were generated using a multivairate normal distribution (MVN):
 
 $$
 \begin{bmatrix}
-\mathrm{ln}(\mathrm{LMAp}_{i})\\
+\mathrm{ln}(\mathrm{LMAm}_{i})\\
 \mathrm{ln}(\mathrm{LMAs}_{i})
 \end{bmatrix}
 \sim \mathrm{MVN}
@@ -193,33 +193,33 @@ $$
 \end{bmatrix}
 $$
 
-where $\Sigma$ is the covariance matrix of ln(LMAp) and ln(LMAs),
-$\rho$ is the correlation coefficient between ln(LMAp) and ln(LMAs).
+where $\Sigma$ is the covariance matrix of ln(LMAm) and ln(LMAs),
+$\rho$ is the correlation coefficient between ln(LMAm) and ln(LMAs).
 
 We used the empirical estimates for $\mu_p$, $\mu_s$, $\sigma_p$, and $\rho$ while with changing $\sigma_s$ between ln(1.01) and ln(10).
 *A*~area~ was then generated based the values obtianed from the above simulation:
 
 $$
-\mathrm{ln}(A_{\mathrm{area} \, i}) = \mathrm{ln}(\alpha_0) + \alpha_p\mathrm{ln}(\mathrm{LMAp}_{i}) + \alpha_s\mathrm{ln}(\mathrm{LMAs}_{i}).
+\mathrm{ln}(A_{\mathrm{area} \, i}) = \mathrm{ln}(\alpha_0) + \alpha_p\mathrm{ln}(\mathrm{LMAm}_{i}) + \alpha_s\mathrm{ln}(\mathrm{LMAs}_{i}).
 $$
 
 Parameter settings are as following,
 GLOPNET:
-$\mu_p$ = `r para$GL$LMAp_mu_gl`,
+$\mu_p$ = `r para$GL$LMAm_mu_gl`,
 $\mu_s$ = `r para$GL$LMAs_mu_gl`,
-$\sigma_p$ = `r para$GL$LMAp_sig_gl`,
+$\sigma_p$ = `r para$GL$LMAm_sig_gl`,
 $\alpha_p$ = `r para$GL$ap`,
 $\alpha_s$ = `r para$GL$as`,
 sun leaves in Panama:
-$\mu_p$ = `r para$PA$LMAp_mu_sun`,
+$\mu_p$ = `r para$PA$LMAm_mu_sun`,
 $\mu_s$ = `r para$PA$LMAs_mu_sun`,
-$\sigma_p$ = `r para$PA$LMAp_sig_sun`, and
+$\sigma_p$ = `r para$PA$LMAm_sig_sun`, and
 $\alpha_p$ = `r para$PA$ap`,
 $\alpha_s$ = 0,
 shade leaves in Panama:
-$\mu_p$ = `r para$PA$LMAp_mu_shade`,
+$\mu_p$ = `r para$PA$LMAm_mu_shade`,
 $\mu_s$ = `r para$PA$LMAs_mu_shade`,
-$\sigma_p$ = `r para$PA$LMAp_sig_shade`,
+$\sigma_p$ = `r para$PA$LMAm_sig_shade`,
 $\alpha_p$ = `r para$PA$ap`,
 $\alpha_s$ = 0,
 $\rho$ = -0.4.
@@ -237,10 +237,10 @@ We repeated these steps 1000 times.
 # Figure S1
 
 ![
-Pearson correlation coefficients for posterior medians of LMAp vs LMAs in the (a) GLOPNET and (b) Panama datasets.
+Pearson correlation coefficients for posterior medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama datasets.
 The non-significant or weak *r* values indicate that a single axis could not accurately represent the two-dimensional space.
 Symbols as in Main Text Figs. \ref{fig-GLplt}-\ref{fig-PAplt}
-](`r here("figs/ps_point.png")`){#fig-LMAp_LMAs}
+](`r here("figs/ps_point.png")`){#fig-LMAm_LMAs}
 
 
 \newpage
@@ -248,7 +248,7 @@ Symbols as in Main Text Figs. \ref{fig-GLplt}-\ref{fig-PAplt}
 # Figure S2
 
 ![
-Boxplots comparing leaf mass per area (LMA), photosynthetic leaf mass per area (LMAp; posterior means), and structural leaf mass per area (LMAs; posterior means) across sites (wet and dry) and canopy strata (sun and shade) in Panama.
+Boxplots comparing leaf mass per area (LMA), photosynthetic leaf mass per area (LMAm; posterior means), and structural leaf mass per area (LMAs; posterior means) across sites (wet and dry) and canopy strata (sun and shade) in Panama.
 The results shown here include all leaves in the Panama dataset, whereas Figs. \ref{fig-boxplt_de}-\ref{fig-boxplt_pa} in the main text only include Panama species for which both sun and shade leaves were available.
 Boxplot symbols as in Figs. \ref{fig-boxplt_de}-\ref{fig-boxplt_pa}.
 Groups sharing the same letters are not significantly different (P > 0.05; t-tests).
@@ -259,12 +259,12 @@ Groups sharing the same letters are not significantly different (P > 0.05; t-tes
 # Figure S3
 
 ![
-Boxplots comparing posterior medians of the latent variable f (the fraction of total LMA comprised by LMAp) across deciduous (D) and evergreen (E) leaves in GLOPNET and Panama, and across sites (wet and dry) and canopy strata (sun and shade) in Panama. Note that LMAp = f × LMA, and LMAs = (1 – f) × LMA.
+Boxplots comparing posterior medians of the latent variable f (the fraction of total LMA comprised by LMAm) across deciduous (D) and evergreen (E) leaves in GLOPNET and Panama, and across sites (wet and dry) and canopy strata (sun and shade) in Panama. Note that LMAm = f × LMA, and LMAs = (1 – f) × LMA.
 (a) Deciduous and evergreen leaves in the GLOPNET dataset;
 (b) deciduous and evergreen leaves for Panama species for which both sun and shade leaves were available;
 (c) leaves for Panama species for which both sun and shade leaves were available; and
 (d) all leaves for Panama.
-At the dry Panama site, the increase in LMA from shade to sun (Fig. \ref{fig-boxplt_pa}) is due to roughly equal proportional increases in LMAp and LMAs (because f is similar between sun and shade), whereas at the wet Panama site, the increase in LMA from shade to sun (Fig. \ref{fig-boxplt_pa}) is due primarily to increased LMAp (because f is greater in sun than shade).
+At the dry Panama site, the increase in LMA from shade to sun (Fig. \ref{fig-boxplt_pa}) is due to roughly equal proportional increases in LMAm and LMAs (because f is similar between sun and shade), whereas at the wet Panama site, the increase in LMA from shade to sun (Fig. \ref{fig-boxplt_pa}) is due primarily to increased LMAm (because f is greater in sun than shade).
 The best model in the table 1 were used.
 The center line in each box indicates the median, upper and lower box edges indicate the interquartile range, whiskers show 1.5 times the interquartile range, and points are outliers.
 Groups sharing the same letters are not significantly different (P > 0.05; t-tests)."}
@@ -283,9 +283,9 @@ The photosynthetic rate (*A*~max~) is primarily mass-dependent (*b* > 0.5), prim
 Note that when *b* > 1, *A*~area~ dramatically increase with LMA, which is not realistic.
 Parameter settings:
 $\alpha_0$ = `r para$GL$a0`,
-$\mu_p$ = `r para$GL$LMAp_mu_gl`,
+$\mu_p$ = `r para$GL$LMAm_mu_gl`,
 $\mu_s$ = `r para$GL$LMAs_mu_gl`,
-$\sigma_p$ = `r para$GL$LMAp_sig_gl`.
+$\sigma_p$ = `r para$GL$LMAm_sig_gl`.
 ](`r here("figs/mass_prop_sim.png")`){#fig-mass_prop_sim}
 
 \newpage
@@ -298,9 +298,9 @@ Parameter settings:
 $\alpha_0$ = `r para$PA$a0`,
 $\alpha_p$ = `r para$PA$ap`,
 $\alpha_s$ = 0,
-$\mu_p$ = `r para$PA$LMAp_mu_shade`,
+$\mu_p$ = `r para$PA$LMAm_mu_shade`,
 $\mu_s$ = `r para$PA$LMAs_mu_shade`,
-$\sigma_p$ = `r para$PA$LMAp_sig_shade`, and
+$\sigma_p$ = `r para$PA$LMAm_sig_shade`, and
 $\rho$ = -0.4,
 ](`r here("figs/mass_prop_comp.png")`){#fig-mass_prop_comp}
 
@@ -309,22 +309,22 @@ $\rho$ = -0.4,
 # Figure S6
 
 ![
-Measured traits related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are positively correlated with LMA and with estimates (posterior means) of the photosynthetic and structural LMA components (LMAp and LMAs, respectively) in the GLOPNET dataset.
-LMAp yields more consistent relationships compared to LMA and LMAs; e.g., evergreen and deciduous leaves align along a single relationship in panel b, but not in panels a or c.
+Measured traits related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are positively correlated with LMA and with estimates (posterior means) of the photosynthetic and structural LMA components (LMAm and LMAs, respectively) in the GLOPNET dataset.
+LMAm yields more consistent relationships compared to LMA and LMAs; e.g., evergreen and deciduous leaves align along a single relationship in panel b, but not in panels a or c.
 ](`r here("figs/gl_point_np2.png")`){#fig-gl_point_np2}
 
 # Appendix S4: Stan code
 
 ## Stan code for the GLOPNET dataset
 
-The best model for the GLOPNET dataset is (2) LMAp and LMAs, and (b) $\beta_p = 0$.
+The best model for the GLOPNET dataset is (2) LMAm and LMAs, and (b) $\beta_p = 0$.
 
 ```{stan, output.var="hoge",file=here('stan/GL_Aps_LLs.stan'), eval=FALSE, echo=TRUE}
 ```
 
 ## Stan code for the Panama dataset
 
-The best model for the Panama dataset is (4) LMAp, LMAs and light, and (a) $\alpha_s = 0$  and $\beta_p = 0$,
+The best model for the Panama dataset is (4) LMAm, LMAs and light, and (a) $\alpha_s = 0$  and $\beta_p = 0$,
 
 ```{stan, output.var="hoge",file=here('stan/PA_Ap_LLs_opt.stan'), eval=FALSE, echo=TRUE}
 ```

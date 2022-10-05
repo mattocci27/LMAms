@@ -25,7 +25,7 @@ p_group <- function(LMA, group, log = TRUE) {
 #' @title Pairwise t-test for MCMC
 #' @para draws MCMC output (e.g., fit_7_draws_GL_Aps_LLs)
 #' @para data boxplot data (e.g., pa_inter_box_dat)
-#' @para x name of variancle (e.g., "frac", "LMAp", "LMAs")
+#' @para x name of variancle (e.g., "frac", "LMAm", "LMAs")
 #' @para group group name (e.g., "leaf_habit")
 p_group2 <- function(draws,
           data,
@@ -85,8 +85,8 @@ p_post <- function(pmat,
 
   for (i in 1:nrow(pmat)) {
     frac <- pmat[i,]
-    LMAp <- log(frac * LMA)
-    LMAs <- log(LMA - LMAp)
+    LMAm <- log(frac * LMA)
+    LMAs <- log(LMA - LMAm)
     xbar <- tapply(get(x), group2, \(x)mean(x, na.rm = TRUE))
     for (j in 1:length(xbar)) {
       for (k in 1:length(xbar)) {
@@ -125,7 +125,7 @@ prep_pa_box_dat <- function(pa_res_csv, intra = TRUE, sun = TRUE) {
   # targets::tar_load(pa_res_csv)
   # pa <- read_csv(pa_res_csv)
   pa <- read_csv(pa_res_csv) |>
-    mutate(frac = LMAp / LMA) |>
+    mutate(frac = LMAm / LMA) |>
     mutate(leaf_habit = ifelse(leaf_habit == "evergreen", "E", leaf_habit)) |>
     mutate(leaf_habit = ifelse(leaf_habit == "deciduous", "D", leaf_habit)) |>
     mutate(site_strata2 = case_when(
@@ -167,7 +167,7 @@ prep_pa_box_dat <- function(pa_res_csv, intra = TRUE, sun = TRUE) {
 #' @title Preaprea data for boxplot and t-test (GLOPNET - short)
 prep_gl_box_dat <- function(gl_res_csv) {
   gl <- read_csv(gl_res_csv) |>
-    mutate(frac = LMAp / LMA) |>
+    mutate(frac = LMAm / LMA) |>
     mutate(gr = factor(leaf_habit,
                      levels = c("D", "E")))
   gl_de <- gl |>
@@ -191,7 +191,7 @@ write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
 
 # all Panama
   PA_LMA <- p_group(pa_inter_box_dat$LMA, pa_inter_box_dat$site_strata2)
-  PA_LMAp <- p_group2(pa_draws, "LMAp",
+  PA_LMAm <- p_group2(pa_draws, "LMAm",
                       group = "site_strata2", data = pa_inter_box_dat)
   PA_LMAs <- p_group2(pa_draws, "LMAs",
                       group = "site_strata2", data = pa_inter_box_dat)
@@ -200,7 +200,7 @@ write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
 # both sun and shade leaves are available
  # targets::tar_load(pa_intra_box_dat)
   PA_intra_LMA <- p_group(pa_intra_box_dat$LMA, pa_intra_box_dat$site_strata2)
-  PA_intra_LMAp <- p_group2(pa_draws, "LMAp",
+  PA_intra_LMAm <- p_group2(pa_draws, "LMAm",
                       group = "site_strata2", data = pa_intra_box_dat)
   PA_intra_LMAs <- p_group2(pa_draws, "LMAs",
                       group = "site_strata2", data = pa_intra_box_dat)
@@ -227,7 +227,7 @@ write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
   # as.matrix()
   # pmat <- pmat0[, paste0("p_", id)]
 
-  # moge <- p_post(pmat, data, "LMAp", group = "leaf_habit")
+  # moge <- p_post(pmat, data, "LMAm", group = "leaf_habit")
 
   #targets::tar_load(pa_inter_de_box_dat)
   pa_inter_de_box_dat <- pa_inter_de_box_dat |>
@@ -236,7 +236,7 @@ write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
   PA_de_LMA <- p_group(pa_inter_de_box_dat$LMA, pa_inter_de_box_dat$leaf_habit)
   # undebug(p_group2)
   #undebug(p_group2)
-  PA_de_LMAp <- p_group2(pa_draws, "LMAp",
+  PA_de_LMAm <- p_group2(pa_draws, "LMAm",
                       group = "leaf_habit", data = pa_inter_de_box_dat)
   PA_de_LMAs <- p_group2(pa_draws, "LMAs",
                       group = "leaf_habit", data = pa_inter_de_box_dat)
@@ -246,7 +246,7 @@ write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
 #  targets::tar_load(pa_intra_de_box_dat)
   PA_intra_de_LMA <- p_group(pa_intra_de_box_dat$LMA, pa_intra_de_box_dat$leaf_habit)
 
-  PA_intra_de_LMAp <- p_group2(pa_draws, "LMAp",
+  PA_intra_de_LMAm <- p_group2(pa_draws, "LMAm",
                       group = "leaf_habit", data = pa_intra_de_box_dat)
   PA_intra_de_LMAs <- p_group2(pa_draws, "LMAs",
                       group = "leaf_habit", data = pa_intra_de_box_dat)
@@ -254,7 +254,7 @@ write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
 # GL
   # targets::tar_load(gl_box_dat)
   GL_LMA <- p_group(gl_box_dat$LMA, gl_box_dat$leaf_habit)
-  GL_LMAp <- p_group2(gl_draws, "LMAp",
+  GL_LMAm <- p_group2(gl_draws, "LMAm",
                       group = "leaf_habit", data = gl_box_dat)
   GL_LMAs <- p_group2(gl_draws, "LMAs",
                       group = "leaf_habit", data = gl_box_dat)
@@ -297,19 +297,19 @@ write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
   writeLines(paste0("    Shade_Wet: ", PA_LMA["Shade_Wet"]),
              out,
              sep = "\n")
-  writeLines(paste0("  LMAp:"),
+  writeLines(paste0("  LMAm:"),
              out,
              sep = "\n")
-  writeLines(paste0("    Sun_Dry: ", PA_LMAp["Sun_Dry"]),
+  writeLines(paste0("    Sun_Dry: ", PA_LMAm["Sun_Dry"]),
              out,
              sep = "\n")
-  writeLines(paste0("    Shade_Dry: ", PA_LMAp["Shade_Dry"]),
+  writeLines(paste0("    Shade_Dry: ", PA_LMAm["Shade_Dry"]),
              out,
              sep = "\n")
-  writeLines(paste0("    Sun_Wet: ", PA_LMAp["Sun_Wet"]),
+  writeLines(paste0("    Sun_Wet: ", PA_LMAm["Sun_Wet"]),
              out,
              sep = "\n")
-  writeLines(paste0("    Shade_Wet: ", PA_LMAp["Shade_Wet"]),
+  writeLines(paste0("    Shade_Wet: ", PA_LMAm["Shade_Wet"]),
              out,
              sep = "\n")
   writeLines(paste0("  LMAs:"),
@@ -347,19 +347,19 @@ write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
   writeLines(paste0("    Shade_Wet: ", PA_intra_LMA["Shade_Wet"]),
              out,
              sep = "\n")
-  writeLines(paste0("  LMAp:"),
+  writeLines(paste0("  LMAm:"),
              out,
              sep = "\n")
-  writeLines(paste0("    Sun_Dry: ", PA_intra_LMAp["Sun_Dry"]),
+  writeLines(paste0("    Sun_Dry: ", PA_intra_LMAm["Sun_Dry"]),
              out,
              sep = "\n")
-  writeLines(paste0("    Shade_Dry: ", PA_intra_LMAp["Shade_Dry"]),
+  writeLines(paste0("    Shade_Dry: ", PA_intra_LMAm["Shade_Dry"]),
              out,
              sep = "\n")
-  writeLines(paste0("    Sun_Wet: ", PA_intra_LMAp["Sun_Wet"]),
+  writeLines(paste0("    Sun_Wet: ", PA_intra_LMAm["Sun_Wet"]),
              out,
              sep = "\n")
-  writeLines(paste0("    Shade_Wet: ", PA_intra_LMAp["Shade_Wet"]),
+  writeLines(paste0("    Shade_Wet: ", PA_intra_LMAm["Shade_Wet"]),
              out,
              sep = "\n")
   writeLines(paste0("  LMAs:"),
@@ -391,13 +391,13 @@ write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
   writeLines(paste0("    E: ", PA_de_LMA["E"]),
              out,
              sep = "\n")
-  writeLines(paste0("  LMAp:"),
+  writeLines(paste0("  LMAm:"),
              out,
              sep = "\n")
-  writeLines(paste0("    D: ", PA_de_LMAp["D"]),
+  writeLines(paste0("    D: ", PA_de_LMAm["D"]),
              out,
              sep = "\n")
-  writeLines(paste0("    E: ", PA_de_LMAp["E"]),
+  writeLines(paste0("    E: ", PA_de_LMAm["E"]),
              out,
              sep = "\n")
   writeLines(paste0("  LMAs:"),
@@ -421,13 +421,13 @@ write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
   writeLines(paste0("    E: ", PA_intra_de_LMA["E"]),
              out,
              sep = "\n")
-  writeLines(paste0("  LMAp:"),
+  writeLines(paste0("  LMAm:"),
              out,
              sep = "\n")
-  writeLines(paste0("    D: ", PA_intra_de_LMAp["D"]),
+  writeLines(paste0("    D: ", PA_intra_de_LMAm["D"]),
              out,
              sep = "\n")
-  writeLines(paste0("    E: ", PA_intra_de_LMAp["E"]),
+  writeLines(paste0("    E: ", PA_intra_de_LMAm["E"]),
              out,
              sep = "\n")
   writeLines(paste0("  LMAs:"),
@@ -452,13 +452,13 @@ write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
   writeLines(paste0("    E: ", GL_LMA["E"]),
              out,
              sep = "\n")
-  writeLines(paste0("  LMAp:"),
+  writeLines(paste0("  LMAm:"),
              out,
              sep = "\n")
-  writeLines(paste0("    D: ", GL_LMAp["D"]),
+  writeLines(paste0("    D: ", GL_LMAm["D"]),
              out,
              sep = "\n")
-  writeLines(paste0("    E: ", GL_LMAp["E"]),
+  writeLines(paste0("    E: ", GL_LMAm["E"]),
              out,
              sep = "\n")
   writeLines(paste0("  LMAs:"),

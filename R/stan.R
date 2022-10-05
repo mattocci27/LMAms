@@ -257,22 +257,22 @@ div_check <- function(diags) {
 generate_gl_dat <- function(gl_csv, draws) {
   # targets::tar_load(gl_csv)
   GL <- read_csv(gl_csv)
-  LMAp_dat <- draws |>
-    dplyr::select(contains("LMAp"))
+  LMAm_dat <- draws |>
+    dplyr::select(contains("LMAm"))
   LMAs_dat <- draws |>
     dplyr::select(contains("LMAs"))
-  LMAp_mean <- apply(exp(LMAp_dat), 2, mean)
-  LMAp_lwr <- apply(exp(LMAp_dat), 2, \(x) quantile(x, 0.025))
-  LMAp_upr <- apply(exp(LMAp_dat), 2, \(x) quantile(x, 0.975))
+  LMAm_mean <- apply(exp(LMAm_dat), 2, mean)
+  LMAm_lwr <- apply(exp(LMAm_dat), 2, \(x) quantile(x, 0.025))
+  LMAm_upr <- apply(exp(LMAm_dat), 2, \(x) quantile(x, 0.975))
   LMAs_mean <- apply(exp(LMAs_dat), 2, mean)
   LMAs_lwr <- apply(exp(LMAs_dat), 2, \(x) quantile(x, 0.025))
   LMAs_upr <- apply(exp(LMAs_dat), 2, \(x) quantile(x, 0.975))
   GL <- GL |>
     mutate(leaf_habit = ifelse(GL$leaf_habit == "", "U", as.character(leaf_habit)))
   GL |>
-    mutate(LMAp = LMAp_mean) |>
-    mutate(LMAp_lwr = LMAp_lwr) |>
-    mutate(LMAp_upr = LMAp_upr) |>
+    mutate(LMAm = LMAm_mean) |>
+    mutate(LMAm_lwr = LMAm_lwr) |>
+    mutate(LMAm_upr = LMAm_upr) |>
     mutate(LMAs = LMAs_mean) |>
     mutate(LMAs_lwr = LMAs_lwr) |>
     mutate(LMAs_upr = LMAs_upr) |>
@@ -291,13 +291,13 @@ generate_pa_dat <- function(pa_full_csv, pa_csv, draws, ld = FALSE) {
   # targets::tar_load(fit_18_draws_PA_Ap_LDs_opt)
   # draws_ll <- fit_20_draws_PA_Ap_LLs_opt
   # draws <- fit_18_draws_PA_Ap_LDs_opt
-  LMAp_dat <- draws |>
-    dplyr::select(contains("LMAp"))
+  LMAm_dat <- draws |>
+    dplyr::select(contains("LMAm"))
   LMAs_dat <- draws |>
     dplyr::select(contains("LMAs"))
-  LMAp_mean <- apply(exp(LMAp_dat), 2, mean)
-  LMAp_lwr <- apply(exp(LMAp_dat), 2, \(x) quantile(x, 0.025))
-  LMAp_upr <- apply(exp(LMAp_dat), 2, \(x) quantile(x, 0.975))
+  LMAm_mean <- apply(exp(LMAm_dat), 2, mean)
+  LMAm_lwr <- apply(exp(LMAm_dat), 2, \(x) quantile(x, 0.025))
+  LMAm_upr <- apply(exp(LMAm_dat), 2, \(x) quantile(x, 0.975))
   LMAs_mean <- apply(exp(LMAs_dat), 2, mean)
   LMAs_lwr <- apply(exp(LMAs_dat), 2, \(x) quantile(x, 0.025))
   LMAs_upr <- apply(exp(LMAs_dat), 2, \(x) quantile(x, 0.975))
@@ -346,9 +346,9 @@ generate_pa_dat <- function(pa_full_csv, pa_csv, draws, ld = FALSE) {
     mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) |>
     mutate(site_strata = paste(site2, strata, sep = "_"))
   pa2 <- pa |>
-    mutate(LMAp = LMAp_mean) |>
-    mutate(LMAp_lwr = LMAp_lwr) |>
-    mutate(LMAp_upr = LMAp_upr) |>
+    mutate(LMAm = LMAm_mean) |>
+    mutate(LMAm_lwr = LMAm_lwr) |>
+    mutate(LMAm_upr = LMAm_upr) |>
     mutate(LMAs = LMAs_mean) |>
     mutate(LMAs_lwr = LMAs_lwr) |>
     mutate(LMAs_upr = LMAs_upr) |>
@@ -376,7 +376,7 @@ generate_pa_dat <- function(pa_full_csv, pa_csv, draws, ld = FALSE) {
 clean_gl_res <- function(gl_res_csv) {
   gl <- read_csv(gl_res_csv)
   gl |>
-    mutate(frac = LMAp / LMA) |>
+    mutate(frac = LMAm / LMA) |>
     mutate(leaf_habit = ifelse(is.na(leaf_habit), "U", leaf_habit)) |>
     mutate(gr = factor(leaf_habit,
                        labels = c("Deciduous",
@@ -389,7 +389,7 @@ clean_gl_res <- function(gl_res_csv) {
 clean_pa_res <- function(pa_res_csv) {
   pa <- read_csv(pa_res_csv)
   pa |>
-    mutate(frac = LMAp / LMA) |>
+    mutate(frac = LMAm / LMA) |>
     mutate(site_strata = factor(site_strata,
             levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) %>%
     mutate(site_strata2 = factor(site_strata,
@@ -415,10 +415,10 @@ create_para_tbl <- function(gl_draws, pa_draws) {
     round(3) |>
     mutate(sig = ifelse(low * up > 0, "sig", "ns")) |>
     mutate(est = paste0(mean_, " [", low, ", ", up, "]")) |>
-    mutate(para = c("Effect of LMAp on *A*~area~ ($\\alpha_p$)",
+    mutate(para = c("Effect of LMAm on *A*~area~ ($\\alpha_p$)",
                     "Effect of LMAs on *A*~area~ ($\\alpha_s$)",
                     "Effect of LMAs on LL ($\\beta_s$)",
-                    "Effect of LMAp on *R*~area~ ($\\gamma_p$)",
+                    "Effect of LMAm on *R*~area~ ($\\gamma_p$)",
                     "Effect of LMAs on *R*~area~ ($\\gamma_s$)"
                     )) |>
     dplyr::select(para, GLOPNET = est, sig1 = sig)
@@ -432,9 +432,9 @@ create_para_tbl <- function(gl_draws, pa_draws) {
     round(3) |>
     mutate(sig = ifelse(low * up > 0, "sig", "ns")) |>
     mutate(est = paste0(mean_, " [", low, ", ", up, "]")) |>
-    mutate(para = c("Effect of LMAp on *A*~area~ ($\\alpha_p$)",
+    mutate(para = c("Effect of LMAm on *A*~area~ ($\\alpha_p$)",
                     "Effect of LMAs on LL ($\\beta_s$)",
-                    "Effect of LMAp on *R*~area~ ($\\gamma_p$)",
+                    "Effect of LMAm on *R*~area~ ($\\gamma_p$)",
                     "Effect of LMAs on *R*~area~ ($\\gamma_s$)",
                     "Effect of light on LL ($\\theta$)"
                     )) |>

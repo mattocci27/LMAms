@@ -6,7 +6,7 @@ GLtab <- read_csv("./data/GL_elpd.csv")
 
 GLtab2 <- GLtab |>
  # mutate(LMA = ifelse(LMA == "GL_LMAms",
- #        "LMAp and LMAs", "LMA")) |>
+ #        "LMAm and LMAs", "LMA")) |>
   arrange(looic) |>
   mutate(lp = round(lp, 1)) |>
   mutate(looic = round(looic, 1)) |>
@@ -20,13 +20,13 @@ PAtab <- read_csv("./data/PA_elpd.csv")
 
 PAtab2 <- PAtab |>
  # mutate(LMA = ifelse(LMA == "PA_LMAms0",
- #        "LMAp + LMAs", LMA)) |>
+ #        "LMAm + LMAs", LMA)) |>
  # mutate(LMA = ifelse(LMA == "PA_LMAms_L0",
- #        "LMAp + LMAs + light", LMA)) |>
+ #        "LMAm + LMAs + light", LMA)) |>
  # mutate(LMA = ifelse(LMA == "PA_LMA_L",
  #        "LMA + light", LMA)) |>
  # mutate(LMA = ifelse(LMA == "PA_LD_L",
- #        "LMAp + LMAs/LT + light", LMA)) |>
+ #        "LMAm + LMAs/LT + light", LMA)) |>
  # mutate(LMA = ifelse(LMA == "PA_LMA",
  #        "LMA", LMA)) |>
   arrange(looic) |>
@@ -61,10 +61,10 @@ GLtab <- s_GL |>
   mutate(low = round(`X2.5.`, 3)) |>
   mutate(up = round(`X97.5.`, 3)) |>
   mutate(est = paste0(mean_, " [", low, ", ", up, "]")) |>
-  mutate(para = c("Effect of LMAp on *A*~area~ ($\\alpha_p$)",
+  mutate(para = c("Effect of LMAm on *A*~area~ ($\\alpha_p$)",
                   "Effect of LMAs on *A*~area~ ($\\alpha_s$)",
                   "Effect of LMAs on LL ($\\beta_s$)",
-                  "Effect of LMAp on *R*~area~ ($\\gamma_p$)",
+                  "Effect of LMAm on *R*~area~ ($\\gamma_p$)",
                   "Effect of LMAs on *R*~area~ ($\\gamma_s$)"
                   ))  |>
   dplyr::select(para, GLOPNET = est, sig1 = sig)
@@ -77,9 +77,9 @@ PAtab <- s_PA |>
   mutate(low = round(`X2.5.`, 3)) |>
   mutate(up = round(`X97.5.`, 3)) |>
   mutate(est = paste0(mean_, " [", low, ", ", up, "]")) |>
-  mutate(para = c("Effect of LMAp on *A*~area~ ($\\alpha_p$)",
+  mutate(para = c("Effect of LMAm on *A*~area~ ($\\alpha_p$)",
                   "Effect of LMAs on LL ($\\beta_s$)",
-                  "Effect of LMAp on *R*~area~ ($\\gamma_p$)",
+                  "Effect of LMAm on *R*~area~ ($\\gamma_p$)",
                   "Effect of LMAs on *R*~area~ ($\\gamma_s$)",
                   "Effect of light on LL ($\\theta$)"
                   ))  |>

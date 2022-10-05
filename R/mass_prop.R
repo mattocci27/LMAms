@@ -65,26 +65,26 @@ mu_fun <- function(x) {
   log(mu^2 / sqrt(sig^2 + mu^2))
 }
 
-gl_sim_fit <- function(log_LMAs, log_LMAp, a0, ap, as) {
-  log_Aarea <- a0 + ap * log_LMAp + as * log_LMAs
-  LMA <- exp(log_LMAp) + exp(log_LMAs)
+gl_sim_fit <- function(log_LMAs, log_LMAm, a0, ap, as) {
+  log_Aarea <- a0 + ap * log_LMAm + as * log_LMAs
+  LMA <- exp(log_LMAm) + exp(log_LMAs)
   fit <- lm(log_Aarea ~ log(LMA))
   fit$coefficients[2]
 }
 
 #' @para ap only ap was significant
-pa_sim_fit <- function(log_LMAs, log_LMAp, ap) {
-  log_Aarea <- ap * log_LMAp
-  LMA <- exp(log_LMAp) + exp(log_LMAs)
+pa_sim_fit <- function(log_LMAs, log_LMAm, ap) {
+  log_Aarea <- ap * log_LMAm
+  LMA <- exp(log_LMAm) + exp(log_LMAs)
   fit <- lm(log_Aarea ~ log(LMA))
   fit$coefficients[2]
 }
 
 #' @title variance contribution on non-log scale
-var_fun <- function(log_LMAs, log_LMAp) {
-  LMAp <- exp(log_LMAp)
+var_fun <- function(log_LMAs, log_LMAm) {
+  LMAm <- exp(log_LMAm)
   LMAs <- exp(log_LMAs)
-  LMA <- LMAp + LMAs
+  LMA <- LMAm + LMAs
   cov(LMA, LMAs) / var(LMA) * 100
 }
 
@@ -101,35 +101,35 @@ get_mean <- function(data, para_str)  {
 #' targets::tar_load(gl_res_csv)
 #' data <- read_csv(gl_res_csv)
 #' para <- fit_7_summary_GL_Aps_LLs
-#' var_fun(log_LMAp, log_LMAs[[1]])
-#' LMAp <- exp(log_LMAp + 0.5 * sig^2)
+#' var_fun(log_LMAm, log_LMAs[[1]])
+#' LMAm <- exp(log_LMAm + 0.5 * sig^2)
 #' tmp <- rnorm(n_samp, mu + 0.5 * sig^2, sig)
 #' tmp2 <- rnorm(n_samp, mu + 0.5 * sig^2, sig)
 #' exp(tmp) |> tmp2
  mass_prop_sim <- function(data, para, n_sim = 1000, n_samp = 100,
                    x_len = 20, site = "GLOPNET", gl = TRUE, seed = 123) {
   set.seed(seed)
-  # mu is mean for log_LMAp but not arithmetic mean of LMAp
-  mu <- mean(log(data$LMAp))
+  # mu is mean for log_LMAm but not arithmetic mean of LMAm
+  mu <- mean(log(data$LMAm))
   mu2 <- mean(log(data$LMAs))
-  sig <- sd(log(data$LMAp))
+  sig <- sd(log(data$LMAm))
   LMAs_var <- NULL
   b <- NULL
   for (i in 1:n_sim) {
-    log_LMAp <- rnorm(n_samp, mu, sig)
+    log_LMAm <- rnorm(n_samp, mu, sig)
     tmp <- seq(log(1.01), log(10), length = x_len)
     log_LMAs <- map(tmp, \(x) rnorm(n_samp, mu2, x))
-    LMAs_var <- cbind(LMAs_var, map_dbl(log_LMAs, var_fun, log_LMAp))
+    LMAs_var <- cbind(LMAs_var, map_dbl(log_LMAs, var_fun, log_LMAm))
     if (gl) {
       b <- cbind(b, map_dbl(log_LMAs, gl_sim_fit,
-        log_LMAp,
+        log_LMAm,
         get_mean(para, "a0"),
         get_mean(para, "ap"),
         get_mean(para, "as")
       ))
     } else {
       b <- cbind(b, map_dbl(log_LMAs, pa_sim_fit,
-        log_LMAp,
+        log_LMAm,
         get_mean(para, "ap")
       ))
     }
@@ -147,18 +147,18 @@ get_mean <- function(data, para_str)  {
 mass_prop_sim_grad_each <- function(ap, as, a0, data, n_sim = 1000, n_samp = 100,
                    x_len = 20, site = "GLOPNET", seed = 123) {
   set.seed(seed)
-  mu <- mean(log(data$LMAp))
+  mu <- mean(log(data$LMAm))
   mu2 <- mean(log(data$LMAs))
-  sig <- sd(log(data$LMAp))
+  sig <- sd(log(data$LMAm))
   LMAs_var <- NULL
   b <- NULL
   for (i in 1:n_sim) {
-    log_LMAp <- rnorm(n_samp, mu, sig)
+    log_LMAm <- rnorm(n_samp, mu, sig)
     tmp <- seq(log(1.01), log(10), length = x_len)
     log_LMAs <- map(tmp, \(x) rnorm(n_samp, mu2, x))
-    LMAs_var <- cbind(LMAs_var, map_dbl(log_LMAs, var_fun, log_LMAp))
+    LMAs_var <- cbind(LMAs_var, map_dbl(log_LMAs, var_fun, log_LMAm))
     b <- cbind(b, map_dbl(log_LMAs, gl_sim_fit,
-      log_LMAp,
+      log_LMAm,
       a0,
       ap,
       as
@@ -198,24 +198,24 @@ mass_prop_sim_grad <- function(gl_res_csv, summary_mcmc, ap, as, n_sim = 1000, x
 mass_prop_sim_mv <- function(data, para, n_sim = 1000, n_samp = 100,
                    x_len = 20, site = "Shade", seed = 123) {
   set.seed(seed)
-  Mu <- c(mean(log(data$LMAp)), mean(log(data$LMAs)))
+  Mu <- c(mean(log(data$LMAm)), mean(log(data$LMAs)))
   rho <- -0.4
-  sig1 <- sd(log(data$LMAp))
+  sig1 <- sd(log(data$LMAm))
   sig2 <- seq(log(1.01), log(10), length = x_len)
   LMAs_var <- NULL
   b <- NULL
   for (j in 1:n_sim) {
-    log_LMAp <- NULL
+    log_LMAm <- NULL
     log_LMAs <- NULL
     for (i in 1:10) {
       S <- matrix(c(sig1^2, rho*sig1*sig2[i],
       rho*sig1*sig2[i], sig2[i]^2), ncol = 2)
       tmp <- MASS::mvrnorm(n_samp, Mu, S)
-      log_LMAp[[i]] <- tmp[, 1]
+      log_LMAm[[i]] <- tmp[, 1]
       log_LMAs[[i]] <- tmp[, 2]
     }
-    LMAs_var <- cbind(LMAs_var, map2_dbl(log_LMAs, log_LMAp, var_fun))
-    b <- cbind(b, map2_dbl(log_LMAs, log_LMAp, pa_sim_fit,
+    LMAs_var <- cbind(LMAs_var, map2_dbl(log_LMAs, log_LMAm, var_fun))
+    b <- cbind(b, map2_dbl(log_LMAs, log_LMAm, pa_sim_fit,
       get_mean(para, "ap")
     ))
   }

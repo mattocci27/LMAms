@@ -3,17 +3,17 @@ GL:
   ap: 0.28
   as: -0.13
   sig1: 0.31
-  LMAp_mu_gl: 58.8
+  LMAm_mu_gl: 58.8
   LMAs_mu_gl: 63.1
-  LMAp_sig_gl: 2.12
+  LMAm_sig_gl: 2.12
 PA:
   a0: 0.33
   ap: 0.56
   as: 
   sig1: 0.24
-  LMAp_mu_sun: 45.1
+  LMAm_mu_sun: 45.1
   LMAs_mu_sun: 31
-  LMAp_sig_sun: 1.53
-  LMAp_mu_shade: 8.6
+  LMAm_sig_sun: 1.53
+  LMAm_mu_shade: 8.6
   LMAs_mu_shade: 24
-  LMAp_sig_shade: 1.88
+  LMAm_sig_shade: 1.88

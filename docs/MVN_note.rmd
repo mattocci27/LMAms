@@ -1,5 +1,5 @@
 ---
-title: "MVN for LMAp and LMAs"
+title: "MVN for LMAm and LMAs"
 ---
 
 ```{r global_options, include=FALSE}
@@ -53,7 +53,7 @@ x_{n1} & x_{n2} & x_{n3} \\
 $$
 
 
-Where $y_{i1}$ is Aarea,  $y_{i2}$ is LL, $y_{i3}$ is Rarea, $x_{i1}$ is an intercept, $x_{i2}$ is LMAp, and $x_{i3}$ is LMAs. In our model, however, $y_{i1}$ is sum of Aarea and Rarea. Thus, the above eq. can be rewritten as:
+Where $y_{i1}$ is Aarea,  $y_{i2}$ is LL, $y_{i3}$ is Rarea, $x_{i1}$ is an intercept, $x_{i2}$ is LMAm, and $x_{i3}$ is LMAs. In our model, however, $y_{i1}$ is sum of Aarea and Rarea. Thus, the above eq. can be rewritten as:
 
 $$
 \begin{eqnarray}

@@ -34,18 +34,18 @@ hypo_point <- function(para_yml, n = 200, seed = 123) {
 
   set.seed(seed)
   N <- n
-  LMAp <- rlnorm(N, log(80), 0.8)
+  LMAm <- rlnorm(N, log(80), 0.8)
   LMAs <- rlnorm(N, log(80), 0.7)
-  LMA <- LMAp + LMAs
-  log_Aarea <- rnorm(N, log(a0 * LMAp^ap * LMAs^as) - 0.5 * sig1^2, sig1)
+  LMA <- LMAm + LMAs
+  log_Aarea <- rnorm(N, log(a0 * LMAm^ap * LMAs^as) - 0.5 * sig1^2, sig1)
   Aarea <- exp(log_Aarea)
-#Aarea <- rlnorm(N, log(a0 * LMAp^ap * LMAs^as), sig1)
-  tmp <- tibble(LMA, LMAp, LMAs, Aarea)
+#Aarea <- rlnorm(N, log(a0 * LMAm^ap * LMAs^as), sig1)
+  tmp <- tibble(LMA, LMAm, LMAs, Aarea)
 
   cor.test(log(Aarea), log(LMA))
   cor.test(log(Aarea/LMA), log(LMA))
 
-  p1 <- ggplot(tmp, aes(LMAp, LMAs, color = LMA)) +
+  p1 <- ggplot(tmp, aes(LMAm, LMAs, color = LMA)) +
     geom_point(alpha = 0.9) +
     scale_x_log10() +
     scale_y_log10() +
@@ -55,7 +55,7 @@ hypo_point <- function(para_yml, n = 200, seed = 123) {
     #scale_color_gradient2(midpoint = median(LMA),
     #                     low = "#e66101",
     #                     high = "#5e3c99") +
-    xlab(expression(LMAp~(g~m^{-2}))) +
+    xlab(expression(LMAm~(g~m^{-2}))) +
     ylab(expression(LMAs~(g~m^{-2}))) +
     theme_LES() +
     theme(legend.position = "none")
@@ -194,14 +194,14 @@ gen_gl_long <- function(gl_res_csv) {
                                   "Evergreen",
                                   "Unclassified"
                                   ))) |>
-    pivot_longer(c(LMA, LMAs, LMAp), names_to = "LMA", values_to = "val") |>
+    pivot_longer(c(LMA, LMAs, LMAm), names_to = "LMA", values_to = "val") |>
     pivot_longer(c(Aarea, Rarea, LL, Narea, Parea), names_to = "trait", values_to = "val2") |>
     # mutate(leaf_habit = factor(leaf_habit,
     #         levels = c("D", "E", "U"))) %>%
     mutate(LMA = factor(LMA,
-      labels = c("LMA", "LMAp", "LMAs"))) %>%
+      labels = c("LMA", "LMAm", "LMAs"))) %>%
     mutate(LMA = factor(LMA,
-      labels = c("LMA~(~g~m^{-2})", "LMAp~(~g~m^{-2})", "LMAs~(~g~m^{-2})"))) %>%
+      labels = c("LMA~(~g~m^{-2})", "LMAm~(~g~m^{-2})", "LMAs~(~g~m^{-2})"))) %>%
     mutate(trait = factor(trait,
       levels = c("Aarea", "Rarea", "LL", "Narea", "Parea"))) %>%
     mutate(trait2 = factor(trait,
@@ -216,15 +216,15 @@ gen_gl_long <- function(gl_res_csv) {
 gen_pa_long <- function(pa_res_csv) {
   #targets::tar_load(pa_res_csv)
   read_csv(pa_res_csv) |>
-    pivot_longer(c(LMA, LMAs, LMAp), names_to = "LMA", values_to = "val") |>
+    pivot_longer(c(LMA, LMAs, LMAm), names_to = "LMA", values_to = "val") |>
     pivot_longer(c(Aarea, Rarea, LL, Narea, Parea, cell_area),
       names_to = "trait", values_to = "val2") |>
     # mutate(leaf_habit = factor(leaf_habit,
     #         levels = c("D", "E", "U"))) |>
     mutate(LMA = factor(LMA,
-      labels = c("LMA", "LMAp", "LMAs"))) |>
+      labels = c("LMA", "LMAm", "LMAs"))) |>
     mutate(LMA = factor(LMA,
-      labels = c("LMA~(~g~m^{-2})", "LMAp~(~g~m^{-2})", "LMAs~(~g~m^{-2})"))) |>
+      labels = c("LMA~(~g~m^{-2})", "LMAm~(~g~m^{-2})", "LMAs~(~g~m^{-2})"))) |>
     mutate(site_strata = factor(site_strata,
             levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) |>
     mutate(trait = factor(trait,
@@ -250,15 +250,15 @@ gen_pa_long <- function(pa_res_csv) {
 gen_pa_ld_long <- function(pa_res_ld_csv) {
   #targets::tar_load(pa_res_csv)
   read_csv(pa_res_ld_csv) |>
-    pivot_longer(c(LMA, LMAs, LDs, LMAp), names_to = "LMA", values_to = "val") |>
+    pivot_longer(c(LMA, LMAs, LDs, LMAm), names_to = "LMA", values_to = "val") |>
     pivot_longer(c(Aarea, Rarea, LL, Narea, Parea, cell_area),
       names_to = "trait", values_to = "val2") |>
     # mutate(leaf_habit = factor(leaf_habit,
     #         levels = c("D", "E", "U"))) |>
     mutate(LMA = factor(LMA,
-      labels = c("LMA", "LMAp", "LMAs", "LDs"))) |>
+      labels = c("LMA", "LMAm", "LMAs", "LDs"))) |>
     mutate(LMA = factor(LMA,
-      labels = c("LMA~(~g~m^{-2})", "LMAp~(~g~m^{-2})",
+      labels = c("LMA~(~g~m^{-2})", "LMAm~(~g~m^{-2})",
        "LMAs~(~g~m^{-2})", "LDs~(~g~cm^{-3})"))) |>
     mutate(site_strata = factor(site_strata,
             levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) |>
@@ -627,7 +627,7 @@ pa_point_par_ll <- function(pa_res_csv, settings_yml, r_vals_yml) {
 prep_gl_box_list <- function(gl_res_dat, letters_yml) {
   data <- gl_res_dat |>
     filter(leaf_habit != "U") |>
-    dplyr::select(sp, leaf_habit, gr, LMA, LMAp, LMAs) |>
+    dplyr::select(sp, leaf_habit, gr, LMA, LMAm, LMAs) |>
     pivot_longer(LMA:LMAs, names_to = "LMA", values_to = "val") |>
     unique() |>
     mutate(gr = ifelse(gr == "Deciduous", "Dec", "Eve"))
@@ -650,7 +650,7 @@ prep_pa_box_list <- function(pa_inter_box_dat, letters_yml, type = c("PA_inter",
   # pa_inter_box_dat$n
   p_letters <- yaml::yaml.load_file(letters_yml)
   data <- pa_inter_box_dat |>
-    dplyr::select(sp, n, leaf_habit, gr, LMA, LMAp, LMAs) |>
+    dplyr::select(sp, n, leaf_habit, gr, LMA, LMAm, LMAs) |>
     filter(!is.na(leaf_habit)) |>
     mutate(leaf_habit = ifelse(leaf_habit == "D", "Dec", "Eve")) |>
     pivot_longer(LMA:LMAs, names_to = "LMA", values_to = "val") |>
@@ -857,7 +857,7 @@ box_inter <- function(pa_box_de_list, pa_box_list, settings_yml) {
     plot_annotation(tag_levels = "a")
 }
 
-#' @title Boxplot for LMAp fraction (LMAp / LMA)
+#' @title Boxplot for LMAm fraction (LMAm / LMA)
 box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
   # targets::tar_load(pa_inter_box_dat)
   # targets::tar_load(gl_box_dat)
@@ -869,7 +869,7 @@ box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
             "E" = settings$fills$E)
 
   my_y_title <- bquote(atop("The fraction of total LMA",
-                           "comprised by LMAp ("*italic(f)*")"))
+                           "comprised by LMAm ("*italic(f)*")"))
 
   lab1 <- gl_box_dat |>
     group_by(leaf_habit) |>
@@ -941,11 +941,11 @@ ps_point_wrapper <- function(data, settings, GL = TRUE, ci = FALSE) {
               "Shade-Dry" = settings$colors$shade_dry,
               "Shade-Wet" = settings$colors$shade_wet)
   }
-  p <- ggplot(data, aes(x = LMAp, y = LMAs,
+  p <- ggplot(data, aes(x = LMAm, y = LMAs,
                                fill = gr,
                                col = gr)) +
   xlab(expression(atop(
-                LMAp~(g~m^{-2})))) +
+                LMAm~(g~m^{-2})))) +
   ylab(expression(atop(
                 LMAs~(g~m^{-2})))) +
   scale_fill_manual(values = fills, guide = "none") +
@@ -955,9 +955,9 @@ ps_point_wrapper <- function(data, settings, GL = TRUE, ci = FALSE) {
   theme_LES()
   if (ci) {
     p +
-      geom_segment(aes(x = LMAp_lwr, xend = LMAp_upr, y = LMAs, yend = LMAs),
+      geom_segment(aes(x = LMAm_lwr, xend = LMAm_upr, y = LMAs, yend = LMAs),
        col = "grey60", size = 0.25) +
-      geom_segment(aes(x = LMAp, xend = LMAp, y = LMAs_lwr, yend = LMAs_upr),
+      geom_segment(aes(x = LMAm, xend = LMAm, y = LMAs_lwr, yend = LMAs_upr),
       col = "grey60", size = 0.25) +
       geom_point(shape = 21)
   } else {
@@ -981,23 +981,23 @@ ps_point <- function(gl_res_dat, pa_res_dat, settings_yml, r_vals_yml, ci = FALS
   settings <- yaml::yaml.load_file(settings_yml)
   p1 <- ps_point_wrapper(gl_res_dat, settings, GL = TRUE, ci = ci) +
    labs(title = "GLOPNET \n",
-         subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$GL_LMAps$LMAs_LMAp)))
+         subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$GL_LMAms$LMAs_LMAm)))
   p2 <- ps_point_wrapper(pa, settings, GL = FALSE, ci = ci) +
    labs(title = "Panama \n",
-         subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$PA_LMAps$LMAs_LMAp)))
+         subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$PA_LMAms$LMAs_LMAm)))
   p1 + p2 +
     plot_annotation(tag_levels = "a")
 }
 
-#' @title Paired LMAp fraction for Panama
+#' @title Paired LMAm fraction for Panama
 pair_frac_line <- function(pa_res_dat) {
   y_title <- bquote(atop("The fraction of total LMA",
-                             "comprised by LMAp ("*italic(f)*")"))
+                             "comprised by LMAm ("*italic(f)*")"))
   data <- pa_res_dat |>
     count(sp) |>
     filter(n >= 2) |>
     inner_join(pa_res_dat, by = "sp") |>
-    mutate(LMAp_frac = LMAp / LMA) |>
+    mutate(LMAm_frac = LMAm / LMA) |>
     mutate(site_strata = factor(site_strata,
             levels = c("DRY_CAN",
                        "DRY_UNDER",
@@ -1012,13 +1012,13 @@ pair_frac_line <- function(pa_res_dat) {
     mutate(data = "(c) Panama: intra")
 
   data |>
-    dplyr::select(sp, strata, site2, LMAp_frac) |>
+    dplyr::select(sp, strata, site2, LMAm_frac) |>
     mutate(strata = ifelse(strata == "CAN", "Sun", "Shade")) |>
     mutate(strata = factor(strata, levels = c("Sun", "Shade"))) |>
     mutate(site2 = ifelse(site2 == "DRY", "Dry", "Wet")) |>
     ggplot(aes(gr = sp)) +
-    geom_line(aes(group = sp, x = strata, y = LMAp_frac)) +
-    geom_point(aes(x = strata, y = LMAp_frac)) +
+    geom_line(aes(group = sp, x = strata, y = LMAm_frac)) +
+    geom_point(aes(x = strata, y = LMAm_frac)) +
     ylab(y_title) +
     xlab("") +
     facet_wrap(~ site2) +
@@ -1027,18 +1027,18 @@ pair_frac_line <- function(pa_res_dat) {
 }
 
 
-#' @title Paired LMAp and LMAs for Panama
+#' @title Paired LMAm and LMAs for Panama
 pair_lma_line <- function(pa_res_dat) {
   data <- pa_res_dat |>
     count(sp) |>
     filter(n >= 2) |>
     inner_join(pa_res_dat, by = "sp") |>
-    dplyr::select(sp, strata, site2, LMA, LMAp, LMAs) |>
+    dplyr::select(sp, strata, site2, LMA, LMAm, LMAs) |>
     pivot_longer(cols = 4:6, names_to = "LMA", values_to = "val") |>
     mutate(strata = ifelse(strata == "CAN", "Sun", "Shade")) |>
     mutate(strata = factor(strata, levels = c("Sun", "Shade"))) |>
     mutate(site2 = ifelse(site2 == "DRY", "Dry", "Wet")) |>
-    mutate(LMA = ifelse(LMA == "LMAp", "LMAp", LMA))
+    mutate(LMA = ifelse(LMA == "LMAm", "LMAm", LMA))
 
   ggplot(data, aes(gr = sp)) +
     geom_line(aes(group = sp, x = strata, y = val)) +

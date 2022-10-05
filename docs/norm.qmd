@@ -73,11 +73,11 @@ library(tidyverse)
 d <- read_csv("data/GL_res.csv")
 
 var(log(d$LMA))
-var(log(d$LMAp))
+var(log(d$LMAm))
 var(log(d$LMAs))
 
 var((d$LMA))
-var((d$LMAp))
+var((d$LMAm))
 var((d$LMAs))
 
 ```
