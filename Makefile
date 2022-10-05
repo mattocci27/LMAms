@@ -23,7 +23,6 @@ ms/LMAms_main-diff$(GIT).pdf: ms/LMAms_main.tex
 	latexdiff-vc --git --flatten --force -r $(GIT) $^ ; \
 	cd ms; pdflatex LMAms_main-diff$(GIT).tex
 
-
 .PHONY: clean
 clean:
 	rm -f ms/*.tuc \

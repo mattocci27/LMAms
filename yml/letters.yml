@@ -4,7 +4,7 @@ PA_inter:
     Shade_Dry: b
     Sun_Wet: c
     Shade_Wet: d
-  LMAp:
+  LMAm:
     Sun_Dry: a
     Shade_Dry: b
     Sun_Wet: a
@@ -20,7 +20,7 @@ PA_intra:
     Shade_Dry: b
     Sun_Wet: c
     Shade_Wet: d
-  LMAp:
+  LMAm:
     Sun_Dry: a
     Shade_Dry: b
     Sun_Wet: a
@@ -34,7 +34,7 @@ PA_inter_de:
   LMA:
     D: a
     E: a
-  LMAp:
+  LMAm:
     D: a
     E: b
   LMAs:
@@ -44,7 +44,7 @@ PA_intra_de:
   LMA:
     D: a
     E: a
-  LMAp:
+  LMAm:
     D: a
     E: a
   LMAs:
@@ -54,7 +54,7 @@ GL:
   LMA:
     D: a
     E: b
-  LMAp:
+  LMAm:
     D: a
     E: a
   LMAs:

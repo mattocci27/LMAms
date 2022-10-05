@@ -5,14 +5,14 @@ quant_fun <- function(x) c(mean = mean(x),
 
 #' @title Generates yml file for r-vaules
 write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
-  registerDoParallel(cores = 24)
+  #registerDoParallel(cores = 24)
   # targets::tar_load(fit_7_draws_GL_Aps_LLs)
   # gl_draws <- fit_7_draws_GL_Aps_LLs
   # targets::tar_load(gl_res_csv)
   GL <- read_csv(gl_res_csv)
 
-  log_LMAp_mat <- gl_draws |>
-    dplyr::select(contains("LMAp")) |>
+  log_LMAm_mat <- gl_draws |>
+    dplyr::select(contains("LMAm")) |>
     as.matrix()
   log_LMAs_mat <- gl_draws |>
     dplyr::select(contains("LMAs")) |>
@@ -20,16 +20,16 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
   n <- nrow(gl_draws)
 
   res_fun <- function(i){
-    log_LMAp <- log_LMAp_mat[i,]
+    log_LMAm <- log_LMAm_mat[i,]
     log_LMAs <- log_LMAs_mat[i,]
 
-    fit_m <- lm(log_LMAs ~ log_LMAp)
-    fit_s <- lm(log_LMAp ~ log_LMAs)
-    fit_Am <- lm(log(GL$Aarea) ~ log_LMAp)
+    fit_m <- lm(log_LMAs ~ log_LMAm)
+    fit_s <- lm(log_LMAm ~ log_LMAs)
+    fit_Am <- lm(log(GL$Aarea) ~ log_LMAm)
     fit_As <- lm(log(GL$Aarea) ~ log_LMAs)
-    fit_Rm <- lm(log(GL$Rarea) ~ log_LMAp)
+    fit_Rm <- lm(log(GL$Rarea) ~ log_LMAm)
     fit_Rs <- lm(log(GL$Rarea) ~ log_LMAs)
-    fit_Lm <- lm(log(GL$LL) ~ log_LMAp)
+    fit_Lm <- lm(log(GL$LL) ~ log_LMAm)
     fit_Ls <- lm(log(GL$LL) ~ log_LMAs)
 
     res_m  <- residuals(fit_m)
@@ -39,26 +39,26 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
     res_Rm  <- residuals(fit_Rm)
     res_Rs  <- residuals(fit_Rs)
 
-    r_LMAp_LMAs <- cor(log_LMAp, log_LMAs)
+    r_LMAm_LMAs <- cor(log_LMAm, log_LMAs)
     r_Am <- cor(res_s, res_As)# Aarea-LMAm
     r_As <- cor(res_m, res_Am)# Aarea-LMAs
     r_Rm <- cor(res_s, res_Rs)
     r_Rs <- cor(res_m, res_Rm)
     r_Ls <- cor(log_LMAs, log(GL$LL))
-    c(r_Am, r_As, r_Rm, r_Rs, r_Ls, r_LMAp_LMAs)
+    c(r_Am, r_As, r_Rm, r_Rs, r_Ls, r_LMAm_LMAs)
   }
 
-  bb <- foreach (i = 1:n, .combine = rbind)  %dopar% res_fun(i)
+  bb <- foreach (i = 1:n, .combine = rbind) %do% res_fun(i)
   rownames(bb) <- NULL
   r_Am <- bb[,1]
   r_As <- bb[,2]
   r_Rm <- bb[,3]
   r_Rs <- bb[,4]
   r_Ls <- bb[,5]
-  r_LMAp_LMAs <- bb[,6]
+  r_LMAm_LMAs <- bb[,6]
 
   GL_cor_tbl <- rbind(
-    quant_fun(r_LMAp_LMAs),
+    quant_fun(r_LMAm_LMAs),
     quant_fun(r_As),
     quant_fun(r_Am),
     quant_fun(r_Ls),
@@ -66,23 +66,23 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
     quant_fun(r_Rs),
     quant_fun(r_Rm)) |>
     as_tibble() |>
-    mutate(name = c("LMAp_LMAs", "A_LMAs", "A_LMAp",
+    mutate(name = c("LMAm_LMAs", "A_LMAs", "A_LMAm",
                     "LL_LMAs",
-                   # "LL_LMAp",
-                    "R_LMAs", "R_LMAp"))
+                   # "LL_LMAm",
+                    "R_LMAs", "R_LMAm"))
 
-  GL_LMAsLMAp <- paste0(GL_cor_tbl[1,1],
+  GL_LMAsLMAm <- paste0(GL_cor_tbl[1,1],
                           " [", GL_cor_tbl[1,2], ", ",
                           GL_cor_tbl[1,3], "]")
-  #PA data --------------------------------------------
+  # PA data --------------------------------------------
   # library(tidyverse)
   # targets::tar_load(fit_20_draws_PA_Ap_LLs_opt)
   # pa_draws <- fit_20_draws_PA_Ap_LLs_opt
   # targets::tar_load(pa_res_csv)
   PA <- read_csv(pa_res_csv)
 
-  log_LMAp_mat <- pa_draws |>
-    dplyr::select(contains("LMAp")) |>
+  log_LMAm_mat <- pa_draws |>
+    dplyr::select(contains("LMAm")) |>
     as.matrix()
   log_LMAs_mat <- pa_draws |>
     dplyr::select(contains("LMAs")) |>
@@ -113,12 +113,12 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
   # ------------------------------------
 
   res_fun2 <- \(i){
-    log_LMAp <- log_LMAp_mat[i,]
+    log_LMAm <- log_LMAm_mat[i,]
     log_LMAs <- log_LMAs_mat[i,]
 
-    fit_m <- lm(log_LMAs ~ log_LMAp)
-    fit_s <- lm(log_LMAp ~ log_LMAs)
-    fit_Rm <- lm(log(PA$Rarea) ~ log_LMAp)
+    fit_m <- lm(log_LMAs ~ log_LMAm)
+    fit_s <- lm(log_LMAm ~ log_LMAs)
+    fit_Rm <- lm(log(PA$Rarea) ~ log_LMAm)
     fit_Rs <- lm(log(PA$Rarea) ~ log_LMAs)
 
     res_m  <- residuals(fit_m)
@@ -126,32 +126,32 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
     res_Rm  <- residuals(fit_Rm)
     res_Rs  <- residuals(fit_Rs)
 
-    r_LMAp_LMAs <- cor(log_LMAp, log_LMAs)
-    r_Am <- cor(log_LMAp, log(PA$Aarea))# Aarea-LMAm
+    r_LMAm_LMAs <- cor(log_LMAm, log_LMAs)
+    r_Am <- cor(log_LMAm, log(PA$Aarea))# Aarea-LMAm
     r_Rm <- cor(res_s, res_Rs)
     r_Rs <- cor(res_m, res_Rm)
     r_Ls <- cor(log_LMAs, log(PA$LL))
-    c(r_Am, r_Rm, r_Rs, r_Ls, r_LMAp_LMAs)
+    c(r_Am, r_Rm, r_Rs, r_Ls, r_LMAm_LMAs)
   }
 
-  bb2 <- foreach(i = 1:n, .combine = rbind)  %dopar% res_fun2(i)
+  bb2 <- foreach(i = 1:n, .combine = rbind) %do% res_fun2(i)
   rownames(bb2) <- NULL
   r_Am <- bb2[,1]
   r_Rm <- bb2[,2]
   r_Rs <- bb2[,3]
   r_Ls <- bb2[,4]
-  r_LMAp_LMAs <- bb2[,5]
+  r_LMAm_LMAs <- bb2[,5]
 
   PA_cor_tbl <- rbind(
-    quant_fun(r_LMAp_LMAs),
+    quant_fun(r_LMAm_LMAs),
     quant_fun(r_Am),
     quant_fun(r_Ls),
     quant_fun(r_Rs),
     quant_fun(r_Rm)) |>
     as_tibble() |>
-    mutate(name = c("LMAp_LMAs", "A_LMAp", "LL_LMAs", "R_LMAs", "R_LMAp"))
+    mutate(name = c("LMAm_LMAs", "A_LMAm", "LL_LMAs", "R_LMAs", "R_LMAm"))
 
-  PA_LMAsLMAp <- paste0(PA_cor_tbl[1,1],
+  PA_LMAsLMAm <- paste0(PA_cor_tbl[1,1],
                           " [", PA_cor_tbl[1,2], ", ",
                           PA_cor_tbl[1,3], "]")
 
@@ -187,9 +187,9 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
                     "'"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAp_Aarea: 'italic(bar(rho)) == ",
+  writeLines(paste0("    LMAm_Aarea: 'italic(bar(rho)) == ",
                     GL_cor_tbl |>
-                      filter(name == "A_LMAp") |>
+                      filter(name == "A_LMAm") |>
                       pull(mean),
                     "'"),
              out,
@@ -206,9 +206,9 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
                     "'"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAp_Rarea: 'italic(bar(rho)) == ",
+  writeLines(paste0("    LMAm_Rarea: 'italic(bar(rho)) == ",
                     GL_cor_tbl |>
-                      filter(name == "R_LMAp") |>
+                      filter(name == "R_LMAm") |>
                       pull(mean),
                     "'"),
              out,
@@ -225,7 +225,7 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
                     "'"),
              out,
              sep = "\n")
-  writeLines(paste0('    LMAp_LL: "italic(bar(r)) == ', "'NA'", '"'),
+  writeLines(paste0('    LMAm_LL: "italic(bar(r)) == ', "'NA'", '"'),
              out,
              sep = "\n")
   writeLines(paste0("    LMAs_LL: 'italic(bar(r)) == ",
@@ -242,8 +242,8 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
                     cor.test(log(GL$Narea), log(GL$LMA))$estimate %>% round(2),"'"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAp_Narea: 'italic(r) == ",
-                    cor.test(log(GL$Narea), log(GL$LMAp))$estimate %>% round(2),"'"),
+  writeLines(paste0("    LMAm_Narea: 'italic(r) == ",
+                    cor.test(log(GL$Narea), log(GL$LMAm))$estimate %>% round(2),"'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMAs_Narea: 'italic(r) == ",
@@ -254,8 +254,8 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
                     cor.test(log(GL$Parea), log(GL$LMA))$estimate %>% round(2),"'"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAp_Parea: 'italic(r) == ",
-                    cor.test(log(GL$Parea), log(GL$LMAp))$estimate %>% round(2),"'"),
+  writeLines(paste0("    LMAm_Parea: 'italic(r) == ",
+                    cor.test(log(GL$Parea), log(GL$LMAm))$estimate %>% round(2),"'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMAs_Parea: 'italic(r) == ",
@@ -264,10 +264,10 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
              sep = "\n")
 
 
-  writeLines(paste0("  GL_LMAps:"),
+  writeLines(paste0("  GL_LMAms:"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAs_LMAp: ", "'", GL_LMAsLMAp, "'"),
+  writeLines(paste0("    LMAs_LMAm: ", "'", GL_LMAsLMAm, "'"),
              out,
              sep = "\n")
 
@@ -298,9 +298,9 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
                     "'"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAp_Aarea: 'italic(bar(r)) == ",
+  writeLines(paste0("    LMAm_Aarea: 'italic(bar(r)) == ",
                    PA_cor_tbl |>
-                      filter(name == "A_LMAp") |>
+                      filter(name == "A_LMAm") |>
                       pull(mean),
                     "'"),
              out,
@@ -313,9 +313,9 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
                     "'"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAp_Rarea: 'italic(bar(rho)) == ",
+  writeLines(paste0("    LMAm_Rarea: 'italic(bar(rho)) == ",
                     PA_cor_tbl |>
-                      filter(name == "R_LMAp") |>
+                      filter(name == "R_LMAm") |>
                       pull(mean),
                     "'"),
              out,
@@ -332,7 +332,7 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
                     "'"),
              out,
              sep = "\n")
-  writeLines(paste0('    LMAp_LL: "italic(bar(r)) == ', "'NA'", '"'),
+  writeLines(paste0('    LMAm_LL: "italic(bar(r)) == ', "'NA'", '"'),
              out,
              sep = "\n")
   writeLines(paste0("    LMAs_LL: 'italic(bar(r)) == ",
@@ -343,10 +343,10 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
              out,
              sep = "\n")
 
-  writeLines(paste0("  PA_LMAps:"),
+  writeLines(paste0("  PA_LMAms:"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAs_LMAp: ", "'", PA_LMAsLMAp, "'"),
+  writeLines(paste0("    LMAs_LMAm: ", "'", PA_LMAsLMAm, "'"),
              out,
              sep = "\n")
 
@@ -358,8 +358,8 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
                     cor.test(log(PA$Narea), log(PA$LMA))$estimate %>% round(2),"'"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAp_Narea: 'italic(r) == ",
-                    cor.test(log(PA$Narea), log(PA$LMAp))$estimate %>% round(2),"'"),
+  writeLines(paste0("    LMAm_Narea: 'italic(r) == ",
+                    cor.test(log(PA$Narea), log(PA$LMAm))$estimate %>% round(2),"'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMAs_Narea: 'italic(r) == ",
@@ -370,8 +370,8 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
                     cor.test(log(PA$Parea), log(PA$LMA))$estimate %>% round(2),"'"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAp_Parea: 'italic(r) == ",
-                    cor.test(log(PA$Parea), log(PA$LMAp))$estimate %>% round(2),"'"),
+  writeLines(paste0("    LMAm_Parea: 'italic(r) == ",
+                    cor.test(log(PA$Parea), log(PA$LMAm))$estimate %>% round(2),"'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMAs_Parea: 'italic(r) == ",
@@ -382,8 +382,8 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
                     cor.test(log(PA$cell_area), log(PA$LMA))$estimate %>% round(2),"'"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAp_cell_area: 'italic(r) == ",
-                    cor.test(log(PA$cell_area), log(PA$LMAp))$estimate %>% round(2),"'"),
+  writeLines(paste0("    LMAm_cell_area: 'italic(r) == ",
+                    cor.test(log(PA$cell_area), log(PA$LMAm))$estimate %>% round(2),"'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMAs_cell_area: 'italic(r) == ",
@@ -423,17 +423,17 @@ write_para_yml <- function(gl_summary, pa_summary, gl_res_csv, pa_res_csv) {
   shade <- pa |>
     filter(strata != "CAN")
 
-  LMAp_mu_gl <- log(gl$LMAp) |> mean() |> exp() |> round(1)
+  LMAm_mu_gl <- log(gl$LMAm) |> mean() |> exp() |> round(1)
   LMAs_mu_gl <- log(gl$LMAs) |> mean() |> exp() |> round(1)
-  LMAp_sig_gl <- log(gl$LMAp) |> sd() |> exp() |> round(2)
+  LMAm_sig_gl <- log(gl$LMAm) |> sd() |> exp() |> round(2)
 
-  LMAp_mu_sun <- log(sun$LMAp) |> mean() |> exp() |> round(1)
+  LMAm_mu_sun <- log(sun$LMAm) |> mean() |> exp() |> round(1)
   LMAs_mu_sun <- log(sun$LMAs) |> mean() |> exp() |> round(1)
-  LMAp_sig_sun <- log(sun$LMAp) |> sd() |> exp() |> round(2)
+  LMAm_sig_sun <- log(sun$LMAm) |> sd() |> exp() |> round(2)
 
-  LMAp_mu_shade <- log(shade$LMAp) |> mean() |> exp() |> round(1)
+  LMAm_mu_shade <- log(shade$LMAm) |> mean() |> exp() |> round(1)
   LMAs_mu_shade <- log(shade$LMAs) |> mean() |> exp() |> round(1)
-  LMAp_sig_shade <- log(shade$LMAp) |> sd() |> exp() |> round(2)
+  LMAm_sig_shade <- log(shade$LMAm) |> sd() |> exp() |> round(2)
 
   # targets::tar_load(fit_7_summary_GL_Aps_LLs)
   # fit_summary <- fit_7_summary_GL_Aps_LLs
@@ -465,13 +465,13 @@ write_para_yml <- function(gl_summary, pa_summary, gl_res_csv, pa_res_csv) {
   writeLines(paste0("  sig1: ", sig1),
              out,
              sep = "\n")
-  writeLines(paste0("  LMAp_mu_gl: ", LMAp_mu_gl),
+  writeLines(paste0("  LMAm_mu_gl: ", LMAm_mu_gl),
              out,
              sep = "\n")
   writeLines(paste0("  LMAs_mu_gl: ", LMAs_mu_gl),
              out,
              sep = "\n")
-  writeLines(paste0("  LMAp_sig_gl: ", LMAp_sig_gl),
+  writeLines(paste0("  LMAm_sig_gl: ", LMAm_sig_gl),
              out,
              sep = "\n")
 
@@ -490,22 +490,22 @@ write_para_yml <- function(gl_summary, pa_summary, gl_res_csv, pa_res_csv) {
   writeLines(paste0("  sig1: ", sig1_pa),
              out,
              sep = "\n")
-  writeLines(paste0("  LMAp_mu_sun: ", LMAp_mu_sun),
+  writeLines(paste0("  LMAm_mu_sun: ", LMAm_mu_sun),
              out,
              sep = "\n")
   writeLines(paste0("  LMAs_mu_sun: ", LMAs_mu_sun),
              out,
              sep = "\n")
-  writeLines(paste0("  LMAp_sig_sun: ", LMAp_sig_sun),
+  writeLines(paste0("  LMAm_sig_sun: ", LMAm_sig_sun),
              out,
              sep = "\n")
-  writeLines(paste0("  LMAp_mu_shade: ", LMAp_mu_shade),
+  writeLines(paste0("  LMAm_mu_shade: ", LMAm_mu_shade),
              out,
              sep = "\n")
   writeLines(paste0("  LMAs_mu_shade: ", LMAs_mu_shade),
              out,
              sep = "\n")
-  writeLines(paste0("  LMAp_sig_shade: ", LMAp_sig_shade),
+  writeLines(paste0("  LMAm_sig_shade: ", LMAm_sig_shade),
              out,
              sep = "\n")
   close(out)
@@ -533,9 +533,9 @@ pmat_fun <- function(draws, data) {
 #' @title wrapper function for write_var_yml
 #' @para pmat output of pmat_fun
 loop_fun <- function(i, pmat, LMA) {
-  LMAp <- pmat[i, ] * LMA
+  LMAm <- pmat[i, ] * LMA
   LMAs <- (1 - pmat[i, ]) * LMA
-  LMAp_var <- cov(LMAp, LMA)
+  LMAm_var <- cov(LMAm, LMA)
   LMAs_var <- cov(LMAs, LMA)
   LMAs_var / var(LMA) * 100
 }

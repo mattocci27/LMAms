@@ -58,15 +58,15 @@ transformed parameters{
   Z[3,2] = bs;
   Z[3,3] = gs;
 
-  //log_LMAp = log(LMA) + log(p);
+  //log_LMAm = log(LMA) + log(p);
   //log_LMAs = log(LMA) + log(1 - p);
-  //X = append_col(append_col(append_col(intercept, log_LMAp), log_LMAs), leaf);
+  //X = append_col(append_col(append_col(intercept, log_LMAm), log_LMAs), leaf);
   X = append_col(append_col(intercept, log(LMA) + log(p)), log(LMA) + log(1 - p));
   Mu = X * Z;
 }
 model{
-  vector[N] log_LMAp;
-  log_LMAp = log(LMA) + log(p);
+  vector[N] log_LMAm;
+  log_LMAm = log(LMA) + log(p);
   // priors
   a0 ~ normal(0, 5);
   b0 ~ normal(0, 5);
@@ -85,7 +85,7 @@ model{
   // model
   // for (i in 1:N) p[i] ~ beta_proportion(mu[DE[i]], kappa);
   for (i in 1:N) {
-     target += normal_lpdf(log_LMAp[i] | mu[DE[i]], sig[DE[i]]);
+     target += normal_lpdf(log_LMAm[i] | mu[DE[i]], sig[DE[i]]);
      target += multi_normal_cholesky_lpdf(obs[i,] | Mu[i,], diag_pre_multiply(L_sigma, L_Omega));
   }
 }

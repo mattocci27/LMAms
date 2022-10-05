@@ -7,28 +7,28 @@ tar_load(gl_res_csv)
 
 pa <- read_csv(pa_res_csv)
 
-fit_np <- lm(log(Narea) ~ log(LMAp), pa)
+fit_np <- lm(log(Narea) ~ log(LMAm), pa)
 fit_ns <- lm(log(Narea) ~ log(LMAs), pa)
-fit_php <- lm(log(Parea) ~ log(LMAp), pa)
+fit_php <- lm(log(Parea) ~ log(LMAm), pa)
 fit_phs <- lm(log(Parea) ~ log(LMAs), pa)
-fit_cp <- lm(log(cell_area) ~ log(LMAp), pa)
+fit_cp <- lm(log(cell_area) ~ log(LMAm), pa)
 fit_cs <- lm(log(cell_area) ~ log(LMAs), pa)
-fit_ps <- lm(log(LMAp) ~ log(LMAs), pa)
-fit_sp <- lm(log(LMAs) ~ log(LMAp), pa)
+fit_ps <- lm(log(LMAm) ~ log(LMAs), pa)
+fit_sp <- lm(log(LMAs) ~ log(LMAm), pa)
 
 tmp1 <- tibble(
   Narea_LMAs_removed = residuals(fit_ns),
-  Narea_LMAp_removed = residuals(fit_np),
+  Narea_LMAm_removed = residuals(fit_np),
   Parea_LMAs_removed = residuals(fit_phs),
-  Parea_LMAp_removed = residuals(fit_php),
-  LMAp_LMAs_removed = residuals(fit_ps),
-  LMAs_LMAp_removed = residuals(fit_sp),
+  Parea_LMAm_removed = residuals(fit_php),
+  LMAm_LMAs_removed = residuals(fit_ps),
+  LMAs_LMAm_removed = residuals(fit_sp),
   id = as.character(1:nrow(pa))
 )
 
 tmp2 <- tibble(
   cell_area_LMAs_removed = residuals(fit_cs),
-  cell_area_LMAp_removed = residuals(fit_cp),
+  cell_area_LMAm_removed = residuals(fit_cp),
   id = residuals(fit_cp) |> names()
 )
 
@@ -65,7 +65,7 @@ data <- full_join(tmp1, tmp2) |>
 
 
 p1 <- ggplot(data, aes(
-  x = LMAp_LMAs_removed,
+  x = LMAm_LMAs_removed,
   y = Narea_LMAs_removed,
   col = gr,
   fill = gr)) +
@@ -74,7 +74,7 @@ p1 <- ggplot(data, aes(
   scale_colour_manual(values = cols)
 
 p2 <- ggplot(data, aes(
-  x = LMAp_LMAs_removed,
+  x = LMAm_LMAs_removed,
   y = Parea_LMAs_removed,
   col = gr,
   fill = gr)) +
@@ -83,7 +83,7 @@ p2 <- ggplot(data, aes(
   scale_colour_manual(values = cols)
 
 p3 <- ggplot(data, aes(
-  x = LMAp_LMAs_removed,
+  x = LMAm_LMAs_removed,
   y = cell_area_LMAs_removed,
   col = gr,
   fill = gr)) +
@@ -92,8 +92,8 @@ p3 <- ggplot(data, aes(
   scale_colour_manual(values = cols)
 
 p4 <- ggplot(data, aes(
-  x = LMAs_LMAp_removed,
-  y = Narea_LMAp_removed,
+  x = LMAs_LMAm_removed,
+  y = Narea_LMAm_removed,
   col = gr,
   fill = gr)) +
   geom_point(shape = 21) +
@@ -101,8 +101,8 @@ p4 <- ggplot(data, aes(
   scale_colour_manual(values = cols)
 
 p5 <- ggplot(data, aes(
-  x = LMAs_LMAp_removed,
-  y = Parea_LMAp_removed,
+  x = LMAs_LMAm_removed,
+  y = Parea_LMAm_removed,
   col = gr,
   fill = gr)) +
   geom_point(shape = 21) +
@@ -110,8 +110,8 @@ p5 <- ggplot(data, aes(
   scale_colour_manual(values = cols)
 
 p6 <- ggplot(data, aes(
-  x = LMAs_LMAp_removed,
-  y = cell_area_LMAp_removed,
+  x = LMAs_LMAm_removed,
+  y = cell_area_LMAm_removed,
   col = gr,
   fill = gr)) +
   geom_point(shape = 21) +
@@ -127,7 +127,7 @@ theme_bw() #&
 
 ggsave("figs/partial_traits_panama.pdf", p, width = 8, height = 7)
 
-lm(cell_area_LMAs_removed ~ LMAp_LMAs_removed, data) |> summary()
-lm(cell_area_LMAp_removed ~ LMAs_LMAp_removed, data) |> summary()
+lm(cell_area_LMAs_removed ~ LMAm_LMAs_removed, data) |> summary()
+lm(cell_area_LMAm_removed ~ LMAs_LMAm_removed, data) |> summary()
 
 ```

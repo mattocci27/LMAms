@@ -16,7 +16,7 @@ transformed data{
   vector[N] log_A;
   vector[N] log_LL;
   vector[N] log_R;
-  matrix[N,3] obs;
+  matrix[N, 3] obs;
   vector[N] intercept;
   for (n in 1:N)
     intercept[n] = 1;
@@ -30,18 +30,18 @@ transformed data{
 parameters{
   real a0;
   real ap;
-{% if A == 'LMApLMAs' and LL == 'LMApLMAs' %}
+{% if A == 'LMAmLMAs' and LL == 'LMAmLMAs' %}
   real<upper=ap> as;
-{% elif A == 'LMApLMAs' %}
+{% elif A == 'LMAmLMAs' %}
   real as;
 {% endif %}
   real b0;
-{% if LL == 'LMApLMAs' %}
+{% if LL == 'LMAmLMAs' %}
   real bp;
 {% endif %}
-{% if A == 'LMApLMAs' and LL == 'LMApLMAs' %}
+{% if A == 'LMAmLMAs' and LL == 'LMAmLMAs' %}
   real <lower=bp> bs;
-{% elif LL == 'LMApLMAs' %}
+{% elif LL == 'LMAmLMAs' %}
   real bs;
 {% else %}
   real bs;
@@ -78,7 +78,7 @@ transformed parameters{
   Z[2,2] = bp;
 {% endif %}
   Z[2,3] = gp;
-{% if A == 'LMAp' %}
+{% if A == 'LMAm' %}
   Z[3,1] = 0;
 {% else %}
   Z[3,1] = as;
@@ -102,9 +102,9 @@ transformed parameters{
   Z[4,3] = 0;
 {% endif %}
 
-  //log_LMAp = log(LMA) + log(p);
+  //log_LMAm = log(LMA) + log(p);
   //log_LMAs = log(LMA) + log(1 - p);
-  //X = append_col(append_col(append_col(intercept, log_LMAp), log_LMAs), leaf);
+  //X = append_col(append_col(append_col(intercept, log_LMAm), log_LMAs), leaf);
 {% if opt == "LDopt" %}
   X = append_col(append_col(append_col(append_col(intercept,
     log(LMA) + log(p)),
@@ -134,16 +134,16 @@ model{
   bs ~ normal(0, 5);
   gp ~ normal(0, 5);
   gs ~ normal(0, 5);
-{% if A == 'LMApLMAs' %}
+{% if A == 'LMAmLMAs' %}
   as ~ normal(0, 5);
 {% endif %}
-{% if A == 'LMApLMAs2' %}
+{% if A == 'LMAmLMAs2' %}
   as ~ normal(0, 5);
 {% endif %}
-{% if LL == 'LMApLMAs' %}
+{% if LL == 'LMAmLMAs' %}
   bp ~ normal(0, 5);
 {% endif %}
-{% if LL == 'LMApLMAs2' %}
+{% if LL == 'LMAmLMAs2' %}
   bp ~ normal(0, 5);
 {% endif %}
 {% if opt %}
@@ -163,12 +163,12 @@ generated quantities {
   real<lower=-1, upper=1> rho23;
   real<lower=-1, upper=1> rho13;
   cov_matrix[3] Sigma;
-  vector[N] log_LMAp;
+  vector[N] log_LMAm;
   vector[N] log_LMAs;
   {% if LD == "LD" %}
   vector[N] log_LDs;
   {% endif %}
-  log_LMAp = log(LMA) + log(p);
+  log_LMAm = log(LMA) + log(p);
   log_LMAs = log(LMA) + log(1 - p);
   {% if LD == "LD" %}
   log_LDs = log(LMA) + log(1 - p) - log(LT) - 3 * log(10);

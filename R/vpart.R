@@ -25,17 +25,17 @@ vpart_bar <- function(gl_res_csv, pa_res_csv, intra = FALSE) {
   }
 
   gl_eve_var <- bind_rows(
-    LMAp = var_(gl, "LMAp", "leaf_habit"),
+    LMAm = var_(gl, "LMAm", "leaf_habit"),
     LMAs = var_(gl, "LMAs", "leaf_habit"),
     fct = c("Eve/Dec", "Residuals"))
 
   pa_eve_var <- bind_rows(
-    LMAp = var_(pa, "LMAp", "leaf_habit"),
+    LMAm = var_(pa, "LMAm", "leaf_habit"),
     LMAs = var_(pa, "LMAs", "leaf_habit"),
     fct = c("Eve/Dec", "Residuals"))
 
   pa_leaf_var <- bind_rows(
-    LMAp = var_(pa, "LMAp", "site + strata"),
+    LMAm = var_(pa, "LMAm", "site + strata"),
     LMAs = var_(pa, "LMAs", "site + strata"),
     fct = c("Wet/Dry", "Sun/Shade", "Residuals"))
 
@@ -115,19 +115,19 @@ write_vpart_csv <- function(gl_res_csv, pa_res_csv, file, intra = FALSE) {
   }
 
   gl_eve_var <- bind_rows(
-    LMAp = var_(gl, "LMAp", "leaf_habit"),
+    LMAm = var_(gl, "LMAm", "leaf_habit"),
     LMAs = var_(gl, "LMAs", "leaf_habit"),
     fct = c("Eve/Dec", "Residuals")) |>
     mutate(dataset = "gl_de")
 
   pa_eve_var <- bind_rows(
-    LMAp = var_(pa, "LMAp", "leaf_habit"),
+    LMAm = var_(pa, "LMAm", "leaf_habit"),
     LMAs = var_(pa, "LMAs", "leaf_habit"),
     fct = c("Eve/Dec", "Residuals")) |>
     mutate(dataset = "pa_de")
 
   pa_leaf_var <- bind_rows(
-    LMAp = var_(pa, "LMAp", "site + strata"),
+    LMAm = var_(pa, "LMAm", "site + strata"),
     LMAs = var_(pa, "LMAs", "site + strata"),
     fct = c("Wet/Dry", "Sun/Shade", "Residuals")) |>
     mutate(dataset = "pa_leaf")

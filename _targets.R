@@ -285,7 +285,7 @@ main_list <- list(
     format = "file"
   ),
 
-  # simluation ------------------------
+  # simulation ------------------------
 
   # use `sim_rep` as `pattern`
   tar_target(sim_rep, seq(1, 10)),
