@@ -188,42 +188,59 @@ main_list <- list(
       )
   ),
 
-  # tar_target(
-  #   loo_gl,
-  #   lapply(
-  #     list(
-  #       gl_mcmc_GL_LMA    = gl_mcmc_GL_LMA,
-  #       gl_mcmc_GL_Am_LLs  = gl_mcmc_GL_Am_LLs,
-  #       gl_mcmc_GL_Ams_LLms = gl_mcmc_GL_Ams_LLms,
-  #       gl_mcmc_GL_Am_LLms = gl_mcmc_GL_Am_LLms,
-  #       gl_mcmc_GL_Ams_LLs = gl_mcmc_GL_Ams_LLs
-  #       ),
-  #   \(x)x$loo(cores = parallel::detectCores())
-  #   )
-  # ),
 
-  # tar_target(
-  #   loo_pa,
-  #   lapply(
-  #     list(
-  #       pa_mcmc_PA_LMA    = pa_mcmc_PA_LMA,
-  #       pa_mcmc_PA_LMA_opt = pa_mcmc_PA_LMA_opt,
-  #       pa_mcmc_PA_Am_LLs  = pa_mcmc_PA_Am_LLs,
-  #       pa_mcmc_PA_Ams_LLms = pa_mcmc_PA_Ams_LLms,
-  #       pa_mcmc_PA_Am_LLms = pa_mcmc_PA_Am_LLms,
-  #       pa_mcmc_PA_Ams_LLs = pa_mcmc_PA_Ams_LLs,
-  #       pa_mcmc_PA_Am_LLs_opt = pa_mcmc_PA_Am_LLs_opt,
-  #       pa_mcmc_PA_Ams_LLms_opt = pa_mcmc_PA_Ams_LLms_opt,
-  #       pa_mcmc_PA_Am_LLms_opt = pa_mcmc_PA_Am_LLms_opt,
-  #       pa_mcmc_PA_Ams_LLs_opt = pa_mcmc_PA_Ams_LLs_opt,
-  #       pa_mcmc_PA_Am_LDs = pa_mcmc_PA_Am_LDs,
-  #       pa_mcmc_PA_Am_LDms = pa_mcmc_PA_Am_LDms,
-  #       pa_mcmc_PA_Am_LDs_opt = pa_mcmc_PA_Am_LDs_opt,
-  #       pa_mcmc_PA_Am_LDms_opt = pa_mcmc_PA_Am_LDms_opt
-  #       ),
-  #   \(x)x$loo(cores = parallel::detectCores())
+  tar_target(
+    loo_gl,
+    lapply(
+      list(
+        gl_mcmc_lma,
+        gl_mcmc_am_bs,
+        gl_mcmc_am_bms,
+        gl_mcmc_ams_bs,
+        gl_mcmc_ams_bms
+        ),
+    \(x)x$loo(cores = parallel::detectCores())
+    )
+  ),
+  # tar_map(
+  #   values = list(tmp = rlang::syms(c(
+  #       "gl_mcmc_lma",
+  #       "gl_mcmc_am_bs",
+  #       "gl_mcmc_am_bms",
+  #       "gl_mcmc_ams_bs",
+  #       "gl_mcmc_ams_bms"
+  #   ))),
+  #   tar_target(
+  #     loo_test,
+  #     tmp$loo(cores = parallel::detectCores())
   #   )
   # ),
+  tar_target(
+    loo_pa,
+    lapply(
+      list(
+        pa_mcmc_lma,
+        pa_mcmc_lma_opt,
+        pa_mcmc_am_bms,
+        pa_mcmc_am_bs,
+        pa_mcmc_ams_bms,
+        pa_mcmc_ams_bs,
+        pa_mcmc_am_bms_opt,
+        pa_mcmc_am_bs_opt,
+        pa_mcmc_ams_bms_opt,
+        pa_mcmc_ams_bs_opt,
+        pa_mcmc_am_bms_ld,
+        pa_mcmc_am_bs_ld,
+        pa_mcmc_ams_bms_ld,
+        pa_mcmc_ams_bs_ld,
+        pa_mcmc_am_bms_ld_opt,
+        pa_mcmc_am_bs_ld_opt,
+        pa_mcmc_ams_bms_ld_opt,
+        pa_mcmc_ams_bs_ld_opt
+        ),
+    \(x)x$loo(cores = parallel::detectCores())
+    )
+  ),
 
   tar_map(
     values = list(diagnostics = rlang::syms(

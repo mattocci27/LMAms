@@ -58,6 +58,18 @@
       "LL": "LMAmLMAs"
     },
     {
+      "model": "ams_bs_ld",
+      "LD": "LD",
+      "A": "LMAmLMAs",
+      "LL": "LMAs"
+    },
+    {
+      "model": "ams_bms_ld",
+      "LD": "LD",
+      "A": "LMAmLMAs",
+      "LL": "LMAmLMAs"
+    },
+    {
       "model": "am_bs_ld_opt",
       "LD": "LD",
       "A": "LMAm",
@@ -68,6 +80,20 @@
       "model": "am_bms_ld_opt",
       "LD": "LD",
       "A": "LMAm",
+      "LL": "LMAmLMAs",
+      "opt": "LDopt"
+    },
+    {
+      "model": "ams_bs_ld_opt",
+      "LD": "LD",
+      "A": "LMAmLMAs",
+      "LL": "LMAs",
+      "opt": "LDopt"
+    },
+    {
+      "model": "ams_bms_ld_opt",
+      "LD": "LD",
+      "A": "LMAmLMAs",
       "LL": "LMAmLMAs",
       "opt": "LDopt"
     }
