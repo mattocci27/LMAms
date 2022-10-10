@@ -187,42 +187,43 @@ main_list <- list(
       posterior::default_convergence_measures()
       )
   ),
-  tar_target(
-    loo_gl,
-    lapply(
-      list(
-        gl_mcmc_GL_LMA    = gl_mcmc_GL_LMA,
-        gl_mcmc_GL_Ap_LLs  = gl_mcmc_GL_Ap_LLs,
-        gl_mcmc_GL_Aps_LLps = gl_mcmc_GL_Aps_LLps,
-        gl_mcmc_GL_Ap_LLps = gl_mcmc_GL_Ap_LLps,
-        gl_mcmc_GL_Aps_LLs = gl_mcmc_GL_Aps_LLs
-        ),
-    \(x)x$loo(cores = parallel::detectCores())
-    )
-  ),
 
-  tar_target(
-    loo_pa,
-    lapply(
-      list(
-        pa_mcmc_PA_LMA    = pa_mcmc_PA_LMA,
-        pa_mcmc_PA_LMA_opt = pa_mcmc_PA_LMA_opt,
-        pa_mcmc_PA_Ap_LLs  = pa_mcmc_PA_Ap_LLs,
-        pa_mcmc_PA_Aps_LLps = pa_mcmc_PA_Aps_LLps,
-        pa_mcmc_PA_Ap_LLps = pa_mcmc_PA_Ap_LLps,
-        pa_mcmc_PA_Aps_LLs = pa_mcmc_PA_Aps_LLs,
-        pa_mcmc_PA_Ap_LLs_opt = pa_mcmc_PA_Ap_LLs_opt,
-        pa_mcmc_PA_Aps_LLps_opt = pa_mcmc_PA_Aps_LLps_opt,
-        pa_mcmc_PA_Ap_LLps_opt = pa_mcmc_PA_Ap_LLps_opt,
-        pa_mcmc_PA_Aps_LLs_opt = pa_mcmc_PA_Aps_LLs_opt,
-        pa_mcmc_PA_Ap_LDs = pa_mcmc_PA_Ap_LDs,
-        pa_mcmc_PA_Ap_LDps = pa_mcmc_PA_Ap_LDps,
-        pa_mcmc_PA_Ap_LDs_opt = pa_mcmc_PA_Ap_LDs_opt,
-        pa_mcmc_PA_Ap_LDps_opt = pa_mcmc_PA_Ap_LDps_opt
-        ),
-    \(x)x$loo(cores = parallel::detectCores())
-    )
-  ),
+  # tar_target(
+  #   loo_gl,
+  #   lapply(
+  #     list(
+  #       gl_mcmc_GL_LMA    = gl_mcmc_GL_LMA,
+  #       gl_mcmc_GL_Am_LLs  = gl_mcmc_GL_Am_LLs,
+  #       gl_mcmc_GL_Ams_LLms = gl_mcmc_GL_Ams_LLms,
+  #       gl_mcmc_GL_Am_LLms = gl_mcmc_GL_Am_LLms,
+  #       gl_mcmc_GL_Ams_LLs = gl_mcmc_GL_Ams_LLs
+  #       ),
+  #   \(x)x$loo(cores = parallel::detectCores())
+  #   )
+  # ),
+
+  # tar_target(
+  #   loo_pa,
+  #   lapply(
+  #     list(
+  #       pa_mcmc_PA_LMA    = pa_mcmc_PA_LMA,
+  #       pa_mcmc_PA_LMA_opt = pa_mcmc_PA_LMA_opt,
+  #       pa_mcmc_PA_Am_LLs  = pa_mcmc_PA_Am_LLs,
+  #       pa_mcmc_PA_Ams_LLms = pa_mcmc_PA_Ams_LLms,
+  #       pa_mcmc_PA_Am_LLms = pa_mcmc_PA_Am_LLms,
+  #       pa_mcmc_PA_Ams_LLs = pa_mcmc_PA_Ams_LLs,
+  #       pa_mcmc_PA_Am_LLs_opt = pa_mcmc_PA_Am_LLs_opt,
+  #       pa_mcmc_PA_Ams_LLms_opt = pa_mcmc_PA_Ams_LLms_opt,
+  #       pa_mcmc_PA_Am_LLms_opt = pa_mcmc_PA_Am_LLms_opt,
+  #       pa_mcmc_PA_Ams_LLs_opt = pa_mcmc_PA_Ams_LLs_opt,
+  #       pa_mcmc_PA_Am_LDs = pa_mcmc_PA_Am_LDs,
+  #       pa_mcmc_PA_Am_LDms = pa_mcmc_PA_Am_LDms,
+  #       pa_mcmc_PA_Am_LDs_opt = pa_mcmc_PA_Am_LDs_opt,
+  #       pa_mcmc_PA_Am_LDms_opt = pa_mcmc_PA_Am_LDms_opt
+  #       ),
+  #   \(x)x$loo(cores = parallel::detectCores())
+  #   )
+  # ),
 
   tar_map(
     values = list(diagnostics = rlang::syms(
@@ -240,48 +241,48 @@ main_list <- list(
     })
   ),
 
-  tar_target(
-    loo_tbl, {
-      loo_model <- append(loo_gl, loo_pa)
-      tibble(Model = names(loo_model),
-       LOOIC = sapply(loo_model, "[[", "looic"),
-       elpd = sapply(loo_model, "[[", "elpd_loo"),
-       N = lapply(loo_model, "[[", "pointwise") |> sapply(nrow)) |>
-        mutate(site = str_split_fixed(Model, "mcmc_", 2)[,2]) |>
-        mutate(site = str_split_fixed(site, "_", 2)[,1]) |>
-        arrange(LOOIC) |>
-        write_csv("data/loo.csv")
-      paste("data/loo.csv")
-    },
-    format = "file"
-  ),
+  # tar_target(
+  #   loo_tbl, {
+  #     loo_model <- append(loo_gl, loo_pa)
+  #     tibble(Model = names(loo_model),
+  #      LOOIC = sapply(loo_model, "[[", "looic"),
+  #      elpd = sapply(loo_model, "[[", "elpd_loo"),
+  #      N = lapply(loo_model, "[[", "pointwise") |> sapply(nrow)) |>
+  #       mutate(site = str_split_fixed(Model, "mcmc_", 2)[,2]) |>
+  #       mutate(site = str_split_fixed(site, "_", 2)[,1]) |>
+  #       arrange(LOOIC) |>
+  #       write_csv("data/loo.csv")
+  #     paste("data/loo.csv")
+  #   },
+  #   format = "file"
+  # ),
 
-  tar_target(
-    model_selection_csv,
-    write_model_selction(loo_tbl),
-    format = "file"
-  ),
+  # tar_target(
+  #   model_selection_csv,
+  #   write_model_selction(loo_tbl),
+  #   format = "file"
+  # ),
 
   tar_target(
     para_yml,
-    write_para_yml(gl_summary_GL_Aps_LLs, pa_summary_PA_Ap_LLs_opt,
+    write_para_yml(gl_summary_ams_bs, pa_summary_am_bs_opt,
       gl_res_csv, pa_res_csv),
     format = "file"
   ),
   tar_target(
     var_yml,
-    write_var_yml(gl_draws_GL_Aps_LLs, gl_res_dat, pa_full_draws_PA_Ap_LLs_opt, pa_res_dat),
+    write_var_yml(gl_draws_ams_bs, gl_res_dat, pa_full_draws_am_bs_opt, pa_res_dat),
     format = "file"
   ),
 
   tar_target(
     gl_para_all_csv,
-    my_write_csv(gl_summary_GL_Aps_LLs, "data/gl_para_all.csv"),
+    my_write_csv(gl_summary_ams_bs, "data/gl_para_all.csv"),
     format = "file"
   ),
   tar_target(
     pa_para_all_csv,
-    my_write_csv(pa_summary_PA_Ap_LLs_opt, "data/pa_para_all.csv"),
+    my_write_csv(pa_summary_am_bs_opt, "data/pa_para_all.csv"),
     format = "file"
   ),
 
@@ -291,13 +292,13 @@ main_list <- list(
   tar_target(sim_rep, seq(1, 10)),
 
   tar_target(
-    GL_Aps_LLs,
-    compile_model("stan/GL_Aps_LLs.stan"),
+    ams_bs,
+    compile_model("stan/ams_bs.stan"),
     format = "file"
   ),
   tar_target(
-    PA_Ap_LLs_opt,
-    compile_model("stan/PA_Ap_LLs_opt.stan"),
+    am_bs_opt,
+    compile_model("stan/am_bs_opt.stan"),
     format = "file"
   ),
 
@@ -315,7 +316,7 @@ main_list <- list(
     gl_sim_summary,
     command = fit_sim_model(
       gl_sim_data,
-      GL_Aps_LLs,
+      ams_bs,
       iter_warmup = 2000,
       iter_sampling = 2000,
       adapt_delta = 0.999,
@@ -328,7 +329,7 @@ main_list <- list(
     pa_sim_summary,
     command = fit_sim_model(
       pa_sim_data,
-      PA_Ap_LLs_opt,
+      am_bs_opt,
       iter_warmup = 2000,
       iter_sampling = 2000,
       adapt_delta = 0.999,
@@ -392,11 +393,11 @@ main_list <- list(
   # best model for the full data
   tar_stan_mcmc(
     pa_full,
-    "stan/PA_Ap_LLs_opt.stan",
+    "stan/am_bs_opt.stan",
     data = pa_stan_dat_full,
     refresh = 0,
     chains = 4,
-    parallel_chains = getOption("mc.cores", 4),
+    parallel_chains = 1,
     iter_warmup = 2000,
     iter_sampling = 2000,
     adapt_delta = 0.999,
@@ -412,13 +413,13 @@ main_list <- list(
     ),
   tar_target(
     gl_res_csv,
-    generate_gl_dat(gl_csv, gl_draws_GL_Aps_LLs),
+    generate_gl_dat(gl_csv, gl_draws_ams_bs),
     format = "file"
   ),
 
   tar_target(
     pa_res_csv,
-    generate_pa_dat(pa_full_csv, pa_csv, pa_full_draws_PA_Ap_LLs_opt),
+    generate_pa_dat(pa_full_csv, pa_csv, pa_full_draws_am_bs_opt),
     format = "file"
   ),
   tar_target(
@@ -432,14 +433,14 @@ main_list <- list(
 
   tar_target(
     para_tbl,
-    create_para_tbl(gl_draws_GL_Aps_LLs, pa_full_draws_PA_Ap_LLs_opt),
+    create_para_tbl(gl_draws_ams_bs, pa_full_draws_am_bs_opt),
     format = "file"
   ),
 
   tar_target(
     r_vals_yml,
-    write_r2(gl_res_csv, gl_draws_GL_Aps_LLs,
-      pa_res_csv, pa_full_draws_PA_Ap_LLs_opt),
+    write_r2(gl_res_csv, gl_draws_ams_bs,
+      pa_res_csv, pa_full_draws_am_bs_opt),
     format = "file"
   ),
   tar_target(
@@ -668,27 +669,27 @@ main_list <- list(
     mass_obs_dat,
     gen_mass_point_dat(
       gl_res_csv, pa_res_csv,
-      gl_summary_GL_Aps_LLs, pa_full_summary_PA_Ap_LLs_opt
+      gl_summary_ams_bs, pa_full_summary_am_bs_opt
     )
   ),
   tar_target(
     gl_mass_prop,
     mass_prop_sim(
-      read_csv(gl_res_csv), gl_summary_GL_Aps_LLs, n_sim = 1000)
+      read_csv(gl_res_csv), gl_summary_ams_bs, n_sim = 1000)
   ),
 
   tar_target(
-    mass_prop_grad_ap,
-    mass_prop_sim_grad(gl_res_csv, gl_summary_GL_Aps_LLs,
-                     ap = c(0.1, 0.5, 1.0),
-                     as = get_mean(gl_summary_GL_Aps_LLs, "as") |> rep(3),
+    mass_prop_grad_am,
+    mass_prop_sim_grad(gl_res_csv, gl_summary_ams_bs,
+                     am = c(0.1, 0.5, 1.0),
+                     as = get_mean(gl_summary_ams_bs, "as") |> rep(3),
                      n_sim = 1000)
   ),
 
   tar_target(
     mass_prop_grad_as,
-    mass_prop_sim_grad(gl_res_csv, gl_summary_GL_Aps_LLs,
-                     ap = get_mean(gl_summary_GL_Aps_LLs, "ap") |> rep(3),
+    mass_prop_sim_grad(gl_res_csv, gl_summary_ams_bs,
+                     am = get_mean(gl_summary_ams_bs, "am") |> rep(3),
                      as = c(-0.5, 0, 0.5),
                      n_sim = 1000)
   ),
@@ -696,7 +697,7 @@ main_list <- list(
   tar_target(
     sun_mass_prop,
     mass_prop_sim(read_csv(pa_res_csv) |> filter(strata == "CAN"),
-      pa_full_summary_PA_Ap_LLs_opt,
+      pa_full_summary_am_bs_opt,
       gl = FALSE, n_sim = 1000,
       site = "Sun"
     )
@@ -704,7 +705,7 @@ main_list <- list(
   tar_target(
     shade_mass_prop,
     mass_prop_sim(read_csv(pa_res_csv) |> filter(strata != "CAN"),
-      pa_full_summary_PA_Ap_LLs_opt,
+      pa_full_summary_am_bs_opt,
       gl = FALSE, n_sim = 1000,
       site = "Shade"
     )
@@ -712,7 +713,7 @@ main_list <- list(
   tar_target(
     shade_mass_prop_mv,
     mass_prop_sim_mv(read_csv(pa_res_csv) |> filter(strata != "CAN"),
-      pa_full_summary_PA_Ap_LLs_opt,
+      pa_full_summary_am_bs_opt,
       n_sim = 1000,
       site = "Shade"
     )
@@ -764,7 +765,7 @@ main_list <- list(
 
   tar_target(
     mass_sim_plot, {
-      p <- mass_sim_point(mass_prop_grad_ap, mass_prop_grad_as)
+      p <- mass_sim_point(mass_prop_grad_am, mass_prop_grad_as)
       my_ggsave(
         "figs/mass_prop_sim",
        p,
@@ -802,7 +803,7 @@ main_list <- list(
     letters_yml,
     write_t(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
       pa_inter_de_box_dat, pa_intra_de_box_dat,
-      gl_draws_GL_Aps_LLs, pa_full_draws_PA_Ap_LLs_opt),
+      gl_draws_ams_bs, pa_full_draws_am_bs_opt),
     format = "file"
   ),
   tar_target(

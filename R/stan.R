@@ -4,36 +4,54 @@ generate_stan_names <- function(model_json, model_lma_json) {
   model <- fromJSON(model_json)$config
   model_lma <- fromJSON(model_lma_json)$config
   model_lma2 <- model_lma |>
-    mutate(site = ifelse(str_detect(model, "GL"), "GL", "PA"))
-  model2 <- full_join(model_lma2, model, by = c("site", "model", "opt"))
+    mutate(site = ifelse(!is.na(opt), "pa", "gl"))
+  model2 <- model |>
+    mutate(site = ifelse(!is.na(opt) | !is.na(LD), "pa", "gl"))
+  model3 <- full_join(model_lma2, model2, by = c("site", "model", "opt"))
+
+  pa_model <- model3
+  gl_model <- model3  |>
+    filter(site == "gl")
 
   gl_stan_names <- str_c("stan/",
-    model2 |>
-      filter(site == "GL") |>
+    gl_model |>
       pull(model),
     ".stan")
   pa_stan_names <- str_c("stan/",
-    model2 |>
-      filter(site == "PA") |>
+    pa_model |>
       pull(model),
     ".stan")
-  diagnostics_names <- str_c(
-    str_to_lower(model2$site),
+
+  tmp1 <- str_c(
+    "gl",
     "diagnostics",
-    model2$model,
+    gl_model$model,
     sep = "_"
-    )
-  summary_names <- str_c(
-    str_to_lower(model2$site),
-    "summary",
-    model2$model,
+  )
+
+  tmp2 <- str_c(
+    "pa",
+    "diagnostics",
+    pa_model$model,
     sep = "_"
-    )
+  )
+
+  diagnostics_names <- c(tmp1, tmp2)
+  summary_names <- str_replace_all(diagnostics_names, "diagnostics", "summary")
+
+  gl_mcmc_names <- str_replace_all(diagnostics_names, "diagnostics", "mcmc")
+  gl_mcmc_names <- gl_mcmc_names[str_detect(gl_mcmc_names, "gl")]
+
+  pa_mcmc_names <- str_replace_all(diagnostics_names, "diagnostics", "mcmc") |>
+    str_replace_all("gl", "pa")
+
   list(
     gl_stan_names = gl_stan_names,
     pa_stan_names = pa_stan_names,
     summary_names = summary_names,
-    diagnostics_names = diagnostics_names
+    diagnostics_names = diagnostics_names,
+    gl_mcmc_names = gl_mcmc_names,
+    pa_mcmc_names = pa_mcmc_names
     )
 }
 
@@ -407,7 +425,7 @@ create_para_tbl <- function(gl_draws, pa_draws) {
   # targets::tar_load(fit_7_draws_GL_Aps_LLs)
  #draws <- fit_7_draws_GL_Aps_LLs
   gl_draws2 <- gl_draws |>
-    dplyr::select(c("ap", "as", "bs", "gp", "gs"))
+    dplyr::select(c("am", "as", "bs", "gm", "gs"))
   gl_tab <- bind_cols(
     mean_ = apply(gl_draws2, 2, mean),
     low = apply(gl_draws2, 2, \(x)quantile(x, 0.025)),
@@ -424,7 +442,7 @@ create_para_tbl <- function(gl_draws, pa_draws) {
     dplyr::select(para, GLOPNET = est, sig1 = sig)
 
   pa_draws2 <- pa_draws |>
-    dplyr::select(c("ap", "bs", "gp", "gs", "theta"))
+    dplyr::select(c("am", "bs", "gm", "gs", "theta"))
   pa_tab <- bind_cols(
     mean_ = apply(pa_draws2, 2, mean),
     low = apply(pa_draws2, 2, \(x)quantile(x, 0.025)),
@@ -532,7 +550,7 @@ coef_rand <- function(gl_rand_sig, gl_rand_check, site = site) {
       para == "b0" ~ "beta[0]",
       para == "bs" ~ "beta[s]",
       para == "g0" ~ "gamma[0]",
-      para == "gp" ~ "gamma[p]",
+      para == "gm" ~ "gamma[p]",
       para == "gs" ~ "gamma[s]",
       TRUE ~ para
     ))
@@ -571,7 +589,7 @@ coef_sim <- function(sim_para_summary, site) {
       variable == "b0" ~ "beta[0]",
       variable == "bs" ~ "beta[s]",
       variable == "g0" ~ "gamma[0]",
-      variable == "gp" ~ "gamma[p]",
+      variable == "gm" ~ "gamma[p]",
       variable == "gs" ~ "gamma[s]",
       TRUE ~ variable
     )) |>
