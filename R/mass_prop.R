@@ -32,7 +32,7 @@ gen_mass_point_dat <- function(gl_res_csv, pa_res_csv, gl_para, pa_para) {
   point_dat <- tibble(
     site = c("GLOPNET", "Sun", "Shade") |>
                     factor(levels =  c("GLOPNET", "Sun", "Shade")),
-    ap = c(get_mean(gl_para, "ap"), get_mean(pa_para, "ap"), get_mean(pa_para, "ap")),
+    am = c(get_mean(gl_para, "am"), get_mean(pa_para, "am"), get_mean(pa_para, "am")),
     as = c(get_mean(gl_para, "as"), 0, 0)
   )
 
@@ -65,16 +65,16 @@ mu_fun <- function(x) {
   log(mu^2 / sqrt(sig^2 + mu^2))
 }
 
-gl_sim_fit <- function(log_LMAs, log_LMAm, a0, ap, as) {
-  log_Aarea <- a0 + ap * log_LMAm + as * log_LMAs
+gl_sim_fit <- function(log_LMAs, log_LMAm, a0, am, as) {
+  log_Aarea <- a0 + am * log_LMAm + as * log_LMAs
   LMA <- exp(log_LMAm) + exp(log_LMAs)
   fit <- lm(log_Aarea ~ log(LMA))
   fit$coefficients[2]
 }
 
 #' @para ap only ap was significant
-pa_sim_fit <- function(log_LMAs, log_LMAm, ap) {
-  log_Aarea <- ap * log_LMAm
+pa_sim_fit <- function(log_LMAs, log_LMAm, am) {
+  log_Aarea <- am * log_LMAm
   LMA <- exp(log_LMAm) + exp(log_LMAs)
   fit <- lm(log_Aarea ~ log(LMA))
   fit$coefficients[2]
@@ -124,13 +124,13 @@ get_mean <- function(data, para_str)  {
       b <- cbind(b, map_dbl(log_LMAs, gl_sim_fit,
         log_LMAm,
         get_mean(para, "a0"),
-        get_mean(para, "ap"),
+        get_mean(para, "am"),
         get_mean(para, "as")
       ))
     } else {
       b <- cbind(b, map_dbl(log_LMAs, pa_sim_fit,
         log_LMAm,
-        get_mean(para, "ap")
+        get_mean(para, "am")
       ))
     }
   }
@@ -144,7 +144,7 @@ get_mean <- function(data, para_str)  {
 
 #' @para data gl_res_csv or pa_res_csv
 #' @para para mcmc summary (e.g.  fit7_summary_GL_Aps_LLs)
-mass_prop_sim_grad_each <- function(ap, as, a0, data, n_sim = 1000, n_samp = 100,
+mass_prop_sim_grad_each <- function(am, as, a0, data, n_sim = 1000, n_samp = 100,
                    x_len = 20, site = "GLOPNET", seed = 123) {
   set.seed(seed)
   mu <- mean(log(data$LMAm))
@@ -160,7 +160,7 @@ mass_prop_sim_grad_each <- function(ap, as, a0, data, n_sim = 1000, n_samp = 100
     b <- cbind(b, map_dbl(log_LMAs, gl_sim_fit,
       log_LMAm,
       a0,
-      ap,
+      am,
       as
     ))
   }
@@ -169,17 +169,17 @@ mass_prop_sim_grad_each <- function(ap, as, a0, data, n_sim = 1000, n_samp = 100
   upr <- apply(b, 1, \(x)(quantile(x, 0.975)))
   lwr <- apply(b, 1, \(x)(quantile(x, 0.025)))
   tibble(mean = mean_, upr = upr, lwr = lwr,
-              LMAs_var_mean, site = site, a0, ap, as)
+              LMAs_var_mean, site = site, a0, am, as)
 }
 
 #' @para gl_res_csv gl_res_csv
 #' @para summary_mcmc mcmc summary (e.g.  fit_7_summary_GL_Aps_LLs)
 #' @para ap vector for ap (e.g., c(0.1, 0.5, 1.0))
 #' @para as vector for as e.g., get_mean(fit_7_summary_GL_Aps_LLs, "as") |> rep(3)
-mass_prop_sim_grad <- function(gl_res_csv, summary_mcmc, ap, as, n_sim = 1000, x_len = 20) {
-  para_id <- rep(seq(1, length(ap)), each = x_len)
+mass_prop_sim_grad <- function(gl_res_csv, summary_mcmc, am, as, n_sim = 1000, x_len = 20) {
+  para_id <- rep(seq(1, length(am)), each = x_len)
   a0 <- get_mean(summary_mcmc, "a0")
-  pmap_dfr(list(ap, as), mass_prop_sim_grad_each,
+  pmap_dfr(list(am, as), mass_prop_sim_grad_each,
     a0 = a0,
     data = read_csv(gl_res_csv),
     n_sim = n_sim) |>
@@ -216,7 +216,7 @@ mass_prop_sim_mv <- function(data, para, n_sim = 1000, n_samp = 100,
     }
     LMAs_var <- cbind(LMAs_var, map2_dbl(log_LMAs, log_LMAm, var_fun))
     b <- cbind(b, map2_dbl(log_LMAs, log_LMAm, pa_sim_fit,
-      get_mean(para, "ap")
+      get_mean(para, "am")
     ))
   }
 
@@ -279,16 +279,16 @@ mass_prop_point <- function(mass_obs_dat, sim1, sim2, sim3) {
     )
 }
 
-#' @title mass deps with changing ap and as
-#' @para ap_sim_dat e.g., mass_prop_grad_ap
+#' @title mass deps with changing am and as
+#' @para am_sim_dat e.g., mass_prop_grad_am
 #' @para as_sim_dat e.g., mass_prop_grad_as
-mass_sim_point <- function(ap_sim_dat, as_sim_dat) {
-  p1 <- ggplot(data = ap_sim_dat) +
+mass_sim_point <- function(am_sim_dat, as_sim_dat) {
+  p1 <- ggplot(data = am_sim_dat) +
     geom_ribbon(aes(ymin = lwr, ymax = upr,
                     x = LMAs_var_mean,
-                    fill = factor(ap)),
+                    fill = factor(am)),
                 alpha = 0.4)  +
-    geom_line(aes(y = mean, x = LMAs_var_mean, col = factor(ap))) +
+    geom_line(aes(y = mean, x = LMAs_var_mean, col = factor(am))) +
     labs(
       color = expression(alpha[p]),
       fill = expression(alpha[p]))
