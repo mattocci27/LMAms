@@ -121,8 +121,7 @@ main_list <- list(
       d |>
         filter(!is.na(LD)) |>
         filter(!is.na(LT)) |>
-        write_csv("data/pa_data.csv")
-      paste("data/pa_data.csv")
+        my_write_csv("data/pa_data.csv")
     },
     format = "file"
   ),
@@ -206,8 +205,9 @@ main_list <- list(
     })
   ),
 
+  # we have many loo list
+  # combine them in to a single list
   loo_map,
-
   tar_combine(
     loo_list,
     loo_map,
@@ -233,7 +233,7 @@ main_list <- list(
 
   tar_target(
     model_selection_csv,
-    write_model_selction(loo_tbl),
+    write_model_selection(loo_tbl, "data/model_selection.csv"),
     format = "file"
   ),
 
