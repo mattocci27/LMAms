@@ -506,8 +506,8 @@ create_sim_dat <- function() {
 }
 
 #' @para loo_tbl csv file of loo
-write_model_selction <- function(loo_tbl) {
-  output <- "data/model_selection.csv"
+write_model_selection <- function(loo_tbl, output) {
+#  output <- "data/model_selection.csv"
   d <- read_csv(loo_tbl)
 
   d |>
@@ -678,12 +678,6 @@ get_post_para <- function(data, row, col, digits = 2, nsmall = 2) {
     pull({{col}})
 }
 
-#' @title write_csv for targets
-#' @inheritParams readr::write_csv
-my_write_csv <- function(x, path, append = FALSE, col_names = !append) {
-    write_csv(x, path, append = FALSE, col_names = !append)
-    paste(path)
-}
 
 
 #' @title Generate data for LL partial plot
