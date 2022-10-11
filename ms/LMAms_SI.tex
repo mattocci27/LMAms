@@ -242,7 +242,7 @@ within and among plant species}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, boxrule=0pt, frame hidden, enhanced, interior hidden, borderline west={3pt}{0pt}{shadecolor}, sharp corners]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, enhanced, interior hidden, frame hidden, breakable]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -459,11 +459,11 @@ obtianed from the above simulation:
 \]
 
 Parameter settings are as following, GLOPNET: \(\mu_p\) = 58.8,
-\(\mu_s\) = 63.1, \(\sigma_p\) = 2.12, \(\alpha_p\) = 0.28, \(\alpha_s\)
-= -0.13, sun leaves in Panama: \(\mu_p\) = 45.1, \(\mu_s\) = 31,
-\(\sigma_p\) = 1.53, and \(\alpha_p\) = 0.56, \(\alpha_s\) = 0, shade
-leaves in Panama: \(\mu_p\) = 8.6, \(\mu_s\) = 24, \(\sigma_p\) = 1.88,
-\(\alpha_p\) = 0.56, \(\alpha_s\) = 0, \(\rho\) = -0.4.
+\(\mu_s\) = 63.1, \(\sigma_p\) = 2.12, \(\alpha_p\) = , \(\alpha_s\) =
+-0.13, sun leaves in Panama: \(\mu_p\) = 45.1, \(\mu_s\) = 31,
+\(\sigma_p\) = 1.53, and \(\alpha_p\) = , \(\alpha_s\) = 0, shade leaves
+in Panama: \(\mu_p\) = 8.6, \(\mu_s\) = 24, \(\sigma_p\) = 1.88,
+\(\alpha_p\) = , \(\alpha_s\) = 0, \(\rho\) = -0.4.
 
 We finally calculated mass dependicy (\emph{b}) using the following
 ordinary least square regression:
@@ -568,16 +568,16 @@ variance in LMAs to LMA for the different ranges of the scaling exponent
 \(\alpha_p\) vary from 0.1 to 1.0 while the scaling exponent
 \(\alpha_s\) is constant (\(\alpha_s\) = -0.13,). \textbf{b}, the
 scaling exponent \(\alpha_s\) vary from -0.5 to 0.5 while the scaling
-exponent \(\alpha_p\) is constant (\(\alpha_p\) = 0.28,). Solid lines
+exponent \(\alpha_p\) is constant (\(\alpha_p\) = ,). Solid lines
 indicate simulated means and shaded regions indicate 95\% CI. The
-photosynthetic rate (\emph{A}\textsubscript{max}) is primarily
-mass-dependent (\emph{b} \textgreater{} 0.5), primarily area-dependent
-(0.5 \textgreater{} \emph{b} \textgreater{} 0) and purely area-dependent
-(\emph{b} = 0) (\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
-Note that when \emph{b} \textgreater{} 1, \emph{A}\textsubscript{area}
-dramatically increase with LMA, which is not realistic. Parameter
-settings: \(\alpha_0\) = 1.77, \(\mu_p\) = 58.8, \(\mu_s\) = 63.1,
-\(\sigma_p\) = 2.12.}
+photosynthetic rate (\emph{A}) is primarily mass-dependent (\emph{b}
+\textgreater{} 0.5), primarily area-dependent (0.5 \textgreater{}
+\emph{b} \textgreater{} 0) and purely area-dependent (\emph{b} = 0)
+(\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}). Note that when
+\emph{b} \textgreater{} 1, \emph{A}\textsubscript{area} dramatically
+increase with LMA, which is not realistic. Parameter settings:
+\(\alpha_0\) = 1.77, \(\mu_p\) = 58.8, \(\mu_s\) = 63.1, \(\sigma_p\) =
+2.12.}
 
 \end{figure}
 
@@ -596,7 +596,7 @@ settings: \(\alpha_0\) = 1.77, \(\mu_p\) = 58.8, \(\mu_s\) = 63.1,
 dependency (\emph{b} in Eq. \ref{eq-mass} in the main tex) and relative
 variance in LMAs to LMA for the simulated dataset gerenated by a normal
 distribution (N) and a multivariate normal distribution (MVN). Parameter
-settings: \(\alpha_0\) = 0.33, \(\alpha_p\) = 0.56, \(\alpha_s\) = 0,
+settings: \(\alpha_0\) = 0.33, \(\alpha_p\) = , \(\alpha_s\) = 0,
 \(\mu_p\) = 8.6, \(\mu_s\) = 24, \(\sigma_p\) = 1.88, and \(\rho\) =
 -0.4,}
 
@@ -638,14 +638,15 @@ The best model for the GLOPNET dataset is (2) LMAm and LMAs, and (b)
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{//}\AlertTok{NOTE}\CommentTok{: THIS STAN CODE IS GENERATED VIA "update.py"}
-\KeywordTok{data}\NormalTok{\{}
+\KeywordTok{data}\NormalTok{ \{}
   \DataTypeTok{int}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{} N;}
   \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{}[N] LMA;}
   \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{}[N] A;}
   \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{}[N] R;}
   \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{}[N] LL;}
 \NormalTok{\}}
-\KeywordTok{transformed data}\NormalTok{\{}
+
+\KeywordTok{transformed data}\NormalTok{ \{}
   \DataTypeTok{vector}\NormalTok{[N] log\_A;}
   \DataTypeTok{vector}\NormalTok{[N] log\_LL;}
   \DataTypeTok{vector}\NormalTok{[N] log\_R;}
@@ -660,32 +661,33 @@ The best model for the GLOPNET dataset is (2) LMAm and LMAs, and (b)
 \NormalTok{  obs = append\_col(append\_col(log\_A, log\_LL), log\_R);}
 \NormalTok{\}}
 
-\KeywordTok{parameters}\NormalTok{\{}
+\KeywordTok{parameters}\NormalTok{ \{}
   \DataTypeTok{real}\NormalTok{ a0;}
-  \DataTypeTok{real}\NormalTok{ ap;}
+  \DataTypeTok{real}\NormalTok{ am;}
   \DataTypeTok{real}\NormalTok{ as;}
   \DataTypeTok{real}\NormalTok{ b0;}
   \DataTypeTok{real}\NormalTok{ bs;}
   \DataTypeTok{real}\NormalTok{ g0;}
-  \DataTypeTok{real}\NormalTok{ gp;}
+  \DataTypeTok{real}\NormalTok{ gm;}
   \DataTypeTok{real}\NormalTok{ gs;}
   \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{, }\KeywordTok{upper}\NormalTok{=}\DecValTok{1}\NormalTok{\textgreater{}[N] p;}
   \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{}[}\DecValTok{3}\NormalTok{] L\_sigma;}
   \DataTypeTok{cholesky\_factor\_corr}\NormalTok{[}\DecValTok{3}\NormalTok{] L\_Omega;}
 \NormalTok{\}}
-\KeywordTok{transformed parameters}\NormalTok{\{}
-  \DataTypeTok{matrix}\NormalTok{[N,}\DecValTok{3}\NormalTok{] Mu;}
-  \DataTypeTok{matrix}\NormalTok{[}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{] Z;}
-  \DataTypeTok{matrix}\NormalTok{[N,}\DecValTok{3}\NormalTok{] X;}
-\NormalTok{  Z[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{] = a0;}
-\NormalTok{  Z[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{] = b0;}
-\NormalTok{  Z[}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{] = g0;}
-\NormalTok{  Z[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{] = ap;}
-\NormalTok{  Z[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{] = }\DecValTok{0}\NormalTok{;}
-\NormalTok{  Z[}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{] = gp;}
-\NormalTok{  Z[}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{] = as;}
-\NormalTok{  Z[}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{] = bs;}
-\NormalTok{  Z[}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{] = gs;}
+
+\KeywordTok{transformed parameters}\NormalTok{ \{}
+  \DataTypeTok{matrix}\NormalTok{[N, }\DecValTok{3}\NormalTok{] Mu;}
+  \DataTypeTok{matrix}\NormalTok{[}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{] Z;}
+  \DataTypeTok{matrix}\NormalTok{[N, }\DecValTok{3}\NormalTok{] X;}
+\NormalTok{  Z[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{] = a0;}
+\NormalTok{  Z[}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{] = b0;}
+\NormalTok{  Z[}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{] = g0;}
+\NormalTok{  Z[}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{] = am;}
+\NormalTok{  Z[}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{] = }\DecValTok{0}\NormalTok{;}
+\NormalTok{  Z[}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{] = gm;}
+\NormalTok{  Z[}\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{] = as;}
+\NormalTok{  Z[}\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{] = bs;}
+\NormalTok{  Z[}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{] = gs;}
 
   \CommentTok{//log\_LMAm = log(LMA) + log(p);}
   \CommentTok{//log\_LMAs = log(LMA) + log(1 {-} p);}
@@ -693,14 +695,15 @@ The best model for the GLOPNET dataset is (2) LMAm and LMAs, and (b)
 \NormalTok{  X = append\_col(append\_col(intercept, log(LMA) + log(p)), log(LMA) + log(}\DecValTok{1}\NormalTok{ {-} p));}
 \NormalTok{  Mu = X * Z;}
 \NormalTok{\}}
-\KeywordTok{model}\NormalTok{\{}
+
+\KeywordTok{model}\NormalTok{ \{}
   \CommentTok{// priors}
 \NormalTok{  a0 \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
 \NormalTok{  b0 \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
 \NormalTok{  g0 \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
-\NormalTok{  ap \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
+\NormalTok{  am \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
 \NormalTok{  bs \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
-\NormalTok{  gp \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
+\NormalTok{  gm \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
 \NormalTok{  gs \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
 \NormalTok{  as \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
 \NormalTok{  p \textasciitilde{} beta(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{);}
@@ -711,6 +714,7 @@ The best model for the GLOPNET dataset is (2) LMAm and LMAs, and (b)
   \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\NormalTok{:N)}
      \KeywordTok{target +=}\NormalTok{ multi\_normal\_cholesky\_lpdf(obs[i,] | Mu[i,], diag\_pre\_multiply(L\_sigma, L\_Omega));}
 \NormalTok{\}}
+
 \KeywordTok{generated quantities}\NormalTok{ \{}
   \DataTypeTok{vector}\NormalTok{[N] log\_lik;}
   \DataTypeTok{real}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{={-}}\DecValTok{1}\NormalTok{, }\KeywordTok{upper}\NormalTok{=}\DecValTok{1}\NormalTok{\textgreater{} rho12;}
@@ -742,7 +746,7 @@ The best model for the Panama dataset is (4) LMAm, LMAs and light, and
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{//}\AlertTok{NOTE}\CommentTok{: THIS STAN CODE IS GENERATED VIA "update.py"}
-\KeywordTok{data}\NormalTok{\{}
+\KeywordTok{data}\NormalTok{ \{}
   \DataTypeTok{int}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{} N;}
   \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{}[N] LMA;}
   \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{}[N] A;}
@@ -750,7 +754,8 @@ The best model for the Panama dataset is (4) LMAm, LMAs and light, and
   \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{}[N] LL;}
   \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{}[N] leaf;}
 \NormalTok{\}}
-\KeywordTok{transformed data}\NormalTok{\{}
+
+\KeywordTok{transformed data}\NormalTok{ \{}
   \DataTypeTok{vector}\NormalTok{[N] log\_A;}
   \DataTypeTok{vector}\NormalTok{[N] log\_LL;}
   \DataTypeTok{vector}\NormalTok{[N] log\_R;}
@@ -765,35 +770,36 @@ The best model for the Panama dataset is (4) LMAm, LMAs and light, and
 \NormalTok{  obs = append\_col(append\_col(log\_A, log\_LL), log\_R);}
 \NormalTok{\}}
 
-\KeywordTok{parameters}\NormalTok{\{}
+\KeywordTok{parameters}\NormalTok{ \{}
   \DataTypeTok{real}\NormalTok{ a0;}
-  \DataTypeTok{real}\NormalTok{ ap;}
+  \DataTypeTok{real}\NormalTok{ am;}
   \DataTypeTok{real}\NormalTok{ b0;}
   \DataTypeTok{real}\NormalTok{ bs;}
   \DataTypeTok{real}\NormalTok{ g0;}
-  \DataTypeTok{real}\NormalTok{ gp;}
+  \DataTypeTok{real}\NormalTok{ gm;}
   \DataTypeTok{real}\NormalTok{ gs;}
   \DataTypeTok{real}\NormalTok{ theta;}
   \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{, }\KeywordTok{upper}\NormalTok{=}\DecValTok{1}\NormalTok{\textgreater{}[N] p;}
   \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{}[}\DecValTok{3}\NormalTok{] L\_sigma;}
   \DataTypeTok{cholesky\_factor\_corr}\NormalTok{[}\DecValTok{3}\NormalTok{] L\_Omega;}
 \NormalTok{\}}
-\KeywordTok{transformed parameters}\NormalTok{\{}
-  \DataTypeTok{matrix}\NormalTok{[N,}\DecValTok{3}\NormalTok{] Mu;}
-  \DataTypeTok{matrix}\NormalTok{[}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{] Z;}
-  \DataTypeTok{matrix}\NormalTok{[N,}\DecValTok{4}\NormalTok{] X;}
-\NormalTok{  Z[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{] = a0;}
-\NormalTok{  Z[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{] = b0;}
-\NormalTok{  Z[}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{] = g0;}
-\NormalTok{  Z[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{] = ap;}
-\NormalTok{  Z[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{] = }\DecValTok{0}\NormalTok{;}
-\NormalTok{  Z[}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{] = gp;}
-\NormalTok{  Z[}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{] = }\DecValTok{0}\NormalTok{;}
-\NormalTok{  Z[}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{] = bs;}
-\NormalTok{  Z[}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{] = gs;}
-\NormalTok{  Z[}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{] = }\DecValTok{0}\NormalTok{;}
-\NormalTok{  Z[}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{] = theta;}
-\NormalTok{  Z[}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{] = }\DecValTok{0}\NormalTok{;}
+
+\KeywordTok{transformed parameters}\NormalTok{ \{}
+  \DataTypeTok{matrix}\NormalTok{[N, }\DecValTok{3}\NormalTok{] Mu;}
+  \DataTypeTok{matrix}\NormalTok{[}\DecValTok{4}\NormalTok{, }\DecValTok{3}\NormalTok{] Z;}
+  \DataTypeTok{matrix}\NormalTok{[N, }\DecValTok{4}\NormalTok{] X;}
+\NormalTok{  Z[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{] = a0;}
+\NormalTok{  Z[}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{] = b0;}
+\NormalTok{  Z[}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{] = g0;}
+\NormalTok{  Z[}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{] = am;}
+\NormalTok{  Z[}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{] = }\DecValTok{0}\NormalTok{;}
+\NormalTok{  Z[}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{] = gm;}
+\NormalTok{  Z[}\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{] = }\DecValTok{0}\NormalTok{;}
+\NormalTok{  Z[}\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{] = bs;}
+\NormalTok{  Z[}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{] = gs;}
+\NormalTok{  Z[}\DecValTok{4}\NormalTok{, }\DecValTok{1}\NormalTok{] = }\DecValTok{0}\NormalTok{;}
+\NormalTok{  Z[}\DecValTok{4}\NormalTok{, }\DecValTok{2}\NormalTok{] = theta;}
+\NormalTok{  Z[}\DecValTok{4}\NormalTok{, }\DecValTok{3}\NormalTok{] = }\DecValTok{0}\NormalTok{;}
 
   \CommentTok{//log\_LMAm = log(LMA) + log(p);}
   \CommentTok{//log\_LMAs = log(LMA) + log(1 {-} p);}
@@ -801,17 +807,18 @@ The best model for the Panama dataset is (4) LMAm, LMAs and light, and
 \NormalTok{  X = append\_col(append\_col(append\_col(intercept,}
 \NormalTok{    log(LMA) + log(p)),}
 \NormalTok{    log(LMA) + log(}\DecValTok{1}\NormalTok{ {-} p)),}
-\NormalTok{     leaf);}
+\NormalTok{    leaf);}
 \NormalTok{  Mu = X * Z;}
 \NormalTok{\}}
-\KeywordTok{model}\NormalTok{\{}
+
+\KeywordTok{model}\NormalTok{ \{}
   \CommentTok{// priors}
 \NormalTok{  a0 \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
 \NormalTok{  b0 \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
 \NormalTok{  g0 \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
-\NormalTok{  ap \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
+\NormalTok{  am \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
 \NormalTok{  bs \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
-\NormalTok{  gp \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
+\NormalTok{  gm \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
 \NormalTok{  gs \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
 \NormalTok{  theta \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
 \NormalTok{  p \textasciitilde{} beta(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{);}
@@ -822,6 +829,7 @@ The best model for the Panama dataset is (4) LMAm, LMAs and light, and
   \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\NormalTok{:N)}
      \KeywordTok{target +=}\NormalTok{ multi\_normal\_cholesky\_lpdf(obs[i,] | Mu[i,], diag\_pre\_multiply(L\_sigma, L\_Omega));}
 \NormalTok{\}}
+
 \KeywordTok{generated quantities}\NormalTok{ \{}
   \DataTypeTok{vector}\NormalTok{[N] log\_lik;}
   \DataTypeTok{real}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{={-}}\DecValTok{1}\NormalTok{, }\KeywordTok{upper}\NormalTok{=}\DecValTok{1}\NormalTok{\textgreater{} rho12;}
