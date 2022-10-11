@@ -279,7 +279,7 @@ The relationships between mass dependency (*b* in Eq. \ref{eq-mass} in the main 
 **a**, the scaling exponent $\alpha_p$ vary from 0.1 to 1.0 while the scaling exponent $\alpha_s$ is constant ($\alpha_s$ = `r para$GL$as`,).
 **b**, the scaling exponent $\alpha_s$ vary from -0.5 to 0.5 while the scaling exponent $\alpha_p$ is constant ($\alpha_p$ = `r para$GL$ap`,).
 Solid lines indicate simulated means and shaded regions indicate 95% CI.
-The photosynthetic rate (*A*~max~) is primarily mass-dependent (*b* > 0.5), primarily area-dependent (0.5 > *b* > 0) and purely area-dependent (*b* = 0) [@Osnas2018].
+The photosynthetic rate (*A*) is primarily mass-dependent (*b* > 0.5), primarily area-dependent (0.5 > *b* > 0) and purely area-dependent (*b* = 0) [@Osnas2018].
 Note that when *b* > 1, *A*~area~ dramatically increase with LMA, which is not realistic.
 Parameter settings:
 $\alpha_0$ = `r para$GL$a0`,
@@ -319,14 +319,14 @@ LMAm yields more consistent relationships compared to LMA and LMAs; e.g., evergr
 
 The best model for the GLOPNET dataset is (2) LMAm and LMAs, and (b) $\beta_p = 0$.
 
-```{stan, output.var="hoge",file=here('stan/GL_Aps_LLs.stan'), eval=FALSE, echo=TRUE}
+```{stan, output.var="hoge",file=here('stan/ams_bs.stan'), eval=FALSE, echo=TRUE}
 ```
 
 ## Stan code for the Panama dataset
 
 The best model for the Panama dataset is (4) LMAm, LMAs and light, and (a) $\alpha_s = 0$  and $\beta_p = 0$,
 
-```{stan, output.var="hoge",file=here('stan/PA_Ap_LLs_opt.stan'), eval=FALSE, echo=TRUE}
+```{stan, output.var="hoge",file=here('stan/am_bs_opt.stan'), eval=FALSE, echo=TRUE}
 ```
 
 # References
