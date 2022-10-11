@@ -235,7 +235,7 @@ gen_pa_long <- function(pa_res_csv) {
                  "LL~(months)",
                  "italic(N)[area]~(~g~m^{-2})",
                  "italic(P)[area]~(~g~m^{-2})",
-                 "italic(CL)[area]~(~g~m^{-2})"
+                 "CL[area]~(~g~m^{-2})"
                  ))) |>
     mutate(gr = factor(site_strata,
       labels = c("Sun-Wet",
@@ -270,7 +270,7 @@ gen_pa_ld_long <- function(pa_res_ld_csv) {
                  "LL~(months)",
                  "italic(N)[area]~(~g~m^{-2})",
                  "italic(P)[area]~(~g~m^{-2})",
-                 "italic(CL)[area]~(~g~m^{-2})"
+                 "CL[area]~(~g~m^{-2})"
                  ))) |>
     mutate(gr = factor(site_strata,
       labels = c("Sun-Wet",
