@@ -407,7 +407,7 @@
 
 
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, sharp corners, breakable, enhanced, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, interior hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, enhanced, sharp corners, breakable, interior hidden]}{\end{tcolorbox}}\fi
 
 \textbf{Running title}: Metabolic and structural leaf mass
 
@@ -761,13 +761,13 @@ interspecific variation (the dataset reports 2,548 species \(\times\)
 site combinations, with 2,021 unique species and only 350 species
 occurring at more than one site) and only reports data for sun leaves if
 data for both sun and shade leaves are available
-(\protect\hyperlink{ref-Write2004a}{\textbf{Write2004a?}}). In contrast,
-the Panama dataset represents both inter- and intraspecific variation,
-including leaves sampled at two canopy positions (``sun'': full sun at
-the top of the canopy; and ``shade'': well shaded, sampled within 2 m of
-the forest floor) from trees within reach of canopy cranes. The dry MNM
-site is a semi-deciduous coastal Pacific forest with a 5-month dry
-season from December-April and 1740 mm of annual rainfall
+(\protect\hyperlink{ref-Wright2004a}{I. J. Wright et al., 2004}). In
+contrast, the Panama dataset represents both inter- and intraspecific
+variation, including leaves sampled at two canopy positions (``sun'':
+full sun at the top of the canopy; and ``shade'': well shaded, sampled
+within 2 m of the forest floor) from trees within reach of canopy
+cranes. The dry MNM site is a semi-deciduous coastal Pacific forest with
+a 5-month dry season from December-April and 1740 mm of annual rainfall
 (\protect\hyperlink{ref-Wright2003}{S. J. Wright et al., 2003}). The MNM
 crane is 40 m tall with a 51 m long boom. The wet SL site is an
 evergreen Caribbean coastal forest with 3100 mm of annual rainfall
@@ -806,11 +806,11 @@ evaluation}\label{model-estimation-and-evaluation}}
 We modeled \emph{A}\textsubscript{area} and \emph{R}\textsubscript{area}
 using Eqs. \ref{eq:Aarea} and \ref{eq:Rarea}, respectively, for both
 GLOPNET and Panama. To model LL for GLOPNET, we used Eq. \ref{eq:LL_pot}
-(no light effects), because GLOPNET does not report canopy position and
-thus primarily represents interspecific variation (see above). To model
-LL for Panama, we used Eq. \ref{eq:LL_opt} (light effects model), which
-was motivated by the negative intraspecific LL-LMA relationship observed
-in Panama (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018};
+(no light effects), because GLOPNET does not report canopy position (and
+prioritizes data for sun leaves, as described above). To model LL for
+Panama, we used Eq. \ref{eq:LL_opt} (light effects model), which was
+motivated by the negative intraspecific LL-LMA relationship observed in
+Panama (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018};
 \protect\hyperlink{ref-Xu2017}{Xu et al., 2017}) and elsewhere
 (\protect\hyperlink{ref-Lusk2008}{Lusk et al., 2008};
 \protect\hyperlink{ref-Russo2016}{Russo \& Kitajima, 2016}).
@@ -821,63 +821,77 @@ Hamiltonian Monte Carlo algorithm (HMC) implemented in Stan
 non-informative or weakly informative prior distributions
 (\protect\hyperlink{ref-Lemoine2019}{Lemoine, 2019}). Prior
 distributions for the latent variables \emph{f}\textsubscript{i} (which
-are used to partition LMA into LMAm and LMAs according to Eqs. 4-6 were
-non-informative uniform(0, 1) distributions, (i.e., LMA was partitioned
-based on patterns in the data). See Appendix S1 for more detail. The
-Stan code use to fit models is available from Github at:
-\href{https://github.com/mattocci27/xxx}{https://github.com/mattocci27/XXX}.
-Convergence of the posterior distribution was assessed with the
-Gelman-Rubin statistic with a convergence threshold of 1.05 for all
-parameters (\protect\hyperlink{ref-Gelman2013}{Gelman et al., 2013}).
+are used to partition LMA into LMAm and LMAs according to Eq.
+\ref{eq:LMA} were non-informative uniform(0, 1) distributions, (i.e.,
+LMA was partitioned based on patterns in the data). See Appendix S1 for
+more detail. The Stan code use to fit models is available from Github
+at: \url{https://github.com/mattocci27/LMAms}. Convergence of the
+posterior distribution was assessed with the Gelman-Rubin statistic with
+a convergence threshold of 1.05 for all parameters
+(\protect\hyperlink{ref-Gelman2013}{Gelman et al., 2013}).
 
-Because our statistical approach includes many parameters (one latent
-variable \emph{f\textsubscript{i}} to partition LMA into LMAm and LMAs
-for each leaf sample), we implemented tests with randomized data
-(\emph{n} = 10) to assess potential overfitting. We generated randomized
-datasets by randomizing all the trait values (LMA,
-\emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and LL)
-across species. Thus, the randomized datasets had zero expected
-covariance among traits. Model results obtained from the randomized
-datasets did not convergent, showed divergent transitions or converged
-but did not show significant patterns in the scaling parameters
-(Appendix S2). Divergent transitions suggest that estimates are based on
-the incomplete exploration of the simulated Hamiltonian trajectory and
-not trusted (\protect\hyperlink{ref-Betancourt2016}{Betancourt, 2016}).
-In contrast, models fit to observed data converged without divergent
-transitions and produced significant results for both GLOPNET and Panama
-(see Results). Thus, the tests with randomized data indicate that our
-model is not inherently prone to overfitting or to producing patterns
-from noise. We therefore assume that estimates of LMAm and LMAs obtained
-from the GLOPNET and Panama datasets reflect meaningful patterns in the
-observations and allow for meaningful tests of our hypotheses.
+Because our two-dimensional (LMAm-LMAs) modeling approach includes many
+parameters (one latent variable
+\emph{f}\textasciitilde i\emph{\textasciitilde{} to partition LMA into
+LMAm and LMAs for each leaf sample), we implemented tests with
+randomized data to assess potential overfitting. We generated 10
+different randomized datasets by randomizing all trait values (LMA,
+}A\emph{\textsubscript{area}, }R*\textsubscript{area} and LL) across
+species. Thus, the randomized datasets had zero expected covariance
+among traits. Models fit to the randomized datasets either did not
+converge or showed divergent transitions (Appendix S2), which do not
+provide reliable inferences
+(\protect\hyperlink{ref-Betancourt2016}{Betancourt, 2016}). In simple
+terms, the two-dimensional models failed when fit to randomized data. In
+contrast, when fit to the observed (non-randomized) data, the
+two-dimensional models converged without divergent transitions and
+out-performed one-dimensional models (total LMA) for both GLOPNET and
+Panama (see Results). Thus, the tests with randomized data indicate that
+our two-dimensional approach is not inherently prone to overfitting or
+to creating spurious results. We therefore assume that estimates of LMAm
+and LMAs obtained from the GLOPNET and Panama datasets reflect
+meaningful patterns in the observations and allow for a meaningful
+exploration of our questions.
 
-Instead of using exact leave-one-out cross-validation (LOO), which is a
-robust way to compare models with different numbers of parameters but
-computationally impractical, we compared the performance of different
-models (Table 1) using Pareto-smoothed importance sampling leave-one-out
+We used Pareto-smoothed importance sampling leave-one-out
 cross-validation (PSIS-LOO; Vehtari et al.
-(\protect\hyperlink{ref-Vehtari2014}{2014}); Vehtari et al.
-(\protect\hyperlink{ref-Vehtari2017}{2017})), an approximation to LOO.
-The PSIS-LOO gives the accurate and reliable results
-(\protect\hyperlink{ref-Vehtari2014}{Vehtari et al., 2014},
-\protect\hyperlink{ref-Vehtari2017}{2017}). Similar to other information
-criteria (e.g.~Akaike Information Criterion (AIC); Burnham \& Anderson
-(\protect\hyperlink{ref-Burnham2002}{2002})), a better model in terms of
-predictive accuracy shows a smaller LOO Information Criterion (LOOIC).
-
-\hypertarget{partitioning-lma-variance-into-metabolic-and-structural-components}{%
-\subsection{Partitioning LMA variance into metabolic and structural
-components}\label{partitioning-lma-variance-into-metabolic-and-structural-components}}
-
-We partitioned variance of the posterior means of LMAm and LMAs into
-between group (evergreen vs.~deciduous for GLOPNET and Panama, and dry
-vs.~wet sites and sun vs.~shade leaves for Panama) and within group
-components using ANOVA.
+(\protect\hyperlink{ref-Vehtari2017}{2017})) to compare the performance
+of different models. PSIS-LOO is an accurate and reliable approximation
+to standard leave-one-out cross-validation (LOO), which is a robust
+method for comparing models with different numbers of parameters
+(\protect\hyperlink{ref-Vehtari2017}{Vehtari et al., 2017}). LOO
+requires \emph{n} model fits (for a dataset with \emph{n} observations)
+and was therefore impractical in our study due to our
+computationally-demanding modeling approach. We used PSIS-LOO to
+calculate the LOO Information Criterion (LOOIC) for each model. A lower
+LOOIC indicates a better model in terms of predictive accuracy
+(\protect\hyperlink{ref-Vehtari2017}{Vehtari et al., 2017}).
 
 \hypertarget{understanding-relationships-between-photosynthetic-capacity-and-lma}{%
 \subsection{Understanding relationships between photosynthetic capacity
 and
 LMA}\label{understanding-relationships-between-photosynthetic-capacity-and-lma}}
+
+We applied our LMAm-LMAs model to simulated data to better understand
+relationships between photosynthetic capacity (A) and LMA. The causes
+and interpretation of relationships between A and LMA are controversial
+(\protect\hyperlink{ref-Westoby2013}{Westoby et al., 2013}). Although A
+is often mass-normalized (e.g., I. J. Wright et al.
+(\protect\hyperlink{ref-Wright2004a}{2004}); Shipley et al.
+(\protect\hyperlink{ref-Shipley2006}{2006}); Blonder et al.
+(\protect\hyperlink{ref-Blonder2011}{2011})), it has been argued that A
+should be area-normalized when exploring trait relationships, because
+photosynthesis is an area-based process
+(\protect\hyperlink{ref-Lloyd2013}{Lloyd et al., 2013}). Consistent with
+this argument, Osnas et al. (\protect\hyperlink{ref-Osnas2013}{2013})
+showed that across global species, variation in whole-leaf A is strongly
+dependent on leaf area, but only weakly dependent on leaf mass (after
+controlling for variation in leaf area). Osnas et al.
+(\protect\hyperlink{ref-Osnas2018}{2018}) further showed that the
+relationship between A and LMA (i.e., the degree of mass-
+vs.~area-dependence) is sensitive to the amount of LL variation in an
+assemblage, which we hypothesize depends on the fraction of total LMA
+variance in the assemblage that is due to LMAs variance.
 
 We applied our LMAm+LMAs model to simulated data to better understand
 relationships between photosynthetic capacity
@@ -885,7 +899,7 @@ relationships between photosynthetic capacity
 and interpretation of \emph{A}\textsubscript{max} vs.~LMA relationships
 are controversial (\protect\hyperlink{ref-Westoby2013}{Westoby et al.,
 2013}). Although \emph{A}\textsubscript{max} is often mass-normalized
-(e.g., I. J. Wright et al. (\protect\hyperlink{ref-Wright2005}{2005});
+(e.g., I. J. Wright et al. (\protect\hyperlink{ref-Wright2004a}{2004});
 Shipley et al. (\protect\hyperlink{ref-Shipley2006}{2006}); Blonder et
 al. (\protect\hyperlink{ref-Blonder2011}{2011})), Lloyd et al.
 (\protect\hyperlink{ref-Lloyd2013}{2013}) argued that photosynthesis is
@@ -914,63 +928,67 @@ sensitivity of \emph{A}\textsubscript{area} to LMAs (parameter
 variance in LMAs. For each simulated dataset, we quantified the
 \emph{A}\textsubscript{max} vs.~LMA relationship following Osnas et al.
 (\protect\hyperlink{ref-Osnas2018}{2018}):
-
 \begin{equation}\protect\hypertarget{eq-mass}{}{
-A_{\mathrm{area} \, i} = a (LMA_i)^{b}\epsilon_i
+A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i
 }\label{eq-mass}\end{equation}
 
-where LMA is the sum of LMAm and LMAs (Eq.~\ref{eq-LMA}), \emph{a} is a
+where LMA is the sum of LMAm and LMAs (Eq.~\ref{eq-LMA}), \emph{c} is a
 fitted constant, and \emph{b} is an index of mass-dependence as
 illustrated by the following cases
 (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018},
 \protect\hyperlink{ref-Osnas2013}{2013}): if \emph{b} = 0, then
 \emph{A}\textsubscript{area} is independent of LMA, which implies that
-whole-leaf \emph{A}\textsubscript{max} is proportional to leaf area;
-conversely, if \emph{b} = 1, then \emph{A}\textsubscript{area} is
-proportional to LMA, which implies that whole-leaf
-\emph{A}\textsubscript{max} is proportional to leaf mass. Intermediate
-cases (0 \textless{} \emph{b} \textless{} 1), as well as more extreme
-cases (\emph{b} \(\leq\) 0 or \emph{b} \(\geq\) 1), are also possible.
-Note that although Eq.~\ref{eq-mass} uses area-normalized
-\emph{A}\textsubscript{max}, equivalent results are obtained from
-mass-normalized \emph{A}\textsubscript{max}
-(\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}).
+whole-leaf A is proportional to leaf area; conversely, if \emph{b} = 1,
+then \emph{A}\textsubscript{area} is proportional to LMA, which implies
+that whole-leaf A is proportional to leaf mass. Intermediate cases (0
+\textless{} \emph{b} \textless{} 1), as well as more extreme cases
+(\emph{b} \(\le\) 0 or \emph{b} \(\geq\) 1), are also possible, but
+empirical estimates tend to be between 0 and 1
+(\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}). Note that
+applying Eq.~\ref{eq-mass} to either mass- or area-normalized A yields
+equivalent results (\protect\hyperlink{ref-Osnas2018}{Osnas et al.,
+2018}).
 
-We prepared LMAm and LMAs values based on the empirical estimates of
-these values from our GLOPNET and Panama analyses, with a sample size of
-100. For simulations of GLOPNET and Panama sun leaves, LMAm values were
-generated by a random draw from a lognormal distribution with the
-empirical estimates of mean log(LMAm) and standard deviations of
-log(LMAm). LMAs values were generated by a random draw from a lognormal
-distribution with the empirical estimates of mean log(LMAs), while with
-changing the standard deviation of log(LMAs) between log(1.01) and
-log(10).
+For these simulations, we generated LMAm and LMAs values based on their
+estimated distributions in our GLOPNET and Panama analyses, while
+varying the variance of LMAs (so that LMAs contributed different
+fractions of total LMA variance in different simulated datasets).
+Although Panama sun and shade leaves were analyzed together when fitting
+the LMAm-LMAs models Eqs. \ref{eq:Aarea} and \ref{eq:LL_opt}, they were
+analyzed separately here due to their different estimated covariance
+structures (see details below).
 
-Because there was a negative covariance between LMAm and LMAs in the
-Panama shade leaves dataset (Fig. S\ref{fig-LMAm_LMAs}), we used a
-multivariate normal distribution to generated LMAm and LMAs for the
-simulated Panama shade leaves dataset. Similar to the GLOPNET and Panama
-sun leaves datasets, we fixed the empirical estimates of mean log(LMAm)
-and log(LMAs), and standard deviation of log(LMAm), while with changing
-the standard deviation of log(LMAs) between log(1.01) and log(10). The
-correlation coefficient was set to -0.4.
+For GLOPNET and Panama sun leaves, LMAm and LMAs were generated
+independently of each other, consistent with the low estimated
+correlations between LMAm and LMAs in these assemblages (see Results).
+Specifically, LMAm values were randomly sampled from a lognormal
+distribution with the log-scale mean and standard deviation given by our
+model outputs; and LMAs values were randomly sampled from a lognormal
+distribution with the log-scale mean given by our model outputs and the
+log-scale standard deviation varying between log(1.01) and log(10) in
+different simulated datasets. In contrast to GLOPNET and Panama sun
+leaves, our analysis revealed a negative correlation of r = −0.4 between
+LMAm and LMAs for Panama shade leaves (see Results). Therefore, we used
+a multivariate normal distribution with r = −0.4 to generate log(LMAm)
+and log(LMAs) for the Panama shade simulations. Otherwise, the
+simulation protocol was as described above for GLOPNET and Panama sun
+leaves.
 
-For simulations of Panama shade leaves, LMAm and LMAs values were
-generated by a random draw from a multivariate normal distribution with
-the empirical estimates of mean log(LMAm) and standard deviations of
-log(LMAm), the empirical estimates of mean log(LMAs), and the estimated
-correlation value with log(LMAm) and log(LMAs), while with changing the
-standard deviation of log(LMAs) between log(1.01) and log(10).
-\emph{A}\textsubscript{area} was then generated based on LMAm, LMAs and
-estimated \(\alpha_m\) and \(\alpha_s\) values (Eq.~\ref{eq-mass}) for
-each dataset. Using the above values, we calculated \emph{b} for
-GLOPNET, Panama sun leaves and Panama shade leaves. We repeated these
-steps 1000 times.
+For each simulated set of LMAm and LMAs values, we generated
+\emph{A}\textsubscript{area} values using the estimated values of
+\(\alpha_m\) and \(\alpha_s\) (Eq. \ref{eq:Aarea}) from the
+corresponding best-fitting model (GLOPNET or Panama); i.e., the model
+with the lowest LOOIC. We generated 1000 simulated datasets for GLOPNET,
+Panama sun leaves, and Panama shade leaves, with each dataset having a
+sample size of 100 leaves. For each simulated dataset, we used
+Eq.~\ref{eq-mass} to quantify the relationship between
+\emph{A}\textsubscript{area} and LMA.
 
-Finally, we compared the simulated results with the fractions of total
-LMA variance due to variance in LMAm and LMAs of the empirical data. We
-used the following identity to estimate the relative contributions of
-LMAm and LMAs to LMA variance, where again LMA = LMAm + LMAs:
+\hypertarget{variance-partitioning}{%
+\subsection{Variance partitioning}\label{variance-partitioning}}
+
+To estimate the contributions of LMAm and LMAs to total LMA variance
+(where LMA = LMAm + LMAs), we used the following identity:
 
 \begin{equation}\protect\hypertarget{eq-var}{}{
 \mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2)
@@ -978,7 +996,10 @@ LMAm and LMAs to LMA variance, where again LMA = LMAm + LMAs:
 
 where Var(\(\cdot\)) is variance and Cov(\(\cdot\)) is covariance. Thus,
 the fractions of total LMA variance due to variance in LMAm and LMAs are
-Cov(LMA, LMAm)/Var(LMA) and Cov(LMA, LMAs)/Var(LMA), respectively.
+Cov(LMA, LMAm)/Var(LMA) and Cov(LMA, LMAs)/Var(LMA), respectively. We
+applied this method to the simulated datasets described above and also
+to estimates of LMAm and LMAs for GLOPNET and Panama sun and shade
+leaves.
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
@@ -1313,11 +1334,6 @@ concept for climate and ecosystem models. \emph{Global Biogeochemical
 Cycles}, \emph{16}(2), 5-1-5-23.
 \url{https://doi.org/10.1029/2000GB001360}
 
-\leavevmode\vadjust pre{\hypertarget{ref-Burnham2002}{}}%
-Burnham, K. P., \& Anderson, D. R. (2002). \emph{Model {Selection} and
-{Multimodel Inference}: {A Practical Information-Theoretic Approach}}
-(Second). {Springer-Verlag}. \url{https://doi.org/10.1007/b97636}
-
 \leavevmode\vadjust pre{\hypertarget{ref-Carpenter2017}{}}%
 Carpenter, B., Gelman, A., Hoffman, M. D., Lee, D., Goodrich, B.,
 Betancourt, M., Brubaker, M., Guo, J., Li, P., \& Riddell, A. (2017).
@@ -1551,12 +1567,6 @@ evaluation using leave-one-out cross-validation and {WAIC}.
 \emph{Statistics and Computing}, \emph{27}, 1413--1432.
 \url{https://doi.org/10.1007/s11222-016-9696-4}
 
-\leavevmode\vadjust pre{\hypertarget{ref-Vehtari2014}{}}%
-Vehtari, A., Mononen, T., Tolvanen, V., Sivula, T., \& Winther, O.
-(2014). Bayesian leave-one-out cross-validation approximations for
-{Gaussian} latent variable models. \emph{arXiv Preprint
-arXiv:1408.4050v2}. \url{https://arxiv.org/abs/1408.4050v2}
-
 \leavevmode\vadjust pre{\hypertarget{ref-Villar2001}{}}%
 Villar, R., \& Merino, J. (2001). Comparison of leaf construction costs
 in woody species with differing leaf life-spans in contrasting
@@ -1580,14 +1590,6 @@ Williams, K., Field, C. B., \& Mooney, H. A. (1989). Relationships
 Environment} in {Rain-Forest Plants} of the {Genus Piper}. \emph{The
 American Naturalist}, \emph{133}(2), 198--211.
 \url{https://doi.org/10.1086/284910}
-
-\leavevmode\vadjust pre{\hypertarget{ref-Wright2005}{}}%
-Wright, I. J., Reich, P. B., Cornelissen, J. H. C., Falster, D. S.,
-Groom, P. K., Hikosaka, K., Lee, W., Lusk, C. H., Niinemets, Ü.,
-Oleksyn, J., Osada, N., Poorter, H., Warton, D. I., \& Westoby, M.
-(2005). Modulation of leaf economic traits and trait relationships by
-climate. \emph{Global Ecology and Biogeography}, \emph{14}(5), 411--421.
-\url{https://doi.org/10.1111/j.1466-822x.2005.00172.x}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Wright2004a}{}}%
 Wright, I. J., Reich, P. B., Westoby, M., Ackerly, D. D., Baruch, Z.,
@@ -1640,31 +1642,37 @@ and \(\beta_s > \beta_m\).
 
 \begin{table}
 \centering
-\begin{tabular}{lrr}
+\begin{tabular}{llrr}
 \toprule
-Model & N & LOOIC\\
+Model & Constraints & N & LOOIC\\
 \midrule
 \addlinespace[0.3em]
-\multicolumn{3}{l}{\textbf{GLOPNET}}\\
-\hspace{1em}2b & 198 & 721.2\\
-\hspace{1em}2a & 198 & 759.8\\
-\hspace{1em}2d & 198 & 761.8\\
-\hspace{1em}2c & 198 & 764.2\\
-\hspace{1em}1 & 198 & 766.4\\
+\multicolumn{4}{l}{\textbf{GLOPNET}}\\
+\hspace{1em}LMAm-LMAs & ii & 198 & 721.2\\
+\hspace{1em}LMAm-LMAs & i & 198 & 759.8\\
+\hspace{1em}LMAm-LMAs & iv & 198 & 761.8\\
+\hspace{1em}LMAm-LMAs & iii & 198 & 764.2\\
+\hspace{1em}LMA & NA & 198 & 766.4\\
 \addlinespace[0.3em]
-\multicolumn{3}{l}{\textbf{Panama}}\\
-\hspace{1em}4a & 106 & 461.0\\
-\hspace{1em}5a & 106 & 472.3\\
-\hspace{1em}2c & 106 & 478.2\\
-\hspace{1em}4c & 106 & 487.2\\
-\hspace{1em}2a & 106 & 500.3\\
-\hspace{1em}5c & 106 & 502.1\\
-\hspace{1em}4b & 106 & 508.2\\
-\hspace{1em}4d & 106 & 508.6\\
-\hspace{1em}3 & 106 & 510.1\\
-\hspace{1em}2b & 106 & 526.7\\
-\hspace{1em}2d & 106 & 526.9\\
-\hspace{1em}1 & 106 & 536.8\\
+\multicolumn{4}{l}{\textbf{Panama}}\\
+\hspace{1em}LMAm-LMAs-light & i & 106 & 461.0\\
+\hspace{1em}LMAm-LSD-light & i & 106 & 472.3\\
+\hspace{1em}LMAm-LMAs & iii & 106 & 478.2\\
+\hspace{1em}LMAm-LMAs-light & iii & 106 & 487.2\\
+\hspace{1em}LMAm-LSD & iii & 106 & 493.1\\
+\hspace{1em}LMAm-LMAs & i & 106 & 500.3\\
+\hspace{1em}LMAm-LSD-light & iii & 106 & 502.1\\
+\hspace{1em}LMAm-LMAs-light & ii & 106 & 508.2\\
+\hspace{1em}LMAm-LMAs-light & iv & 106 & 508.6\\
+\hspace{1em}LMA-light & NA & 106 & 510.1\\
+\hspace{1em}LMAm-LSD-light & iv & 106 & 511.7\\
+\hspace{1em}LMAm-LSD-light & ii & 106 & 512.7\\
+\hspace{1em}LMAm-LSD & i & 106 & 514.3\\
+\hspace{1em}LMAm-LMAs & ii & 106 & 526.7\\
+\hspace{1em}LMAm-LMAs & iv & 106 & 526.9\\
+\hspace{1em}LMA & NA & 106 & 536.8\\
+\hspace{1em}LMAm-LSD & ii & 106 & 537.0\\
+\hspace{1em}LMAm-LSD & iv & 106 & 537.6\\
 \bottomrule
 \end{tabular}
 \end{table}
