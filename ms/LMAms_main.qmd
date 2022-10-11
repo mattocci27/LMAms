@@ -289,51 +289,40 @@ We applied this method to the simulated datasets described above and also to est
 # Results
 
 **1. Decomposing LMA into metabolic and structural components leads to improved predictions of *A*~area~, *R*~area~ and LL.**
-For both the GLOPNET global datasets and the Panama datasets, two-dimensional model (LMAm and LMAs) performed better in cross validation than one-dimensional (LMA) models (Table 1), suggesting that decomposing LMA into metabolic and structural components leads to improved predictions of *A*~area~, *R*~area~ and LL.
-Additionally, the effects of LMAm on LL for the GLOPNET and the Panama dataset and the effect of LMAs on the Panama dataset were not selected in the best models (Table 1).
+For both the GLOPNET and Panama datasets, two-dimensional models (LMAm-LMAs) performed better in cross validation than one-dimensional (LMA) models (Table 1).
+Thus, predictions of *A*~area~, *R*~area~ and LL were improved by partitioning LMA into separate metabolic and structural components (see details below and Tables 1-2).
+Each of these traits (*A*~area~, *R*~area~ and LL) had a strong positive relationship with either LMAm or LMAs (but not both), which was always stronger than the corresponding relationship with total LMA (Figs. [@fig-GLplt; @fig-PAplt]).
 
-For the GLOPNET global dataset, *A*~area~ had a positive correlation with LMAm, a negative correlation with LMAs, and a non-significant correlation with total LMA ([@fig-GLplt]a-c; Table 2).
-*R*~area~ in GLOPNET also had a positive correlation with LMAm, which was stronger than the correlation between *R*~area~ and either LMA or LMAs ([@fig-GLplt]d-f).
-Finally, LL in GLOPNET had a strong positive correlation with LMAs, which was stronger than the correlation between LL and LMA ([@fig-GLplt]g-i).
+In the best GLOPNET model (lowest LOOIC), *A*~area~ increased with LMAm and decreased with LMAs, *R*~area~ increased with LMAm and had little dependence on LMAs, and LL increased with LMAs and was independent of LMAm (Tables 1-2; @fig-GLplt).
 
-For the Panama dataset, including the effect of light (sun vs. shade) imporved model performance (Table 1).
-All Panama results we report are for models including light effects unless stated otherwise.
-*A*~area~ and *R*~area~ had stronger and more positive correlations with LMAm than with LMA ([@fig-PAplt]a-f and Table 2).
-LL was not significantly correlated with LMA when all leaves were combined, but was strongly correlated with LMA for shade leaves at the dry site ([@fig-PAplt]g).
-There was a positive correlation between LL and LMAs ([@fig-PAplt]i), and this relationship was strengthened by accounting the effects of LL (@fig-LLplt).
+In the best Panama model, *A*~area~ increased with LMAm and was independent of LMAs, *R*~area~ increased with LMAm and had little dependence on LMAs, and LL increased with LMAs and was independent of LMAm (Tables 1-2; @fig-PAplt).
+The best Panama model also included the effect of light (sun vs. shade) on LL (Tables 1-2; Fig. @fig-LLplt).
+The light effect was not tested for GLOPNET because GLOPNET does not report canopy position.
 
 **2. Nearly all leaf dark respiration is associated with metabolic leaf tissue mass.**
-According to our model results, metabolic leaf mass (LMAm) accounted for nearly all leaf dark respiration; i.e., estimated dark respiration rate per-unit structural mass ($\gamma_s$) was close to zero in analyses of both GLOPNET and Panama data (Table 1).
-Thus, although building costs are likely similar for different leaf chemical components and tissues [@Williams1989; @Villar2001], our results suggest that leaf mass associated with photosynthetic function accounts for nearly all leaf maintenance respiration.
+According to our model results, metabolic leaf mass (LMAm) accounted for nearly all leaf dark respiration; i.e., estimated dark respiration rate per-unit structural mass ($\gamma_s$) was close to zero for both GLOPNET and Panama (Table 2).
+Thus, although building costs appear similar for different leaf chemical components and tissues [@Williams1989; @Villar2001], our results suggest that leaf mass associated with structural fucntion (i.e., toughness and LL) has roughly zero maintenance cost.
 
 **3. Evergreen leaves have greater LMAs than deciduous leaves, and sun leaves have both greater LMAm and LMAs than shade leaves.**
-Evergreen vs. decidous explains the large variance
-(`r  get_vpart_para(here("data/vpart_intra.csv"), "LMAs", "Eve/Dec", "gl_de", digits = 1, nsmall = 1)`%)
-in LMAs but not LMAm in GLOPNET ([@fig-vpart]).
-Thus, the higher total LMA in evergreen leaves in GLOPNET ([@fig-boxplt_de]) was primarily due to differences in LMAs.
-In the Panama dataset, light (sun vs. shade) explains the majority of variance in LMAm
-(`r  get_vpart_para(here("data/vpart_intra.csv"), "LMAm", "Sun/Shade", "pa_leaf", digits = 1, nsmall = 1)`%)
-but not LMAs
-(`r  get_vpart_para(here("data/vpart_intra.csv"), "LMAs", "Sun/Shade", "pa_leaf", digits = 1, nsmall = 1)`%)
-, and site (wet/dry) explains
-`r  get_vpart_para(here("data/vpart_intra.csv"), "LMAs", "Wet/Dry", "pa_leaf", digits = 1, nsmall = 1)`%
-of variance in LMAs ([@fig-vpart]).
-Sun leaves have both greater LMAm and LMAs than shade leaves, but the differences in LMAm were more apparent ([@fig-boxplt_pa]).
-Thus, variation in LMAm plays a more important role within species than among species.
-Evergreen leaves have higher fraction of LMAs compared to deciduous leaves both in the Panama and the GLOPNET dataset (Fig. S\ref{fig-box_frac}).
+Leaf habit (evergreen vs. deciduous) explained very little variation in LMAm but substantial variation in LMAs for both GLOPNET and Panama ([@fig-vpart]a-b).
+Thus, the higher total LMA in evergreen compared to deciduous leaves was due to differences in LMAs (Figs. 6, S2, and S3).
+In the Panama dataset, light (sun vs. shade) explained much more variation in LMAm than LMAs, whereas site (wet vs. dry) explained much more variation in LMAs than LMAm (Fig. 5c).
+Panama wet-site leaves had higher total LMA than dry-site leaves due to greater LMAs (Figs. 7 and S2).
+In contrast, Panama sun leaves had higher total LMA than shade leaves primarily due to greater LMAm, with a smaller but significant contribution from LMAs (Figs. 7 and S2).
+Thus, LMAs comprised a larger fraction of total LMA for shade leaves than for sun leaves (Fig. S3).
 
-**4. LMA variance components determine the area- vs. mass-dependence of leaf photosynthetic capacity (*A*).**
-Analysis of simulated data showed that the percent of LMA variation due to LMAm vs. LMAs variation determined the area- vs. mass-dependence of *A* (i.e., the degree to which whole-leaf *A* depends on leaf area or mass; @Osnas2013; @Osnas2018).
-Generally, mass-dependence of *A* decreases with LMAs variance ([@fig-massplt]).
-Other factors, including the senstivity of *A* to variation in LMAm and LMAs ($\alpha_m$ and $\alpha_s$) and covariance between LMAm and LMAs, also affect the relationship between mass-dependence of *A* and LMAs variance ([@fig-massplt], Fig. S\ref{fig-mass_prop_sim}-\ref{fig-mass_prop_comp}).
-Although relative variance of LMAs was intermediate in GLOPNET (`r var_val$GL`%), interspecific variation in *A* among leaves in GLOPNET tended to be area-dependent because of their lower $\alpha_m$ and negative $\alpha_s$.
-Interspecific variation in *A* in sun and shade leaves in the Panama data was area-dependent because of their large variance in LMAs ([@fig-massplt]).
+**4. LMA variance components affect the area- vs. mass-dependence of leaf photosynthetic capacity (*A*).**
+Analysis of simulated data showed that the percent of LMA variation due to LMAs variation (@eq-var) strongly affected the area- vs. mass-dependence of *A* (i.e., the degree to which whole-leaf *A* depends on leaf area or mass; @Osnas2013; @Osnas2018).
+Generally, mass-dependence of *A* decreased (area-dependence increased) with increasing LMAs variance (@fig-massplt).
+Other factors, including the sensitivity of *A* per-unit leaf area (*A*/area) to variation in LMAm and LMAs ($\alpha_m$ and $\alpha_s$ in Eq. \ref{eq:Aarea}) and covariance between LMAm and LMAs, also affect the mass-dependence of *A* (@fig-massplt, Fig. SX).
+For example, although LMAs variance was relatively low in GLOPNET (52% of total LMA variance), variation in *A* in GLOPNET was strongly area-dependent because the relatively weak dependence of *A*/area on LMAm and the negative dependence of *A*/area on LMAs (Table 2) led to weak overall dependence of *A*/area on LMA.
+Thus, mass-dependence of *A* in GLOPNET was similar or weaker than in the Panama data, despite LMAs variance comprising a larger fraction of LMA variance in Panama (XX% and XX% of total LMA variance for Panama sun and shade leaves, respectively).
 
 **5. Nitrogen and phosphorus per-unit leaf area are strongly correlated with LMAm, and cellulose per-unit leaf area is strongly correlated with LMAs.**
-In the GLOPNET dataset, *N*~area~ and *P*~area~ had strong positive correlations with LMAm, but only weak correlations with LMAs (Fig. S\ref{fig-gl_point_np2}).
-Similarly, in the Panama dataset, *N*~area~ and *P*~area~ had strong positive correlations with LMAm, but were not correlated with LMAs ([@fig-PA-NPC]).
-In contrast, cellulose per-unit leaf area (*CL*~area~), which was available for the Panama dataset but not for GLOPNET, had a strong positive correlation with LMAs, and a weak positive correlation with LMAm ([@fig-PA-NPC]).
-*CL*~area~ was more strongly correlated with LMA than with LMAm or LMAs, but sun and shade leaves aligned along a common *CL*~area~-LMAs relationship, as opposed to being offset for LMA and LMAm ([@fig-PA-NPC]g-i).
+In the GLOPNET dataset, *N*~area~ and *P*~area~ had strong positive correlations with LMAm, but only weak correlations with LMAs (Fig. S).
+Similarly, in the Panama dataset, *N*~area~ and *P*~area~ had strong positive correlations with LMAm but not with LMAs (Fig. @fig-PA-NPC).
+Cellulose content per-unit leaf area (CL~area~), which was only available for the Panama dataset, was most strongly correlated with total LMA, but also showed a clear relationship with LMAs that was consistent across canopy positions and sites (Fig. @fig-PA-NPC).
+Partial regression plots showed that the higher *N*~area~, *P*~area~, and CL~area~ in sun leaves (compared to shade leaves; Fig. @fig-PA-NPC) was due to sun leaves having higher LMAm than shade leaves (Fig. SX).
 
 # Discussion
 
