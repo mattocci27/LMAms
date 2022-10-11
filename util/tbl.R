@@ -54,7 +54,7 @@ write_csv(tab3, "./data/LOO.csv")
 s_GL <- read_csv("./data/GLpara.csv")
 
 GLtab <- s_GL |>
-  filter(para %in% c("ap", "as", "bs", "gp", "gs")) |>
+  filter(para %in% c("ap", "as", "bs", "gm", "gs")) |>
 #  mutate(tmp = c(2, 1, 3, 5, 4, 6)) |>
 #  arrange(tmp) |>
   mutate(mean_ = mean |> round(3)) |>
@@ -72,7 +72,7 @@ GLtab <- s_GL |>
 s_PA <- read_csv("./data/PApara.csv")
 
 PAtab <- s_PA |>
-  filter(para %in% c("ap", "bs", "gp", "gs", "theta")) |>
+  filter(para %in% c("ap", "bs", "gm", "gs", "theta")) |>
   mutate(mean_ = mean |> round(3)) |>
   mutate(low = round(`X2.5.`, 3)) |>
   mutate(up = round(`X97.5.`, 3)) |>

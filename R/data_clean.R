@@ -1,3 +1,10 @@
+#' @title write_csv for targets
+#' @inheritParams readr::write_csv
+my_write_csv <- function(x, path, append = FALSE, col_names = !append) {
+    write_csv(x, path, append = FALSE, col_names = !append)
+    paste(path)
+}
+
 prepare_gl <- function(data) {
   d <- read.csv(data, skip = 10)
   data <- tibble(
