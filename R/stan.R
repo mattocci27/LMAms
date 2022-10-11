@@ -39,11 +39,9 @@ generate_stan_names <- function(model_json, model_lma_json) {
   diagnostics_names <- c(tmp1, tmp2)
   summary_names <- str_replace_all(diagnostics_names, "diagnostics", "summary")
 
-  gl_mcmc_names <- str_replace_all(diagnostics_names, "diagnostics", "mcmc")
-  gl_mcmc_names <- gl_mcmc_names[str_detect(gl_mcmc_names, "gl")]
-
-  pa_mcmc_names <- str_replace_all(diagnostics_names, "diagnostics", "mcmc") |>
-    str_replace_all("gl", "pa")
+  tmp3 <- str_replace_all(diagnostics_names, "diagnostics", "mcmc")
+  gl_mcmc_names <- tmp3[str_detect(tmp3, "gl")]
+  pa_mcmc_names <- tmp3[str_detect(tmp3, "pa")]
 
   list(
     gl_stan_names = gl_stan_names,
@@ -51,9 +49,13 @@ generate_stan_names <- function(model_json, model_lma_json) {
     summary_names = summary_names,
     diagnostics_names = diagnostics_names,
     gl_mcmc_names = gl_mcmc_names,
-    pa_mcmc_names = pa_mcmc_names
+    pa_mcmc_names = pa_mcmc_names,
+    mcmc_names = c(gl_mcmc_names, pa_mcmc_names)
     )
 }
+
+my_loo <- function(x) x$loo(cores = parallel::detectCores())
+
 
 #' @title Generate stan data for GLOPNET
 generate_gl_stan <- function(data) {
@@ -507,31 +509,25 @@ create_sim_dat <- function() {
 write_model_selction <- function(loo_tbl) {
   output <- "data/model_selection.csv"
   d <- read_csv(loo_tbl)
-  d |>
-    mutate(no1 = case_when(
-      str_detect(Model, "LMA_opt") ~ 3,
-      str_detect(Model, "LL.*opt") ~ 4,
-      str_detect(Model, "LD.*opt") ~ 5,
-      str_detect(Model, "LL") ~ 2,
-      str_detect(Model, "LMA") ~ 1
-    )) |>
-  # because Ap is included Aps, this order is correct
-    mutate(no2 = case_when(
-      str_detect(Model, "Aps.*LLs|Aps.*LDs") ~ "b",
-      str_detect(Model, "Ap.*LLs|Ap.*LDs") ~ "a",
-      str_detect(Model, "Aps.*LLps|Aps.*LDps") ~ "d",
-      str_detect(Model, "Ap.*LLps|Ap.*LDps") ~ "c",
-      TRUE ~ ""
-    )) |>
-    filter(!is.na(no1)) |>
-    rename(model_ori = Model) |>
-    mutate(Model = paste0(no1, no2)) |>
-    mutate(Data = ifelse(site == "PA", "Panama", "GLOPNET")) |>
-    dplyr::select(model_ori, Model, Data, N, LOOIC) |>
-    mutate(LOOIC = LOOIC |> round(1)) |>
-    write_csv(output)
 
-    paste(output)
+  d |>
+  mutate(.id = case_when(
+    str_detect(model, "ams_bms") ~  "iv",
+    str_detect(model, "ams") ~  "ii",
+    str_detect(model, "bms") ~  "iii",
+    str_detect(model, "am_bs") ~  "i"
+  )) |>
+  mutate(model_name = case_when(
+    str_detect(model, "ld_opt") ~  "LMAm-LSD-light",
+    str_detect(model, "ld$") ~  "LMAm-LSD",
+    str_detect(model, "lma_opt$") ~  "LMA-light",
+    str_detect(model, "opt$") ~  "LMAm-LMAs-light",
+    str_detect(model, "bs$|bms$") ~  "LMAm-LMAs",
+    str_detect(model, "lma$") ~  "LMA",
+  )) |>
+  mutate(looic = round(looic, 1) |> format(looic, nsmall = 1)) |>
+  dplyr::select(tar_object = model, Model = model_name, Constraints = .id, N = n, LOOIC = looic) |>
+  my_write_csv(output)
 }
 
 #' @para gl_rand_sig data including 95% CI
