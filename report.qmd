@@ -101,48 +101,67 @@ tar_read(div_check_list_pa_diagnostics_ams_bms_ld_opt)
 tar_read(div_check_list_pa_diagnostics_ams_bs_ld_opt)
 ```
 
-```{r, eval=FALSE}
-knitr::knit_exit()
+```{r}
+tar_load(loo_gl_mcmc_lma)
+tar_load(loo_gl_mcmc_am_bs)
+tar_load(loo_gl_mcmc_am_bms)
+tar_load(loo_gl_mcmc_ams_bs)
+tar_load(loo_gl_mcmc_ams_bms)
+tar_load(loo_pa_mcmc_lma)
+tar_load(loo_pa_mcmc_lma_opt)
+tar_load(loo_pa_mcmc_am_bms)
+tar_load(loo_pa_mcmc_am_bs)
+tar_load(loo_pa_mcmc_ams_bms)
+tar_load(loo_pa_mcmc_ams_bs)
+tar_load(loo_pa_mcmc_am_bms_opt)
+tar_load(loo_pa_mcmc_am_bs_opt)
+tar_load(loo_pa_mcmc_ams_bms_opt)
+tar_load(loo_pa_mcmc_ams_bs_opt)
+tar_load(loo_pa_mcmc_am_bms_ld)
+tar_load(loo_pa_mcmc_am_bs_ld)
+tar_load(loo_pa_mcmc_ams_bms_ld)
+tar_load(loo_pa_mcmc_ams_bs_ld)
+tar_load(loo_pa_mcmc_am_bms_ld_opt)
+tar_load(loo_pa_mcmc_am_bs_ld_opt)
+tar_load(loo_pa_mcmc_ams_bms_ld_opt)
+tar_load(loo_pa_mcmc_ams_bs_ld_opt)
 ```
 
 ams_bs (`model4`) is best for GLOPNET.
 
 ```{r}
-targets::tar_load(loo_gl)
 loo::loo_compare(
-   loo_gl[[1]],
-   loo_gl[[2]],
-   loo_gl[[3]],
-   loo_gl[[4]],
-   loo_gl[[5]]) |>
+  loo_gl_mcmc_lma,
+  loo_gl_mcmc_am_bs,
+  loo_gl_mcmc_am_bms,
+  loo_gl_mcmc_ams_bs,
+  loo_gl_mcmc_ams_bms) |>
   print()
-
 ```
 
 am_bs_opt (`model8`) is best for Panama.
 am_bs_ld_opt (`model16`) is the second best for Panama.
 
 ```{r}
-targets::tar_load(loo_pa)
 loo::loo_compare(
-  loo_pa[[1]],
-  loo_pa[[2]],
-  loo_pa[[3]],
-  loo_pa[[4]],
-  loo_pa[[5]],
-  loo_pa[[6]],
-  loo_pa[[7]],
-  loo_pa[[8]],
-  loo_pa[[9]],
-  loo_pa[[10]],
-  loo_pa[[11]],
-  loo_pa[[12]],
-  loo_pa[[13]],
-  loo_pa[[14]],
-  loo_pa[[15]],
-  loo_pa[[16]],
-  loo_pa[[17]],
-  loo_pa[[18]]) |>
+  loo_pa_mcmc_lma,
+  loo_pa_mcmc_lma_opt,
+  loo_pa_mcmc_am_bms,
+  loo_pa_mcmc_am_bs,
+  loo_pa_mcmc_ams_bms,
+  loo_pa_mcmc_ams_bs,
+  loo_pa_mcmc_am_bms_opt,
+  loo_pa_mcmc_am_bs_opt,
+  loo_pa_mcmc_ams_bms_opt,
+  loo_pa_mcmc_ams_bs_opt,
+  loo_pa_mcmc_am_bms_ld,
+  loo_pa_mcmc_am_bs_ld,
+  loo_pa_mcmc_ams_bms_ld,
+  loo_pa_mcmc_ams_bs_ld,
+  loo_pa_mcmc_am_bms_ld_opt,
+  loo_pa_mcmc_am_bs_ld_opt,
+  loo_pa_mcmc_ams_bms_ld_opt,
+  loo_pa_mcmc_ams_bs_ld_opt) |>
   print()
 ```
 

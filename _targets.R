@@ -45,6 +45,17 @@ if (file.exists("/.dockerenv") | file.exists("/.singularity.d/startscript")) {
 
 cmdstan_version()
 
+stan_names <- generate_stan_names("templates/model.json",
+      "templates/model_LMA.json")
+
+loo_map <- tar_map(
+    values = list(mcmc = rlang::syms(stan_names$mcmc_names)),
+    tar_target(
+      loo,
+      my_loo(mcmc)
+    )
+)
+
 # data cleaning ----------------------------------
 # this list can be removed later
 raw_data_list <- list(
@@ -134,15 +145,10 @@ main_list <- list(
     pa_stan_dat_full,
     generate_pa_stan(read_csv(pa_full_csv), full = TRUE),
   ),
-  tar_target(
-    stan_names,
-    generate_stan_names(model_json, model_lma_json)
-  ),
 
   tar_stan_mcmc(
     gl,
-    generate_stan_names("templates/model.json",
-      "templates/model_LMA.json")$gl_stan_names,
+    stan_names$gl_stan_names,
     data = gl_stan_dat,
     refresh = 0,
     chains = 4,
@@ -165,8 +171,7 @@ main_list <- list(
   ),
   tar_stan_mcmc(
     pa,
-    generate_stan_names("templates/model.json",
-      "templates/model_LMA.json")$pa_stan_names,
+    stan_names$pa_stan_names,
     data = pa_stan_dat,
     refresh = 0,
     chains = 4,
@@ -189,96 +194,48 @@ main_list <- list(
   ),
 
 
-  tar_target(
-    loo_gl,
-    lapply(
-      list(
-        gl_mcmc_lma,
-        gl_mcmc_am_bs,
-        gl_mcmc_am_bms,
-        gl_mcmc_ams_bs,
-        gl_mcmc_ams_bms
-        ),
-    \(x)x$loo(cores = parallel::detectCores())
-    )
-  ),
-  # tar_map(
-  #   values = list(tmp = rlang::syms(c(
-  #       "gl_mcmc_lma",
-  #       "gl_mcmc_am_bs",
-  #       "gl_mcmc_am_bms",
-  #       "gl_mcmc_ams_bs",
-  #       "gl_mcmc_ams_bms"
-  #   ))),
-  #   tar_target(
-  #     loo_test,
-  #     tmp$loo(cores = parallel::detectCores())
-  #   )
-  # ),
-  tar_target(
-    loo_pa,
-    lapply(
-      list(
-        pa_mcmc_lma,
-        pa_mcmc_lma_opt,
-        pa_mcmc_am_bms,
-        pa_mcmc_am_bs,
-        pa_mcmc_ams_bms,
-        pa_mcmc_ams_bs,
-        pa_mcmc_am_bms_opt,
-        pa_mcmc_am_bs_opt,
-        pa_mcmc_ams_bms_opt,
-        pa_mcmc_ams_bs_opt,
-        pa_mcmc_am_bms_ld,
-        pa_mcmc_am_bs_ld,
-        pa_mcmc_ams_bms_ld,
-        pa_mcmc_ams_bs_ld,
-        pa_mcmc_am_bms_ld_opt,
-        pa_mcmc_am_bs_ld_opt,
-        pa_mcmc_ams_bms_ld_opt,
-        pa_mcmc_ams_bs_ld_opt
-        ),
-    \(x)x$loo(cores = parallel::detectCores())
-    )
-  ),
-
   tar_map(
-    values = list(diagnostics = rlang::syms(
-    generate_stan_names("templates/model.json",
-      "templates/model_LMA.json")$diagnostics_names)),
+    values = list(diagnostics = rlang::syms(stan_names$diagnostics_names)),
     tar_target(div_check_list, div_check(diagnostics))
   ),
 
   tar_map(
-    values = list(summary = rlang::syms(
-    generate_stan_names("templates/model.json",
-      "templates/model_LMA.json")$summary_names)),
+    values = list(summary = rlang::syms(stan_names$summary_names)),
     tar_target(summary_rhat, {
       summary |> filter(rhat > 1.05)
     })
   ),
 
-  # tar_target(
-  #   loo_tbl, {
-  #     loo_model <- append(loo_gl, loo_pa)
-  #     tibble(Model = names(loo_model),
-  #      LOOIC = sapply(loo_model, "[[", "looic"),
-  #      elpd = sapply(loo_model, "[[", "elpd_loo"),
-  #      N = lapply(loo_model, "[[", "pointwise") |> sapply(nrow)) |>
-  #       mutate(site = str_split_fixed(Model, "mcmc_", 2)[,2]) |>
-  #       mutate(site = str_split_fixed(site, "_", 2)[,1]) |>
-  #       arrange(LOOIC) |>
-  #       write_csv("data/loo.csv")
-  #     paste("data/loo.csv")
-  #   },
-  #   format = "file"
-  # ),
+  loo_map,
 
-  # tar_target(
-  #   model_selection_csv,
-  #   write_model_selction(loo_tbl),
-  #   format = "file"
-  # ),
+  tar_combine(
+    loo_list,
+    loo_map,
+    command = list(!!!.x)
+  ),
+
+  tar_target(
+    loo_tbl, {
+      tibble(model = names(loo_list),
+      looic = lapply(loo_list, \(x)x$estimate) |>
+        sapply(\(x)x[3, 1]),
+      elpd = lapply(loo_list, \(x)x$estimate) |>
+        sapply(\(x)x[1, 1]),
+       n = lapply(loo_list, "[[", "pointwise") |> sapply(nrow)) |>
+        mutate(site = str_split_fixed(model, "_", 3)[,2]) |>
+        mutate(site = str_split_fixed(site, "_", 2)[,1]) |>
+        arrange(looic) |>
+        arrange(site) |>
+        my_write_csv("data/loo.csv")
+    },
+    format = "file"
+  ),
+
+  tar_target(
+    model_selection_csv,
+    write_model_selction(loo_tbl),
+    format = "file"
+  ),
 
   tar_target(
     para_yml,
