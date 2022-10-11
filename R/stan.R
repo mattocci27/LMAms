@@ -541,12 +541,12 @@ coef_rand <- function(gl_rand_sig, gl_rand_check, site = site) {
     mutate(sim_id_chr = paste0("sim-", sim_id)) |>
     mutate(para = case_when(
       para == "a0" ~ "alpha[0]",
-      para == "ap" ~ "alpha[p]",
+      para == "am" ~ "alpha[m]",
       para == "as" ~ "alpha[s]",
       para == "b0" ~ "beta[0]",
       para == "bs" ~ "beta[s]",
       para == "g0" ~ "gamma[0]",
-      para == "gm" ~ "gamma[p]",
+      para == "gm" ~ "gamma[m]",
       para == "gs" ~ "gamma[s]",
       TRUE ~ para
     ))
@@ -556,7 +556,7 @@ coef_rand <- function(gl_rand_sig, gl_rand_check, site = site) {
     geom_hline(yintercept = 0) +
     facet_wrap(~para, scale = "free", labeller = label_parsed) +
     xlab("Simulation ID") +
-    ylab("Standardized coefficents") +
+    ylab("Standardized coefficients") +
     ggtitle(site) +
     coord_flip() +
     theme_bw() +
@@ -580,12 +580,12 @@ coef_sim <- function(sim_para_summary, site) {
     mutate(sim_id = paste0("sim-", sim_id_no)) |>
     mutate(para = case_when(
       variable == "a0" ~ "alpha[0]",
-      variable == "ap" ~ "alpha[p]",
+      variable == "am" ~ "alpha[m]",
       variable == "as" ~ "alpha[s]",
       variable == "b0" ~ "beta[0]",
       variable == "bs" ~ "beta[s]",
       variable == "g0" ~ "gamma[0]",
-      variable == "gm" ~ "gamma[p]",
+      variable == "gm" ~ "gamma[m]",
       variable == "gs" ~ "gamma[s]",
       TRUE ~ variable
     )) |>
@@ -612,7 +612,7 @@ coef_sim <- function(sim_para_summary, site) {
 #' @title Extract parameters from dynamic branches of sim_summary
 #' @para sim_summary dynamic branches of sim_summary
 extract_sim_summary <- function(sim_summary) {
-  para <- expand_grid(a = c("a", "b", "g"), b = c("0", "p", "s")) |>
+  para <- expand_grid(a = c("a", "b", "g"), b = c("0", "m", "s")) |>
     mutate(para = str_c(a, b)) |>
     pull(para)
   sim_summary |>

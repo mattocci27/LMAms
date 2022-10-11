@@ -60,17 +60,14 @@ tar_read(summary_rhat_pa_summary_am_bms_opt)
 tar_read(summary_rhat_pa_summary_am_bs_opt)
 tar_read(summary_rhat_pa_summary_ams_bms_opt)
 tar_read(summary_rhat_pa_summary_ams_bs_opt)
-
 tar_read(summary_rhat_pa_summary_am_bms_ld)
 tar_read(summary_rhat_pa_summary_am_bs_ld)
 tar_read(summary_rhat_pa_summary_ams_bms_ld)
 tar_read(summary_rhat_pa_summary_ams_bs_ld)
-
 tar_read(summary_rhat_pa_summary_am_bms_ld_opt)
 tar_read(summary_rhat_pa_summary_am_bs_ld_opt)
 tar_read(summary_rhat_pa_summary_ams_bms_ld_opt)
 tar_read(summary_rhat_pa_summary_ams_bs_ld_opt)
-
 ```
 
 ```{r}
@@ -89,7 +86,6 @@ tar_read(div_check_list_pa_diagnostics_am_bms_opt)
 tar_read(div_check_list_pa_diagnostics_am_bs_opt)
 tar_read(div_check_list_pa_diagnostics_ams_bms_opt)
 tar_read(div_check_list_pa_diagnostics_ams_bs_opt)
-
 tar_read(div_check_list_pa_diagnostics_am_bms_ld)
 tar_read(div_check_list_pa_diagnostics_am_bs_ld)
 tar_read(div_check_list_pa_diagnostics_ams_bms_ld)
@@ -127,7 +123,7 @@ tar_load(loo_pa_mcmc_ams_bms_ld_opt)
 tar_load(loo_pa_mcmc_ams_bs_ld_opt)
 ```
 
-ams_bs (`model4`) is best for GLOPNET.
+`ams_bs` (`model4`) is best for GLOPNET.
 
 ```{r}
 loo::loo_compare(
@@ -139,8 +135,8 @@ loo::loo_compare(
   print()
 ```
 
-am_bs_opt (`model8`) is best for Panama.
-am_bs_ld_opt (`model16`) is the second best for Panama.
+`am_bs_opt` (`model8`) is best for Panama.
+`am_bs_ld_opt` (`model16`) is the second best for Panama.
 
 ```{r}
 loo::loo_compare(
@@ -171,7 +167,7 @@ loo::loo_compare(
 There are too many divergent transitions.
 None of the randomized datasets did converge.
 
-```{r,eval=FALSE}
+```{r}
 targets::tar_read(gl_sim_diagnostics)
 targets::tar_read(pa_sim_diagnostics)
 targets::tar_read(gl_para_summary)
