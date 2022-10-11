@@ -2,108 +2,98 @@
     "owner": "mattocci",
     "configs": [
     {
-      "model": "GL_Ap_LLs",
-      "site": "GL",
+      "model": "am_bs",
       "A": "LMAm",
       "LL": "LMAs"
     },
     {
-      "model": "GL_Aps_LLps",
-      "site": "GL",
+      "model": "ams_bms",
       "A": "LMAmLMAs",
       "LL": "LMAmLMAs"
     },
     {
-      "model": "GL_Ap_LLps",
-      "site": "GL",
+      "model": "am_bms",
       "A": "LMAm",
       "LL": "LMAmLMAs"
     },
     {
-      "model": "GL_Aps_LLs",
-      "site": "GL",
+      "model": "ams_bs",
       "A": "LMAmLMAs",
       "LL": "LMAs"
     },
     {
-      "model": "PA_Ap_LLs",
-      "site": "PA",
-      "A": "LMAm",
-      "LL": "LMAs"
-    },
-    {
-      "model": "PA_Aps_LLps",
-      "site": "PA",
-      "A": "LMAmLMAs",
-      "LL": "LMAmLMAs"
-    },
-    {
-      "model": "PA_Ap_LLps",
-      "site": "PA",
-      "A": "LMAm",
-      "LL": "LMAmLMAs"
-    },
-    {
-      "model": "PA_Aps_LLs",
-      "site": "PA",
-      "A": "LMAmLMAs",
-      "LL": "LMAs"
-    },
-    {
-      "model": "PA_Ap_LLs_opt",
-      "site": "PA",
+      "model": "am_bs_opt",
       "A": "LMAm",
       "LL": "LMAs",
       "opt": "opt"
     },
     {
-      "model": "PA_Aps_LLps_opt",
-      "site": "PA",
+      "model": "ams_bms_opt",
       "A": "LMAmLMAs",
       "LL": "LMAmLMAs",
       "opt": "opt"
     },
     {
-      "model": "PA_Ap_LLps_opt",
-      "site": "PA",
+      "model": "am_bms_opt",
       "A": "LMAm",
       "LL": "LMAmLMAs",
       "opt": "opt"
     },
     {
-      "model": "PA_Aps_LLs_opt",
-      "site": "PA",
+      "model": "ams_bs_opt",
       "A": "LMAmLMAs",
       "LL": "LMAs",
       "opt": "opt"
     },
     {
-      "model": "PA_Ap_LDs",
-      "site": "PA",
+      "model": "am_bs_ld",
       "LD": "LD",
       "A": "LMAm",
       "LL": "LMAs"
     },
     {
-      "model": "PA_Ap_LDps",
-      "site": "PA",
+      "model": "am_bms_ld",
       "LD": "LD",
       "A": "LMAm",
       "LL": "LMAmLMAs"
     },
     {
-      "model": "PA_Ap_LDs_opt",
-      "site": "PA",
+      "model": "ams_bs_ld",
+      "LD": "LD",
+      "A": "LMAmLMAs",
+      "LL": "LMAs"
+    },
+    {
+      "model": "ams_bms_ld",
+      "LD": "LD",
+      "A": "LMAmLMAs",
+      "LL": "LMAmLMAs"
+    },
+    {
+      "model": "am_bs_ld_opt",
       "LD": "LD",
       "A": "LMAm",
       "LL": "LMAs",
       "opt": "LDopt"
     },
     {
-      "model": "PA_Ap_LDps_opt",
-      "site": "PA",
+      "model": "am_bms_ld_opt",
       "LD": "LD",
       "A": "LMAm",
+      "LL": "LMAmLMAs",
+      "opt": "LDopt"
+    },
+    {
+      "model": "ams_bs_ld_opt",
+      "LD": "LD",
+      "A": "LMAmLMAs",
+      "LL": "LMAs",
+      "opt": "LDopt"
+    },
+    {
+      "model": "ams_bms_ld_opt",
+      "LD": "LD",
+      "A": "LMAmLMAs",
       "LL": "LMAmLMAs",
       "opt": "LDopt"
     }

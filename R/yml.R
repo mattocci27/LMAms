@@ -439,12 +439,12 @@ write_para_yml <- function(gl_summary, pa_summary, gl_res_csv, pa_res_csv) {
   # fit_summary <- fit_7_summary_GL_Aps_LLs
 
   a0 <- gl_summary |> filter(variable == "a0") |> pull(mean) |> round(2)
-  ap <- gl_summary |> filter(variable == "ap") |> pull(mean) |> round(2)
+  am <- gl_summary |> filter(variable == "am") |> pull(mean) |> round(2)
   as <- gl_summary |> filter(variable == "as") |> pull(mean) |> round(2)
   sig1 <- gl_summary |> filter(variable == "L_sigma[1]") |> pull(mean) |> round(2)
 
   a0_pa <- pa_summary |> filter(variable == "a0") |> pull(mean) |> round(2)
-  ap_pa <- pa_summary |> filter(variable == "ap") |> pull(mean) |> round(2)
+  am_pa <- pa_summary |> filter(variable == "am") |> pull(mean) |> round(2)
   as_pa <- pa_summary |> filter(variable == "as") |> pull(mean) |> round(2)
   sig1_pa <- pa_summary |> filter(variable == "L_sigma[1]") |> pull(mean) |> round(2)
 
@@ -456,7 +456,7 @@ write_para_yml <- function(gl_summary, pa_summary, gl_res_csv, pa_res_csv) {
   writeLines(paste0("  a0: ", a0),
              out,
              sep = "\n")
-  writeLines(paste0("  ap: ", ap),
+  writeLines(paste0("  am: ", am),
              out,
              sep = "\n")
   writeLines(paste0("  as: ", as),
@@ -481,7 +481,7 @@ write_para_yml <- function(gl_summary, pa_summary, gl_res_csv, pa_res_csv) {
   writeLines(paste0("  a0: ", a0_pa),
              out,
              sep = "\n")
-  writeLines(paste0("  ap: ", ap_pa),
+  writeLines(paste0("  am: ", am_pa),
              out,
              sep = "\n")
   writeLines(paste0("  as: ", as_pa),

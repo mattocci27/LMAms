@@ -4,38 +4,58 @@ generate_stan_names <- function(model_json, model_lma_json) {
   model <- fromJSON(model_json)$config
   model_lma <- fromJSON(model_lma_json)$config
   model_lma2 <- model_lma |>
-    mutate(site = ifelse(str_detect(model, "GL"), "GL", "PA"))
-  model2 <- full_join(model_lma2, model, by = c("site", "model", "opt"))
+    mutate(site = ifelse(!is.na(opt), "pa", "gl"))
+  model2 <- model |>
+    mutate(site = ifelse(!is.na(opt) | !is.na(LD), "pa", "gl"))
+  model3 <- full_join(model_lma2, model2, by = c("site", "model", "opt"))
+
+  pa_model <- model3
+  gl_model <- model3  |>
+    filter(site == "gl")
 
   gl_stan_names <- str_c("stan/",
-    model2 |>
-      filter(site == "GL") |>
+    gl_model |>
       pull(model),
     ".stan")
   pa_stan_names <- str_c("stan/",
-    model2 |>
-      filter(site == "PA") |>
+    pa_model |>
       pull(model),
     ".stan")
-  diagnostics_names <- str_c(
-    str_to_lower(model2$site),
+
+  tmp1 <- str_c(
+    "gl",
     "diagnostics",
-    model2$model,
+    gl_model$model,
     sep = "_"
-    )
-  summary_names <- str_c(
-    str_to_lower(model2$site),
-    "summary",
-    model2$model,
+  )
+
+  tmp2 <- str_c(
+    "pa",
+    "diagnostics",
+    pa_model$model,
     sep = "_"
-    )
+  )
+
+  diagnostics_names <- c(tmp1, tmp2)
+  summary_names <- str_replace_all(diagnostics_names, "diagnostics", "summary")
+
+  tmp3 <- str_replace_all(diagnostics_names, "diagnostics", "mcmc")
+  gl_mcmc_names <- tmp3[str_detect(tmp3, "gl")]
+  pa_mcmc_names <- tmp3[str_detect(tmp3, "pa")]
+
   list(
     gl_stan_names = gl_stan_names,
     pa_stan_names = pa_stan_names,
     summary_names = summary_names,
-    diagnostics_names = diagnostics_names
+    diagnostics_names = diagnostics_names,
+    gl_mcmc_names = gl_mcmc_names,
+    pa_mcmc_names = pa_mcmc_names,
+    mcmc_names = c(gl_mcmc_names, pa_mcmc_names)
     )
 }
+
+my_loo <- function(x) x$loo(cores = parallel::detectCores())
+
 
 #' @title Generate stan data for GLOPNET
 generate_gl_stan <- function(data) {
@@ -407,7 +427,7 @@ create_para_tbl <- function(gl_draws, pa_draws) {
   # targets::tar_load(fit_7_draws_GL_Aps_LLs)
  #draws <- fit_7_draws_GL_Aps_LLs
   gl_draws2 <- gl_draws |>
-    dplyr::select(c("ap", "as", "bs", "gp", "gs"))
+    dplyr::select(c("am", "as", "bs", "gm", "gs"))
   gl_tab <- bind_cols(
     mean_ = apply(gl_draws2, 2, mean),
     low = apply(gl_draws2, 2, \(x)quantile(x, 0.025)),
@@ -424,7 +444,7 @@ create_para_tbl <- function(gl_draws, pa_draws) {
     dplyr::select(para, GLOPNET = est, sig1 = sig)
 
   pa_draws2 <- pa_draws |>
-    dplyr::select(c("ap", "bs", "gp", "gs", "theta"))
+    dplyr::select(c("am", "bs", "gm", "gs", "theta"))
   pa_tab <- bind_cols(
     mean_ = apply(pa_draws2, 2, mean),
     low = apply(pa_draws2, 2, \(x)quantile(x, 0.025)),
@@ -486,34 +506,28 @@ create_sim_dat <- function() {
 }
 
 #' @para loo_tbl csv file of loo
-write_model_selction <- function(loo_tbl) {
-  output <- "data/model_selection.csv"
+write_model_selection <- function(loo_tbl, output) {
+#  output <- "data/model_selection.csv"
   d <- read_csv(loo_tbl)
-  d |>
-    mutate(no1 = case_when(
-      str_detect(Model, "LMA_opt") ~ 3,
-      str_detect(Model, "LL.*opt") ~ 4,
-      str_detect(Model, "LD.*opt") ~ 5,
-      str_detect(Model, "LL") ~ 2,
-      str_detect(Model, "LMA") ~ 1
-    )) |>
-  # because Ap is included Aps, this order is correct
-    mutate(no2 = case_when(
-      str_detect(Model, "Aps.*LLs|Aps.*LDs") ~ "b",
-      str_detect(Model, "Ap.*LLs|Ap.*LDs") ~ "a",
-      str_detect(Model, "Aps.*LLps|Aps.*LDps") ~ "d",
-      str_detect(Model, "Ap.*LLps|Ap.*LDps") ~ "c",
-      TRUE ~ ""
-    )) |>
-    filter(!is.na(no1)) |>
-    rename(model_ori = Model) |>
-    mutate(Model = paste0(no1, no2)) |>
-    mutate(Data = ifelse(site == "PA", "Panama", "GLOPNET")) |>
-    dplyr::select(model_ori, Model, Data, N, LOOIC) |>
-    mutate(LOOIC = LOOIC |> round(1)) |>
-    write_csv(output)
 
-    paste(output)
+  d |>
+  mutate(.id = case_when(
+    str_detect(model, "ams_bms") ~  "iv",
+    str_detect(model, "ams") ~  "ii",
+    str_detect(model, "bms") ~  "iii",
+    str_detect(model, "am_bs") ~  "i"
+  )) |>
+  mutate(model_name = case_when(
+    str_detect(model, "ld_opt") ~  "LMAm-LSD-light",
+    str_detect(model, "ld$") ~  "LMAm-LSD",
+    str_detect(model, "lma_opt$") ~  "LMA-light",
+    str_detect(model, "opt$") ~  "LMAm-LMAs-light",
+    str_detect(model, "bs$|bms$") ~  "LMAm-LMAs",
+    str_detect(model, "lma$") ~  "LMA",
+  )) |>
+  mutate(looic = round(looic, 1) |> format(looic, nsmall = 1)) |>
+  dplyr::select(tar_object = model, Model = model_name, Constraints = .id, N = n, LOOIC = looic) |>
+  my_write_csv(output)
 }
 
 #' @para gl_rand_sig data including 95% CI
@@ -532,7 +546,7 @@ coef_rand <- function(gl_rand_sig, gl_rand_check, site = site) {
       para == "b0" ~ "beta[0]",
       para == "bs" ~ "beta[s]",
       para == "g0" ~ "gamma[0]",
-      para == "gp" ~ "gamma[p]",
+      para == "gm" ~ "gamma[p]",
       para == "gs" ~ "gamma[s]",
       TRUE ~ para
     ))
@@ -571,7 +585,7 @@ coef_sim <- function(sim_para_summary, site) {
       variable == "b0" ~ "beta[0]",
       variable == "bs" ~ "beta[s]",
       variable == "g0" ~ "gamma[0]",
-      variable == "gp" ~ "gamma[p]",
+      variable == "gm" ~ "gamma[p]",
       variable == "gs" ~ "gamma[s]",
       TRUE ~ variable
     )) |>
@@ -664,12 +678,6 @@ get_post_para <- function(data, row, col, digits = 2, nsmall = 2) {
     pull({{col}})
 }
 
-#' @title write_csv for targets
-#' @inheritParams readr::write_csv
-my_write_csv <- function(x, path, append = FALSE, col_names = !append) {
-    write_csv(x, path, append = FALSE, col_names = !append)
-    paste(path)
-}
 
 
 #' @title Generate data for LL partial plot

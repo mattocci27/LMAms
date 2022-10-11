@@ -28,7 +28,7 @@ hypo_point <- function(para_yml, n = 200, seed = 123) {
  targets::tar_load(para_yml)
   para <- yaml::yaml.load_file(para_yml)
   a0 <- para$GL$a0
-  ap <- para$GL$ap
+  am <- para$GL$am
   as <- para$GL$as
   sig1 <- para$GL$sig1
 
@@ -37,9 +37,9 @@ hypo_point <- function(para_yml, n = 200, seed = 123) {
   LMAm <- rlnorm(N, log(80), 0.8)
   LMAs <- rlnorm(N, log(80), 0.7)
   LMA <- LMAm + LMAs
-  log_Aarea <- rnorm(N, log(a0 * LMAm^ap * LMAs^as) - 0.5 * sig1^2, sig1)
+  log_Aarea <- rnorm(N, log(a0 * LMAm^am * LMAs^as) - 0.5 * sig1^2, sig1)
   Aarea <- exp(log_Aarea)
-#Aarea <- rlnorm(N, log(a0 * LMAm^ap * LMAs^as), sig1)
+#Aarea <- rlnorm(N, log(a0 * LMAm^am * LMAs^as), sig1)
   tmp <- tibble(LMA, LMAm, LMAs, Aarea)
 
   cor.test(log(Aarea), log(LMA))

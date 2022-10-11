@@ -2,13 +2,10 @@
     "owner": "mattocci",
     "configs": [
     {
-      "model": "GL_LMA"
+      "model": "lma"
     },
     {
-      "model": "PA_LMA"
-    },
-    {
-      "model": "PA_LMA_opt",
+      "model": "lma_opt",
       "opt": "opt"
     }
     ]
