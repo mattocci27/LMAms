@@ -1,17 +1,16 @@
 
-#' @para gl_para MCMC summary for GLOPNET (e.g., fit_7_summary_GL_Aps_LLs)
-#' @para pa_para MCMC summary for Panama (e.g. fit_20_summary_PA_Ap_LLs_opt)
+#' @para gl_para MCMC summary for GLOPNET (e.g., gl_summary_am_bs)
+#' @para pa_para MCMC summary for Panama (e.g. pa_summary_am_bs_opt)
 gen_mass_point_dat <- function(gl_res_csv, pa_res_csv, gl_para, pa_para) {
   # targets::tar_load(pa_res_csv)
   # targets::tar_load(gl_res_csv)
   pa <- read_csv(pa_res_csv)
   gl <- read_csv(gl_res_csv)
 
-  # targets::tar_load(fit_7_summary_GL_Aps_LLs)
-  # gl_para <- fit_7_summary_GL_Aps_LLs
-
-  # targets::tar_load(fit_20_summary_PA_Ap_LLs_opt)
-  # pa_para <- fit_20_summary_PA_Ap_LLs_opt
+  pa <- pa |>
+    count(sp) |>
+    filter(n >= 2) |>
+    inner_join(pa, by = "sp")
 
   sun <- pa |>
     filter(strata == "CAN")
@@ -24,18 +23,12 @@ gen_mass_point_dat <- function(gl_res_csv, pa_res_csv, gl_para, pa_para) {
     pull(mean)
   }
 
-  # point_dat <- tribble(~ type, ~ ap, ~ as,
-  # "GLOPNET", get_mean(gl_para, "ap"), get_mean(gl_para, "as"),
-  # "sun", get_mean(pa_para, "ap"), 0,
-  # "shade", get_mean(pa_para, "ap"), 0)
-
   point_dat <- tibble(
     site = c("GLOPNET", "Sun", "Shade") |>
                     factor(levels =  c("GLOPNET", "Sun", "Shade")),
     am = c(get_mean(gl_para, "am"), get_mean(pa_para, "am"), get_mean(pa_para, "am")),
     as = c(get_mean(gl_para, "as"), 0, 0)
   )
-
 
   gl_b <- lm(log(Aarea) ~ log(LMA), gl)$coefficients[2]
   sun_b <- lm(log(Aarea) ~ log(LMA), sun)$coefficients[2]
