@@ -1,36 +1,28 @@
+
+Cross-reference of manually labeled equations in word documents
+
+In the example below, I want to label `g = h + i` with `(2)` but it starts from `(1)`. This can be handled with `\stepcounter{}` for LaTex but it doesn't work for word documents. Is it possible to do cross-reference of manually labeled equations in word documents?
+
+````
 ---
-title: "My document"
-crossref:
-  fig-title: Fig.
-  fig-prefix: Fig.
 format:
-  html:
-    toc: true
+  docx:
     html-math-method: katex
-    css: styles.css
 ---
 
-```{r}
-#| label: fig-plot
-#| fig-cap: "Plot"
+$$
+a = b + c \qquad(1a)
+$$
 
-plot(cars)
-```
+$$
+d = e + f \qquad(1b)
+$$
 
+$$
+g = h + i
+$$ {#eq-test}
 
-```{r}
-#| label: fig-plot2
-#| fig-cap: "Plot 2"
-
-hist(rnorm(100))
-```
-
-@fig-plot and @fig-plot2.
-
-[@fig-plot] and [@fig-plot2].
-
-[@fig-plot]-[@fig-plot2].
-
-[@fig-plot; @fig-plot2].
-
-Figs. 1-2.
+$$
+j = k + l
+$$ {#eq-test2}
+````

@@ -12,6 +12,12 @@ format:
     self-contained: true
     smooth-scroll: true
     highlight-style: github
+    html-math-method: katex
+  docx:
+    toc: false
+    number-sections: false
+    highlight-style: github
+    html-math-method: katex
   pdf:
     toc: false
     keep-tex: true
@@ -23,22 +29,33 @@ format:
 # Equations
 
 $$
-x_i \sim N(\mu, \sigma)
-$$ {#eq-norm}
+\begin{aligned}
+  &\mathrm{LMA}_{i} =\mathrm{LMAm}_{i} + \mathrm{LMAs}_{i} \\
+  &\mathrm{LMAm}_{i} = f_{i} \mathrm{LMA}_{i} \\
+  &\mathrm{LMAs}_{i} = (1 - f_{i})  \mathrm{LMA}_{i}
+\end{aligned}
+$$ {#eq-LMA}
 
 
 $$
-y_i \sim Pois(\lambda)
-$$ {#eq-pois}
+\mathrm{E}[A_{\mathrm{area} \, i}]
+= \alpha_0\mathrm{LMAm}_{i}^{\alpha_m}\mathrm{LMAs}_i^{\alpha_s}  =  \alpha_0 (f_i \mathrm{LMA}_{i})^{\alpha_m} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\alpha_s}
+$$ {#eq-Aarea}
 
-@eq-norm is a normal distribution.
+$$
+\mathrm{E}[R_{\mathrm{area} \, i}]
+= \gamma_0\mathrm{LMAm}_{i}^{\gamma_m} \mathrm{LMAs}_{i}^{\gamma_s}
+= \gamma_0 (f_i \mathrm{LMA}_{i})^{\gamma_m} \bigl\{(1-f_i)\mathrm{LMA}_{i}\bigr\}^{\gamma_s}
+$$ {#eq-Rarea}
 
+$$
+\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s}  = \beta_0 (f_i \mathrm{LMA}_{i})^{\beta_m} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\beta_s} \qquad(4a)
+$$
 
-@eq-pois is a Poisson distribution.
+$$
+\mathrm{E[LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s} \mathrm{exp}(\theta \mathrm{Light}_i) \stepcounter{equation}\qquad(4b)
+$$
 
-
-Eq. S[-@eq-norm] is a normal distribution.
-
-
-Eq. S[-@eq-pois] is a Poisson distribution.
-
+$$
+A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i
+$$ {#eq-mass}
