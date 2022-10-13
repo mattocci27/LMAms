@@ -1,5 +1,5 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-.Random.seed|object|143e3846de0fc860|||||||||||||||
+.Random.seed|object|b3f6948c741a703a|||||||||||||||
 am_bs_opt|stem|796b1e6dfa860bbe|a270102a16281410|d08213f484b3e9b9|1031338066|stan/am_bs_opt.stan|t19276.2874316564s|d931c34d8858571a|2347|file|local|vector|||40.473||
 ams_bs|stem|27feecfefd81fe04|fc82e1a89d72bba3|d08213f484b3e9b9|-822872356|stan/ams_bs.stan|t19276.2874316564s|4dd662639d0ae2b7|2236|file|local|vector|||40.564||
 box_de|function|bc12498925127161|||||||||||||||
@@ -12,8 +12,8 @@ box_frac_pa_plot|stem|4033571a467092ce|99c4ad6d73d52b44|cc49504dde1ff598|-201592
 box_frac_plot|stem|3f795979daa337a7|7d56255b45e1860e|c1f193df1c49ea6c|843593401|figs/box_frac.png*figs/box_frac.pdf|t19278.3474024083s|d8da8dd0096a85a2|41184|file|local|vector|||0.435||
 box_frac_sun|function|20da63da16455495|||||||||||||||
 box_fun|function|8075732c4f48acdf|||||||||||||||
-box_inter|function|f74d28400dee4979|||||||||||||||
-box_inter_plot|stem|89b22ef3912ffc18|e43d595418689c70|066ee5595afdc48f|-1748355284|figs/box_inter.png*figs/box_inter.pdf|t19275.4533177136s|b52fa1e142f0bc0b|81023|file|local|vector|||0.872||
+box_inter|function|5f529f3f1b0bfe77|||||||||||||||
+box_inter_plot|stem|6f326d6b61e1888f|e43d595418689c70|a4ac8e44de866f3e|-1748355284|figs/box_inter.png*figs/box_inter.pdf|t19278.4445720854s|6c117035595dde75|83685|file|local|vector|||0.853||
 box_intra|function|377e3d7eff2dfb09|||||||||||||||
 box_intra_plot|stem|677cfdcf51379269|9e1fab5b9e80c34d|ed7b5a921c103d2b|184529596|figs/box_intra.png*figs/box_intra.pdf|t19275.4533189636s|9a3f05836ded00d3|105671|file|local|vector|||1.227||
 box_main|function|ab8b397d3d9c952f|||||||||||||||
