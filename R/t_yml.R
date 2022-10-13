@@ -119,7 +119,7 @@ p_post <- function(pmat,
   m2
 }
 
-#' @title Preaprea data for boxplot and t-test (Panama - short)
+#' @title Prepare data for boxplot and t-test (Panama - short)
 #' This returns inter or intra data for sun/shade or eve/dec
 prep_pa_box_dat <- function(pa_res_csv, intra = TRUE, sun = TRUE) {
   # targets::tar_load(pa_res_csv)
@@ -164,7 +164,7 @@ prep_pa_box_dat <- function(pa_res_csv, intra = TRUE, sun = TRUE) {
   }
 }
 
-#' @title Preaprea data for boxplot and t-test (GLOPNET - short)
+#' @title Prepare data for boxplot and t-test (GLOPNET - short)
 prep_gl_box_dat <- function(gl_res_csv) {
   gl <- read_csv(gl_res_csv) |>
     mutate(frac = LMAm / LMA) |>
@@ -178,10 +178,8 @@ prep_gl_box_dat <- function(gl_res_csv) {
 # targets::tar_load(pa_inter_box_dat)
 # targets::tar_load(pa_intra_box_dat)
 # targets::tar_load(gl_box_dat)
-# targets::tar_load(fit_20_draws_PA_Ap_LLs_opt)
-# pa_draws <- fit_20_draws_PA_Ap_LLs_opt
-# targets::tar_load(fit_7_draws_GL_Aps_LLs)
-# gl_draws <- fit_7_draws_GL_Aps_LLs
+# pa_draws <- targets::tar_read(pa_draws_am_bs_opt)
+# gl_draws <- targets::tar_read(gl_draws_ams_bs)
 # yml file ==================================================================
 
 #'@ title Write letters for multiple comparisons
@@ -205,37 +203,13 @@ write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
   PA_intra_LMAs <- p_group2(pa_draws, "LMAs",
                       group = "site_strata2", data = pa_intra_box_dat)
 
-# all Panama (EveDec)
-  # targets::tar_load(pa_inter_de_box_dat)
-  # pa_inter_de_box_dat
-
-#  n_rm <- which(is.na(pa_inter_de_box_dat$gr))
-
-  # pa_draws_rm <- pa_draws |>
-  #   dplyr::select(!paste0("p[", n_rm, "]"))
-
-
-  # data <- pa_intra_de_box_dat
-  #  id_dat <- data |>
-  #    pull(id) |>
-  #    str_split_fixed("_", 2)
-  #  id <- id_dat[,2] |> as.numeric()
-
-  # pmat0 <- pa_draws |>
-  # janitor::clean_names() |>
-  # dplyr::select(contains("p_")) |>
-  # as.matrix()
-  # pmat <- pmat0[, paste0("p_", id)]
-
-  # moge <- p_post(pmat, data, "LMAm", group = "leaf_habit")
 
   #targets::tar_load(pa_inter_de_box_dat)
   pa_inter_de_box_dat <- pa_inter_de_box_dat |>
      filter(!is.na(gr))
   # pa_inter_de_box_dat$gr
   PA_de_LMA <- p_group(pa_inter_de_box_dat$LMA, pa_inter_de_box_dat$leaf_habit)
-  # undebug(p_group2)
-  #undebug(p_group2)
+
   PA_de_LMAm <- p_group2(pa_draws, "LMAm",
                       group = "leaf_habit", data = pa_inter_de_box_dat)
   PA_de_LMAs <- p_group2(pa_draws, "LMAs",
@@ -265,6 +239,9 @@ write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
   PA_frac <- p_group2(pa_draws, "frac",
                       group = "leaf_habit", data = pa_intra_box_dat)
 
+# sun shade
+  PA_frac_sun <- p_group2(pa_draws, "frac",
+                      group = "site_strata2", data = pa_intra_box_dat)
 
 # all
   PA_frac2 <- p_group2(pa_draws, "frac",
@@ -492,34 +469,19 @@ write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
   writeLines(paste0("    E: ", PA_frac["E"]),
              out,
              sep = "\n")
-  writeLines(paste0("  PA_intra:"),
+  writeLines(paste0("  PA_light:"),
              out,
              sep = "\n")
-  writeLines(paste0("    Sun_Dry: ", PA_frac3["Sun_Dry"]),
+  writeLines(paste0("    Sun_Dry: ", PA_frac_sun["Sun_Dry"]),
              out,
              sep = "\n")
-  writeLines(paste0("    Shade_Dry: ", PA_frac3["Shade_Dry"]),
+  writeLines(paste0("    Shade_Dry: ", PA_frac_sun["Shade_Dry"]),
              out,
              sep = "\n")
-  writeLines(paste0("    Sun_Wet: ", PA_frac3["Sun_Wet"]),
+  writeLines(paste0("    Sun_Wet: ", PA_frac_sun["Sun_Wet"]),
              out,
              sep = "\n")
-  writeLines(paste0("    Shade_Wet: ", PA_frac3["Shade_Wet"]),
-             out,
-             sep = "\n")
-  writeLines(paste0("  PA_all:"),
-             out,
-             sep = "\n")
-  writeLines(paste0("    Sun_Dry: ", PA_frac2["Sun_Dry"]),
-             out,
-             sep = "\n")
-  writeLines(paste0("    Shade_Dry: ", PA_frac2["Shade_Dry"]),
-             out,
-             sep = "\n")
-  writeLines(paste0("    Sun_Wet: ", PA_frac2["Sun_Wet"]),
-             out,
-             sep = "\n")
-  writeLines(paste0("    Shade_Wet: ", PA_frac2["Shade_Wet"]),
+  writeLines(paste0("    Shade_Wet: ", PA_frac_sun["Shade_Wet"]),
              out,
              sep = "\n")
   writeLines(paste0("Cell:"),

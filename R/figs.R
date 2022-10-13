@@ -785,8 +785,6 @@ box_intra <- function(gl_box_list, pa_box_trim_de_list, pa_box_trim_list, settin
             "Shade\nWet" = settings$colors$shade_wet,
             "Rand" = settings$colors$R)
 
-  # tar_load(gl_box_list)
-  # gl_box_list
   p1 <- box_fun(gl_box_list, cols, fills) +
        ylab(expression(atop("GLOPNET",
                    LMA~(g~m^{-2})))) +
@@ -861,6 +859,8 @@ box_inter <- function(pa_box_de_list, pa_box_list, settings_yml) {
 box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
   # targets::tar_load(pa_inter_box_dat)
   # targets::tar_load(gl_box_dat)
+  # targets::tar_load(settings_yml)
+  # targets::tar_load(letters_yml)
   settings <- yaml::yaml.load_file(settings_yml)
   p_letters <- yaml::yaml.load_file(letters_yml)
   fills <- c("D" = settings$fills$D,
@@ -919,6 +919,56 @@ box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
   p1 + p2 +
     plot_annotation(tag_levels = "a")
 }
+
+#' @title Boxplot for LMAm fraction (for panama)
+box_frac_pa <- function(pa_intra_box_dat, settings_yml, letters_yml) {
+  # targets::tar_load(pa_intra_box_dat)
+  # targets::tar_load(settings_yml)
+  # targets::tar_load(letters_yml)
+  settings <- yaml::yaml.load_file(settings_yml)
+  p_letters <- yaml::yaml.load_file(letters_yml)
+  fills <- c("Sun\nDry" = settings$fills$sun_dry,
+            "Sun\nWet" = settings$fills$sun_wet,
+            "Shade\nDry" = settings$fills$shade_dry,
+            "Shade\nWet" = settings$fills$shade_wet)
+
+  cols <- c("Sun\nDry" = settings$colors$sun_dry,
+            "Sun\nWet" = settings$colors$sun_wet,
+            "Shade\nDry" = settings$colors$shade_dry,
+            "Shade\nWet" = settings$colors$shade_wet)
+
+  my_y_title <- bquote(atop("The fraction of total LMA",
+                           "comprised by LMAm ("*italic(f)*")"))
+
+  lab <- pa_intra_box_dat |>
+    filter(!is.na(gr)) |>
+    group_by(gr) |>
+    summarize(frac = max(frac)) |>
+    ungroup() |>
+    mutate(lab = p_letters$Frac$PA_light
+           |> unlist())
+
+  p <- ggplot(pa_intra_box_dat,
+    aes(x = gr, y = frac)) +
+    geom_boxplot(outlier.shape = 21, outlier.size = 1,
+      aes(fill = gr, col = gr)) +
+    geom_text(data = lab, aes(label = lab),
+              vjust = -1,
+              size = 8 * 5/14) +
+    ylab(my_y_title) +
+    xlab("") +
+    scale_fill_manual(values = fills, guide = "none") +
+    scale_color_manual(values = cols, guide = "none") +
+    # scale_y_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0)) +
+    ylim(c(0.0, 1.0)) +
+    theme_box() +
+    theme(
+      strip.background = element_blank()
+          )
+  p
+
+}
+
 
 #' @para data GLOPNET or Panama data with factored gr
 ps_point_wrapper <- function(data, settings, GL = TRUE, ci = FALSE) {
