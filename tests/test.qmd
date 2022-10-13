@@ -1,14 +1,10 @@
-
-Cross-reference of manually labeled equations in word documents
-
-In the example below, I want to label `g = h + i` with `(2)` but it starts from `(1)`. This can be handled with `\stepcounter{}` for LaTex but it doesn't work for word documents. Is it possible to do cross-reference of manually labeled equations in word documents?
-
-````
 ---
 format:
   docx:
     html-math-method: katex
 ---
+
+Word.
 
 $$
 a = b + c \qquad(1a)
