@@ -67,16 +67,11 @@ Frac:
   PA:
     D: a
     E: b
-  PA_intra:
-    Sun_Dry: NA
-    Shade_Dry: NA
-    Sun_Wet: NA
-    Shade_Wet: NA
-  PA_all:
-    Sun_Dry: NA
-    Shade_Dry: NA
-    Sun_Wet: NA
-    Shade_Wet: NA
+  PA_light:
+    Sun_Dry: a
+    Shade_Dry: ab
+    Sun_Wet: a
+    Shade_Wet: b
 Cell:
   PA_intra:
     Sun_Dry: a

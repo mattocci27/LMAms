@@ -27,9 +27,7 @@ tar_option_set(packages = c(
   "loo",
   "jsonlite",
   "foreach",
-  "httpgd",
-  "multcompView",
-  "quarto"
+  "multcompView"
 ))
 
 tar_option_set(
@@ -874,6 +872,22 @@ main_list <- list(
     },
     format = "file"
   ),
+
+  tar_target(
+    box_frac_pa_plot, {
+      p <- box_frac_pa(pa_intra_box_dat, settings_yml, letters_yml)
+      my_ggsave(
+        "figs/box_frac_pa",
+       p,
+       dpi = 300,
+       height = 6,
+       width = 6,
+       units = "cm"
+      )
+    },
+    format = "file"
+  ),
+
   tar_quarto(
     report,
     "report.qmd"
