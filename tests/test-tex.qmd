@@ -1,0 +1,39 @@
+````
+---
+crossref:
+  eq-prefix: Eq.
+format:
+  pdf:
+    number-sections: true
+    colorlinks: true
+    pdf-engine: pdflatex
+---
+
+This is an example for PDF.
+
+\begin{align}
+a = b + c \label{eq:test_a} \tag{1a}
+\end{align}
+
+\begin{align}
+d = e + f \stepcounter{equation} \label{eq:test_b} \tag{1b}
+\end{align}
+
+$$
+g = h + i
+$$ {#eq-test}
+
+$$
+j = k + l
+$$ {#eq-test2}
+
+
+Eq. \ref{eq:test_a}
+
+Eq. \ref{eq:test_b}
+
+@eq-test
+
+@eq-test2
+
+````

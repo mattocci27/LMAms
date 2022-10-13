@@ -40,7 +40,6 @@ format:
         \usepackage[default]{sourcesanspro}
         \usepackage{sourcecodepro}
         \usepackage{fvextra}
-        \linenumbers
         \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
         \fancyhead[RE,RO]{Katabuchi \textit{et al}.  Appendix}
 ---
@@ -55,7 +54,8 @@ library(kableExtra)
 library(tidyverse)
 library(here)
 here::i_am("ms/LMAms_SI.qmd")
-para <- yaml::yaml.load_file("../yml/para.yml")
+para <- yaml::yaml.load_file(here("yml/para.yml"))
+source(here("R/render.R"))
 ```
 
 \newpage
@@ -89,9 +89,11 @@ We used non-informative or weakly informative prior distributions [@Lemoine2019]
 The covariance mkatrix in Eq. S1 was decomposed as ${\mathbf \Sigma} = {\mathrm diag}({\mathbf \sigma}){\mathbf \Omega}{\mathrm diag}({\mathbf \sigma}) = {\mathrm diag}({\mathbf \sigma}){\mathbf L}{\mathbf L}\prime {\mathrm diag}({\mathbf \sigma})$ using a Cholesky decomposition, where ${\mathbf \sigma}$ is a vector of $\sigma_{1}$, $\sigma_{2}$, and $\sigma_{3}$;  ${\mathbf \Omega}$ is a correlation matrix of $\rho_{12}$, $\rho_{13}$, and $\rho_{23}$; and **L** is a lower triangular matrix.
 Instead of assigning prior distributions on directly, priors were assigned on and **L** to avoid a strong dependence between and [@Lewandowski2009; @Alvarez2014].
 A prior for **L** was specified as a so-called LKJ distribution with shape parameter 2 [@Lewandowski2009], which is weakly informative for the correlation matrix.
-A prior for ${\mathrm diag}({\mathbf \sigma})$ was specified as a Half-Cauchy distribution with location 0 and scale 5, which is weakly informative and allows for occasional large coefficients while still performing a reasonable amount of shrinkage for coefficients near zero [@Gelman2008].
+A prior for ${\mathrm diag}({\mathbf \sigma})$ was specified as a Half-Cauchy distribution with location 0 and scale 2.5, which is weakly informative and allows for occasional large coefficients while still performing a reasonable amount of shrinkage for coefficients near zero [@Gelman2008].
+
 A prior for $\mathbf{\sigma}$ was specified as a Half-Cauchy distribution with location 0 and scale 5, which is weakly informative and allows for occasional large coefficients while still performing a reasonable amount of shrinkage for coefficients near zero [@Gelman2008].
-Priors for $\alpha_{0,p,s}$, $\beta_{0,p,s}$, and $\gamma_{0,p,s}$ in Eqs. 4-6 were weakly informative and specified as normal distributions with mean 0 and standard deviation 5.
+
+Priors for $\alpha_{0,m,s}$, $\beta_{0,m,s}$, and $\gamma_{0,m,s}$ in Eqs. 4-6 were weakly informative and specified as normal distributions with mean 0 and standard deviation 5.
 Priors for *f~i~* in Eqs. 1-4 were non-informative and specified as uniform distributions with range (0, 1).
 
 
@@ -132,11 +134,12 @@ Most of the model results obtained from the randomized datasets did not converge
 
 ## Figure AS1
 
-Although many parameters showed large Rhat values, which suggests that the posterior distributions were not converged well, we checked the regression coefficients for the GLOPNET dataset ($\alpha_{0, p, s}$, $\beta_{0, s}$, and $\gamma_{0, p, s}$ in Eqs. 2-4 in the main text).
+Although many parameters showed large Rhat values, which suggests that the posterior distributions were not converged well, we checked the regression coefficients for the GLOPNET dataset ($\alpha_{0, m, s}$, $\beta_{0, s}$, and $\gamma_{0, m, s}$ in Eqs. 2-4 in the main text).
 There are 10 independent simulations (randomizations) in total.
 Points and lines indicate posterior means and 95% credible intervals (CIs), respectively.
 Although intercepts were significant, the scaling parameters in the randomized datasets did not show any patterns.
 Thus, the tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
+
 ![
 ](`r here("figs/coef_sim_gl.png")`)
 
@@ -144,9 +147,10 @@ Thus, the tests with randomized data indicate that our model is not inherently p
 
 ## Figure AS2
 
-We also checked the regression coefficients for the Panama dataset ($\alpha_{0, p}$, $\beta_{0, s}$, $\gamma_{0, p, s}$ and $\theta$ in Eqs. 2-4 in the main text).
+We also checked the regression coefficients for the Panama dataset ($\alpha_{0, m}$, $\beta_{0, s}$, $\gamma_{0, m, s}$ and $\theta$ in Eqs. 2-4 in the main text).
 Details as for Figure AS1.
 The scaling parameters in the randomized datasets did not show any patterns
+
 ![
 ](`r here("figs/coef_sim_pa.png")`)
 
@@ -154,10 +158,10 @@ The scaling parameters in the randomized datasets did not show any patterns
 
 # Appendix S3: Simulation for mass dependency of *A*~area~
 
-To simulate mass dependency of *A*~area~, we generated LMAm and LMAs values for leaf sample *i* using normal distibutions (N) for GLPONET and sun leaves of Panama with a sample size of 100:
+To simulate mass dependency of *A*~area~, we generated LMAm and LMAs values for leaf sample *i* using normal distributions (N) for GLPONET and sun leaves of Panama with a sample size of 100:
 
 $$
-\mathrm{ln}(\mathrm{LMAm}_{i}) \sim N(\mathrm{ln}(\mu_p), \sigma_p)
+\mathrm{ln}(\mathrm{LMAm}_{i}) \sim N(\mathrm{ln}(\mu_m), \sigma_m)
 $$
 
 $$
@@ -165,10 +169,10 @@ $$
 $$
 
 where
-$\mu_p$ and $\mu_s$ are the mean of LMAm and LMAs on the log-scale, respectively, and
-$\sigma_p$ and $\sigma_s$ are the standard deviation of LMAm and LMAs on the log-scale, respectively.
+$\mu_m$ and $\mu_s$ are the mean of LMAm and LMAs on the log-scale, respectively, and
+$\sigma_m$ and $\sigma_s$ are the standard deviation of LMAm and LMAs on the log-scale, respectively.
 
-Because there was a weak negative correlation between LMAm and LMAs values of shade leaves in Panama, LMAm and LMAs values were generated using a multivairate normal distribution (MVN):
+Because there was a weak negative correlation between LMAm and LMAs values of shade leaves in Panama, LMAm and LMAs values were generated using a multivariate normal distribution (MVN):
 
 $$
 \begin{bmatrix}
@@ -188,77 +192,83 @@ $$
 $$
 \mathbf{\Sigma} = \
 \begin{bmatrix}
-\sigma_p^2 & \rho \sigma_p \sigma_s \\
-\rho \sigma_p \sigma_s & \sigma_s^2 \\
+\sigma_m^2 & \rho \sigma_m \sigma_s \\
+\rho \sigma_m \sigma_s & \sigma_s^2 \\
 \end{bmatrix}
 $$
 
 where $\Sigma$ is the covariance matrix of ln(LMAm) and ln(LMAs),
 $\rho$ is the correlation coefficient between ln(LMAm) and ln(LMAs).
 
-We used the empirical estimates for $\mu_p$, $\mu_s$, $\sigma_p$, and $\rho$ while with changing $\sigma_s$ between ln(1.01) and ln(10).
+We used the empirical estimates for $\mu_m$, $\mu_s$, $\sigma_m$, and $\rho$ while with changing $\sigma_s$ between ln(1.01) and ln(10).
 *A*~area~ was then generated based the values obtianed from the above simulation:
 
 $$
-\mathrm{ln}(A_{\mathrm{area} \, i}) = \mathrm{ln}(\alpha_0) + \alpha_p\mathrm{ln}(\mathrm{LMAm}_{i}) + \alpha_s\mathrm{ln}(\mathrm{LMAs}_{i}).
+\mathrm{ln}(A_{\mathrm{area} \, i}) = \mathrm{ln}(\alpha_0) + \alpha_m\mathrm{ln}(\mathrm{LMAm}_{i}) + \alpha_s\mathrm{ln}(\mathrm{LMAs}_{i}).
 $$
 
 Parameter settings are as following,
 GLOPNET:
-$\mu_p$ = `r para$GL$LMAm_mu_gl`,
+$\mu_m$ = `r para$GL$LMAm_mu_gl`,
 $\mu_s$ = `r para$GL$LMAs_mu_gl`,
-$\sigma_p$ = `r para$GL$LMAm_sig_gl`,
-$\alpha_p$ = `r para$GL$ap`,
+$\sigma_m$ = `r para$GL$LMAm_sig_gl`,
+$\alpha_m$ = `r para$GL$am`,
 $\alpha_s$ = `r para$GL$as`,
 sun leaves in Panama:
-$\mu_p$ = `r para$PA$LMAm_mu_sun`,
+$\mu_m$ = `r para$PA$LMAm_mu_sun`,
 $\mu_s$ = `r para$PA$LMAs_mu_sun`,
-$\sigma_p$ = `r para$PA$LMAm_sig_sun`, and
-$\alpha_p$ = `r para$PA$ap`,
+$\sigma_m$ = `r para$PA$LMAm_sig_sun`, and
+$\alpha_m$ = `r para$PA$am`,
 $\alpha_s$ = 0,
 shade leaves in Panama:
-$\mu_p$ = `r para$PA$LMAm_mu_shade`,
+$\mu_m$ = `r para$PA$LMAm_mu_shade`,
 $\mu_s$ = `r para$PA$LMAs_mu_shade`,
-$\sigma_p$ = `r para$PA$LMAm_sig_shade`,
-$\alpha_p$ = `r para$PA$ap`,
+$\sigma_m$ = `r para$PA$LMAm_sig_shade`,
+$\alpha_m$ = `r para$PA$am`,
 $\alpha_s$ = 0,
 $\rho$ = -0.4.
 
 We finally calculated mass dependicy (*b*) using the following ordinary least square regression:
 
 $$
-\mathrm{ln}(A_{\mathrm{area} \, i}) = \mathrm{ln}(a) + b \mathrm{ln}(\mathrm{LMA}_{i}).
+\mathrm{ln}(A_{\mathrm{area} \, i}) = \mathrm{ln}(c) + b \mathrm{ln}(\mathrm{LMA}_{i}).
 $$
 
 We repeated these steps 1000 times.
 
 \newpage
 
-# Figure S1
+# Figures
 
-![
+## `r s_figure("LMAm_LMAs")`
+
+![](`r here("figs/ps_point.png")`)
+
+
+**`r s_figure("LMAm_LMAs")`**
 Pearson correlation coefficients for posterior medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama datasets.
 The non-significant or weak *r* values indicate that a single axis could not accurately represent the two-dimensional space.
 Symbols as in Main Text Figs. \ref{fig-GLplt}-\ref{fig-PAplt}
-](`r here("figs/ps_point.png")`){#fig-LMAm_LMAs}
-
 
 \newpage
 
-# Figure S2
+## `r s_figure("box_inter")`
 
-![
+![](`r here("figs/box_inter.png")`)
+
+**`r s_figure("box_inter")`**:
 Boxplots comparing leaf mass per area (LMA), photosynthetic leaf mass per area (LMAm; posterior means), and structural leaf mass per area (LMAs; posterior means) across sites (wet and dry) and canopy strata (sun and shade) in Panama.
 The results shown here include all leaves in the Panama dataset, whereas Figs. \ref{fig-boxplt_de}-\ref{fig-boxplt_pa} in the main text only include Panama species for which both sun and shade leaves were available.
 Boxplot symbols as in Figs. \ref{fig-boxplt_de}-\ref{fig-boxplt_pa}.
 Groups sharing the same letters are not significantly different (P > 0.05; t-tests).
-](`r here("figs/box_inter.png")`){#fig-box_inter}
 
 \newpage
 
-# Figure S3
+## `r s_figure("box_frac")`
 
-![
+![](`r here("figs/box_frac.png")`)
+
+**`r s_figure("box_frac")`**:
 Boxplots comparing posterior medians of the latent variable f (the fraction of total LMA comprised by LMAm) across deciduous (D) and evergreen (E) leaves in GLOPNET and Panama, and across sites (wet and dry) and canopy strata (sun and shade) in Panama. Note that LMAm = f × LMA, and LMAs = (1 – f) × LMA.
 (a) Deciduous and evergreen leaves in the GLOPNET dataset;
 (b) deciduous and evergreen leaves for Panama species for which both sun and shade leaves were available;
@@ -268,50 +278,72 @@ At the dry Panama site, the increase in LMA from shade to sun (Fig. \ref{fig-box
 The best model in the table 1 were used.
 The center line in each box indicates the median, upper and lower box edges indicate the interquartile range, whiskers show 1.5 times the interquartile range, and points are outliers.
 Groups sharing the same letters are not significantly different (P > 0.05; t-tests)."}
-](`r here("figs/box_frac.png")`){#fig-box_frac}
 
 \newpage
 
-# Figure S4
+## `r s_figure("box_frac_pa")`
 
-![
-The relationships between mass dependency (*b* in Eq. \ref{eq-mass} in the main text) and relative variance in LMAs to LMA for the different ranges of the scaling exponent $\alpha_p$ and $\alpha_s$.
-**a**, the scaling exponent $\alpha_p$ vary from 0.1 to 1.0 while the scaling exponent $\alpha_s$ is constant ($\alpha_s$ = `r para$GL$as`,).
-**b**, the scaling exponent $\alpha_s$ vary from -0.5 to 0.5 while the scaling exponent $\alpha_p$ is constant ($\alpha_p$ = `r para$GL$ap`,).
+![](`r here("figs/box_frac_pa.png")`)
+
+**`r s_figure("box_frac_pa")`**:
+Boxplots comparing posterior medians of the latent variable f (the fraction of total LMA comprised by LMAm) across deciduous (D) and evergreen (E) leaves in GLOPNET and Panama, and across sites (wet and dry) and canopy strata (sun and shade) in Panama. Note that LMAm = f × LMA, and LMAs = (1 – f) × LMA.
+(a) Deciduous and evergreen leaves in the GLOPNET dataset;
+(b) deciduous and evergreen leaves for Panama species for which both sun and shade leaves were available;
+(c) leaves for Panama species for which both sun and shade leaves were available; and
+(d) all leaves for Panama.
+At the dry Panama site, the increase in LMA from shade to sun (Fig. \ref{fig-boxplt_pa}) is due to roughly equal proportional increases in LMAm and LMAs (because f is similar between sun and shade), whereas at the wet Panama site, the increase in LMA from shade to sun (Fig. \ref{fig-boxplt_pa}) is due primarily to increased LMAm (because f is greater in sun than shade).
+The best model in the table 1 were used.
+The center line in each box indicates the median, upper and lower box edges indicate the interquartile range, whiskers show 1.5 times the interquartile range, and points are outliers.
+Groups sharing the same letters are not significantly different (P > 0.05; t-tests)."}
+
+\newpage
+
+## `r s_figure("mass_prop_sim")`
+
+![](`r here("figs/mass_prop_sim.png")`){#fig-mass_prop_sim}
+
+**`r s_figure("mass_prop_sim")`**:
+The relationships between mass dependency (*b* in Eq. \ref{eq-mass} in the main text) and relative variance in LMAs to LMA for the different ranges of the scaling exponent $\alpha_m$ and $\alpha_s$.
+**a**, the scaling exponent $\alpha_m$ vary from 0.1 to 1.0 while the scaling exponent $\alpha_s$ is constant ($\alpha_s$ = `r para$GL$as`,).
+**b**, the scaling exponent $\alpha_s$ vary from -0.5 to 0.5 while the scaling exponent $\alpha_m$ is constant ($\alpha_m$ = `r para$GL$am`,).
 Solid lines indicate simulated means and shaded regions indicate 95% CI.
 The photosynthetic rate (*A*) is primarily mass-dependent (*b* > 0.5), primarily area-dependent (0.5 > *b* > 0) and purely area-dependent (*b* = 0) [@Osnas2018].
 Note that when *b* > 1, *A*~area~ dramatically increase with LMA, which is not realistic.
 Parameter settings:
 $\alpha_0$ = `r para$GL$a0`,
-$\mu_p$ = `r para$GL$LMAm_mu_gl`,
+$\mu_m$ = `r para$GL$LMAm_mu_gl`,
 $\mu_s$ = `r para$GL$LMAs_mu_gl`,
-$\sigma_p$ = `r para$GL$LMAm_sig_gl`.
-](`r here("figs/mass_prop_sim.png")`){#fig-mass_prop_sim}
+$\sigma_m$ = `r para$GL$LMAm_sig_gl`.
 
 \newpage
 
-# Figure S5
 
-![
+## `r s_figure("mass_prop_comp")`
+
+![](`r here("figs/mass_prop_comp.png")`)
+
+**`r s_figure("mass_prop_comp")`**:
 The relationships between mass dependency (*b* in Eq. \ref{eq-mass} in the main tex) and relative variance in LMAs to LMA for the simulated dataset gerenated by a normal distribution (N) and a multivariate normal distribution (MVN).
 Parameter settings:
 $\alpha_0$ = `r para$PA$a0`,
-$\alpha_p$ = `r para$PA$ap`,
+$\alpha_m$ = `r para$PA$am`,
 $\alpha_s$ = 0,
-$\mu_p$ = `r para$PA$LMAm_mu_shade`,
+$\mu_m$ = `r para$PA$LMAm_mu_shade`,
 $\mu_s$ = `r para$PA$LMAs_mu_shade`,
-$\sigma_p$ = `r para$PA$LMAm_sig_shade`, and
+$\sigma_m$ = `r para$PA$LMAm_sig_shade`, and
 $\rho$ = -0.4,
-](`r here("figs/mass_prop_comp.png")`){#fig-mass_prop_comp}
 
 \newpage
 
-# Figure S6
+## `r s_figure("gl_point_np2")`
 
-![
+![](`r here("figs/gl_point_np2.png")`)
+
+**`r s_figure("gl_point_np2")`**:
 Measured traits related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are positively correlated with LMA and with estimates (posterior means) of the photosynthetic and structural LMA components (LMAm and LMAs, respectively) in the GLOPNET dataset.
 LMAm yields more consistent relationships compared to LMA and LMAs; e.g., evergreen and deciduous leaves align along a single relationship in panel b, but not in panels a or c.
-](`r here("figs/gl_point_np2.png")`){#fig-gl_point_np2}
+
+\newpage
 
 # Appendix S4: Stan code
 

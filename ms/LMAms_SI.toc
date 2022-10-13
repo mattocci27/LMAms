@@ -4,14 +4,16 @@
 \contentsline {subsection}{\nonumberline Figure AS1}{4}{subsection*.11}%
 \contentsline {subsection}{\nonumberline Figure AS2}{5}{subsection*.13}%
 \contentsline {section}{\nonumberline Appendix S3: Simulation for mass dependency of \emph {A}\textsubscript {area}}{6}{section*.15}%
-\contentsline {section}{\nonumberline Figure S1}{7}{section*.17}%
-\contentsline {section}{\nonumberline Figure S2}{8}{section*.20}%
-\contentsline {section}{\nonumberline Figure S3}{9}{section*.23}%
-\contentsline {section}{\nonumberline Figure S4}{10}{section*.26}%
-\contentsline {section}{\nonumberline Figure S5}{11}{section*.29}%
-\contentsline {section}{\nonumberline Figure S6}{12}{section*.32}%
-\contentsline {section}{\nonumberline Appendix S4: Stan code}{12}{section*.35}%
-\contentsline {subsection}{\nonumberline Stan code for the GLOPNET dataset}{12}{subsection*.37}%
-\contentsline {subsection}{\nonumberline Stan code for the Panama dataset}{13}{subsection*.39}%
-\contentsline {section}{References}{15}{section*.40}%
+\contentsline {section}{\nonumberline Figures}{7}{section*.17}%
+\contentsline {subsection}{\nonumberline Figure S1}{7}{subsection*.19}%
+\contentsline {subsection}{\nonumberline Figure S2}{8}{subsection*.21}%
+\contentsline {subsection}{\nonumberline Figure S3}{9}{subsection*.23}%
+\contentsline {subsection}{\nonumberline Figure S4}{10}{subsection*.25}%
+\contentsline {subsection}{\nonumberline Figure S5}{11}{subsection*.27}%
+\contentsline {subsection}{\nonumberline Figure S6}{12}{subsection*.29}%
+\contentsline {subsection}{\nonumberline Figure S7}{13}{subsection*.31}%
+\contentsline {section}{\nonumberline Appendix S4: Stan code}{14}{section*.33}%
+\contentsline {subsection}{\nonumberline Stan code for the GLOPNET dataset}{14}{subsection*.35}%
+\contentsline {subsection}{\nonumberline Stan code for the Panama dataset}{16}{subsection*.37}%
+\contentsline {section}{References}{19}{section*.38}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
