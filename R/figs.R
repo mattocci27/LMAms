@@ -820,6 +820,8 @@ box_intra <- function(gl_box_list, pa_box_trim_de_list, pa_box_trim_list, settin
 #' @title boxplot for SI
 #' @para pa_box_list list with data and lab
 box_inter <- function(pa_box_de_list, pa_box_list, settings_yml) {
+  # targets::tar_load(pa_box_de_list)
+  # targets::tar_load(pa_box_list)
   settings <- yaml::yaml.load_file(settings_yml)
   cols <- rep("black", 3)
   fills <- c("Dec" = settings$fills$D,
@@ -840,8 +842,7 @@ box_inter <- function(pa_box_de_list, pa_box_list, settings_yml) {
        ylab(expression(atop("Panama",
                    LMA~(g~m^{-2})))) +
     theme(
-      strip.background = element_blank(),
-      strip.text.x = element_text(colour = NA) # invinsible strip
+      strip.background = element_blank()
           )
 
   p2 <- box_fun(pa_box_list, cols2, fills2) +
