@@ -238,10 +238,14 @@ write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
                       group = "leaf_habit", data = gl_box_dat)
   PA_frac <- p_group2(pa_draws, "frac",
                       group = "leaf_habit", data = pa_intra_box_dat)
+  PA_frac_inter <- p_group2(pa_draws, "frac",
+                      group = "leaf_habit", data = pa_inter_box_dat)
 
 # sun shade
   PA_frac_sun <- p_group2(pa_draws, "frac",
                       group = "site_strata2", data = pa_intra_box_dat)
+  PA_frac_sun_inter <- p_group2(pa_draws, "frac",
+                      group = "site_strata2", data = pa_inter_box_dat)
 
 # all
   PA_frac2 <- p_group2(pa_draws, "frac",
@@ -469,6 +473,15 @@ write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
   writeLines(paste0("    E: ", PA_frac["E"]),
              out,
              sep = "\n")
+  writeLines(paste0("  PA_inter:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    D: ", PA_frac_inter["D"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    E: ", PA_frac_inter["E"]),
+             out,
+             sep = "\n")
   writeLines(paste0("  PA_light:"),
              out,
              sep = "\n")
@@ -482,6 +495,21 @@ write_t <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat,
              out,
              sep = "\n")
   writeLines(paste0("    Shade_Wet: ", PA_frac_sun["Shade_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("  PA_light_inter:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Dry: ", PA_frac_sun_inter["Sun_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Dry: ", PA_frac_sun_inter["Shade_Dry"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Sun_Wet: ", PA_frac_sun_inter["Sun_Wet"]),
+             out,
+             sep = "\n")
+  writeLines(paste0("    Shade_Wet: ", PA_frac_sun_inter["Shade_Wet"]),
              out,
              sep = "\n")
   writeLines(paste0("Cell:"),

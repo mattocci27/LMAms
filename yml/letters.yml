@@ -67,11 +67,19 @@ Frac:
   PA:
     D: a
     E: b
+  PA_inter:
+    D: a
+    E: b
   PA_light:
     Sun_Dry: a
     Shade_Dry: ab
     Sun_Wet: a
     Shade_Wet: b
+  PA_light_inter:
+    Sun_Dry: a
+    Shade_Dry: bc
+    Sun_Wet: b
+    Shade_Wet: c
 Cell:
   PA_intra:
     Sun_Dry: a

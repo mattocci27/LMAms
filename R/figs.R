@@ -857,11 +857,13 @@ box_inter <- function(pa_box_de_list, pa_box_list, settings_yml) {
 }
 
 #' @title Boxplot for LMAm fraction (LMAm / LMA)
-box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
-  # targets::tar_load(pa_inter_box_dat)
-  # targets::tar_load(gl_box_dat)
-  # targets::tar_load(settings_yml)
-  # targets::tar_load(letters_yml)
+box_frac <- function(gl_box_dat, pa_intra_box_dat, pa_inter_box_dat, settings_yml, letters_yml) {
+  library(tidyverse)
+  targets::tar_load(pa_inter_box_dat)
+  targets::tar_load(pa_intra_box_dat)
+  targets::tar_load(gl_box_dat)
+  targets::tar_load(settings_yml)
+  targets::tar_load(letters_yml)
   settings <- yaml::yaml.load_file(settings_yml)
   p_letters <- yaml::yaml.load_file(letters_yml)
   fills <- c("D" = settings$fills$D,
@@ -872,12 +874,24 @@ box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
   my_y_title <- bquote(atop("The fraction of total LMA",
                            "comprised by LMAm ("*italic(f)*")"))
 
+  gl_box_dat <- gl_box_dat |>
+    mutate(.id = "GLOPNET")
+
+  pa_intra_dat <- pa_intra_box_dat |>
+    mutate(.id = "Panama - paired leaves")
+
+  pa_inter_dat <- pa_inter_box_dat |>
+    mutate(.id = "Panama - all leaves")
+
+  fig_data <- bind_rows(gl_box_dat, pa_intra_dat, pa_inter_dat)
+
   lab1 <- gl_box_dat |>
     group_by(leaf_habit) |>
     summarize(frac = max(frac)) |>
     ungroup() |>
     mutate(lab = p_letters$Frac$GL
-           |> unlist())
+           |> unlist()) |>
+    mutate(.id = "GLOPNET")
 
   lab2 <- pa_intra_box_dat |>
     filter(!is.na(leaf_habit)) |>
@@ -885,7 +899,20 @@ box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
     summarize(frac = max(frac)) |>
     ungroup() |>
     mutate(lab = p_letters$Frac$PA
-           |> unlist())
+           |> unlist()) |>
+    mutate(.id = "Panama - paired leaves")
+
+  lab3 <- pa_inter_box_dat |>
+    filter(!is.na(leaf_habit)) |>
+    group_by(leaf_habit) |>
+    summarize(frac = max(frac)) |>
+    ungroup() |>
+    mutate(lab = p_letters$Frac$PA_inter
+           |> unlist()) |>
+    mutate(.id = "Panama - all leaves")
+
+  lab <- bind_rows(lab1, lab2, lab3)
+
 
   p1 <- ggplot(gl_box_dat,
     aes(x = leaf_habit, y = frac, fill = leaf_habit)) +
@@ -897,11 +924,12 @@ box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
     xlab("") +
     scale_fill_manual(values = fills, guide = "none") +
     ylim(c(0.0, 1.0)) +
-#    scale_y_log10(breaks = my_breaks(), expand = c(0.1, 0)) +
     theme_box() +
     theme(
       strip.background = element_blank()
           )
+
+
   p2 <- ggplot(pa_intra_box_dat,
     aes(x = leaf_habit, y = frac, fill = leaf_habit)) +
     geom_boxplot(outlier.shape = 21, outlier.size = 1) +
@@ -911,18 +939,48 @@ box_frac <- function(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml) {
     ylab(my_y_title) +
     xlab("") +
     scale_fill_manual(values = fills, guide = "none") +
-    # scale_y_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0)) +
     ylim(c(0.0, 1.0)) +
     theme_box() +
     theme(
       strip.background = element_blank()
           )
-  p1 + p2 +
-    plot_annotation(tag_levels = "a")
+
+  p3 <- ggplot(pa_inter_box_dat |> filter(!is.na(leaf_habit)),
+    aes(x = leaf_habit, y = frac, fill = leaf_habit)) +
+    geom_boxplot(outlier.shape = 21, outlier.size = 1) +
+    geom_text(data = lab3, aes(label = lab),
+              vjust = -1,
+              size = 8 * 5/14) +
+    ylab(my_y_title) +
+    xlab("") +
+    scale_fill_manual(values = fills, guide = "none") +
+    ylim(c(0.0, 1.0)) +
+    theme_box() +
+    theme(
+      strip.background = element_blank()
+          )
+
+  ggplot(fig_data |> filter(!is.na(leaf_habit)),
+    aes(x = leaf_habit, y = frac, fill = leaf_habit)) +
+    geom_boxplot(outlier.shape = 21, outlier.size = 1) +
+    geom_text(data = lab, aes(label = lab),
+              vjust = -1,
+              size = 8 * 5/14) +
+    facet_grid(~.id) +
+    ylab(my_y_title) +
+    xlab("") +
+    scale_fill_manual(values = fills, guide = "none") +
+    ylim(c(0.0, 1.0)) +
+    theme_box() +
+    theme(
+      strip.background = element_blank()
+          )
+  # p1 + p2 + p3 +
+  #   plot_annotation(tag_levels = "a")
 }
 
 #' @title Boxplot for LMAm fraction (for panama)
-box_frac_pa <- function(pa_intra_box_dat, settings_yml, letters_yml) {
+box_frac_pa <- function(pa_intra_box_dat, pa_inter_box_dat, settings_yml, letters_yml) {
   # targets::tar_load(pa_intra_box_dat)
   # targets::tar_load(settings_yml)
   # targets::tar_load(letters_yml)
@@ -941,21 +999,42 @@ box_frac_pa <- function(pa_intra_box_dat, settings_yml, letters_yml) {
   my_y_title <- bquote(atop("The fraction of total LMA",
                            "comprised by LMAm ("*italic(f)*")"))
 
-  lab <- pa_intra_box_dat |>
+  pa_intra_dat <- pa_intra_box_dat |>
+    mutate(.id = "Paired leaves")
+
+  pa_inter_dat <- pa_inter_box_dat |>
+    mutate(.id = "All leaves")
+
+  fig_data <- bind_rows(pa_intra_dat, pa_inter_dat)
+
+  lab1 <- pa_inter_box_dat |>
+    filter(!is.na(gr)) |>
+    group_by(gr) |>
+    summarize(frac = max(frac)) |>
+    ungroup() |>
+    mutate(lab = p_letters$Frac$PA_light_inter
+           |> unlist()) |>
+    mutate(.id = "All leaves")
+
+  lab2 <- pa_intra_box_dat |>
     filter(!is.na(gr)) |>
     group_by(gr) |>
     summarize(frac = max(frac)) |>
     ungroup() |>
     mutate(lab = p_letters$Frac$PA_light
-           |> unlist())
+           |> unlist()) |>
+    mutate(.id = "Paired leaves")
 
-  p <- ggplot(pa_intra_box_dat,
+  lab <- bind_rows(lab1, lab2)
+
+  p <- ggplot(fig_data,
     aes(x = gr, y = frac)) +
     geom_boxplot(outlier.shape = 21, outlier.size = 1,
       aes(fill = gr, col = gr)) +
     geom_text(data = lab, aes(label = lab),
               vjust = -1,
               size = 8 * 5/14) +
+    facet_grid(~.id) +
     ylab(my_y_title) +
     xlab("") +
     scale_fill_manual(values = fills, guide = "none") +
