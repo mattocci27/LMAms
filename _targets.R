@@ -860,13 +860,13 @@ main_list <- list(
 
   tar_target(
     box_frac_plot, {
-      p <- box_frac(gl_box_dat, pa_intra_box_dat, settings_yml, letters_yml)
+      p <- box_frac(gl_box_dat, pa_intra_box_dat, pa_inter_box_dat, settings_yml, letters_yml)
       my_ggsave(
         "figs/box_frac",
        p,
        dpi = 300,
        height = 6,
-       width = 10,
+       width = 13,
        units = "cm"
       )
     },
@@ -875,13 +875,13 @@ main_list <- list(
 
   tar_target(
     box_frac_pa_plot, {
-      p <- box_frac_pa(pa_intra_box_dat, settings_yml, letters_yml)
+      p <- box_frac_pa(pa_intra_box_dat, pa_inter_box_dat, settings_yml, letters_yml)
       my_ggsave(
         "figs/box_frac_pa",
        p,
        dpi = 300,
        height = 6,
-       width = 6,
+       width = 12,
        units = "cm"
       )
     },
