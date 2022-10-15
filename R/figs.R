@@ -477,6 +477,143 @@ pa_point_npc <- function(pa_long_dat, settings_yml, r_vals_yml) {
   scatter_plt(dat, lab1, settings_yml, GL = FALSE)
 }
 
+#' @title Creates axis lim from long-data (scatter plots)
+lim_func_rho <- \(data, LMA = TRUE) {
+  if (LMA) {
+    tmp <- data |>
+      dplyr::select(LMA, val) |>
+      group_by(LMA) |>
+      summarize(
+          min_val = min(val, na.rm = TRUE),
+          max_val = max(val, na.rm = TRUE))
+  } else {
+    tmp <- data |>
+      dplyr::select(trait2, val2) |>
+      group_by(trait2) |>
+      summarize(
+          min_val = min(val2, na.rm = TRUE),
+          max_val = max(val2, na.rm = TRUE))
+  }
+  tmp |>
+    ungroup() |>
+    mutate(mid_val = (max_val - min_val) / 2) |>
+    mutate(min_val = min_val) |>
+    mutate(max_val = max_val)
+}
+
+pa_point_npc_rho <- function(pa_rho_dat, settings_yml, r_vals_yml) {
+  # tar_load(settings_yml)
+  # tar_load(r_vals_yml)
+  settings <- yaml::yaml.load_file(settings_yml)
+  r_vals <- yaml::yaml.load_file(r_vals_yml)
+
+  tmp1 <- pa_rho_dat |>
+    dplyr::select(sp, site_strata,
+    val = LMAs_LMAm_rm, Narea_LMAm_rm, Parea_LMAm_rm, cell_area_LMAm_rm) |>
+    pivot_longer(Narea_LMAm_rm:cell_area_LMAm_rm, names_to = "trait", values_to = "val2") |>
+    mutate(LMA = "Residual~LMAs")
+
+  tmp2 <- pa_rho_dat |>
+    dplyr::select(sp, site_strata,
+    val = LMAm_LMAs_rm, Narea_LMAs_rm, Parea_LMAs_rm, cell_area_LMAs_rm) |>
+    pivot_longer(Narea_LMAs_rm:cell_area_LMAs_rm, names_to = "trait", values_to = "val2") |>
+    mutate(LMA = "Residual~LMAm")
+
+  dat <- bind_rows(tmp1, tmp2) |>
+    mutate(trait = str_remove(trait, "_LMAm_rm|_LMAs_rm")) |>
+    mutate(trait = factor(trait, levels = c("Narea", "Parea", "cell_area"))) |>
+    mutate(trait2 = factor(trait,
+      labels = c(
+               "Residual~italic(N)[area]",
+               "Residual~italic(P)[area]",
+               "Residual~CL[area]"))) |>
+    mutate(site_strata = factor(site_strata,
+          levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) |>
+    mutate(gr = factor(site_strata,
+      labels = c("Sun-Wet",
+                 "Sun-Dry",
+                 "Shade-Wet",
+                 "Shade-Dry"))) |>
+    arrange(gr)
+
+  lim_pa <- lim_func_rho(dat)
+  lim_pa2 <- lim_func_rho(dat, LMA = FALSE)
+
+  lab1 <- tibble(lab = paste("(", letters[1:6], ")", sep = ""),
+                     val2 = lim_pa2$max_val %>% rep(each = 2),
+                    # val2 = Inf,
+                     val = lim_pa$min_val %>% rep(3),
+                     val_max = lim_pa$max_val %>% rep(3),
+                     gr = "Sun-Dry",
+                     r_vals = r_vals$r_vals$PA_NP_par %>% unlist,
+                     trait2 = rep(lim_pa2$trait2, each = 2),
+                     LMA = rep(lim_pa$LMA, 3)
+                     ) |>
+    mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
+
+
+  fills <- c("Sun-Dry" = settings$fills$sun_dry,
+          "Sun-Wet" = settings$fills$sun_wet,
+          "Shade-Dry" = settings$fills$shade_dry,
+          "Shade-Wet" = settings$fills$shade_wet)
+
+  cols <- c("Sun-Dry" = settings$colors$sun_dry,
+            "Sun-Wet" = settings$colors$sun_wet,
+            "Shade-Dry" = settings$colors$shade_dry,
+            "Shade-Wet" = settings$colors$shade_wet)
+
+
+  p1 <- ggplot(dat |> filter(str_detect(LMA, "LMAm")),
+    aes(x = val, y = val2, fill = gr, col = gr)) +
+    geom_point(shape = 21) +
+    facet_grid(trait2 ~ LMA,
+             scales = "free",
+             switch = "both",
+             labeller = labeller(trait2 = label_parsed,
+                                 LMA = label_parsed)) +
+    geom_text(data = lab1 |> filter(str_detect(LMA, "LMAm")),
+      aes(label = r_vals, x = val, y = val2),
+              hjust = -0.25,
+              vjust= 1.5,
+              size = 8 * 5/14,
+              parse = TRUE,
+              color = "black",
+              show.legend = FALSE) +
+    scale_fill_manual(values = fills) +
+    scale_colour_manual(values = cols) +
+    xlab("") +
+    ylab("") +
+    theme_LES() +
+    theme(legend.position = "none")
+
+  p2 <- ggplot(dat |> filter(str_detect(LMA, "LMAs")),
+    aes(x = val, y = val2, fill = gr, col = gr)) +
+    geom_point(shape = 21) +
+    facet_grid(trait2 ~ LMA,
+             scales = "free",
+             switch = "both",
+             labeller = labeller(trait2 = label_parsed,
+                                 LMA = label_parsed)) +
+    geom_text(data = lab1 |> filter(str_detect(LMA, "LMAs")),
+      aes(label = r_vals, x = val, y = val2),
+              hjust = -0.25,
+              vjust= 1.5,
+              size = 8 * 5/14,
+              parse = TRUE,
+              color = "black",
+              show.legend = FALSE) +
+    scale_fill_manual(values = fills) +
+    scale_colour_manual(values = cols) +
+    xlab("") +
+    ylab("") +
+    theme_LES() +
+    theme(legend.position = "right")
+
+  p1 + p2 +
+    plot_annotation(tag_levels = "a")
+
+}
+
 #' @title Scatter plots for Panama (LL)
 pa_point_ll <- function(pa_res_csv, settings_yml, r_vals_yml) {
   dat <- read_csv(pa_res_csv) %>%

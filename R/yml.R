@@ -402,27 +402,27 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws, pa_rho_dat) {
   writeLines(paste0("  PA_NP_par:"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAm_Narea: 'italic(r) == ",
+  writeLines(paste0("    LMAm_Narea: 'italic(rho) == ",
                     get_cor2(pa_rho_dat$Narea_LMAs_rm, pa_rho_dat$LMAm_LMAs_rm), "'"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAs_Narea: 'italic(r) == ",
+  writeLines(paste0("    LMAs_Narea: 'italic(rho) == ",
                     get_cor2(pa_rho_dat$Narea_LMAm_rm, pa_rho_dat$LMAs_LMAm_rm), "'"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAm_Parea: 'italic(r) == ",
+  writeLines(paste0("    LMAm_Parea: 'italic(rho) == ",
                     get_cor2(pa_rho_dat$Parea_LMAs_rm, pa_rho_dat$LMAm_LMAs_rm), "'"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAs_Parea: 'italic(r) == ",
+  writeLines(paste0("    LMAs_Parea: 'italic(rho) == ",
                     get_cor2(pa_rho_dat$Parea_LMAm_rm, pa_rho_dat$LMAs_LMAm_rm), "'"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAm_cell_area: 'italic(r) == ",
+  writeLines(paste0("    LMAm_cell_area: 'italic(rho) == ",
                     get_cor2(pa_rho_dat$cell_area_LMAs_rm, pa_rho_dat$LMAm_LMAs_rm), "'"),
              out,
              sep = "\n")
-  writeLines(paste0("    LMAs_cell_area: 'italic(r) == ",
+  writeLines(paste0("    LMAs_cell_area: 'italic(rho) == ",
                     get_cor2(pa_rho_dat$cell_area_LMAm_rm, pa_rho_dat$LMAs_LMAm_rm), "'"),
              out,
              sep = "\n")
