@@ -27,6 +27,7 @@ tar_option_set(packages = c(
   "loo",
   "jsonlite",
   "foreach",
+  "doParallel",
   "multcompView"
 ))
 
@@ -410,9 +411,14 @@ main_list <- list(
   ),
 
   tar_target(
+    pa_rho_dat,
+    generate_pa_rho_data(pa_res_csv)
+  ),
+
+  tar_target(
     r_vals_yml,
     write_r2(gl_res_csv, gl_draws_ams_bs,
-      pa_res_csv, pa_full_draws_am_bs_opt),
+      pa_res_csv, pa_full_draws_am_bs_opt, pa_rho_dat),
     format = "file"
   ),
   tar_target(

@@ -283,8 +283,8 @@ mass_sim_point <- function(am_sim_dat, as_sim_dat) {
                 alpha = 0.4)  +
     geom_line(aes(y = mean, x = LMAs_var_mean, col = factor(am))) +
     labs(
-      color = expression(alpha[p]),
-      fill = expression(alpha[p]))
+      color = expression(alpha[m]),
+      fill = expression(alpha[m]))
 
   p2 <- ggplot(data = as_sim_dat) +
     geom_ribbon(aes(ymin = lwr, ymax = upr,
