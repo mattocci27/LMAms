@@ -41,12 +41,12 @@ r_vals:
     LMAm_cell_area: 'italic(r) == 0.52'
     LMAs_cell_area: 'italic(r) == 0.57'
   PA_NP_par:
-    LMAm_Narea: 'italic(r) == 0.86'
-    LMAs_Narea: 'italic(r) == 0.32'
-    LMAm_Parea: 'italic(r) == 0.81'
-    LMAs_Parea: 'italic(r) == 0.09'
-    LMAm_cell_area: 'italic(r) == 0.59'
-    LMAs_cell_area: 'italic(r) == 0.63'
+    LMAm_Narea: 'italic(rho) == 0.86'
+    LMAs_Narea: 'italic(rho) == 0.32'
+    LMAm_Parea: 'italic(rho) == 0.81'
+    LMAs_Parea: 'italic(rho) == 0.09'
+    LMAm_cell_area: 'italic(rho) == 0.59'
+    LMAs_cell_area: 'italic(rho) == 0.63'
   PA_R2:
     LL_R2: 'italic(R^2) == 0.45'
   PA_LL_par:

@@ -515,6 +515,20 @@ main_list <- list(
     format = "file"
   ),
   tar_target(
+    pa_point_npc_rho_plot, {
+      p <- pa_point_npc_rho(pa_rho_dat, settings_yml, r_vals_yml)
+      my_ggsave(
+        "figs/pa_point_npc_par",
+       p,
+       dpi = 300,
+       height = 11.4,
+       width = 11.4,
+       units = "cm"
+      )
+    },
+    format = "file"
+  ),
+  tar_target(
     pa_point_ll_plot, {
       p <- pa_point_ll(pa_res_csv, settings_yml, r_vals_yml)
       my_ggsave(
