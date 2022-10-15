@@ -679,6 +679,49 @@ get_post_para <- function(data, row, col, digits = 2, nsmall = 2) {
 }
 
 
+generate_pa_rho_data <- function(pa_res_csv) {
+  pa <- read_csv(pa_res_csv)
+
+  fit_np <- lm(log(Narea) ~ log(LMAm), pa)
+  fit_ns <- lm(log(Narea) ~ log(LMAs), pa)
+  fit_php <- lm(log(Parea) ~ log(LMAm), pa)
+  fit_phs <- lm(log(Parea) ~ log(LMAs), pa)
+  fit_cp <- lm(log(cell_area) ~ log(LMAm), pa)
+  fit_cs <- lm(log(cell_area) ~ log(LMAs), pa)
+  fit_ps <- lm(log(LMAm) ~ log(LMAs), pa)
+  fit_sp <- lm(log(LMAs) ~ log(LMAm), pa)
+
+  tmp1 <- tibble(
+    Narea_LMAs_rm = residuals(fit_ns),
+    Narea_LMAm_rm = residuals(fit_np),
+    Parea_LMAs_rm = residuals(fit_phs),
+    Parea_LMAm_rm = residuals(fit_php),
+    LMAm_LMAs_rm = residuals(fit_ps),
+    LMAs_LMAm_rm = residuals(fit_sp),
+    .id = as.character(1:nrow(pa))
+  )
+
+  tmp2 <- tibble(
+    cell_area_LMAs_rm = residuals(fit_cs),
+    cell_area_LMAm_rm = residuals(fit_cp),
+    .id = residuals(fit_cp) |> names()
+  )
+
+  pa <- pa |>
+    mutate(.id = as.character(1:nrow(pa)))
+
+  data <- full_join(tmp1, tmp2) |>
+    full_join(pa) |>
+    mutate(site_strata = factor(site_strata,
+            levels = c("WET_CAN", "DRY_CAN", "WET_UNDER", "DRY_UNDER"))) %>%
+    mutate(gr = factor(site_strata,
+      labels = c("Sun-Wet",
+                 "Sun-Dry",
+                 "Shade-Wet",
+                 "Shade-Dry"
+                        )))
+  data
+}
 
 #' @title Generate data for LL partial plot
 

@@ -1,15 +1,22 @@
 #' @title quantile
 quant_fun <- function(x) c(mean = mean(x),
                            quantile(x, 0.025),
-                           quantile(x, 0.975)) |> round(2)
+                           quantile(x, 0.975)) |>
+                           round(2) |> format(nsmall = 2)
+
 
 #' @title Generates yml file for r-vaules
-write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
-  #registerDoParallel(cores = 24)
-  # targets::tar_load(fit_7_draws_GL_Aps_LLs)
-  # gl_draws <- fit_7_draws_GL_Aps_LLs
+write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws, pa_rho_dat) {
+  # library(foreach)
+  # library(doParallel)
+  registerDoParallel(cores = 24)
+  # gl_draws <- tar_read(gl_draws_ams_bs)
+  # pa_draws <- tar_read(pa_full_draws_am_bs_opt)
   # targets::tar_load(gl_res_csv)
+  # targets::tar_load(pa_res_csv)
+
   GL <- read_csv(gl_res_csv)
+  PA <- read_csv(pa_res_csv)
 
   log_LMAm_mat <- gl_draws |>
     dplyr::select(contains("LMAm")) |>
@@ -48,7 +55,7 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
     c(r_Am, r_As, r_Rm, r_Rs, r_Ls, r_LMAm_LMAs)
   }
 
-  bb <- foreach (i = 1:n, .combine = rbind) %do% res_fun(i)
+  bb <- foreach (i = 1:n, .combine = rbind) %dopar% res_fun(i)
   rownames(bb) <- NULL
   r_Am <- bb[,1]
   r_As <- bb[,2]
@@ -134,7 +141,7 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
     c(r_Am, r_Rm, r_Rs, r_Ls, r_LMAm_LMAs)
   }
 
-  bb2 <- foreach(i = 1:n, .combine = rbind) %do% res_fun2(i)
+  bb2 <- foreach(i = 1:n, .combine = rbind) %dopar% res_fun2(i)
   rownames(bb2) <- NULL
   r_Am <- bb2[,1]
   r_Rm <- bb2[,2]
@@ -170,7 +177,27 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
   var_res <- unlist(l_sigma^2)
   #var_res <- unlist(L_sigma[, 2]^2)
   R2 <- var_fit / (var_fit + var_res)
-  PA_LL_R2 <- quant_fun(R2) |> round(2)
+  PA_LL_R2 <- quant_fun(R2)
+
+  # cor(pa_rho_dat$Narea_LMAs_rm, log(pa_rho_dat$Narea))
+  # cor(pa_rho_dat$Narea_LMAm_rm, log(pa_rho_dat$Narea))
+  # cor(pa_rho_dat$Parea_LMAs_rm, log(pa_rho_dat$Parea))
+
+  get_cor2 <- function(x, y) {
+    cor.test(x, y)$estimate |>
+      round(2) |>
+      format(nsmall = 2)
+  }
+
+  get_cor2(pa_rho_dat$Parea_LMAm_rm, log(pa_rho_dat$Parea))
+
+  # cor(pa_rho_dat$Parea_LMAm_rm, log(pa_rho_dat$Parea))
+  # cor.test(pa_rho_dat$cell_area_LMAs_rm, log(pa_rho_dat$cell_area))
+  # cor.test(pa_rho_dat$cell_area_LMAm_rm, log(pa_rho_dat$cell_area))
+  # cor.test(pa_rho_dat$LMAs, log(pa_rho_dat$cell_area))
+
+
+
 
 # R values ================================================================
   output <- "yml/r_val.yml"
@@ -183,7 +210,7 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
              out,
              sep = "\n")
   writeLines(paste0("    LMA_Aarea: 'italic(r) == ",
-                    cor.test(log(GL$Aarea), log(GL$LMA))$estimate |> round(2),
+                    get_cor2(log(GL$Aarea), log(GL$LMA)),
                     "'"),
              out,
              sep = "\n")
@@ -202,7 +229,7 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
              out,
              sep = "\n")
   writeLines(paste0("    LMA_Rarea: 'italic(r) == ",
-                    cor.test(log(GL$Rarea), log(GL$LMA))$estimate |> round(2),
+                    get_cor2(log(GL$Rarea), log(GL$LMA)),
                     "'"),
              out,
              sep = "\n")
@@ -221,7 +248,7 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
              out,
              sep = "\n")
   writeLines(paste0("    LMA_LL: 'italic(r) == ",
-                    cor.test(log(GL$LL), log(GL$LMA))$estimate |> round(2),
+                    get_cor2(log(GL$LL), log(GL$LMA)),
                     "'"),
              out,
              sep = "\n")
@@ -239,27 +266,27 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
              out,
              sep = "\n")
   writeLines(paste0("    LMA_Narea: 'italic(r) == ",
-                    cor.test(log(GL$Narea), log(GL$LMA))$estimate %>% round(2),"'"),
+                    get_cor2(log(GL$Narea), log(GL$LMA)), "'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMAm_Narea: 'italic(r) == ",
-                    cor.test(log(GL$Narea), log(GL$LMAm))$estimate %>% round(2),"'"),
+                    get_cor2(log(GL$Narea), log(GL$LMAm)),"'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMAs_Narea: 'italic(r) == ",
-                    cor.test(log(GL$Narea), log(GL$LMAs))$estimate %>% round(2),"'"),
+                    get_cor2(log(GL$Narea), log(GL$LMAs)),"'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMA_Parea: 'italic(r) == ",
-                    cor.test(log(GL$Parea), log(GL$LMA))$estimate %>% round(2),"'"),
+                    get_cor2(log(GL$Parea), log(GL$LMA)),"'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMAm_Parea: 'italic(r) == ",
-                    cor.test(log(GL$Parea), log(GL$LMAm))$estimate %>% round(2),"'"),
+                    get_cor2(log(GL$Parea), log(GL$LMAm)),"'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMAs_Parea: 'italic(r) == ",
-                    cor.test(log(GL$Parea), log(GL$LMAs))$estimate %>% round(2),"'"),
+                    get_cor2(log(GL$Parea), log(GL$LMAs)),"'"),
              out,
              sep = "\n")
 
@@ -271,30 +298,12 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
              out,
              sep = "\n")
 
-# writeLines(paste0("  GL_R2:"),
-#            out,
-#            sep = "\n")
-# writeLines(paste0("    A_R2: '",
-#            bayes_R2_GL("A", chr = TRUE),
-#            "'"),
-#            out,
-#            sep = "\n")
-# writeLines(paste0("    LL_R2: '",
-#            bayes_R2_GL("LL", chr = TRUE),
-#            "'"),
-#            out,
-#            sep = "\n")
-# writeLines(paste0("    R_R2: '",
-#            bayes_R2_GL("R", chr = TRUE),
-#            "'"),
-#            out,
-#            sep = "\n")
 
   writeLines(paste0("  PA:"),
              out,
              sep = "\n")
   writeLines(paste0("    LMA_Aarea: 'italic(r) == ",
-                    cor.test(log(PA$Aarea), log(PA$LMA))$estimate |> round(2),
+                    get_cor2(log(PA$Aarea), log(PA$LMA)),
                     "'"),
              out,
              sep = "\n")
@@ -309,7 +318,7 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
              out,
              sep = "\n")
   writeLines(paste0("    LMA_Rarea: 'italic(r) == ",
-                    cor.test(log(PA$Rarea), log(PA$LMA))$estimate |> round(2),
+                    get_cor2(log(PA$Rarea), log(PA$LMA)),
                     "'"),
              out,
              sep = "\n")
@@ -328,7 +337,7 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
              out,
              sep = "\n")
   writeLines(paste0("    LMA_LL: 'italic(r) == ",
-                    cor.test(log(PA$LL), log(PA$LMA))$estimate |> round(2),
+                    get_cor2(log(PA$LL), log(PA$LMA)),
                     "'"),
              out,
              sep = "\n")
@@ -355,39 +364,66 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
              out,
              sep = "\n")
   writeLines(paste0("    LMA_Narea: 'italic(r) == ",
-                    cor.test(log(PA$Narea), log(PA$LMA))$estimate %>% round(2),"'"),
+                    get_cor2(log(PA$Narea), log(PA$LMA)), "'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMAm_Narea: 'italic(r) == ",
-                    cor.test(log(PA$Narea), log(PA$LMAm))$estimate %>% round(2),"'"),
+                    get_cor2(log(PA$Narea), log(PA$LMAm)), "'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMAs_Narea: 'italic(r) == ",
-                    cor.test(log(PA$Narea), log(PA$LMAs))$estimate %>% round(2),"'"),
+                    get_cor2(log(PA$Narea), log(PA$LMAs)), "'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMA_Parea: 'italic(r) == ",
-                    cor.test(log(PA$Parea), log(PA$LMA))$estimate %>% round(2),"'"),
+                    get_cor2(log(PA$Parea), log(PA$LMA)), "'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMAm_Parea: 'italic(r) == ",
-                    cor.test(log(PA$Parea), log(PA$LMAm))$estimate %>% round(2),"'"),
+                    get_cor2(log(PA$Parea), log(PA$LMAm)), "'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMAs_Parea: 'italic(r) == ",
-                    cor.test(log(PA$Parea), log(PA$LMAs))$estimate %>% round(2),"'"),
+                    get_cor2(log(PA$Parea), log(PA$LMAs)), "'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMA_cell_area: 'italic(r) == ",
-                    cor.test(log(PA$cell_area), log(PA$LMA))$estimate %>% round(2),"'"),
+                    get_cor2(log(PA$cell_area), log(PA$LMA)), "'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMAm_cell_area: 'italic(r) == ",
-                    cor.test(log(PA$cell_area), log(PA$LMAm))$estimate %>% round(2),"'"),
+                    get_cor2(log(PA$cell_area), log(PA$LMAm)), "'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMAs_cell_area: 'italic(r) == ",
-                    cor.test(log(PA$cell_area), log(PA$LMAs))$estimate %>% round(2),"'"),
+                    get_cor2(log(PA$cell_area), log(PA$LMAs)), "'"),
+             out,
+             sep = "\n")
+  writeLines(paste0("  PA_NP_par:"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    LMAm_Narea: 'italic(r) == ",
+                    get_cor2(pa_rho_dat$Narea_LMAs_rm, pa_rho_dat$LMAm_LMAs_rm), "'"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    LMAs_Narea: 'italic(r) == ",
+                    get_cor2(pa_rho_dat$Narea_LMAm_rm, pa_rho_dat$LMAs_LMAm_rm), "'"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    LMAm_Parea: 'italic(r) == ",
+                    get_cor2(pa_rho_dat$Parea_LMAs_rm, pa_rho_dat$LMAm_LMAs_rm), "'"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    LMAs_Parea: 'italic(r) == ",
+                    get_cor2(pa_rho_dat$Parea_LMAm_rm, pa_rho_dat$LMAs_LMAm_rm), "'"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    LMAm_cell_area: 'italic(r) == ",
+                    get_cor2(pa_rho_dat$cell_area_LMAs_rm, pa_rho_dat$LMAm_LMAs_rm), "'"),
+             out,
+             sep = "\n")
+  writeLines(paste0("    LMAs_cell_area: 'italic(r) == ",
+                    get_cor2(pa_rho_dat$cell_area_LMAm_rm, pa_rho_dat$LMAs_LMAm_rm), "'"),
              out,
              sep = "\n")
 
@@ -399,7 +435,7 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
                     ,"'"),
              out,
              sep = "\n")
-  writeLines(paste0("  PA_par:"),
+  writeLines(paste0("  PA_LL_par:"),
              out,
              sep = "\n")
   # writeLines(paste0("    LMAs_LL: 'italic(rho) == ",
