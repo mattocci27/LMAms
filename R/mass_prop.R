@@ -297,7 +297,9 @@ mass_sim_point <- function(am_sim_dat, as_sim_dat) {
       fill = expression(alpha[s]))
 
   p1 + p2 +
-    plot_annotation(tag_levels = "a") &
+    plot_annotation(tag_levels = "a",
+      tag_prefix = "(",
+      tag_suffix = ")") &
     ylab(expression(Mass~dependency~(italic(b)))) &
     xlab("Relative variance of LMAs (%)") &
     theme_LES() &

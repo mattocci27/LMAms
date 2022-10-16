@@ -89,9 +89,12 @@ hypo_point <- function(para_yml, n = 200, seed = 123) {
 
 
   p4 <- p1 + p2  + p3 +
-    plot_annotation(tag_levels = "a") &
-    theme(plot.tag = element_text(face = "bold"),
-          legend.background =  element_blank())
+    plot_annotation(tag_levels = "a",
+      tag_prefix = "(",
+      tag_suffix = ")") &
+    #theme(plot.tag = element_text(face = "bold"),
+    #      legend.background =  element_blank())
+    theme(legend.background =  element_blank())
   p4
 }
 
@@ -610,7 +613,9 @@ pa_point_npc_rho <- function(pa_rho_dat, settings_yml, r_vals_yml) {
     theme(legend.position = "right")
 
   p1 + p2 +
-    plot_annotation(tag_levels = "a")
+    plot_annotation(tag_levels = "a",
+      tag_prefix = "(",
+      tag_suffix = ")")
 
 }
 
@@ -990,7 +995,9 @@ box_inter <- function(pa_box_de_list, pa_box_list, settings_yml) {
     strip.text.x = element_text(colour = NA) # invinsible strip
         )
   p1 / p2 +
-    plot_annotation(tag_levels = "a")
+    plot_annotation(tag_levels = "a",
+      tag_prefix = "(",
+      tag_suffix = ")")
 }
 
 #' @title Boxplot for LMAm fraction (LMAm / LMA)
@@ -1253,7 +1260,9 @@ ps_point <- function(gl_res_dat, pa_res_dat, settings_yml, r_vals_yml, ci = FALS
    labs(title = "Panama \n",
          subtitle = bquote(italic("r")~"="~.(r_vals$r_vals$PA_LMAms$LMAs_LMAm)))
   p1 + p2 +
-    plot_annotation(tag_levels = "a")
+    plot_annotation(tag_levels = "a",
+      tag_prefix = "(",
+      tag_suffix = ")")
 }
 
 #' @title Paired LMAm fraction for Panama

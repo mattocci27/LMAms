@@ -84,7 +84,9 @@ vpart_bar <- function(gl_res_csv, pa_res_csv, intra = FALSE) {
       )
 
    vpart_gl_eve + vpart_pa_eve + vpart_pa_leaf +
-      plot_annotation(tag_levels = "a") &
+      plot_annotation(tag_levels = "a",
+        tag_prefix = "(",
+        tag_suffix = ")") &
       ylab("Explained variance (%)") &
       xlab("")
 }
