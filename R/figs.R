@@ -1002,18 +1002,20 @@ box_inter <- function(pa_box_de_list, pa_box_list, settings_yml) {
 
 #' @title Boxplot for LMAm fraction (LMAm / LMA)
 box_frac <- function(gl_box_dat, pa_intra_box_dat, pa_inter_box_dat, settings_yml, letters_yml) {
-  library(tidyverse)
-  targets::tar_load(pa_inter_box_dat)
-  targets::tar_load(pa_intra_box_dat)
-  targets::tar_load(gl_box_dat)
-  targets::tar_load(settings_yml)
-  targets::tar_load(letters_yml)
+  # library(tidyverse)
+  # targets::tar_load(pa_inter_box_dat)
+  # targets::tar_load(pa_intra_box_dat)
+  # targets::tar_load(gl_box_dat)
+  # targets::tar_load(settings_yml)
+  # targets::tar_load(letters_yml)
   settings <- yaml::yaml.load_file(settings_yml)
   p_letters <- yaml::yaml.load_file(letters_yml)
-  fills <- c("D" = settings$fills$D,
-            "E" = settings$fills$E)
-  cols <- c("D" = settings$fills$D,
-            "E" = settings$fills$E)
+  fills <- c("Dec" = settings$fills$D,
+            "Eve" = settings$fills$E,
+            "Unclassified" = settings$fills$U)
+  cols <- c("Dec" = settings$fills$D,
+            "Eve" = settings$fills$E,
+            "Unclassified" = settings$fills$U)
 
   my_y_title <- bquote(atop("The fraction of total LMA",
                            "comprised by LMAm ("*italic(f)*")"))
@@ -1027,7 +1029,8 @@ box_frac <- function(gl_box_dat, pa_intra_box_dat, pa_inter_box_dat, settings_ym
   pa_inter_dat <- pa_inter_box_dat |>
     mutate(.id = "Panama - all leaves")
 
-  fig_data <- bind_rows(gl_box_dat, pa_intra_dat, pa_inter_dat)
+  fig_data <- bind_rows(gl_box_dat, pa_intra_dat, pa_inter_dat) |>
+    mutate(leaf_habit = ifelse(leaf_habit == "D", "Dec", "Eve"))
 
   lab1 <- gl_box_dat |>
     group_by(leaf_habit) |>
@@ -1055,8 +1058,8 @@ box_frac <- function(gl_box_dat, pa_intra_box_dat, pa_inter_box_dat, settings_ym
            |> unlist()) |>
     mutate(.id = "Panama - all leaves")
 
-  lab <- bind_rows(lab1, lab2, lab3)
-
+  lab <- bind_rows(lab1, lab2, lab3) |>
+    mutate(leaf_habit = ifelse(leaf_habit == "D", "Dec", "Eve"))
 
   p1 <- ggplot(gl_box_dat,
     aes(x = leaf_habit, y = frac, fill = leaf_habit)) +
@@ -1072,7 +1075,6 @@ box_frac <- function(gl_box_dat, pa_intra_box_dat, pa_inter_box_dat, settings_ym
     theme(
       strip.background = element_blank()
           )
-
 
   p2 <- ggplot(pa_intra_box_dat,
     aes(x = leaf_habit, y = frac, fill = leaf_habit)) +
