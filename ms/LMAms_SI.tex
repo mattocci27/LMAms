@@ -190,9 +190,9 @@
   \newcommand\listtablename{List of Tables}
 \fi
 \ifdefined\figurename
-  \renewcommand*\figurename{Fig. S}
+  \renewcommand*\figurename{Figure}
 \else
-  \newcommand\figurename{Fig. S}
+  \newcommand\figurename{Figure}
 \fi
 \ifdefined\tablename
   \renewcommand*\tablename{Table}
@@ -241,7 +241,7 @@ within and among plant species}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, breakable, interior hidden, boxrule=0pt, frame hidden, borderline west={3pt}{0pt}{shadecolor}, enhanced]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, sharp corners, interior hidden, enhanced, breakable, frame hidden]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -328,7 +328,6 @@ fit the best models (Appendix S1) to the randomized data.
 \subsection{Table AS1}\label{table-as1}}
 
 \begin{itemize}
-\tightlist
 \item
   No\_large\_Rhat: The number of parameters (including transformed
   parameters) that shows Rhat (Gelman-Rubin statistic) greater than 1.1.
@@ -455,7 +454,7 @@ where \(\Sigma\) is the covariance matrix of ln(LMAm) and ln(LMAs),
 We used the empirical estimates for \(\mu_m\), \(\mu_s\), \(\sigma_m\),
 and \(\rho\) while with changing \(\sigma_s\) between ln(1.01) and
 ln(10). \emph{A}\textsubscript{area} was then generated based the values
-obtianed from the above simulation:
+obtained from the above simulation:
 
 \[
 \mathrm{ln}(A_{\mathrm{area} \, i}) = \mathrm{ln}(\alpha_0) + \alpha_m\mathrm{ln}(\mathrm{LMAm}_{i}) + \alpha_s\mathrm{ln}(\mathrm{LMAs}_{i}).
@@ -468,7 +467,7 @@ Parameter settings are as following, GLOPNET: \(\mu_m\) = 58.8,
 leaves in Panama: \(\mu_m\) = 8.6, \(\mu_s\) = 24, \(\sigma_m\) = 1.88,
 \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, \(\rho\) = -0.4.
 
-We finally calculated mass dependicy (\emph{b}) using the following
+We finally calculated mass dependency (\emph{b}) using the following
 ordinary least square regression:
 
 \[
@@ -491,7 +490,7 @@ We repeated these steps 1000 times.
 medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama datasets. The
 non-significant or weak \emph{r} values indicate that a single axis
 could not accurately represent the two-dimensional space. Symbols as in
-Main Text Figs. \ref{fig-GLplt}-\ref{fig-PAplt}
+Main Text Figures 2- 3.
 
 \newpage
 
@@ -502,14 +501,14 @@ Main Text Figs. \ref{fig-GLplt}-\ref{fig-PAplt}
 
 \textbf{Figure S2}: Boxplots comparing leaf mass per area (LMA),
 photosynthetic leaf mass per area (LMAm; posterior means), and
-structural leaf mass per area (LMAs; posterior means) across sites (wet
-and dry) and canopy strata (sun and shade) in Panama. The results shown
-here include all leaves in the Panama dataset, whereas Figs.
-\ref{fig-boxplt_de}-\ref{fig-boxplt_pa} in the main text only include
-Panama species for which both sun and shade leaves were available.
-Boxplot symbols as in Figs. \ref{fig-boxplt_de}-\ref{fig-boxplt_pa}.
-Groups sharing the same letters are not significantly different (P
-\textgreater{} 0.05; t-tests).
+structural leaf mass per area (LMAs; posterior means) across (a)
+deciduous (Dev) and evergreen (Eve) leaves and (b) sites (wet and dry)
+and canopy strata (sun and shade) in Panama. The results shown here
+include all leaves in the Panama dataset, whereas Figures 6- 7 in the
+main text only include Panama species for which both sun and shade
+leaves were available. The best model in the table 1 were used. Boxplot
+symbols as in Figures 6- 7. Groups sharing the same letters are not
+significantly different (P \textgreater{} 0.05; t-tests).
 
 \newpage
 
@@ -519,24 +518,14 @@ Groups sharing the same letters are not significantly different (P
 \includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/box_frac.png}
 
 \textbf{Figure S3}: Boxplots comparing posterior medians of the latent
-variable f (the fraction of total LMA comprised by LMAm) across
-deciduous (D) and evergreen (E) leaves in GLOPNET and Panama, and across
-sites (wet and dry) and canopy strata (sun and shade) in Panama. Note
-that LMAm = f × LMA, and LMAs = (1 -- f) × LMA. (a) Deciduous and
-evergreen leaves in the GLOPNET dataset; (b) deciduous and evergreen
-leaves for Panama species for which both sun and shade leaves were
-available; (c) leaves for Panama species for which both sun and shade
-leaves were available; and (d) all leaves for Panama. At the dry Panama
-site, the increase in LMA from shade to sun (Fig. \ref{fig-boxplt_pa})
-is due to roughly equal proportional increases in LMAm and LMAs (because
-f is similar between sun and shade), whereas at the wet Panama site, the
-increase in LMA from shade to sun (Fig. \ref{fig-boxplt_pa}) is due
-primarily to increased LMAm (because f is greater in sun than shade).
-The best model in the table 1 were used. The center line in each box
-indicates the median, upper and lower box edges indicate the
-interquartile range, whiskers show 1.5 times the interquartile range,
-and points are outliers. Groups sharing the same letters are not
-significantly different (P \textgreater{} 0.05; t-tests).''\}
+variable \emph{f} (the fraction of total LMA comprised by LMAm) across
+deciduous (Dev) and evergreen (Eve) leaves. (a) GLOPNET dataset. (b) all
+leaves for Panama species. (c) leaves for Panama species for which both
+sun and shade leaves were available. Note that LMAm = \emph{f}
+\(\times\) LMA, and LMAs = (1 -- \emph{f}) \(\times\) LMA. The best
+model in the table 1 were used. Boxplot symbols as in Figure 6. Groups
+sharing the same letters are not significantly different (P
+\textgreater{} 0.05; t-tests).
 
 \newpage
 
@@ -546,24 +535,14 @@ significantly different (P \textgreater{} 0.05; t-tests).''\}
 \includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/box_frac_pa.png}
 
 \textbf{Figure S4}: Boxplots comparing posterior medians of the latent
-variable f (the fraction of total LMA comprised by LMAm) across
-deciduous (D) and evergreen (E) leaves in GLOPNET and Panama, and across
-sites (wet and dry) and canopy strata (sun and shade) in Panama. Note
-that LMAm = f × LMA, and LMAs = (1 -- f) × LMA. (a) Deciduous and
-evergreen leaves in the GLOPNET dataset; (b) deciduous and evergreen
-leaves for Panama species for which both sun and shade leaves were
-available; (c) leaves for Panama species for which both sun and shade
-leaves were available; and (d) all leaves for Panama. At the dry Panama
-site, the increase in LMA from shade to sun (Fig. \ref{fig-boxplt_pa})
-is due to roughly equal proportional increases in LMAm and LMAs (because
-f is similar between sun and shade), whereas at the wet Panama site, the
-increase in LMA from shade to sun (Fig. \ref{fig-boxplt_pa}) is due
-primarily to increased LMAm (because f is greater in sun than shade).
-The best model in the table 1 were used. The center line in each box
-indicates the median, upper and lower box edges indicate the
-interquartile range, whiskers show 1.5 times the interquartile range,
-and points are outliers. Groups sharing the same letters are not
-significantly different (P \textgreater{} 0.05; t-tests).''\}
+variable \emph{f} (the fraction of total LMA comprised by LMAm) across
+sites (wet and dry) and canopy strata (sun and shade) in Panama. The
+left panel shows leaves for Panama species for which both sun and shade
+leaves were available; and the right panel shows all leaves for Panama.
+Note that LMAm = \emph{f} \(\times\) LMA, and LMAs = (1 -- \emph{f})
+\(\times\) LMA. The best model in the table 1 were used. Boxplot symbols
+as in Figure 7. Groups sharing the same letters are not significantly
+different (P \textgreater{} 0.05; t-tests).
 
 \newpage
 
@@ -573,21 +552,21 @@ significantly different (P \textgreater{} 0.05; t-tests).''\}
 \includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/mass_prop_sim.png}
 
 \textbf{Figure S5}: The relationships between mass dependency (\emph{b}
-in Eq. \ref{eq-mass} in the main text) and relative variance in LMAs to
-LMA for the different ranges of the scaling exponent \(\alpha_m\) and
-\(\alpha_s\). \textbf{a}, the scaling exponent \(\alpha_m\) vary from
-0.1 to 1.0 while the scaling exponent \(\alpha_s\) is constant
-(\(\alpha_s\) = -0.13,). \textbf{b}, the scaling exponent \(\alpha_s\)
-vary from -0.5 to 0.5 while the scaling exponent \(\alpha_m\) is
-constant (\(\alpha_m\) = 0.28,). Solid lines indicate simulated means
-and shaded regions indicate 95\% CI. The photosynthetic rate (\emph{A})
-is primarily mass-dependent (\emph{b} \textgreater{} 0.5), primarily
-area-dependent (0.5 \textgreater{} \emph{b} \textgreater{} 0) and purely
-area-dependent (\emph{b} = 0) (\protect\hyperlink{ref-Osnas2018}{Osnas
-et al. 2018}). Note that when \emph{b} \textgreater{} 1,
-\emph{A}\textsubscript{area} dramatically increase with LMA, which is
-not realistic. Parameter settings: \(\alpha_0\) = 1.77, \(\mu_m\) =
-58.8, \(\mu_s\) = 63.1, \(\sigma_m\) = 2.12.
+in Equation 5 in the main text) and relative variance in LMAs to LMA for
+the different ranges of the scaling exponent \(\alpha_m\) and
+\(\alpha_s\). (a) the scaling exponent \(\alpha_m\) vary from 0.1 to 1.0
+while the scaling exponent \(\alpha_s\) is constant (\(\alpha_s\) =
+-0.13,). (b) the scaling exponent \(\alpha_s\) vary from -0.5 to 0.5
+while the scaling exponent \(\alpha_m\) is constant (\(\alpha_m\) =
+0.28,). Solid lines indicate simulated means and shaded regions indicate
+95\% CI. The photosynthetic rate (\emph{A}) is primarily mass-dependent
+(\emph{b} \textgreater{} 0.5), primarily area-dependent (0.5
+\textgreater{} \emph{b} \textgreater{} 0) and purely area-dependent
+(\emph{b} = 0) (\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
+Note that when \emph{b} \textgreater{} 1, \emph{A}\textsubscript{area}
+dramatically increase with LMA, which is not realistic. Parameter
+settings: \(\alpha_0\) = 1.77, \(\mu_m\) = 58.8, \(\mu_s\) = 63.1,
+\(\sigma_m\) = 2.12.
 
 \newpage
 
@@ -597,11 +576,11 @@ not realistic. Parameter settings: \(\alpha_0\) = 1.77, \(\mu_m\) =
 \includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/mass_prop_comp.png}
 
 \textbf{Figure S6}: The relationships between mass dependency (\emph{b}
-in Eq. \ref{eq-mass} in the main tex) and relative variance in LMAs to
-LMA for the simulated dataset gerenated by a normal distribution (N) and
-a multivariate normal distribution (MVN). Parameter settings:
-\(\alpha_0\) = 0.33, \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, \(\mu_m\) =
-8.6, \(\mu_s\) = 24, \(\sigma_m\) = 1.88, and \(\rho\) = -0.4,
+in Equation 5 in the main text) and relative variance in LMAs to LMA for
+the simulated dataset generated by a normal distribution (N) and a
+multivariate normal distribution (MVN). Parameter settings: \(\alpha_0\)
+= 0.33, \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, \(\mu_m\) = 8.6,
+\(\mu_s\) = 24, \(\sigma_m\) = 1.88, and \(\rho\) = -0.4,
 
 \newpage
 
@@ -614,11 +593,28 @@ a multivariate normal distribution (MVN). Parameter settings:
 metabolism (nitrogen and phosphorus per-unit leaf area;
 \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area}) are
 positively correlated with LMA and with estimates (posterior means) of
-the photosynthetic and structural LMA components (LMAm and LMAs,
+the metabolic and structural LMA components (LMAm and LMAs,
 respectively) in the GLOPNET dataset. LMAm yields more consistent
 relationships compared to LMA and LMAs; e.g., evergreen and deciduous
 leaves align along a single relationship in panel b, but not in panels a
 or c.
+
+\newpage
+
+\hypertarget{figure-s8}{%
+\subsection{Figure S8}\label{figure-s8}}
+
+\includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/pa_point_npc_par.png}
+
+\textbf{Figure S8}: Partial regression plots for nitrogen, phosphorus
+and cellulose per-unit leaf area (\emph{N}\textsubscript{area},
+\emph{P}\textsubscript{area} and CL\textsubscript{area}). (a) LMAs
+variation is controlled. (b) LMAm variation is controlled. The partial
+regression plots show separation between sun and shade when controlling
+for LMAs variation (i.e., LMAs does not explain the sun/shade
+difference), but overlapping distributions of sun and shade when
+controlling for LMAm variation (i.e., LMAm does explain the sun/shade
+difference). Partial correlation coefficients (\(\rho\)) are shown.
 
 \newpage
 
@@ -629,8 +625,8 @@ or c.
 \subsection{Stan code for the GLOPNET
 dataset}\label{stan-code-for-the-glopnet-dataset}}
 
-The best model for the GLOPNET dataset is (2) LMAm and LMAs, and (b)
-\(\beta_p = 0\).
+The best model for the GLOPNET dataset is LMAm-LMAs with the constraint
+of \(\beta_m\) = 0.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -737,8 +733,8 @@ The best model for the GLOPNET dataset is (2) LMAm and LMAs, and (b)
 \subsection{Stan code for the Panama
 dataset}\label{stan-code-for-the-panama-dataset}}
 
-The best model for the Panama dataset is (4) LMAm, LMAs and light, and
-(a) \(\alpha_s = 0\) and \(\beta_p = 0\),
+The best model for the Panama dataset is LMAm-LMAs-light with the
+constraint of \(\alpha_s\) = 0 and \(\beta_m\) = 0.
 
 \begin{Shaded}
 \begin{Highlighting}[]
