@@ -77,7 +77,8 @@ fig("pa_npc")
 
 The logarithms of *A*~area~, *R*~area~, and LL for leaf sample *i* were assumed to have a multivariate normal distribution as following:
 
-\begin{align}
+$$
+\begin{aligned}
 \left(
 \begin{array}{ccc}
 \mathrm{ln}(A_{\mathrm{area} \, i})\\
@@ -88,12 +89,13 @@ The logarithms of *A*~area~, *R*~area~, and LL for leaf sample *i* were assumed 
 \sim \mathrm{MVN}
 \left(
 \begin{array}{rrr}
-\mathrm{E}[A_{\mathrm{area} \, i}]\\
+\mathrm{E}[A_{\mathrm{area} \, i}] & \\
 \mathrm{E}[R_{\mathrm{area} \, i}] &, \boldsymbol{\Sigma}\\
-\mathrm{E}[\mathrm{LL}_i]
+\mathrm{E}[\mathrm{LL}_i] &
 \end{array}
-\right) \tag{S1}
-\end{align}
+\right) \qquad(\mathrm{S}1)
+\end{aligned}
+$$
 
 where E[$\cdot$] indicates expected value; $\boldsymbol{\Sigma}$ indicates a covariance matrix.
 Expected values are based on Eqs. 2-4 in the main text.
@@ -253,18 +255,6 @@ We repeated these steps 1000 times.
 
 # Figures
 
-## `r s_fig("LMAm_LMAs")`
-
-![](`r here("figs/ps_point.png")`)
-
-
-**`r s_fig("LMAm_LMAs")`**
-Pearson correlation coefficients for posterior medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama datasets.
-The non-significant or weak *r* values indicate that a single axis could not accurately represent the two-dimensional space.
-Symbols as in Main Text Figures `r fig_num("gl_point")`-`r fig_num("pa_point")`.
-
-\newpage
-
 ## `r s_fig("box_inter")`
 
 ![](`r here("figs/box_inter.png")`)
@@ -280,15 +270,15 @@ Groups sharing the same letters are not significantly different (P > 0.05; t-tes
 
 \newpage
 
-## `r s_fig("box_frac")`
+## `r s_fig("box_frac_de")`
 
-![](`r here("figs/box_frac.png")`)
+![](`r here("figs/box_frac_de.png")`)
 
-**`r s_fig("box_frac")`**:
+**`r s_fig("box_frac_de")`**:
 Boxplots comparing posterior medians of the latent variable *f* (the fraction of total LMA comprised by LMAm) across deciduous (Dev) and evergreen (Eve) leaves.
-(a) GLOPNET dataset.
-(b) All leaves for Panama species.
-(c) Leaves for Panama species for which both sun and shade leaves were available.
+(i) GLOPNET dataset.
+(ii) All leaves for Panama species.
+(iii) Leaves for Panama species for which both sun and shade leaves were available.
 Note that LMAm = *f* $\times$ LMA, and LMAs = (1 – *f*) $\times$ LMA.
 The best model in the table 1 were used.
 Boxplot symbols as in Figure `r fig_num("box_de")`.
@@ -368,6 +358,17 @@ Partial regression plots for nitrogen, phosphorus and cellulose per-unit leaf ar
 (b) LMAm variation is controlled.
 The partial regression plots show separation between sun and shade when controlling for LMAs variation (i.e., LMAs does not explain the sun/shade difference), but overlapping distributions of sun and shade when controlling for LMAm variation (i.e., LMAm does explain the sun/shade difference).
 Partial correlation coefficients ($\rho$) are shown.
+
+\newpage
+
+## `r s_fig("LMAm_LMAs")`
+
+![](`r here("figs/ps_point.png")`)
+
+**`r s_fig("LMAm_LMAs")`**
+Pearson correlation coefficients for posterior medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama datasets.
+The non-significant or weak *r* values indicate that a single axis could not accurately represent the two-dimensional space.
+Symbols as in Main Text Figures `r fig_num("gl_point")`-`r fig_num("pa_point")`.
 
 \newpage
 

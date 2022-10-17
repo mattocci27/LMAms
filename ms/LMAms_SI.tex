@@ -241,7 +241,7 @@ within and among plant species}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, sharp corners, interior hidden, enhanced, breakable, frame hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, borderline west={3pt}{0pt}{shadecolor}, enhanced, frame hidden, sharp corners, interior hidden, boxrule=0pt]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -259,7 +259,8 @@ The logarithms of \emph{A}\textsubscript{area},
 \emph{R}\textsubscript{area}, and LL for leaf sample \emph{i} were
 assumed to have a multivariate normal distribution as following:
 
-\begin{align}
+\[
+\begin{aligned}
 \left(
 \begin{array}{ccc}
 \mathrm{ln}(A_{\mathrm{area} \, i})\\
@@ -270,12 +271,13 @@ assumed to have a multivariate normal distribution as following:
 \sim \mathrm{MVN}
 \left(
 \begin{array}{rrr}
-\mathrm{E}[A_{\mathrm{area} \, i}]\\
+\mathrm{E}[A_{\mathrm{area} \, i}] & \\
 \mathrm{E}[R_{\mathrm{area} \, i}] &, \boldsymbol{\Sigma}\\
-\mathrm{E}[\mathrm{LL}_i]
+\mathrm{E}[\mathrm{LL}_i] &
 \end{array}
-\right) \tag{S1}
-\end{align}
+\right) \qquad(\mathrm{S}1)
+\end{aligned}
+\]
 
 where E{[}\(\cdot\){]} indicates expected value; \(\boldsymbol{\Sigma}\)
 indicates a covariance matrix. Expected values are based on Eqs. 2-4 in
@@ -519,8 +521,8 @@ significantly different (P \textgreater{} 0.05; t-tests).
 
 \textbf{Figure S3}: Boxplots comparing posterior medians of the latent
 variable \emph{f} (the fraction of total LMA comprised by LMAm) across
-deciduous (Dev) and evergreen (Eve) leaves. (a) GLOPNET dataset. (b) all
-leaves for Panama species. (c) leaves for Panama species for which both
+deciduous (Dev) and evergreen (Eve) leaves. (a) GLOPNET dataset. (b) All
+leaves for Panama species. (c) Leaves for Panama species for which both
 sun and shade leaves were available. Note that LMAm = \emph{f}
 \(\times\) LMA, and LMAs = (1 -- \emph{f}) \(\times\) LMA. The best
 model in the table 1 were used. Boxplot symbols as in Figure 6. Groups
@@ -559,14 +561,15 @@ while the scaling exponent \(\alpha_s\) is constant (\(\alpha_s\) =
 -0.13,). (b) the scaling exponent \(\alpha_s\) vary from -0.5 to 0.5
 while the scaling exponent \(\alpha_m\) is constant (\(\alpha_m\) =
 0.28,). Solid lines indicate simulated means and shaded regions indicate
-95\% CI. The photosynthetic rate (\emph{A}) is primarily mass-dependent
-(\emph{b} \textgreater{} 0.5), primarily area-dependent (0.5
-\textgreater{} \emph{b} \textgreater{} 0) and purely area-dependent
-(\emph{b} = 0) (\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
-Note that when \emph{b} \textgreater{} 1, \emph{A}\textsubscript{area}
-dramatically increase with LMA, which is not realistic. Parameter
-settings: \(\alpha_0\) = 1.77, \(\mu_m\) = 58.8, \(\mu_s\) = 63.1,
-\(\sigma_m\) = 2.12.
+95\% CI. The photosynthetic rate (\emph{A}\textsubscript{max}) is
+primarily mass-dependent (\emph{b} \textgreater{} 0.5), primarily
+area-dependent (0.5 \textgreater{} \emph{b} \textgreater{} 0) and purely
+area-dependent (\emph{b} = 0) (\protect\hyperlink{ref-Osnas2018}{Osnas
+et al. 2018}). Note that when \emph{b} \textgreater{} 1,
+\emph{A}\textsubscript{max} per-unit leaf area
+(\emph{A}\textsubscript{area}) dramatically increase with LMA, which is
+not realistic. Parameter settings: \(\alpha_0\) = 1.77, \(\mu_m\) =
+58.8, \(\mu_s\) = 63.1, \(\sigma_m\) = 2.12.
 
 \newpage
 
