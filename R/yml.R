@@ -1,5 +1,5 @@
 #' @title quantile
-quant_fun <- function(x) c(mean = mean(x),
+quant_fun <- function(x) c(q50 = median(x),
                            quantile(x, 0.025),
                            quantile(x, 0.975)) |>
                            round(2) |> format(nsmall = 2)
@@ -112,7 +112,7 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws, pa_rho_dat) {
 
   res_s_mat <- apply(log_LMAs_mat, 1, par_fun,  light)
 
-  res_s <- apply(res_s_mat, 1, mean)
+  res_s <- apply(res_s_mat, 1, median)
   fit_Ls <- lm(log(PA$LL) ~ light)
   res_Ls <- residuals(fit_Ls)
 
@@ -217,14 +217,14 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws, pa_rho_dat) {
   writeLines(paste0("    LMAm_Aarea: 'italic(bar(rho)) == ",
                     GL_cor_tbl |>
                       filter(name == "A_LMAm") |>
-                      pull(mean),
+                      pull(q50),
                     "'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMAs_Aarea: 'italic(bar(rho)) == ",
                     GL_cor_tbl |>
                       filter(name == "A_LMAs") |>
-                      pull(mean),
+                      pull(q50),
                     "'"),
              out,
              sep = "\n")
@@ -236,14 +236,14 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws, pa_rho_dat) {
   writeLines(paste0("    LMAm_Rarea: 'italic(bar(rho)) == ",
                     GL_cor_tbl |>
                       filter(name == "R_LMAm") |>
-                      pull(mean),
+                      pull(q50),
                     "'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMAs_Rarea: 'italic(bar(rho)) == ",
                     GL_cor_tbl |>
                       filter(name == "R_LMAs") |>
-                      pull(mean),
+                      pull(q50),
                     "'"),
              out,
              sep = "\n")
@@ -258,7 +258,7 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws, pa_rho_dat) {
   writeLines(paste0("    LMAs_LL: 'italic(bar(r)) == ",
                     GL_cor_tbl |>
                       filter(name == "LL_LMAs") |>
-                      pull(mean),
+                      pull(q50),
                     "'"),
              out,
              sep = "\n")
@@ -310,7 +310,7 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws, pa_rho_dat) {
   writeLines(paste0("    LMAm_Aarea: 'italic(bar(r)) == ",
                    PA_cor_tbl |>
                       filter(name == "A_LMAm") |>
-                      pull(mean),
+                      pull(q50),
                     "'"),
              out,
              sep = "\n")
@@ -325,14 +325,14 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws, pa_rho_dat) {
   writeLines(paste0("    LMAm_Rarea: 'italic(bar(rho)) == ",
                     PA_cor_tbl |>
                       filter(name == "R_LMAm") |>
-                      pull(mean),
+                      pull(q50),
                     "'"),
              out,
              sep = "\n")
   writeLines(paste0("    LMAs_Rarea: 'italic(bar(rho)) == ",
                     PA_cor_tbl |>
                       filter(name == "R_LMAs") |>
-                      pull(mean),
+                      pull(q50),
                     "'"),
              out,
              sep = "\n")
@@ -347,7 +347,7 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws, pa_rho_dat) {
   writeLines(paste0("    LMAs_LL: 'italic(bar(r)) == ",
                     PA_cor_tbl |>
                       filter(name == "LL_LMAs") |>
-                      pull(mean),
+                      pull(q50),
                     "'"),
              out,
              sep = "\n")
@@ -459,30 +459,33 @@ write_para_yml <- function(gl_summary, pa_summary, gl_res_csv, pa_res_csv) {
   shade <- pa |>
     filter(strata != "CAN")
 
-  LMAm_mu_gl <- log(gl$LMAm) |> mean() |> exp() |> round(1)
-  LMAs_mu_gl <- log(gl$LMAs) |> mean() |> exp() |> round(1)
+  LMAm_mu_gl <- log(gl$LMAm) |> median() |> exp() |> round(1)
+  LMAs_mu_gl <- log(gl$LMAs) |> median() |> exp() |> round(1)
   LMAm_sig_gl <- log(gl$LMAm) |> sd() |> exp() |> round(2)
+  rho_gl <- cor(log(gl$LMAm), log(gl$LMAs)) |> round(2)
 
-  LMAm_mu_sun <- log(sun$LMAm) |> mean() |> exp() |> round(1)
-  LMAs_mu_sun <- log(sun$LMAs) |> mean() |> exp() |> round(1)
+  LMAm_mu_sun <- log(sun$LMAm) |> median() |> exp() |> round(1)
+  LMAs_mu_sun <- log(sun$LMAs) |> median() |> exp() |> round(1)
   LMAm_sig_sun <- log(sun$LMAm) |> sd() |> exp() |> round(2)
+  rho_sun <- cor(log(sun$LMAm), log(sun$LMAs)) |> round(2)
 
-  LMAm_mu_shade <- log(shade$LMAm) |> mean() |> exp() |> round(1)
-  LMAs_mu_shade <- log(shade$LMAs) |> mean() |> exp() |> round(1)
+  LMAm_mu_shade <- log(shade$LMAm) |> median() |> exp() |> round(1)
+  LMAs_mu_shade <- log(shade$LMAs) |> median() |> exp() |> round(1)
   LMAm_sig_shade <- log(shade$LMAm) |> sd() |> exp() |> round(2)
+  rho_shade <- cor(log(shade$LMAm), log(shade$LMAs)) |> round(2)
 
   # targets::tar_load(fit_7_summary_GL_Aps_LLs)
   # fit_summary <- fit_7_summary_GL_Aps_LLs
 
-  a0 <- gl_summary |> filter(variable == "a0") |> pull(mean) |> round(2)
-  am <- gl_summary |> filter(variable == "am") |> pull(mean) |> round(2)
-  as <- gl_summary |> filter(variable == "as") |> pull(mean) |> round(2)
-  sig1 <- gl_summary |> filter(variable == "L_sigma[1]") |> pull(mean) |> round(2)
+  a0 <- gl_summary |> filter(variable == "a0") |> pull(q50) |> round(2)
+  am <- gl_summary |> filter(variable == "am") |> pull(q50) |> round(2)
+  as <- gl_summary |> filter(variable == "as") |> pull(q50) |> round(2)
+  sig1 <- gl_summary |> filter(variable == "L_sigma[1]") |> pull(q50) |> round(2)
 
-  a0_pa <- pa_summary |> filter(variable == "a0") |> pull(mean) |> round(2)
-  am_pa <- pa_summary |> filter(variable == "am") |> pull(mean) |> round(2)
-  as_pa <- pa_summary |> filter(variable == "as") |> pull(mean) |> round(2)
-  sig1_pa <- pa_summary |> filter(variable == "L_sigma[1]") |> pull(mean) |> round(2)
+  a0_pa <- pa_summary |> filter(variable == "a0") |> pull(q50) |> round(2)
+  am_pa <- pa_summary |> filter(variable == "am") |> pull(q50) |> round(2)
+  as_pa <- pa_summary |> filter(variable == "as") |> pull(q50) |> round(2)
+  sig1_pa <- pa_summary |> filter(variable == "L_sigma[1]") |> pull(q50) |> round(2)
 
   output <- "yml/para.yml"
   out <- file(paste(output), "w") # write
@@ -510,6 +513,9 @@ write_para_yml <- function(gl_summary, pa_summary, gl_res_csv, pa_res_csv) {
   writeLines(paste0("  LMAm_sig_gl: ", LMAm_sig_gl),
              out,
              sep = "\n")
+  writeLines(paste0("  rho_gl: ", rho_gl),
+             out,
+             sep = "\n")
 
   writeLines(paste0("PA:"),
              out,
@@ -535,6 +541,9 @@ write_para_yml <- function(gl_summary, pa_summary, gl_res_csv, pa_res_csv) {
   writeLines(paste0("  LMAm_sig_sun: ", LMAm_sig_sun),
              out,
              sep = "\n")
+  writeLines(paste0("  rho_sun: ", rho_sun),
+             out,
+             sep = "\n")
   writeLines(paste0("  LMAm_mu_shade: ", LMAm_mu_shade),
              out,
              sep = "\n")
@@ -542,6 +551,9 @@ write_para_yml <- function(gl_summary, pa_summary, gl_res_csv, pa_res_csv) {
              out,
              sep = "\n")
   writeLines(paste0("  LMAm_sig_shade: ", LMAm_sig_shade),
+             out,
+             sep = "\n")
+  writeLines(paste0("  rho_shade: ", rho_shade),
              out,
              sep = "\n")
   close(out)
@@ -606,42 +618,42 @@ write_var_yml <- function(gl_draws, gl_res_dat, pa_full_draws, pa_res_dat) {
   out <- file(paste(output), "w") # write
   writeLines(paste0("GL: ",
     sapply(1:niter, loop_fun, pmat_fun(gl_draws, gl_res_dat), gl_res_dat$LMA) |>
-     mean() |> round(1)),
+     median() |> round(1)),
              out,
              sep = "\n")
   writeLines(paste0("GL_DE: ",
     sapply(1:niter, loop_fun, pmat_fun(gl_draws, gl_res_dat2), gl_res_dat2$LMA) |>
-     mean() |> round(1)),
+     median() |> round(1)),
              out,
              sep = "\n")
   writeLines(paste0("sun: ",
     sapply(1:niter, loop_fun, pmat_fun(pa_full_draws, sun), sun$LMA) |>
-      mean() |> round(1)),
+      median() |> round(1)),
              out,
              sep = "\n")
   writeLines(paste0("shade: ",
     sapply(1:niter, loop_fun, pmat_fun(pa_full_draws, shade), shade$LMA) |>
-      mean() |> round(1)),
+      median() |> round(1)),
              out,
              sep = "\n")
   writeLines(paste0("PA: ",
     sapply(1:niter, loop_fun, pmat_fun(pa_full_draws, pa_res_dat), pa_res_dat$LMA) |>
-      mean() |> round(1)),
+      median() |> round(1)),
              out,
              sep = "\n")
   writeLines(paste0("sun_intra: ",
     sapply(1:niter, loop_fun, pmat_fun(pa_full_draws, sun_intra), sun_intra$LMA) |>
-      mean() |> round(1)),
+      median() |> round(1)),
              out,
              sep = "\n")
   writeLines(paste0("shade_intra: ",
     sapply(1:niter, loop_fun, pmat_fun(pa_full_draws, shade_intra), shade_intra$LMA) |>
-      mean() |> round(1)),
+      median() |> round(1)),
              out,
              sep = "\n")
   writeLines(paste0("PA_intra: ",
     sapply(1:niter, loop_fun, pmat_fun(pa_full_draws, pa_res_dat_intra), pa_res_dat_intra$LMA) |>
-      mean() |> round(1)),
+      median() |> round(1)),
              out,
              sep = "\n")
   close(out)

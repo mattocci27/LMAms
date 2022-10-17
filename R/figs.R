@@ -25,7 +25,7 @@ my_ggsave <- function(filename, plot, units = c("in", "cm",
 
 #' @title Hypothetical relationships
 hypo_point <- function(para_yml, n = 200, seed = 123) {
- targets::tar_load(para_yml)
+#  targets::tar_load(para_yml)
   para <- yaml::yaml.load_file(para_yml)
   a0 <- para$GL$a0
   am <- para$GL$am

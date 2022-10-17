@@ -281,24 +281,24 @@ generate_gl_dat <- function(gl_csv, draws) {
     dplyr::select(contains("LMAm"))
   LMAs_dat <- draws |>
     dplyr::select(contains("LMAs"))
-  LMAm_mean <- apply(exp(LMAm_dat), 2, mean)
-  LMAm_lwr <- apply(exp(LMAm_dat), 2, \(x) quantile(x, 0.025))
-  LMAm_upr <- apply(exp(LMAm_dat), 2, \(x) quantile(x, 0.975))
-  LMAs_mean <- apply(exp(LMAs_dat), 2, mean)
-  LMAs_lwr <- apply(exp(LMAs_dat), 2, \(x) quantile(x, 0.025))
-  LMAs_upr <- apply(exp(LMAs_dat), 2, \(x) quantile(x, 0.975))
+  LMAm_mid <- apply(exp(LMAm_dat), 2, quantile, 0.5)
+  LMAm_lwr <- apply(exp(LMAm_dat), 2, quantile, 0.025)
+  LMAm_upr <- apply(exp(LMAm_dat), 2, quantile, 0.975)
+  LMAs_mid <- apply(exp(LMAs_dat), 2, quantile, 0.5)
+  LMAs_lwr <- apply(exp(LMAs_dat), 2, quantile, 0.025)
+  LMAs_upr <- apply(exp(LMAs_dat), 2, quantile, 0.975)
+
   GL <- GL |>
     mutate(leaf_habit = ifelse(GL$leaf_habit == "", "U", as.character(leaf_habit)))
   GL |>
-    mutate(LMAm = LMAm_mean) |>
+    mutate(LMAm = LMAm_mid) |>
     mutate(LMAm_lwr = LMAm_lwr) |>
     mutate(LMAm_upr = LMAm_upr) |>
-    mutate(LMAs = LMAs_mean) |>
+    mutate(LMAs = LMAs_mid) |>
     mutate(LMAs_lwr = LMAs_lwr) |>
     mutate(LMAs_upr = LMAs_upr) |>
     mutate(id = paste0("gl_", 1:nrow(GL))) |>
-    write_csv("data/gl_res.csv")
-  paste("data/gl_res.csv")
+    my_write_csv("data/gl_res.csv")
 }
 
 #' @title Generates csv file of Panama for the subsequent analysis
@@ -315,20 +315,20 @@ generate_pa_dat <- function(pa_full_csv, pa_csv, draws, ld = FALSE) {
     dplyr::select(contains("LMAm"))
   LMAs_dat <- draws |>
     dplyr::select(contains("LMAs"))
-  LMAm_mean <- apply(exp(LMAm_dat), 2, mean)
-  LMAm_lwr <- apply(exp(LMAm_dat), 2, \(x) quantile(x, 0.025))
-  LMAm_upr <- apply(exp(LMAm_dat), 2, \(x) quantile(x, 0.975))
-  LMAs_mean <- apply(exp(LMAs_dat), 2, mean)
-  LMAs_lwr <- apply(exp(LMAs_dat), 2, \(x) quantile(x, 0.025))
-  LMAs_upr <- apply(exp(LMAs_dat), 2, \(x) quantile(x, 0.975))
+  LMAm_mid <- apply(exp(LMAm_dat), 2, quantile, 0.5)
+  LMAm_lwr <- apply(exp(LMAm_dat), 2, quantile, 0.025)
+  LMAm_upr <- apply(exp(LMAm_dat), 2, quantile, 0.975)
+  LMAs_mid <- apply(exp(LMAs_dat), 2, quantile, 0.5)
+  LMAs_lwr <- apply(exp(LMAs_dat), 2, quantile, 0.025)
+  LMAs_upr <- apply(exp(LMAs_dat), 2, quantile, 0.975)
 
   pa <- read_csv(pa_full_csv)
   if (ld) {
     LDs_dat <- draws |>
       dplyr::select(contains("LDs"))
-    LDs_mean <- apply(exp(LDs_dat), 2, mean)
-    LDs_lwr <- apply(exp(LDs_dat), 2, \(x) quantile(x, 0.025))
-    LDs_upr <- apply(exp(LDs_dat), 2, \(x) quantile(x, 0.975))
+    LDs_mid <- apply(exp(LDs_dat), 2, quantile, 0.5)
+    LDs_lwr <- apply(exp(LDs_dat), 2, quantile, 0.025)
+    LDs_upr <- apply(exp(LDs_dat), 2, quantile, 0.975)
     pa <- read_csv(pa_csv)
   }
 
@@ -366,10 +366,10 @@ generate_pa_dat <- function(pa_full_csv, pa_csv, draws, ld = FALSE) {
     mutate(sp_site_strata = paste(sp, site2, strata, sep = "_")) |>
     mutate(site_strata = paste(site2, strata, sep = "_"))
   pa2 <- pa |>
-    mutate(LMAm = LMAm_mean) |>
+    mutate(LMAm = LMAm_mid) |>
     mutate(LMAm_lwr = LMAm_lwr) |>
     mutate(LMAm_upr = LMAm_upr) |>
-    mutate(LMAs = LMAs_mean) |>
+    mutate(LMAs = LMAs_mid) |>
     mutate(LMAs_lwr = LMAs_lwr) |>
     mutate(LMAs_upr = LMAs_upr) |>
     mutate(Mu2 = apply(mu_dat, 2, mean)) |>
@@ -382,13 +382,11 @@ generate_pa_dat <- function(pa_full_csv, pa_csv, draws, ld = FALSE) {
     mutate(LDs_lwr = LDs_lwr) |>
     mutate(LDs_upr = LDs_upr) |>
     mutate(res_LL_light = res_Ls, res_LDs_light = res_s) |>
-    write_csv("data/pa_res_ld.csv")
-   paste("data/pa_res_ld.csv")
+    my_write_csv("data/pa_res_ld.csv")
   } else {
    pa2 <- pa2 |>
     mutate(res_LL_light = res_Ls, res_LMAs_light = res_s) |>
-    write_csv("data/pa_res.csv")
-   paste("data/pa_res.csv")
+    my_write_csv("data/pa_res.csv")
   }
 }
 
@@ -429,12 +427,12 @@ create_para_tbl <- function(gl_draws, pa_draws) {
   gl_draws2 <- gl_draws |>
     dplyr::select(c("am", "as", "bs", "gm", "gs"))
   gl_tab <- bind_cols(
-    mean_ = apply(gl_draws2, 2, mean),
+    mid_ = apply(gl_draws2, 2, median),
     low = apply(gl_draws2, 2, \(x)quantile(x, 0.025)),
     up = apply(gl_draws2, 2, \(x)quantile(x, 0.975))) |>
     round(3) |>
     mutate(sig = ifelse(low * up > 0, "sig", "ns")) |>
-    mutate(est = paste0(mean_, " [", low, ", ", up, "]")) |>
+    mutate(est = paste0(mid_, " [", low, ", ", up, "]")) |>
     mutate(para = c("Effect of LMAm on *A*~area~ ($\\alpha_p$)",
                     "Effect of LMAs on *A*~area~ ($\\alpha_s$)",
                     "Effect of LMAs on LL ($\\beta_s$)",
@@ -446,12 +444,12 @@ create_para_tbl <- function(gl_draws, pa_draws) {
   pa_draws2 <- pa_draws |>
     dplyr::select(c("am", "bs", "gm", "gs", "theta"))
   pa_tab <- bind_cols(
-    mean_ = apply(pa_draws2, 2, mean),
+    mid_ = apply(pa_draws2, 2, median),
     low = apply(pa_draws2, 2, \(x)quantile(x, 0.025)),
     up = apply(pa_draws2, 2, \(x)quantile(x, 0.975))) |>
     round(3) |>
     mutate(sig = ifelse(low * up > 0, "sig", "ns")) |>
-    mutate(est = paste0(mean_, " [", low, ", ", up, "]")) |>
+    mutate(est = paste0(mid_, " [", low, ", ", up, "]")) |>
     mutate(para = c("Effect of LMAm on *A*~area~ ($\\alpha_p$)",
                     "Effect of LMAs on LL ($\\beta_s$)",
                     "Effect of LMAm on *R*~area~ ($\\gamma_p$)",
@@ -471,8 +469,7 @@ create_para_tbl <- function(gl_draws, pa_draws) {
     dplyr::select(Parameters, GLOPNET, Panama)
 
   glpa_tab[is.na(glpa_tab)] <- "-"
-  glpa_tab |> write_csv("./data/para_tbl.csv")
-  paste("./data/para_tbl.csv")
+  glpa_tab |> my_write_csv("./data/para_tbl.csv")
 }
 
 
