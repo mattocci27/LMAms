@@ -179,9 +179,9 @@
   \newcommand\listtablename{List of Tables}
 \fi
 \ifdefined\figurename
-  \renewcommand*\figurename{Fig.}
+  \renewcommand*\figurename{Figure}
 \else
-  \newcommand\figurename{Fig.}
+  \newcommand\figurename{Figure}
 \fi
 \ifdefined\tablename
   \renewcommand*\tablename{Table}
@@ -407,7 +407,7 @@
 
 
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, enhanced, breakable, interior hidden, sharp corners]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, frame hidden, interior hidden, borderline west={3pt}{0pt}{shadecolor}, breakable, sharp corners, boxrule=0pt]}{\end{tcolorbox}}\fi
 
 \textbf{Running title}: Metabolic and structural leaf mass
 
@@ -547,19 +547,19 @@ contribute to toughness and durability
 \protect\hyperlink{ref-Kitajima2012}{2012};
 \protect\hyperlink{ref-Onoda2017}{Onoda et al., 2017}). Suppose these
 two LMA components are independent axes of functional variation, so that
-LMAm and LMAs are uncorrelated across species (Fig.~\ref{fig-Hplt}a).
+LMAm and LMAs are uncorrelated across species (Figure~\ref{fig-hypo}a).
 These two independent axes can be translated into either a
 two-dimensional trait space (if metabolic traits are area-normalized;
-Fig.~\ref{fig-Hplt}b) or a one-dimensional trait space (if metabolic
-traits are mass-normalized; Fig.~\ref{fig-Hplt}c). While both
-Fig.~\ref{fig-Hplt}b and Fig.~\ref{fig-Hplt}c are both `correct'
+Figure~\ref{fig-hypo}b) or a one-dimensional trait space (if metabolic
+traits are mass-normalized; Figure~\ref{fig-hypo}c). While both
+Figure~\ref{fig-hypo}b and Figure~\ref{fig-hypo}c are both `correct'
 representations of the same data, they lead to different perceptions
 about the dimensionality of leaf functional variation. If LMAm, LMAs,
 and/or other axes are largely independent and have distinct functional
 consequences, then it would not be possible to accurately represent
 functional variation with a single axis.
 
-The hypothetical example in Fig.~\ref{fig-Hplt} shows how
+The hypothetical example in Figure~\ref{fig-hypo} shows how
 mass-normalization can, in principle, make a two-dimensional trait space
 appear one-dimensional, but the dimensionality of functional variation
 in real leaf assemblages remains an open question. One way to better
@@ -681,15 +681,24 @@ the observed values of \emph{A}\textsubscript{area},
 \emph{R}\textsubscript{area} and LL were related to the unobserved
 values LMAm and LMAs according to multivariate power-laws:
 
-\begin{align}
-& \mathrm{E}[A_{\mathrm{area} \, i}]
-= \alpha_0\mathrm{LMAm}_{i}^{\alpha_m}\mathrm{LMAs}_i^{\alpha_s}  =  \alpha_0 (f_i \mathrm{LMA}_{i})^{\alpha_m} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\alpha_s} \label{eq:Aarea} \\
-& \mathrm{E}[R_{\mathrm{area} \, i}]
-= \gamma_0\mathrm{LMAm}_{i}^{\gamma_p} \mathrm{LMAs}_{i}^{\gamma_s}
-= \gamma_0 (f_i \mathrm{LMA}_{i})^{\gamma_p} \bigl\{(1-f_i)\mathrm{LMA}_{i}\bigr\}^{\gamma_s} \label{eq:Rarea} \\
-& \mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s}  = \beta_0 (f_i \mathrm{LMA}_{i})^{\beta_m} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\beta_s} \label{eq:LL_pot} \tag{4a}  \\
-& \mathrm{E[LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s} \mathrm{exp}(\theta \mathrm{Light}_i)  \stepcounter{equation} \label{eq:LL_opt} \tag{4b}
-\end{align}
+\begin{equation}\protect\hypertarget{eq-Aarea}{}{
+\mathrm{E}[A_{\mathrm{area} \, i}]
+= \alpha_0\mathrm{LMAm}_{i}^{\alpha_m}\mathrm{LMAs}_i^{\alpha_s}  =  \alpha_0 (f_i \mathrm{LMA}_{i})^{\alpha_m} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\alpha_s}
+}\label{eq-Aarea}\end{equation}
+
+\begin{equation}\protect\hypertarget{eq-Rarea}{}{
+\mathrm{E}[R_{\mathrm{area} \, i}]
+= \gamma_0\mathrm{LMAm}_{i}^{\gamma_m} \mathrm{LMAs}_{i}^{\gamma_s}
+= \gamma_0 (f_i \mathrm{LMA}_{i})^{\gamma_m} \bigl\{(1-f_i)\mathrm{LMA}_{i}\bigr\}^{\gamma_s}
+}\label{eq-Rarea}\end{equation}
+
+\[
+\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s}  = \beta_0 (f_i \mathrm{LMA}_{i})^{\beta_m} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\beta_s} \qquad(4a)
+\]
+
+\[
+\mathrm{E[LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s} \mathrm{exp}(\theta \mathrm{Light}_i) \qquad(4b)
+\]
 
 where E{[}\(\cdot\){]} indicates expected value; the \(\alpha\),
 \(\beta\), and \(\gamma\) terms are fitted parameters; and the
@@ -701,37 +710,36 @@ than the power-law forms and are not discussed further.
 
 To ensure that the model was identifiable, we imposed two broad
 assumptions: (i) \emph{A}\textsubscript{area} depends more strongly on
-metabolic leaf mass (LMAm: parameter \(\alpha_m\) in \ref{eq:Aarea})
-than structural leaf mass (LMAs: parameter \(\alpha_s\)), and (ii) LL
-depends more strongly on LMAs (\(\beta_s\) in
-Eqs.\ref{eq:LL_pot}-\ref{eq:LL_opt}) than LMAm (\(\beta_m\)). The first
-assumption was implemented in different model versions either by setting
-\(\alpha_s\) = 0 or by imposing the constraint \(\alpha_m\)
-\textgreater{} \(\alpha_s\). Similarly, the second assumption was
-implemented either by setting \(\beta_m\) = 0 or by imposing the
-constraint \(\beta_s\) \textgreater{} \(\beta_m\). The weaker form of
-these assumptions (\(\alpha_m\) \textgreater{} \(\alpha_s\) and
-\(\beta_s\) \textgreater{} \(\beta_m\)) is primarily a labeling
-constraint and only weakly constrains the possible biological model
-outcomes by excluding the possibility that a single LMA component could
-be the primary determinant of both \emph{A}\textsubscript{area} and LL.
-The stronger form of the assumptions (\(\alpha_s\) = 0 and \(\beta_m\) =
-0) leads to a more parsimonious model (fewer parameters). We considered
-different combinations of the strong and weak forms of the assumptions
-for \emph{A}\textsubscript{area} (\(\alpha_m\) and \(\alpha_s\)) and LL
-(\(\beta_s\) and \(\beta_m\)) using cross-validation (see details
-below). We did not impose any constraints on
-\emph{R}\textsubscript{area} (\(\gamma_s\) and \(\gamma_m\)).
+metabolic leaf mass (LMAm: parameter \(\alpha_m\) in Equation 2) than
+structural leaf mass (LMAs: parameter \(\alpha_s\)), and (ii) LL depends
+more strongly on LMAs (\(\beta_s\) in Equation 4 than LMAm
+(\(\beta_m\)). The first assumption was implemented in different model
+versions either by setting \(\alpha_s\) = 0 or by imposing the
+constraint \(\alpha_m\) \textgreater{} \(\alpha_s\). Similarly, the
+second assumption was implemented either by setting \(\beta_m\) = 0 or
+by imposing the constraint \(\beta_s\) \textgreater{} \(\beta_m\). The
+weaker form of these assumptions (\(\alpha_m\) \textgreater{}
+\(\alpha_s\) and \(\beta_s\) \textgreater{} \(\beta_m\)) is primarily a
+labeling constraint and only weakly constrains the possible biological
+model outcomes by excluding the possibility that a single LMA component
+could be the primary determinant of both \emph{A}\textsubscript{area}
+and LL. The stronger form of the assumptions (\(\alpha_s\) = 0 and
+\(\beta_m\) = 0) leads to a more parsimonious model (fewer parameters).
+We considered different combinations of the strong and weak forms of the
+assumptions for \emph{A}\textsubscript{area} (\(\alpha_m\) and
+\(\alpha_s\)) and LL (\(\beta_s\) and \(\beta_m\)) using
+cross-validation (see details below). We did not impose any constraints
+on \emph{R}\textsubscript{area} (\(\gamma_s\) and \(\gamma_m\)).
 
-We also considered models in which LMAs in Eqs.
-\ref{eq:LL_pot}-\ref{eq:LL_opt} was replaced by leaf structural density
-(LMAs/LT, where LT is leaf thickness), which is based on the observation
-that cellulose density is a good predictor for LL in some species
-assemblages (\protect\hyperlink{ref-Kitajima2013}{Kitajima et al.,
-2013}, \protect\hyperlink{ref-Kitajima2012}{2012}). These models with
-LMAs/LT yielded qualitatively similar results as those based on LMAs,
-but did not perform as well in the model evaluation (see below).
-Therefore, we only present results from the models with LMAs.
+We also considered models in which LMAs in Equation 4 was replaced by
+leaf structural density (LMAs/LT, where LT is leaf thickness), which is
+based on the observation that cellulose density is a good predictor for
+LL in some species assemblages
+(\protect\hyperlink{ref-Kitajima2013}{Kitajima et al., 2013},
+\protect\hyperlink{ref-Kitajima2012}{2012}). These models with LMAs/LT
+yielded qualitatively similar results as those based on LMAs, but did
+not perform as well in the model evaluation (see below). Therefore, we
+only present results from the models with LMAs.
 
 Finally, we considered a functional form that accounts for the effects
 of light availability on LL. This light-dependent model is motivated by
@@ -745,9 +753,9 @@ across light gradients (\protect\hyperlink{ref-Lusk2008}{Lusk et al.,
 Mechanistically modeling how light affects LL via leaf carbon balance
 (\protect\hyperlink{ref-Xu2017}{Xu et al., 2017}) is beyond the scope of
 our study. Instead, we introduced light effects in a simple way by
-modifying Eq. \ref{eq:LL_pot} to Eq. \ref{eq:LL_opt} where the dummy
-variable Light\textsubscript{\emph{i}} is set to 1 for sun leaves and 0
-for shade leaves, and exp(\(\theta\)) is the sun:shade LL ratio.
+modifying Equation 4a to 4b where the dummy variable
+Light\textsubscript{\emph{i}} is set to 1 for sun leaves and 0 for shade
+leaves, and exp(\(\theta\)) is the sun:shade LL ratio.
 
 \hypertarget{datasets}{%
 \subsection{Datasets}\label{datasets}}
@@ -807,15 +815,14 @@ habit(deciduous or evergreen), and cellulose content per unit area
 evaluation}\label{model-estimation-and-evaluation}}
 
 We modeled \emph{A}\textsubscript{area} and \emph{R}\textsubscript{area}
-using Eqs. \ref{eq:Aarea} and \ref{eq:Rarea}, respectively, for both
-GLOPNET and Panama. To model LL for GLOPNET, we used Eq. \ref{eq:LL_pot}
-(no light effects), because GLOPNET does not report canopy position (and
-prioritizes data for sun leaves, as described above). To model LL for
-Panama, we used Eq. \ref{eq:LL_opt} (light effects model), which was
-motivated by the negative intraspecific LL-LMA relationship observed in
-Panama (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018};
-\protect\hyperlink{ref-Xu2017}{Xu et al., 2017}) and elsewhere
-(\protect\hyperlink{ref-Lusk2008}{Lusk et al., 2008};
+using Equations 2 and 3, respectively, for both GLOPNET and Panama. To
+model LL for GLOPNET, we used Equation 4a, because GLOPNET does not
+report canopy position (and prioritizes data for sun leaves, as
+described above). To model LL for Panama, we used Equation 4b (light
+effects model), which was motivated by the negative intraspecific LL-LMA
+relationship observed in Panama (\protect\hyperlink{ref-Osnas2018}{Osnas
+et al., 2018}; \protect\hyperlink{ref-Xu2017}{Xu et al., 2017}) and
+elsewhere (\protect\hyperlink{ref-Lusk2008}{Lusk et al., 2008};
 \protect\hyperlink{ref-Russo2016}{Russo \& Kitajima, 2016}).
 
 Posterior distributions of all parameters were estimated using the
@@ -824,13 +831,13 @@ Hamiltonian Monte Carlo algorithm (HMC) implemented in Stan
 non-informative or weakly informative prior distributions
 (\protect\hyperlink{ref-Lemoine2019}{Lemoine, 2019}). Prior
 distributions for the latent variables \emph{f\textsubscript{i}} (which
-are used to partition LMA into LMAm and LMAs according to
-Eq.~\ref{eq-LMA} were non-informative uniform(0, 1) distributions,
-(i.e., LMA was partitioned based on patterns in the data). See Appendix
-S1 for more detail. The Stan code use to fit models is available from
-Github at: \url{https://github.com/mattocci27/LMAms}. Convergence of the
-posterior distribution was assessed with the Gelman-Rubin statistic with
-a convergence threshold of 1.05 for all parameters
+are used to partition LMA into LMAm and LMAs according to Equation 1
+were non-informative uniform(0, 1) distributions, (i.e., LMA was
+partitioned based on patterns in the data). See Appendix S1 for more
+detail. The Stan code use to fit models is available from Github at:
+\url{https://github.com/mattocci27/LMAms}. Convergence of the posterior
+distribution was assessed with the Gelman-Rubin statistic with a
+convergence threshold of 1.05 for all parameters
 (\protect\hyperlink{ref-Gelman2013}{Gelman et al., 2013}).
 
 Because our two-dimensional (LMAm-LMAs) modeling approach includes many
@@ -900,22 +907,21 @@ of total LMA variance in the assemblage that is due to LMAs variance.
 To better understand the factors affecting \emph{A}\textsubscript{max}
 vs.~LMA relationships, we created simulated datasets in which we varied
 the following factors: the sensitivity of \emph{A}\textsubscript{area}
-to variation in LMAm (parameter \(\alpha_m\) in Eq. \ref{eq:Aarea}); the
+to variation in LMAm (parameter \(\alpha_m\) in Equation 2; the
 sensitivity of \emph{A}\textsubscript{area} to LMAs (parameter
-\(\alpha_s\) in Eq. \ref{eq:Aarea}), and the total LMA variance due to
-variance in LMAs. For each simulated dataset, we quantified the
+\(\alpha_s\) in Equation 2) , and the total LMA variance due to variance
+in LMAs. For each simulated dataset, we quantified the
 \emph{A}\textsubscript{max} vs.~LMA relationship following Osnas et al.
 (\protect\hyperlink{ref-Osnas2018}{2018}):
 
-\begin{equation}\protect\hypertarget{eq-mass}{}{
-A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i
-}\label{eq-mass}\end{equation}
+\[
+A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i \qquad(5)
+\]
 
-where LMA is the sum of LMAm and LMAs (Eq.~\ref{eq-LMA}), \emph{c} is a
-fitted constant, and \emph{b} is an index of mass-dependence as
-illustrated by the following cases
-(\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018},
-\protect\hyperlink{ref-Osnas2013}{2013}): if \emph{b} = 0, then
+where LMA is the sum of LMAm and LMAs Equation 1, \emph{c} is a fitted
+constant, and \emph{b} is an index of mass-dependence as illustrated by
+the following cases (\protect\hyperlink{ref-Osnas2018}{Osnas et al.,
+2018}, \protect\hyperlink{ref-Osnas2013}{2013}): if \emph{b} = 0, then
 \emph{A}\textsubscript{area} is independent of LMA, which implies that
 whole-leaf A is proportional to leaf area; conversely, if \emph{b} = 1,
 then \emph{A}\textsubscript{area} is proportional to LMA, which implies
@@ -924,7 +930,7 @@ that whole-leaf A is proportional to leaf mass. Intermediate cases (0
 (\emph{b} \(\le\) 0 or \emph{b} \(\geq\) 1), are also possible, but
 empirical estimates tend to be between 0 and 1
 (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}). Note that
-applying Eq.~\ref{eq-mass} to either mass- or area-normalized A yields
+applying Equation 5 to either mass- or area-normalized A yields
 equivalent results (\protect\hyperlink{ref-Osnas2018}{Osnas et al.,
 2018}).
 
@@ -933,9 +939,9 @@ estimated distributions in our GLOPNET and Panama analyses, while
 varying the variance of LMAs (so that LMAs contributed different
 fractions of total LMA variance in different simulated datasets).
 Although Panama sun and shade leaves were analyzed together when fitting
-the LMAm-LMAs models Eqs. \ref{eq:Aarea} and \ref{eq:LL_opt}, they were
-analyzed separately here due to their different estimated covariance
-structures (see details below).
+the LMAm-LMAs models Equations 2 and 4b, they were analyzed separately
+here due to their different estimated covariance structures (see details
+below).
 
 For GLOPNET and Panama sun leaves, LMAm and LMAs were generated
 independently of each other, consistent with the low estimated
@@ -946,22 +952,21 @@ model outputs; and LMAs values were randomly sampled from a lognormal
 distribution with the log-scale mean given by our model outputs and the
 log-scale standard deviation varying between log(1.01) and log(10) in
 different simulated datasets. In contrast to GLOPNET and Panama sun
-leaves, our analysis revealed a negative correlation of r = −0.4 between
-LMAm and LMAs for Panama shade leaves (see Results). Therefore, we used
-a multivariate normal distribution with r = −0.4 to generate log(LMAm)
-and log(LMAs) for the Panama shade simulations. Otherwise, the
-simulation protocol was as described above for GLOPNET and Panama sun
-leaves.
+leaves, our analysis revealed a negative correlation of \emph{r} = −0.4
+between LMAm and LMAs for Panama shade leaves (see Results). Therefore,
+we used a multivariate normal distribution with \emph{r} = −0.4 to
+generate log(LMAm) and log(LMAs) for the Panama shade simulations.
+Otherwise, the simulation protocol was as described above for GLOPNET
+and Panama sun leaves.
 
 For each simulated set of LMAm and LMAs values, we generated
 \emph{A}\textsubscript{area} values using the estimated values of
-\(\alpha_m\) and \(\alpha_s\) (Eq. \ref{eq:Aarea}) from the
-corresponding best-fitting model (GLOPNET or Panama); i.e., the model
-with the lowest LOOIC. We generated 1000 simulated datasets for GLOPNET,
-Panama sun leaves, and Panama shade leaves, with each dataset having a
-sample size of 100 leaves. For each simulated dataset, we used
-Eq.~\ref{eq-mass} to quantify the relationship between
-\emph{A}\textsubscript{area} and LMA.
+\(\alpha_m\) and \(\alpha_s\) (Equation 2) from the corresponding
+best-fitting model (GLOPNET or Panama); i.e., the model with the lowest
+LOOIC. We generated 1000 simulated datasets for GLOPNET, Panama sun
+leaves, and Panama shade leaves, with each dataset having a sample size
+of 100 leaves. For each simulated dataset, we used Equation 5 to
+quantify the relationship between \emph{A}\textsubscript{area} and LMA.
 
 \hypertarget{variance-partitioning}{%
 \subsection{Variance partitioning}\label{variance-partitioning}}
@@ -969,9 +974,9 @@ Eq.~\ref{eq-mass} to quantify the relationship between
 To estimate the contributions of LMAm and LMAs to total LMA variance
 (where LMA = LMAm + LMAs), we used the following identity:
 
-\begin{equation}\protect\hypertarget{eq-var}{}{
-\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2)
-}\label{eq-var}\end{equation}
+\[
+\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \qquad(6)
+\]
 
 where Var(\(\cdot\)) is variance and Cov(\(\cdot\)) is covariance. Thus,
 the fractions of total LMA variance due to variance in LMAm and LMAs are
@@ -994,22 +999,22 @@ into separate metabolic and structural components (see details below and
 Tables 1-2). Each of these traits (\emph{A}\textsubscript{area},
 \emph{R}\textsubscript{area} and LL) had a strong positive relationship
 with either LMAm or LMAs (but not both), which was always stronger than
-the corresponding relationship with total LMA (Figs.
-\ref{fig-GLplt}-\ref{fig-PAplt}).
+the corresponding relationship with total LMA (Figures
+\ref{fig-gl_point}-\ref{fig-pa_point}).
 
 In the best GLOPNET model (lowest LOOIC), \emph{A}\textsubscript{area}
 increased with LMAm and decreased with LMAs,
 \emph{R}\textsubscript{area} increased with LMAm and had little
 dependence on LMAs, and LL increased with LMAs and was independent of
-LMAm (Tables 1-2; Fig.~\ref{fig-GLplt}).
+LMAm (Tables 1-2; Figure~\ref{fig-gl_point}).
 
 In the best Panama model, \emph{A}\textsubscript{area} increased with
 LMAm and was independent of LMAs, \emph{R}\textsubscript{area} increased
 with LMAm and had little dependence on LMAs, and LL increased with LMAs
-and was independent of LMAm (Tables 1-2; Fig.~\ref{fig-PAplt}). The best
-Panama model also included the effect of light (sun vs.~shade) on LL
-(Tables 1-2; Fig.~\ref{fig-LLplt}). The light effect was not tested for
-GLOPNET because GLOPNET does not report canopy position.
+and was independent of LMAm (Tables 1-2; Figure~\ref{fig-pa_point}). The
+best Panama model also included the effect of light (sun vs.~shade) on
+LL (Tables 1-2; Figure~\ref{fig-ll_point}). The light effect was not
+tested for GLOPNET because GLOPNET does not report canopy position.
 
 \textbf{2. Nearly all leaf dark respiration is associated with metabolic
 leaf tissue mass.} According to our model results, metabolic leaf mass
@@ -1026,62 +1031,63 @@ results suggest that leaf mass associated with structural fucntion
 sun leaves have both greater LMAm and LMAs than shade leaves.} Leaf
 habit (evergreen vs.~deciduous) explained very little variation in LMAm
 but substantial variation in LMAs for both GLOPNET and Panama
-(Fig.~\ref{fig-vpart}a-b). Thus, the higher total LMA in evergreen
-compared to deciduous leaves was due to differences in LMAs (Figs.
-\ref{fig-boxplt_de}, S2, and S3). In the Panama dataset, light (sun
+(Figure~\ref{fig-vpart}a-b). Thus, the higher total LMA in evergreen
+compared to deciduous leaves was due to differences in LMAs (Figures
+\ref{fig-box_de}, S2, and S3). In the Panama dataset, light (sun
 vs.~shade) explained much more variation in LMAm than LMAs, whereas site
 (wet vs.~dry) explained much more variation in LMAs than LMAm
-(Fig.~\ref{fig-vpart}c). Panama wet-site leaves had higher total LMA
-than dry-site leaves due to greater LMAs (Figs. \ref{fig-boxplt_pa} and
+(Figure~\ref{fig-vpart}c). Panama wet-site leaves had higher total LMA
+than dry-site leaves due to greater LMAs (Figures \ref{fig-box_pa} and
 S2). In contrast, Panama sun leaves had higher total LMA than shade
 leaves primarily due to greater LMAm, with a smaller but significant
-contribution from LMAs (Figs. \ref{fig-boxplt_pa} and S2). Thus, LMAs
+contribution from LMAs (Figures \ref{fig-box_pa} and S2). Thus, LMAs
 comprised a larger fraction of total LMA for shade leaves than for sun
-leaves (Fig. S3).
+leaves (Figure S3).
 
 \textbf{4. LMA variance components affect the area- vs.~mass-dependence
 of leaf photosynthetic capacity (\emph{A}\textsubscript{max}).} Analysis
 of simulated data showed that the percent of LMA variation due to LMAs
-variation (Eq.~\ref{eq-var}) strongly affected the area-
-vs.~mass-dependence of \emph{A}\textsubscript{max} (i.e., the degree to
-which whole-leaf \emph{A}\textsubscript{max} depends on leaf area or
-mass; Osnas et al. (\protect\hyperlink{ref-Osnas2013}{2013}); Osnas et
-al. (\protect\hyperlink{ref-Osnas2018}{2018})). Generally,
-mass-dependence of \emph{A}\textsubscript{max} decreased
-(area-dependence increased) with increasing LMAs variance
-(Fig.~\ref{fig-massplt}). Other factors, including the sensitivity of
-\emph{A}\textsubscript{max} per-unit leaf area
-(\emph{A}\textsubscript{area}) to variation in LMAm and LMAs
-(\(\alpha_m\) and \(\alpha_s\) in Eq. \ref{eq:Aarea}) and covariance
+variation (Equation 6) strongly affected the area- vs.~mass-dependence
+of \emph{A}\textsubscript{max} (i.e., the degree to which whole-leaf
+\emph{A}\textsubscript{max} depends on leaf area or mass; Osnas et al.
+(\protect\hyperlink{ref-Osnas2013}{2013}); Osnas et al.
+(\protect\hyperlink{ref-Osnas2018}{2018})). Generally, mass-dependence
+of \emph{A}\textsubscript{max} decreased (area-dependence increased)
+with increasing LMAs variance (Figure~\ref{fig-mass_prop}). Other
+factors, including the sensitivity of \emph{A}\textsubscript{max}
+per-unit leaf area (\emph{A}\textsubscript{area}) to variation in LMAm
+and LMAs (\(\alpha_m\) and \(\alpha_s\) in Equation 2) and covariance
 between LMAm and LMAs, also affect the mass-dependence of
-\emph{A}\textsubscript{max} (Fig.~\ref{fig-massplt}, Fig. SX). For
-example, although LMAs variance was relatively low in GLOPNET (52\% of
-total LMA variance), variation in \emph{A}\textsubscript{max} in GLOPNET
-was strongly area-dependent because the relatively weak dependence of
-\emph{A}\textsubscript{area} on LMAm and the negative dependence of
-\emph{A}\textsubscript{area} on LMAs (Table 2) led to weak overall
-dependence of \emph{A}\textsubscript{area} on LMA. Thus, mass-dependence
-of \emph{A}\textsubscript{max} in GLOPNET was similar or weaker than in
-the Panama data, despite LMAs variance comprising a larger fraction of
-LMA variance in Panama (72\% and 99\% of total LMA variance for Panama
-sun and shade leaves, respectively).
+\emph{A}\textsubscript{max} (Figure~\ref{fig-mass_prop}, Figures
+S5-S6)). For example, although LMAs variance was relatively low in
+GLOPNET (52\% of total LMA variance), variation in
+\emph{A}\textsubscript{max} in GLOPNET was strongly area-dependent
+because the relatively weak dependence of \emph{A}\textsubscript{area}
+on LMAm and the negative dependence of \emph{A}\textsubscript{area} on
+LMAs (Table 2) led to weak overall dependence of
+\emph{A}\textsubscript{area} on LMA. Thus, mass-dependence of
+\emph{A}\textsubscript{max} in GLOPNET was similar or weaker than in the
+Panama data, despite LMAs variance comprising a larger fraction of LMA
+variance in Panama (72\% and 99\% of total LMA variance for Panama sun
+and shade leaves, respectively).
 
 \textbf{5. Nitrogen and phosphorus per-unit leaf area are strongly
 correlated with LMAm, and cellulose per-unit leaf area is strongly
 correlated with LMAs.} In the GLOPNET dataset,
 \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} had strong
 positive correlations with LMAm, but only weak correlations with LMAs
-(Fig. S). Similarly, in the Panama dataset, \emph{N}\textsubscript{area}
-and \emph{P}\textsubscript{area} had strong positive correlations with
-LMAm but not with LMAs (Fig.~\ref{fig-PA-NPC}). Cellulose content
-per-unit leaf area (CL\textsubscript{area}), which was only available
-for the Panama dataset, was most strongly correlated with total LMA, but
-also showed a clear relationship with LMAs that was consistent across
-canopy positions and sites (Fig.~\ref{fig-PA-NPC}). Partial regression
-plots showed that the higher \emph{N}\textsubscript{area},
+(Figure S7). Similarly, in the Panama dataset,
+\emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} had strong
+positive correlations with LMAm but not with LMAs
+(Figure~\ref{fig-pa_npc}). Cellulose content per-unit leaf area
+(CL\textsubscript{area}), which was only available for the Panama
+dataset, was most strongly correlated with total LMA, but also showed a
+clear relationship with LMAs that was consistent across canopy positions
+and sites (Figure~\ref{fig-pa_npc}). Partial regression plots showed
+that the higher \emph{N}\textsubscript{area},
 \emph{P}\textsubscript{area}, and CL\textsubscript{area} in sun leaves
-(compared to shade leaves; Fig.~\ref{fig-PA-NPC}) was due to sun leaves
-having higher LMAm than shade leaves (Fig. SX).
+(compared to shade leaves; Figure~\ref{fig-pa_npc}) was due to sun
+leaves having higher LMAm than shade leaves (Figure S8).
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
@@ -1119,9 +1125,9 @@ LMA}{Modeling Amax, Rdark, and LL as functions of metabolic and structural LMA}}
 
 \emph{A}\textsubscript{max} per-unit leaf area
 (\emph{A}\textsubscript{area}) increased with LMAm and was either
-unrelated to LMAs (Panama) or decreased with LMAs (GLOPNET; Figs.
-\ref{fig-GLplt}-\ref{fig-PAplt} and Table 2). The decline in GLOPNET
-\emph{A}\textsubscript{area} with increasing LMAs may be due to
+unrelated to LMAs (Panama) or decreased with LMAs (GLOPNET; Figures
+\ref{fig-gl_point}-\ref{fig-pa_point} and Table 2). The decline in
+GLOPNET \emph{A}\textsubscript{area} with increasing LMAs may be due to
 decreasing mesophyll conductance, which decreases with increasing cell
 wall thickness (\protect\hyperlink{ref-Evans2009}{Evans et al., 2009};
 \protect\hyperlink{ref-Onoda2017}{Onoda et al., 2017};
@@ -1137,34 +1143,36 @@ and inactive components (\protect\hyperlink{ref-Osnas2018}{Osnas et al.,
 
 \emph{R}\textsubscript{dark} per-unit leaf area
 (\emph{R}\textsubscript{area}) increased with LMAm and was unrelated to
-LMAs (Figs. \ref{fig-GLplt}-\ref{fig-PAplt} and Table 2), consistent
-with the view that LMAs is comprised of non-metabolic leaf mass
-components, such as cellulose, lignin, and other fibres
+LMAs (Figures \ref{fig-gl_point}-\ref{fig-pa_point} and Table 2),
+consistent with the view that LMAs is comprised of non-metabolic leaf
+mass components, such as cellulose, lignin, and other fibres
 (\protect\hyperlink{ref-Kitajima2016}{Kitajima et al., 2016},
 \protect\hyperlink{ref-Kitajima2012}{2012};
 \protect\hyperlink{ref-Onoda2011}{Onoda et al., 2011}). Median values of
 LMAs, as a percent of total LMA, were \textasciitilde60\% for evergreen
-species and \textasciitilde40\% for deciduous species (Fig. SX), and
-\textasciitilde X\% for shade leaves and \textasciitilde X\% for sun
-leaves (Fig. SX). These estimates align with measurements of cell wall
-(fibre) content from a global dataset (median 47\% of total leaf mass,
-with higher values for shade than sun leaves (Onoda et al.~2011)) and a
-Panama study site (Barro Colorado Island, BCI: \textasciitilde50\% mean
-across species, with higher values for shade leaves (Kitajima et
-al.~2016)).
+species and \textasciitilde40\% for deciduous species
+(\texttt{s\_fig("box\_frac\_de")}), and \textasciitilde X\% for shade
+leaves and \textasciitilde X\% for sun leaves
+(\texttt{s\_fig("box\_frac\_pa")}). These estimates align with
+measurements of cell wall (fibre) content from a global dataset (median
+47\% of total leaf mass, with higher values for shade than sun leaves
+(\protect\hyperlink{ref-Onoda2011}{Onoda et al., 2011})) and a Panama
+study site (Barro Colorado Island, BCI: \textasciitilde50\% mean across
+species, with higher values for shade leaves
+(\protect\hyperlink{ref-Kitajima2016}{Kitajima et al., 2016})).
 
-LL increased with LMAs but was unrelated to LMAm (Figs.
-\ref{fig-GLplt}-\ref{fig-PAplt} and Tables 1-2), consistent with
+LL increased with LMAs but was unrelated to LMAm (Figures
+\ref{fig-gl_point}-\ref{fig-pa_point} and Tables 1-2), consistent with
 well-established relationships between leaf fibre content, toughness,
 and LL (\protect\hyperlink{ref-Kitajima2016}{Kitajima et al., 2016},
 \protect\hyperlink{ref-Kitajima2012}{2012};
 \protect\hyperlink{ref-Onoda2011}{Onoda et al., 2011},
 \protect\hyperlink{ref-Onoda2011}{2011}). For a given LMAs, shade leaves
-had longer LL than sun leaves (see Fig.~\ref{fig-PAplt}i and parameter
-\(\theta\) in Table 2). Thus, partitioning LMA into LMAm and LMAs is not
-sufficient to explain the widely observed counter-gradient, whereby LL
-increases with increasing LMA across species but decreases with
-increasing LMA within species from shade to sun
+had longer LL than sun leaves (see Figure~\ref{fig-pa_point}i and
+parameter \(\theta\) in Table 2). Thus, partitioning LMA into LMAm and
+LMAs is not sufficient to explain the widely observed counter-gradient,
+whereby LL increases with increasing LMA across species but decreases
+with increasing LMA within species from shade to sun
 (\protect\hyperlink{ref-Lusk2008}{Lusk et al., 2008};
 \protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018};
 \protect\hyperlink{ref-Russo2016}{Russo \& Kitajima, 2016}). The failure
@@ -1213,16 +1221,16 @@ not support a decrease in LL with increasing LMAm (which, along with the
 environmental conditions, should determine net assimilation rate). For
 example, within each Panama site (wet and dry),
 \emph{A}\textsubscript{area} of sun leaves varied by over a factor of
-four and was strongly determined by LMAm (Fig.~\ref{fig-PAplt}b). Yet,
-the best-performing models excluded any effect of LMAm on LL (Table 1).
-Modeling LL as a function of LMAs, rather than total LMA, partially
-explains the sun-shade LL difference (compare Figs. \ref{fig-PAplt}g and
-\ref{fig-PAplt}i), and explicit consideration of fibre content and
-toughness may provide a more complete understanding of LL variation with
-light (see details above). Thus, while optimal LL theory provides
-important insights regarding the coordination of structural toughness
-and net assimilation rate, toughness itself may provide a sufficient
-proximate explanation for LL variation.
+four and was strongly determined by LMAm (Figure~\ref{fig-pa_point}b).
+Yet, the best-performing models excluded any effect of LMAm on LL (Table
+1). Modeling LL as a function of LMAs, rather than total LMA, partially
+explains the sun-shade LL difference (compare Figures
+\ref{fig-pa_point}g and \ref{fig-pa_point}i), and explicit consideration
+of fibre content and toughness may provide a more complete understanding
+of LL variation with light (see details above). Thus, while optimal LL
+theory provides important insights regarding the coordination of
+structural toughness and net assimilation rate, toughness itself may
+provide a sufficient proximate explanation for LL variation.
 
 \hypertarget{implications-for-understanding-relationships-between-photosynthetic-capacity-and-lma}{%
 \subsection{Implications for understanding relationships between
@@ -1237,7 +1245,7 @@ photosynthetic capacity, metabolic traits (including
 than mass-dependent. Our simulations show that all else being equal,
 area-dependence of \emph{A}\textsubscript{max} increases
 (mass-dependence decreases) as LMAs variance increases
-(Fig.~\ref{fig-massplt}), as hypothesized by Osnas et al.
+(Figure~\ref{fig-mass_prop}), as hypothesized by Osnas et al.
 (\protect\hyperlink{ref-Osnas2018}{2018}). However, our analysis also
 revealed complexities that were not anticipated by Osnas et al.
 (\protect\hyperlink{ref-Osnas2018}{2018}). For example, if
@@ -1245,7 +1253,7 @@ revealed complexities that were not anticipated by Osnas et al.
 decreases with LMAs (as in GLOPNET; Table 2), then
 \emph{A}\textsubscript{max} can be strongly area-dependent (weakly
 mass-dependent) even if LMAs accounts for relatively little LMA variance
-(Fig.~\ref{fig-massplt}). We conclude that area- vs.~mass-dependence
+(Figure~\ref{fig-mass_prop}). We conclude that area- vs.~mass-dependence
 depends not only LMAs variance, but also on how metabolic traits vary
 with different LMA components.
 
@@ -1256,11 +1264,11 @@ mesophyll conductance, e.g., due to a longer CO\textsubscript{2}
 diffusion pathway (\protect\hyperlink{ref-Evans2009}{Evans et al.,
 2009}). Similarly, high LMAm may lead to a high level of chloroplast
 self-shading within a leaf
-(\protect\hyperlink{ref-Terashimae2011}{\textbf{Terashimae2011?}}). Both
-of these factors would decrease the marginal benefit of additional units
-of LMAm, and this marginal decrease may be especially strong in GLOPNET
-due to the large global LMA range (and the large range of model-inferred
-LMAm: compare GLOPNET to Panama in Fig.~\ref{fig-boxplt_de}). Finally,
+(\protect\hyperlink{ref-Terashima2011}{Terashima et al., 2011}). Both of
+these factors would decrease the marginal benefit of additional units of
+LMAm, and this marginal decrease may be especially strong in GLOPNET due
+to the large global LMA range (and the large range of model-inferred
+LMAm: compare GLOPNET to Panama in Figure~\ref{fig-box_de}). Finally,
 while much of the model-inferred LMAm may be directly or indirectly
 related to photosynthesis, `LMAm' may also include metabolic leaf mass
 unrelated to photosynthesis and/or non-metabolic leaf mass that is
@@ -1277,25 +1285,25 @@ In addition to providing insights as to why metabolic traits tend to be
 area-dependent across species, our analysis also helps explain why these
 same traits tend to be mass-dependent within species across light levels
 (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}). LMA increased
-from shade to sun primarily due to an increase in LMAm (Figs.
-\ref{fig-boxplt_pa} and SX), which should lead to strong mass-dependence
-of \emph{A}\textsubscript{max} and \emph{R}\textsubscript{dark}
-(Fig.~\ref{fig-massplt}) and likely reflects an increase in the size and
-number of palisade mesophyll cells with increasing light levels
+from shade to sun primarily due to an increase in LMAm (Figures
+\ref{fig-box_pa} and S2), which should lead to strong mass-dependence of
+\emph{A}\textsubscript{max} and \emph{R}\textsubscript{dark}
+(Figure~\ref{fig-mass_prop}) and likely reflects an increase in the size
+and number of palisade mesophyll cells with increasing light levels
 (\protect\hyperlink{ref-Onoda2008}{Onoda et al., 2008};
 \protect\hyperlink{ref-Terashima2011}{Terashima et al., 2011}).
 Estimates of mass-dependence of metabolic traits (parameter \emph{b} in
-Eq. X, with \emph{b} \textgreater{} 0.5 indicating greater mass- than
-area-dependence) across light levels are around 0.8-1.0 for the Panama
-dataset we analyzed (\protect\hyperlink{ref-Osnas2018}{Osnas et al.,
-2018}). Although values of b greater than 1 are theoretically possible
-(which implies an exponential increase in area-normalized traits with
-increasing LMA), two factors likely constrain the observed values of
-\emph{b}. Firstly, at least some of the LMA increase from shade to sun
-is due to LMAs (Figs. \ref{fig-boxplt_pa} and SX), which may reflect the
-additional LMAs needed to protect and support the high LMAm of sun
-leaves and/or additional LMAs required to withstand hydraulic or other
-stress in the upper canopy. Secondly, as discussed above,
+Equation 5, with \emph{b} \textgreater{} 0.5 indicating greater mass-
+than area-dependence) across light levels are around 0.8-1.0 for the
+Panama dataset we analyzed (\protect\hyperlink{ref-Osnas2018}{Osnas et
+al., 2018}). Although values of b greater than 1 are theoretically
+possible (which implies an exponential increase in area-normalized
+traits with increasing LMA), two factors likely constrain the observed
+values of \emph{b}. Firstly, at least some of the LMA increase from
+shade to sun is due to LMAs (Figures \ref{fig-box_pa} and S2), which may
+reflect the additional LMAs needed to protect and support the high LMAm
+of sun leaves and/or additional LMAs required to withstand hydraulic or
+other stress in the upper canopy. Secondly, as discussed above,
 \emph{A}\textsubscript{area} and \emph{R}\textsubscript{area} increase
 at a less-than-proportional rate with increasing LMAm, which in turn
 moderates the LMA scaling exponent (\emph{b}).
@@ -1315,20 +1323,21 @@ Earth System Models (ESMs; Moorcroft
 (\protect\hyperlink{ref-Moorcroft2006}{2006}); Wullschleger et al.
 (\protect\hyperlink{ref-Wullschleger2014}{2014}){]}. Recently, there has
 been a proliferation of interest in this topic
-(\protect\hyperlink{ref-Fisher2015}{Fisher et al., 2015};
+(\protect\hyperlink{ref-DantasdePaula2021}{Dantas de Paula et al.,
+2021}; \protect\hyperlink{ref-Fisher2015}{Fisher et al., 2015};
 \protect\hyperlink{ref-Sakschewski2015}{Sakschewski et al., 2015};
 \protect\hyperlink{ref-Sakschewski2016}{Sakschewski et al., 2016};
-\protect\hyperlink{ref-Scheiter2013}{Scheiter et al., 2013};
-\protect\hyperlink{ref-Dantas2021}{\textbf{Dantas2021?}}) along with
+\protect\hyperlink{ref-Scheiter2013}{Scheiter et al., 2013}) along with
 demographic approaches capable of representing the dynamics of diverse
 communities in ESMs (\protect\hyperlink{ref-Fisher2018}{Fisher et al.,
 2018}). The leaf economics spectrum (LES) has been interpreted as a
-single dominant axis of global leaf functional variation (Wright et
-al.~2004), and this simple framework has been adopted in some of these
-dynamic vegetations models. Our results demonstrate the value of
-considering metabolic and structural leaf mass separately, and indicate
-weak if any interspecific correlation between these LMA components (Fig.
-SX). We therefore conclude that a one-dimensional representation of leaf
+single dominant axis of global leaf functional variation
+(\protect\hyperlink{ref-Wright2004a}{I. J. Wright et al., 2004}), and
+this simple framework has been adopted in some of these dynamic
+vegetations models. Our results demonstrate the value of considering
+metabolic and structural leaf mass separately, and indicate weak if any
+interspecific correlation between these LMA components (Figure S1). We
+therefore conclude that a one-dimensional representation of leaf
 functional variation is too simplistic. Consistent with our conclusion
 that leaf function is multi-dimensional, analyses of leaf nitrogen
 indicate significant independent contributions of metabolic (e.g.,
@@ -1394,6 +1403,13 @@ Betancourt, M., Brubaker, M., Guo, J., Li, P., \& Riddell, A. (2017).
 Stan : {A Probabilistic Programming Language}. \emph{Journal of
 Statistical Software}, \emph{76}(1), 1--32.
 \url{https://doi.org/10.18637/jss.v076.i01}
+
+\leavevmode\vadjust pre{\hypertarget{ref-DantasdePaula2021}{}}%
+Dantas de Paula, M., Forrest, M., Langan, L., Bendix, J., Homeier, J.,
+Velescu, A., Wilcke, W., \& Hickler, T. (2021). Nutrient cycling drives
+plant community trait assembly and ecosystem functioning in a tropical
+mountain biodiversity hotspot. \emph{New Phytologist}, \emph{232}(2),
+551--566. \url{https://doi.org/10.1111/nph.17600}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Dong2017}{}}%
 Dong, N., Prentice, I. C., Evans, B. J., Caddy-Retalic, S., Lowe, A. J.,
@@ -1720,8 +1736,8 @@ data: \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area}, and LL
 were modeled as power laws of LMA (one-dimensional model) or both LMAp
 and LMAs (two-dimensional model; see Equations 2, 3, and 4a). We also
 considered three light-dependent forms for LL in the Panama dataset (as
-in Equation 4b), which reports the canopy position (sun vs.~shade) for
-each leaf sample: LMA and light (one-dimensional); LMAp, LMAs, and light
+in 4b), which reports the canopy position (sun vs.~shade) for each leaf
+sample: LMA and light (one-dimensional); LMAp, LMAs, and light
 (two-dimensional); and LMAp, leaf structural density (LSD = LMAs/LT),
 and light (two-dimensional). We combined the two-dimensional model forms
 with four types of parameter constraints: (i) \(\alpha_s\) = 0 and
@@ -1809,7 +1825,7 @@ Effect of light on LL (\(\theta\)) & - & \textbf{-0.83 {[}-1.116,
 
 }
 
-\caption{\label{fig-Hplt}Example of a two-dimensional functional space
+\caption{\label{fig-hypo}Example of a two-dimensional functional space
 that can result in either a two- or one-dimensional trait space,
 depending on how metabolic traits are normalized. (A) Hypothetical
 independent variation in two leaf mass per area (LMA) components:
@@ -1837,7 +1853,7 @@ log-scale parameter with 0.31 (see Methods and Results).}
 
 }
 
-\caption{\label{fig-GLplt}Observed and estimated leaf-trait
+\caption{\label{fig-gl_point}Observed and estimated leaf-trait
 relationships in the global GLOPNET dataset. Estimates are from the best
 GLOPNET model (Table 1). Leaf life span (LL), net photosynthetic rate
 per unit leaf area (\emph{A}\textsubscript{area}), and dark respiration
@@ -1862,16 +1878,16 @@ and \emph{R}\textsubscript{area} (multiple predictor variables).}
 
 }
 
-\caption{\label{fig-PAplt}Observed and estimated leaf-trait
+\caption{\label{fig-pa_point}Observed and estimated leaf-trait
 relationships in the Panama dataset. Estimates are from the best Panama
 model (Table 1), which included effects of light on LL. Details as for
-Fig.~\ref{fig-GLplt}. Results for other LL models are summarized in
+Figure~\ref{fig-gl_point}. Results for other LL models are summarized in
 Table SX. Note that \emph{A}\textsubscript{area} and LL were modeled by
 LMAp and LMAs alone, respectively, due to improved model performance
 with these parameter constraints (Table 1). The results shown here
 include all leaves in the Panama dataset. The observed separation of LL
 between sun and shade leaves is accounted for in the model predictions
-Fig.~\ref{fig-LLplt}.}
+Figure~\ref{fig-ll_point}.}
 
 \end{figure}
 
@@ -1883,13 +1899,12 @@ Fig.~\ref{fig-LLplt}.}
 
 }
 
-\caption{\label{fig-LLplt}Relationship between leaf lifespan (LL) and
+\caption{\label{fig-ll_point}Relationship between leaf lifespan (LL) and
 LMAs in the Panama dataset, afeter accounting for the effects of light
-(suv vs.~shade leaves; see Eq. \ref{eq:LL_opt}). The dashed line
-indicates the 1:1 relationship expected for residuals on the log-scale.
-The posterior means of the partial correlation coefficient
-(\(\bar{\rho}\)) is shown. The results shown here include all leaves in
-the Panama dataset.}
+(suv vs.~shade leaves; see Equation 4b). The dashed line indicates the
+1:1 relationship expected for residuals on the log-scale. The posterior
+means of the partial correlation coefficient (\(\bar{\rho}\)) is shown.
+The results shown here include all leaves in the Panama dataset.}
 
 \end{figure}
 
@@ -1919,18 +1934,18 @@ available.}
 
 }
 
-\caption{\label{fig-boxplt_de}Boxplots comparing leaf mass per area
-(LMA) and posterior means of photosynthetic and structural LMA
-components (LMAm and LMAs, respectively) across deciduous (D) and
-evergreen (E) leaves in the GLOPNET dataset (a) and in the Panama
-dataset (b). The center line in each box indicates the median, upper and
-lower box edges indicate the interquartile range, whiskers show 1.5
-times the interquartile range, and points are outliers. Groups sharing
-the same letters are not significantly different (P \textgreater{} 0.05;
+\caption{\label{fig-box_de}Boxplots comparing leaf mass per area (LMA)
+and posterior means of photosynthetic and structural LMA components
+(LMAm and LMAs, respectively) across deciduous (Dev) and evergreen (Eve)
+leaves in the GLOPNET dataset (a) and in the Panama dataset (b). The
+center line in each box indicates the median, upper and lower box edges
+indicate the interquartile range, whiskers show 1.5 times the
+interquartile range, and points are outliers. Groups sharing the same
+letters are not significantly different (P \textgreater{} 0.05;
 t-tests). The Panama results only include species for which both sun and
 shade leaves were available. Qualitatively similar results were obtained
-when all Panama species were included (Fig. S\ref{fig-box_inter}). Note
-that the vertical axis is on a log\textsubscript{10} scale.}
+when all Panama species were included (\texttt{s\_fig("box\_inter")}).
+Note that the vertical axis is on a log\textsubscript{10} scale.}
 
 \end{figure}
 
@@ -1942,14 +1957,14 @@ that the vertical axis is on a log\textsubscript{10} scale.}
 
 }
 
-\caption{\label{fig-boxplt_pa}Boxplots comparing leaf mass per area
-(LMA) and posterior means of metabolic and structural LMA components
-(LMAm and LMAs, respectively) across sites (wet and dry) and canopy
-strata (sun and shade) in the Panama dataset. These results only include
-species for which both sun and shade leaves were available.
-Qualitatively similar results were obtained when all Panama species were
-included (Fig. S\ref{fig-box_inter}). Details as for
-Fig.~\ref{fig-boxplt_de}.}
+\caption{\label{fig-box_pa}Boxplots comparing leaf mass per area (LMA)
+and posterior means of metabolic and structural LMA components (LMAm and
+LMAs, respectively) across sites (wet and dry) and canopy strata (sun
+and shade) in the Panama dataset. These results only include species for
+which both sun and shade leaves were available. Qualitatively similar
+results were obtained when all Panama species were included
+(\texttt{s\_fig("box\_inter")}). Details as for
+Figure~\ref{fig-box_de}.}
 
 \end{figure}
 
@@ -1961,10 +1976,10 @@ Fig.~\ref{fig-boxplt_de}.}
 
 }
 
-\caption{\label{fig-massplt}Relationships between mass dependency
-(\emph{b} in Eq.~\ref{eq-var}) and LMAs variance (relative to total LMA
-variance) for the global GLPNET datase,t un leaves in Panama, and shade
-leaves in Panama. Solid lines indicate simulated means and shaded
+\caption{\label{fig-mass_prop}Relationships between mass dependency
+(\emph{b} in Equation 5) and LMAs variance (relative to total LMA
+variance) for the global GLPNET datase,t, sun leaves in Panama, and
+shade leaves in Panama. Solid lines indicate simulated means and shaded
 regions indicate 95\% CIs. Each point indicates the estimated values
 from the empirical data and represents interspecific variation (e.g.,
 across species within a canopy position in the Panama dataset). The
@@ -1987,7 +2002,7 @@ relationships (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}).}
 
 }
 
-\caption{\label{fig-PA-NPC}Measured traits in the Panama dataset related
+\caption{\label{fig-pa_npc}Measured traits in the Panama dataset related
 to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf
 area; \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area}) are
 better correlated with estimates (posterior means) of the metabolic LMA
@@ -2001,7 +2016,7 @@ posterior distributions of Pearson correlation coefficients cannot be
 estimated for LMAm and LMAs. Pearson correlation coefficients (\emph{r})
 are shown for all the panels. Analogous results were obtained for
 \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} for
-GLOPNET (Fig. S\ref{fig-glnp}). The results shown here include all
+GLOPNET (s\_fig(``gl\_point\_np2'')). The results shown here include all
 leaves for which \emph{N}\textsubscript{area},
 \emph{P}\textsubscript{area} and CL\textsubscript{area} are available.}
 
