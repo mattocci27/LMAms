@@ -522,7 +522,7 @@ main_list <- list(
        p,
        dpi = 300,
        height = 11.4,
-       width = 11.4,
+       width = 12.4,
        units = "cm"
       )
     },
@@ -879,10 +879,10 @@ main_list <- list(
   ),
 
   tar_target(
-    box_frac_plot, {
+    box_frac_de_plot, {
       p <- box_frac(gl_box_dat, pa_intra_box_dat, pa_inter_box_dat, settings_yml, letters_yml)
       my_ggsave(
-        "figs/box_frac",
+        "figs/box_frac_de",
        p,
        dpi = 300,
        height = 6,
