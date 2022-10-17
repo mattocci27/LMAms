@@ -1,4 +1,10 @@
 
+get_mid <- function(data, para_str)  {
+ data |>
+  filter(variable == para_str) |>
+  pull(q50)
+}
+
 #' @para gl_para MCMC summary for GLOPNET (e.g., gl_summary_am_bs)
 #' @para pa_para MCMC summary for Panama (e.g. pa_summary_am_bs_opt)
 gen_mass_point_dat <- function(gl_res_csv, pa_res_csv, gl_para, pa_para) {
@@ -26,8 +32,8 @@ gen_mass_point_dat <- function(gl_res_csv, pa_res_csv, gl_para, pa_para) {
   point_dat <- tibble(
     site = c("GLOPNET", "Sun", "Shade") |>
                     factor(levels =  c("GLOPNET", "Sun", "Shade")),
-    am = c(get_mean(gl_para, "am"), get_mean(pa_para, "am"), get_mean(pa_para, "am")),
-    as = c(get_mean(gl_para, "as"), 0, 0)
+    am = c(get_mid(gl_para, "am"), get_mid(pa_para, "am"), get_mid(pa_para, "am")),
+    as = c(get_mid(gl_para, "as"), 0, 0)
   )
 
   gl_b <- lm(log(Aarea) ~ log(LMA), gl)$coefficients[2]
@@ -65,7 +71,7 @@ gl_sim_fit <- function(log_LMAs, log_LMAm, a0, am, as) {
   fit$coefficients[2]
 }
 
-#' @para ap only ap was significant
+#' @para am only am was significant
 pa_sim_fit <- function(log_LMAs, log_LMAm, am) {
   log_Aarea <- am * log_LMAm
   LMA <- exp(log_LMAm) + exp(log_LMAs)
@@ -116,23 +122,23 @@ get_mean <- function(data, para_str)  {
     if (gl) {
       b <- cbind(b, map_dbl(log_LMAs, gl_sim_fit,
         log_LMAm,
-        get_mean(para, "a0"),
-        get_mean(para, "am"),
-        get_mean(para, "as")
+        get_mid(para, "a0"),
+        get_mid(para, "am"),
+        get_mid(para, "as")
       ))
     } else {
       b <- cbind(b, map_dbl(log_LMAs, pa_sim_fit,
         log_LMAm,
-        get_mean(para, "am")
+        get_mid(para, "am")
       ))
     }
   }
-  LMAs_var_mean <- apply(LMAs_var, 1, mean)
-  mean_ <- apply(b, 1, mean)
+  LMAs_var_median <- apply(LMAs_var, 1, median)
+  median_ <- apply(b, 1, median)
   upr <- apply(b, 1, \(x)(quantile(x, 0.975)))
   lwr <- apply(b, 1, \(x)(quantile(x, 0.025)))
-  tibble(mean = mean_, upr = upr, lwr = lwr,
-              LMAs_var_mean, site = site)
+  tibble(median = median_, upr = upr, lwr = lwr,
+              LMAs_var_median, site = site)
 }
 
 #' @para data gl_res_csv or pa_res_csv
@@ -140,8 +146,8 @@ get_mean <- function(data, para_str)  {
 mass_prop_sim_grad_each <- function(am, as, a0, data, n_sim = 1000, n_samp = 100,
                    x_len = 20, site = "GLOPNET", seed = 123) {
   set.seed(seed)
-  mu <- mean(log(data$LMAm))
-  mu2 <- mean(log(data$LMAs))
+  mu <- median(log(data$LMAm))
+  mu2 <- median(log(data$LMAs))
   sig <- sd(log(data$LMAm))
   LMAs_var <- NULL
   b <- NULL
@@ -157,21 +163,21 @@ mass_prop_sim_grad_each <- function(am, as, a0, data, n_sim = 1000, n_samp = 100
       as
     ))
   }
-  LMAs_var_mean <- apply(LMAs_var, 1, mean)
-  mean_ <- apply(b, 1, mean)
+  LMAs_var_median <- apply(LMAs_var, 1, median)
+  median_ <- apply(b, 1, median)
   upr <- apply(b, 1, \(x)(quantile(x, 0.975)))
   lwr <- apply(b, 1, \(x)(quantile(x, 0.025)))
-  tibble(mean = mean_, upr = upr, lwr = lwr,
-              LMAs_var_mean, site = site, a0, am, as)
+  tibble(median = median_, upr = upr, lwr = lwr,
+              LMAs_var_median, site = site, a0, am, as)
 }
 
 #' @para gl_res_csv gl_res_csv
 #' @para summary_mcmc mcmc summary (e.g.  fit_7_summary_GL_Aps_LLs)
 #' @para ap vector for ap (e.g., c(0.1, 0.5, 1.0))
-#' @para as vector for as e.g., get_mean(fit_7_summary_GL_Aps_LLs, "as") |> rep(3)
+#' @para as vector for as e.g., get_mid(fit_7_summary_GL_Aps_LLs, "as") |> rep(3)
 mass_prop_sim_grad <- function(gl_res_csv, summary_mcmc, am, as, n_sim = 1000, x_len = 20) {
   para_id <- rep(seq(1, length(am)), each = x_len)
-  a0 <- get_mean(summary_mcmc, "a0")
+  a0 <- get_mid(summary_mcmc, "a0")
   pmap_dfr(list(am, as), mass_prop_sim_grad_each,
     a0 = a0,
     data = read_csv(gl_res_csv),
@@ -184,15 +190,15 @@ mass_prop_sim_grad <- function(gl_res_csv, summary_mcmc, am, as, n_sim = 1000, x
 #' @para para mcmc summary (e.g.  fit_20_summary_PA_Ap_LLs_opt)
 #' @example
 # targets::tar_load(pa_res_csv)
-# targets::tar_load(fit_20_summary_PA_Ap_LLs_opt)
-# para  <- fit_20_summary_PA_Ap_LLs_opt
+# para <- targets::tar_read(pa_summary_am_bs_opt)
 # data <- read_csv(pa_res_csv) |> filter(strata != "CAN")
 # mass_prop_sim_mv(data, para, n_sim = 10)
-mass_prop_sim_mv <- function(data, para, n_sim = 1000, n_samp = 100,
-                   x_len = 20, site = "Shade", seed = 123) {
+mass_prop_sim_mv <- function(data, para, para_yml, n_sim = 1000,
+  n_samp = 100, x_len = 20, site = "Shade", seed = 123) {
   set.seed(seed)
-  Mu <- c(mean(log(data$LMAm)), mean(log(data$LMAs)))
-  rho <- -0.4
+  para_yml <- yaml::yaml.load_file(para_yml)
+  Mu <- c(median(log(data$LMAm)), median(log(data$LMAs)))
+  rho <- para_yml$PA$rho_shade
   sig1 <- sd(log(data$LMAm))
   sig2 <- seq(log(1.01), log(10), length = x_len)
   LMAs_var <- NULL
@@ -209,16 +215,16 @@ mass_prop_sim_mv <- function(data, para, n_sim = 1000, n_samp = 100,
     }
     LMAs_var <- cbind(LMAs_var, map2_dbl(log_LMAs, log_LMAm, var_fun))
     b <- cbind(b, map2_dbl(log_LMAs, log_LMAm, pa_sim_fit,
-      get_mean(para, "am")
+      get_mid(para, "am")
     ))
   }
 
-  LMAs_var_mean <- apply(LMAs_var, 1, mean)
-  mean_ <- apply(b, 1, mean)
+  LMAs_var_median <- apply(LMAs_var, 1, median)
+  median_ <- apply(b, 1, median)
   upr <- apply(b, 1, \(x)(quantile(x, 0.975)))
   lwr <- apply(b, 1, \(x)(quantile(x, 0.025)))
-  tibble(mean = mean_, upr = upr, lwr = lwr,
-              LMAs_var_mean, site = site)
+  tibble(median = median_, upr = upr, lwr = lwr,
+              LMAs_var_median, site = site)
 }
 
 #' @para mass_obs_dat dataframe with obsreved mass-prop
@@ -227,48 +233,58 @@ mass_prop_sim_mv <- function(data, para, n_sim = 1000, n_samp = 100,
 #' @para sim3 Panama shade
 mass_prop_point <- function(mass_obs_dat, sim1, sim2, sim3) {
   # targets::tar_load(mass_obs_dat)
-  # targets::tar_load(gl_mass_prop)
-  # targets::tar_load(sun_mass_prop)
-  # targets::tar_load(shade_mass_prop)
-  # sim1 <- gl_mass_prop
-  # sim2 <- sun_mass_prop
-  # sim3 <- shade_mass_prop
-  sim_dat <- bind_rows(sim1, sim2, sim3)
-  #sim3[20 ,3] <- -1
-  #sim_dat[20 ,3] <- -1
+  # sim1 <- targets::tar_read(gl_mass_prop)
+  # sim2 <- targets::tar_read(sun_mass_prop)
+  # sim3 <- targets::tar_read(shade_mass_prop)
+  sim_dat <- bind_rows(sim1, sim2, sim3) |>
+    mutate(site = case_when(
+      site == "Sun" ~ "Panama: sun",
+      site == "Shade" ~ "Panama: shade",
+      TRUE ~ "GLOPNET"
+    )) |>
+    mutate(site = factor(site,
+      levels = c("GLOPNET", "Panama: sun", "Panama: shade")))
+
+  mass_obs_dat <- mass_obs_dat |>
+    mutate(site = case_when(
+      site == "Sun" ~ "Panama: sun",
+      site == "Shade" ~ "Panama: shade",
+      TRUE ~ "GLOPNET"
+    )) |>
+    mutate(site = factor(site,
+      levels = c("GLOPNET", "Panama: sun", "Panama: shade")))
 
   fills <- c("GLOPNET" = "#008B00",
-              "Sun" = "#1874CD",
-              "Shade" = "gray"
+              "Panama: sun" = "#1874CD",
+              "Panama: shade" = "gray"
   )
 
   cols <- c("GLOPNET" = "#008B00",
-              "Sun" = "#1874CD",
-              "Shade" = "black"
+              "Panama: sun" = "#1874CD",
+              "Panama: shade" = "black"
   )
 
   ggplot(data = sim_dat) +
     geom_ribbon(aes(ymin = lwr, ymax = upr,
-                    x = LMAs_var_mean,
+                    x = LMAs_var_median,
                     fill = site),
                 alpha = 0.4)  +
-    geom_line(aes(y = mean, x = LMAs_var_mean, col = site)) +
+    geom_line(aes(y = median, x = LMAs_var_median, col = site)) +
     geom_point(data = mass_obs_dat , aes(x = vars, y = b,
      shape = site, col = site)) +
-    scale_fill_manual(values = fills, name = "Parameter") +
+    scale_fill_manual(values = fills) +
     scale_y_continuous(breaks = c(0, 0.5, 1, 2)) +
-    scale_color_manual(values = cols, name = "Parameter") +
-    scale_shape_discrete(name = "Parameter")  +
+    scale_color_manual(values = cols) +
     ylab(expression(Mass~dependency~(italic(b)))) +
     xlab("Relative variance of LMAs (%)") +
     theme_LES() +
-    theme(legend.position = c(0.75, 0.66),
+    theme(legend.position = c(0.55, 0.85),
           legend.key.size = unit(0.5, "cm"),
           legend.spacing.y = unit(0.1, "cm"),
           legend.text.align = 0,
           legend.key.height = unit(0.2, "cm"),
           legend.text = element_text(size = 8),
-          legend.title = element_text(size = 8)
+          legend.title = element_blank()
     )
 }
 
@@ -278,20 +294,20 @@ mass_prop_point <- function(mass_obs_dat, sim1, sim2, sim3) {
 mass_sim_point <- function(am_sim_dat, as_sim_dat) {
   p1 <- ggplot(data = am_sim_dat) +
     geom_ribbon(aes(ymin = lwr, ymax = upr,
-                    x = LMAs_var_mean,
+                    x = LMAs_var_median,
                     fill = factor(am)),
                 alpha = 0.4)  +
-    geom_line(aes(y = mean, x = LMAs_var_mean, col = factor(am))) +
+    geom_line(aes(y = median, x = LMAs_var_median, col = factor(am))) +
     labs(
       color = expression(alpha[m]),
       fill = expression(alpha[m]))
 
   p2 <- ggplot(data = as_sim_dat) +
     geom_ribbon(aes(ymin = lwr, ymax = upr,
-                    x = LMAs_var_mean,
+                    x = LMAs_var_median,
                     fill = factor(as)),
                 alpha = 0.4)  +
-    geom_line(aes(y = mean, x = LMAs_var_mean, col = factor(as))) +
+    geom_line(aes(y = median, x = LMAs_var_median, col = factor(as))) +
     labs(
       color = expression(alpha[s]),
       fill = expression(alpha[s]))
@@ -317,10 +333,10 @@ mass_prop_comp_point <- function(sim1, sim2) {
 
   ggplot(data = sim_dat) +
     geom_ribbon(aes(ymin = lwr, ymax = upr,
-                    x = LMAs_var_mean,
+                    x = LMAs_var_median,
                     fill = site),
                 alpha = 0.4)  +
-    geom_line(aes(y = mean, x = LMAs_var_mean, col = site)) +
+    geom_line(aes(y = median, x = LMAs_var_median, col = site)) +
 #    scale_fill_manual(values = fills, name = "Parameter") +
     scale_y_continuous(breaks = c(0, 0.5, 1, 2)) +
     # scale_color_manual(values = cols, name = "Parameter") +

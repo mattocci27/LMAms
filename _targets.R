@@ -706,6 +706,7 @@ main_list <- list(
     shade_mass_prop_mv,
     mass_prop_sim_mv(read_csv(pa_res_csv) |> filter(strata != "CAN"),
       pa_full_summary_am_bs_opt,
+      para_yml,
       n_sim = 1000,
       site = "Shade"
     )
