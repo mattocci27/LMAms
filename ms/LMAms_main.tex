@@ -407,7 +407,7 @@
 
 
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, frame hidden, interior hidden, borderline west={3pt}{0pt}{shadecolor}, breakable, sharp corners, boxrule=0pt]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, enhanced, frame hidden, sharp corners, interior hidden, breakable, borderline west={3pt}{0pt}{shadecolor}]}{\end{tcolorbox}}\fi
 
 \textbf{Running title}: Metabolic and structural leaf mass
 
@@ -1038,11 +1038,11 @@ vs.~shade) explained much more variation in LMAm than LMAs, whereas site
 (wet vs.~dry) explained much more variation in LMAs than LMAm
 (Figure~\ref{fig-vpart}c). Panama wet-site leaves had higher total LMA
 than dry-site leaves due to greater LMAs (Figures \ref{fig-box_pa} and
-S2). In contrast, Panama sun leaves had higher total LMA than shade
+S1). In contrast, Panama sun leaves had higher total LMA than shade
 leaves primarily due to greater LMAm, with a smaller but significant
-contribution from LMAs (Figures \ref{fig-box_pa} and S2). Thus, LMAs
+contribution from LMAs (Figures \ref{fig-box_pa} and S1). Thus, LMAs
 comprised a larger fraction of total LMA for shade leaves than for sun
-leaves (Figure S3).
+leaves (Figure S2).
 
 \textbf{4. LMA variance components affect the area- vs.~mass-dependence
 of leaf photosynthetic capacity (\emph{A}\textsubscript{max}).} Analysis
@@ -1059,8 +1059,8 @@ per-unit leaf area (\emph{A}\textsubscript{area}) to variation in LMAm
 and LMAs (\(\alpha_m\) and \(\alpha_s\) in Equation 2) and covariance
 between LMAm and LMAs, also affect the mass-dependence of
 \emph{A}\textsubscript{max} (Figure~\ref{fig-mass_prop}, Figures
-S5-S6)). For example, although LMAs variance was relatively low in
-GLOPNET (52\% of total LMA variance), variation in
+S4-S5)). For example, although LMAs variance was relatively low in
+GLOPNET (51\% of total LMA variance), variation in
 \emph{A}\textsubscript{max} in GLOPNET was strongly area-dependent
 because the relatively weak dependence of \emph{A}\textsubscript{area}
 on LMAm and the negative dependence of \emph{A}\textsubscript{area} on
@@ -1068,7 +1068,7 @@ LMAs (Table 2) led to weak overall dependence of
 \emph{A}\textsubscript{area} on LMA. Thus, mass-dependence of
 \emph{A}\textsubscript{max} in GLOPNET was similar or weaker than in the
 Panama data, despite LMAs variance comprising a larger fraction of LMA
-variance in Panama (72\% and 99\% of total LMA variance for Panama sun
+variance in Panama (74\% and 100\% of total LMA variance for Panama sun
 and shade leaves, respectively).
 
 \textbf{5. Nitrogen and phosphorus per-unit leaf area are strongly
@@ -1076,7 +1076,7 @@ correlated with LMAm, and cellulose per-unit leaf area is strongly
 correlated with LMAs.} In the GLOPNET dataset,
 \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} had strong
 positive correlations with LMAm, but only weak correlations with LMAs
-(Figure S7). Similarly, in the Panama dataset,
+(Figure S6). Similarly, in the Panama dataset,
 \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} had strong
 positive correlations with LMAm but not with LMAs
 (Figure~\ref{fig-pa_npc}). Cellulose content per-unit leaf area
@@ -1087,7 +1087,7 @@ and sites (Figure~\ref{fig-pa_npc}). Partial regression plots showed
 that the higher \emph{N}\textsubscript{area},
 \emph{P}\textsubscript{area}, and CL\textsubscript{area} in sun leaves
 (compared to shade leaves; Figure~\ref{fig-pa_npc}) was due to sun
-leaves having higher LMAm than shade leaves (Figure S8).
+leaves having higher LMAm than shade leaves (Figure S7).
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
@@ -1286,7 +1286,7 @@ area-dependent across species, our analysis also helps explain why these
 same traits tend to be mass-dependent within species across light levels
 (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}). LMA increased
 from shade to sun primarily due to an increase in LMAm (Figures
-\ref{fig-box_pa} and S2), which should lead to strong mass-dependence of
+\ref{fig-box_pa} and S1), which should lead to strong mass-dependence of
 \emph{A}\textsubscript{max} and \emph{R}\textsubscript{dark}
 (Figure~\ref{fig-mass_prop}) and likely reflects an increase in the size
 and number of palisade mesophyll cells with increasing light levels
@@ -1300,7 +1300,7 @@ al., 2018}). Although values of b greater than 1 are theoretically
 possible (which implies an exponential increase in area-normalized
 traits with increasing LMA), two factors likely constrain the observed
 values of \emph{b}. Firstly, at least some of the LMA increase from
-shade to sun is due to LMAs (Figures \ref{fig-box_pa} and S2), which may
+shade to sun is due to LMAs (Figures \ref{fig-box_pa} and S1), which may
 reflect the additional LMAs needed to protect and support the high LMAm
 of sun leaves and/or additional LMAs required to withstand hydraulic or
 other stress in the upper canopy. Secondly, as discussed above,
@@ -1336,7 +1336,7 @@ single dominant axis of global leaf functional variation
 this simple framework has been adopted in some of these dynamic
 vegetations models. Our results demonstrate the value of considering
 metabolic and structural leaf mass separately, and indicate weak if any
-interspecific correlation between these LMA components (Figure S1). We
+interspecific correlation between these LMA components (Figure S8). We
 therefore conclude that a one-dimensional representation of leaf
 functional variation is too simplistic. Consistent with our conclusion
 that leaf function is multi-dimensional, analyses of leaf nitrogen
@@ -1803,15 +1803,15 @@ Panama
 \midrule()
 \endhead
 Effect of LMAm on \emph{A}\textsubscript{area} (\(\alpha_p\)) &
-\textbf{0.282 {[}0.204, 0.36{]}} & \textbf{0.578 {[}0.429, 0.723{]}} \\
+\textbf{0.281 {[}0.204, 0.36{]}} & \textbf{0.577 {[}0.429, 0.723{]}} \\
 Effect of LMAs on \emph{A}\textsubscript{area} (\(\alpha_s\)) &
 \textbf{-0.131 {[}-0.201, -0.058{]}} & - \\
-Effect of LMAs on LL (\(\beta_s\)) & \textbf{0.888 {[}0.761, 1.018{]}} &
+Effect of LMAs on LL (\(\beta_s\)) & \textbf{0.887 {[}0.761, 1.018{]}} &
 \textbf{0.352 {[}0.17, 0.531{]}} \\
 Effect of LMAm on \emph{R}\textsubscript{area} (\(\gamma_p\)) &
-\textbf{0.289 {[}0.202, 0.38{]}} & \textbf{0.612 {[}0.388, 0.823{]}} \\
+\textbf{0.289 {[}0.202, 0.38{]}} & \textbf{0.614 {[}0.388, 0.823{]}} \\
 Effect of LMAs on \emph{R}\textsubscript{area} (\(\gamma_s\)) & 0.035
-{[}-0.045, 0.115{]} & 0.038 {[}-0.25, 0.351{]} \\
+{[}-0.045, 0.115{]} & 0.032 {[}-0.25, 0.351{]} \\
 Effect of light on LL (\(\theta\)) & - & \textbf{-0.83 {[}-1.116,
 -0.538{]}} \\
 \bottomrule()
@@ -1821,7 +1821,7 @@ Effect of light on LL (\(\theta\)) & - & \textbf{-0.83 {[}-1.116,
 
 \begin{figure}
 
-{\centering \includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/hypo.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/hypo.png}
 
 }
 
@@ -1849,7 +1849,7 @@ log-scale parameter with 0.31 (see Methods and Results).}
 
 \begin{figure}
 
-{\centering \includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/gl_point.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/gl_point.png}
 
 }
 
@@ -1874,7 +1874,7 @@ and \emph{R}\textsubscript{area} (multiple predictor variables).}
 
 \begin{figure}
 
-{\centering \includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/pa_point.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/pa_point.png}
 
 }
 
@@ -1895,7 +1895,7 @@ Figure~\ref{fig-ll_point}.}
 
 \begin{figure}
 
-{\centering \includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/pa_point_par_ll.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/pa_point_par_ll.png}
 
 }
 
@@ -1912,7 +1912,7 @@ The results shown here include all leaves in the Panama dataset.}
 
 \begin{figure}
 
-{\centering \includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/vpart_intra.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/vpart_intra.png}
 
 }
 
@@ -1930,7 +1930,7 @@ available.}
 
 \begin{figure}
 
-{\centering \includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/box_de.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/box_de.png}
 
 }
 
@@ -1953,7 +1953,7 @@ Note that the vertical axis is on a log\textsubscript{10} scale.}
 
 \begin{figure}
 
-{\centering \includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/box_pa.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/box_pa.png}
 
 }
 
@@ -1972,7 +1972,7 @@ Figure~\ref{fig-box_de}.}
 
 \begin{figure}
 
-{\centering \includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/mass_prop_mv.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/mass_prop_mv.png}
 
 }
 
@@ -1998,7 +1998,7 @@ relationships (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}).}
 
 \begin{figure}
 
-{\centering \includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/pa_point_npc.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/pa_point_npc.png}
 
 }
 

@@ -42,39 +42,31 @@ Requirements:
 
 ### Running code in Apptainer (Linux)
 
-First, change `RENV_PATHS_CACHE` in `radian.def` and `tinytex.def` to your path (i.e.,
-`
-RENV_PATHS_CACHE=<your_path>"
-`
-).
-
-To build Apptainer containers:
+To build the Apptainer container:
 
 ```bash
 sudo apptainer build radian.sif radian.def
 ```
 
-To run analysis:
+or you can download the container from XXX.
+
+To run analysis or to render the manuscript:
 
 ```bash
 # To install R packages for the first run
-# apptainer exec radian.sif Rscript -e "renv::restore()"
-apptainer exec --env RENV_PATHS_CACHE=/home/mattocci/renv \
-	--env RENV_PATHS_PREFIX_AUTO=TRUE \
-	radian.sif Rscript run.R
-```
+# apptainer exec --env RENV_PATHS_CACHE=/home/${USER}/renv \
+		# --env RENV_PATHS_PREFIX_AUTO=TRUE \
+ 		# radian.sif Rscript run.R -e "renv::restore()"
 
-To generate the manuscript:
-
-```bash
-# To install R packages for the first run
-# Rscript -e "renv::restore()"
-apptainer exec tinytex.sif make
-apptainer exec tinytex.sif make diff
+> ./run.sh
+1) tar_make() on local
+2) tar_make() on Apptainer
+3) Enter in the Apptainer container
+4) make (render manuscript) on the Apptainer container
+Enter number：
 ```
 
 Requirements:
 
 - Apptainer (or singularity)
-- cmdstan 2.29.2 (radian.sif does not contain cmdstan)
-
+- `renv` directory on your home
