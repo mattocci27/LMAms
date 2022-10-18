@@ -624,7 +624,7 @@ main_list <- list(
        p,
        dpi = 300,
        height = 6,
-       width = 11,
+       width = 11.4,
        units = "cm"
       )
     },
@@ -638,7 +638,7 @@ main_list <- list(
        p,
        dpi = 300,
        height = 6,
-       width = 10,
+       width = 11.4,
        units = "cm"
       )
     },

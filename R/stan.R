@@ -473,35 +473,6 @@ create_para_tbl <- function(gl_draws, pa_draws) {
 }
 
 
-#' @title later
-create_sim_dat <- function() {
-  rho12 <- -0.58
-  rho23 <- -0.62
-  rho13 <- 0.55
-  sigma1 <- 0.4
-  sigma2 <- 0.3
-  sigma3 <- 0.3
-  x1 <- rnorm(n)
-  x2 <- rnorm(n, x1, 3) %>%
-    scale %>% as.numeric
-
-  cor.test(x1, x2)
-
-  mu1 <- a1 + a2 * x1
-  mu2 <- b1 + b2 * x2
-  mu3 <- c1 + c2 * x1 + c3 * x2
-
-  Sigma <- matrix(c(sigma1^2, rho12*sigma1*sigma2, rho13*sigma1*sigma3,
-      rho12*sigma1*sigma2, sigma2^2, rho23*sigma2*sigma3,
-      rho13*sigma1*sigma3, rho23*sigma2*sigma3, sigma3^2), ncol =3)
-
-  y_new <- NULL
-  for (i in 1:n){
-    y <- rmvnorm(1, c(mu1[i] + mu3[i], mu2[i], mu3[i]), Sigma)
-    y_new <- rbind(y_new, y)
-  }
-}
-
 #' @para loo_tbl csv file of loo
 write_model_selection <- function(loo_tbl, output) {
 #  output <- "data/model_selection.csv"
@@ -527,42 +498,6 @@ write_model_selection <- function(loo_tbl, output) {
   my_write_csv(output)
 }
 
-#' @para gl_rand_sig data including 95% CI
-#' @para gl_rand_check data with rhat and divergence
-coef_rand <- function(gl_rand_sig, gl_rand_check, site = site) {
-  data <- gl_rand_sig  |>
-   # filter(!str_detect(para, "0")) |>
-    full_join(gl_rand_check, by = "sim_id") |>
-    mutate(cov = ifelse(rhat == 0, "Converged", "Not converged")) |>
-    mutate(cov = factor(cov, levels = c("Not converged", "Converged"))) |>
-    mutate(sim_id_chr = paste0("sim-", sim_id)) |>
-    mutate(para = case_when(
-      para == "a0" ~ "alpha[0]",
-      para == "am" ~ "alpha[m]",
-      para == "as" ~ "alpha[s]",
-      para == "b0" ~ "beta[0]",
-      para == "bs" ~ "beta[s]",
-      para == "g0" ~ "gamma[0]",
-      para == "gm" ~ "gamma[m]",
-      para == "gs" ~ "gamma[s]",
-      TRUE ~ para
-    ))
-  ggplot(data) +
-    geom_pointrange(aes(x = sim_id_chr,
-     y = mean, ymin = lwr, ymax = upr, group = sim_id, col = cov)) +
-    geom_hline(yintercept = 0) +
-    facet_wrap(~para, scale = "free", labeller = label_parsed) +
-    xlab("Simulation ID") +
-    ylab("Standardized coefficients") +
-    ggtitle(site) +
-    coord_flip() +
-    theme_bw() +
-    theme(
-       legend.position = c(0.8, 0.2),
-       legend.title = element_blank(),
-       axis.text.x = element_text(angle = 45, vjust = 0.8)
-    )
-}
 
 #' @para gl_rand_sig data including 95% CI
 #' @para gl_rand_check data with rhat and divergence
