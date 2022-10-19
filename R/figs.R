@@ -864,12 +864,21 @@ box_de <- function(gl_box_list, pa_box_trim_de_list, settings_yml) {
 
   # tar_load(gl_box_list)
   # gl_box_list
+  max_ <- gl_box_list$data |>
+    pull(val) |>
+    max()
+  min_ <- gl_box_list$data |>
+    pull(val) |>
+    min()
+  min_ <- min(min_, 2)
+
   p1 <- box_fun(gl_box_list, cols, fills) +
+       coord_cartesian(ylim = c(min_, max_)) +
        ylab(expression(atop("GLOPNET",
                    LMA~(g~m^{-2}))))
 
   p2 <- box_fun(pa_box_trim_de_list, cols, fills) +
-      #  scale_colour_manual(values = cols2, guide = "none") +
+       coord_cartesian(ylim = c(min_, max_)) +
        ylab(expression(atop("Panama",
                    LMA~(g~m^{-2})))) +
     theme(
@@ -878,7 +887,9 @@ box_de <- function(gl_box_list, pa_box_trim_de_list, settings_yml) {
           )
 
   p1 / p2  +
-    plot_annotation(tag_levels = "a")
+    plot_annotation(tag_levels = "a",
+      tag_prefix = "(",
+      tag_suffix = ")")
 }
 
 #' @title Boxplot for Panama intra sun/shade
