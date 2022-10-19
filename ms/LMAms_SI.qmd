@@ -3,7 +3,7 @@ title: "Katabuchi et al., Decomposing leaf mass into metabolic and structural co
 fontsize: 12pt
 geometry: margin=1in
 link-citations: yes
-csl: apa-6th-edition.csl
+csl: apa.csl
 bibliography: [LMA.bib]
 # crossref:
 #   eq-prefix: Eq.

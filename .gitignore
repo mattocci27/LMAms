@@ -105,3 +105,5 @@ data-raw/*.csv
 
 rsync.sh
 *.Rd
+
+!ms/my_template.docx
