@@ -901,8 +901,7 @@ box_pa <- function(pa_box_trim_list, settings_yml) {
        ylab(expression(atop("Panama",
                    LMA~(g~m^{-2})))) +
     theme(
-      strip.background = element_blank(),
-      strip.text.x = element_text(colour = NA) # invinsible strip
+      strip.background = element_blank()
           )
   p
 }
