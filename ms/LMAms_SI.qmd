@@ -3,7 +3,7 @@ title: "Katabuchi et al., Decomposing leaf mass into metabolic and structural co
 fontsize: 12pt
 geometry: margin=1in
 link-citations: yes
-csl: apa.csl
+csl: apa-6th-edition.csl
 bibliography: [LMA.bib]
 # crossref:
 #   eq-prefix: Eq.
@@ -23,10 +23,11 @@ format:
     number-sections: false
     highlight-style: github
     html-math-method: katex
+    reference-doc: my_template.docx
   pdf:
     toc: true
     keep-tex: true
-    latex-clean: false
+    latex-clean: true
     pdf-engine: pdflatex
     include-in-header:
       text: |
@@ -261,9 +262,9 @@ We repeated these steps 1000 times.
 Boxplots comparing leaf mass per area (LMA), photosynthetic leaf mass per area (LMAm; posterior medians), and structural leaf mass per area (LMAs; posterior medians) across
 (a) deciduous (Dev) and evergreen (Eve) leaves and
 (b) sites (wet and dry) and canopy strata (sun and shade) in Panama.
-The results shown here include all leaves in the Panama dataset, whereas Figures `r fig_num("box_de")`-`r fig_num("box_pa")` in the main text only include Panama species for which both sun and shade leaves were available.
+The results shown here include all leaves in the Panama dataset, whereas Figs. `r fig_num("box_de")`-`r fig_num("box_pa")` in the main text only include Panama species for which both sun and shade leaves were available.
 The best model in the table 1 were used.
-Boxplot symbols as in Figures `r fig_num("box_de")`-`r fig_num("box_pa")`.
+Boxplot symbols as in Figs. `r fig_num("box_de")`-`r fig_num("box_pa")`.
 Groups sharing the same letters are not significantly different (P > 0.05; t-tests).
 
 \newpage
@@ -279,7 +280,7 @@ Boxplots comparing posterior medians of the latent variable *f* (the fraction of
 (iii) Leaves for Panama species for which both sun and shade leaves were available.
 Note that LMAm = *f* $\times$ LMA, and LMAs = (1 – *f*) $\times$ LMA.
 The best model in the table 1 were used.
-Boxplot symbols as in Figure `r fig_num("box_de")`.
+Boxplot symbols as in `r fig("box_de")`.
 Groups sharing the same letters are not significantly different (P > 0.05; t-tests).
 
 \newpage
@@ -293,8 +294,8 @@ Boxplots comparing posterior medians of the latent variable *f* (the fraction of
 The left panel shows leaves for Panama species for which both sun and shade leaves were available; and
 the right panel shows all leaves for Panama.
 Note that LMAm = *f* $\times$ LMA, and LMAs = (1 – *f*) $\times$ LMA.
-The best model in the table 1 were used.
-Boxplot symbols as in Figure `r fig_num("box_pa")`.
+The best model in the Table 1 were used.
+Boxplot symbols as in `r fig("box_pa")`.
 Groups sharing the same letters are not significantly different (P > 0.05; t-tests).
 
 \newpage
@@ -366,7 +367,7 @@ Partial correlation coefficients ($\rho$) are shown.
 **`r s_fig("LMAm_LMAs")`**
 Pearson correlation coefficients for posterior medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama datasets.
 The non-significant or weak *r* values indicate that a single axis could not accurately represent the two-dimensional space.
-Symbols as in Main Text Figures `r fig_num("gl_point")`-`r fig_num("pa_point")`.
+Symbols as in Main Text Figs. `r fig_num("gl_point")`-`r fig_num("pa_point")`.
 
 \newpage
 
