@@ -1,63 +1,18 @@
-%%
-% Copyright (c) 2017 - 2020, Pascal Wagler;
-% Copyright (c) 2014 - 2020, John MacFarlane
-%
-% All rights reserved.
-%
-% Redistribution and use in source and binary forms, with or without
-% modification, are permitted provided that the following conditions
-% are met:
-%
-% - Redistributions of source code must retain the above copyright
-% notice, this list of conditions and the following disclaimer.
-%
-% - Redistributions in binary form must reproduce the above copyright
-% notice, this list of conditions and the following disclaimer in the
-% documentation and/or other materials provided with the distribution.
-%
-% - Neither the name of John MacFarlane nor the names of other
-% contributors may be used to endorse or promote products derived
-% from this software without specific prior written permission.
-%
-% THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-% "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-% LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-% FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-% COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-% INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-% BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-% LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-% CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-% LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
-% ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-% POSSIBILITY OF SUCH DAMAGE.
-%%
-
-%%
-% This is the Eisvogel pandoc LaTeX template.
-%
-% For usage information and examples visit the official GitHub page:
-% https://github.com/Wandmalfarbe/pandoc-latex-template
-%%
-
-\DeclareUnicodeCharacter{2212}{-}
-
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-\PassOptionsToPackage{dvipsnames,svgnames*,x11names*,table}{xcolor}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
 \documentclass[
   12pt,
-  a4paper,
-,tablecaptionabove
-]{scrartcl}
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{setspace}
-\setstretch{1.2}
-\usepackage{amssymb,amsmath}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -83,45 +38,8 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\definecolor{default-linkcolor}{HTML}{A50000}
-\definecolor{default-filecolor}{HTML}{A50000}
-\definecolor{default-citecolor}{HTML}{4077C0}
-\definecolor{default-urlcolor}{HTML}{4077C0}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  colorlinks=true,
-  linkcolor=blue,
-  filecolor=default-filecolor,
-  citecolor=default-citecolor,
-  urlcolor=default-urlcolor,
-  breaklinks=true,
-  pdfcreator={LaTeX via pandoc with the Eisvogel template}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
-\usepackage{longtable,booktabs}
-% Correct order of tables after \paragraph or \subparagraph
-\usepackage{etoolbox}
-\makeatletter
-\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
-\makeatother
-% Allow footnotes in longtable head/foot
-\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
-\makesavenoteenv{longtable}
-% add backlinks to footnote references, cf. https://tex.stackexchange.com/questions/302266/make-footnote-clickable-both-ways
-\usepackage{footnotebackref}
-\usepackage{graphicx}
-\makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 % Make \paragraph and \subparagraph free-standing
 \ifx\paragraph\undefined\else
@@ -133,10 +51,54 @@
   \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
 
-% Make use of float-package and set default placement for figures to H.
-% The option H means 'PUT IT HERE' (as  opposed to the standard h option which means 'You may put it here if you like').
-\usepackage{float}
-\floatplacement{figure}{H}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -152,10 +114,12 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\usepackage{xr}
-\externaldocument{LMAms_SI}
+\usepackage[default]{sourcesanspro}
+\usepackage{sourcecodepro}
 \usepackage{lineno}
 \linenumbers
+\linespread{1.2}
+\KOMAoption{captions}{tableheading}
 \makeatletter
 \makeatother
 \makeatletter
@@ -207,207 +171,25 @@
 \makeatother
 \makeatletter
 \makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
 
-\newlength{\cslhangindent}
-\setlength{\cslhangindent}{1.5em}
-\newlength{\csllabelwidth}
-\setlength{\csllabelwidth}{3em}
-\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
- {% don't indent paragraphs
-  \setlength{\parindent}{0pt}
-  % turn on hanging indent if param 1 is 1
-  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
-  % set entry spacing
-  \ifnum #2 > 0
-  \setlength{\parskip}{#2\baselineskip}
-  \fi
- }%
- {}
-\usepackage{calc}
-\newcommand{\CSLBlock}[1]{#1\hfill\break}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
-\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
-
+\author{}
 \date{}
 
-
-%%
-%% added
-%%
-
-%
-% language specification
-%
-% If no language is specified, use English as the default main document language.
-%
-
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-  \usepackage[shorthands=off,main=english]{babel}
-\else
-    % Workaround for bug in Polyglossia that breaks `\familydefault` when `\setmainlanguage` is used.
-  % See https://github.com/Wandmalfarbe/pandoc-latex-template/issues/8
-  % See https://github.com/reutenauer/polyglossia/issues/186
-  % See https://github.com/reutenauer/polyglossia/issues/127
-  \renewcommand*\familydefault{\sfdefault}
-    % load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
-  \usepackage{polyglossia}
-  \setmainlanguage[]{english}
-\fi
-
-
-
-%
-% for the background color of the title page
-%
-
-%
-% break urls
-%
-\PassOptionsToPackage{hyphens}{url}
-
-%
-% When using babel or polyglossia with biblatex, loading csquotes is recommended
-% to ensure that quoted texts are typeset according to the rules of your main language.
-%
-\usepackage{csquotes}
-
-%
-% captions
-%
-%\definecolor{caption-color}{HTML}{777777}
-\definecolor{caption-color}{HTML}{37474F}
-%\usepackage[font={stretch=1.2}, textfont={color=caption-color}, position=top, skip=4mm, labelfont=bf, singlelinecheck=false, justification=raggedright]{caption}
-\usepackage[font={stretch=1}, textfont={color=caption-color}, position=top, skip=2mm, labelfont=bf, singlelinecheck=false, justification=raggedright]{caption}
-\setcapindent{0em}
-
-%
-% blockquote
-%
-\definecolor{blockquote-border}{RGB}{221,221,221}
-\definecolor{blockquote-text}{RGB}{119,119,119}
-\usepackage{mdframed}
-\newmdenv[rightline=false,bottomline=false,topline=false,linewidth=3pt,linecolor=blockquote-border,skipabove=\parskip]{customblockquote}
-\renewenvironment{quote}{\begin{customblockquote}\list{}{\rightmargin=0em\leftmargin=0em}%
-\item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\endlist\end{customblockquote}}
-
-%
-% Source Sans Pro as the de­fault font fam­ily
-% Source Code Pro for monospace text
-%
-% 'default' option sets the default
-% font family to Source Sans Pro, not \sfdefault.
-%
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-    \usepackage[default]{sourcesanspro}
-  \usepackage{sourcecodepro}
-  %\usepackage{}
-  \else % if not pdftex
-    \usepackage[default]{sourcesanspro}
-  \usepackage{sourcecodepro}
-  %\usepackage{}
-
-  % XeLaTeX specific adjustments for straight quotes: https://tex.stackexchange.com/a/354887
-  % This issue is already fixed (see https://github.com/silkeh/latex-sourcecodepro/pull/5) but the
-  % fix is still unreleased.
-  % TODO: Remove this workaround when the new version of sourcecodepro is released on CTAN.
-  \ifxetex
-    \makeatletter
-    \defaultfontfeatures[\ttfamily]
-      { Numbers   = \sourcecodepro@figurestyle,
-        Scale     = \SourceCodePro@scale,
-        Extension = .otf }
-    \setmonofont
-      [ UprightFont    = *-\sourcecodepro@regstyle,
-        ItalicFont     = *-\sourcecodepro@regstyle It,
-        BoldFont       = *-\sourcecodepro@boldstyle,
-        BoldItalicFont = *-\sourcecodepro@boldstyle It ]
-      {SourceCodePro}
-    \makeatother
-  \fi
-  \fi
-
-%
-% heading color
-%
-\definecolor{heading-color}{RGB}{40,40,40}
-\addtokomafont{section}{\color{heading-color}}
-% When using the classes report, scrreprt, book,
-% scrbook or memoir, uncomment the following line.
-%\addtokomafont{chapter}{\color{heading-color}}
-
-%
-% variables for title and author
-%
-\usepackage{titling}
-\title{}
-\author{}
-
-%
-% tables
-%
-
-\definecolor{table-row-color}{HTML}{F5F5F5}
-\definecolor{table-rule-color}{HTML}{999999}
-
-%\arrayrulecolor{black!40}
-\arrayrulecolor{table-rule-color}     % color of \toprule, \midrule, \bottomrule
-\setlength\heavyrulewidth{0.3ex}      % thickness of \toprule, \bottomrule
-\renewcommand{\arraystretch}{1.3}     % spacing (padding)
-
-
-%
-% remove paragraph indention
-%
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-
-%
-%
-% Listings
-%
-%
-
-
-%
-% header and footer
-%
-\usepackage{fancyhdr}
-
-\fancypagestyle{eisvogel-header-footer}{
-  \fancyhead{}
-  \fancyfoot{}
-  \lhead[]{}
-  \chead[]{}
-  \rhead[]{}
-  %\lfoot[\thepage]{}
-  \cfoot[]{}
-  \cfoot[]{\thepage}
-  \renewcommand{\headrulewidth}{0.0pt}
- % \renewcommand{\footrulewidth}{0.0pt}
- % \renewcommand{\headrulewidth}{0.4pt}
- % \renewcommand{\footrulewidth}{0.4pt}
-}
-\pagestyle{eisvogel-header-footer}
-
-%%
-%% end added
-%%
-
 \begin{document}
-
-%%
-%% begin titlepage
-%%
-
-%%
-%% end titlepage
-%%
-
-
-
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, enhanced, frame hidden, sharp corners, interior hidden, breakable, borderline west={3pt}{0pt}{shadecolor}]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, interior hidden, borderline west={3pt}{0pt}{shadecolor}, sharp corners, breakable, enhanced, frame hidden]}{\end{tcolorbox}}\fi
 
 \textbf{Running title}: Metabolic and structural leaf mass
 
@@ -436,7 +218,7 @@ City Pl., Washington, DC 20521
 Tulane University, New Orleans, LA 70118 USA
 
 \textsuperscript{6} \textbf{Corresponding Author}: E-mail:
-mattocci27@gmail.com
+katabuchi@xtbg.ac.cn; mattocci27@gmail.com
 
 \begin{itemize}
 \item
@@ -697,7 +479,7 @@ values LMAm and LMAs according to multivariate power-laws:
 \]
 
 \[
-\mathrm{E[LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s} \mathrm{exp}(\theta \mathrm{Light}_i) \qquad(4b)
+\mathrm{E[LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s} \mathrm{exp}(\theta \mathrm{Light}_i) \qquad(4\mathrm{b})
 \]
 
 where E{[}\(\cdot\){]} indicates expected value; the \(\alpha\),
@@ -952,12 +734,12 @@ model outputs; and LMAs values were randomly sampled from a lognormal
 distribution with the log-scale mean given by our model outputs and the
 log-scale standard deviation varying between log(1.01) and log(10) in
 different simulated datasets. In contrast to GLOPNET and Panama sun
-leaves, our analysis revealed a negative correlation of \emph{r} = −0.4
-between LMAm and LMAs for Panama shade leaves (see Results). Therefore,
-we used a multivariate normal distribution with \emph{r} = −0.4 to
-generate log(LMAm) and log(LMAs) for the Panama shade simulations.
-Otherwise, the simulation protocol was as described above for GLOPNET
-and Panama sun leaves.
+leaves, our analysis revealed a negative correlation of \emph{r} = -0.47
+between LMAm and LMAs for Panama shade leaves (see Appendix S3).
+Therefore, we used a multivariate normal distribution with \emph{r} =
+-0.47 to generate log(LMAm) and log(LMAs) for the Panama shade
+simulations. Otherwise, the simulation protocol was as described above
+for GLOPNET and Panama sun leaves.
 
 For each simulated set of LMAm and LMAs values, we generated
 \emph{A}\textsubscript{area} values using the estimated values of
@@ -1133,13 +915,14 @@ wall thickness (\protect\hyperlink{ref-Evans2009}{Evans et al., 2009};
 \protect\hyperlink{ref-Onoda2017}{Onoda et al., 2017};
 \protect\hyperlink{ref-Terashima2011}{Terashima et al., 2011}). This
 trend may be less apparent in our Panama analysis due to the relatively
-small LMA range (X-Y g m−2 in Panama, compared to X-Y g m−2 in GLOPNET)
-or may be obscured by pooling sun and shade leaves in a single analysis.
-In any case, an increase in \emph{A}\textsubscript{area} with LMAm but
-not LMAs, as observed for both GLOPNET and Panama, is consistent with
-the view that LMA is a composite trait comprised of metabolically active
-and inactive components (\protect\hyperlink{ref-Osnas2018}{Osnas et al.,
-2018}; \protect\hyperlink{ref-Poorter2009}{Poorter et al., 2009}).
+small LMA range (15.6 - 193 g m\textsuperscript{2} in Panama, compared
+to 21.4 - 776 g m\textsuperscript{2} in GLOPNET) or may be obscured by
+pooling sun and shade leaves in a single analysis. In any case, an
+increase in \emph{A}\textsubscript{area} with LMAm but not LMAs, as
+observed for both GLOPNET and Panama, is consistent with the view that
+LMA is a composite trait comprised of metabolically active and inactive
+components (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018};
+\protect\hyperlink{ref-Poorter2009}{Poorter et al., 2009}).
 
 \emph{R}\textsubscript{dark} per-unit leaf area
 (\emph{R}\textsubscript{area}) increased with LMAm and was unrelated to
@@ -1150,12 +933,11 @@ mass components, such as cellulose, lignin, and other fibres
 \protect\hyperlink{ref-Kitajima2012}{2012};
 \protect\hyperlink{ref-Onoda2011}{Onoda et al., 2011}). Median values of
 LMAs, as a percent of total LMA, were \textasciitilde60\% for evergreen
-species and \textasciitilde40\% for deciduous species
-(\texttt{s\_fig("box\_frac\_de")}), and \textasciitilde X\% for shade
-leaves and \textasciitilde X\% for sun leaves
-(\texttt{s\_fig("box\_frac\_pa")}). These estimates align with
-measurements of cell wall (fibre) content from a global dataset (median
-47\% of total leaf mass, with higher values for shade than sun leaves
+species and \textasciitilde40\% for deciduous species (Figure S2), and
+15-40\% for shade leaves and 50-70\% for sun leaves (Figure S3). These
+estimates align with measurements of cell wall (fibre) content from a
+global dataset (13.7--76.8\%, median 47\% of total leaf mass, with
+higher values for shade than sun leaves
 (\protect\hyperlink{ref-Onoda2011}{Onoda et al., 2011})) and a Panama
 study site (Barro Colorado Island, BCI: \textasciitilde50\% mean across
 species, with higher values for shade leaves
@@ -1784,8 +1566,8 @@ Model & Constraints & N & LOOIC\\
 
 \newpage
 
-Table 2. Posterior means {[}95\% credible interval{]} of parameters for
-the best models in GLOPNET and Panama data. Bold values are
+Table 2. Posterior medians {[}95\% credible interval{]} of parameters
+for the best models in GLOPNET and Panama data. Bold values are
 significantly different from zero based on the 95\% credible interval.
 
 \begin{longtable}[]{@{}
@@ -1858,9 +1640,9 @@ relationships in the global GLOPNET dataset. Estimates are from the best
 GLOPNET model (Table 1). Leaf life span (LL), net photosynthetic rate
 per unit leaf area (\emph{A}\textsubscript{area}), and dark respiration
 rate per unit leaf area (\emph{R}\textsubscript{area}) are plotted
-against observed LMA, posterior means of LMAm and LMAs. Pearson
+against observed LMA, posterior medians of LMAm and LMAs. Pearson
 correlation coefficients (\emph{r}) for LMA (left column) and posterior
-means of Pearson correlation coefficients (\(\bar{r}\)) or partial
+medians of Pearson correlation coefficients (\(\bar{r}\)) or partial
 correlation coefficients (\(\bar{\rho}\)) for LMAm (middle column) and
 LMAs (right column) are shown. Note that LL was modeled by LMAs alone
 due to improved model performance with this parameter constraint (Table
@@ -1903,8 +1685,8 @@ Figure~\ref{fig-ll_point}.}
 LMAs in the Panama dataset, afeter accounting for the effects of light
 (suv vs.~shade leaves; see Equation 4b). The dashed line indicates the
 1:1 relationship expected for residuals on the log-scale. The posterior
-means of the partial correlation coefficient (\(\bar{\rho}\)) is shown.
-The results shown here include all leaves in the Panama dataset.}
+medians of the partial correlation coefficient (\(\bar{\rho}\)) is
+shown. The results shown here include all leaves in the Panama dataset.}
 
 \end{figure}
 
@@ -1935,7 +1717,7 @@ available.}
 }
 
 \caption{\label{fig-box_de}Boxplots comparing leaf mass per area (LMA)
-and posterior means of photosynthetic and structural LMA components
+and posterior medians of photosynthetic and structural LMA components
 (LMAm and LMAs, respectively) across deciduous (Dev) and evergreen (Eve)
 leaves in the GLOPNET dataset (a) and in the Panama dataset (b). The
 center line in each box indicates the median, upper and lower box edges
@@ -1944,8 +1726,8 @@ interquartile range, and points are outliers. Groups sharing the same
 letters are not significantly different (P \textgreater{} 0.05;
 t-tests). The Panama results only include species for which both sun and
 shade leaves were available. Qualitatively similar results were obtained
-when all Panama species were included (\texttt{s\_fig("box\_inter")}).
-Note that the vertical axis is on a log\textsubscript{10} scale.}
+when all Panama species were included (Figure S1). Note that the
+vertical axis is on a log\textsubscript{10} scale.}
 
 \end{figure}
 
@@ -1958,13 +1740,12 @@ Note that the vertical axis is on a log\textsubscript{10} scale.}
 }
 
 \caption{\label{fig-box_pa}Boxplots comparing leaf mass per area (LMA)
-and posterior means of metabolic and structural LMA components (LMAm and
-LMAs, respectively) across sites (wet and dry) and canopy strata (sun
-and shade) in the Panama dataset. These results only include species for
-which both sun and shade leaves were available. Qualitatively similar
-results were obtained when all Panama species were included
-(\texttt{s\_fig("box\_inter")}). Details as for
-Figure~\ref{fig-box_de}.}
+and posterior medians of metabolic and structural LMA components (LMAm
+and LMAs, respectively) across sites (wet and dry) and canopy strata
+(sun and shade) in the Panama dataset. These results only include
+species for which both sun and shade leaves were available.
+Qualitatively similar results were obtained when all Panama species were
+included (Figure S1). Details as for Figure~\ref{fig-box_de}.}
 
 \end{figure}
 
@@ -1979,11 +1760,11 @@ Figure~\ref{fig-box_de}.}
 \caption{\label{fig-mass_prop}Relationships between mass dependency
 (\emph{b} in Equation 5) and LMAs variance (relative to total LMA
 variance) for the global GLPNET datase,t, sun leaves in Panama, and
-shade leaves in Panama. Solid lines indicate simulated means and shaded
-regions indicate 95\% CIs. Each point indicates the estimated values
-from the empirical data and represents interspecific variation (e.g.,
-across species within a canopy position in the Panama dataset). The
-y-axis values indicates if photosynthetic capacity
+shade leaves in Panama. Solid lines indicate simulated medians and
+shaded regions indicate 95\% CIs. Each point indicates the estimated
+values from the empirical data and represents interspecific variation
+(e.g., across species within a canopy position in the Panama dataset).
+The y-axis values indicates if photosynthetic capacity
 (\emph{A}\textsubscript{max}) is is primarily mass-dependent (\emph{b}
 \textgreater{} 0.5) or primarily area-dependent (0.5 \textgreater{}
 \emph{b} \textgreater{} 0), with \emph{b} near 0 indicating purely
@@ -2005,8 +1786,8 @@ relationships (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}).}
 \caption{\label{fig-pa_npc}Measured traits in the Panama dataset related
 to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf
 area; \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area}) are
-better correlated with estimates (posterior means) of the metabolic LMA
-component (LMAm) than the strctural component (LMAs), whereas the
+better correlated with estimates (posterior medians) of the metabolic
+LMA component (LMAm) than the strctural component (LMAs), whereas the
 opposite patten occurs for a measured structural trait (cellulose
 per-unit leaf area; CL\textsubscript{area}).
 \emph{N}\textsubscript{area}, \emph{P}\textsubscript{area}, and
@@ -2021,5 +1802,7 @@ leaves for which \emph{N}\textsubscript{area},
 \emph{P}\textsubscript{area} and CL\textsubscript{area} are available.}
 
 \end{figure}
+
+
 
 \end{document}

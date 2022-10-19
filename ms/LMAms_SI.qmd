@@ -3,7 +3,7 @@ title: "Katabuchi et al., Decomposing leaf mass into metabolic and structural co
 fontsize: 12pt
 geometry: margin=1in
 link-citations: yes
-csl: templates/ecology.csl
+csl: apa.csl
 bibliography: [LMA.bib]
 # crossref:
 #   eq-prefix: Eq.
@@ -151,12 +151,11 @@ Most of the model results obtained from the randomized datasets did not converge
 
 Although many parameters showed large Rhat values, which suggests that the posterior distributions were not converged well, we checked the regression coefficients for the GLOPNET dataset ($\alpha_{0, m, s}$, $\beta_{0, s}$, and $\gamma_{0, m, s}$ in Eqs. 2-4 in the main text).
 There are 10 independent simulations (randomizations) in total.
-Points and lines indicate posterior means and 95% credible intervals (CIs), respectively.
+Points and lines indicate posterior medians and 95% credible intervals (CIs), respectively.
 Although intercepts were significant, the scaling parameters in the randomized datasets did not show any patterns.
 Thus, the tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
 
-![
-](`r here("figs/coef_sim_gl.png")`)
+![](`r here("figs/coef_sim_gl.png")`)
 
 \newpage
 
@@ -166,8 +165,7 @@ We also checked the regression coefficients for the Panama dataset ($\alpha_{0, 
 Details as for Figure AS1.
 The scaling parameters in the randomized datasets did not show any patterns
 
-![
-](`r here("figs/coef_sim_pa.png")`)
+![](`r here("figs/coef_sim_pa.png")`)
 
 \newpage
 
@@ -241,7 +239,7 @@ $\mu_s$ = `r para$PA$LMAs_mu_shade`,
 $\sigma_m$ = `r para$PA$LMAm_sig_shade`,
 $\alpha_m$ = `r para$PA$am`,
 $\alpha_s$ = 0,
-$\rho$ = -0.4.
+$\rho$ = `r para$PA$rho_shade`.
 
 We finally calculated mass dependency (*b*) using the following ordinary least square regression:
 
@@ -260,7 +258,7 @@ We repeated these steps 1000 times.
 ![](`r here("figs/box_inter.png")`)
 
 **`r s_fig("box_inter")`**:
-Boxplots comparing leaf mass per area (LMA), photosynthetic leaf mass per area (LMAm; posterior means), and structural leaf mass per area (LMAs; posterior means) across
+Boxplots comparing leaf mass per area (LMA), photosynthetic leaf mass per area (LMAm; posterior medians), and structural leaf mass per area (LMAs; posterior medians) across
 (a) deciduous (Dev) and evergreen (Eve) leaves and
 (b) sites (wet and dry) and canopy strata (sun and shade) in Panama.
 The results shown here include all leaves in the Panama dataset, whereas Figures `r fig_num("box_de")`-`r fig_num("box_pa")` in the main text only include Panama species for which both sun and shade leaves were available.
@@ -309,9 +307,9 @@ Groups sharing the same letters are not significantly different (P > 0.05; t-tes
 The relationships between mass dependency (*b* in Equation 5 in the main text) and relative variance in LMAs to LMA for the different ranges of the scaling exponent $\alpha_m$ and $\alpha_s$.
 (a) the scaling exponent $\alpha_m$ vary from 0.1 to 1.0 while the scaling exponent $\alpha_s$ is constant ($\alpha_s$ = `r para$GL$as`,).
 (b) the scaling exponent $\alpha_s$ vary from -0.5 to 0.5 while the scaling exponent $\alpha_m$ is constant ($\alpha_m$ = `r para$GL$am`,).
-Solid lines indicate simulated means and shaded regions indicate 95% CI.
+Solid lines indicate simulated medians and shaded regions indicate 95% CI.
 The photosynthetic rate (*A*~max~) is primarily mass-dependent (*b* > 0.5), primarily area-dependent (0.5 > *b* > 0) and purely area-dependent (*b* = 0) [@Osnas2018].
-Note that when *b* > 1, *A*~max~ per-unit leaf area (*A*~area~) dramatically increase with LMA, which is not realistic.
+If *b* > 1, then *A*~max~ increases exponentially with LMA, which is not consistent with observed relationships [@Osnas2018].
 Parameter settings:
 $\alpha_0$ = `r para$GL$a0`,
 $\mu_m$ = `r para$GL$LMAm_mu_gl`,
@@ -334,7 +332,7 @@ $\alpha_s$ = 0,
 $\mu_m$ = `r para$PA$LMAm_mu_shade`,
 $\mu_s$ = `r para$PA$LMAs_mu_shade`,
 $\sigma_m$ = `r para$PA$LMAm_sig_shade`, and
-$\rho$ = -0.4,
+$\rho$ = `r para$PA$rho_shade`,
 
 \newpage
 
@@ -343,7 +341,7 @@ $\rho$ = -0.4,
 ![](`r here("figs/gl_point_np2.png")`)
 
 **`r s_fig("gl_point_np2")`**:
-Measured traits related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are positively correlated with LMA and with estimates (posterior means) of the metabolic and structural LMA components (LMAm and LMAs, respectively) in the GLOPNET dataset.
+Measured traits related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are positively correlated with LMA and with estimates (posterior medians) of the metabolic and structural LMA components (LMAm and LMAs, respectively) in the GLOPNET dataset.
 LMAm yields more consistent relationships compared to LMA and LMAs; e.g., evergreen and deciduous leaves align along a single relationship in panel b, but not in panels a or c.
 
 \newpage
