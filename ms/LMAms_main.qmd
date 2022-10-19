@@ -2,7 +2,7 @@
 fontsize: 12pt
 geometry: margin=1in
 link-citations: yes
-csl: templates/apa.csl
+csl: apa.csl
 bibliography: [LMA.bib]
 crossref:
   fig-title: Figure
@@ -27,13 +27,13 @@ format:
     keep-tex: true
     latex-clean: false
     pdf-engine: pdflatex
-    template: templates/eisvogel2.tex
     include-in-header:
       text: |
-        \usepackage{xr}
-        \externaldocument{LMAms_SI}
+        \usepackage[default]{sourcesanspro}
+        \usepackage{sourcecodepro}
         \usepackage{lineno}
         \linenumbers
+        \linespread{1.2}
 ---
 
 ```{r global_options, include=FALSE}
@@ -49,6 +49,8 @@ library(here)
 source(here("R/vpart.R"))
 source(here("R/render.R"))
 var_val <- yaml::yaml.load_file(here("yml/var.yml"))
+lma_val <- yaml::yaml.load_file(here("yml/lma.yml"))
+para_val <- yaml::yaml.load_file(here("yml/para.yml"))
 ```
 
 ```{r, include=FALSE}
@@ -87,7 +89,7 @@ Masatoshi Katabuchi^1,2,6^, Kaoru Kitajima^2,3,4^, S. Joseph Wright^4^, Sunshine
 
 ^5^ Department of Ecology and Evolutionary Biology, Tulane University, New Orleans, LA 70118 USA
 
-^6^ **Corresponding Author**: E-mail: mattocci27@gmail.com
+^6^ **Corresponding Author**: E-mail: katabuchi@xtbg.ac.cn; mattocci27@gmail.com
 
 
 - Across the global flora, photosynthetic and metabolic rates depend more strongly on leaf area than leaf mass.
@@ -191,13 +193,25 @@ $$
 = \gamma_0 (f_i \mathrm{LMA}_{i})^{\gamma_m} \bigl\{(1-f_i)\mathrm{LMA}_{i}\bigr\}^{\gamma_s}
 $$ {#eq-Rarea}
 
+<!-- latex -->
+
+<!-- $$
+\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s}  = \beta_0 (f_i \mathrm{LMA}_{i})^{\beta_m} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\beta_s} \tag{4a}
+$$
+
+$$
+\mathrm{E[LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s} \mathrm{exp}(\theta \mathrm{Light}_i) \tag{4b}
+$$ -->
+
+<!-- word -->
 $$
 \mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s}  = \beta_0 (f_i \mathrm{LMA}_{i})^{\beta_m} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\beta_s} \qquad(4a)
 $$
 
 $$
-\mathrm{E[LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s} \mathrm{exp}(\theta \mathrm{Light}_i) \qquad(4b)
+\mathrm{E[LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s} \mathrm{exp}(\theta \mathrm{Light}_i) \qquad(4\mathrm{b})
 $$
+
 
 where E[$\cdot$] indicates expected value;
 the $\alpha$, $\beta$, and $\gamma$ terms are fitted parameters;
@@ -227,9 +241,10 @@ Instead, we introduced light effects in a simple way by modifying `r eq("LL")`a 
 
 We fit the models described above using observations of LMA (g m^-2^), *A*~area~ (mol s^-1^ m^-2^), *R*~area~ (mol s^-1^ m^-2^) and LL (months) from the GLOPNET global leaf traits database [@Wright2004a] and from two tropical forest sites in Panama: Monumental Natural Metropolitano (MNM, “dry site”) and Bosque Protector San Lorenzo (SL, “wet site”).
 The GLOPNET data primarily represents interspecific variation (the dataset reports 2,548 species $\times$ site combinations, with 2,021 unique species and only 350 species occurring at more than one site) and only reports data for sun leaves if data for both sun and shade leaves are available [@Wright2004a].
-In contrast, the Panama dataset represents both inter- and intraspecific variation, including leaves sampled at two canopy positions (“sun”: full sun at the top of the canopy; and “shade”: well shaded, sampled within 2 m of the forest floor) from trees within reach of  canopy cranes.
+In contrast, the Panama dataset represents both inter- and intraspecific variation, including leaves sampled at two canopy positions ("sun": full sun at the top of the canopy; and "shade": well shaded, sampled within 2 m of the forest floor) from trees within reach of  canopy cranes.
 The dry MNM site is a semi-deciduous coastal Pacific forest with a 5-month dry season from December-April and 1740 mm of annual rainfall [@Wright2003].
-The MNM crane is 40 m tall with a 51 m long boom. The wet SL site is an evergreen Caribbean coastal forest with 3100 mm of annual rainfall [@Wright2003].
+The MNM crane is 40 m tall with a 51 m long boom.
+The wet SL site is an evergreen Caribbean coastal forest with 3100 mm of annual rainfall [@Wright2003].
 The SL crane is 52 m tall with a 54 m long boom.
 Additional details of the Panama dataset are described in @Osnas2018.
 
@@ -267,7 +282,6 @@ LOO requires *n* model fits (for a dataset with *n* observations) and was theref
 We used PSIS-LOO to calculate the LOO Information Criterion (LOOIC) for each model.
 A lower LOOIC indicates a better model in terms of predictive accuracy [@Vehtari2017].
 
-
 ## Understanding relationships between photosynthetic capacity and LMA
 
 We applied our LMAm-LMAs model to simulated data to better understand relationships between photosynthetic capacity (*A*~max~) and LMA.
@@ -278,6 +292,10 @@ Consistent with this argument, @Osnas2013 showed that across global species, var
 
 To better understand the factors affecting *A*~max~ vs. LMA relationships, we created simulated datasets in which we varied the following factors: the sensitivity of *A*~area~ to variation in LMAm (parameter $\alpha_m$ in `r eq("Aarea")`; the sensitivity of *A*~area~ to LMAs (parameter $\alpha_s$ in `r eq("Aarea")`) , and the total LMA variance due to variance in LMAs.
 For each simulated dataset, we quantified the *A*~max~ vs. LMA relationship following @Osnas2018:
+
+<!-- $$
+A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i \tag{5}
+$$ -->
 
 $$
 A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i \qquad(5)
@@ -293,8 +311,8 @@ Although Panama sun and shade leaves were analyzed together when fitting the LMA
 
 For GLOPNET and Panama sun leaves, LMAm and LMAs were generated independently of each other, consistent with the low estimated correlations between LMAm and LMAs in these assemblages (see Results).
 Specifically, LMAm values were randomly sampled from a lognormal distribution with the log-scale mean and standard deviation given by our model outputs; and LMAs values were randomly sampled from a lognormal distribution with the log-scale mean given by our model outputs and the log-scale standard deviation varying between log(1.01) and log(10) in different simulated datasets.
-In contrast to GLOPNET and Panama sun leaves, our analysis revealed a negative correlation of *r* = −0.4 between LMAm and LMAs for Panama shade leaves (see Results).
-Therefore, we used a multivariate normal distribution with *r* = −0.4 to generate log(LMAm) and log(LMAs) for the Panama shade simulations.
+In contrast to GLOPNET and Panama sun leaves, our analysis revealed a negative correlation of *r* = `r para_val$PA$rho_shade` between LMAm and LMAs for Panama shade leaves (see Appendix S3).
+Therefore, we used a multivariate normal distribution with *r* = `r para_val$PA$rho_shade` to generate log(LMAm) and log(LMAs) for the Panama shade simulations.
 Otherwise, the simulation protocol was as described above for GLOPNET and Panama sun leaves.
 
 For each simulated set of LMAm and LMAs values, we generated *A*~area~ values using the estimated values of $\alpha_m$ and $\alpha_s$ (`r eq("Aarea")`) from the corresponding best-fitting model (GLOPNET or Panama); i.e., the model with the lowest LOOIC.
@@ -304,6 +322,10 @@ For each simulated dataset, we used `r eq("mass")` to quantify the relationship 
 ## Variance partitioning
 
 To estimate the contributions of LMAm and LMAs to total LMA variance (where LMA = LMAm + LMAs), we used the following identity:
+
+<!-- $$
+\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \tag{6}
+$$ -->
 
 $$
 \mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \qquad(6)
@@ -368,12 +390,12 @@ We then discuss the new insights derived from our analysis and implications for 
 
 *A*~max~ per-unit leaf area (*A*~area~) increased with LMAm and was either unrelated to LMAs (Panama) or decreased with LMAs (GLOPNET; Figures [-@fig-gl_point]-[-@fig-pa_point] and Table 2).
 The decline in GLOPNET *A*~area~ with increasing LMAs may be due to decreasing mesophyll conductance, which decreases with increasing cell wall thickness [@Evans2009; @Terashima2011; @Onoda2017].
-This trend may be less apparent in our Panama analysis due to the relatively small LMA range (X-Y g m−2 in Panama, compared to X-Y g m−2 in GLOPNET) or may be obscured by pooling sun and shade leaves in a single analysis.
+This trend may be less apparent in our Panama analysis due to the relatively small LMA range (`r lma_val$PA$min` - `r lma_val$PA$max` g m^2^ in Panama, compared to `r lma_val$GL$min` - `r lma_val$GL$max` g m^2^ in GLOPNET) or may be obscured by pooling sun and shade leaves in a single analysis.
 In any case, an increase in *A*~area~ with LMAm but not LMAs, as observed for both GLOPNET and Panama, is consistent with the view that LMA is a composite trait comprised of metabolically active and inactive components [@Poorter2009; @Osnas2018].
 
 *R*~dark~ per-unit leaf area (*R*~area~) increased with LMAm and was unrelated to LMAs (Figures [-@fig-gl_point]-[-@fig-pa_point] and Table 2), consistent with the view that LMAs is comprised of non-metabolic leaf mass components, such as cellulose, lignin, and other fibres [@Onoda2011; @Kitajima2012; @Kitajima2016].
-Median values of LMAs, as a percent of total LMA, were ~60% for evergreen species and ~40% for deciduous species (`s_fig("box_frac_de")`), and ~X% for shade leaves and ~X% for sun leaves (`s_fig("box_frac_pa")`).
-These estimates align with measurements of cell wall (fibre) content from a global dataset (median 47% of total leaf mass, with higher values for shade than sun leaves [@Onoda2011]) and a Panama study site (Barro Colorado Island, BCI: ~50% mean across species, with higher values for shade leaves [@Kitajima2016]).
+Median values of LMAs, as a percent of total LMA, were ~60% for evergreen species and ~40% for deciduous species (`r s_fig("box_frac_de")`), and 15-40% for shade leaves and 50-70% for sun leaves (`r s_fig("box_frac_pa")`).
+These estimates align with measurements of cell wall (fibre) content from a global dataset (13.7–76.8%, median 47% of total leaf mass, with higher values for shade than sun leaves [@Onoda2011]) and a Panama study site (Barro Colorado Island, BCI: ~50% mean across species, with higher values for shade leaves [@Kitajima2016]).
 
 LL increased with LMAs but was unrelated to LMAm (Figures [-@fig-gl_point]-[-@fig-pa_point] and Tables 1-2), consistent with well-established relationships between leaf fibre content, toughness, and LL [@Onoda2011; @Onoda2011; @Kitajima2012; @Kitajima2016].
 For a given LMAs, shade leaves had longer LL than sun leaves (see [@fig-pa_point]i and parameter $\theta$ in Table 2).
@@ -489,7 +511,7 @@ if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
 \newpage
 
 Table 2.
-Posterior means [95% credible interval] of parameters for the best models in GLOPNET and Panama data.
+Posterior medians [95% credible interval] of parameters for the best models in GLOPNET and Panama data.
 Bold values are significantly different from zero based on the 95% credible interval.
 
 ```{r paratab, echo=FALSE, eval=TRUE}
@@ -524,8 +546,8 @@ Variation in *A*~max~ values are derived from our analysis of the GLOPNET databa
 ![
 Observed and estimated leaf-trait relationships in the global GLOPNET dataset.
 Estimates are from the best GLOPNET model (Table 1).
-Leaf life span (LL), net photosynthetic rate per unit leaf area (*A*~area~), and dark respiration rate per unit leaf area (*R*~area~) are plotted against observed LMA, posterior means of LMAm and LMAs.
-Pearson correlation coefficients (*r*) for LMA (left column) and posterior means of Pearson correlation coefficients ($\bar{r}$) or partial correlation coefficients ($\bar{\rho}$) for LMAm (middle column) and LMAs (right column) are shown.
+Leaf life span (LL), net photosynthetic rate per unit leaf area (*A*~area~), and dark respiration rate per unit leaf area (*R*~area~) are plotted against observed LMA, posterior medians of LMAm and LMAs.
+Pearson correlation coefficients (*r*) for LMA (left column) and posterior medians of Pearson correlation coefficients ($\bar{r}$) or partial correlation coefficients ($\bar{\rho}$) for LMAm (middle column) and LMAs (right column) are shown.
 Note that LL was modeled by LMAs alone due to improved model performance with this parameter constraint (Table 1).
 Therefore, *r* is reported for LL (single predictor variable), whereas ($\bar{\rho}$)  is reported for *A*~area~ and *R*~area~ (multiple predictor variables).
 ](`r here::here("figs/gl_point.png")`){#fig-gl_point}
@@ -547,7 +569,7 @@ The observed separation of LL between sun and shade leaves is accounted for in t
 ![
 Relationship between leaf lifespan (LL) and LMAs in the Panama dataset, afeter accounting for the effects of light (suv vs. shade leaves; see `r eq("LL")`b).
 The dashed line indicates the 1:1 relationship expected for residuals on the log-scale.
-The posterior means of the partial correlation coefficient ($\bar{\rho}$) is shown.
+The posterior medians of the partial correlation coefficient ($\bar{\rho}$) is shown.
 The results shown here include all leaves in the Panama dataset.
 ](`r here::here("figs/pa_point_par_ll.png")`){#fig-ll_point}
 
@@ -561,20 +583,20 @@ To isolate the effects of intraspecific variation, the Panama results shown here
 \newpage
 
 ![
-Boxplots comparing leaf mass per area (LMA) and posterior means of photosynthetic and structural LMA components (LMAm and LMAs, respectively) across deciduous (Dev) and evergreen (Eve) leaves in the GLOPNET dataset (a) and in the Panama dataset (b).
+Boxplots comparing leaf mass per area (LMA) and posterior medians of photosynthetic and structural LMA components (LMAm and LMAs, respectively) across deciduous (Dev) and evergreen (Eve) leaves in the GLOPNET dataset (a) and in the Panama dataset (b).
 The center line in each box indicates the median, upper and lower box edges indicate the interquartile range, whiskers show 1.5 times the interquartile range, and points are outliers.
 Groups sharing the same letters are not significantly different (P > 0.05; t-tests).
 The Panama results only include species for which both sun and shade leaves were available.
-Qualitatively similar results were obtained when all Panama species were included (`s_fig("box_inter")`).
+Qualitatively similar results were obtained when all Panama species were included (`r s_fig("box_inter")`).
 Note that the vertical axis is on a log~10~ scale.
 ](`r here::here("figs/box_de.png")`){#fig-box_de}
 
 \newpage
 
 ![
-Boxplots comparing leaf mass per area (LMA) and posterior means of metabolic and structural LMA components (LMAm and LMAs, respectively) across sites (wet and dry) and canopy strata (sun and shade) in the Panama dataset.
+Boxplots comparing leaf mass per area (LMA) and posterior medians of metabolic and structural LMA components (LMAm and LMAs, respectively) across sites (wet and dry) and canopy strata (sun and shade) in the Panama dataset.
 These results only include species for which both sun and shade leaves were available.
-Qualitatively similar results were obtained when all Panama species were included (`s_fig("box_inter")`).
+Qualitatively similar results were obtained when all Panama species were included (`r s_fig("box_inter")`).
 Details as for [@fig-box_de].
 ](`r here::here("figs/box_pa.png")`){#fig-box_pa}
 
@@ -582,7 +604,7 @@ Details as for [@fig-box_de].
 
 ![
 Relationships between mass dependency (*b* in `r eq("mass")`) and LMAs variance (relative to total LMA variance) for the global GLPNET datase,t, sun leaves in Panama, and shade leaves in Panama.
-Solid lines indicate simulated means and shaded regions indicate 95% CIs.
+Solid lines indicate simulated medians and shaded regions indicate 95% CIs.
 Each point indicates the estimated values from the empirical data and represents interspecific variation (e.g., across species within a canopy position in the Panama dataset).
 The y-axis values indicates if photosynthetic capacity (*A*~max~) is is primarily mass-dependent (*b* > 0.5) or primarily area-dependent (0.5 > *b* > 0), with *b* near 0 indicating  purely area-dependendence [@Osnas2018].
 If *b* > 1, then *A*~max~ increases exponentially with LMA, which is not consistent with observed relationships [@Osnas2018].
@@ -591,7 +613,7 @@ If *b* > 1, then *A*~max~ increases exponentially with LMA, which is not consist
 \newpage
 
 ![
-Measured traits in the Panama dataset related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are better correlated with estimates (posterior means) of the metabolic LMA component (LMAm) than the strctural component (LMAs), whereas the opposite patten occurs for a measured structural trait (cellulose per-unit leaf area; CL~area~).
+Measured traits in the Panama dataset related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are better correlated with estimates (posterior medians) of the metabolic LMA component (LMAm) than the strctural component (LMAs), whereas the opposite patten occurs for a measured structural trait (cellulose per-unit leaf area; CL~area~).
 *N*~area~, *P*~area~, and CL~area~ data were not used to fit the models, and are presented here as independent support for the model results, and thus posterior distributions of Pearson correlation coefficients cannot be estimated for LMAm and LMAs.
 Pearson correlation coefficients (*r*) are shown for all the panels.
 Analogous results were obtained for *N*~area~ and *P*~area~ for GLOPNET (s_fig("gl_point_np2")).

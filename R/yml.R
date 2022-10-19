@@ -659,3 +659,112 @@ write_var_yml <- function(gl_draws, gl_res_dat, pa_full_draws, pa_res_dat) {
   close(out)
   paste(output)
 }
+
+#' @title Write min and max LMA
+write_lma_yml <- function(gl_csv_raw, pa_full_csv_raw, output) {
+  gl <- read_csv(gl_csv_raw) |>
+    dplyr::select(LMA) |>
+    mutate(site = "GLOPNET")
+  pa <- read_csv(pa_full_csv_raw) |>
+    dplyr::select(LMA) |>
+    mutate(site = "Panama")
+
+  dat <- bind_rows(gl, pa ) |>
+    group_by(site) |>
+    summarise(min = min(LMA), max = max(LMA)) |>
+    mutate(min = round(min, 1) |> format(nsmall = 1)) |>
+    mutate(max = round(max, 0))
+
+  out <- file(paste(output), "w") # write
+  writeLines(paste0("GL:"), out, sep = "\n")
+  writeLines(paste0("  min: ", dat$min[1]), out, sep = "\n")
+  writeLines(paste0("  max: ", dat$max[1]), out, sep = "\n")
+  writeLines(paste0("PA:"), out, sep = "\n")
+  writeLines(paste0("  min: ", dat$min[2]), out, sep = "\n")
+  writeLines(paste0("  max: ", dat$max[2]), out, sep = "\n")
+  close(out)
+  paste(output)
+}
+
+write_frac_yml <- function(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat) {
+  gl <- gl_box_dat |>
+    dplyr::select(frac, leaf_habit) |>
+    mutate(site_strata = NA) |>
+    mutate(site = "gl")
+  pa <- pa_inter_box_dat |>
+    dplyr::select(frac, leaf_habit, site_strata) |>
+    mutate(site = "pa_inter")
+  pa2 <- pa_intra_box_dat |>
+    dplyr::select(frac, leaf_habit, site_strata) |>
+    mutate(site = "pa_intra")
+
+  dat <- bind_rows(gl, pa, pa2) |>
+    mutate(site_strata = str_replace_all(site_strata, "CAN", "sun")) |>
+    mutate(site_strata = str_replace_all(site_strata, "UNDER", "shade")) |>
+    mutate(site_strata = str_to_lower(site_strata))
+
+  dat1 <- dat |>
+    group_by(site, leaf_habit) |>
+    summarise(mid = median(frac * 100) |> round(1))
+
+  output <- "yml/frac_de.yml"
+  out <- file(paste(output), "w") # write
+  writeLines(paste0("gl:"), out, sep = "\n")
+  writeLines(paste0("  dec: ", dat1 |> filter(site == "gl" & leaf_habit == "D") |> pull(mid)),
+    out,
+    sep = "\n")
+  writeLines(paste0("  eve: ", dat1 |> filter(site == "gl" & leaf_habit == "E") |> pull(mid)),
+    out,
+    sep = "\n")
+  writeLines(paste0("pa_inter:"), out, sep = "\n")
+  writeLines(paste0("  dec: ", dat1 |> filter(site == "pa_inter" & leaf_habit == "D") |> pull(mid)),
+    out,
+    sep = "\n")
+  writeLines(paste0("  eve: ", dat1 |> filter(site == "pa_inter" & leaf_habit == "E") |> pull(mid)),
+    out,
+    sep = "\n")
+  writeLines(paste0("pa_intra:"), out, sep = "\n")
+  writeLines(paste0("  dec: ", dat1 |> filter(site == "pa_intra" & leaf_habit == "D") |> pull(mid)),
+    out,
+    sep = "\n")
+  writeLines(paste0("  eve: ", dat1 |> filter(site == "pa_intra" & leaf_habit == "E") |> pull(mid)),
+    out,
+    sep = "\n")
+  close(out)
+
+  dat2 <- dat |>
+    group_by(site, site_strata) |>
+    summarise(mid = median(frac * 100) |> round(1))
+
+  output <- "yml/frac_light.yml"
+  out <- file(paste(output), "w") # write
+  writeLines(paste0("pa_inter:"), out, sep = "\n")
+  writeLines(paste0("  sun_dry: ", dat2 |> filter(site == "pa_inter" & site_strata == "dry_sun") |> pull(mid)),
+    out,
+    sep = "\n")
+  writeLines(paste0("  shade_dry: ", dat2 |> filter(site == "pa_inter" & site_strata == "dry_shade") |> pull(mid)),
+    out,
+    sep = "\n")
+  writeLines(paste0("  sun_wet: ", dat2 |> filter(site == "pa_inter" & site_strata == "wet_sun") |> pull(mid)),
+    out,
+    sep = "\n")
+  writeLines(paste0("  shade_wet: ", dat2 |> filter(site == "pa_inter" & site_strata == "wet_shade") |> pull(mid)),
+    out,
+    sep = "\n")
+  writeLines(paste0("pa_intra:"), out, sep = "\n")
+  writeLines(paste0("  sun_dry: ", dat2 |> filter(site == "pa_intra" & site_strata == "dry_sun") |> pull(mid)),
+    out,
+    sep = "\n")
+  writeLines(paste0("  shade_dry: ", dat2 |> filter(site == "pa_intra" & site_strata == "dry_shade") |> pull(mid)),
+    out,
+    sep = "\n")
+  writeLines(paste0("  sun_wet: ", dat2 |> filter(site == "pa_intra" & site_strata == "wet_sun") |> pull(mid)),
+    out,
+    sep = "\n")
+  writeLines(paste0("  shade_wet: ", dat2 |> filter(site == "pa_intra" & site_strata == "wet_shade") |> pull(mid)),
+    out,
+    sep = "\n")
+  close(out)
+
+  paste0("yml/frac_", c("de", "light"), ".yml")
+}

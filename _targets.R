@@ -129,6 +129,11 @@ main_list <- list(
     "yml/settings.yml",
     format = "file"
   ),
+  tar_target(
+    lma_yml,
+    write_lma_yml(gl_csv_raw, pa_full_csv_raw, "yml/lma.yml"),
+    format = "file"
+  ),
 
   # stan -------------------------------------------------
   tar_target(
@@ -819,7 +824,11 @@ main_list <- list(
     pa_box_de_list,
     prep_pa_box_list(pa_inter_box_dat, letters_yml, type = "PA_inter_de")
   ),
-
+  tar_target(
+    frac_yml,
+    write_frac_yml(gl_box_dat, pa_inter_box_dat, pa_intra_box_dat),
+    format = "file"
+  ),
   tar_target(
     box_intra_plot, {
       p <- box_intra(gl_box_list, pa_box_trim_de_list, pa_box_trim_list, settings_yml)

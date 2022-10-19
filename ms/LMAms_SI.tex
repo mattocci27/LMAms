@@ -241,7 +241,7 @@ within and among plant species}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, enhanced, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, sharp corners, frame hidden, breakable]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, breakable, frame hidden, interior hidden, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, sharp corners]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -284,7 +284,7 @@ indicates a covariance matrix. Expected values are based on Eqs. 2-4 in
 the main text.
 
 We used non-informative or weakly informative prior distributions
-(\protect\hyperlink{ref-Lemoine2019}{Lemoine 2019}). The covariance
+(\protect\hyperlink{ref-Lemoine2019}{Lemoine, 2019}). The covariance
 mkatrix in Eq. S1 was decomposed as
 \({\mathbf \Sigma} = {\mathrm diag}({\mathbf \sigma}){\mathbf \Omega}{\mathrm diag}({\mathbf \sigma}) = {\mathrm diag}({\mathbf \sigma}){\mathbf L}{\mathbf L}\prime {\mathrm diag}({\mathbf \sigma})\)
 using a Cholesky decomposition, where \({\mathbf \sigma}\) is a vector
@@ -293,22 +293,22 @@ of \(\sigma_{1}\), \(\sigma_{2}\), and \(\sigma_{3}\);
 \(\rho_{13}\), and \(\rho_{23}\); and \textbf{L} is a lower triangular
 matrix. Instead of assigning prior distributions on directly, priors
 were assigned on and \textbf{L} to avoid a strong dependence between and
-(\protect\hyperlink{ref-Lewandowski2009}{Lewandowski et al. 2009},
-\protect\hyperlink{ref-Alvarez2014}{Alvarez et al. 2014}). A prior for
-\textbf{L} was specified as a so-called LKJ distribution with shape
-parameter 2 (\protect\hyperlink{ref-Lewandowski2009}{Lewandowski et al.
-2009}), which is weakly informative for the correlation matrix. A prior
-for \({\mathrm diag}({\mathbf \sigma})\) was specified as a Half-Cauchy
-distribution with location 0 and scale 2.5, which is weakly informative
-and allows for occasional large coefficients while still performing a
-reasonable amount of shrinkage for coefficients near zero
-(\protect\hyperlink{ref-Gelman2008}{Gelman et al. 2008}).
+(\protect\hyperlink{ref-Alvarez2014}{Alvarez et al., 2014};
+\protect\hyperlink{ref-Lewandowski2009}{Lewandowski et al., 2009}). A
+prior for \textbf{L} was specified as a so-called LKJ distribution with
+shape parameter 2 (\protect\hyperlink{ref-Lewandowski2009}{Lewandowski
+et al., 2009}), which is weakly informative for the correlation matrix.
+A prior for \({\mathrm diag}({\mathbf \sigma})\) was specified as a
+Half-Cauchy distribution with location 0 and scale 2.5, which is weakly
+informative and allows for occasional large coefficients while still
+performing a reasonable amount of shrinkage for coefficients near zero
+(\protect\hyperlink{ref-Gelman2008}{Gelman et al., 2008}).
 
 A prior for \(\mathbf{\sigma}\) was specified as a Half-Cauchy
 distribution with location 0 and scale 5, which is weakly informative
 and allows for occasional large coefficients while still performing a
 reasonable amount of shrinkage for coefficients near zero
-(\protect\hyperlink{ref-Gelman2008}{Gelman et al. 2008}).
+(\protect\hyperlink{ref-Gelman2008}{Gelman et al., 2008}).
 
 Priors for \(\alpha_{0,m,s}\), \(\beta_{0,m,s}\), and \(\gamma_{0,m,s}\)
 in Eqs. 4-6 were weakly informative and specified as normal
@@ -380,7 +380,7 @@ the posterior distributions were not converged well, we checked the
 regression coefficients for the GLOPNET dataset (\(\alpha_{0, m, s}\),
 \(\beta_{0, s}\), and \(\gamma_{0, m, s}\) in Eqs. 2-4 in the main
 text). There are 10 independent simulations (randomizations) in total.
-Points and lines indicate posterior means and 95\% credible intervals
+Points and lines indicate posterior medians and 95\% credible intervals
 (CIs), respectively. Although intercepts were significant, the scaling
 parameters in the randomized datasets did not show any patterns. Thus,
 the tests with randomized data indicate that our model is not inherently
@@ -467,7 +467,7 @@ Parameter settings are as following, GLOPNET: \(\mu_m\) = 58.1,
 = -0.13, sun leaves in Panama: \(\mu_m\) = 47.3, \(\mu_s\) = 30.1,
 \(\sigma_m\) = 1.58, and \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, shade
 leaves in Panama: \(\mu_m\) = 7.6, \(\mu_s\) = 26.7, \(\sigma_m\) =
-1.95, \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, \(\rho\) = -0.4.
+1.95, \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, \(\rho\) = -0.47.
 
 We finally calculated mass dependency (\emph{b}) using the following
 ordinary least square regression:
@@ -489,8 +489,8 @@ We repeated these steps 1000 times.
 \includegraphics{/home/mattocci/LMAms/figs/box_inter.png}
 
 \textbf{Figure S1}: Boxplots comparing leaf mass per area (LMA),
-photosynthetic leaf mass per area (LMAm; posterior means), and
-structural leaf mass per area (LMAs; posterior means) across (a)
+photosynthetic leaf mass per area (LMAm; posterior medians), and
+structural leaf mass per area (LMAs; posterior medians) across (a)
 deciduous (Dev) and evergreen (Eve) leaves and (b) sites (wet and dry)
 and canopy strata (sun and shade) in Panama. The results shown here
 include all leaves in the Panama dataset, whereas Figures 6- 7 in the
@@ -547,16 +547,17 @@ the different ranges of the scaling exponent \(\alpha_m\) and
 while the scaling exponent \(\alpha_s\) is constant (\(\alpha_s\) =
 -0.13,). (b) the scaling exponent \(\alpha_s\) vary from -0.5 to 0.5
 while the scaling exponent \(\alpha_m\) is constant (\(\alpha_m\) =
-0.28,). Solid lines indicate simulated means and shaded regions indicate
-95\% CI. The photosynthetic rate (\emph{A}\textsubscript{max}) is
-primarily mass-dependent (\emph{b} \textgreater{} 0.5), primarily
+0.28,). Solid lines indicate simulated medians and shaded regions
+indicate 95\% CI. The photosynthetic rate (\emph{A}\textsubscript{max})
+is primarily mass-dependent (\emph{b} \textgreater{} 0.5), primarily
 area-dependent (0.5 \textgreater{} \emph{b} \textgreater{} 0) and purely
 area-dependent (\emph{b} = 0) (\protect\hyperlink{ref-Osnas2018}{Osnas
-et al. 2018}). Note that when \emph{b} \textgreater{} 1,
-\emph{A}\textsubscript{max} per-unit leaf area
-(\emph{A}\textsubscript{area}) dramatically increase with LMA, which is
-not realistic. Parameter settings: \(\alpha_0\) = 1.77, \(\mu_m\) =
-58.1, \(\mu_s\) = 79.9, \(\sigma_m\) = 2.3.
+et al., 2018}). If \emph{b} \textgreater{} 1, then
+\emph{A}\textsubscript{max} increases exponentially with LMA, which is
+not consistent with observed relationships
+(\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}). Parameter
+settings: \(\alpha_0\) = 1.77, \(\mu_m\) = 58.1, \(\mu_s\) = 79.9,
+\(\sigma_m\) = 2.3.
 
 \newpage
 
@@ -570,7 +571,7 @@ in Equation 5 in the main text) and relative variance in LMAs to LMA for
 the simulated dataset generated by a normal distribution (N) and a
 multivariate normal distribution (MVN). Parameter settings: \(\alpha_0\)
 = 0.34, \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, \(\mu_m\) = 7.6,
-\(\mu_s\) = 26.7, \(\sigma_m\) = 1.95, and \(\rho\) = -0.4,
+\(\mu_s\) = 26.7, \(\sigma_m\) = 1.95, and \(\rho\) = -0.47,
 
 \newpage
 
@@ -582,7 +583,7 @@ multivariate normal distribution (MVN). Parameter settings: \(\alpha_0\)
 \textbf{Figure S6}: Measured traits related to photosynthesis and
 metabolism (nitrogen and phosphorus per-unit leaf area;
 \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area}) are
-positively correlated with LMA and with estimates (posterior means) of
+positively correlated with LMA and with estimates (posterior medians) of
 the metabolic and structural LMA components (LMAm and LMAs,
 respectively) in the GLOPNET dataset. LMAm yields more consistent
 relationships compared to LMA and LMAs; e.g., evergreen and deciduous
@@ -854,35 +855,36 @@ constraint of \(\alpha_s\) = 0 and \(\beta_m\) = 0.
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
 \leavevmode\vadjust pre{\hypertarget{ref-Alvarez2014}{}}%
-Alvarez, I., J. Niemi, and M. Simpson. 2014.
-\href{https://doi.org/10.1214/aos/1176348885}{Bayesian inference for a
-covariance matrix}. arXiv preprint arXiv:1408.4050v2:1--12.
+Alvarez, I., Niemi, J., \& Simpson, M. (2014). Bayesian inference for a
+covariance matrix. \emph{arXiv Preprint arXiv:1408.4050v2}, 1--12.
+\url{https://doi.org/10.1214/aos/1176348885}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Gelman2008}{}}%
-Gelman, A., A. Jakulin, M. G. Pittau, and Y. S. Su. 2008.
-\href{https://doi.org/10.1214/08-AOAS191}{A weakly informative default
-prior distribution for logistic and other regression models}. Annals of
-Applied Statistics 2:1360--1383.
+Gelman, A., Jakulin, A., Pittau, M. G., \& Su, Y. S. (2008). A weakly
+informative default prior distribution for logistic and other regression
+models. \emph{Annals of Applied Statistics}, \emph{2}(4), 1360--1383.
+\url{https://doi.org/10.1214/08-AOAS191}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Lemoine2019}{}}%
-Lemoine, N. P. 2019. \href{https://doi.org/10.1111/oik.05985}{Moving
-beyond noninformative priors: Why and how to choose weakly informative
-priors in {Bayesian} analyses}. Oikos 128:912--928.
+Lemoine, N. P. (2019). Moving beyond noninformative priors: Why and how
+to choose weakly informative priors in {Bayesian} analyses.
+\emph{Oikos}, \emph{128}(7), 912--928.
+\url{https://doi.org/10.1111/oik.05985}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Lewandowski2009}{}}%
-Lewandowski, D., D. Kurowicka, and H. Joe. 2009.
-\href{https://doi.org/10.1016/j.jmva.2009.04.008}{Generating random
-correlation matrices based on vines and extended onion method}. Journal
-of Multivariate Analysis 100:1989--2001.
+Lewandowski, D., Kurowicka, D., \& Joe, H. (2009). Generating random
+correlation matrices based on vines and extended onion method.
+\emph{Journal of Multivariate Analysis}, \emph{100}(9), 1989--2001.
+\url{https://doi.org/10.1016/j.jmva.2009.04.008}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Osnas2018}{}}%
-Osnas, J. L. D., M. Katabuchi, K. Kitajima, S. J. Wright, P. B. Reich,
-S. A. Van Bael, N. J. B. Kraft, M. J. Samaniego, S. W. Pacala, and J. W.
-Lichstein. 2018.
-\href{https://doi.org/10.1073/pnas.1803989115}{Divergent drivers of leaf
-trait variation within species, among species, and among functional
-groups.} Proceedings of the National Academy of Sciences of the United
-States of America 115:5480--5485.
+Osnas, J. L. D., Katabuchi, M., Kitajima, K., Wright, S. J., Reich, P.
+B., Van Bael, S. A., Kraft, N. J. B., Samaniego, M. J., Pacala, S. W.,
+\& Lichstein, J. W. (2018). Divergent drivers of leaf trait variation
+within species, among species, and among functional groups.
+\emph{Proceedings of the National Academy of Sciences of the United
+States of America}, \emph{115}(21), 5480--5485.
+\url{https://doi.org/10.1073/pnas.1803989115}
 
 \end{CSLReferences}
 
