@@ -398,14 +398,14 @@ We then discuss the new insights derived from our analysis and implications for 
 
 *A*~max~ per-unit leaf area (*A*~area~) increased with LMAm and was either unrelated to LMAs (Panama) or decreased with LMAs (GLOPNET; Figs. [-@fig-gl_point]-[-@fig-pa_point] and Table 2).
 The decline in GLOPNET *A*~area~ with increasing LMAs may be due to decreasing mesophyll conductance, which decreases with increasing cell wall thickness [@Evans2009; @Terashima2011; @Onoda2017].
-This trend may be less apparent in our Panama analysis due to the relatively small LMA range (`r lma_val$PA$min` - `r lma_val$PA$max` g m^2^ in Panama, compared to `r lma_val$GL$min` - `r lma_val$GL$max` g m^2^ in GLOPNET) or may be obscured by pooling sun and shade leaves in a single analysis.
+This trend may be less apparent in our Panama analysis due to the relatively small LMA range (`r lma_val$PA$min`-`r lma_val$PA$max` g m^2^ in Panama, compared to `r lma_val$GL$min`-`r lma_val$GL$max` g m^2^ in GLOPNET) or may be obscured by pooling sun and shade leaves in a single analysis.
 In any case, an increase in *A*~area~ with LMAm but not LMAs, as observed for both GLOPNET and Panama, is consistent with the view that LMA is a composite trait comprised of metabolically active and inactive components [@Poorter2009; @Osnas2018].
 
 *R*~dark~ per-unit leaf area (*R*~area~) increased with LMAm and was unrelated to LMAs (Figs. [-@fig-gl_point]-[-@fig-pa_point] and Table 2), consistent with the view that LMAs is comprised of non-metabolic leaf mass components, such as cellulose, lignin, and other fibres [@Onoda2011; @Kitajima2012; @Kitajima2016].
 Median values of LMAs, as a percent of total LMA, were ~60% for evergreen species and ~40% for deciduous species (`r s_fig("box_frac_de")`), and 15-40% for shade leaves and 50-70% for sun leaves (`r s_fig("box_frac_pa")`).
 These estimates align with measurements of cell wall (fibre) content from a global dataset (13.7–76.8%, median 47% of total leaf mass, with higher values for shade than sun leaves [@Onoda2011]) and a Panama study site (Barro Colorado Island, BCI: ~50% mean across species, with higher values for shade leaves [@Kitajima2016]).
 
-LL increased with LMAs but was unrelated to LMAm (Figs. [-@fig-gl_point]-[-@fig-pa_point] and Tables 1-2), consistent with well-established relationships between leaf fibre content, toughness, and LL [@Onoda2011; @Onoda2011; @Kitajima2012; @Kitajima2016].
+LL increased with LMAs but was unrelated to LMAm (Figs. [-@fig-gl_point]-[-@fig-pa_point] and Tables 1-2), consistent with well-established relationships between leaf fibre content, toughness, and LL [@Onoda2011; @Onoda2017; @Kitajima2012; @Kitajima2016].
 For a given LMAs, shade leaves had longer LL than sun leaves (see [@fig-pa_point]i and parameter $\theta$ in Table 2).
 Thus, partitioning LMA into LMAm and LMAs is not sufficient to explain the widely observed counter-gradient, whereby LL increases with increasing LMA across species but decreases with increasing LMA within species from shade to sun [@Lusk2008; @Russo2016; @Osnas2018].
 The failure of LMAs to provide robust predictions of LL across canopy positions may reflect how optimal LL depends on light availability [@Kikuzawa1991] and/or variation in toughness for a given value of LMAs.
@@ -441,13 +441,13 @@ High LMAm may lead to low mesophyll conductance, e.g., due to a longer CO~2~ dif
 Similarly, high LMAm may lead to a high level of chloroplast self-shading within a leaf [@Terashima2011].
 Both of these factors would decrease the marginal benefit of additional units of LMAm, and this marginal decrease may be especially strong in GLOPNET due to the large global LMA range (and the large range of model-inferred LMAm: compare GLOPNET to Panama in @fig-box_de).
 Finally, while much of the model-inferred LMAm may be directly or indirectly related to photosynthesis, 'LMAm' may also include metabolic leaf mass unrelated to photosynthesis and/or non-metabolic leaf mass that is statistically assigned (by default) to LMAm simply because it does not affect LL.
-For example, non-structural carbohydrates, which are ignored in our model, can account for up to X% of leaf mass [@Martinez-Vilalta2016].
+For example, non-structural carbohydrates, which are ignored in our model, can account for up to 20% of leaf mass in evergreen species [@Martinez-Vilalta2016].
 A more refined model that accounts for more than two LMA components may reveal stronger relationships between metabolic traits (*A*~area~ and *R*~area~) and LMAm.
 
 In addition to providing insights as to why metabolic traits tend to be area-dependent across species, our analysis also helps explain why these same traits tend to be mass-dependent within species across light levels [@Osnas2018].
 LMA increased from shade to sun primarily due to an increase in LMAm (Figs. [-@fig-box_pa] and `r s_fig_num("box_inter")`), which should lead to strong mass-dependence of *A*~max~ and *R*~dark~ ([@fig-mass_prop]) and likely reflects an increase in the size and number of palisade mesophyll cells with increasing light levels [@Onoda2008; @Terashima2011].
 Estimates of mass-dependence of metabolic traits (parameter *b* in `r eq("mass")`, with *b* > 0.5 indicating greater mass- than area-dependence) across light levels are around 0.8-1.0 for the Panama dataset we analyzed [@Osnas2018].
-Although values of b greater than 1 are theoretically possible (which implies an exponential increase in area-normalized traits with increasing LMA), two factors likely constrain the observed values of *b*.
+Although values of *b* greater than 1 are theoretically possible (which implies an exponential increase in area-normalized traits with increasing LMA), two factors likely constrain the observed values of *b*.
 Firstly, at least some of the LMA increase from shade to sun is due to LMAs (Figs. [-@fig-box_pa] and `r s_fig_num("box_inter")`), which may reflect the additional LMAs needed to protect and support the high LMAm of sun leaves and/or additional LMAs required to withstand hydraulic or other stress in the upper canopy.
 Secondly, as discussed above, *A*~area~ and *R*~area~ increase at a less-than-proportional rate with increasing LMAm, which in turn moderates the LMA scaling exponent (*b*).
 
@@ -460,13 +460,13 @@ Our results demonstrate the value of considering metabolic and structural leaf m
 We therefore conclude that a one-dimensional representation of leaf functional variation is too simplistic.
 Consistent with our conclusion that leaf function is multi-dimensional, analyses of leaf nitrogen indicate significant independent contributions of metabolic (e.g., rubisco) and structural leaf nitrogen components [@Dong2017; @Dong2022a], with over 20% of total leaf nitrogen in high-LMA leaves occurring in cell walls [@Onoda2017].
 Similarly, partitioning leaf phosphorus reveals substantial, LMA-dependent metabolic, structural, and nucleic acid fractions [@Hidaka2011].
-We suggest that future biogeochemical model developments consider multiple axes of leaf functional diversity, and that models with coupled carbon-nutrient cycles consider how LMA, nitrogen, and phosphorus are allocated to different functions.
+We suggest that future biogeochemical model developments consider multiple axes of leaf functional diversity, and that models with coupled carbon-nutrient cycles consider how LMA, nitrogen, and phosphorus are allocated to different functions
 
 # Acknowledgments
 
 We thank Jonathan Dushoff for statistical advice and Martijn Slot for helpful comments that improved the paper.
 Mirna Samaniego and Milton Garica provided indispensable assistance in data collection.
-We thank the Smithsonian Tropical Research Institute (STRI), the Tropical Canopy Biology Program at STRI and the Andrew W. Mellon Foundation for supporting this work. MK was supported by a Postdoctoral Fellowship for Research Abroad from the Japan Society for the Promotion of Science and the CAS President's International Fellowship for Young Staff.
+We thank the Smithsonian Tropical Research Institute (STRI), the Tropical Canopy Biology Program at STRI and the Andrew W. Mellon Foundation for supporting this work. MK was supported by a Postdoctoral Fellowship for Research Abroad from the Japan Society for the Promotion of Science and a CAS President's International Fellowship Initiative (2020FYB0003).
 
 # Author contributions
 
