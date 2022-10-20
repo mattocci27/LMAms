@@ -189,7 +189,7 @@
 \date{}
 
 \begin{document}
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, interior hidden, borderline west={3pt}{0pt}{shadecolor}, frame hidden, breakable, sharp corners, enhanced]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, frame hidden, enhanced, sharp corners, breakable, interior hidden]}{\end{tcolorbox}}\fi
 
 \textbf{Running title}: Metabolic and structural leaf mass
 
@@ -1644,14 +1644,14 @@ has little effect on metabolic traits). (b) Two-dimensional relationship
 between photosynthetic capacity (\emph{A}\textsubscript{max}) per-unit
 leaf area and total LMA (equal to LMAm + LMAs). (c) One-dimensional
 relationship between \emph{A}\textsubscript{max} per-unit leaf mass and
-total LMA. LMAm and LMAs are simulated from a hypothetical scenario of
-lognormal distributions with medians of 80 and standard deviations of
-exp(0.8) and exp(0.7), and zero covariance. Variation in
-\emph{A}\textsubscript{max} values are derived from our analysis of the
-GLOPNET database.
-\(A_{\mathrm{area} \, i}=1.77 \times \mathrm{LMAm}_i^{0.28}\mathrm{LMAs}^{-0.13}\epsilon_i\),
-where \(\epsilon_i\) is log-normally distributed with log-mean with 0,
-log-scale parameter with 0.31 (see Methods and Results).}
+total LMA. The natural logarithm of LMAm and LMAs are simulated from a
+hypothetical scenario of normal distributions with means of 56 and 61
+and standard deviations of 0.83 and 1.0, and zero covariance. Variation
+in \emph{A}\textsubscript{max} values are derived from our analysis of
+the GLOPNET database.
+\(\mathrm{ln\;} A_{\mathrm{area} \, i}= \mathrm{ln\;} 1.77 + 0.28 \; \mathrm{ln\; LMAm}_i -0.13 \; \mathrm{ln\; LMAm} + \epsilon_i\),
+where \(\epsilon_i\) is normally distributed with mean 0 and standard
+deviation 0.31 (see Methods and Results).}
 
 \end{figure}
 
@@ -1818,14 +1818,13 @@ opposite patten occurs for a measured structural trait (cellulose
 per-unit leaf area; CL\textsubscript{area}).
 \emph{N}\textsubscript{area}, \emph{P}\textsubscript{area}, and
 CL\textsubscript{area} data were not used to fit the models, and are
-presented here as independent support for the model results, and thus
-posterior distributions of Pearson correlation coefficients cannot be
-estimated for LMAm and LMAs. Pearson correlation coefficients (\emph{r})
-are shown for all the panels. Analogous results were obtained for
-\emph{N}\textsubscript{area} and \emph{P}\textsubscript{area} for
-GLOPNET (Fig. S6). The results shown here include all leaves for which
-\emph{N}\textsubscript{area}, \emph{P}\textsubscript{area} and
-CL\textsubscript{area} are available.}
+presented here as independent support for the model results. Pearson
+correlation coefficients (\emph{r}) for LMA and the posterior medians of
+Pearson correlation coefficients (\(\bar{r}\)) for LMAm and LMAs are
+shown. Analogous results were obtained for \emph{N}\textsubscript{area}
+and \emph{P}\textsubscript{area} for GLOPNET (Fig. S6). The results
+shown here include all leaves for which \emph{N}\textsubscript{area},
+\emph{P}\textsubscript{area} and CL\textsubscript{area} are available.}
 
 \end{figure}
 

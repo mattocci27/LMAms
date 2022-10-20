@@ -546,8 +546,15 @@ Example of a two-dimensional functional space that can result in either a two- o
 (a) Hypothetical independent variation in two leaf mass per area (LMA) components: metabolic leaf mass per area (LMAm, which largely determines per-area values of photosynthesis, respiration, and nutrient concentrations) and structural leaf mass per area (LMAs, which determines leaf toughness but has little effect on metabolic traits).
 (b) Two-dimensional relationship between photosynthetic capacity (*A*~max~) per-unit leaf area and total LMA (equal to LMAm + LMAs).
 (c) One-dimensional relationship between *A*~max~ per-unit leaf mass and total LMA.
-LMAm and LMAs are simulated from a hypothetical scenario of lognormal distributions with medians of 80 and standard deviations of exp(0.8) and exp(0.7), and zero covariance.
-Variation in *A*~max~ values are derived from our analysis of the GLOPNET database. $A_{\mathrm{area} \, i}=1.77 \times \mathrm{LMAm}_i^{0.28}\mathrm{LMAs}^{-0.13}\epsilon_i$, where $\epsilon_i$ is log-normally distributed with log-mean with 0, log-scale parameter with 0.31 (see Methods and Results).
+The natural logarithm of LMAm and LMAs are simulated from a hypothetical scenario of normal distributions with means of
+`r para_val$GL$LMAm_mu_gl |> round(0)` and
+`r para_val$GL$LMAs_mu_gl |> round(0)` and
+standard deviations of
+`r para_val$GL$LMAm_sig_gl |> round(2)` and
+`r para_val$GL$LMAs_sig_gl |> as.numeric() |> format(nsmall = 1)`,
+and zero covariance.
+Variation in *A*~max~ values are derived from our analysis of the GLOPNET database.
+$\mathrm{ln\;} A_{\mathrm{area} \, i}= \mathrm{ln\;} 1.77 + 0.28 \; \mathrm{ln\; LMAm}_i -0.13 \; \mathrm{ln\; LMAm} + \epsilon_i$, where $\epsilon_i$ is normally distributed with mean 0 and standard deviation 0.31 (see Methods and Results).
 ](`r here::here("figs/hypo.png")`){#fig-hypo}
 
 
@@ -621,8 +628,8 @@ If *b* > 1, then *A*~max~ increases exponentially with LMA, which is not consist
 
 ![
 Measured traits in the Panama dataset related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are better correlated with estimates (posterior medians) of the metabolic LMA component (LMAm) than the strctural component (LMAs), whereas the opposite patten occurs for a measured structural trait (cellulose per-unit leaf area; CL~area~).
-*N*~area~, *P*~area~, and CL~area~ data were not used to fit the models, and are presented here as independent support for the model results, and thus posterior distributions of Pearson correlation coefficients cannot be estimated for LMAm and LMAs.
-Pearson correlation coefficients (*r*) are shown for all the panels.
+*N*~area~, *P*~area~, and CL~area~ data were not used to fit the models, and are presented here as independent support for the model results.
+Pearson correlation coefficients (*r*) for LMA and the posterior medians of Pearson correlation coefficients ($\bar{r}$) for LMAm and LMAs are shown.
 Analogous results were obtained for *N*~area~ and *P*~area~ for GLOPNET (`r s_fig("gl_point_np2")`).
 The results shown here include all leaves for which *N*~area~, *P*~area~  and CL~area~ are available.
 ](`r here::here("figs/pa_point_npc.png")`){#fig-pa_npc}
