@@ -423,7 +423,7 @@ main_list <- list(
   tar_target(
     r_vals_yml,
     write_r2(gl_res_csv, gl_draws_ams_bs,
-      pa_res_csv, pa_full_draws_am_bs_opt, pa_rho_dat),
+      pa_res_csv, pa_full_draws_am_bs_opt),
     format = "file"
   ),
   tar_target(
