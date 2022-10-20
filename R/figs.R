@@ -24,6 +24,8 @@ my_ggsave <- function(filename, plot, units = c("in", "cm",
 }
 
 #' @title Hypothetical relationships
+#' we only care about how the points are distributed
+#' we don't estimate means or sd of Amax on the non-log scale
 hypo_point <- function(para_yml, n = 200, seed = 123) {
 #  targets::tar_load(para_yml)
   para <- yaml::yaml.load_file(para_yml)
@@ -37,49 +39,41 @@ hypo_point <- function(para_yml, n = 200, seed = 123) {
   LMAm <- rlnorm(N, log(80), 0.8)
   LMAs <- rlnorm(N, log(80), 0.7)
   LMA <- LMAm + LMAs
-  log_Aarea <- rnorm(N, log(a0 * LMAm^am * LMAs^as) - 0.5 * sig1^2, sig1)
+  log_Aarea <- rnorm(N, log(a0 * LMAm^am * LMAs^as), sig1)
   Aarea <- exp(log_Aarea)
-#Aarea <- rlnorm(N, log(a0 * LMAm^am * LMAs^as), sig1)
-  tmp <- tibble(LMA, LMAm, LMAs, Aarea)
+  dat <- tibble(LMA, LMAm, LMAs, Aarea)
 
-  cor.test(log(Aarea), log(LMA))
-  cor.test(log(Aarea/LMA), log(LMA))
-
-  p1 <- ggplot(tmp, aes(LMAm, LMAs, color = LMA)) +
+  lma_breaks <- c(30, 100, 300, 1000)
+  p1 <- ggplot(dat, aes(LMAm, LMAs, color = LMA)) +
     geom_point(alpha = 0.9) +
     scale_x_log10() +
     scale_y_log10() +
-    scale_color_viridis_c(trans = "log10",
-                          breaks = c(50, 100, 200 ,500)
-                          ) +
-    #scale_color_gradient2(midpoint = median(LMA),
-    #                     low = "#e66101",
-    #                     high = "#5e3c99") +
+    scale_color_viridis_c(trans = "log10") +
     xlab(expression(LMAm~(g~m^{-2}))) +
     ylab(expression(LMAs~(g~m^{-2}))) +
     theme_LES() +
     theme(legend.position = "none")
 
-  p2 <- ggplot(tmp, aes(LMA, Aarea, color = LMA)) +
+  p2 <- ggplot(dat, aes(LMA, Aarea, color = LMA)) +
     geom_point(alpha = 0.9) +
     scale_x_log10() +
-    scale_y_log10() +
+    scale_y_log10(breaks = c(2, 3, 5, 10)) +
     scale_color_viridis_c(trans = "log10") +
     xlab(expression(Total~LMA~(g~m^{-2}))) +
-    ylab(expression(italic(A)[area]~(~mu~mol~m^{-2}~s^{-1}))) +
+    ylab(expression(italic(A)[area]~(mu~mol~m^{-2}~s^{-1}))) +
     theme_LES() +
     theme(legend.position = "none")
 
-  p3 <- ggplot(tmp, aes(LMA, y = Aarea / LMA, color = LMA)) +
+  p3 <- ggplot(dat, aes(LMA, y = Aarea / LMA * 1000, color = LMA)) +
     geom_point(alpha = 0.9) +
     scale_x_log10() +
-    scale_y_log10() +
+    scale_y_log10(breaks = c(3, 10, 30, 50)) +
     scale_color_viridis_c(trans = "log10",
-                          breaks = c(50, 100, 300, 500),
+                          breaks = lma_breaks,
                           name = "Total LMA"
                           ) +
     xlab(expression(Total~LMA~(g~m^{-2}))) +
-    ylab(expression(italic(A)[mass]~(~mu~mol~g^{-1}~s^{-1}))) +
+    ylab(expression(italic(A)[mass]~(nmol~g^{-1}~s^{-1}))) +
     theme_LES() +
     theme(legend.position = "right",
           legend.key.size = unit(0.3, "cm"),
@@ -88,17 +82,15 @@ hypo_point <- function(para_yml, n = 200, seed = 123) {
           legend.title = element_text(size = 8))
 
 
-  p4 <- p1 + p2  + p3 +
+  p4 <- p1 + p2 + p3 +
     plot_annotation(tag_levels = "a",
       tag_prefix = "(",
       tag_suffix = ")") &
-    #theme(plot.tag = element_text(face = "bold"),
-    #      legend.background =  element_blank())
     theme(legend.background =  element_blank())
   p4
 }
 
-#' @title Breaks for tratis (scatter plots)
+#' @title Breaks for traits (scatter plots)
 my_breaks <- function(...){
   c(0.002, 0.005, 0.02, 0.05, 0.1, 0.2,  0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500)
 }
