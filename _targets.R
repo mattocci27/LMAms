@@ -434,7 +434,7 @@ main_list <- list(
        p,
        dpi = 300,
        height = 5,
-       width = 16,
+       width = 17,
        units = "cm"
       )
     },
