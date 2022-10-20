@@ -588,9 +588,10 @@ write_para_yml <- function(gl_summary, pa_summary, gl_res_csv, pa_res_csv) {
   shade <- pa |>
     filter(strata != "CAN")
 
-  LMAm_mu_gl <- log(gl$LMAm) |> median() |> exp() |> round(1)
-  LMAs_mu_gl <- log(gl$LMAs) |> median() |> exp() |> round(1)
-  LMAm_sig_gl <- log(gl$LMAm) |> sd() |> exp() |> round(2)
+  LMAm_mu_gl <- log(gl$LMAm) |> mean() |> exp() |> round(1)
+  LMAs_mu_gl <- log(gl$LMAs) |> mean() |> exp() |> round(1)
+  LMAm_sig_gl <- log(gl$LMAm) |> sd() |> round(2)
+  LMAs_sig_gl <- log(gl$LMAs) |> sd() |> round(2)
   rho_gl <- cor(log(gl$LMAm), log(gl$LMAs)) |> round(2)
 
   LMAm_mu_sun <- log(sun$LMAm) |> median() |> exp() |> round(1)
@@ -640,6 +641,9 @@ write_para_yml <- function(gl_summary, pa_summary, gl_res_csv, pa_res_csv) {
              out,
              sep = "\n")
   writeLines(paste0("  LMAm_sig_gl: ", LMAm_sig_gl),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMAs_sig_gl: ", LMAs_sig_gl),
              out,
              sep = "\n")
   writeLines(paste0("  rho_gl: ", rho_gl),

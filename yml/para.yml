@@ -3,9 +3,10 @@ GL:
   am: 0.28
   as: -0.13
   sig1: 0.31
-  LMAm_mu_gl: 58.1
-  LMAs_mu_gl: 79.9
-  LMAm_sig_gl: 2.3
+  LMAm_mu_gl: 56.5
+  LMAs_mu_gl: 61.2
+  LMAm_sig_gl: 0.83
+  LMAs_sig_gl: 1
   rho_gl: 0.13
 PA:
   a0: 0.34

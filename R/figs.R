@@ -27,27 +27,38 @@ my_ggsave <- function(filename, plot, units = c("in", "cm",
 #' we only care about how the points are distributed
 #' we don't estimate means or sd of Amax on the non-log scale
 hypo_point <- function(para_yml, n = 200, seed = 123) {
-#  targets::tar_load(para_yml)
+  targets::tar_load(para_yml)
+  n <- 200
+  seed <- 123
   para <- yaml::yaml.load_file(para_yml)
   a0 <- para$GL$a0
   am <- para$GL$am
   as <- para$GL$as
   sig1 <- para$GL$sig1
 
+  mu_m <- para$GL$LMAm_mu_gl |> round(0)
+  mu_s <- para$GL$LMAs_mu_gl |> round(0)
+  sig_m <- para$GL$LMAm_sig_gl
+  sig_s <- para$GL$LMAs_sig_gl
+
   set.seed(seed)
   N <- n
-  LMAm <- rlnorm(N, log(80), 0.8)
-  LMAs <- rlnorm(N, log(80), 0.7)
+  LMAm <- rnorm(N, log(mu_m), sig_m) |> exp()
+  LMAs <- rnorm(N, log(mu_s), sig_s) |> exp()
+
   LMA <- LMAm + LMAs
   log_Aarea <- rnorm(N, log(a0 * LMAm^am * LMAs^as), sig1)
   Aarea <- exp(log_Aarea)
   dat <- tibble(LMA, LMAm, LMAs, Aarea)
 
-  lma_breaks <- c(30, 100, 300, 1000)
+  lma_breaks <- c(10, 30, 100, 300, 900, 1000)
   p1 <- ggplot(dat, aes(LMAm, LMAs, color = LMA)) +
     geom_point(alpha = 0.9) +
     scale_x_log10() +
     scale_y_log10() +
+    # scale_x_log10(breaks = c(10, 100, 1000),
+    #           labels = trans_format("log10", math_format(10^.x))) +
+    coord_cartesian(xlim = c(min(min(LMA), 5), max(max(LMA), 1100))) +
     scale_color_viridis_c(trans = "log10") +
     xlab(expression(LMAm~(g~m^{-2}))) +
     ylab(expression(LMAs~(g~m^{-2}))) +
@@ -67,7 +78,7 @@ hypo_point <- function(para_yml, n = 200, seed = 123) {
   p3 <- ggplot(dat, aes(LMA, y = Aarea / LMA * 1000, color = LMA)) +
     geom_point(alpha = 0.9) +
     scale_x_log10() +
-    scale_y_log10(breaks = c(3, 10, 30, 50)) +
+    scale_y_log10(breaks = c(3, 10, 30, 50, 100)) +
     scale_color_viridis_c(trans = "log10",
                           breaks = lma_breaks,
                           name = "Total LMA"
@@ -81,12 +92,12 @@ hypo_point <- function(para_yml, n = 200, seed = 123) {
           legend.text = element_text(size = 8),
           legend.title = element_text(size = 8))
 
-
   p4 <- p1 + p2 + p3 +
     plot_annotation(tag_levels = "a",
       tag_prefix = "(",
       tag_suffix = ")") &
-    theme(legend.background =  element_blank())
+    theme(legend.background =  element_blank(),
+      axis.text.x = element_text(size = 8))
   p4
 }
 
