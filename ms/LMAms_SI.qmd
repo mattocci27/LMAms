@@ -70,6 +70,13 @@ fig("box_de")
 fig("box_pa")
 fig("mass_prop")
 fig("pa_npc")
+
+eq("LMA")
+eq("Aarea")
+eq("Rarea")
+eq("LL")
+eq("mass")
+eq("var")
 ```
 
 \newpage
@@ -99,18 +106,15 @@ $$
 $$
 
 where E[$\cdot$] indicates expected value; $\boldsymbol{\Sigma}$ indicates a covariance matrix.
-Expected values are based on Eqs. 2-4 in the main text.
+Expected values are based on Eqs. `r eq_num("Aarea")`-`r eq_num("LL")` in the main text.
 
 We used non-informative or weakly informative prior distributions [@Lemoine2019].
-The covariance mkatrix in Eq. S1 was decomposed as ${\mathbf \Sigma} = {\mathrm diag}({\mathbf \sigma}){\mathbf \Omega}{\mathrm diag}({\mathbf \sigma}) = {\mathrm diag}({\mathbf \sigma}){\mathbf L}{\mathbf L}\prime {\mathrm diag}({\mathbf \sigma})$ using a Cholesky decomposition, where ${\mathbf \sigma}$ is a vector of $\sigma_{1}$, $\sigma_{2}$, and $\sigma_{3}$;  ${\mathbf \Omega}$ is a correlation matrix of $\rho_{12}$, $\rho_{13}$, and $\rho_{23}$; and **L** is a lower triangular matrix.
-Instead of assigning prior distributions on directly, priors were assigned on and **L** to avoid a strong dependence between and [@Lewandowski2009; @Alvarez2014].
+The covariance mkatrix in Eq. S1 was decomposed as ${\mathbf \Sigma} = \mathrm {diag}(\mathbf {\sigma}){\mathbf \Omega}\mathrm {diag}({\mathbf \sigma}) = \mathrm {diag}({\mathbf \sigma}){\mathbf L}{\mathbf L}\prime \mathrm {diag}({\mathbf \sigma})$ using a Cholesky decomposition, where $\mathbf {\sigma}$ is a vector of $\sigma_{1}$, $\sigma_{2}$, and $\sigma_{3}$;  ${\mathbf \Omega}$ is a correlation matrix of $\rho_{12}$, $\rho_{13}$, and $\rho_{23}$; and **L** is a lower triangular matrix.
+Instead of assigning prior distributions on $\boldsymbol{\Sigma}$ directly, priors were assigned on ${\mathbf \sigma}$ and **L** to avoid a strong dependence between ${\mathbf \sigma}$ and ${\mathbf \Omega}$ [@Lewandowski2009; @Alvarez2014].
 A prior for **L** was specified as a so-called LKJ distribution with shape parameter 2 [@Lewandowski2009], which is weakly informative for the correlation matrix.
-A prior for ${\mathrm diag}({\mathbf \sigma})$ was specified as a Half-Cauchy distribution with location 0 and scale 2.5, which is weakly informative and allows for occasional large coefficients while still performing a reasonable amount of shrinkage for coefficients near zero [@Gelman2008].
-
-A prior for $\mathbf{\sigma}$ was specified as a Half-Cauchy distribution with location 0 and scale 5, which is weakly informative and allows for occasional large coefficients while still performing a reasonable amount of shrinkage for coefficients near zero [@Gelman2008].
-
-Priors for $\alpha_{0,m,s}$, $\beta_{0,m,s}$, and $\gamma_{0,m,s}$ in Eqs. 4-6 were weakly informative and specified as normal distributions with mean 0 and standard deviation 5.
-Priors for *f~i~* in Eqs. 1-4 were non-informative and specified as uniform distributions with range (0, 1).
+A prior for $\mathbf{\sigma}$ was specified as a Half-Cauchy distribution with location 0 and scale 2.5, which is weakly informative and allows for occasional large coefficients while still performing a reasonable amount of shrinkage for coefficients near zero [@Gelman2008].
+Priors for $\alpha_{0,m,s}$, $\beta_{0,m,s}$, and $\gamma_{0,m,s}$ in Eqs. `r eq_num("Aarea")`-`r eq_num("LL")` were weakly informative and specified as normal distributions with mean 0 and standard deviation 5.
+Priors for *f~i~* in Eqs. `r eq_num("LMA")`-`r eq_num("LL")` were non-informative and specified as uniform distributions with range (0, 1).
 
 \newpage
 
@@ -150,10 +154,10 @@ Most of the model results obtained from the randomized datasets did not converge
 
 ## Figure AS1
 
-Although many parameters showed large Rhat values, which suggests that the posterior distributions were not converged well, we checked the regression coefficients for the GLOPNET dataset ($\alpha_{0, m, s}$, $\beta_{0, s}$, and $\gamma_{0, m, s}$ in Eqs. 2-4 in the main text).
+Although many parameters showed large Rhat values, which suggests that the posterior distributions were not converged well, we checked the regression coefficients for the GLOPNET dataset ($\alpha_{0, m, s}$, $\beta_{0, s}$, and $\gamma_{0, m, s}$ in Eqs. `r eq_num("Aarea")`-`r eq_num("LL")` in the main text).
 There are 10 independent simulations (randomizations) in total.
 Points and lines indicate posterior medians and 95% credible intervals (CIs), respectively.
-Although intercepts were significant, the scaling parameters in the randomized datasets did not show any patterns.
+Although intercepts were significant, the scaling parameters ($\alpha_{m, s}$, $\beta_{s}$, and $\gamma_{m, s}$) in the randomized datasets did not show any patterns.
 Thus, the tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
 
 ![](`r here("figs/coef_sim_gl.png")`)
@@ -162,9 +166,9 @@ Thus, the tests with randomized data indicate that our model is not inherently p
 
 ## Figure AS2
 
-We also checked the regression coefficients for the Panama dataset ($\alpha_{0, m}$, $\beta_{0, s}$, $\gamma_{0, m, s}$ and $\theta$ in Eqs. 2-4 in the main text).
+We also checked the regression coefficients for the Panama dataset ($\alpha_{0, m}$, $\beta_{0, s}$, $\gamma_{0, m, s}$, and $\theta$ in Eqs.`r eq_num("Aarea")`-`r eq_num("LL")` in the main text).
 Details as for Figure AS1.
-The scaling parameters in the randomized datasets did not show any patterns
+The scaling parameters ($\alpha_{m}$, $\beta_{s}$, and $\gamma_{m, s}$) and the effect of light on leaf lifespan ($\theta$) in the randomized datasets did not show any patterns.
 
 ![](`r here("figs/coef_sim_pa.png")`)
 
@@ -211,7 +215,7 @@ $$
 \end{bmatrix}
 $$
 
-where $\Sigma$ is the covariance matrix of ln(LMAm) and ln(LMAs),
+where $\boldsymbol{\Sigma}$ is the covariance matrix of ln(LMAm) and ln(LMAs),
 $\rho$ is the correlation coefficient between ln(LMAm) and ln(LMAs).
 
 We used the empirical estimates for $\mu_m$, $\mu_s$, $\sigma_m$, and $\rho$ while with changing $\sigma_s$ between ln(1.01) and ln(10).
@@ -226,20 +230,20 @@ GLOPNET:
 $\mu_m$ = `r para$GL$LMAm_mu_gl`,
 $\mu_s$ = `r para$GL$LMAs_mu_gl`,
 $\sigma_m$ = `r para$GL$LMAm_sig_gl`,
-$\alpha_m$ = `r para$GL$am`,
+$\alpha_m$ = `r para$GL$am`, and
 $\alpha_s$ = `r para$GL$as`,
 sun leaves in Panama:
 $\mu_m$ = `r para$PA$LMAm_mu_sun`,
 $\mu_s$ = `r para$PA$LMAs_mu_sun`,
-$\sigma_m$ = `r para$PA$LMAm_sig_sun`, and
-$\alpha_m$ = `r para$PA$am`,
+$\sigma_m$ = `r para$PA$LMAm_sig_sun`,
+$\alpha_m$ = `r para$PA$am`, and
 $\alpha_s$ = 0,
 shade leaves in Panama:
 $\mu_m$ = `r para$PA$LMAm_mu_shade`,
 $\mu_s$ = `r para$PA$LMAs_mu_shade`,
 $\sigma_m$ = `r para$PA$LMAm_sig_shade`,
 $\alpha_m$ = `r para$PA$am`,
-$\alpha_s$ = 0,
+$\alpha_s$ = 0, and
 $\rho$ = `r para$PA$rho_shade`.
 
 We finally calculated mass dependency (*b*) using the following ordinary least square regression:
@@ -308,13 +312,13 @@ Groups sharing the same letters are not significantly different (P > 0.05; t-tes
 The relationships between mass dependency (*b* in Equation 5 in the main text) and relative variance in LMAs to LMA for the different ranges of the scaling exponent $\alpha_m$ and $\alpha_s$.
 (a) the scaling exponent $\alpha_m$ vary from 0.1 to 1.0 while the scaling exponent $\alpha_s$ is constant ($\alpha_s$ = `r para$GL$as`,).
 (b) the scaling exponent $\alpha_s$ vary from -0.5 to 0.5 while the scaling exponent $\alpha_m$ is constant ($\alpha_m$ = `r para$GL$am`,).
-Solid lines indicate simulated medians and shaded regions indicate 95% CI.
+Solid lines indicate simulated medians and shaded regions indicate 95% confidence intervals.
 The photosynthetic rate (*A*~max~) is primarily mass-dependent (*b* > 0.5), primarily area-dependent (0.5 > *b* > 0) and purely area-dependent (*b* = 0) [@Osnas2018].
 If *b* > 1, then *A*~max~ increases exponentially with LMA, which is not consistent with observed relationships [@Osnas2018].
 Parameter settings:
 $\alpha_0$ = `r para$GL$a0`,
 $\mu_m$ = `r para$GL$LMAm_mu_gl`,
-$\mu_s$ = `r para$GL$LMAs_mu_gl`,
+$\mu_s$ = `r para$GL$LMAs_mu_gl`, and
 $\sigma_m$ = `r para$GL$LMAm_sig_gl`.
 
 \newpage
@@ -344,6 +348,7 @@ $\rho$ = `r para$PA$rho_shade`,
 **`r s_fig("gl_point_np2")`**:
 Measured traits related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are positively correlated with LMA and with estimates (posterior medians) of the metabolic and structural LMA components (LMAm and LMAs, respectively) in the GLOPNET dataset.
 LMAm yields more consistent relationships compared to LMA and LMAs; e.g., evergreen and deciduous leaves align along a single relationship in panel b, but not in panels a or c.
+Pearson correlation coefficients (*r*) for LMA (left column) and posterior medians of Pearson correlation coefficients ($\bar{r}$) for LMAm (middle column) and LMAs (right column) are shown.
 
 \newpage
 
@@ -356,7 +361,7 @@ Partial regression plots for nitrogen, phosphorus and cellulose per-unit leaf ar
 (a) LMAs variation is controlled.
 (b) LMAm variation is controlled.
 The partial regression plots show separation between sun and shade when controlling for LMAs variation (i.e., LMAs does not explain the sun/shade difference), but overlapping distributions of sun and shade when controlling for LMAm variation (i.e., LMAm does explain the sun/shade difference).
-Partial correlation coefficients ($\rho$) are shown.
+Posterior medians of partial correlation coefficients ($\bar{\rho}$) are shown.
 
 \newpage
 
