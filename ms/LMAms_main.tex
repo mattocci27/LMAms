@@ -189,7 +189,7 @@
 \date{}
 
 \begin{document}
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, interior hidden, frame hidden, breakable, enhanced]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, interior hidden, borderline west={3pt}{0pt}{shadecolor}, frame hidden, breakable, sharp corners, enhanced]}{\end{tcolorbox}}\fi
 
 \textbf{Running title}: Metabolic and structural leaf mass
 
@@ -1541,12 +1541,12 @@ highest to lowest cross-validation performance. Lower approximate
 leave-one-out cross-validation information criterion (LOOIC) indicates
 better predictive accuracy. Two model forms were considered for GLOPNET
 data: \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area}, and LL
-were modeled as power laws of LMA (one-dimensional model) or both LMAp
+were modeled as power laws of LMA (one-dimensional model) or both LMAm
 and LMAs (two-dimensional model; see Eqs. 2, 3, and 4a). We also
 considered three light-dependent forms for LL in the Panama dataset (as
 in 4b), which reports the canopy position (sun vs.~shade) for each leaf
-sample: LMA and light (one-dimensional); LMAp, LMAs, and light
-(two-dimensional); and LMAp, leaf structural density (LSD = LMAs/LT),
+sample: LMA and light (one-dimensional); LMAm, LMAs, and light
+(two-dimensional); and LMAm, leaf structural density (LSD = LMAs/LT),
 and light (two-dimensional). We combined the two-dimensional model forms
 with four types of parameter constraints: (i) \(\alpha_s\) = 0 and
 \(\beta_m\) = 0, (ii) \(\beta_m\) = 0, (iii) \(\alpha_s\) = 0, and (iv)
@@ -1635,14 +1635,14 @@ Effect of light on LL (\(\theta\)) & - & \textbf{-0.83 {[}-1.116,
 
 \caption{\label{fig-hypo}Example of a two-dimensional functional space
 that can result in either a two- or one-dimensional trait space,
-depending on how metabolic traits are normalized. (A) Hypothetical
+depending on how metabolic traits are normalized. (a) Hypothetical
 independent variation in two leaf mass per area (LMA) components:
 metabolic leaf mass per area (LMAm, which largely determines per-area
 values of photosynthesis, respiration, and nutrient concentrations) and
 structural leaf mass per area (LMAs, which determines leaf toughness but
-has little effect on metabolic traits). (B) Two-dimensional relationship
+has little effect on metabolic traits). (b) Two-dimensional relationship
 between photosynthetic capacity (\emph{A}\textsubscript{max}) per-unit
-leaf area and total LMA (equal to LMAm + LMAs). (C) One-dimensional
+leaf area and total LMA (equal to LMAm + LMAs). (c) One-dimensional
 relationship between \emph{A}\textsubscript{max} per-unit leaf mass and
 total LMA. LMAm and LMAs are simulated from a hypothetical scenario of
 lognormal distributions with medians of 80 and standard deviations of
@@ -1672,9 +1672,10 @@ medians of Pearson correlation coefficients (\(\bar{r}\)) or partial
 correlation coefficients (\(\bar{\rho}\)) for LMAm (middle column) and
 LMAs (right column) are shown. Note that LL was modeled by LMAs alone
 due to improved model performance with this parameter constraint (Table
-1). Therefore, \emph{r} is reported for LL (single predictor variable),
-whereas (\(\bar{\rho}\)) is reported for \emph{A}\textsubscript{area}
-and \emph{R}\textsubscript{area} (multiple predictor variables).}
+1). Therefore, (\(\bar{r}\)) is reported for LL (single predictor
+variable), whereas (\(\bar{\rho}\)) is reported for
+\emph{A}\textsubscript{area} and \emph{R}\textsubscript{area} (multiple
+predictor variables).}
 
 \end{figure}
 
@@ -1689,13 +1690,12 @@ and \emph{R}\textsubscript{area} (multiple predictor variables).}
 \caption{\label{fig-pa_point}Observed and estimated leaf-trait
 relationships in the Panama dataset. Estimates are from the best Panama
 model (Table 1), which included effects of light on LL. Details as for
-Fig.~\ref{fig-gl_point}. Results for other LL models are summarized in
-Table SX. Note that \emph{A}\textsubscript{area} and LL were modeled by
-LMAp and LMAs alone, respectively, due to improved model performance
-with these parameter constraints (Table 1). The results shown here
-include all leaves in the Panama dataset. The observed separation of LL
-between sun and shade leaves is accounted for in the model predictions
-Fig.~\ref{fig-ll_point}.}
+Fig.~\ref{fig-gl_point}. Note that \emph{A}\textsubscript{area} and LL
+were modeled by LMAm and LMAs alone, respectively, due to improved model
+performance with these parameter constraints (Table 1). The results
+shown here include all leaves in the Panama dataset. The observed
+separation of LL between sun and shade leaves is accounted for in the
+model predictions Fig.~\ref{fig-ll_point}.}
 
 \end{figure}
 
@@ -1708,7 +1708,7 @@ Fig.~\ref{fig-ll_point}.}
 }
 
 \caption{\label{fig-ll_point}Relationship between leaf lifespan (LL) and
-LMAs in the Panama dataset, afeter accounting for the effects of light
+LMAs in the Panama dataset, after accounting for the effects of light
 (suv vs.~shade leaves; see Eq. 4b). The dashed line indicates the 1:1
 relationship expected for residuals on the log-scale. The posterior
 medians of the partial correlation coefficient (\(\bar{\rho}\)) is
@@ -1784,13 +1784,13 @@ included (Fig. S1). Details as for Fig.~\ref{fig-box_de}.}
 }
 
 \caption{\label{fig-mass_prop}Relationships between mass dependency
-(\emph{b} in Eq. 5) and LMAs variance (relative to total LMA variance)
-for the global GLPNET datase,t, sun leaves in Panama, and shade leaves
-in Panama. Solid lines indicate simulated medians and shaded regions
-indicate 95\% CIs. Each point indicates the estimated values from the
-empirical data and represents interspecific variation (e.g., across
-species within a canopy position in the Panama dataset). The y-axis
-values indicates if photosynthetic capacity
+(\emph{b} in Eq. 5) and LMAs variance (relative to total LMA variance;
+Eq. 6) for the global GLPNET dataset, sun leaves in Panama, and shade
+leaves in Panama. Solid lines indicate simulated medians and shaded
+regions indicate 95\% confidence intervals. Each point indicates the
+estimated values from the empirical data and represents interspecific
+variation (e.g., across species within a canopy position in the Panama
+dataset). The y-axis values indicates if photosynthetic capacity
 (\emph{A}\textsubscript{max}) is is primarily mass-dependent (\emph{b}
 \textgreater{} 0.5) or primarily area-dependent (0.5 \textgreater{}
 \emph{b} \textgreater{} 0), with \emph{b} near 0 indicating purely
