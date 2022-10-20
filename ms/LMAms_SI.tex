@@ -241,7 +241,7 @@ within and among plant species}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, enhanced, sharp corners, interior hidden, breakable, frame hidden, boxrule=0pt]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, enhanced, frame hidden, borderline west={3pt}{0pt}{shadecolor}, sharp corners, boxrule=0pt, interior hidden]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -280,41 +280,36 @@ assumed to have a multivariate normal distribution as following:
 \]
 
 where E{[}\(\cdot\){]} indicates expected value; \(\boldsymbol{\Sigma}\)
-indicates a covariance matrix. Expected values are based on Eqs. 2-4 in
+indicates a covariance matrix. Expected values are based on Eqs. 2- 4 in
 the main text.
 
 We used non-informative or weakly informative prior distributions
 (\protect\hyperlink{ref-Lemoine2019}{Lemoine, 2019}). The covariance
 mkatrix in Eq. S1 was decomposed as
-\({\mathbf \Sigma} = {\mathrm diag}({\mathbf \sigma}){\mathbf \Omega}{\mathrm diag}({\mathbf \sigma}) = {\mathrm diag}({\mathbf \sigma}){\mathbf L}{\mathbf L}\prime {\mathrm diag}({\mathbf \sigma})\)
-using a Cholesky decomposition, where \({\mathbf \sigma}\) is a vector
+\({\mathbf \Sigma} = \mathrm {diag}(\mathbf {\sigma}){\mathbf \Omega}\mathrm {diag}({\mathbf \sigma}) = \mathrm {diag}({\mathbf \sigma}){\mathbf L}{\mathbf L}\prime \mathrm {diag}({\mathbf \sigma})\)
+using a Cholesky decomposition, where \(\mathbf {\sigma}\) is a vector
 of \(\sigma_{1}\), \(\sigma_{2}\), and \(\sigma_{3}\);
 \({\mathbf \Omega}\) is a correlation matrix of \(\rho_{12}\),
 \(\rho_{13}\), and \(\rho_{23}\); and \textbf{L} is a lower triangular
-matrix. Instead of assigning prior distributions on directly, priors
-were assigned on and \textbf{L} to avoid a strong dependence between and
+matrix. Instead of assigning prior distributions on
+\(\boldsymbol{\Sigma}\) directly, priors were assigned on
+\({\mathbf \sigma}\) and \textbf{L} to avoid a strong dependence between
+\({\mathbf \sigma}\) and \({\mathbf \Omega}\)
 (\protect\hyperlink{ref-Alvarez2014}{Alvarez et al., 2014};
 \protect\hyperlink{ref-Lewandowski2009}{Lewandowski et al., 2009}). A
 prior for \textbf{L} was specified as a so-called LKJ distribution with
 shape parameter 2 (\protect\hyperlink{ref-Lewandowski2009}{Lewandowski
 et al., 2009}), which is weakly informative for the correlation matrix.
-A prior for \({\mathrm diag}({\mathbf \sigma})\) was specified as a
-Half-Cauchy distribution with location 0 and scale 2.5, which is weakly
-informative and allows for occasional large coefficients while still
-performing a reasonable amount of shrinkage for coefficients near zero
-(\protect\hyperlink{ref-Gelman2008}{Gelman et al., 2008}).
-
 A prior for \(\mathbf{\sigma}\) was specified as a Half-Cauchy
-distribution with location 0 and scale 5, which is weakly informative
+distribution with location 0 and scale 2.5, which is weakly informative
 and allows for occasional large coefficients while still performing a
 reasonable amount of shrinkage for coefficients near zero
-(\protect\hyperlink{ref-Gelman2008}{Gelman et al., 2008}).
-
-Priors for \(\alpha_{0,m,s}\), \(\beta_{0,m,s}\), and \(\gamma_{0,m,s}\)
-in Eqs. 4-6 were weakly informative and specified as normal
-distributions with mean 0 and standard deviation 5. Priors for
-\emph{f\textsubscript{i}} in Eqs. 1-4 were non-informative and specified
-as uniform distributions with range (0, 1).
+(\protect\hyperlink{ref-Gelman2008}{Gelman et al., 2008}). Priors for
+\(\alpha_{0,m,s}\), \(\beta_{0,m,s}\), and \(\gamma_{0,m,s}\) in Eqs. 2-
+4 were weakly informative and specified as normal distributions with
+mean 0 and standard deviation 5. Priors for \emph{f\textsubscript{i}} in
+Eqs. 1- 4 were non-informative and specified as uniform distributions
+with range (0, 1).
 
 \newpage
 
@@ -378,13 +373,14 @@ transitions.
 Although many parameters showed large Rhat values, which suggests that
 the posterior distributions were not converged well, we checked the
 regression coefficients for the GLOPNET dataset (\(\alpha_{0, m, s}\),
-\(\beta_{0, s}\), and \(\gamma_{0, m, s}\) in Eqs. 2-4 in the main
+\(\beta_{0, s}\), and \(\gamma_{0, m, s}\) in Eqs. 2- 4 in the main
 text). There are 10 independent simulations (randomizations) in total.
 Points and lines indicate posterior medians and 95\% credible intervals
 (CIs), respectively. Although intercepts were significant, the scaling
-parameters in the randomized datasets did not show any patterns. Thus,
-the tests with randomized data indicate that our model is not inherently
-prone to overfitting or to producing patterns from noise.
+parameters (\(\alpha_{m, s}\), \(\beta_{s}\), and \(\gamma_{m, s}\)) in
+the randomized datasets did not show any patterns. Thus, the tests with
+randomized data indicate that our model is not inherently prone to
+overfitting or to producing patterns from noise.
 
 \includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/coef_sim_gl.png}
 
@@ -394,9 +390,11 @@ prone to overfitting or to producing patterns from noise.
 \subsection{Figure AS2}\label{figure-as2}}
 
 We also checked the regression coefficients for the Panama dataset
-(\(\alpha_{0, m}\), \(\beta_{0, s}\), \(\gamma_{0, m, s}\) and
-\(\theta\) in Eqs. 2-4 in the main text). Details as for Figure AS1. The
-scaling parameters in the randomized datasets did not show any patterns
+(\(\alpha_{0, m}\), \(\beta_{0, s}\), \(\gamma_{0, m, s}\), and
+\(\theta\) in Eqs. 2- 4 in the main text). Details as for Figure AS1.
+The scaling parameters (\(\alpha_{m}\), \(\beta_{s}\), and
+\(\gamma_{m, s}\)) and the effect of light on leaf lifespan (\(\theta\))
+in the randomized datasets did not show any patterns.
 
 \includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/coef_sim_pa.png}
 
@@ -450,8 +448,9 @@ using a multivariate normal distribution (MVN):
 \end{bmatrix}
 \]
 
-where \(\Sigma\) is the covariance matrix of ln(LMAm) and ln(LMAs),
-\(\rho\) is the correlation coefficient between ln(LMAm) and ln(LMAs).
+where \(\boldsymbol{\Sigma}\) is the covariance matrix of ln(LMAm) and
+ln(LMAs), \(\rho\) is the correlation coefficient between ln(LMAm) and
+ln(LMAs).
 
 We used the empirical estimates for \(\mu_m\), \(\mu_s\), \(\sigma_m\),
 and \(\rho\) while with changing \(\sigma_s\) between ln(1.01) and
@@ -463,11 +462,11 @@ obtained from the above simulation:
 \]
 
 Parameter settings are as following, GLOPNET: \(\mu_m\) = 56.5,
-\(\mu_s\) = 61.2, \(\sigma_m\) = 0.83, \(\alpha_m\) = 0.28, \(\alpha_s\)
-= -0.13, sun leaves in Panama: \(\mu_m\) = 47.3, \(\mu_s\) = 30.1,
-\(\sigma_m\) = 1.58, and \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, shade
-leaves in Panama: \(\mu_m\) = 7.6, \(\mu_s\) = 26.7, \(\sigma_m\) =
-1.95, \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, \(\rho\) = -0.47.
+\(\mu_s\) = 61.2, \(\sigma_m\) = 0.83, \(\alpha_m\) = 0.28, and
+\(\alpha_s\) = -0.13, sun leaves in Panama: \(\mu_m\) = 47.3, \(\mu_s\)
+= 30.1, \(\sigma_m\) = 1.58, \(\alpha_m\) = 0.56, and \(\alpha_s\) = 0,
+shade leaves in Panama: \(\mu_m\) = 7.6, \(\mu_s\) = 26.7, \(\sigma_m\)
+= 1.95, \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, and \(\rho\) = -0.47.
 
 We finally calculated mass dependency (\emph{b}) using the following
 ordinary least square regression:
@@ -548,16 +547,16 @@ while the scaling exponent \(\alpha_s\) is constant (\(\alpha_s\) =
 -0.13,). (b) the scaling exponent \(\alpha_s\) vary from -0.5 to 0.5
 while the scaling exponent \(\alpha_m\) is constant (\(\alpha_m\) =
 0.28,). Solid lines indicate simulated medians and shaded regions
-indicate 95\% CI. The photosynthetic rate (\emph{A}\textsubscript{max})
-is primarily mass-dependent (\emph{b} \textgreater{} 0.5), primarily
-area-dependent (0.5 \textgreater{} \emph{b} \textgreater{} 0) and purely
-area-dependent (\emph{b} = 0) (\protect\hyperlink{ref-Osnas2018}{Osnas
-et al., 2018}). If \emph{b} \textgreater{} 1, then
-\emph{A}\textsubscript{max} increases exponentially with LMA, which is
-not consistent with observed relationships
-(\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}). Parameter
-settings: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.5, \(\mu_s\) = 61.2,
-\(\sigma_m\) = 0.83.
+indicate 95\% confidence intervals. The photosynthetic rate
+(\emph{A}\textsubscript{max}) is primarily mass-dependent (\emph{b}
+\textgreater{} 0.5), primarily area-dependent (0.5 \textgreater{}
+\emph{b} \textgreater{} 0) and purely area-dependent (\emph{b} = 0)
+(\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}). If \emph{b}
+\textgreater{} 1, then \emph{A}\textsubscript{max} increases
+exponentially with LMA, which is not consistent with observed
+relationships (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}).
+Parameter settings: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.5, \(\mu_s\) =
+61.2, and \(\sigma_m\) = 0.83.
 
 \newpage
 
@@ -588,7 +587,9 @@ the metabolic and structural LMA components (LMAm and LMAs,
 respectively) in the GLOPNET dataset. LMAm yields more consistent
 relationships compared to LMA and LMAs; e.g., evergreen and deciduous
 leaves align along a single relationship in panel b, but not in panels a
-or c.
+or c. Pearson correlation coefficients (\emph{r}) for LMA (left column)
+and posterior medians of Pearson correlation coefficients (\(\bar{r}\))
+for LMAm (middle column) and LMAs (right column) are shown.
 
 \newpage
 
@@ -605,7 +606,8 @@ regression plots show separation between sun and shade when controlling
 for LMAs variation (i.e., LMAs does not explain the sun/shade
 difference), but overlapping distributions of sun and shade when
 controlling for LMAm variation (i.e., LMAm does explain the sun/shade
-difference). Partial correlation coefficients (\(\rho\)) are shown.
+difference). Posterior medians of partial correlation coefficients
+(\(\bar{\rho}\)) are shown.
 
 \newpage
 
