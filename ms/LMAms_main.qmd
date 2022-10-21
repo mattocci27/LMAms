@@ -590,7 +590,7 @@ The results shown here include all leaves in the Panama dataset.
 \newpage
 
 ![
-Variance partitioning on LMA components between and within leaf habits (evergreen vs. deciuous) for the GLOPNET dataset and the Panama dataset, and between and within sites (wet vs. dry) and light (sun vs. shade) for the Panama dataset.
+Variance partitioning on LMA components between and within leaf habits (evergreen vs. deciduous) for the GLOPNET dataset and the Panama dataset, and between and within sites (wet vs. dry) and light (sun vs. shade) for the Panama dataset.
 To isolate the effects of intraspecific variation, the Panama results shown here only include species for which both sun and shade leaves were available.
 ](`r here::here("figs/vpart_intra.png")`){#fig-vpart}
 
@@ -627,7 +627,7 @@ If *b* > 1, then *A*~max~ increases exponentially with LMA, which is not consist
 \newpage
 
 ![
-Measured traits in the Panama dataset related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are better correlated with estimates (posterior medians) of the metabolic LMA component (LMAm) than the strctural component (LMAs), whereas the opposite patten occurs for a measured structural trait (cellulose per-unit leaf area; CL~area~).
+Measured traits in the Panama dataset related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are better correlated with estimates (posterior medians) of the metabolic LMA component (LMAm) than the structural component (LMAs), whereas the opposite pattern occurs for a measured structural trait (cellulose per-unit leaf area; CL~area~).
 *N*~area~, *P*~area~, and CL~area~ data were not used to fit the models, and are presented here as independent support for the model results.
 Pearson correlation coefficients (*r*) for LMA and the posterior medians of Pearson correlation coefficients ($\bar{r}$) for LMAm and LMAs are shown.
 Analogous results were obtained for *N*~area~ and *P*~area~ for GLOPNET (`r s_fig("gl_point_np2")`).
