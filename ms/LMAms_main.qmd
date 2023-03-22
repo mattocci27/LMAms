@@ -2,7 +2,7 @@
 fontsize: 12pt
 geometry: margin=1in
 link-citations: yes
-csl: apa.csl
+csl: ecology.csl
 bibliography: [LMA.bib]
 crossref:
   fig-title: Fig.
@@ -307,14 +307,14 @@ $$
 
 where LMA is the sum of LMAm and LMAs `r eq("LMA")`, *c* is a fitted constant, and *b* is an index of mass-dependence as illustrated by the following cases [@Osnas2013; @Osnas2018]: if *b* = 0, then *A*~area~ is independent of LMA, which implies that whole-leaf *A*~max~ is proportional to leaf area;
 conversely, if *b* = 1, then *A*~area~ is proportional to LMA, which implies that whole-leaf *A*~max~ is proportional to leaf mass.
-Intermediate cases (0 < *b* < 1), as well as more extreme cases (*b* $\le$ 0 or *b* $\geq$ 1), are also possible, but empirical estimates tend to be between 0 and 1 [@Osnas2018].
+Intermediate cases (0 < *b* < 1), as well as more extreme cases (*b* $\le$ 0 or *b* $\geq$ 1), are also possible, with reported estiamtes being between 0 and 1 [@Osnas2018].
 Note that applying `r eq("mass")` to either mass- or area-normalized *A*~max~ yields equivalent results [@Osnas2018].
 
-For these simulations, we generated LMAm and LMAs values based on their estimated distributions in our GLOPNET and Panama analyses, while varying the variance of LMAs (so that LMAs contributed different fractions of total LMA variance in different simulated datasets).
-Although Panama sun and shade leaves were analyzed together when fitting the LMAm-LMAs models Eqs. `r eq_num("Aarea")` and `r eq_num("LL")`b, they were analyzed separately here due to their different estimated covariance structures (see details below).
+For these simulations, we generated LMAm and LMAs values based on their estimated distributions in our GLOPNET and Panama analyses, while varying the LMAs variance (so that LMAs contributed different fractions of total LMA variance in different simulated datasets).
+Although Panama sun and shade leaves were analyzed together when fitting the LMAm-LMAs models Eqs. `r eq_num("Aarea")` - `r eq_num("LL")`, they were analyzed separately here due to their different estimated covariance structures (see details below).
 
 For GLOPNET and Panama sun leaves, LMAm and LMAs were generated independently of each other, consistent with the low estimated correlations between LMAm and LMAs in these assemblages (see Results).
-Specifically, LMAm values were randomly sampled from a lognormal distribution with the log-scale mean and standard deviation given by our model outputs; and LMAs values were randomly sampled from a lognormal distribution with the log-scale mean given by our model outputs and the log-scale standard deviation varying between log(1.01) and log(10) in different simulated datasets.
+Specifically, LMAm values were randomly sampled from a lognormal distribution with the log-scale mean and standard deviation given by our model outputs; and LMAs values were randomly sampled from a lognormal distribution with the log-scale mean given by our model outputs and the log-scale standard deviation raging from log(1.01) to log(10) across simulated datasets.
 In contrast to GLOPNET and Panama sun leaves, our analysis revealed a negative correlation of *r* = `r para_val$PA$rho_shade` between LMAm and LMAs for Panama shade leaves (see Appendix S3).
 Therefore, we used a multivariate normal distribution with *r* = `r para_val$PA$rho_shade` to generate log(LMAm) and log(LMAs) for the Panama shade simulations.
 Otherwise, the simulation protocol was as described above for GLOPNET and Panama sun leaves.
@@ -341,7 +341,7 @@ We applied this method to the simulated datasets described above and also to est
 Note that Cov(LMA, LMAs)/Var(LMA) can be greter than 100% when there is a negative covariance between LMA and LMAm.
 
 To estimate the variation in each LMA compoment between and within leaf habits (evergreen vs. decidous), sites (wet vs. dry), and light (sun vs. shade), we used ANOVA.
-Those post-hoc analsyes were done on posterior distirbutions of parameters, and we report the results beased on median values.
+Those post-hoc analsyes were performed with posterior median parameter values.
 
 # Results
 
@@ -398,17 +398,17 @@ We then discuss the new insights derived from our analysis and implications for 
 
 *A*~max~ per-unit leaf area (*A*~area~) increased with LMAm and was either unrelated to LMAs (Panama) or decreased with LMAs (GLOPNET; Figs. [-@fig-gl_point]-[-@fig-pa_point] and Table 2).
 The decline in GLOPNET *A*~area~ with increasing LMAs may be due to decreasing mesophyll conductance, which decreases with increasing cell wall thickness [@Evans2009; @Terashima2011; @Onoda2017].
-This trend may be less apparent in our Panama analysis due to the relatively small LMA range (`r lma_val$PA$min`-`r lma_val$PA$max` g m^2^ in Panama, compared to `r lma_val$GL$min`-`r lma_val$GL$max` g m^2^ in GLOPNET) or may be obscured by pooling sun and shade leaves in a single analysis.
-In any case, an increase in *A*~area~ with LMAm but not LMAs, as observed for both GLOPNET and Panama, is consistent with the view that LMA is a composite trait comprised of metabolically active and inactive components [@Poorter2009; @Osnas2018].
+This trend may be less apparent in our Panama analysis due to the relatively small LMA range (`r round(lma_val$PA$min)`-`r round(lma_val$PA$max)` g m^2^ in Panama, compared to `r round(lma_val$GL$min)`-`r round(lma_val$GL$max)` g m^2^ in GLOPNET) or may be obscured by pooling sun and shade leaves in a single analysis.
+In any case, an increase in *A*~area~ with LMAm but not LMAs, as observed for both GLOPNET and Panama, is consistent with the view that LMA is a composite trait comprised of metabolically active and inactive components [@Poorter2009; @Osnas2018; @Lichstein2021].
 
 *R*~dark~ per-unit leaf area (*R*~area~) increased with LMAm and was unrelated to LMAs (Figs. [-@fig-gl_point]-[-@fig-pa_point] and Table 2), consistent with the view that LMAs is comprised of non-metabolic leaf mass components, such as cellulose, lignin, and other fibres [@Onoda2011; @Kitajima2012; @Kitajima2016].
 Median values of LMAs, as a percent of total LMA, were ~60% for evergreen species and ~40% for deciduous species (`r s_fig("box_frac_de")`), and 15-40% for shade leaves and 50-70% for sun leaves (`r s_fig("box_frac_pa")`).
-These estimates align with measurements of cell wall (fibre) content from a global dataset (13.7–76.8%, median 47% of total leaf mass, with higher values for shade than sun leaves [@Onoda2011]) and a Panama study site (Barro Colorado Island, BCI: ~50% mean across species, with higher values for shade leaves [@Kitajima2016]).
+These estimates align with measurements of cell wall (fibre) content from a global dataset (14–77%, median 47% of total leaf mass, with higher values for shade than sun leaves; Onoda et al. 2011) and a Panama study site (Barro Colorado Island, BCI: ~50% mean across species, with higher values for shade leaves; Kitajima et al. 2016).
 
 LL increased with LMAs but was unrelated to LMAm (Figs. [-@fig-gl_point]-[-@fig-pa_point] and Tables 1-2), consistent with well-established relationships between leaf fibre content, toughness, and LL [@Onoda2011; @Onoda2017; @Kitajima2012; @Kitajima2016].
 For a given LMAs, shade leaves had longer LL than sun leaves (see [@fig-pa_point]i and parameter $\theta$ in Table 2).
 Thus, partitioning LMA into LMAm and LMAs is not sufficient to explain the widely observed counter-gradient, whereby LL increases with increasing LMA across species but decreases with increasing LMA within species from shade to sun [@Lusk2008; @Russo2016; @Osnas2018].
-The failure of LMAs to provide robust predictions of LL across canopy positions may reflect how optimal LL depends on light availability [@Kikuzawa1991] and/or variation in toughness for a given value of LMAs.
+The failure of LMAs to provide robust predictions of LL across canopy positions may reflect factors unlreated to leaf toughness - e.g., how optimal LL depends on light availability [@Kikuzawa1991] - as well as variation in leaf toughness for a given value of LMAs.
 In a global meta-analysis, leaf toughness was strongly related to toughness per-unit leaf tissue density, but only weakly related to leaf thickness or density [@Onoda2011].
 Accordingly, on BCI, Panama, the difference between shade and sun leaves was greater for cellulose content (% of leaf mass) than cell wall content (which includes cellulose, as well as other fibres that provide less structural toughness).
 Thus, just as not all LMA is equal, it is almost certainly true that not all LMAs is equal, with some LMAs components (e.g., cellulose) imparting greater toughness and longevity than others (e.g., lignin in secondary cell walls of vascular tissue) [@Kitajima2016].
@@ -424,7 +424,7 @@ Optimal LL theory [@Kikuzawa1991] predicts that LL should increase with toughnes
 Consistent with these predictions, our results indicate an increase in LL with increasing LMAs and decreasing light.
 However, our results do not support a decrease in LL with increasing LMAm (which, along with the environmental conditions, should determine net assimilation rate).
 For example, within each Panama site (wet and dry), *A*~area~ of sun leaves varied by over a factor of four and was strongly determined by LMAm ([@fig-pa_point]b).
-Yet, the best-performing models excluded any effect of LMAm on LL (Table 1).
+Yet, the best-performing models excluded effects of LMAm on LL (Table 1).
 Modeling LL as a function of LMAs, rather than total LMA, partially explains the sun-shade LL difference (compare Figs. [-@fig-pa_point]g and [-@fig-pa_point]i), and explicit consideration of fibre content and toughness may provide a more complete understanding of LL variation with light (see details above).
 Thus, while optimal LL theory provides important insights regarding the coordination of structural toughness and net assimilation rate, toughness itself may provide a sufficient proximate explanation for LL variation.
 
