@@ -580,6 +580,10 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
 #' @title Generates yml file for GL estimates
 #' @para gl_summary cmdstan summary (e.g., fit_7_summary_GL_Aps_LLs)
 #' @para pa_summary cmdstan summary
+# tar_load(gl_summary_ams_bs)
+# tar_load(pa_summary_am_bs_opt)
+# tar_load(gl_res_csv)
+# tar_load(pa_res_csv)
 write_para_yml <- function(gl_summary, pa_summary, gl_res_csv, pa_res_csv) {
   gl <- read_csv(gl_res_csv)
   pa <- read_csv(pa_res_csv)
@@ -587,6 +591,16 @@ write_para_yml <- function(gl_summary, pa_summary, gl_res_csv, pa_res_csv) {
     filter(strata == "CAN")
   shade <- pa |>
     filter(strata != "CAN")
+
+  LMAm_range_gl <- gl |>
+    pull(LMAm) |>
+    range() |>
+    round(2)
+
+  LMAm_range_pa <- pa |>
+    pull(LMAm) |>
+    range() |>
+    round(2)
 
   LMAm_mu_gl <- log(gl$LMAm) |> mean() |> exp() |> round(1)
   LMAs_mu_gl <- log(gl$LMAs) |> mean() |> exp() |> round(1)
@@ -649,6 +663,12 @@ write_para_yml <- function(gl_summary, pa_summary, gl_res_csv, pa_res_csv) {
   writeLines(paste0("  rho_gl: ", rho_gl),
              out,
              sep = "\n")
+  writeLines(paste0("  LMAm_min: ", LMAm_range_gl[1]),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMAm_max: ", LMAm_range_gl[2]),
+             out,
+             sep = "\n")
 
   writeLines(paste0("PA:"),
              out,
@@ -687,6 +707,12 @@ write_para_yml <- function(gl_summary, pa_summary, gl_res_csv, pa_res_csv) {
              out,
              sep = "\n")
   writeLines(paste0("  rho_shade: ", rho_shade),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMAm_min: ", LMAm_range_pa[1]),
+             out,
+             sep = "\n")
+  writeLines(paste0("  LMAm_max: ", LMAm_range_pa[2]),
              out,
              sep = "\n")
   close(out)
