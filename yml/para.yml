@@ -8,10 +8,12 @@ GL:
   LMAm_sig_gl: 0.83
   LMAs_sig_gl: 1
   rho_gl: 0.13
+  LMAm_min: 3.18
+  LMAm_max: 591.48
 PA:
   a0: 0.34
   am: 0.56
-  as:
+  as: 
   sig1: 0.24
   LMAm_mu_sun: 47.3
   LMAs_mu_sun: 30.1
@@ -21,3 +23,5 @@ PA:
   LMAs_mu_shade: 26.7
   LMAm_sig_shade: 1.95
   rho_shade: -0.47
+  LMAm_min: 1.83
+  LMAm_max: 133.43
