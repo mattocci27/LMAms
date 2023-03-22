@@ -189,7 +189,7 @@
 \date{}
 
 \begin{document}
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, enhanced, sharp corners, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, interior hidden, breakable]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, frame hidden, breakable, interior hidden, enhanced, boxrule=0pt, sharp corners]}{\end{tcolorbox}}\fi
 
 \textbf{Running title}: Metabolic and structural leaf mass
 
@@ -969,19 +969,20 @@ with increasing LMA within species from shade to sun
 \protect\hyperlink{ref-Russo2016}{Russo and Kitajima 2016},
 \protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}). The failure of
 LMAs to provide robust predictions of LL across canopy positions may
-reflect how optimal LL depends on light availability
-(\protect\hyperlink{ref-Kikuzawa1991}{Kikuzawa 1991}) and/or variation
-in toughness for a given value of LMAs. In a global meta-analysis, leaf
-toughness was strongly related to toughness per-unit leaf tissue
-density, but only weakly related to leaf thickness or density
-(\protect\hyperlink{ref-Onoda2011}{Onoda et al. 2011}). Accordingly, on
-BCI, Panama, the difference between shade and sun leaves was greater for
-cellulose content (\% of leaf mass) than cell wall content (which
-includes cellulose, as well as other fibres that provide less structural
-toughness). Thus, just as not all LMA is equal, it is almost certainly
-true that not all LMAs is equal, with some LMAs components (e.g.,
-cellulose) imparting greater toughness and longevity than others (e.g.,
-lignin in secondary cell walls of vascular tissue)
+reflect factors unlreated to leaf toughness - e.g., how optimal LL
+depends on light availability
+(\protect\hyperlink{ref-Kikuzawa1991}{Kikuzawa 1991}) - as well as
+variation in leaf toughness for a given value of LMAs. In a global
+meta-analysis, leaf toughness was strongly related to toughness per-unit
+leaf tissue density, but only weakly related to leaf thickness or
+density (\protect\hyperlink{ref-Onoda2011}{Onoda et al. 2011}).
+Accordingly, on BCI, Panama, the difference between shade and sun leaves
+was greater for cellulose content (\% of leaf mass) than cell wall
+content (which includes cellulose, as well as other fibres that provide
+less structural toughness). Thus, just as not all LMA is equal, it is
+almost certainly true that not all LMAs is equal, with some LMAs
+components (e.g., cellulose) imparting greater toughness and longevity
+than others (e.g., lignin in secondary cell walls of vascular tissue)
 (\protect\hyperlink{ref-Kitajima2016}{Kitajima et al. 2016}).
 
 In summary, the dependencies of \emph{A}\textsubscript{area},
@@ -1014,7 +1015,7 @@ environmental conditions, should determine net assimilation rate). For
 example, within each Panama site (wet and dry),
 \emph{A}\textsubscript{area} of sun leaves varied by over a factor of
 four and was strongly determined by LMAm (Fig.~\ref{fig-pa_point}b).
-Yet, the best-performing models excluded any effect of LMAm on LL (Table
+Yet, the best-performing models excluded effects of LMAm on LL (Table
 1). Modeling LL as a function of LMAs, rather than total LMA, partially
 explains the sun-shade LL difference (compare Figs. \ref{fig-pa_point}g
 and \ref{fig-pa_point}i), and explicit consideration of fibre content
@@ -1059,16 +1060,19 @@ self-shading within a leaf
 (\protect\hyperlink{ref-Terashima2011}{Terashima et al. 2011}). Both of
 these factors would decrease the marginal benefit of additional units of
 LMAm, and this marginal decrease may be especially strong in GLOPNET due
-to the large global LMA range (and the large range of model-inferred
-LMAm: compare GLOPNET to Panama in Fig.~\ref{fig-box_de}). Finally,
-while much of the model-inferred LMAm may be directly or indirectly
-related to photosynthesis, `LMAm' may also include metabolic leaf mass
-unrelated to photosynthesis and/or non-metabolic leaf mass that is
-statistically assigned (by default) to LMAm simply because it does not
-affect LL. For example, non-structural carbohydrates, which are ignored
-in our model, can account for up to 20\% of leaf mass in evergreen
-species (\protect\hyperlink{ref-Martinez-Vilalta2016}{Martínez‐Vilalta
-et al. 2016}). A more refined model that accounts for more than two LMA
+to its large LMAm range (3.2 - 591 g m\textsuperscript{2}) relative to
+Panama (3.2 - 591 g m\textsuperscript{2}).
+
+Finally, while much of the model-inferred LMAm may be directly or
+indirectly related to photosynthesis, `LMAm' may also include metabolic
+leaf mass unrelated to photosynthesis and/or non-metabolic leaf mass
+that is statistically assigned (by default) to LMAm simply because it
+does not affect LL. For example, non-structural carbohydrates, which are
+ignored in our model, can account for 5-8\% of leaf mass in evergreen
+species (\protect\hyperlink{ref-Wurth2005}{Würth et al. 2005}) and up to
+20\% of leaf mass in evergreen species
+(\protect\hyperlink{ref-Martinez-Vilalta2016}{Martínez‐Vilalta et al.
+2016}). A more refined model that accounts for more than two LMA
 components may reveal stronger relationships between metabolic traits
 (\emph{A}\textsubscript{area} and \emph{R}\textsubscript{area}) and
 LMAm.
@@ -1136,8 +1140,8 @@ function is multi-dimensional, analyses of leaf nitrogen indicate
 significant independent contributions of metabolic (e.g., rubisco) and
 structural leaf nitrogen components
 (\protect\hyperlink{ref-Dong2017}{Dong et al. 2017},
-\protect\hyperlink{ref-Dong2022a}{\textbf{Dong2022a?}}), with over 20\%
-of total leaf nitrogen in high-LMA leaves occurring in cell walls
+\protect\hyperlink{ref-Dong2022}{2022}), with over 20\% of total leaf
+nitrogen in high-LMA leaves occurring in cell walls
 (\protect\hyperlink{ref-Onoda2017}{Onoda et al. 2017}). Similarly,
 partitioning leaf phosphorus reveals substantial, LMA-dependent
 metabolic, structural, and nucleic acid fractions
@@ -1155,9 +1159,10 @@ for~helpful~comments that improved the paper. Mirna Samaniego and Milton
 Garica provided indispensable assistance in data collection. We thank
 the Smithsonian Tropical Research Institute (STRI), the Tropical~Canopy
 Biology Program at STRI and the Andrew W. Mellon Foundation for
-supporting this work. MK was supported by a Postdoctoral~Fellowship
-for~Research Abroad from the Japan Society for the Promotion of Science
-and a CAS President's International Fellowship Initiative (2020FYB0003).
+supporting this work. MK was supported by a CAS President's
+International Fellowship Initiative (2020FYB0003), a ZiHui (Wisdom)
+Yunnan Program (202203AM140026), and a Postdoctoral~Fellowship
+for~Research Abroad from the Japan Society for the Promotion of Science.
 
 \hypertarget{author-contributions}{%
 \section{Author contributions}\label{author-contributions}}
@@ -1207,6 +1212,14 @@ Dong, N., I. C. Prentice, B. J. Evans, S. Caddy-Retalic, A. J. Lowe, and
 I. J. Wright. 2017. \href{https://doi.org/10.5194/bg-14-481-2017}{Leaf
 nitrogen from first principles: Field evidence for adaptive variation
 with climate}. Biogeosciences 14:481--495.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Dong2022}{}}%
+Dong, N., I. C. Prentice, I. J. Wright, H. Wang, O. K. Atkin, K. J.
+Bloomfield, T. F. Domingues, S. M. Gleason, V. Maire, Y. Onoda, H.
+Poorter, and N. G. Smith. 2022.
+\href{https://doi.org/10.1111/1365-2745.13967}{Leaf nitrogen from the
+perspective of optimal plant function}. Journal of Ecology
+110:2585--2602.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Evans2009}{}}%
 Evans, J. R., R. Kaldenhoff, B. Genty, and I. Terashima. 2009.
@@ -1516,6 +1529,11 @@ X. Xu. 2014. \href{https://doi.org/10.1093/aob/mcu077}{Plant functional
 types in {Earth} system models: {Past} experiences and future directions
 for application of dynamic vegetation models in high-latitude
 ecosystems}. Annals of Botany 114:1--16.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Wurth2005}{}}%
+Würth, M. K. R., S. Peláez-Riedl, S. J. Wright, and C. Körner. 2005.
+\href{https://doi.org/10.1007/s00442-004-1773-2}{Non-structural
+carbohydrate pools in a tropical forest}. Oecologia 143:11--24.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Xu2017}{}}%
 Xu, X., D. Medvigy, S. Joseph Wright, K. Kitajima, J. Wu, L. P. Albert,
