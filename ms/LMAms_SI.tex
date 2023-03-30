@@ -241,7 +241,7 @@ within and among plant species}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, boxrule=0pt, sharp corners, borderline west={3pt}{0pt}{shadecolor}, frame hidden, enhanced, interior hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, enhanced, boxrule=0pt, breakable, interior hidden, frame hidden, sharp corners]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -483,13 +483,8 @@ Parameter values were, \(\mu_m\) = 56.5, \(\mu_s\) = 61.2, \(\sigma_m\)
 = 0, and \(\rho\) = -0.47. for Panama shade leaves.
 
 For each simulated dataset, we quantified the mass-dependence (\emph{b})
-using the ordinary least squares regression from Eq. 5:
-
-\[
-\mathrm{ln}(A_{\mathrm{area} \, i}) = \mathrm{ln}(c) + b \mathrm{ln}(\mathrm{LMA}_{i}).
-\]
-
-We repeated these steps 1000 times for each set of parameter values.
+using the ordinary least squares regression from Eq. 5. We repeated
+these steps 1000 times for each set of parameter values.
 
 \newpage
 
@@ -510,7 +505,7 @@ include all leaves in the Panama dataset, whereas Figs. 6- 7 in the main
 text only include Panama species for which both sun and shade leaves
 were available. Boxplot symbols as in Figs. 6- 7. Groups sharing the
 same letters are not significantly different (P \textgreater{} 0.05;
-t-tests). Estiamtes are from the best Panama model (Table 2).
+t-tests). Estiamtes are from the best Panama model (Table 1).
 
 \newpage
 
@@ -521,13 +516,14 @@ t-tests). Estiamtes are from the best Panama model (Table 2).
 
 \textbf{Fig. S2}: Boxplots comparing posterior medians of the latent
 variable \emph{f} (the fraction of total LMA comprised by LMAm) across
-deciduous (Dev) and evergreen (Eve) leaves. (i) GLOPNET dataset. (ii)
-All leaves for Panama species. (iii) Leaves for Panama species for which
-both sun and shade leaves were available. Note that LMAm = \emph{f}
-\(\times\) LMA, and LMAs = (1 -- \emph{f}) \(\times\) LMA. The best
-model in the table 1 were used. Boxplot symbols as in Fig. 6. Groups
-sharing the same letters are not significantly different (P
-\textgreater{} 0.05; t-tests).
+deciduous (Dev) and evergreen (Eve) leaves. Left: GLOPNET dataset.
+Middle: All leaf samples in the Panama dataset. Right: Paired leaf
+samples in the Panama dataset (species for which both sun and shade
+leaves were available). Note that LMAm = \emph{f} \(\times\) LMA, and
+LMAs = (1 -- \emph{f}) \(\times\) LMA. Boxplot symbols as in Fig. 6.
+Groups sharing the same letters are not significantly different (P
+\textgreater{} 0.05; t-tests). Estiamtes are from the best GLOPNET and
+Panama models (Table 1).
 
 \newpage
 
@@ -538,13 +534,14 @@ sharing the same letters are not significantly different (P
 
 \textbf{Fig. S3}: Boxplots comparing posterior medians of the latent
 variable \emph{f} (the fraction of total LMA comprised by LMAm) across
-sites (wet and dry) and canopy strata (sun and shade) in Panama. The
-left panel shows leaves for Panama species for which both sun and shade
-leaves were available; and the right panel shows all leaves for Panama.
-Note that LMAm = \emph{f} \(\times\) LMA, and LMAs = (1 -- \emph{f})
-\(\times\) LMA. The best model in the Table 1 were used. Boxplot symbols
-as in Fig. 7. Groups sharing the same letters are not significantly
-different (P \textgreater{} 0.05; t-tests).
+sites (wet and dry) and canopy strata (sun and shade) in Panama. Left:
+All leaf samples in the Panama dataset. Right: Paired leaf samples in
+the Panama dataset (species for which both sun and shade leaves were
+available). Note that LMAm = \emph{f} \(\times\) LMA, and LMAs = (1 --
+\emph{f}) \(\times\) LMA. Boxplot symbols as in Fig. 7. Groups sharing
+the same letters are not significantly different (P \textgreater{} 0.05;
+t-tests). Estiamtes are from the best GLOPNET and Panama models (Table
+1).
 
 \newpage
 
@@ -553,24 +550,23 @@ different (P \textgreater{} 0.05; t-tests).
 
 \includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/mass_prop_sim.png}
 
-\textbf{Fig. S4}: The relationships between mass dependency (\emph{b} in
-Equation 5 in the main text) and relative variance in LMAs to LMA for
-the different ranges of the scaling exponent \(\alpha_m\) and
-\(\alpha_s\). (a) the scaling exponent \(\alpha_m\) vary from 0.1 to 1.0
-while the scaling exponent \(\alpha_s\) is constant (\(\alpha_s\) =
--0.13,). (b) the scaling exponent \(\alpha_s\) vary from -0.5 to 0.5
-while the scaling exponent \(\alpha_m\) is constant (\(\alpha_m\) =
-0.28,). Solid lines indicate simulated medians and shaded regions
-indicate 95\% confidence intervals. The photosynthetic rate
-(\emph{A}\textsubscript{max}) is primarily mass-dependent (\emph{b}
-\textgreater{} 0.5), primarily area-dependent (0.5 \textgreater{}
-\emph{b} \textgreater{} 0) and purely area-dependent (\emph{b} = 0)
-(\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}). If \emph{b}
-\textgreater{} 1, then \emph{A}\textsubscript{max} increases
-exponentially with LMA, which is not consistent with observed
-relationships (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}).
-Parameter settings: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.5, \(\mu_s\) =
-61.2, and \(\sigma_m\) = 0.83.
+\textbf{Fig. S4}: The relationships between mass dependency of
+\emph{A}\textsubscript{max} (\emph{b} in Eq. 5 in the main text) and
+LMAs variance (relative to total LMA variance; Eq. 6) for the different
+values of the scaling exponents \(\alpha_m\) and \(\alpha_s\) (Eq. 2).
+(a) The scaling exponent \(\alpha_m\) varies from 0.1 to 1.0 while the
+scaling exponent \(\alpha_s\) is constant (\(\alpha_s\) = -0.13). (b)
+The scaling exponent \(\alpha_s\) vary from -0.5 to 0.5 while the
+scaling exponent \(\alpha_m\) is constant (\(\alpha_m\) = 0.28). Solid
+lines indicate simulated medians and shaded regions indicate 95\%
+confidence intervals. Empirical estimates of \emph{b} are typically
+between 0 and 1 (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}).
+\emph{A}\textsubscript{max} is primarily mass-dependent if \emph{b}
+\textgreater{} 0.5, and primarily area-dependent if 0.5 \textgreater{}
+\emph{b} \textgreater{} 0 (\protect\hyperlink{ref-Osnas2018}{Osnas et
+al., 2018}). Parameter values are based on the best GLOPNET model (Table
+1): \(\alpha_0\) = 1.77, \(\mu_m\) = 56.5, \(\mu_s\) = 61.2, and
+\(\sigma_m\) = 0.83.
 
 \newpage
 
@@ -579,12 +575,14 @@ Parameter settings: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.5, \(\mu_s\) =
 
 \includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/mass_prop_comp.png}
 
-\textbf{Fig. S5}: The relationships between mass dependency (\emph{b} in
-Equation 5 in the main text) and relative variance in LMAs to LMA for
-the simulated dataset generated by a normal distribution (N) and a
-multivariate normal distribution (MVN). Parameter settings: \(\alpha_0\)
-= 0.34, \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, \(\mu_m\) = 7.6,
-\(\mu_s\) = 26.7, \(\sigma_m\) = 1.95, and \(\rho\) = -0.47,
+\textbf{Fig. S5}: The relationships between mass dependency of
+\emph{A}\textsubscript{max} (\emph{b} in Eq. 5 in the main text) and
+LMAs variance (relative to total LMA variance; Eq. 6) for simulated
+datasets generated from a normal distribution (N) vs.~a multivariate
+normal distribution (MVN). Parameter values are based on the best Panama
+model (Table 1): \(\alpha_0\) = 0.34, \(\alpha_m\) = 0.56, \(\alpha_s\)
+= 0, \(\mu_m\) = 7.6, \(\mu_s\) = 26.7, \(\sigma_m\) = 1.95, and
+\(\rho\) = -0.47.
 
 \newpage
 
@@ -634,7 +632,7 @@ difference). Posterior medians of partial correlation coefficients
 of LMAm vs LMAs in the (a) GLOPNET and (b) Panama datasets. The
 non-significant or weak \emph{r} values indicate that a single axis
 could not accurately represent the two-dimensional space. Symbols as in
-Main Text Figs. 2- 3.
+main text Figs. 2- 3.
 
 \newpage
 
