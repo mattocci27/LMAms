@@ -71,6 +71,9 @@ fig("box_pa")
 fig("mass_prop")
 fig("pa_npc")
 
+table("looic")
+table("params")
+
 eq("LMA")
 eq("Aarea")
 eq("Rarea")
@@ -83,7 +86,7 @@ eq("var")
 
 # Appendix S1: Prior information
 
-The logarithms of *A*~area~, *R*~area~, and LL for leaf sample *i* were assumed to have a multivariate normal distribution as following:
+The logarithms of *A*~area~, *R*~area~, and LL for leaf sample *i* were assumed to have a multivariate normal distribution:
 
 $$
 \begin{aligned}
@@ -105,11 +108,11 @@ $$
 \end{aligned}
 $$
 
-where E[$\cdot$] indicates expected value; $\boldsymbol{\Sigma}$ indicates a covariance matrix.
+where E[$\cdot$] indicates expected value and $\boldsymbol{\Sigma}$ indicates a covariance matrix.
 Expected values are based on Eqs. `r eq_num("Aarea")`-`r eq_num("LL")` in the main text.
 
 We used non-informative or weakly informative prior distributions [@Lemoine2019].
-The covariance mkatrix in Eq. S1 was decomposed as ${\mathbf \Sigma} = \mathrm {diag}(\mathbf {\sigma}){\mathbf \Omega}\mathrm {diag}({\mathbf \sigma}) = \mathrm {diag}({\mathbf \sigma}){\mathbf L}{\mathbf L}\prime \mathrm {diag}({\mathbf \sigma})$ using a Cholesky decomposition, where $\mathbf {\sigma}$ is a vector of $\sigma_{1}$, $\sigma_{2}$, and $\sigma_{3}$;  ${\mathbf \Omega}$ is a correlation matrix of $\rho_{12}$, $\rho_{13}$, and $\rho_{23}$; and **L** is a lower triangular matrix.
+The covariance matrix in Eq. S1 was decomposed as ${\mathbf \Sigma} = \mathrm {diag}(\mathbf {\sigma}){\mathbf \Omega}\mathrm {diag}({\mathbf \sigma}) = \mathrm {diag}({\mathbf \sigma}){\mathbf L}{\mathbf L}\prime \mathrm {diag}({\mathbf \sigma})$ using a Cholesky decomposition, where $\mathbf {\sigma}$ is a vector of $\sigma_{1}$, $\sigma_{2}$, and $\sigma_{3}$;  ${\mathbf \Omega}$ is a correlation matrix of $\rho_{12}$, $\rho_{13}$, and $\rho_{23}$; and **L** is a lower triangular matrix.
 Instead of assigning prior distributions on $\boldsymbol{\Sigma}$ directly, priors were assigned on ${\mathbf \sigma}$ and **L** to avoid a strong dependence between ${\mathbf \sigma}$ and ${\mathbf \Omega}$ [@Lewandowski2009; @Alvarez2014].
 A prior for **L** was specified as a so-called LKJ distribution with shape parameter 2 [@Lewandowski2009], which is weakly informative for the correlation matrix.
 A prior for $\mathbf{\sigma}$ was specified as a Half-Cauchy distribution with location 0 and scale 2.5, which is weakly informative and allows for occasional large coefficients while still performing a reasonable amount of shrinkage for coefficients near zero [@Gelman2008].
@@ -118,9 +121,11 @@ Priors for *f~i~* in Eqs. `r eq_num("LMA")`-`r eq_num("LL")` were non-informativ
 
 \newpage
 
-# Appendix S2: Randomization (including Table AS1 and Figure AS1)
+# Appendix S2: Model tests with randomized data  (including Table AS1 and Figure AS1)
 
-We generated 10 randomized datasets for each of the GLOPNET and the Panama datasets by shuffling each trait value across leaf samples, and fit the best models (Appendix S1) to the randomized data.
+We generated 10 randomized datasets for each of the GLOPNET and the Panama datasets by randomly shuffling each trait value across leaf samples, and we fit the best models (`r table("looic")`) to the randomized data.
+
+Most of the model results obtained from the randomized datasets did not convergent based on the Gelman-Rubin statistic or showed divergent transitions (Table AS1), indicating that models fit to randomized data do not provide reliable inferences [@Betancourt2016].
 
 ## Table AS1
 
@@ -148,17 +153,17 @@ if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
 }
 ```
 
-Most of the model results obtained from the randomized datasets did not convergent based on the Gelman-Rubin statistic or showed divergent transitions.
 
 \newpage
 
 ## Figure AS1
 
-Although many parameters showed large Rhat values, which suggests that the posterior distributions were not converged well, we checked the regression coefficients for the GLOPNET dataset ($\alpha_{0, m, s}$, $\beta_{0, s}$, and $\gamma_{0, m, s}$ in Eqs. `r eq_num("Aarea")`-`r eq_num("LL")` in the main text).
+Although many parameters in models fit to randomized data had large Rhat values (Table AS1), which suggests that the posterior distributions did not converge, we nevertheless examined the regression coefficients to evaluate if our model framework is prone to overfitting.
+Figure AS1 shows the regression coefficients for the randomized GLOPNET data ($\alpha_{0, m, s}$, $\beta_{0, s}$, and $\gamma_{0, m, s}$ in Eqs. `r eq_num("Aarea")`-`r eq_num("LL")` in the main text).
 There are 10 independent simulations (randomizations) in total.
 Points and lines indicate posterior medians and 95% credible intervals (CIs), respectively.
-Although intercepts were significant, the scaling parameters ($\alpha_{m, s}$, $\beta_{s}$, and $\gamma_{m, s}$) in the randomized datasets did not show any patterns.
-Thus, the tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
+Although intercepts were significant, the scaling parameters ($\alpha_{m, s}$, $\beta_{s}$, and $\gamma_{m, s}$) obtained for the randomized datasets were not significantly different from zero.
+These tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
 
 ![](`r here("figs/coef_sim_gl.png")`)
 
@@ -166,41 +171,43 @@ Thus, the tests with randomized data indicate that our model is not inherently p
 
 ## Figure AS2
 
-We also checked the regression coefficients for the Panama dataset ($\alpha_{0, m}$, $\beta_{0, s}$, $\gamma_{0, m, s}$, and $\theta$ in Eqs.`r eq_num("Aarea")`-`r eq_num("LL")` in the main text).
+Figure AS2 showsWe also checked the regression coefficients for the randomized Panama dataset ($\alpha_{0, m}$, $\beta_{0, s}$, $\gamma_{0, m, s}$, and $\theta$ in Eqs.`r eq_num("Aarea")`-`r eq_num("LL")` in the main text).
 Details as for Figure AS1.
-The scaling parameters ($\alpha_{m}$, $\beta_{s}$, and $\gamma_{m, s}$) and the effect of light on leaf lifespan ($\theta$) in the randomized datasets did not show any patterns.
+The scaling parameters ($\alpha_{m}$, $\beta_{s}$, and $\gamma_{m, s}$) and the effect of light on leaf lifespan ($\theta$) were not significantly different from zeroin the randomized datasets did not show any patterns.
+Again, these tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
 
 ![](`r here("figs/coef_sim_pa.png")`)
 
 \newpage
 
-# Appendix S3: Simulation for mass dependency of *A*~area~
+# Appendix S3: Simulated datasets to study relationships between photosynthetic capacity and LMA
 
-To simulate mass dependency of *A*~area~, we generated LMAm and LMAs values for leaf sample *i* using normal distributions (N) for GLPONET and sun leaves of Panama with a sample size of 100:
-
-$$
-\mathrm{ln}(\mathrm{LMAm}_{i}) \sim N(\mathrm{ln}(\mu_m), \sigma_m)
-$$
+To create simulated datasets to study relationships between photosynthetic capacity and LMA (i.e., mass- vs. area-dependence of *A*~max~), we generated lognormally distributed LMAm and LMAs values by sampling ln(LMAm) and ln(LMAs) from normal distributions.
+For GLPONET and Panama sun leaves, results from the LMAm-LMAs models (Eqs. `r eq_num("Aarea")`-`r eq_num("LL")`) indicated little correlation between LMAm and LMAs, so we used univariate normal distributions (N) to generate the LMAm and LMAs samples:
 
 $$
-\mathrm{ln}(\mathrm{LMAs}_{i}) \sim N(\mathrm{ln}(\mu_s), \sigma_s)
+\mathrm{ln}(\mathrm{LMAm}) \sim N(\mathrm{ln}(\mu_m), \sigma_m)
+$$
+
+$$
+\mathrm{ln}(\mathrm{LMAs}) \sim N(\mathrm{ln}(\mu_s), \sigma_s)
 $$
 
 where
-$\mu_m$ and $\mu_s$ are the mean of LMAm and LMAs on the log-scale, respectively, and
-$\sigma_m$ and $\sigma_s$ are the standard deviation of LMAm and LMAs on the log-scale, respectively.
+$\mathrm{ln}(\mu_m)$ and $\mathrm{ln}(\mu_s)$ are the means of LMAm and LMAs, respectively, on the log-scale and
+$\sigma_m$ and $\sigma_s$ are the corresponding standard deviations.
 
-Because there was a weak negative correlation between LMAm and LMAs values of shade leaves in Panama, LMAm and LMAs values were generated using a multivariate normal distribution (MVN):
+For Panama shade leaves, LMAm-LMAs model results indicated a negative correlation between LMAm and LMAs, so we used a multivariate normal distribution (MVN) to generate the LMAm and LMAs samples:
 
 $$
 \begin{bmatrix}
-\mathrm{ln}(\mathrm{LMAm}_{i})\\
-\mathrm{ln}(\mathrm{LMAs}_{i})
+\mathrm{ln}(\mathrm{LMAm})\\
+\mathrm{ln}(\mathrm{LMAs})
 \end{bmatrix}
 \sim \mathrm{MVN}
 \left[
 \begin{matrix}
-\ln(\mu_{p})\\
+\ln(\mu_{m})\\
 \ln(\mu_{s})
 \end{matrix}
 ,\mathbf{\Sigma}
@@ -215,44 +222,35 @@ $$
 \end{bmatrix}
 $$
 
-where $\boldsymbol{\Sigma}$ is the covariance matrix of ln(LMAm) and ln(LMAs),
+where $\boldsymbol{\Sigma}$ is the covariance matrix of ln(LMAm) and ln(LMAs), and
 $\rho$ is the correlation coefficient between ln(LMAm) and ln(LMAs).
 
-We used the empirical estimates for $\mu_m$, $\mu_s$, $\sigma_m$, and $\rho$ while with changing $\sigma_s$ between ln(1.01) and ln(10).
-*A*~area~ was then generated based the values obtained from the above simulation:
+To create simulated datasets (each with a sample size of 100) in which LMAs accounted for different fractions of the total LMA variance, we used the predictions (posterior medians) of LMAm and LMAs for each leaf sample from the best models (`r table("params")`) to estimate $\mu_m$, $\mu_s$, $\sigma_m$, and $\rho$; and varied $\sigma_s$ from ln(1.01) to ln(10) across simulated datasets.
+For each of the 100 leaves in a given simulated dataset, *A*~area~ was calculated according to `r eq("Aarea")`.
 
-$$
-\mathrm{ln}(A_{\mathrm{area} \, i}) = \mathrm{ln}(\alpha_0) + \alpha_m\mathrm{ln}(\mathrm{LMAm}_{i}) + \alpha_s\mathrm{ln}(\mathrm{LMAs}_{i}).
-$$
-
-Parameter settings are as following,
-GLOPNET:
+Parameter values were,
 $\mu_m$ = `r para$GL$LMAm_mu_gl`,
 $\mu_s$ = `r para$GL$LMAs_mu_gl`,
 $\sigma_m$ = `r para$GL$LMAm_sig_gl`,
 $\alpha_m$ = `r para$GL$am`, and
 $\alpha_s$ = `r para$GL$as`,
-sun leaves in Panama:
+for GLOPNET;
 $\mu_m$ = `r para$PA$LMAm_mu_sun`,
 $\mu_s$ = `r para$PA$LMAs_mu_sun`,
 $\sigma_m$ = `r para$PA$LMAm_sig_sun`,
 $\alpha_m$ = `r para$PA$am`, and
 $\alpha_s$ = 0,
-shade leaves in Panama:
+for Panama sun leaves; and
 $\mu_m$ = `r para$PA$LMAm_mu_shade`,
 $\mu_s$ = `r para$PA$LMAs_mu_shade`,
 $\sigma_m$ = `r para$PA$LMAm_sig_shade`,
 $\alpha_m$ = `r para$PA$am`,
 $\alpha_s$ = 0, and
 $\rho$ = `r para$PA$rho_shade`.
+for Panama shade leaves.
 
-We finally calculated mass dependency (*b*) using the following ordinary least square regression:
-
-$$
-\mathrm{ln}(A_{\mathrm{area} \, i}) = \mathrm{ln}(c) + b \mathrm{ln}(\mathrm{LMA}_{i}).
-$$
-
-We repeated these steps 1000 times.
+For each simulated dataset, we quantified the mass-dependence (*b*) using the ordinary least squares regression from `r eq("mass")`.
+We repeated these steps 1000 times for each set of parameter values.
 
 \newpage
 
@@ -267,9 +265,9 @@ Boxplots comparing leaf mass per area (LMA), photosynthetic leaf mass per area (
 (a) deciduous (Dev) and evergreen (Eve) leaves and
 (b) sites (wet and dry) and canopy strata (sun and shade) in Panama.
 The results shown here include all leaves in the Panama dataset, whereas Figs. `r fig_num("box_de")`-`r fig_num("box_pa")` in the main text only include Panama species for which both sun and shade leaves were available.
-The best model in the table 1 were used.
 Boxplot symbols as in Figs. `r fig_num("box_de")`-`r fig_num("box_pa")`.
 Groups sharing the same letters are not significantly different (P > 0.05; t-tests).
+Estiamtes are from the best Panama model (`r table("params")`).
 
 \newpage
 
