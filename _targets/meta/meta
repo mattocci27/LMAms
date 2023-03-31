@@ -164,7 +164,7 @@ loo_gl_mcmc_ams_bms|stem|8622dc705f78b343|a760abdeb51a5bb3|27fe3cec38a76ea5|-105
 loo_gl_mcmc_ams_bs|stem|dd03ec911fd4deaa|6693cbc8d1d10d49|32a8a469ec031231|-1790601174||t19275.7018160766s|a59f3f02354c4705|8935|rds|local|vector|||0.638|Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.|
 loo_gl_mcmc_lma|stem|df32a9a9d25c5a7b|eec56e0538ddd639|d2cf2c98861a643f|138574040||t19275.7016996395s|4913b324788d34c4|8908|rds|local|vector|||0.633||
 loo_list|stem|505fc761847df367|9b4bd8062187e5b7|86c792e166e6907a|574726732||t19276.2383852914s|ccd4c3732f888569|126118|rds|local|vector|||0.06||
-loo_map|object|48753700ab6c718c|||||||||||||||
+loo_map|object|f368ef8587cfb6af|||||||||||||||
 loo_pa_mcmc_am_bms|stem|a52e32ab0dcb7d44|6c97e11a01583181|c2c2cf8327455853|717864293||t19275.7015694985s|869d0d7ed522ae9b|5016|rds|local|vector|||0.416|Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.|
 loo_pa_mcmc_am_bms_ld|stem|b833959dd52f615a|6bbe0ab5257929dd|414ae29ddc664bc8|-1351970752||t19275.7016345922s|7f04d103b356f15d|5009|rds|local|vector|||0.41|Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.|
 loo_pa_mcmc_am_bms_ld_opt|stem|bcc286f29389d244|4914c3ed71ea63ae|ad1910da2cb031ed|1961194652||t19275.7015590817s|1c540eceb8aec5e9|5013|rds|local|vector|||0.431|Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.|
@@ -185,7 +185,7 @@ loo_pa_mcmc_lma|stem|222a1cbaa4a039d2|5e90e1015c20ac81|4f600bd80da440af|12683262
 loo_pa_mcmc_lma_opt|stem|d282e91dcfaade60|6663ef58d127f97b|ff71dae55239d88c|-1169329235||t19275.7015484796s|5f56bc164b928186|4999|rds|local|vector|||0.516||
 loo_tbl|stem|77fd43e8519e3d12|dec009b4b9a18854|9241104eb907643b|407372657|data/loo.csv|t19276.2795217265s|7977ff70884e1c25|1541|file|local|vector|||0.148||
 loop_fun|function|42314d0682666d3f|||||||||||||||
-main_list|object|7e24b081271fc3a7|||||||||||||||
+main_list|object|bf3d74636ae35a05|||||||||||||||
 mass_obs_dat|stem|c96cbbbb21814425|38c161feaf1dab43|74e2246fde4ff299|1286691598||t19282.4623990478s|fdec9ce76e2bcbf8|316|rds|local|vector|||0.295||
 mass_prop_comp_plot|stem|f68477ff1a801859|4f1e9595baed0b40|7963805dbd2294c8|596824706|figs/mass_prop_comp.png*figs/mass_prop_comp.pdf|t19282.6184835892s|ed74f3a610d4bf08|58451|file|local|vector|||0.416||
 mass_prop_comp_point|function|0dc9586356a57a53|||||||||||||||
@@ -198,8 +198,8 @@ mass_prop_sim|function|c23d808c7e8e9637|||||||||||||||
 mass_prop_sim_grad|function|31522d56ab638e4c|||||||||||||||
 mass_prop_sim_grad_each|function|4a8f1d2568e94331|||||||||||||||
 mass_prop_sim_mv|function|dc3e91e040d13b79|||||||||||||||
-mass_sim_plot|stem|6f56e6d48fc7ae09|78d7fc6579fd0bbb|159d45dd2b3f059f|1529278605|figs/mass_prop_sim.png*figs/mass_prop_sim.pdf|t19282.4687497807s|0479dcb44e2d92c5|82265|file|local|vector|||0.541||
-mass_sim_point|function|70898f2634fac91d|||||||||||||||
+mass_sim_plot|stem|0fa147ca5587bb4b|e99c02c79c7914c0|6c21af52742598af|1529278605|figs/mass_prop_sim.png*figs/mass_prop_sim.pdf|t19447.2455945185s|e2169146875a8453|90033|file|local|vector|||0.701||
+mass_sim_point|function|006d480143951932|||||||||||||||
 model_json|stem|107180c176754020|e5e2de428bcdfc0e|ef46db3751d8e999|-454647551|templates/model.json|t19276.2874316564s|b98f1b6118cbc470|1699|file|local|vector|||0.059||
 model_lma_json|stem|32e140d171c49200|9bda75f57ceb1079|ef46db3751d8e999|2073361106|templates/model_LMA.json|t19276.2874316564s|f3963c450082b208|143|file|local|vector|||0.059||
 model_selection_csv|stem|a012ffd26d50c5c5|25f93d9176160d93|5d5bf30cf3cf59b9|-1163932704|data/model_selection.csv|t19276.2832746029s|7271da0e98637f86|1082|file|local|vector|||0.214||
@@ -391,7 +391,7 @@ r_vals_yml|stem|6661da157d6ea6b6|0d1c545779d504f9|4da23fb96f6f19f5|-439820650|ym
 rand_fun|function|d93afbbe8134dc0c|||||||||||||||
 rand_fun2|function|a97257ca057b5d1a|||||||||||||||
 rand_summary|function|4c4aaccd62bae143|||||||||||||||
-raw_data_list|object|e8c8f71e752e9b59|||||||||||||||
+raw_data_list|object|ff0ad86cc4d6cda6|||||||||||||||
 report|stem|76c91ffb9112dd27|85b107ceedb881d2|abd978d30d79bbfe|-237041703|report_files*report.html*report.qmd|t19276.3004440944s|cc3f3afe57600900|100320|file|local|vector|||4.828||
 scatter_plt|function|0be78b37e870ed78|||||||||||||||
 settings_yml|stem|2e5d64611d1dfd9d|a127041ac8f198f3|ef46db3751d8e999|259856933|yml/settings.yml|t19220.3786123743s|0f05aa39aab40022|347|file|local|vector|||0.126||
