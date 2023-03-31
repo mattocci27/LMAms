@@ -1,0 +1,20 @@
+\contentsline {section}{\nonumberline Appendix S1: Prior information}{2}{section*.3}%
+\contentsline {section}{\nonumberline Appendix S2: Model tests with randomized data (including Table AS1 and Figure AS1)}{3}{section*.5}%
+\contentsline {subsection}{\nonumberline Table AS1}{3}{subsection*.7}%
+\contentsline {subsection}{\nonumberline Figure AS1}{4}{subsection*.9}%
+\contentsline {subsection}{\nonumberline Figure AS2}{5}{subsection*.11}%
+\contentsline {section}{\nonumberline Appendix S3: Simulated datasets to study relationships between photosynthetic capacity and LMA}{6}{section*.13}%
+\contentsline {section}{\nonumberline Figures}{8}{section*.15}%
+\contentsline {subsection}{\nonumberline Fig. S1}{8}{subsection*.17}%
+\contentsline {subsection}{\nonumberline Fig. S2}{9}{subsection*.19}%
+\contentsline {subsection}{\nonumberline Fig. S3}{10}{subsection*.21}%
+\contentsline {subsection}{\nonumberline Fig. S4}{11}{subsection*.23}%
+\contentsline {subsection}{\nonumberline Fig. S5}{12}{subsection*.25}%
+\contentsline {subsection}{\nonumberline Fig. S6}{13}{subsection*.27}%
+\contentsline {subsection}{\nonumberline Fig. S7}{14}{subsection*.29}%
+\contentsline {subsection}{\nonumberline Fig. S8}{15}{subsection*.31}%
+\contentsline {section}{\nonumberline Appendix S4: Stan code}{16}{section*.33}%
+\contentsline {subsection}{\nonumberline Stan code for the GLOPNET dataset}{16}{subsection*.35}%
+\contentsline {subsection}{\nonumberline Stan code for the Panama dataset}{18}{subsection*.37}%
+\contentsline {section}{References}{21}{section*.38}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

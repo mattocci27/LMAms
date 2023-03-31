@@ -1,4 +1,7 @@
 % Options for packages loaded elsewhere
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL /var/folders/ph/r5fc9nzd1j38q4j50kgwd4cw0000gn/T/_ioryPXcx7/latexdiff-vc-6f7f0dc/ms/LMAms_SI.tex   Thu Mar 30 17:59:20 2023
+%DIF ADD ms/LMAms_SI.tex                                                                                    Fri Mar 31 17:56:30 2023
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -164,7 +167,9 @@
 \usepackage[default]{sourcesanspro}
 \usepackage{sourcecodepro}
 \usepackage{fvextra}
-\usepackage{multirow}
+%DIF 167a167
+\usepackage{multirow} %DIF > 
+%DIF -------
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 \fancyhead[RE,RO]{Katabuchi \textit{et al}.  Appendix}
 \KOMAoption{captions}{tableheading}
@@ -239,10 +244,92 @@ structural components explains divergent patterns of trait variation
 within and among plant species}
 \author{}
 \date{}
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFaddtex}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdeltex}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+\providecommand{\DIFmodbegin}{} %DIF PREAMBLE
+\providecommand{\DIFmodend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF HYPERREF PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{\texorpdfstring{\DIFaddtex{#1}}{#1}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{\texorpdfstring{\DIFdeltex{#1}}{}} %DIF PREAMBLE
+\newcommand{\DIFscaledelfig}{0.5}
+%DIF HIGHLIGHTGRAPHICS PREAMBLE %DIF PREAMBLE
+\RequirePackage{settobox} %DIF PREAMBLE
+\RequirePackage{letltxmacro} %DIF PREAMBLE
+\newsavebox{\DIFdelgraphicsbox} %DIF PREAMBLE
+\newlength{\DIFdelgraphicswidth} %DIF PREAMBLE
+\newlength{\DIFdelgraphicsheight} %DIF PREAMBLE
+% store original definition of \includegraphics %DIF PREAMBLE
+\LetLtxMacro{\DIFOincludegraphics}{\includegraphics} %DIF PREAMBLE
+\newcommand{\DIFaddincludegraphics}[2][]{{\color{blue}\fbox{\DIFOincludegraphics[#1]{#2}}}} %DIF PREAMBLE
+\newcommand{\DIFdelincludegraphics}[2][]{% %DIF PREAMBLE
+\sbox{\DIFdelgraphicsbox}{\DIFOincludegraphics[#1]{#2}}% %DIF PREAMBLE
+\settoboxwidth{\DIFdelgraphicswidth}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\settoboxtotalheight{\DIFdelgraphicsheight}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\scalebox{\DIFscaledelfig}{% %DIF PREAMBLE
+\parbox[b]{\DIFdelgraphicswidth}{\usebox{\DIFdelgraphicsbox}\\[-\baselineskip] \rule{\DIFdelgraphicswidth}{0em}}\llap{\resizebox{\DIFdelgraphicswidth}{\DIFdelgraphicsheight}{% %DIF PREAMBLE
+\setlength{\unitlength}{\DIFdelgraphicswidth}% %DIF PREAMBLE
+\begin{picture}(1,1)% %DIF PREAMBLE
+\thicklines\linethickness{2pt} %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\framebox(1,1){}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\line( 1,1){1}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,1){\line(1,-1){1}}}% %DIF PREAMBLE
+\end{picture}% %DIF PREAMBLE
+}\hspace*{3pt}}} %DIF PREAMBLE
+} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbegin}{\DIFaddbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddend}{\DIFaddend} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbegin}{\DIFdelbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelend}{\DIFdelend} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbegin}{\DIFOaddbegin \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbegin}{\DIFOdelbegin \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbeginFL}{\DIFaddbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddendFL}{\DIFaddendFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbeginFL}{\DIFdelbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelendFL}{\DIFdelendFL} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbeginFL}{\DIFOaddbeginFL \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbeginFL}{\DIFOdelbeginFL \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+%DIF COLORLISTINGS PREAMBLE %DIF PREAMBLE
+\RequirePackage{listings} %DIF PREAMBLE
+\RequirePackage{color} %DIF PREAMBLE
+\lstdefinelanguage{DIFcode}{ %DIF PREAMBLE
+%DIF DIFCODE_UNDERLINE %DIF PREAMBLE
+  moredelim=[il][\color{red}\sout]{\%DIF\ <\ }, %DIF PREAMBLE
+  moredelim=[il][\color{blue}\uwave]{\%DIF\ >\ } %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstdefinestyle{DIFverbatimstyle}{ %DIF PREAMBLE
+	language=DIFcode, %DIF PREAMBLE
+	basicstyle=\ttfamily, %DIF PREAMBLE
+	columns=fullflexible, %DIF PREAMBLE
+	keepspaces=true %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim}{\lstset{style=DIFverbatimstyle}}{} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim*}{\lstset{style=DIFverbatimstyle,showspaces=true}}{} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, frame hidden, sharp corners, boxrule=0pt, enhanced, breakable, borderline west={3pt}{0pt}{shadecolor}]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\DIFdelbegin %DIFDELCMD < \renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, enhanced, boxrule=0pt, breakable, interior hidden, frame hidden, sharp corners]}{\end{tcolorbox}}%%%
+\DIFdelend \DIFaddbegin \renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, borderline west={3pt}{0pt}{shadecolor}, interior hidden, enhanced, boxrule=0pt, frame hidden, breakable]}{\end{tcolorbox}}\DIFaddend \fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -401,7 +488,7 @@ randomized Panama dataset (\(\alpha_{0, m}\), \(\beta_{0, s}\),
 \(\gamma_{0, m, s}\), and \(\theta\) in Eqs. 2- 4 in the main text).
 Details as for Figure AS1. The scaling parameters (\(\alpha_{m}\),
 \(\beta_{s}\), and \(\gamma_{m, s}\)) and the effect of light on leaf
-lifespan (\(\theta\)) were not significantly different from zero in the
+lifespan (\(\theta\)) were not significantly different from \DIFdelbegin \DIFdel{zeroin }\DIFdelend \DIFaddbegin \DIFadd{zero in }\DIFaddend the
 randomized datasets did not show any patterns. Again, these tests with
 randomized data indicate that our model is not inherently prone to
 overfitting or to producing patterns from noise.
@@ -417,29 +504,31 @@ LMA}\label{appendix-s3-simulated-datasets-to-study-relationships-between-photosy
 
 To create simulated datasets to study relationships between
 photosynthetic capacity and LMA (i.e., mass- vs.~area-dependence of
-\emph{A}\textsubscript{max}) as well as to plot Fig. 1, we generated
-log-normally distributed LMAm and LMAs values by sampling ln(LMAm) and
+\emph{A}\textsubscript{max}) \DIFaddbegin \DIFadd{as well as to plot Fig. 1}\DIFaddend , we generated
+\DIFdelbegin \DIFdel{lognormally }\DIFdelend \DIFaddbegin \DIFadd{log-normally }\DIFaddend distributed LMAm and LMAs values by sampling ln(LMAm) and
 ln(LMAs) from normal distributions.
+\DIFdelbegin \DIFdel{For GLPONET }\DIFdelend \DIFaddbegin 
 
-For GLOPNET and Panama sun leaves, results from the LMAm-LMAs models
+\DIFadd{For GLOPNET }\DIFaddend and Panama sun leaves, results from the LMAm-LMAs models
 (Eqs. 2- 4) indicated little correlation between LMAm and LMAs, so we
 used univariate normal distributions (N) to generate the LMAm and LMAs
 samples:
 
 \[
-\mathrm{ln}(\mathrm{LMAm}) \sim N(\mathrm{ln}(\mu_m), \sigma_m) \qquad(\mathrm{S}3.1)
-\]
+\mathrm{ln}(\mathrm{LMAm}) \sim N(\mathrm{ln}(\mu_m), \sigma_m) \DIFaddbegin \DIFadd{\qquad(\mathrm{S}3.1)
+}\DIFaddend \]
 
 \[
-\mathrm{ln}(\mathrm{LMAs}) \sim N(\mathrm{ln}(\mu_s), \sigma_s) \qquad(\mathrm{S}3.2)
-\]
+\mathrm{ln}(\mathrm{LMAs}) \sim N(\mathrm{ln}(\mu_s), \sigma_s) \DIFaddbegin \DIFadd{\qquad(\mathrm{S}3.2)
+}\DIFaddend \]
 
 where \(\mathrm{ln}(\mu_m)\) and \(\mathrm{ln}(\mu_s)\) are the means of
 LMAm and LMAs, respectively, on the log-scale and \(\sigma_m\) and
-\(\sigma_s\) are the corresponding standard deviations. The parameters
+\(\sigma_s\) are the corresponding standard deviations. \DIFaddbegin \DIFadd{The parameters
 \(\mathrm{ln}(\mu_m)\), \(\mathrm{ln}(\mu_s)\), \(\sigma_m\) and
 \(\sigma_s\) were all estimated from the posterior medians of LMAm and
 LMAs.
+}\DIFaddend 
 
 For Panama shade leaves, LMAm-LMAs model results indicated a negative
 correlation between LMAm and LMAs, so we used a multivariate normal
@@ -452,26 +541,32 @@ distribution (MVN) to generate the LMAm and LMAs samples:
 \end{bmatrix}
 \sim \mathrm{MVN}
 \left[
-\begin{matrix}
+\DIFdelbegin %DIFDELCMD < \begin{matrix}
+%DIFDELCMD < \ln(\mu_{m})\\
+%DIFDELCMD < \ln(\mu_{s})
+%DIFDELCMD < \end{matrix}%%%
+\DIFdelend \DIFaddbegin \begin{matrix}
 \ln(\mu_{m}) &\\
 \ln(\mu_{s}) &
-\end{matrix},
-\boldsymbol{\Sigma}
-\right] \qquad(\mathrm{S}3.3)
-\]
+\end{matrix}\DIFaddend ,
+\DIFdelbegin \DIFdel{\mathbf{\Sigma}
+}\DIFdelend \DIFaddbegin \boldsymbol{\Sigma}
+\DIFaddend \right] \DIFaddbegin \DIFadd{\qquad(\mathrm{S}3.3)
+}\DIFaddend \]
 
 \[
-\boldsymbol{\Sigma} = \
+\DIFdelbegin \DIFdel{\mathbf{\Sigma} }\DIFdelend \DIFaddbegin \boldsymbol{\Sigma} \DIFaddend = \
 \begin{bmatrix}
 \sigma_m^2 & \rho \sigma_m \sigma_s \\
 \rho \sigma_m \sigma_s & \sigma_s^2 \\
-\end{bmatrix} \qquad(\mathrm{S}3.4)
-\]
+\end{bmatrix} \DIFaddbegin \DIFadd{\qquad(\mathrm{S}3.4)
+}\DIFaddend \]
 
 where \(\boldsymbol{\Sigma}\) is the covariance matrix of ln(LMAm) and
 ln(LMAs), and \(\rho\) is the correlation coefficient between ln(LMAm)
-and ln(LMAs). The parameters in \(\boldsymbol{\Sigma}\) were all
+and ln(LMAs). \DIFaddbegin \DIFadd{The parameters in \(\boldsymbol{\Sigma}\) were all
 estimated from the posterior medians of LMAm and LMAs.
+}\DIFaddend 
 
 To create simulated datasets (each with a sample size of 100) in which
 LMAs accounted for different fractions of the total LMA variance, we
@@ -483,24 +578,25 @@ simulated dataset, \emph{A}\textsubscript{area} was calculated according
 to Eq. 2.
 
 Parameter values were, \(\mu_m\) = 56.5, \(\mu_s\) = 61.2, \(\sigma_m\)
-= 0.83, \(\alpha_0\) = 1.77, \(\alpha_m\) = 0.28, and \(\alpha_s\) =
+= 0.83, \DIFaddbegin \DIFadd{\(\alpha_0\) = 1.77, }\DIFaddend \(\alpha_m\) = 0.28, and \(\alpha_s\) =
 -0.13, for GLOPNET; \(\mu_m\) = 47.3, \(\mu_s\) = 30.1, \(\sigma_m\) =
-1.58, \(\alpha_0\) = 0.34, \(\alpha_m\) = 0.56, and \(\alpha_s\) = 0,
+1.58, \DIFaddbegin \DIFadd{\(\alpha_0\) = 0.34, }\DIFaddend \(\alpha_m\) = 0.56, and \(\alpha_s\) = 0,
 for Panama sun leaves; and \(\mu_m\) = 7.6, \(\mu_s\) = 26.7,
-\(\sigma_m\) = 1.95, \(\alpha_0\) = 0.34, \(\alpha_m\) = 0.56,
-\(\alpha_s\) = 0, and \(\rho\) = -0.47 for Panama shade leaves.
+\(\sigma_m\) = 1.95, \DIFaddbegin \DIFadd{\(\alpha_0\) = 0.34, }\DIFaddend \(\alpha_m\) = 0.56,
+\(\alpha_s\) = 0, and \(\rho\) = -0.47 \DIFdelbegin \DIFdel{. }\DIFdelend for Panama shade leaves.
 
 For each simulated dataset, we quantified the mass-dependence (\emph{b})
 using the ordinary least squares regression from Eq. 5. We repeated
 these steps 1000 times for each set of parameter values.
 
-We also used Eqs. S3.1-S3.2 to create the simulated GLOPNET LMA datasets
-in Fig. 1. \emph{A}\textsubscript{max} values were generated using Eq. 2
+\DIFaddbegin \DIFadd{We also used Eqs. S3.1-S3.2 to create the simulated GLOPNET LMA datasets
+in Fig. 1. }\emph{\DIFadd{A}}\DIFadd{\textsubscript{max} values were generated using Eq. 2
 and Eq. S1. Based on our analysis of the GLOPNET database, the standard
-deviations of ln(LMAs) and ln(\emph{A}\textsubscript{area}) were set to
+deviations of ln(LMAs) and ln(}\emph{\DIFadd{A}}\DIFadd{\textsubscript{area}) were set to
 1 and 0.31, respectively. The rest of the parameters were listed above.
+}
 
-\newpage
+\DIFaddend \newpage
 
 \hypertarget{figures}{%
 \section{Figures}\label{figures}}
@@ -579,7 +675,7 @@ between 0 and 1 (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}).
 \textgreater{} 0.5, and primarily area-dependent if 0.5 \textgreater{}
 \emph{b} \textgreater{} 0 (\protect\hyperlink{ref-Osnas2018}{Osnas et
 al., 2018}). Parameter values are based on the best GLOPNET model (Table
-1) and Appendix S3: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.5, \(\mu_s\) =
+1) \DIFaddbegin \DIFadd{and Appendix S3}\DIFaddend : \(\alpha_0\) = 1.77, \(\mu_m\) = 56.5, \(\mu_s\) =
 61.2, and \(\sigma_m\) = 0.83.
 
 \newpage
@@ -594,7 +690,7 @@ al., 2018}). Parameter values are based on the best GLOPNET model (Table
 LMAs variance (relative to total LMA variance; Eq. 6) for simulated
 datasets generated from a normal distribution (N) vs.~a multivariate
 normal distribution (MVN). Parameter values are based on the best Panama
-model (Table 1) and Appendix S3: \(\alpha_0\) = 0.34, \(\alpha_m\) =
+model (Table 1) \DIFaddbegin \DIFadd{and Appendix S3}\DIFaddend : \(\alpha_0\) = 0.34, \(\alpha_m\) =
 0.56, \(\alpha_s\) = 0, \(\mu_m\) = 7.6, \(\mu_s\) = 26.7, \(\sigma_m\)
 = 1.95, and \(\rho\) = -0.47.
 

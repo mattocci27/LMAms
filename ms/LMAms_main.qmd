@@ -27,7 +27,7 @@ format:
     toc: false
     keep-tex: true
     latex-clean: false
-    pdf-engine: pdflatex
+    pdf-engine: xelatex
     include-in-header:
       text: |
         \usepackage[default]{sourcesanspro}
@@ -492,8 +492,8 @@ MK and JWL wrote the first draft of the manuscript, and allauthors contributed t
 Table 1.
 List of models fit to GLOPNET and Panama data ordered from highest to lowest cross-validation performance.
 Lower approximate leave-one-out cross-validation information criterion (LOOIC) indicates better predictive accuracy.
-Two model forms were considered for GLOPNET data: *A*~area~, *R*~area~, and LL were modeled as power laws of LMA (one-dimensional model) or both LMAm and LMAs (two-dimensional model; see Eqs. `r eq_num("Aarea")`, `r eq_num("Rarea")`, and `r eq_num("LL")`a).
-We also considered three light-dependent forms for LL in the Panama dataset (as in `r eq_num("LL")`b), which reports the canopy position (sun vs. shade) for each leaf sample: LMA and light (one-dimensional); LMAm, LMAs, and light (two-dimensional); and LMAm, leaf structural density (LSD = LMAs/LT), and light (two-dimensional).
+For GLOPNET, we considered two model forms were considered: *A*~area~, *R*~area~, and LL were modeled as power laws of LMA (one-dimensional model) or both LMAm and LMAs (two-dimensional model; see Eqs. `r eq_num("Aarea")`, `r eq_num("Rarea")`, and `r eq_num("LL")`a).
+For the Panama data, which includes canopy position (sun vs. shade) for each leaf sample, we considered the same two model forms as for GLOPNET and three additional light-dependent forms for LL (as in `r eq_num("LL")`b), LMA and light (one-dimensional); LMAm, LMAs, and light (two-dimensional); and LMAm, leaf structural density (LSD = LMAs/LT), and light (two-dimensional).
 We combined the two-dimensional model forms with four types of parameter constraints:
 (i) $\alpha_s$ = 0 and $\beta_m$ = 0,
 (ii) $\beta_m$ = 0,
@@ -528,7 +528,7 @@ if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
 \newpage
 
 Table 2.
-Posterior medians [95% credible interval] of parameters for the best models in GLOPNET and Panama data.
+Posterior medians [95% credible interval] of parameters for the best GLOPNET and Panama models.
 Bold values are significantly different from zero based on the 95% credible interval.
 
 ```{r, echo=FALSE, eval=TRUE}
@@ -551,19 +551,12 @@ if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
 \newpage
 
 ![
-Example of a two-dimensional functional space that can result in either a two- or one-dimensional trait space, depending on how metabolic traits are normalized.
+Simulated two-dimensional functional space that can result in either a two- or one-dimensional trait space, depending on how metabolic traits are normalized.
 (a) Hypothetical independent variation in two leaf mass per area (LMA) components: metabolic leaf mass per area (LMAm, which largely determines per-area values of photosynthesis, respiration, and nutrient concentrations) and structural leaf mass per area (LMAs, which determines leaf toughness but has little effect on metabolic traits).
+Panels b and c represent normalization by leaf area and leaf mass, respectively.
 (b) Two-dimensional relationship between photosynthetic capacity (*A*~max~) per-unit leaf area and total LMA (equal to LMAm + LMAs).
 (c) One-dimensional relationship between *A*~max~ per-unit leaf mass and total LMA.
-The natural logarithm of LMAm and LMAs are simulated from a hypothetical scenario of normal distributions with means of
-`r para_val$GL$LMAm_mu_gl |> round(0)` and
-`r para_val$GL$LMAs_mu_gl |> round(0)` and
-standard deviations of
-`r para_val$GL$LMAm_sig_gl |> round(2)` and
-`r para_val$GL$LMAs_sig_gl |> as.numeric() |> format(nsmall = 1)`,
-and zero covariance.
-Variation in *A*~max~ values are derived from our analysis of the GLOPNET database.
-$\mathrm{ln\;} A_{\mathrm{area} \, i}= \mathrm{ln\;} 1.77 + 0.28 \; \mathrm{ln\; LMAm}_i -0.13 \; \mathrm{ln\; LMAm} + \epsilon_i$, where $\epsilon_i$ is normally distributed with mean 0 and standard deviation 0.31 (see Methods and Results).
+Methods used to simulate the data are explained in Appendix S3.
 ](`r here::here("figs/hypo.png")`){#fig-hypo}
 
 
