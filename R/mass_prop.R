@@ -319,7 +319,10 @@ mass_sim_point <- function(am_sim_dat, as_sim_dat) {
     ylab(expression(Mass~dependency~(italic(b)))) &
     xlab("Relative variance of LMAs (%)") &
     theme_LES() &
-    theme(legend.title = element_text(size = 8))
+    theme(
+      legend.title = element_text(size = 8),
+      axis.title = element_text(size = 8)
+    )
 }
 
 #' @para sim1 Panama shade mv
