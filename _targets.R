@@ -31,10 +31,10 @@ tar_option_set(packages = c(
   "multcompView"
 ))
 
-tar_option_set(
-  garbage_collection = TRUE,
-  memory = "transient"
-)
+# tar_option_set(
+#   garbage_collection = TRUE,
+#   memory = "transient"
+# )
 
 # check if it's inside a container
 if (file.exists("/.dockerenv") | file.exists("/.singularity.d/startscript")) {
@@ -768,8 +768,8 @@ main_list <- list(
         "figs/mass_prop_sim",
        p,
        dpi = 300,
-       height = 5,
-       width = 10,
+       height = 5.5,
+       width = 11,
        units = "cm"
       )
     },
@@ -918,10 +918,10 @@ main_list <- list(
     format = "file"
   ),
 
-  tar_quarto(
-    report,
-    "report.qmd"
-  ),
+  # tar_quarto(
+  #   report,
+  #   "report.qmd"
+  # ),
   NULL
 )
 
