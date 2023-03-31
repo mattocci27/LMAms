@@ -1,8 +1,10 @@
 GIT = ce3856c6
+GIT2 = 6f7f0dc
 MAIN = ms/LMAms_main
 SI = ms/LMAms_SI
 all: $(MAIN).pdf $(MAIN).docx $(SI).pdf $(SI).docx
 diff: ms/LMAms_main-diff$(GIT).pdf
+diff2: ms/LMAms_SI-diff$(GIT2).pdf
 
 $(MAIN).pdf: $(MAIN).qmd $(SI).aux
 	quarto render $< --to pdf
@@ -21,7 +23,11 @@ $(SI).docx: $(SI).qmd
 
 ms/LMAms_main-diff$(GIT).pdf: ms/LMAms_main.tex
 	latexdiff-vc --git --flatten --force -r $(GIT) $^ ; \
-	cd ms; pdflatex LMAms_main-diff$(GIT).tex
+	cd ms; xelatex LMAms_main-diff$(GIT).tex
+
+ms/LMAms_SI-diff$(GIT2).pdf: ms/LMAms_SI.tex
+	latexdiff-vc --git --flatten --force -r $(GIT2) $^ ; \
+	cd ms; xelatex LMAms_SI-diff$(GIT2).tex
 
 .PHONY: clean
 clean:
