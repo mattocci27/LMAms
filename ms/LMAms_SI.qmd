@@ -183,16 +183,16 @@ Again, these tests with randomized data indicate that our model is not inherentl
 
 # Appendix S3: Simulated datasets to study relationships between photosynthetic capacity and LMA
 
-To create simulated datasets to study relationships between photosynthetic capacity and LMA (i.e., mass- vs. area-dependence of *A*~max~) as well as to plot `r fig("hypo")`, we generated log-normally distributed LMAm and LMAs values by sampling ln(LMAm) and ln(LMAs) from normal distributions.
+To create simulated datasets to study relationships between photosynthetic capacity and LMA , we generated log-normally distributed LMAm and LMAs values by sampling ln(LMAm) and ln(LMAs) from normal distributions.
 
 For GLOPNET and Panama sun leaves, results from the LMAm-LMAs models (Eqs. `r eq_num("Aarea")`-`r eq_num("LL")`) indicated little correlation between LMAm and LMAs, so we used univariate normal distributions (N) to generate the LMAm and LMAs samples:
 
 $$
-\mathrm{ln}(\mathrm{LMAm}) \sim N(\mathrm{ln}(\mu_m), \sigma_m) \qquad(\mathrm{S}3.1)
+\mathrm{ln}(\mathrm{LMAm}) \sim \mathrm{N}(\mathrm{ln}(\mu_m), \sigma_m) \qquad(\mathrm{S}3.1)
 $$
 
 $$
-\mathrm{ln}(\mathrm{LMAs}) \sim N(\mathrm{ln}(\mu_s), \sigma_s) \qquad(\mathrm{S}3.2)
+\mathrm{ln}(\mathrm{LMAs}) \sim \mathrm{N}(\mathrm{ln}(\mu_s), \sigma_s) \qquad(\mathrm{S}3.2)
 $$
 
 where
@@ -229,23 +229,23 @@ where $\boldsymbol{\Sigma}$ is the covariance matrix of ln(LMAm) and ln(LMAs), a
 $\rho$ is the correlation coefficient between ln(LMAm) and ln(LMAs).
 The parameters in $\boldsymbol{\Sigma}$ were all estimated from the posterior medians of LMAm and LMAs.
 
-To create simulated datasets (each with a sample size of 100) in which LMAs accounted for different fractions of the total LMA variance, we used the predictions (posterior medians) of LMAm and LMAs for each leaf sample from the best models (`r table("params")`) to estimate $\mu_m$, $\mu_s$, $\sigma_m$, and $\rho$; and varied $\sigma_s$ from ln(1.01) to ln(10) across simulated datasets.
+To create simulated datasets (each with a sample size of 100) in which LMAs accounted for different fractions of the total LMA variance, we used the predictions (posterior medians) of LMAm and LMAs for each leaf sample from the best models (`r table("params")`) to estimate $\mu_m$, $\mu_s$, $\sigma_m$, and $\rho$; and we varied $\sigma_s$ from ln(1.01) to ln(10) across simulated datasets.
 For each of the 100 leaves in a given simulated dataset, *A*~area~ was calculated according to `r eq("Aarea")`.
 
-Parameter values were,
+Parameter values were
 $\mu_m$ = `r para$GL$LMAm_mu_gl`,
 $\mu_s$ = `r para$GL$LMAs_mu_gl`,
 $\sigma_m$ = `r para$GL$LMAm_sig_gl`,
 $\alpha_0$ = `r para$GL$a0`,
 $\alpha_m$ = `r para$GL$am`, and
-$\alpha_s$ = `r para$GL$as`,
+$\alpha_s$ = `r para$GL$as`
 for GLOPNET;
 $\mu_m$ = `r para$PA$LMAm_mu_sun`,
 $\mu_s$ = `r para$PA$LMAs_mu_sun`,
 $\sigma_m$ = `r para$PA$LMAm_sig_sun`,
 $\alpha_0$ = `r para$PA$a0`,
 $\alpha_m$ = `r para$PA$am`, and
-$\alpha_s$ = 0,
+$\alpha_s$ = 0
 for Panama sun leaves; and
 $\mu_m$ = `r para$PA$LMAm_mu_shade`,
 $\mu_s$ = `r para$PA$LMAs_mu_shade`,
@@ -256,13 +256,12 @@ $\alpha_s$ = 0, and
 $\rho$ = `r para$PA$rho_shade`
 for Panama shade leaves.
 
-For each simulated dataset, we quantified the mass-dependence (*b*) using the ordinary least squares regression from `r eq("mass")`.
+For each simulated dataset, we quantified the mass-dependence (*b*) using the ordinary least squares regression (log-log) form of `r eq("mass")`.
 We repeated these steps 1000 times for each set of parameter values.
 
-We also used Eqs. S3.1-S3.2 to create the simulated GLOPNET LMA datasets in `r fig("hypo")`.
-*A*~max~ values were generated using `r eq("Aarea")` and Eq. S1.
-Based on our analysis of the GLOPNET database, the standard deviations of ln(LMAs) and ln(*A*~area~) were set to `r para$GL$LMAs_sig_gl` and 0.31, respectively.
-The rest of the parameters were listed above.
+We also used Eqs. S3.1-S3.2 to create the simulated LMA datasets in `r fig("hypo")`, which is based on our analysis of GLOPNET data.
+*A*~area~ values were generated using `r eq("Aarea")` and Eq. S1.
+Based on our GLOPNET results, the standard deviations of ln(LMAs) and ln(*A*~area~) were set to `r para$GL$LMAs_sig_gl` and 0.31, respectively, and other GLOPNET parameter values are listed above.
 
 \newpage
 
