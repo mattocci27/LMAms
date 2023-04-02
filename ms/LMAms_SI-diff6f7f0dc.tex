@@ -1,7 +1,7 @@
 % Options for packages loaded elsewhere
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL /var/folders/ph/r5fc9nzd1j38q4j50kgwd4cw0000gn/T/_ioryPXcx7/latexdiff-vc-6f7f0dc/ms/LMAms_SI.tex   Thu Mar 30 17:59:20 2023
-%DIF ADD ms/LMAms_SI.tex                                                                                    Fri Mar 31 17:56:30 2023
+%DIF DEL /var/folders/ph/r5fc9nzd1j38q4j50kgwd4cw0000gn/T/I_0KvGj4aT/latexdiff-vc-6f7f0dc/ms/LMAms_SI.tex   Thu Mar 30 17:59:20 2023
+%DIF ADD ms/LMAms_SI.tex                                                                                    Sun Apr  2 10:48:50 2023
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -329,7 +329,7 @@ within and among plant species}
 \begin{document}
 \maketitle
 \ifdefined\Shaded\DIFdelbegin %DIFDELCMD < \renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, enhanced, boxrule=0pt, breakable, interior hidden, frame hidden, sharp corners]}{\end{tcolorbox}}%%%
-\DIFdelend \DIFaddbegin \renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, borderline west={3pt}{0pt}{shadecolor}, interior hidden, enhanced, boxrule=0pt, frame hidden, breakable]}{\end{tcolorbox}}\DIFaddend \fi
+\DIFdelend \DIFaddbegin \renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, borderline west={3pt}{0pt}{shadecolor}, interior hidden, boxrule=0pt, frame hidden, enhanced, breakable]}{\end{tcolorbox}}\DIFaddend \fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -374,21 +374,23 @@ are based on Eqs. 2- 4 in the main text.
 We used non-informative or weakly informative prior distributions
 (\protect\hyperlink{ref-Lemoine2019}{Lemoine, 2019}). The covariance
 matrix in Eq. S1 was decomposed as
-\({\mathbf \Sigma} = \mathrm {diag}(\mathbf {\sigma}){\mathbf \Omega}\mathrm {diag}({\mathbf \sigma}) = \mathrm {diag}({\mathbf \sigma}){\mathbf L}{\mathbf L}\prime \mathrm {diag}({\mathbf \sigma})\)
-using a Cholesky decomposition, where \(\mathbf {\sigma}\) is a vector
-of \(\sigma_{1}\), \(\sigma_{2}\), and \(\sigma_{3}\);
-\({\mathbf \Omega}\) is a correlation matrix of \(\rho_{12}\),
+\DIFdelbegin \DIFdel{\({\mathbf \Sigma} = \mathrm {diag}(\mathbf {\sigma}){\mathbf \Omega}\mathrm {diag}({\mathbf \sigma}) = \mathrm {diag}({\mathbf \sigma}){\mathbf L}{\mathbf L}\prime \mathrm {diag}({\mathbf \sigma})\)
+}\DIFdelend \DIFaddbegin \DIFadd{\({\boldsymbol \Sigma} = \mathrm {diag}(\boldsymbol {\sigma}){\boldsymbol \Omega}\mathrm {diag}({\boldsymbol \sigma}) = \mathrm {diag}({\boldsymbol \sigma}){\boldsymbol L}{\boldsymbol L}\prime \mathrm {diag}({\boldsymbol \sigma})\)
+}\DIFaddend using a Cholesky decomposition, where \DIFdelbegin \DIFdel{\(\mathbf {\sigma}\) }\DIFdelend \DIFaddbegin \DIFadd{\(\boldsymbol {\sigma}\) }\DIFaddend is a
+vector of \(\sigma_{1}\), \(\sigma_{2}\), and \(\sigma_{3}\);
+\DIFdelbegin \DIFdel{\({\mathbf \Omega}\) }\DIFdelend \DIFaddbegin \DIFadd{\({\boldsymbol \Omega}\) }\DIFaddend is a correlation matrix of \(\rho_{12}\),
 \(\rho_{13}\), and \(\rho_{23}\); and \textbf{L} is a lower triangular
 matrix. Instead of assigning prior distributions on
 \(\boldsymbol{\Sigma}\) directly, priors were assigned on
-\({\mathbf \sigma}\) and \textbf{L} to avoid a strong dependence between
-\({\mathbf \sigma}\) and \({\mathbf \Omega}\)
-(\protect\hyperlink{ref-Alvarez2014}{Alvarez et al., 2014};
+\DIFdelbegin \DIFdel{\({\mathbf \sigma}\) }\DIFdelend \DIFaddbegin \DIFadd{\({\boldsymbol \sigma}\) }\DIFaddend and \textbf{L} to avoid a strong dependence
+between \DIFdelbegin \DIFdel{\({\mathbf \sigma}\) and \({\mathbf \Omega}\)
+}\DIFdelend \DIFaddbegin \DIFadd{\({\boldsymbol \sigma}\) and \({\boldsymbol \Omega}\)
+}\DIFaddend (\protect\hyperlink{ref-Alvarez2014}{Alvarez et al., 2014};
 \protect\hyperlink{ref-Lewandowski2009}{Lewandowski et al., 2009}). A
 prior for \textbf{L} was specified as a so-called LKJ distribution with
 shape parameter 2 (\protect\hyperlink{ref-Lewandowski2009}{Lewandowski
 et al., 2009}), which is weakly informative for the correlation matrix.
-A prior for \(\mathbf{\sigma}\) was specified as a Half-Cauchy
+A prior for \DIFdelbegin \DIFdel{\(\mathbf{\sigma}\) }\DIFdelend \DIFaddbegin \DIFadd{\(\boldsymbol{\sigma}\) }\DIFaddend was specified as a Half-Cauchy
 distribution with location 0 and scale 2.5, which is weakly informative
 and allows for occasional large coefficients while still performing a
 reasonable amount of shrinkage for coefficients near zero
@@ -503,10 +505,11 @@ photosynthetic capacity and
 LMA}\label{appendix-s3-simulated-datasets-to-study-relationships-between-photosynthetic-capacity-and-lma}}
 
 To create simulated datasets to study relationships between
-photosynthetic capacity and LMA (i.e., mass- vs.~area-dependence of
-\emph{A}\textsubscript{max}) \DIFaddbegin \DIFadd{as well as to plot Fig. 1}\DIFaddend , we generated
-\DIFdelbegin \DIFdel{lognormally }\DIFdelend \DIFaddbegin \DIFadd{log-normally }\DIFaddend distributed LMAm and LMAs values by sampling ln(LMAm) and
-ln(LMAs) from normal distributions.
+photosynthetic capacity and LMA \DIFdelbegin \DIFdel{(i.e., mass- vs.~area-dependence of
+}\emph{\DIFdel{A}}%DIFAUXCMD
+\DIFdel{\textsubscript{max}), we generated lognormally }\DIFdelend \DIFaddbegin \DIFadd{, we generated log-normally }\DIFaddend distributed
+LMAm and LMAs values by sampling ln(LMAm) and ln(LMAs) from normal
+distributions.
 \DIFdelbegin \DIFdel{For GLPONET }\DIFdelend \DIFaddbegin 
 
 \DIFadd{For GLOPNET }\DIFaddend and Panama sun leaves, results from the LMAm-LMAs models
@@ -515,11 +518,11 @@ used univariate normal distributions (N) to generate the LMAm and LMAs
 samples:
 
 \[
-\mathrm{ln}(\mathrm{LMAm}) \sim N(\mathrm{ln}(\mu_m), \sigma_m) \DIFaddbegin \DIFadd{\qquad(\mathrm{S}3.1)
+\mathrm{ln}(\mathrm{LMAm}) \sim \DIFdelbegin \DIFdel{N}\DIFdelend \DIFaddbegin \DIFadd{\mathrm{N}}\DIFaddend (\mathrm{ln}(\mu_m), \sigma_m) \DIFaddbegin \DIFadd{\qquad(\mathrm{S}3.1)
 }\DIFaddend \]
 
 \[
-\mathrm{ln}(\mathrm{LMAs}) \sim N(\mathrm{ln}(\mu_s), \sigma_s) \DIFaddbegin \DIFadd{\qquad(\mathrm{S}3.2)
+\mathrm{ln}(\mathrm{LMAs}) \sim \DIFdelbegin \DIFdel{N}\DIFdelend \DIFaddbegin \DIFadd{\mathrm{N}}\DIFaddend (\mathrm{ln}(\mu_s), \sigma_s) \DIFaddbegin \DIFadd{\qquad(\mathrm{S}3.2)
 }\DIFaddend \]
 
 where \(\mathrm{ln}(\mu_m)\) and \(\mathrm{ln}(\mu_s)\) are the means of
@@ -572,28 +575,29 @@ To create simulated datasets (each with a sample size of 100) in which
 LMAs accounted for different fractions of the total LMA variance, we
 used the predictions (posterior medians) of LMAm and LMAs for each leaf
 sample from the best models (Table 2) to estimate \(\mu_m\), \(\mu_s\),
-\(\sigma_m\), and \(\rho\); and varied \(\sigma_s\) from ln(1.01) to
+\(\sigma_m\), and \(\rho\); and \DIFaddbegin \DIFadd{we }\DIFaddend varied \(\sigma_s\) from ln(1.01) to
 ln(10) across simulated datasets. For each of the 100 leaves in a given
 simulated dataset, \emph{A}\textsubscript{area} was calculated according
 to Eq. 2.
 
-Parameter values were, \(\mu_m\) = 56.5, \(\mu_s\) = 61.2, \(\sigma_m\)
-= 0.83, \DIFaddbegin \DIFadd{\(\alpha_0\) = 1.77, }\DIFaddend \(\alpha_m\) = 0.28, and \(\alpha_s\) =
--0.13, for GLOPNET; \(\mu_m\) = 47.3, \(\mu_s\) = 30.1, \(\sigma_m\) =
-1.58, \DIFaddbegin \DIFadd{\(\alpha_0\) = 0.34, }\DIFaddend \(\alpha_m\) = 0.56, and \(\alpha_s\) = 0,
-for Panama sun leaves; and \(\mu_m\) = 7.6, \(\mu_s\) = 26.7,
-\(\sigma_m\) = 1.95, \DIFaddbegin \DIFadd{\(\alpha_0\) = 0.34, }\DIFaddend \(\alpha_m\) = 0.56,
-\(\alpha_s\) = 0, and \(\rho\) = -0.47 \DIFdelbegin \DIFdel{. }\DIFdelend for Panama shade leaves.
+Parameter values were \DIFdelbegin \DIFdel{, }\DIFdelend \(\mu_m\) = 56.5, \(\mu_s\) = 61.2, \(\sigma_m\) =
+0.83, \DIFaddbegin \DIFadd{\(\alpha_0\) = 1.77, }\DIFaddend \(\alpha_m\) = 0.28, and \(\alpha_s\) = -0.13
+\DIFdelbegin \DIFdel{, }\DIFdelend for GLOPNET; \(\mu_m\) = 47.3, \(\mu_s\) = 30.1, \(\sigma_m\) = 1.58,
+\DIFaddbegin \DIFadd{\(\alpha_0\) = 0.34, }\DIFaddend \(\alpha_m\) = 0.56, and \(\alpha_s\) = 0 \DIFdelbegin \DIFdel{, }\DIFdelend for
+Panama sun leaves; and \(\mu_m\) = 7.6, \(\mu_s\) = 26.7, \(\sigma_m\) =
+1.95, \DIFaddbegin \DIFadd{\(\alpha_0\) = 0.34, }\DIFaddend \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, and
+\(\rho\) = -0.47 \DIFdelbegin \DIFdel{. }\DIFdelend for Panama shade leaves.
 
 For each simulated dataset, we quantified the mass-dependence (\emph{b})
-using the ordinary least squares regression from Eq. 5. We repeated
-these steps 1000 times for each set of parameter values.
+using the ordinary least squares regression \DIFdelbegin \DIFdel{from }\DIFdelend \DIFaddbegin \DIFadd{(log-log) form of }\DIFaddend Eq. 5. We
+repeated these steps 1000 times for each set of parameter values.
 
-\DIFaddbegin \DIFadd{We also used Eqs. S3.1-S3.2 to create the simulated GLOPNET LMA datasets
-in Fig. 1. }\emph{\DIFadd{A}}\DIFadd{\textsubscript{max} values were generated using Eq. 2
-and Eq. S1. Based on our analysis of the GLOPNET database, the standard
-deviations of ln(LMAs) and ln(}\emph{\DIFadd{A}}\DIFadd{\textsubscript{area}) were set to
-1 and 0.31, respectively. The rest of the parameters were listed above.
+\DIFaddbegin \DIFadd{We also used Eqs. S3.1-S3.2 to create the simulated LMA datasets in Fig.
+1, which is based on our analysis of GLOPNET data.
+}\emph{\DIFadd{A}}\DIFadd{\textsubscript{area} values were generated using Eq. 2 and Eq.
+S1. Based on our GLOPNET results, the standard deviations of ln(LMAs)
+and ln(}\emph{\DIFadd{A}}\DIFadd{\textsubscript{area}) were set to 1 and 0.31,
+respectively, and other GLOPNET parameter values are listed above.
 }
 
 \DIFaddend \newpage
