@@ -189,19 +189,19 @@
 \date{}
 
 \begin{document}
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, interior hidden, borderline west={3pt}{0pt}{shadecolor}, breakable, sharp corners, frame hidden, boxrule=0pt]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, enhanced, boxrule=0pt, sharp corners, frame hidden, borderline west={3pt}{0pt}{shadecolor}, breakable]}{\end{tcolorbox}}\fi
 
 \textbf{Running title}: Metabolic and structural leaf mass
 
 \textbf{Decomposing leaf mass into metabolic and structural components
 explains divergent patterns of trait variation within and among plant
-species}
-
+species}\\
+\strut \\
 Masatoshi Katabuchi\textsuperscript{1,2,6}, Kaoru
 Kitajima\textsuperscript{2,3,4}, S. Joseph Wright\textsuperscript{4},
 Sunshine A. Van Bael\textsuperscript{4,5}, Jeanne L. D.
-Osnas\textsuperscript{2} and Jeremy W. Lichstein\textsuperscript{2}
-
+Osnas\textsuperscript{2} and Jeremy W. Lichstein\textsuperscript{2}\\
+\strut \\
 \textsuperscript{1} Xishuangbanna Tropical Botanical Garden, Chinese
 Academy of Sciences, Menglun, Yunnan 666303 China
 
@@ -218,9 +218,19 @@ City Pl., Washington, DC 20521
 Tulane University, New Orleans, LA 70118 USA
 
 \textsuperscript{6} \textbf{Corresponding Author}: E-mail:
-katabuchi@xtbg.ac.cn; mattocci27@gmail.com
+katabuchi@xtbg.ac.cn; mattocci27@gmail.com\\
+\strut \\
+\textbf{Keywords:} Bayesian inference, functional diversity, global
+vegetation models, interspecific variation, intraspecific variability,
+latent variables, null models, optimal leaf lifespan
 
-\begin{itemize}
+\newpage
+
+\hypertarget{abstract}{%
+\section{Abstract}\label{abstract}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Across the global flora, interspecific variation in photosynthetic and
   metabolic rates depends more strongly on leaf area than leaf mass. In
@@ -245,10 +255,10 @@ katabuchi@xtbg.ac.cn; mattocci27@gmail.com
   LMAm increasing from sunny to shady conditions. LMAm and LMAs were
   nearly independent of each other in both global and Panama datasets.
 \item
-  Our results suggest that leaf functional variation is
-  multi-dimensional and that biogeochemical models should treat
+  \emph{Synthesis}: Our results suggest that leaf functional variation
+  is multi-dimensional and that biogeochemical models should treat
   metabolic and structural leaf components separately.
-\end{itemize}
+\end{enumerate}
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
@@ -1130,7 +1140,7 @@ of diverse communities in ESMs
 economics spectrum (LES) has been interpreted as a single dominant axis
 of global leaf functional variation
 (\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}), and this
-simple framework has been adopted in some of these dynamic vegetations
+simple framework has been adopted in some of these dynamic vegetation
 models. Our results demonstrate the value of considering metabolic and
 structural leaf mass separately, and indicate weak if any interspecific
 correlation between these LMA components (Fig. S8). We therefore
@@ -1163,14 +1173,27 @@ supported by a CAS President's International Fellowship Initiative
 Postdoctoral~Fellowship for~Research Abroad from the Japan Society for
 the Promotion of Science.
 
+\hypertarget{conflict-of-interest}{%
+\section{Conflict of Interest}\label{conflict-of-interest}}
+
+The authors declare no conflicts of interest.
+
 \hypertarget{author-contributions}{%
 \section{Author contributions}\label{author-contributions}}
 
 MK, JWL and JLDO conceived of the study; KK provided guidance on leaf
 physiology and interpreting trait data; KK, SJW and SAVB contributed
 data; MK devised the analytical approach and performed analyses; MK and
-JWL wrote the first draft of the manuscript, and allauthors contributed
+JWL wrote the first draft of the manuscript, and all authors contributed
 to revisions.
+
+\hypertarget{data-availability-statement}{%
+\section{Data availability
+statement}\label{data-availability-statement}}
+
+Data, codes and computing environments to reproduce this manuscript will
+be archived on Zenodo at https://doi.org/xxx and also available on
+Github at https://github.com/mattocci27/LMAms.
 
 \hypertarget{references}{%
 \section{References}\label{references}}
