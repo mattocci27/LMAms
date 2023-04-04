@@ -103,7 +103,6 @@ global vegetation models,
 interspecific variation,
 intraspecific variability,
 latent variables,
-null models,
 optimal leaf lifespan
 
 \newpage
