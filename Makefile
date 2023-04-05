@@ -10,7 +10,7 @@ diff2: ms/LMAms_SI-diff$(GIT2).pdf
 $(MAIN).pdf: $(MAIN).qmd
 	quarto render $< --to pdf
 
-$(MAIN).docx: $(MAIN).qmd
+$(MAIN).docx: $(MAIN).qmd ms/my_template.docx
 	quarto render $< --to docx
 
 $(SI).pdf: $(SI).qmd
