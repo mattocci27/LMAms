@@ -75,8 +75,6 @@ eq("mass")
 eq("var")
 ```
 
-**Running title**: Metabolic and structural leaf mass
-
 **Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species**
 \
 \
