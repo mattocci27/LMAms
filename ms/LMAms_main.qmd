@@ -481,9 +481,10 @@ We thank Jonathan Dushoff for statistical advice and Martijn Slot for helpful 
 Mirna Samaniego and Milton Garcia provided indispensable assistance in data collection.
 We thank the Andrew W. Mellon Foundation for supporting this work.
 MK was supported by
+a Xishuangbanna State Rainforest Talent Support Program,
 a CAS President's International Fellowship Initiative (2020FYB0003),
 a ZiHui (Wisdom) Yunnan Program (202203AM140026), and
-a Postdoctoral Fellowship for Research Abroad from the Japan Society for the Promotion of Science.
+a Postdoctoral Fellowship for Research Abroad from the Japan Society for the Promotion of Science (25-504).
 
 # Conflict of Interest
 

@@ -108,3 +108,5 @@ rsync.sh
 
 !ms/my_template.docx
 sftp.sh
+
+ms/cover.*
