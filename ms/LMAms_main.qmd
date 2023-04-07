@@ -91,7 +91,22 @@ Masatoshi Katabuchi^1,2\*^, Kaoru Kitajima^2,3,4^, S. Joseph Wright^4^, Sunshine
 
 ^5^ Department of Ecology and Evolutionary Biology, Tulane University, New Orleans, LA 70118 USA
 
-**\*Corresponding Author**: E-mail: katabuchi@xtbg.ac.cn; mattocci27@gmail.com
+**\*Corresponding Author**: E-mail: <katabuchi@xtbg.ac.cn>; <mattocci27@gmail.com>
+
+Masatoshi Katabuchi:
+<https://orcid.org/0000-0001-9900-9029>
+
+Kaoru Kitajima:
+<https://orcid.org/0000-0001-6822-8536>
+
+Sunshine A. Van Bael:
+<https://orcid.org/0000-0001-7317-3533>
+
+S. Joseph Wright:
+<https://orcid.org/0000-0003-4260-5676>
+
+Jeremy W. Lichstein:
+<https://orcid.org/0000-0001-5553-6142>
 \
 \
 **Keywords:**
@@ -102,6 +117,8 @@ interspecific variation,
 intraspecific variability,
 latent variables,
 optimal leaf lifespan
+
+
 
 
 # Abstract
