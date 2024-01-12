@@ -122,7 +122,33 @@ Priors for *f~i~* in Eqs. `r eq_num("LMA")`-`r eq_num("LL")` were non-informativ
 
 \newpage
 
+# Appendix S2: model
+
+To ensure that the model was identifiable, we imposed two broad assumptions:
+(i) *A*~area~ depends more strongly on metabolic leaf mass (LMAm: parameter $\alpha_m$ in `r eq("Aarea")`) than structural leaf mass (LMAs: parameter $\alpha_s$), and
+(ii) LL depends more strongly on LMAs ($\beta_s$ in `r eq("LL")` than LMAm ($\beta_m$).
+The first assumption was implemented in different model versions either by setting $\alpha_s$ = 0 or by imposing the constraint $\alpha_m$ > $\alpha_s$.
+Similarly, the second assumption was implemented either by setting $\beta_m$ = 0 or by imposing the constraint  $\beta_s$ > $\beta_m$.
+The weaker form of these assumptions ($\alpha_m$ > $\alpha_s$ and $\beta_s$ > $\beta_m$) is primarily a labeling convention and only weakly constrains the possible biological model outcomes by excluding the possibility that a single LMA component could be the primary determinant of both *A*~area~ and LL.
+The stronger form of the assumptions ($\alpha_s$ = 0 and $\beta_m$ = 0) leads to a more parsimonious model (fewer parameters).
+We considered different combinations of the strong and weak forms of the assumptions for *A*~area~ ($\alpha_m$ and $\alpha_s$) and LL ($\beta_m$ and $\beta_s$) using cross-validation (see details below).
+We did not impose any constraints on *R*~area~ ($\gamma_m$ and $\gamma_s$).
+
+
+\newpage
+
+
 # Appendix S2: Model tests with randomized data  (including Table AS1 and Figure AS1)
+
+Because our two-dimensional (LMAm-LMAs) modeling approach includes many parameters (one latent variable *f~i~* to partition LMA into LMAm and LMAs for each leaf sample), we implemented tests with randomized data to assess potential overfitting.
+We generated 10 different randomized datasets by randomizing all trait values (LMA, *A*~area~, *R*~area~ and LL) across species.
+Thus, the randomized datasets had zero expected covariance among traits.
+Models fit to the randomized datasets either did not converge or showed divergent transitions (Appendix S2), indicating that indicating that models fit to randomized data do not provide reliable inferences [@Betancourt2016].
+Furthermore, when models were fit to randomized data, the scaling exponents ($\alpha_{m,s}$, $\beta_{m,s}$, and $\gamma_{m,s}$) were not significantly different from zero.
+In simple terms, the two-dimensional models failed when fit to randomized data.
+In contrast, when fit to the observed (non-randomized) data, the two-dimensional models converged without divergent transitions and out-performed one-dimensional models (total LMA) for both GLOPNET and Panama (see Results).
+Thus, the tests with randomized data indicate that our two-dimensional approach is not inherently prone to overfitting or to creating spurious results.
+We therefore assume that estimates of LMAm and LMAs obtained from the GLOPNET and Panama datasets reflect meaningful patterns in the observations and allow for a meaningful exploration of our questions.
 
 We generated 10 randomized datasets for each of the GLOPNET and the Panama datasets by randomly shuffling each trait value across leaf samples, and we fit the best models (`r table("looic")`) to the randomized data.
 

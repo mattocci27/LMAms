@@ -1,9 +1,10 @@
-GIT = ce3856c6
+GIT = 08dc626
 GIT2 = 6f7f0dc
 COVER = ms/cover
 MAIN = ms/LMAms_main
 SI = ms/LMAms_SI
-all: $(MAIN).pdf $(MAIN).docx $(SI).pdf $(SI).docx $(COVER).pdf $(COVER).docx
+# all: $(MAIN).pdf $(MAIN).docx $(SI).pdf $(SI).docx $(COVER).pdf $(COVER).docx
+all: $(MAIN).pdf $(MAIN).docx $(SI).pdf $(SI).docx ms/LMAms_main-diff$(GIT).pdf
 diff: ms/LMAms_main-diff$(GIT).pdf
 diff2: ms/LMAms_SI-diff$(GIT2).pdf
 
@@ -19,11 +20,11 @@ $(SI).pdf: $(SI).qmd
 $(SI).docx: $(SI).qmd
 	quarto render $< --to docx
 
-$(COVER).pdf: $(COVER).qmd
-	quarto render $< --to pdf
+# $(COVER).pdf: $(COVER).qmd
+# 	quarto render $< --to pdf
 
-$(COVER).docx: $(COVER).qmd
-	quarto render $< --to docx
+# $(COVER).docx: $(COVER).qmd
+# 	quarto render $< --to docx
 
 # ms/LMA.bib: ~/LMA.bib
 # 	cp $< $@

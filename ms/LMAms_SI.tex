@@ -242,7 +242,7 @@ within and among plant species}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, enhanced, interior hidden, borderline west={3pt}{0pt}{shadecolor}, breakable, boxrule=0pt, sharp corners]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, frame hidden, sharp corners, borderline west={3pt}{0pt}{shadecolor}, interior hidden, breakable, boxrule=0pt]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -314,10 +314,63 @@ with range (0, 1).
 
 \newpage
 
+\hypertarget{appendix-s2-model}{%
+\section{Appendix S2: model}\label{appendix-s2-model}}
+
+To ensure that the model was identifiable, we imposed two broad
+assumptions: (i) \emph{A}\textsubscript{area} depends more strongly on
+metabolic leaf mass (LMAm: parameter \(\alpha_m\) in Eq. 2) than
+structural leaf mass (LMAs: parameter \(\alpha_s\)), and (ii) LL depends
+more strongly on LMAs (\(\beta_s\) in Eq. 4 than LMAm (\(\beta_m\)). The
+first assumption was implemented in different model versions either by
+setting \(\alpha_s\) = 0 or by imposing the constraint \(\alpha_m\)
+\textgreater{} \(\alpha_s\). Similarly, the second assumption was
+implemented either by setting \(\beta_m\) = 0 or by imposing the
+constraint \(\beta_s\) \textgreater{} \(\beta_m\). The weaker form of
+these assumptions (\(\alpha_m\) \textgreater{} \(\alpha_s\) and
+\(\beta_s\) \textgreater{} \(\beta_m\)) is primarily a labeling
+convention and only weakly constrains the possible biological model
+outcomes by excluding the possibility that a single LMA component could
+be the primary determinant of both \emph{A}\textsubscript{area} and LL.
+The stronger form of the assumptions (\(\alpha_s\) = 0 and \(\beta_m\) =
+0) leads to a more parsimonious model (fewer parameters). We considered
+different combinations of the strong and weak forms of the assumptions
+for \emph{A}\textsubscript{area} (\(\alpha_m\) and \(\alpha_s\)) and LL
+(\(\beta_m\) and \(\beta_s\)) using cross-validation (see details
+below). We did not impose any constraints on
+\emph{R}\textsubscript{area} (\(\gamma_m\) and \(\gamma_s\)).
+
+\newpage
+
 \hypertarget{appendix-s2-model-tests-with-randomized-data-including-table-as1-and-figure-as1}{%
 \section{Appendix S2: Model tests with randomized data (including Table
 AS1 and Figure
 AS1)}\label{appendix-s2-model-tests-with-randomized-data-including-table-as1-and-figure-as1}}
+
+Because our two-dimensional (LMAm-LMAs) modeling approach includes many
+parameters (one latent variable \emph{f\textsubscript{i}} to partition
+LMA into LMAm and LMAs for each leaf sample), we implemented tests with
+randomized data to assess potential overfitting. We generated 10
+different randomized datasets by randomizing all trait values (LMA,
+\emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and LL)
+across species. Thus, the randomized datasets had zero expected
+covariance among traits. Models fit to the randomized datasets either
+did not converge or showed divergent transitions (Appendix S2),
+indicating that indicating that models fit to randomized data do not
+provide reliable inferences
+(\protect\hyperlink{ref-Betancourt2016}{Betancourt, 2016}). Furthermore,
+when models were fit to randomized data, the scaling exponents
+(\(\alpha_{m,s}\), \(\beta_{m,s}\), and \(\gamma_{m,s}\)) were not
+significantly different from zero. In simple terms, the two-dimensional
+models failed when fit to randomized data. In contrast, when fit to the
+observed (non-randomized) data, the two-dimensional models converged
+without divergent transitions and out-performed one-dimensional models
+(total LMA) for both GLOPNET and Panama (see Results). Thus, the tests
+with randomized data indicate that our two-dimensional approach is not
+inherently prone to overfitting or to creating spurious results. We
+therefore assume that estimates of LMAm and LMAs obtained from the
+GLOPNET and Panama datasets reflect meaningful patterns in the
+observations and allow for a meaningful exploration of our questions.
 
 We generated 10 randomized datasets for each of the GLOPNET and the
 Panama datasets by randomly shuffling each trait value across leaf
@@ -389,7 +442,7 @@ datasets were not significantly different from zero. These tests with
 randomized data indicate that our model is not inherently prone to
 overfitting or to producing patterns from noise.
 
-\includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/coef_sim_gl.png}
+\includegraphics{/home/mattocci/LMAms/figs/coef_sim_gl.png}
 
 \newpage
 
@@ -406,7 +459,7 @@ randomized datasets did not show any patterns. Again, these tests with
 randomized data indicate that our model is not inherently prone to
 overfitting or to producing patterns from noise.
 
-\includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/coef_sim_pa.png}
+\includegraphics{/home/mattocci/LMAms/figs/coef_sim_pa.png}
 
 \newpage
 
@@ -508,7 +561,7 @@ respectively, and other GLOPNET parameter values are listed above.
 \hypertarget{fig.-s1}{%
 \subsection{Fig. S1}\label{fig.-s1}}
 
-\includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/box_inter.png}
+\includegraphics{/home/mattocci/LMAms/figs/box_inter.png}
 
 \textbf{Fig. S1}: Boxplots comparing leaf mass per area (LMA),
 photosynthetic leaf mass per area (LMAm; posterior medians), and
@@ -526,7 +579,7 @@ t-tests). Estiamtes are from the best Panama model (Table 1).
 \hypertarget{fig.-s2}{%
 \subsection{Fig. S2}\label{fig.-s2}}
 
-\includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/box_frac_de.png}
+\includegraphics{/home/mattocci/LMAms/figs/box_frac_de.png}
 
 \textbf{Fig. S2}: Boxplots comparing posterior medians of the latent
 variable \emph{f} (the fraction of total LMA comprised by LMAm) across
@@ -544,7 +597,7 @@ Panama models (Table 1).
 \hypertarget{fig.-s3}{%
 \subsection{Fig. S3}\label{fig.-s3}}
 
-\includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/box_frac_pa.png}
+\includegraphics{/home/mattocci/LMAms/figs/box_frac_pa.png}
 
 \textbf{Fig. S3}: Boxplots comparing posterior medians of the latent
 variable \emph{f} (the fraction of total LMA comprised by LMAm) across
@@ -562,7 +615,7 @@ t-tests). Estiamtes are from the best GLOPNET and Panama models (Table
 \hypertarget{fig.-s4}{%
 \subsection{Fig. S4}\label{fig.-s4}}
 
-\includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/mass_prop_sim.png}
+\includegraphics{/home/mattocci/LMAms/figs/mass_prop_sim.png}
 
 \textbf{Fig. S4}: The relationships between mass dependency of
 \emph{A}\textsubscript{max} (\emph{b} in Eq. 5 in the main text) and
@@ -587,7 +640,7 @@ al., 2018}). Parameter values are based on the best GLOPNET model (Table
 \hypertarget{fig.-s5}{%
 \subsection{Fig. S5}\label{fig.-s5}}
 
-\includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/mass_prop_comp.png}
+\includegraphics{/home/mattocci/LMAms/figs/mass_prop_comp.png}
 
 \textbf{Fig. S5}: The relationships between mass dependency of
 \emph{A}\textsubscript{max} (\emph{b} in Eq. 5 in the main text) and
@@ -603,7 +656,7 @@ model (Table 1) and Appendix S3: \(\alpha_0\) = 0.34, \(\alpha_m\) =
 \hypertarget{fig.-s6}{%
 \subsection{Fig. S6}\label{fig.-s6}}
 
-\includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/gl_point_np2.png}
+\includegraphics{/home/mattocci/LMAms/figs/gl_point_np2.png}
 
 \textbf{Fig. S6}: Measured traits related to photosynthesis and
 metabolism (nitrogen and phosphorus per-unit leaf area;
@@ -622,7 +675,7 @@ for LMAm (middle column) and LMAs (right column) are shown.
 \hypertarget{fig.-s7}{%
 \subsection{Fig. S7}\label{fig.-s7}}
 
-\includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/pa_point_npc_par.png}
+\includegraphics{/home/mattocci/LMAms/figs/pa_point_npc_par.png}
 
 \textbf{Fig. S7}: Partial regression plots for nitrogen, phosphorus and
 cellulose per-unit leaf area (\emph{N}\textsubscript{area},
@@ -640,7 +693,7 @@ difference). Posterior medians of partial correlation coefficients
 \hypertarget{fig.-s8}{%
 \subsection{Fig. S8}\label{fig.-s8}}
 
-\includegraphics{/Users/mattocci/Dropbox/MS/LMAms/figs/ps_point.png}
+\includegraphics{/home/mattocci/LMAms/figs/ps_point.png}
 
 \textbf{Fig. S8} Pearson correlation coefficients for posterior medians
 of LMAm vs LMAs in the (a) GLOPNET and (b) Panama datasets. The

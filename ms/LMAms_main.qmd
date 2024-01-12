@@ -1,7 +1,7 @@
 ---
 fontsize: 12pt
 geometry: margin=1in
-link-citations: yes
+link-citations: true
 csl: ecology.csl
 bibliography: [LMA.bib]
 crossref:
@@ -184,7 +184,7 @@ We considered multiple approaches to modeling datasets that include observations
 These traits comprise four of the six traits in the global leaf economics spectrum (LES) analysis of @Wright2004a.
 For simplicity, we did not include the other two LES traits – leaf nitrogen (N) and phosphorus (P) concentrations – in our modeling framework.
 Instead, we reserved observations of leaf N and P concentrations (and cellulose content, when available) for independent model tests.
-We considered a simple one-dimensional model that predicts LL, *A*~max~, and *R*~dark~ from LMA alone, as well as two-dimensional models that predict LL, *A*~max~, and *R*~dark~ from two additive LMA components: structural and metabolic and structural leaf mass per area (LMAm and LMAs, respectively).
+We considered a simple one-dimensional model that predicts LL, *A*~max~, and *R*~dark~ from LMA alone, as well as two-dimensional models that predict LL, *A*~max~, and *R*~dark~ from two additive LMA components: metabolic and structural leaf mass per area (LMAm and LMAs, respectively).
 We formulate the models in terms of area-normalized *A*~max~ and *R*~dark~ (*A*~area~ and *R*~area~, respectively), as these trait forms share the same denominator as LMA and its components.
 
 To implement the two-dimensional models, we developed a statistical modeling framework to partition LMA into additive LMAm and LMAs components.
@@ -226,17 +226,6 @@ $$
 = \gamma_0 (f_i \mathrm{LMA}_{i})^{\gamma_m} \bigl\{(1-f_i)\mathrm{LMA}_{i}\bigr\}^{\gamma_s}
 $$ {#eq-Rarea}
 
-<!-- latex -->
-
-<!-- $$
-\mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s}  = \beta_0 (f_i \mathrm{LMA}_{i})^{\beta_m} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\beta_s} \tag{4a}
-$$
-
-$$
-\mathrm{E[LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s} \mathrm{exp}(\theta \mathrm{Light}_i) \tag{4b}
-$$ -->
-
-<!-- word -->
 $$
 \mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s}  = \beta_0 (f_i \mathrm{LMA}_{i})^{\beta_m} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\beta_s} \qquad(4a)
 $$
@@ -244,7 +233,6 @@ $$
 $$
 \mathrm{E[LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s} \mathrm{exp}(\theta \mathrm{Light}_i) \qquad(4\mathrm{b})
 $$
-
 
 where E[$\cdot$] indicates expected value;
 the $\alpha$, $\beta$, and $\gamma$ terms are fitted parameters;
@@ -258,11 +246,7 @@ To ensure that the model was identifiable, we imposed two broad assumptions:
 (i) *A*~area~ depends more strongly on metabolic leaf mass (LMAm: parameter $\alpha_m$ in `r eq("Aarea")`) than structural leaf mass (LMAs: parameter $\alpha_s$), and
 (ii) LL depends more strongly on LMAs ($\beta_s$ in `r eq("LL")` than LMAm ($\beta_m$).
 The first assumption was implemented in different model versions either by setting $\alpha_s$ = 0 or by imposing the constraint $\alpha_m$ > $\alpha_s$.
-Similarly, the second assumption was implemented either by setting $\beta_m$ = 0 or by imposing the constraint  $\beta_s$ > $\beta_m$.
-The weaker form of these assumptions ($\alpha_m$ > $\alpha_s$ and $\beta_s$ > $\beta_m$) is primarily a labeling convention and only weakly constrains the possible biological model outcomes by excluding the possibility that a single LMA component could be the primary determinant of both *A*~area~ and LL.
-The stronger form of the assumptions ($\alpha_s$ = 0 and $\beta_m$ = 0) leads to a more parsimonious model (fewer parameters).
-We considered different combinations of the strong and weak forms of the assumptions for *A*~area~ ($\alpha_m$ and $\alpha_s$) and LL ($\beta_m$ and $\beta_s$) using cross-validation (see details below).
-We did not impose any constraints on *R*~area~ ($\gamma_m$ and $\gamma_s$).
+See Table 1 Appendix S2 for more detail.
 
 Finally, we considered a functional form that accounts for the effects of light availability on LL.
 This light-dependent model is motivated by optimal LL theory, which predicts decreasing LL with increasing light availability [@Kikuzawa1991], and also by the often-observed 'LMA counter-gradient', whereby LL and LMA positively covary across species but negatively covary within species across light gradients [@Lusk2008; @Russo2016; @Osnas2018].
@@ -273,18 +257,16 @@ Instead, we introduced light effects in a simple way by modifying `r eq("LL")`a 
 
 We fit the models described above using observations of LMA (g m^-2^), *A*~area~ (mol s^-1^ m^-2^), *R*~area~ (mol s^-1^ m^-2^) and LL (months) from the GLOPNET global leaf traits database [@Wright2004a] and from two tropical forest sites in Panama: Parque Natural Metropolitano (PNM, “dry site”) and Bosque Protector San Lorenzo (SL, “wet site”).
 The GLOPNET data primarily represents interspecific variation (the dataset reports 2,548 species $\times$ site combinations, with 2,021 unique species and only 350 species occurring at more than one site) and only reports data for sun leaves if data for both sun and shade leaves are available [@Wright2004a].
-In contrast, the Panama dataset represents both inter- and intraspecific variation, including leaves sampled at two canopy positions ("sun": full sun at the top of the canopy; and "shade": well shaded, sampled within 2 m of the forest floor) from trees within reach of  canopy cranes.
+In contrast, the Panama dataset represents both inter- and intraspecific variation, including leaves sampled at two canopy positions ("sun": full sun at the top of the canopy; and "shade": well shaded, sampled within 2 m of the forest floor) from trees within reach of canopy cranes.
 The dry PNM site is a semi-deciduous coastal Pacific forest with a 5-month dry season from December-April and 1740 mm of annual rainfall [@Wright2003].
-The PNM crane is 40 m tall with a 51 m long boom.
 The wet SL site is an evergreen Caribbean coastal forest with 3100 mm of annual rainfall [@Wright2003].
-The SL crane is 52 m tall with a 54 m long boom.
 Additional details of the Panama dataset are described in @Osnas2018.
 
 We restricted our analysis to database records for which all four traits (LMA, *A*~area~, *R*~area~, and LL; each typically averaged over multiple leaves) were available.
-Each database record corresponds to an analysis unit (or 'leaf sample') as described above; i.e., a species in GLOPNET, or a species $\times$ canopy position in the Panama dataset.
 After excluding database records that lacked one or more of the four traits, 198 samples for 198 unique species were available for GLOPNET, and 130 samples for 104 unique species were available for Panama (dry and wet sites combined; 26 species sampled in both sun and shade; no species with all four traits available at both sites).
 In addition to LMA, *A*~area~, *R*~area~, and LL, the model based on structural leaf density also requires observations of leaf thickness, which was not available in GLOPNET but was available for 106/130 Panama samples.
-Both the GLOPNET and Panama datasets include additional traits that we used to interpret model results, but which were not used to fit models. These traits include nitrogen and phosphorus content per leaf unit area (*N*~area~ and *P*~area~; g m^-2^) and leaf habit(deciduous or evergreen) in both datasets, and cellulose content per unit area (CL~area~; g m^-2^) in the Panama dataset.
+Both the GLOPNET and Panama datasets include additional traits that we used to interpret model results, but which were not used to fit models.
+These traits include nitrogen and phosphorus content per leaf unit area (*N*~area~ and *P*~area~; g m^-2^) and leaf habit (deciduous or evergreen) in both datasets, and cellulose content per unit area (CL~area~; g m^-2^) in the Panama dataset.
 
 ## Model estimation and evaluation
 
@@ -299,21 +281,13 @@ See Appendix S1 for more detail.
 The Stan code use to fit models is available from Github at: [https://github.com/mattocci27/LMAms](https://github.com/mattocci27/LMAms).
 Convergence of the posterior distribution was assessed with the Gelman-Rubin statistic with a convergence threshold of 1.05 for all parameters [@Gelman2013].
 
-Because our two-dimensional (LMAm-LMAs) modeling approach includes many parameters (one latent variable *f~i~* to partition LMA into LMAm and LMAs for each leaf sample), we implemented tests with randomized data to assess potential overfitting.
-We generated 10 different randomized datasets by randomizing all trait values (LMA, *A*~area~, *R*~area~ and LL) across species.
-Thus, the randomized datasets had zero expected covariance among traits.
-Models fit to the randomized datasets either did not converge or showed divergent transitions (Appendix S2), indicating that indicating that models fit to randomized data do not provide reliable inferences [@Betancourt2016].
-Furthermore, when models were fit to randomized data, the scaling exponents ($\alpha_{m,s}$, $\beta_{m,s}$, and $\gamma_{m,s}$) were not significantly different from zero.
-In simple terms, the two-dimensional models failed when fit to randomized data.
-In contrast, when fit to the observed (non-randomized) data, the two-dimensional models converged without divergent transitions and out-performed one-dimensional models (total LMA) for both GLOPNET and Panama (see Results).
-Thus, the tests with randomized data indicate that our two-dimensional approach is not inherently prone to overfitting or to creating spurious results.
-We therefore assume that estimates of LMAm and LMAs obtained from the GLOPNET and Panama datasets reflect meaningful patterns in the observations and allow for a meaningful exploration of our questions.
+Considering the complexity of our two-dimensional modeling approach, which involves numerous latent parameters, we validated our estimates of LMAm and LMAs through randomized tests, detailed in Appendix S2.
+These tests support our assumption that the patterns observed in the GLOPNET and Panama datasets are meaningful and allow for a substantial exploration of our euestions.
 
-We used Pareto-smoothed importance sampling leave-one-out cross-validation (PSIS-LOO; [@Vehtari2017]) to compare the performance of different models.
+To compare the performance of different models, we used Pareto-smoothed importance sampling leave-one-out cross-validation (PSIS-LOO; [@Vehtari2017]).
 PSIS-LOO is an accurate and reliable approximation to standard leave-one-out cross-validation (LOO), which is a robust method for comparing models with different numbers of parameters [@Vehtari2017].
-LOO requires *n* model fits (for a dataset with *n* observations) and was therefore impractical in our study due to our computationally-demanding modeling approach.
 We used PSIS-LOO to calculate the LOO Information Criterion (LOOIC) for each model.
-A lower LOOIC indicates a better model in terms of predictive accuracy [@Vehtari2017].
+A model with lower LOOIC is considered to have better predictive accuracy [@Vehtari2017].
 
 ## Understanding relationships between photosynthetic capacity and LMA
 
