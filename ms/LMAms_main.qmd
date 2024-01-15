@@ -9,6 +9,18 @@ crossref:
   fig-prefix: Fig.
   eq-prefix: Equation
 format:
+  pdf:
+    toc: false
+    keep-tex: true
+    latex-clean: false
+    pdf-engine: xelatex
+    include-in-header:
+      text: |
+        \usepackage[default]{sourcesanspro}
+        \usepackage{sourcecodepro}
+        \usepackage{lineno}
+        \linenumbers
+        \linespread{1.2}
   html:
     theme: spacelab #readable #sandstone #spacelab #flatly
     toc: true
@@ -23,18 +35,6 @@ format:
     highlight-style: github
     html-math-method: katex
     reference-doc: my_template.docx
-  pdf:
-    toc: false
-    keep-tex: true
-    latex-clean: false
-    pdf-engine: xelatex
-    include-in-header:
-      text: |
-        \usepackage[default]{sourcesanspro}
-        \usepackage{sourcecodepro}
-        \usepackage{lineno}
-        \linenumbers
-        \linespread{1.2}
 ---
 
 ```{r global_options, include=FALSE}
@@ -169,9 +169,9 @@ For example, thick cell walls contribute to structural toughness [@Onoda2015], b
 Thus, partitioning LMA into different functional components requires novel empirical or modeling approaches.
 
 In this paper, we present a statistical modeling framework to partition LMA into metabolic and structural components: LMAm and LMAs.
-We develop and test this two-dimensional model using leaf trait data from two tropical forest sites (sun and shade leaves from wet and dry sites in Panama) and the GLOPNET global leaf traits database [@Wright2004a].
+We develop and test this two-dimensional trait space model using leaf trait data from two tropical forest sites (sun and shade leaves from wet and dry sites in Panama) and the GLOPNET global leaf traits database [@Wright2004a].
 We use the model to address the following questions:
-(1) Are measured leaf traits (including photosynthetic capacity, dark respiration rate, LL, and concentrations of nutrients and cellulose) better predicted by a one-dimensional (total LMA) or two-dimensional (LMAm-LMAs) model?
+(1) Are measured leaf traits (including photosynthetic capacity, dark respiration rate, LL, and concentrations of nutrients and cellulose) better predicted by a one-dimensional (total LMA) or two-dimensional (LMAm-LMAs) trait space model?
 (2) What are the relative contributions of LMAm and LMAs to total LMA variance in different leaf assemblages (Panama sun leaves, Panama shade leaves, and the global flora)?
 (3) Do LMAm and LMAs differ between evergreen and deciduous species, and between sun and shade leaves? If so, how? and
 (4) How do the answers to the preceding questions inform our understanding of empirical patterns of trait variation (e.g., relationships among measured leaf traits)?
@@ -184,14 +184,19 @@ We considered multiple approaches to modeling datasets that include observations
 These traits comprise four of the six traits in the global leaf economics spectrum (LES) analysis of @Wright2004a.
 For simplicity, we did not include the other two LES traits – leaf nitrogen (N) and phosphorus (P) concentrations – in our modeling framework.
 Instead, we reserved observations of leaf N and P concentrations (and cellulose content, when available) for independent model tests.
-We considered a simple one-dimensional model that predicts LL, *A*~max~, and *R*~dark~ from LMA alone, as well as two-dimensional models that predict LL, *A*~max~, and *R*~dark~ from two additive LMA components: metabolic and structural leaf mass per area (LMAm and LMAs, respectively).
+We considered a simple one-dimensional trait space model that predicts LL, *A*~max~, and *R*~dark~ from LMA alone, as well as two-dimensional trait space models that predict LL, *A*~max~, and *R*~dark~ from two additive LMA components: metabolic and structural leaf mass per area (LMAm and LMAs, respectively).
 We formulate the models in terms of area-normalized *A*~max~ and *R*~dark~ (*A*~area~ and *R*~area~, respectively), as these trait forms share the same denominator as LMA and its components.
 
-To implement the two-dimensional models, we developed a statistical modeling framework to partition LMA into additive LMAm and LMAs components.
+To implement the two-dimensional trait space models, we developed a statistical modeling framework to partition LMA into additive LMAm and LMAs components.
+By using power-law relationships, our models assume that LMAm the contribution of LMAm to metabolic rates is not direct or linear, which reflects that leaf mass components still cannot be neatly classified as 'metabolic' or 'structural'.
 We fit the models to two datasets: the GLOPNET global leaf traits dataset [@Wright2004a], which primarily represents interspecific variation; and the Panama dataset described by @Osnas2018, which includes traits for both sun and shade leaves at wet and dry tropical forest sites.
-Because LMAm and LMAs are modeled (rather than observed), the two-dimensional models require one parameter per analysis unit (a species in GLOPNET or a species $\times$ canopy-position in the Panama dataset) to partition observed LMA into LMAm and LMAs.
-Given the large number of parameters in these models, we performed tests with randomized data to evaluate if our two-dimensional models were prone to overfitting, which could lead to spurious conclusions.
-These tests suggested that our two-dimensional modeling approach revealed meaningful patterns in the observed trait data.
+Because LMAm and LMAs are modeled (rather than observed), the two-dimensional trait space models require one parameter per analysis unit (a species in GLOPNET or a species $\times$ canopy-position in the Panama dataset) to partition observed LMA into LMAm and LMAs.
+Given the large number of parameters in these models, we performed tests with randomized data to evaluate if our two-dimensional trait space models were prone to overfitting, which could lead to spurious conclusions.
+These tests suggested that our two-dimensional trait space modeling approach revealed meaningful patterns in the observed trait data.
+
+To further understand the intricacies of LMA to photosynthetic capacity, we simulated datasets varying in LMAm and LMAs.
+These simulations allowed us to explore the controversial mass versus area normalization debate in leaf trait analysis (Appendix X).
+Additionally, we performed variance partitioning to determine the contributions of LMAm and LMAs to total LMA variance, using both simulated and actual datasets (Appendix X).
 
 All statistical analyses were conducted in R version 4.2.1 [@RCoreTeam2022] using the R package *targets* version 0.12.0 for workflow management [@Landau2021]
 
@@ -213,7 +218,7 @@ $$
 $$ {#eq-LMA}
 
 where the *f~i~* values -- the fractions of LMA comprised of LMAm for each sample *i* --  are estimated as latent variables in our modeling framework (see details below).
-We assumed that the observed values of *A*~area~, *R*~area~ and LL were related to the unobserved values LMAm and LMAs according to multivariate power-laws:
+We assumed that the observed values of *A*~area~, *R*~area~ and LL were related to the unobserved values LMAm and LMAs according to multivariate power laws:
 
 $$
 \mathrm{E}[A_{\mathrm{area} \, i}]
@@ -240,12 +245,13 @@ and the logarithms of *A*~area~, *R*~area~, and LL are assumed to have a multiva
 In preliminary analyses, we also considered alternative (non-power-law) forms, but none of these performed better than the power-law forms and are not discussed further.
 
 We also considered models in which LMAs in `r eq("LL")` was replaced by leaf structural density (LMAs/LT, where LT is leaf thickness), which is based on the observation that cellulose density is a good predictor for LL in some species assemblages [@Kitajima2012; @Kitajima2013].
-These models with LMAs/LT yielded qualitatively similar results as those based on LMAs, but did not perform as well in the model evaluation (see below).
+These models with leaf thickness yielded qualitatively similar results as those without leaf thickness, but they did not perform as well in the model evaluation (see below).
 
 To ensure that the model was identifiable, we imposed two broad assumptions:
 (i) *A*~area~ depends more strongly on metabolic leaf mass (LMAm: parameter $\alpha_m$ in `r eq("Aarea")`) than structural leaf mass (LMAs: parameter $\alpha_s$), and
 (ii) LL depends more strongly on LMAs ($\beta_s$ in `r eq("LL")` than LMAm ($\beta_m$).
 The first assumption was implemented in different model versions either by setting $\alpha_s$ = 0 or by imposing the constraint $\alpha_m$ > $\alpha_s$.
+Similarly, the second assumption was implemented either by setting $\beta_m$ = 0 or by imposing the constraint  $\beta_s$ > $\beta_m$.
 See Table 1 Appendix S2 for more detail.
 
 Finally, we considered a functional form that accounts for the effects of light availability on LL.
@@ -277,79 +283,22 @@ To model LL for Panama, we also used `r eq("LL")`b (light effects model), which 
 Posterior distributions of all parameters were estimated using the Hamiltonian Monte Carlo algorithm (HMC) implemented in Stan [@Carpenter2017].
 We used non-informative or weakly informative prior distributions [@Lemoine2019].
 Prior distributions for the latent variables *f~i~* (which are used to partition LMA into LMAm and LMAs according to `r eq("LMA")` were non-informative uniform(0, 1) distributions, (i.e., LMA was partitioned based on patterns in the data).
-See Appendix S1 for more detail.
+See Appendix S1 for more details.
 The Stan code use to fit models is available from Github at: [https://github.com/mattocci27/LMAms](https://github.com/mattocci27/LMAms).
 Convergence of the posterior distribution was assessed with the Gelman-Rubin statistic with a convergence threshold of 1.05 for all parameters [@Gelman2013].
 
-Considering the complexity of our two-dimensional modeling approach, which involves numerous latent parameters, we validated our estimates of LMAm and LMAs through randomized tests, detailed in Appendix S2.
-These tests support our assumption that the patterns observed in the GLOPNET and Panama datasets are meaningful and allow for a substantial exploration of our euestions.
+Considering the complexity of our two-dimensional trait space modeling approach, which involves numerous latent parameters, we validated our estimates of LMAm and LMAs through randomized tests, detailed in Appendix S2.
+These tests support our assumption that the patterns observed in the GLOPNET and Panama datasets are meaningful and allow for a substantial exploration of our questions.
 
 To compare the performance of different models, we used Pareto-smoothed importance sampling leave-one-out cross-validation (PSIS-LOO; [@Vehtari2017]).
 PSIS-LOO is an accurate and reliable approximation to standard leave-one-out cross-validation (LOO), which is a robust method for comparing models with different numbers of parameters [@Vehtari2017].
 We used PSIS-LOO to calculate the LOO Information Criterion (LOOIC) for each model.
 A model with lower LOOIC is considered to have better predictive accuracy [@Vehtari2017].
 
-## Understanding relationships between photosynthetic capacity and LMA
-
-We applied our LMAm-LMAs model to simulated data to better understand relationships between photosynthetic capacity (*A*~max~) and LMA.
-The causes and interpretation of relationships between *A*~max~ and LMA are controversial [@Westoby2013].
-Although *A*~max~ is often mass-normalized [e.g., @Wright2004a; @Shipley2006; @Blonder2011], it has been argued that *A*~max~ should be area-normalized when exploring trait relationships, because photosynthesis is an area-based process [@Lloyd2013].
-Consistent with this argument, @Osnas2013 showed that across global species, variation in whole-leaf *A*~max~ is strongly dependent on leaf area, but only weakly dependent on leaf mass (after controlling for variation in leaf area).
-@Osnas2018 further showed that the relationship between *A*~max~ and LMA (i.e., the degree of mass- vs. area-dependence) is sensitive to the amount of LL variation in an assemblage, which we hypothesize depends on the fraction of total LMA variance in the assemblage that is due to LMAs variance.
-
-To better understand the factors affecting relationships between *A*~max~ and LMA, we created simulated datasets in which we varied the following factors: the sensitivity of *A*~area~ to variation in LMAm (parameter $\alpha_m$ in `r eq("Aarea")`), the sensitivity of *A*~area~ to LMAs (parameter $\alpha_s$ in `r eq("Aarea")`), and the fraction of total LMA variance due to variance in LMAs.
-For each simulated dataset, we quantified the *A*~max~ vs. LMA relationship following @Osnas2018:
-
-<!-- $$
-A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i \tag{5}
-$$ -->
-
-$$
-A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i \qquad(5)
-$$
-
-where LMA is the sum of LMAm and LMAs `r eq("LMA")`, *c* is a fitted constant, and *b* is an index of mass-dependence as illustrated by the following cases [@Osnas2013; @Osnas2018]: if *b* = 0, then *A*~area~ is independent of LMA, which implies that whole-leaf *A*~max~ is proportional to leaf area;
-conversely, if *b* = 1, then *A*~area~ is proportional to LMA, which implies that whole-leaf *A*~max~ is proportional to leaf mass.
-Intermediate cases (0 < *b* < 1), as well as more extreme cases (*b* $\le$ 0 or *b* $\geq$ 1), are also possible, with reported estiamtes being between 0 and 1 [@Osnas2018].
-Note that applying `r eq("mass")` to either mass- or area-normalized *A*~max~ yields equivalent results [@Osnas2018].
-
-For these simulations, we generated LMAm and LMAs values based on their estimated distributions in our GLOPNET and Panama analyses, while varying the LMAs variance (so that LMAs contributed different fractions of total LMA variance in different simulated datasets).
-Although Panama sun and shade leaves were analyzed together when fitting the LMAm-LMAs models Eqs. `r eq_num("Aarea")` - `r eq_num("LL")`, they were analyzed separately here due to their different estimated covariance structures (see details below).
-
-For GLOPNET and Panama sun leaves, LMAm and LMAs were generated independently of each other, consistent with the low estimated correlations between LMAm and LMAs in these assemblages (see Results).
-Specifically, LMAm values were randomly sampled from a lognormal distribution with the log-scale mean and standard deviation given by our model outputs; and LMAs values were randomly sampled from a lognormal distribution with the log-scale mean given by our model outputs and the log-scale standard deviation raging from log(1.01) to log(10) across simulated datasets.
-In contrast to GLOPNET and Panama sun leaves, our analysis revealed a negative correlation of *r* = `r para_val$PA$rho_shade` between LMAm and LMAs for Panama shade leaves (see Appendix S3).
-Therefore, we used a multivariate normal distribution with *r* = `r para_val$PA$rho_shade` to generate log(LMAm) and log(LMAs) for the Panama shade simulations.
-Otherwise, the simulation protocol was as described above for GLOPNET and Panama sun leaves.
-
-For each simulated set of LMAm and LMAs values, we generated *A*~area~ values using the estimated values of $\alpha_m$ and $\alpha_s$ (`r eq("Aarea")`) from the corresponding best-fitting model (GLOPNET or Panama); i.e., the model with the lowest LOOIC.
-We generated 1000 simulated datasets for GLOPNET, Panama sun leaves, and Panama shade leaves, with each dataset having a sample size of 100 leaves.
-For each simulated dataset, we used `r eq("mass")` to quantify the relationship between *A*~area~ and LMA.
-
-## Variance partitioning
-
-To estimate the contributions of LMAm and LMAs to total LMA variance (where LMA = LMAm + LMAs), we used the following identity:
-
-<!-- $$
-\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \tag{6}
-$$ -->
-
-$$
-\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \qquad(6)
-$$
-
-where Var($\cdot$) is variance and Cov($\cdot$) is covariance.
-Thus, the fractions of total LMA variance due to variance in LMAm and LMAs are Cov(LMA, LMAm)/Var(LMA) and Cov(LMA, LMAs)/Var(LMA), respectively.
-We applied this method to the simulated datasets described above and also to estimates of LMAm and LMAs for GLOPNET and Panama sun and shade leaves.
-Note that Cov(LMA, LMAs)/Var(LMA) can be greater than 100% when there is a negative covariance between LMA and LMAm.
-
-To estimate the variation in each LMA component between and within leaf habits (evergreen vs. deciduous), sites (wet vs. dry), and light (sun vs. shade), we used ANOVA.
-Those post-hoc analyes were performed with posterior median parameter values.
-
 # Results
 
 **1. Decomposing LMA into metabolic and structural components leads to improved predictions of *A*~area~, *R*~area~ and LL.**
-For both the GLOPNET and Panama datasets, two-dimensional models (LMAm-LMAs) performed better in cross validation than one-dimensional (LMA) models (Table 1).
+For both the GLOPNET and Panama datasets, two-dimensional trait space models (LMAm-LMAs) performed better in cross validation than one-dimensional (LMA) models (Table 1).
 Thus, predictions of *A*~area~, *R*~area~ and LL were improved by partitioning LMA into separate metabolic and structural components (see details below and Tables 1-2).
 Each of these traits (*A*~area~, *R*~area~ and LL) had a strong positive relationship with either LMAm or LMAs (but not both), which was always stronger than the corresponding relationship with total LMA (Figs. [-@fig-gl_point]-[-@fig-pa_point]).
 
@@ -386,7 +335,7 @@ Partial regression plots showed that the higher *N*~area~, *P*~area~, and CL~are
 
 # Discussion
 
-Our analysis of the GLOPNET global dataset and a dataset including sun and shade leaves from wet and dry Panama sites demonstrates that decomposing LMA variation into separate metabolic and structural components (LMAm and LMAs, respectively) leads to improved predictions of photosynthetic capacity (*A*~max~), dark respiration rate (*R*~dark~), and leaf lifespan (LL) relative to a simpler one-dimensional model based on total LMA.
+Our analysis of the GLOPNET global dataset and a dataset including sun and shade leaves from wet and dry Panama sites demonstrates that decomposing LMA variation into separate metabolic and structural components (LMAm and LMAs, respectively) leads to improved predictions of photosynthetic capacity (*A*~max~), dark respiration rate (*R*~dark~), and leaf lifespan (LL) relative to a simpler one-dimensional trait space model based on total LMA.
 Furthermore, LMAm and LMAs showed clear relationships with independent model evaluation data (nitrogen, phosphorus, and cellulose content per-unit leaf area).
 In our analysis, LMAm and LMAs are model-inferred (rather than observed) traits.
 Nevertheless, several observations suggest that we can derive meaningful insights from these modeled LMA components.
@@ -504,9 +453,9 @@ Data, codes and computing environments to reproduce this manuscript will be arch
 Table 1.
 List of models fit to GLOPNET and Panama data ordered from highest to lowest cross-validation performance.
 Lower approximate leave-one-out cross-validation information criterion (LOOIC) indicates better predictive accuracy.
-For GLOPNET, we considered two model forms were considered: *A*~area~, *R*~area~, and LL were modeled as power laws of LMA (one-dimensional model) or both LMAm and LMAs (two-dimensional model; see Eqs. `r eq_num("Aarea")`, `r eq_num("Rarea")`, and `r eq_num("LL")`a).
+For GLOPNET, we considered two model forms were considered: *A*~area~, *R*~area~, and LL were modeled as power laws of LMA (one-dimensional trait space model) or both LMAm and LMAs (two-dimensional trait space model; see Eqs. `r eq_num("Aarea")`, `r eq_num("Rarea")`, and `r eq_num("LL")`a).
 For the Panama data, which includes canopy position (sun vs. shade) for each leaf sample, we considered the same two model forms as for GLOPNET and three additional light-dependent forms for LL (as in `r eq_num("LL")`b), LMA and light (one-dimensional); LMAm, LMAs, and light (two-dimensional); and LMAm, leaf structural density (LSD = LMAs/LT), and light (two-dimensional).
-We combined the two-dimensional model forms with four types of parameter constraints:
+We combined the two-dimensional trait space model forms with four types of parameter constraints:
 (i) $\alpha_s$ = 0 and $\beta_m$ = 0,
 (ii) $\beta_m$ = 0,
 (iii) $\alpha_s$ = 0, and
