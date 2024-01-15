@@ -43,7 +43,7 @@
 \usepackage{xcolor}
 \usepackage[margin=1in]{geometry}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\setcounter{secnumdepth}{5}
 % Make \paragraph and \subparagraph free-standing
 \ifx\paragraph\undefined\else
   \let\oldparagraph\paragraph
@@ -194,7 +194,7 @@
 \date{}
 
 \begin{document}
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, borderline west={3pt}{0pt}{shadecolor}, frame hidden, enhanced, breakable, boxrule=0pt, sharp corners]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, breakable, sharp corners, frame hidden, interior hidden, enhanced, boxrule=0pt]}{\end{tcolorbox}}\fi
 
 \textbf{Decomposing leaf mass into metabolic and structural components
 explains divergent patterns of trait variation within and among plant
@@ -238,39 +238,29 @@ Jeremy W. Lichstein: \url{https://orcid.org/0000-0001-5553-6142}\\
 vegetation models, interspecific variation, intraspecific variability,
 latent variables, optimal leaf lifespan
 
-\hypertarget{abstract}{%
-\section{Abstract}\label{abstract}}
+\textbf{Abstract}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Across the global flora, interspecific variation in photosynthetic and
-  metabolic rates depends more strongly on leaf area than leaf mass. In
-  contrast, intraspecific variation in these rates is strongly
-  mass-dependent. These contrasting patterns suggest that the causes of
-  variation in leaf mass per area (LMA) may be fundamentally different
-  within vs.~among species.
-\item
-  We developed a statistical modeling framework to decompose LMA into
-  two conceptual components -- metabolic LMAm (which determines
-  photosynthetic capacity and dark respiration) and structural LMAs
-  (which determines leaf toughness and potential leaf lifespan) - using
-  leaf trait data from tropical forests in Panama and a global
-  leaf-trait database.
-\item
-  Decomposing LMA into LMAm and LMAs improves predictions of leaf trait
-  variation (photosynthesis, respiration, and lifespan). We show that
-  strong area-dependence of metabolic traits across species can result
-  from multiple factors, including high LMAs variance and/or a slow
-  increase in photosynthetic capacity with increasing LMAm. In contrast,
-  strong mass-dependence of metabolic traits within species results from
-  LMAm increasing from sunny to shady conditions. LMAm and LMAs were
-  nearly independent of each other in both global and Panama datasets.
-\item
-  \emph{Synthesis}: Our results suggest that leaf functional variation
-  is multi-dimensional and that biogeochemical models should treat
-  metabolic and structural leaf components separately.
-\end{enumerate}
+Across the global flora, interspecific variation in photosynthetic and
+metabolic rates depends more strongly on leaf area than leaf mass. In
+contrast, intraspecific variation in these rates is strongly
+mass-dependent. These contrasting patterns suggest that the causes of
+variation in leaf mass per area (LMA) may be fundamentally different
+within vs.~among species. We developed a statistical modeling framework
+to decompose LMA into two conceptual components -- metabolic LMAm (which
+determines photosynthetic capacity and dark respiration) and structural
+LMAs (which determines leaf toughness and potential leaf lifespan) -
+using leaf trait data from tropical forests in Panama and a global
+leaf-trait database. Decomposing LMA into LMAm and LMAs improves
+predictions of leaf trait variation (photosynthesis, respiration, and
+lifespan). We show that strong area-dependence of metabolic traits
+across species can result from multiple factors, including high LMAs
+variance and/or a slow increase in photosynthetic capacity with
+increasing LMAm. In contrast, strong mass-dependence of metabolic traits
+within species results from LMAm increasing from shady to sunny
+conditions. LMAm and LMAs were nearly independent of each other in both
+global and Panama datasets. Our results suggest that leaf functional
+variation is multi-dimensional and that biogeochemical models should
+treat metabolic and structural leaf components separately.
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
@@ -297,9 +287,9 @@ observed within species across light gradients
 \protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}). Functional groups
 (e.g., deciduous vs.~evergreen angiosperms) also differ from each other
 in terms of how photosynthetic and metabolic traits variation depend on
-leaf mass and area (\protect\hyperlink{ref-Osnas2018}{Osnas et al.
-2018}). These divergent patterns suggest the presence of multiple
-drivers of trait variation.
+leaf mass and area (\protect\hyperlink{ref-Lusk2008}{Lusk et al. 2008},
+\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}). These divergent
+patterns suggest the presence of multiple drivers of trait variation.
 
 Strong interspecific correlations among leaf mass per area (LMA), leaf
 lifespan (LL), and mass-normalized leaf traits related to photosynthesis
@@ -320,8 +310,8 @@ high-LMA leaves with a slow rate of return
 hand, because the lifetime return on investment depends on LL
 (\protect\hyperlink{ref-Westoby2000}{Westoby et al. 2000},
 \protect\hyperlink{ref-Falster2012}{Falster et al. 2012}), traits should
-be normalized by their annualized construction costs (or mass/LL) should
-be used as a normalizer in leaf economics analyses
+be normalized by their annualized construction costs (or mass/LL), which
+should be used as a normalizer in leaf economics analyses
 (\protect\hyperlink{ref-Osnas2013}{Osnas et al. 2013}). In global
 analyses, normalizing leaf traits by mass/LL yields similarly weak
 correlations as area-normalization, because leaf area is roughly
@@ -336,7 +326,15 @@ considerations do, however, lead us to question the evidence for a
 single dominant axis of leaf functional diversity, which has important
 implications for how trait variation is represented in ecosystem models
 (\protect\hyperlink{ref-Bonan2002}{Bonan et al. 2002},
-\protect\hyperlink{ref-Sakschewski2016}{Sakschewski et al. 2016}).
+\protect\hyperlink{ref-Sakschewski2016}{Sakschewski et al. 2016}). On
+the one hand, mass-normalization has been justified based on economic
+principles alone (\protect\hyperlink{ref-Kikuzawa1991}{Kikuzawa 1991},
+\protect\hyperlink{ref-Westoby2013}{Westoby et al. 2013}), because leaf
+mass provides a simple index of investment that underlies the leaf
+economics spectrum (LES), ranging from cheap, low-LMA leaves with a fast
+rate of return per-unit investment to expensive, high-LMA leaves with a
+slow rate of return (\protect\hyperlink{ref-Wright2004a}{Wright et al.
+2004}).
 
 To understand why the same data can be interpreted as either supporting
 or opposing the existence of a single dominant axis of leaf trait
@@ -387,10 +385,13 @@ LMA into different functional components requires novel empirical or
 modeling approaches.
 
 In this paper, we present a statistical modeling framework to partition
-LMA into metabolic and structural components: LMAm and LMAs. We develop
-and test this two-dimensional trait space model using leaf trait data
-from two tropical forest sites (sun and shade leaves from wet and dry
-sites in Panama) and the GLOPNET global leaf traits database
+LMA into metabolic and structural components: LMAm and LMAs. Our models
+assume that the influence of LMAm on metabolic rates is complex and
+non-linear, reflecting the intricate nature of leaf mass components,
+which resist simplistic `metabolic' or `structural' categorization. We
+develop and test this two-dimensional trait space model using leaf trait
+data from two tropical forest sites (sun and shade leaves from wet and
+dry sites in Panama) and the GLOPNET global leaf traits database
 (\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}). We use the
 model to address the following questions: (1) Are measured leaf traits
 (including photosynthetic capacity, dark respiration rate, LL, and
@@ -434,11 +435,11 @@ and its components.
 
 To implement the two-dimensional trait space models, we developed a
 statistical modeling framework to partition LMA into additive LMAm and
-LMAs components. By using power-law relationships, our models assume
-that LMAm the contribution of LMAm to metabolic rates is not direct or
-linear, which reflects that leaf mass components still cannot be neatly
-classified as `metabolic' or `structural'. We fit the models to two
-datasets: the GLOPNET global leaf traits dataset
+LMAs components (Appendices S1-S2). By using power-law relationships,
+our models assume that LMAm the contribution of LMAm to metabolic rates
+is not direct or linear, which reflects that leaf mass components still
+cannot be neatly classified as `metabolic' or `structural'. We fit the
+models to two datasets: the GLOPNET global leaf traits dataset
 (\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}), which
 primarily represents interspecific variation; and the Panama dataset
 described by Osnas et al. (\protect\hyperlink{ref-Osnas2018}{2018}),
@@ -452,15 +453,15 @@ performed tests with randomized data to evaluate if our two-dimensional
 trait space models were prone to overfitting, which could lead to
 spurious conclusions. These tests suggested that our two-dimensional
 trait space modeling approach revealed meaningful patterns in the
-observed trait data.
+observed trait data (Appendix S3).
 
-To further understand the intricacies of LMA to photosynthetic capacity,
-we simulated datasets varying in LMAm and LMAs. These simulations
-allowed us to explore the controversial mass versus area normalization
-debate in leaf trait analysis (Appendix X). Additionally, we performed
-variance partitioning to determine the contributions of LMAm and LMAs to
-total LMA variance, using both simulated and actual datasets (Appendix
-X).
+To further understand the intricacies of LMA to photosynthetic capacity
+(Appendix S4), we simulated datasets varying in LMAm and LMAs (Appendix
+S5). These simulations allowed us to explore the controversial mass
+versus area normalization debate in leaf trait analysis. Additionally,
+we performed variance partitioning to determine the contributions of
+LMAm and LMAs to total LMA variance, using both simulated and actual
+datasets (Appendix S6).
 
 All statistical analyses were conducted in R version 4.2.1
 (\protect\hyperlink{ref-RCoreTeam2022}{R Core Team 2022}) using the R
@@ -648,7 +649,7 @@ convergence threshold of 1.05 for all parameters
 Considering the complexity of our two-dimensional trait space modeling
 approach, which involves numerous latent parameters, we validated our
 estimates of LMAm and LMAs through randomized tests, detailed in
-Appendix S2. These tests support our assumption that the patterns
+Appendix S3. These tests support our assumption that the patterns
 observed in the GLOPNET and Panama datasets are meaningful and allow for
 a substantial exploration of our questions.
 
@@ -945,7 +946,7 @@ self-shading within a leaf
 these factors would decrease the marginal benefit of additional units of
 LMAm, and this marginal decrease may be especially strong in GLOPNET due
 to its large LMAm range (3.2 - 591 g m\textsuperscript{2}) relative to
-Panama (3.2 - 591 g m\textsuperscript{2}).
+Panama (1.8 - 133 g m\textsuperscript{2}).
 
 Finally, while much of the model-inferred LMAm may be directly or
 indirectly related to photosynthesis, `LMAm' may also include metabolic

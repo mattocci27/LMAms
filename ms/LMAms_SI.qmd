@@ -86,7 +86,7 @@ eq("var")
 
 \newpage
 
-# Appendix S1: Prior information
+# `r appendix("prior")`: Prior information
 
 The logarithms of *A*~area~, *R*~area~, and LL for leaf sample *i* were assumed to have a multivariate normal distribution:
 
@@ -123,7 +123,7 @@ Priors for *f~i~* in Eqs. `r eq_num("LMA")`-`r eq_num("LL")` were non-informativ
 
 \newpage
 
-# Appendix S2: model
+# `r appendix("model-para")`: Model parametrization
 
 To ensure that the model was identifiable, we imposed two broad assumptions:
 (i) *A*~area~ depends more strongly on metabolic leaf mass (LMAm: parameter $\alpha_m$ in `r eq("Aarea")`) than structural leaf mass (LMAs: parameter $\alpha_s$), and
@@ -132,19 +132,18 @@ The first assumption was implemented in different model versions either by setti
 Similarly, the second assumption was implemented either by setting $\beta_m$ = 0 or by imposing the constraint  $\beta_s$ > $\beta_m$.
 The weaker form of these assumptions ($\alpha_m$ > $\alpha_s$ and $\beta_s$ > $\beta_m$) is primarily a labeling convention and only weakly constrains the possible biological model outcomes by excluding the possibility that a single LMA component could be the primary determinant of both *A*~area~ and LL.
 The stronger form of the assumptions ($\alpha_s$ = 0 and $\beta_m$ = 0) leads to a more parsimonious model (fewer parameters).
-We considered different combinations of the strong and weak forms of the assumptions for *A*~area~ ($\alpha_m$ and $\alpha_s$) and LL ($\beta_m$ and $\beta_s$) using cross-validation (see details below).
+We considered different combinations of the strong and weak forms of the assumptions for *A*~area~ ($\alpha_m$ and $\alpha_s$) and LL ($\beta_m$ and $\beta_s$) using cross-validation.
 We did not impose any constraints on *R*~area~ ($\gamma_m$ and $\gamma_s$).
 
 
 \newpage
 
-
-# Appendix S2: Model tests with randomized data  (including Table AS1 and Figure AS1)
+# `r appendix("rand")`: Model tests with randomized data  (including Table AS1 and Figure AS1)
 
 Because our two-dimensional (LMAm-LMAs) modeling approach includes many parameters (one latent variable *f~i~* to partition LMA into LMAm and LMAs for each leaf sample), we implemented tests with randomized data to assess potential overfitting.
 We generated 10 different randomized datasets by randomizing all trait values (LMA, *A*~area~, *R*~area~ and LL) across species.
 Thus, the randomized datasets had zero expected covariance among traits.
-Models fit to the randomized datasets either did not converge or showed divergent transitions (Appendix S2), indicating that indicating that models fit to randomized data do not provide reliable inferences [@Betancourt2016].
+Models fit to the randomized datasets either did not converge or showed divergent transitions (Appendix S2), indicating that models fit to randomized data do not provide reliable inferences [@Betancourt2016].
 Furthermore, when models were fit to randomized data, the scaling exponents ($\alpha_{m,s}$, $\beta_{m,s}$, and $\gamma_{m,s}$) were not significantly different from zero.
 In simple terms, the two-dimensional models failed when fit to randomized data.
 In contrast, when fit to the observed (non-randomized) data, the two-dimensional models converged without divergent transitions and out-performed one-dimensional models (total LMA) for both GLOPNET and Panama (see Results).
@@ -181,11 +180,33 @@ if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
 }
 ```
 
+\newpage
+
+## Figure AS1
+
+Although many parameters in models fit to randomized data had large Rhat values (Table AS1), which suggests that the posterior distributions did not converge, we nevertheless examined the regression coefficients to evaluate if our model framework is prone to overfitting.
+Figure AS1 shows the regression coefficients for the randomized GLOPNET data ($\alpha_{0, m, s}$, $\beta_{0, s}$, and $\gamma_{0, m, s}$ in Eqs. `r eq_num("Aarea")`-`r eq_num("LL")` in the main text).
+There are 10 independent simulations (randomizations) in total.
+Points and lines indicate posterior medians and 95% credible intervals (CIs), respectively.
+Although intercepts were significant, the scaling parameters ($\alpha_{m, s}$, $\beta_{s}$, and $\gamma_{m, s}$) obtained for the randomized datasets were not significantly different from zero.
+These tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
+
+![](`r here("figs/coef_sim_gl.png")`)
 
 \newpage
 
+## Figure AS2
 
-## Understanding relationships between photosynthetic capacity and LMA
+Figure AS2 showsWe also checked the regression coefficients for the randomized Panama dataset ($\alpha_{0, m}$, $\beta_{0, s}$, $\gamma_{0, m, s}$, and $\theta$ in Eqs.`r eq_num("Aarea")`-`r eq_num("LL")` in the main text).
+Details as for Figure AS1.
+The scaling parameters ($\alpha_{m}$, $\beta_{s}$, and $\gamma_{m, s}$) and the effect of light on leaf lifespan ($\theta$) were not significantly different from zero in the randomized datasets did not show any patterns.
+Again, these tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
+
+![](`r here("figs/coef_sim_pa.png")`)
+
+\newpage
+
+# `r appendix("mass-prop")`: Understanding relationships between photosynthetic capacity and LMA
 
 We applied our LMAm-LMAs model to simulated data to better understand relationships between photosynthetic capacity (*A*~max~) and LMA.
 The causes and interpretation of relationships between *A*~max~ and LMA are controversial [@Westoby2013].
@@ -222,51 +243,8 @@ For each simulated set of LMAm and LMAs values, we generated *A*~area~ values us
 We generated 1000 simulated datasets for GLOPNET, Panama sun leaves, and Panama shade leaves, with each dataset having a sample size of 100 leaves.
 For each simulated dataset, we used `r eq("mass")` to quantify the relationship between *A*~area~ and LMA.
 
-## Variance partitioning
 
-To estimate the contributions of LMAm and LMAs to total LMA variance (where LMA = LMAm + LMAs), we used the following identity:
-
-<!-- $$
-\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \tag{6}
-$$ -->
-
-$$
-\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \qquad(6)
-$$
-
-where Var($\cdot$) is variance and Cov($\cdot$) is covariance.
-Thus, the fractions of total LMA variance due to variance in LMAm and LMAs are Cov(LMA, LMAm)/Var(LMA) and Cov(LMA, LMAs)/Var(LMA), respectively.
-We applied this method to the simulated datasets described above and also to estimates of LMAm and LMAs for GLOPNET and Panama sun and shade leaves.
-Note that Cov(LMA, LMAs)/Var(LMA) can be greater than 100% when there is a negative covariance between LMA and LMAm.
-
-To estimate the variation in each LMA component between and within leaf habits (evergreen vs. deciduous), sites (wet vs. dry), and light (sun vs. shade), we used ANOVA.
-Those post-hoc analyes were performed with posterior median parameter values.
-
-## Figure AS1
-
-Although many parameters in models fit to randomized data had large Rhat values (Table AS1), which suggests that the posterior distributions did not converge, we nevertheless examined the regression coefficients to evaluate if our model framework is prone to overfitting.
-Figure AS1 shows the regression coefficients for the randomized GLOPNET data ($\alpha_{0, m, s}$, $\beta_{0, s}$, and $\gamma_{0, m, s}$ in Eqs. `r eq_num("Aarea")`-`r eq_num("LL")` in the main text).
-There are 10 independent simulations (randomizations) in total.
-Points and lines indicate posterior medians and 95% credible intervals (CIs), respectively.
-Although intercepts were significant, the scaling parameters ($\alpha_{m, s}$, $\beta_{s}$, and $\gamma_{m, s}$) obtained for the randomized datasets were not significantly different from zero.
-These tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
-
-![](`r here("figs/coef_sim_gl.png")`)
-
-\newpage
-
-## Figure AS2
-
-Figure AS2 showsWe also checked the regression coefficients for the randomized Panama dataset ($\alpha_{0, m}$, $\beta_{0, s}$, $\gamma_{0, m, s}$, and $\theta$ in Eqs.`r eq_num("Aarea")`-`r eq_num("LL")` in the main text).
-Details as for Figure AS1.
-The scaling parameters ($\alpha_{m}$, $\beta_{s}$, and $\gamma_{m, s}$) and the effect of light on leaf lifespan ($\theta$) were not significantly different from zero in the randomized datasets did not show any patterns.
-Again, these tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
-
-![](`r here("figs/coef_sim_pa.png")`)
-
-\newpage
-
-# Appendix S3: Simulated datasets to study relationships between photosynthetic capacity and LMA
+# `r appendix("mass-prop-sim")`: Simulated datasets to study relationships between photosynthetic capacity and LMA
 
 To create simulated datasets to study relationships between photosynthetic capacity and LMA , we generated log-normally distributed LMAm and LMAs values by sampling ln(LMAm) and ln(LMAs) from normal distributions.
 
@@ -347,6 +325,26 @@ We repeated these steps 1000 times for each set of parameter values.
 We also used Eqs. S3.1-S3.2 to create the simulated LMA datasets in `r fig("hypo")`, which is based on our analysis of GLOPNET data.
 *A*~area~ values were generated using `r eq("Aarea")` and Eq. S1.
 Based on our GLOPNET results, the standard deviations of ln(LMAs) and ln(*A*~area~) were set to `r para$GL$LMAs_sig_gl` and 0.31, respectively, and other GLOPNET parameter values are listed above.
+
+# `r appendix("vpart")`: Variance partitioning
+
+To estimate the contributions of LMAm and LMAs to total LMA variance (where LMA = LMAm + LMAs), we used the following identity:
+
+<!-- $$
+\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \tag{6}
+$$ -->
+
+$$
+\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \qquad(6)
+$$
+
+where Var($\cdot$) is variance and Cov($\cdot$) is covariance.
+Thus, the fractions of total LMA variance due to variance in LMAm and LMAs are Cov(LMA, LMAm)/Var(LMA) and Cov(LMA, LMAs)/Var(LMA), respectively.
+We applied this method to the simulated datasets described above and also to estimates of LMAm and LMAs for GLOPNET and Panama sun and shade leaves.
+Note that Cov(LMA, LMAs)/Var(LMA) can be greater than 100% when there is a negative covariance between LMA and LMAm.
+
+To estimate the variation in each LMA component between and within leaf habits (evergreen vs. deciduous), sites (wet vs. dry), and light (sun vs. shade), we used ANOVA.
+Those post-hoc analyes were performed with posterior median parameter values.
 
 \newpage
 
@@ -470,7 +468,7 @@ Symbols as in main text Figs. `r fig_num("gl_point")`-`r fig_num("pa_point")`.
 
 \newpage
 
-# Appendix S4: Stan code
+# `r appendix("stan")`: Stan code
 
 ## Stan code for the GLOPNET dataset
 
