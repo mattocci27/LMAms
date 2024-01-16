@@ -321,9 +321,9 @@ Thus, although building costs appear similar for different leaf chemical compone
 
 **3. Evergreen leaves have greater LMAs than deciduous leaves, and sun leaves have both greater LMAm and LMAs than shade leaves.**
 Leaf habit (evergreen vs. deciduous) explained very little variation in LMAm but substantial variation in LMAs for both GLOPNET and Panama ([@fig-vpart]a-b).
-Thus, the higher total LMA in evergreen compared to deciduous leaves was due to differences in LMAs (Figs. [-@fig-box_de], `r s_fig_num("box_inter")`, and `r s_fig_num("box_frac_de")`).
+Despite the relatively large residuals in LMAs [@fig-vpart]a-b), the higher total LMA in evergreen compared to deciduous leaves was primarily due to differences in LMAs (Figs. [-@fig-box_de], `r s_fig_num("box_inter")`, and `r s_fig_num("box_frac_de")`).
 In the Panama dataset, light (sun vs. shade) explained much more variation in LMAm than LMAs, whereas site (wet vs. dry) explained much more variation in LMAs than LMAm ([@fig-vpart]c).
-Panama wet-site leaves had higher total LMA than dry-site leaves due to greater LMAs (Figs. [-@fig-box_pa] and `r s_fig_num("box_inter")`).
+Panama wet-site leaves had higher total LMA than dry-site leaves due to greater LMAs when we compared the same canopy strata (Figs. [-@fig-box_pa] and `r s_fig_num("box_inter")`).
 In contrast, Panama sun leaves had higher total LMA than shade leaves primarily due to greater LMAm, with a smaller but significant contribution from LMAs (Figs. [-@fig-box_pa] and `r s_fig_num("box_inter")`).
 Thus, LMAs comprised a larger fraction of total LMA for shade leaves than for sun leaves (`r s_fig("box_frac_de")`).
 
@@ -389,7 +389,7 @@ Thus, while optimal LL theory provides important insights regarding the coordina
 
 ## Implications for understanding relationships between photosynthetic capacity and LMA
 
-@Osnas2018 suggested that in leaf assemblages where LMA variation is largely due to variation in structural leaf mass components that contribute to toughness but not photosynthetic capacity, metabolic traits (including *A*~max~) should be primarily area-dependent rather than mass-dependent.
+@Osnas2018 suggested that in leaf assemblages where LMA variation is largely due to variation in structural leaf mass components that contribute to toughness but not photosynthetic capacity, metabolic traits (including *A*~max~) should be primarily area-dependent rather than mass-dependent (parameter *b* in `r eq("mass")`, with *b* > 0.5 indicating greatermass- than area-dependence).
 Our simulations show that all else being equal, area-dependence of *A*~max~ increases (mass-dependence decreases) as LMAs variance increases ([@fig-mass_prop]), as hypothesized by @Osnas2018.
 However, our analysis also revealed complexities that were not anticipated by @Osnas2018.
 For example, if *A*~area~ only weakly increases with LMAm and/or decreases with LMAs (as in GLOPNET; Table 2), then *A*~max~ can be strongly area-dependent (weakly mass-dependent) even if LMAs accounts for relatively little LMA variance ([@fig-mass_prop]).
@@ -402,11 +402,13 @@ Both of these factors would decrease the marginal benefit of additional units of
 
 Finally, while much of the model-inferred LMAm may be directly or indirectly related to photosynthesis, 'LMAm' may also include metabolic leaf mass unrelated to photosynthesis and/or non-metabolic leaf mass that is statistically assigned (by default) to LMAm simply because it does not affect LL.
 For example, non-structural carbohydrates, which are ignored in our model, can account for 5-8% of leaf mass in deciduous species [@Wurth2005] and up to 20% of leaf mass in evergreen species [@Martinez-Vilalta2016].
-A more refined model that accounts for more than two LMA components may reveal stronger relationships between metabolic traits (*A*~area~ and *R*~area~) and LMAm.
+Although scaling parameters in our model allow us to include non-metabolic leaf mass in LMAm, a more refined model that accounts for more than two LMA components may reveal stronger relationships between metabolic traits (*A*~area~ and *R*~area~) and LMAm.
+
 
 In addition to providing insights as to why metabolic traits tend to be area-dependent across species, our analysis also helps explain why these same traits tend to be mass-dependent within species across light levels [@Osnas2018].
 LMA increased from shade to sun primarily due to an increase in LMAm (Figs. [-@fig-box_pa] and `r s_fig_num("box_inter")`), which should lead to strong mass-dependence of *A*~max~ and *R*~dark~ ([@fig-mass_prop]) and likely reflects an increase in the size and number of palisade mesophyll cells with increasing light levels [@Onoda2008; @Terashima2011].
-Estimates of mass-dependence of metabolic traits (parameter *b* in `r eq("mass")`, with *b* > 0.5 indicating greater mass- than area-dependence) across light levels are around 0.8-1.0 for the Panama dataset we analyzed [@Osnas2018].
+In contrast to our interspecific analysis within sun and shade leaves ([@fig-mass_prop]), estimates of intraspecific mass-dependence of metabolic traits across light levels are around 0.8-1.0 for the same Panama dataset [@Osnas2018].
+
 Although values of *b* greater than 1 are theoretically possible (which implies an exponential increase in area-normalized traits with increasing LMA), two factors likely constrain the observed values of *b*.
 Firstly, at least some of the LMA increase from shade to sun is due to LMAs (Figs. [-@fig-box_pa] and `r s_fig_num("box_inter")`), which may reflect the additional LMAs needed to protect and support the high LMAm of sun leaves and/or additional LMAs required to withstand hydraulic or other stress in the upper canopy.
 Secondly, as discussed above, *A*~area~ and *R*~area~ increase at a less-than-proportional rate with increasing LMAm, which in turn moderates the LMA scaling exponent (*b*).
