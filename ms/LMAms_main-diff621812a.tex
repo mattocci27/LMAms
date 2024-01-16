@@ -1,7 +1,7 @@
 % Options for packages loaded elsewhere
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL /var/folders/ph/r5fc9nzd1j38q4j50kgwd4cw0000gn/T/7EhCb9aB37/latexdiff-vc-621812a/ms/LMAms_main.tex   Fri Apr  7 11:37:03 2023
-%DIF ADD ms/LMAms_main.tex                                                                                    Tue Jan 16 17:03:04 2024
+%DIF DEL /var/folders/ph/r5fc9nzd1j38q4j50kgwd4cw0000gn/T/KZssYdu0xt/latexdiff-vc-621812a/ms/LMAms_main.tex   Fri Apr  7 11:37:03 2023
+%DIF ADD ms/LMAms_main.tex                                                                                    Tue Jan 16 18:08:49 2024
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -294,7 +294,7 @@
 
 \begin{document}
 \ifdefined\Shaded\DIFdelbegin %DIFDELCMD < \renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, enhanced, frame hidden, borderline west={3pt}{0pt}{shadecolor}, interior hidden, breakable, boxrule=0pt]}{\end{tcolorbox}}%%%
-\DIFdelend \DIFaddbegin \renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, sharp corners, enhanced, borderline west={3pt}{0pt}{shadecolor}, breakable, boxrule=0pt, frame hidden]}{\end{tcolorbox}}\DIFaddend \fi
+\DIFdelend \DIFaddbegin \renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, breakable, interior hidden, enhanced, frame hidden, sharp corners]}{\end{tcolorbox}}\DIFaddend \fi
 
 \textbf{Decomposing leaf mass into metabolic and structural components
 explains divergent patterns of trait variation within and among plant
@@ -544,23 +544,22 @@ For simplicity, we did not include the other two LES traits -- leaf
 nitrogen (N) and phosphorus (P) concentrations -- in our modeling
 framework. Instead, we reserved observations of leaf N and P
 concentrations (and cellulose content, when available) for independent
-model tests. We considered a simple one-dimensional \DIFaddbegin \DIFadd{trait space }\DIFaddend model
-that predicts LL, \emph{A}\textsubscript{max}, and
-\emph{R}\textsubscript{dark} from LMA alone, as well as two-dimensional
-\DIFaddbegin \DIFadd{trait space }\DIFaddend models that predict LL, \emph{A}\textsubscript{max}, and
-\emph{R}\textsubscript{dark} from two additive LMA components: \DIFdelbegin \DIFdel{structural and }\DIFdelend metabolic
-and structural leaf mass per area (LMAm and LMAs, respectively). We
-formulate the models in terms of area-normalized
-\emph{A}\textsubscript{max} and \emph{R}\textsubscript{dark}
-(\emph{A}\textsubscript{area} and \emph{R}\textsubscript{area},
-respectively), as these trait forms share the same denominator as LMA
-and its components.
+model tests. We considered a simple one-dimensional model that predicts
+LL, \emph{A}\textsubscript{max}, and \emph{R}\textsubscript{dark} from
+LMA alone, as well as two-dimensional models that predict LL,
+\emph{A}\textsubscript{max}, and \emph{R}\textsubscript{dark} from two
+additive LMA components: \DIFdelbegin \DIFdel{structural and }\DIFdelend metabolic and structural leaf mass per area
+(LMAm and LMAs, respectively). We formulate the models in terms of
+area-normalized \emph{A}\textsubscript{max} and
+\emph{R}\textsubscript{dark} (\emph{A}\textsubscript{area} and
+\emph{R}\textsubscript{area}, respectively), as these trait forms share
+the same denominator as LMA and its components.
 
-To implement the two-dimensional \DIFaddbegin \DIFadd{trait space }\DIFaddend models, we developed a
-statistical modeling framework to partition LMA into additive LMAm and
-LMAs components \DIFdelbegin \DIFdel{. }\DIFdelend \DIFaddbegin \DIFadd{(Appendices S1-S2). By using power-law relationships,
-our models assume that LMAm the contribution of LMAm to metabolic rates
-is not direct or linear, which reflects that leaf mass components still
+To implement the two-dimensional models, we developed a statistical
+modeling framework to partition LMA into additive LMAm and LMAs
+components \DIFdelbegin \DIFdel{. }\DIFdelend \DIFaddbegin \DIFadd{(Appendices S1-S2). By using power-law relationships, our
+models assume that LMAm the contribution of LMAm to metabolic rates is
+not direct or linear, which reflects that leaf mass components still
 cannot be neatly classified as `metabolic' or `structural'. }\DIFaddend We fit the
 models to two datasets: the GLOPNET global leaf traits dataset
 (\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}), which
@@ -568,15 +567,15 @@ primarily represents interspecific variation; and the Panama dataset
 described by Osnas et al. (\protect\hyperlink{ref-Osnas2018}{2018}),
 which includes traits for both sun and shade leaves at wet and dry
 tropical forest sites. Because LMAm and LMAs are modeled (rather than
-observed), the two-dimensional \DIFaddbegin \DIFadd{trait space }\DIFaddend models require one parameter
-per analysis unit (a species in GLOPNET or a species \(\times\)
-canopy-position in the Panama dataset) to partition observed LMA into
-LMAm and LMAs. Given the large number of parameters in these models, we
-performed tests with randomized data to evaluate if our two-dimensional
-\DIFaddbegin \DIFadd{trait space }\DIFaddend models were prone to overfitting, which could lead to
-spurious conclusions. These tests suggested that our two-dimensional
-\DIFaddbegin \DIFadd{trait space }\DIFaddend modeling approach revealed meaningful patterns in the
-observed trait data \DIFaddbegin \DIFadd{(Appendix S3)}\DIFaddend .
+observed), the two-dimensional models require one parameter per analysis
+unit (a species in GLOPNET or a species \(\times\) canopy-position in
+the Panama dataset) to partition observed LMA into LMAm and LMAs. Given
+the large number of parameters in these models, we performed tests with
+randomized data to evaluate \DIFdelbegin \DIFdel{if }\DIFdelend \DIFaddbegin \DIFadd{whether }\DIFaddend our two-dimensional models were
+prone to \DIFdelbegin \DIFdel{overfitting}\DIFdelend \DIFaddbegin \DIFadd{creating patterns from noise}\DIFaddend , which could lead to spurious
+conclusions. These tests suggested that our two-dimensional modeling
+approach revealed meaningful patterns in the observed trait data
+\DIFaddbegin \DIFadd{(Appendix S3)}\DIFaddend .
 
 \DIFaddbegin \DIFadd{To further understand the intricacies of LMA to photosynthetic capacity
 (Appendix S4), we simulated datasets varying in LMAm and LMAs (Appendix
@@ -797,13 +796,12 @@ distribution was assessed with the Gelman-Rubin statistic with a
 convergence threshold of 1.05 for all parameters
 (\protect\hyperlink{ref-Gelman2013}{Gelman et al. 2013}).
 
-\DIFdelbegin \DIFdel{Because }\DIFdelend \DIFaddbegin \DIFadd{Considering the complexity of }\DIFaddend our two-dimensional \DIFdelbegin \DIFdel{(LMAm-LMAs) modeling
-approachincludes many
+\DIFdelbegin \DIFdel{Because }\DIFdelend \DIFaddbegin \DIFadd{Considering the complexity of }\DIFaddend our two-dimensional \DIFdelbegin \DIFdel{(LMAm-LMAs) modeling approachincludes many
 parameters (one latent variable }\emph{\DIFdel{f\textsubscript{i}}} %DIFAUXCMD
 \DIFdel{to partition
-LMA into }\DIFdelend \DIFaddbegin \DIFadd{trait space modeling
-approach, which involves numerous latent parameters, we validated our
-estimates of }\DIFaddend LMAm and LMAs \DIFdelbegin \DIFdel{for each leaf sample), we implemented tests with
+LMA into }\DIFdelend \DIFaddbegin \DIFadd{modeling approach,
+which involves numerous latent parameters, we validated our estimates of
+}\DIFaddend LMAm and LMAs \DIFdelbegin \DIFdel{for each leaf sample), we implemented tests with
 randomized data to assess potential overfitting. We generated 10
 different randomized datasets by randomizing all trait values (LMA, }\emph{\DIFdel{A}}%DIFAUXCMD
 \DIFdel{\textsubscript{area}, }\emph{\DIFdel{R}}%DIFAUXCMD
@@ -823,11 +821,11 @@ observed (non-randomized) data, the two-dimensional models converged
 without divergent transitions and out-performed one-dimensional models
 (total LMA) for both GLOPNET and Panama (see Results). Thus, the tests with randomized data indicate that our two-dimensional approach is not
 inherently prone to overfitting or to creating spurious results. We
-therefore assume that estimates of LMAm and LMAs obtained from the }\DIFdelend \DIFaddbegin \DIFadd{through randomized tests, detailed in
-Appendix S3. These tests support our assumption that the patterns
-observed in the }\DIFaddend GLOPNET and Panama datasets \DIFdelbegin \DIFdel{reflect meaningful patterns in the
-observations }\DIFdelend \DIFaddbegin \DIFadd{are meaningful }\DIFaddend and allow for
-a \DIFdelbegin \DIFdel{meaningful }\DIFdelend \DIFaddbegin \DIFadd{substantial }\DIFaddend exploration of our questions.
+therefore assume that estimates of LMAm and LMAs obtained from the }\DIFdelend \DIFaddbegin \DIFadd{through randomized tests, detailed in Appendix S3. These
+tests support our assumption that the patterns observed in the }\DIFaddend GLOPNET
+and Panama datasets \DIFdelbegin \DIFdel{reflect meaningful patterns in the
+observations }\DIFdelend \DIFaddbegin \DIFadd{are meaningful }\DIFaddend and allow for a \DIFdelbegin \DIFdel{meaningful }\DIFdelend \DIFaddbegin \DIFadd{substantial
+}\DIFaddend exploration of our questions.
 
 \DIFdelbegin \DIFdel{We }\DIFdelend \DIFaddbegin \DIFadd{To compare the performance of different models, we }\DIFaddend used Pareto-smoothed
 importance sampling leave-one-out cross-validation (PSIS-LOO;
@@ -1030,9 +1028,9 @@ posterior median parameter values.
 \textbf{1. Decomposing LMA into metabolic and structural components
 leads to improved predictions of \emph{A}\textsubscript{area},
 \emph{R}\textsubscript{area} and LL.} For both the GLOPNET and Panama
-datasets, two-dimensional \DIFaddbegin \DIFadd{trait space }\DIFaddend models (LMAm-LMAs) performed
-better in cross validation than one-dimensional (LMA) models (Table 1).
-Thus, predictions of \emph{A}\textsubscript{area},
+datasets, two-dimensional models (LMAm-LMAs) performed better in cross
+validation than one-dimensional (LMA) models (Table 1). Thus,
+predictions of \emph{A}\textsubscript{area},
 \emph{R}\textsubscript{area} and LL were improved by partitioning LMA
 into separate metabolic and structural components (see details below and
 Tables 1-2). Each of these traits (\emph{A}\textsubscript{area},
@@ -1137,20 +1135,20 @@ decomposing LMA variation into separate metabolic and structural
 components (LMAm and LMAs, respectively) leads to improved predictions
 of photosynthetic capacity (\emph{A}\textsubscript{max}), dark
 respiration rate (\emph{R}\textsubscript{dark}), and leaf lifespan (LL)
-relative to a simpler one-dimensional \DIFaddbegin \DIFadd{trait space }\DIFaddend model based on total
-LMA. Furthermore, LMAm and LMAs showed clear relationships with
-independent model evaluation data (nitrogen, phosphorus, and cellulose
-content per-unit leaf area). In our analysis, LMAm and LMAs are
-model-inferred (rather than observed) traits. Nevertheless, several
-observations suggest that we can derive meaningful insights from these
-modeled LMA components. Firstly, our analysis revealed several patterns
-that are consistent with previous analyses of measured traits
-(summarized below). Secondly, although our modeling approach requires
-many parameters to partition LMA into LMAm and LMAs (one latent variable
-per leaf sample), which could lead to over-fitting or spurious results,
-our model performed poorly (often failing to converge) when applied to
-randomized data. Thus, the model structure is not prone to creating
-signals from noise. Together, these observations lend credibility to our
+relative to a simpler one-dimensional model based on total LMA.
+Furthermore, LMAm and LMAs showed clear relationships with independent
+model evaluation data (nitrogen, phosphorus, and cellulose content
+per-unit leaf area). In our analysis, LMAm and LMAs are model-inferred
+(rather than observed) traits. Nevertheless, several observations
+suggest that we can derive meaningful insights from these modeled LMA
+components. Firstly, our analysis revealed several patterns that are
+consistent with previous analyses of measured traits (summarized below).
+Secondly, although our modeling approach requires many parameters to
+partition LMA into LMAm and LMAs (one latent variable per leaf sample),
+which could lead to over-fitting or spurious results, our model
+performed poorly (often failing to converge) when applied to randomized
+data. Thus, the model structure is not prone to creating signals from
+noise. Together, these observations lend credibility to our
 model-inferred estimates of LMAm and LMAs. We first summarize and
 interpret our model results in the context of previous studies. We then
 discuss the new insights derived from our analysis and implications for
@@ -1844,23 +1842,22 @@ leave-one-out cross-validation information criterion (LOOIC) indicates
 better predictive accuracy. For GLOPNET, we considered two model forms
 were considered: \emph{A}\textsubscript{area},
 \emph{R}\textsubscript{area}, and LL were modeled as power laws of LMA
-(one-dimensional \DIFaddbegin \DIFadd{trait space }\DIFaddend model) or both LMAm and LMAs
-(two-dimensional \DIFaddbegin \DIFadd{trait space }\DIFaddend model; see Eqs. 2, 3, and 4a). For the
-Panama data, which includes canopy position (sun vs.~shade) for each
-leaf sample, we considered the same two model forms as for GLOPNET and
-three additional light-dependent forms for LL (as in 4b), LMA and light
-(one-dimensional); LMAm, LMAs, and light (two-dimensional); and LMAm,
-leaf structural density (LSD = LMAs/LT), and light (two-dimensional). We
-combined the two-dimensional \DIFaddbegin \DIFadd{trait space }\DIFaddend model forms with four types of
-parameter constraints: (i) \(\alpha_s\) = 0 and \(\beta_m\) = 0, (ii)
-\(\beta_m\) = 0, (iii) \(\alpha_s\) = 0, and (iv) \(\alpha_m\)
-\textgreater{} \(\alpha_s\) and \(\beta_s\) \textgreater{} \(\beta_m\).
-\DIFaddbegin \DIFadd{Those constraints were based on the following hypotheses: (1)
-}\emph{\DIFadd{A}}\DIFadd{\textsubscript{area} depends more strongly on metabolic leaf
-mass (LMAm: parameter \(\alpha_m\) in Eq. 2) than structural leaf mass
-(LMAs: parameter \(\alpha_s\)), and (2) LL depends more strongly on LMAs
-(\(\beta_s\) in Eq. 4 than LMAm (\(\beta_m\)). See the method and
-Appendix S2 for more details.
+(one-dimensional model) or both LMAm and LMAs (two-dimensional model;
+see Eqs. 2, 3, and 4a). For the Panama data, which includes canopy
+position (sun vs.~shade) for each leaf sample, we considered the same
+two model forms as for GLOPNET and three additional light-dependent
+forms for LL (as in 4b), LMA and light (one-dimensional); LMAm, LMAs,
+and light (two-dimensional); and LMAm, leaf structural density (LSD =
+LMAs/LT), and light (two-dimensional). We combined the two-dimensional
+model forms with four types of parameter constraints: (i) \(\alpha_s\) =
+0 and \(\beta_m\) = 0, (ii) \(\beta_m\) = 0, (iii) \(\alpha_s\) = 0, and
+(iv) \(\alpha_m\) \textgreater{} \(\alpha_s\) and \(\beta_s\)
+\textgreater{} \(\beta_m\). \DIFaddbegin \DIFadd{Those constraints were based on the
+following hypotheses: (1) }\emph{\DIFadd{A}}\DIFadd{\textsubscript{area} depends more
+strongly on metabolic leaf mass (LMAm: parameter \(\alpha_m\) in Eq. 2)
+than structural leaf mass (LMAs: parameter \(\alpha_s\)), and (2) LL
+depends more strongly on LMAs (\(\beta_s\) in Eq. 4 than LMAm
+(\(\beta_m\)). See the method and Appendix S2 for more details.
 }\DIFaddend 
 
 \begin{table}

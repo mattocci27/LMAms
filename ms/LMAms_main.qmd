@@ -332,7 +332,9 @@ Thus, LMAs comprised a larger fraction of total LMA for shade leaves than for su
 Analysis of simulated data showed that the percent of LMA variation due to LMAs variation (`r eq("var")`) strongly affected the area- vs. mass-dependence of *A*~max~ (i.e., the degree to which whole-leaf *A*~max~ depends on leaf area or mass; @Osnas2013; @Osnas2018).
 Generally, mass-dependence of *A*~max~ decreased (area-dependence increased) with increasing LMAs variance (@fig-mass_prop).
 Other factors, including the sensitivity of *A*~max~ per-unit leaf area (*A*~area~) to variation in LMAm and LMAs ($\alpha_m$ and $\alpha_s$ in `r eq("Aarea")`) and covariance between LMAm and LMAs, also affect the mass-dependence of *A*~max~ (@fig-mass_prop, Figs. `r s_fig_num("mass_prop_sim")`-`r s_fig_num("mass_prop_comp")`).
-For example, although LMAs variance was relatively low in GLOPNET (`r var_val$GL |> round(0)`% of total LMA variance), variation in *A*~max~ in GLOPNET was strongly area-dependent because the relatively weak dependence of *A*~area~ on LMAm and the negative dependence of *A*~area~ on LMAs (Table 2) led to weak overall dependence of *A*~area~ on LMA.
+For example, LMAs variance was relatively low in GLOPNET (`r var_val$GL |> round(0)`% of total LMA variance).
+However, variation in *A*~max~ in GLOPNET was strongly area-dependent.
+This is because the relatively weak dependence of *A*~area~ on LMAm and the negative dependence of *A*~area~ on LMAs (Table 2) led to a weak overall dependence of *A*~area~ on LMA.
 Thus, mass-dependence of *A*~max~ in GLOPNET was similar or weaker than in the Panama data, despite LMAs variance comprising a larger fraction of LMA variance in Panama (`r var_val$sun_intra |> round(0)`% and `r var_val$shade_intra |> floor()`% of total LMA variance for Panama sun and shade leaves, respectively).
 
 **5. Nitrogen and phosphorus per-unit leaf area are strongly correlated with LMAm, and cellulose per-unit leaf area is strongly correlated with total LMA.**
