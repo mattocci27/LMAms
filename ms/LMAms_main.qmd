@@ -133,12 +133,13 @@ optimal leaf lifespan
 Across the global flora, interspecific variation in photosynthetic and metabolic rates depends more strongly on leaf area than leaf mass.
 In contrast, intraspecific variation in these rates is strongly mass-dependent.
 These contrasting patterns suggest that the causes of variation in leaf mass per area (LMA) may be fundamentally different within vs. among species.
-We developed a statistical modeling framework to decompose LMA into two conceptual components – metabolic LMAm (which determines photosynthetic capacity and dark respiration) and structural LMAs (which determines leaf toughness and potential leaf lifespan) - using leaf trait data from tropical forests in Panama and a global leaf-trait database.
+In order to explain these contrasting patterns, We developed a statistical modeling framework to decompose LMA into two conceptual components – metabolic LMAm (which determines photosynthetic capacity and dark respiration) and structural LMAs (which determines leaf toughness and potential leaf lifespan) - using leaf trait data from tropical forests in Panama and a global leaf-trait database.
 Decomposing LMA into LMAm and LMAs improves predictions of leaf trait variation (photosynthesis, respiration, and lifespan).
 We show that strong area-dependence of metabolic traits across species can result from multiple factors, including high LMAs variance and/or a slow increase in photosynthetic capacity with increasing LMAm.
 In contrast, strong mass-dependence of metabolic traits within species results from LMAm increasing from shady to sunny conditions.
 LMAm and LMAs were nearly independent of each other in both global and Panama datasets.
-Our results suggest that leaf functional variation is multi-dimensional and that biogeochemical models should treat metabolic and structural leaf components separately.
+Our results explain different patterns in variation in LMA between across- versus within-species.
+Additionally, our analysis highlights that leaf functional variation is multi-dimensional, suggesting that biogeochemical models should treat metabolic and structural leaf components separately.
 
 # Introduction
 
