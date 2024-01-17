@@ -739,8 +739,8 @@ pa_point_par_ll <- function(pa_res_csv, settings_yml, r_vals_yml) {
    geom_point(shape = 21) +
    scale_fill_manual(values = fills) +
    scale_colour_manual(values = cols) +
-   ylab("Residuals of LL regressed on light") +
-   xlab("Residuals of LMAs regressed on light") +
+   ylab("Residuals of LL \n(adjusted for light conditions)") +
+   xlab("Residuals of LMAs \n(adjusted for light conditions)") +
    geom_abline(aes(slope = 1, intercept = 0),
                lty = 2,
                lwd = 0.25,
