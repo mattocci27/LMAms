@@ -80,8 +80,15 @@ eq("LMA")
 eq("Aarea")
 eq("Rarea")
 eq("LL")
-eq("mass")
-eq("var")
+
+s_eq("s1")
+s_eq("s2")
+s_eq("s3")
+s_eq("s4")
+s_eq("mass")
+s_eq("s5")
+s_eq("var")
+
 ```
 
 \newpage
@@ -222,7 +229,7 @@ A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i \tag{5}
 $$ -->
 
 $$
-A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i \qquad(5)
+A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i \qquad(\mathrm{S}4)
 $$
 
 where LMA is the sum of LMAm and LMAs `r eq("LMA")`, *c* is a fitted constant, and *b* is an index of mass-dependence as illustrated by the following cases [@Osnas2013; @Osnas2018]: if *b* = 0, then *A*~area~ is independent of LMA, which implies that whole-leaf *A*~max~ is proportional to leaf area;
@@ -251,11 +258,11 @@ To create simulated datasets to study relationships between photosynthetic capac
 For GLOPNET and Panama sun leaves, results from the LMAm-LMAs models (Eqs. `r eq_num("Aarea")`-`r eq_num("LL")`) indicated little correlation between LMAm and LMAs, so we used univariate normal distributions (N) to generate the LMAm and LMAs samples:
 
 $$
-\mathrm{ln}(\mathrm{LMAm}) \sim \mathrm{N}(\mathrm{ln}(\mu_m), \sigma_m) \qquad(\mathrm{S}3.1)
+\mathrm{ln}(\mathrm{LMAm}) \sim \mathrm{N}(\mathrm{ln}(\mu_m), \sigma_m) \qquad(\mathrm{S}5.1)
 $$
 
 $$
-\mathrm{ln}(\mathrm{LMAs}) \sim \mathrm{N}(\mathrm{ln}(\mu_s), \sigma_s) \qquad(\mathrm{S}3.2)
+\mathrm{ln}(\mathrm{LMAs}) \sim \mathrm{N}(\mathrm{ln}(\mu_s), \sigma_s) \qquad(\mathrm{S}5.2)
 $$
 
 where
@@ -277,7 +284,7 @@ $$
 \ln(\mu_{s}) &
 \end{matrix},
 \boldsymbol{\Sigma}
-\right] \qquad(\mathrm{S}3.3)
+\right] \qquad(\mathrm{S}5.3)
 $$
 
 $$
@@ -285,7 +292,7 @@ $$
 \begin{bmatrix}
 \sigma_m^2 & \rho \sigma_m \sigma_s \\
 \rho \sigma_m \sigma_s & \sigma_s^2 \\
-\end{bmatrix} \qquad(\mathrm{S}3.4)
+\end{bmatrix} \qquad(\mathrm{S}5.4)
 $$
 
 where $\boldsymbol{\Sigma}$ is the covariance matrix of ln(LMAm) and ln(LMAs), and
@@ -322,7 +329,7 @@ for Panama shade leaves.
 For each simulated dataset, we quantified the mass-dependence (*b*) using the ordinary least squares regression (log-log) form of `r eq("mass")`.
 We repeated these steps 1000 times for each set of parameter values.
 
-We also used Eqs. S3.1-S3.2 to create the simulated LMA datasets in `r fig("hypo")`, which is based on our analysis of GLOPNET data.
+We also used Eqs. S5.1-S5.2 to create the simulated LMA datasets in `r fig("hypo")`, which is based on our analysis of GLOPNET data.
 *A*~area~ values were generated using `r eq("Aarea")` and Eq. S1.
 Based on our GLOPNET results, the standard deviations of ln(LMAs) and ln(*A*~area~) were set to `r para$GL$LMAs_sig_gl` and 0.31, respectively, and other GLOPNET parameter values are listed above.
 
@@ -335,7 +342,7 @@ To estimate the contributions of LMAm and LMAs to total LMA variance (where LMA 
 $$ -->
 
 $$
-\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \qquad(6)
+\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \qquad(\mathrm{S}6)
 $$
 
 where Var($\cdot$) is variance and Cov($\cdot$) is covariance.

@@ -10,6 +10,7 @@ table_full <- captioner::captioner(prefix = "Table")
 eq_full <- captioner::captioner(prefix = "Eq.")
 s_fig_full <- captioner::captioner(prefix = "Fig. S", auto_space = FALSE)
 s_table_full <- captioner::captioner(prefix = "Table S", auto_space = FALSE)
+s_eq_full <- captioner::captioner(prefix = "Eq. S", auto_space = FALSE)
 appendix_full <- captioner::captioner(prefix = "Appendix S", auto_space = FALSE)
 
 # - Make a short function that prints only the object type and number, e.g., "Figure 1"
@@ -18,6 +19,7 @@ table <- pryr::partial(table_full, display = "cite", caption = "blank")
 eq <- pryr::partial(eq_full, display = "cite", caption = "blank")
 s_fig <- pryr::partial(s_fig_full, display = "cite", caption = "blank")
 s_table <- pryr::partial(s_table_full, display = "cite", caption = "blank")
+s_eq <- pryr::partial(s_eq_full, display = "cite", caption = "blank")
 appendix <- pryr::partial(appendix_full, display = "cite", caption = "blank")
 
 # - Make a short function that prints only the number (e.g., "1")
@@ -27,4 +29,5 @@ table_num <- function (name) {table(name) %>% str_remove("Table ")}
 eq_num <- function (name) {eq(name) %>% str_remove("Eq. ")}
 s_fig_num <- function (name) {s_fig(name) %>% str_remove("Fig. ")}
 s_table_num <- function (name) {s_table(name) %>% str_remove("Table ")}
+s_eq_num <- function (name) {s_eq(name) %>% str_remove("Eq. ")}
 appendix_num <- function (name) {appendix(name) %>% str_remove("Appendix ")}

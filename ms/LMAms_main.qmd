@@ -72,8 +72,15 @@ eq("LMA")
 eq("Aarea")
 eq("Rarea")
 eq("LL")
-eq("mass")
-eq("var")
+# eq("mass")
+# eq("var")
+s_eq("s1")
+s_eq("s2")
+s_eq("s3")
+s_eq("s4")
+s_eq("mass")
+s_eq("s5")
+s_eq("var")
 
 appendix("prior")
 appendix("model-fit")
@@ -201,8 +208,9 @@ Because LMAm and LMAs are modeled (rather than observed), the two-dimensional mo
 Given the large number of parameters in these models, we performed tests with randomized data to evaluate whether our two-dimensional models were prone to creating patterns from noise, which could lead to spurious conclusions.
 These tests suggested that our two-dimensional modeling approach revealed meaningful patterns in the observed trait data (`r appendix("rand")`).
 
-To further understand the intricacies of LMA to photosynthetic capacity (`r appendix("mass-prop")`), we simulated datasets varying in LMAm and LMAs (`r appendix("mass-prop-sim")`).
-These simulations allowed us to explore the controversial mass versus area normalization debate in leaf trait analysis.
+To better understand the factors affecting relationships between *A*~max~ and LMA (`r appendix("mass-prop")`), we simulated datasets varying in LMAm and LMAs (`r appendix("mass-prop-sim")`).
+We quantified the mass-dependence of *A*~max~ based on the scaling exponent of *A*~max~ with LMA (`r appendix("mass-prop")`) following @Osnas2013.
+These simulations allow us to explore the controversial mass versus area normalization debate in leaf trait analysis.
 Additionally, we performed variance partitioning to determine the contributions of LMAm and LMAs to total LMA variance, using both simulated and actual datasets (`r appendix("vpart")`).
 
 All statistical analyses were conducted in R version 4.2.1 [@RCoreTeam2022] using the R package *targets* version 0.12.0 for workflow management [@Landau2021]
@@ -596,11 +604,12 @@ Details as for [@fig-box_de].
 \newpage
 
 ![
-Relationships between mass dependency (*b* in `r eq("mass")`) and LMAs variance (relative to total LMA variance; `r eq("var")`) for the global GLPNET dataset, sun leaves in Panama, and shade leaves in Panama.
+Relationships between mass dependency (*b* in `r s_eq("mass")`) and LMAs variance (relative to total LMA variance; `r s_eq("var")`) for the global GLPNET dataset, sun leaves in Panama, and shade leaves in Panama.
 Solid lines indicate simulated medians and shaded regions indicate 95% confidence intervals.
 Each point indicates the estimated values from the empirical data and represents interspecific variation (e.g., across species within a canopy position in the Panama dataset).
 The y-axis values indicates if photosynthetic capacity (*A*~max~) is is primarily mass-dependent (*b* > 0.5) or primarily area-dependent (0.5 > *b* > 0), with *b* near 0 indicating  purely area-dependendence [@Osnas2018].
 If *b* > 1, then *A*~max~ increases exponentially with LMA, which is not consistent with observed relationships [@Osnas2018].
+See Appendices `r appendix_num("mass-prop")`-`r appendix_num("vpart")` for details.
 ](`r here::here("figs/mass_prop_mv.png")`){#fig-mass_prop}
 
 \newpage
