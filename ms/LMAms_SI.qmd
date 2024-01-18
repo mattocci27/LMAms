@@ -84,10 +84,17 @@ eq("LL")
 s_eq("s1")
 s_eq("s2")
 s_eq("s3")
-s_eq("s4")
 s_eq("mass")
-s_eq("s5")
+s_eq("mass_sim")
 s_eq("var")
+
+appendix("prior")
+appendix("model-cons")
+appendix("rand")
+appendix("mass-prop")
+appendix("mass-prop-sim")
+appendix("vpart")
+appendix("stan")
 
 ```
 
@@ -130,7 +137,7 @@ Priors for *f~i~* in Eqs. `r eq_num("LMA")`-`r eq_num("LL")` were non-informativ
 
 \newpage
 
-# `r appendix("model-para")`: Model parametrization
+# `r appendix("model-cons")`: Model constraints
 
 To ensure that the model was identifiable, we imposed two broad assumptions:
 (i) *A*~area~ depends more strongly on metabolic leaf mass (LMAm: parameter $\alpha_m$ in `r eq("Aarea")`) than structural leaf mass (LMAs: parameter $\alpha_s$), and
@@ -235,14 +242,14 @@ $$
 where LMA is the sum of LMAm and LMAs `r eq("LMA")`, *c* is a fitted constant, and *b* is an index of mass-dependence as illustrated by the following cases [@Osnas2013; @Osnas2018]: if *b* = 0, then *A*~area~ is independent of LMA, which implies that whole-leaf *A*~max~ is proportional to leaf area;
 conversely, if *b* = 1, then *A*~area~ is proportional to LMA, which implies that whole-leaf *A*~max~ is proportional to leaf mass.
 Intermediate cases (0 < *b* < 1), as well as more extreme cases (*b* $\le$ 0 or *b* $\geq$ 1), are also possible, with reported estiamtes being between 0 and 1 [@Osnas2018].
-Note that applying `r eq("mass")` to either mass- or area-normalized *A*~max~ yields equivalent results [@Osnas2018].
+Note that applying `r s_eq("mass")` to either mass- or area-normalized *A*~max~ yields equivalent results [@Osnas2018].
 
 For these simulations, we generated LMAm and LMAs values based on their estimated distributions in our GLOPNET and Panama analyses, while varying the LMAs variance (so that LMAs contributed different fractions of total LMA variance in different simulated datasets).
-Although Panama sun and shade leaves were analyzed together when fitting the LMAm-LMAs models Eqs. `r eq_num("Aarea")` - `r eq_num("LL")`, they were analyzed separately here due to their different estimated covariance structures (see details below).
+Although Panama sun and shade leaves were analyzed together when fitting the LMAm-LMAs models Eqs. `r eq_num("Aarea")` - `r eq_num("LL")`, they were analyzed separately here due to their different estimated covariance structures (see the main text).
 
 For GLOPNET and Panama sun leaves, LMAm and LMAs were generated independently of each other, consistent with the low estimated correlations between LMAm and LMAs in these assemblages (see Results).
 Specifically, LMAm values were randomly sampled from a lognormal distribution with the log-scale mean and standard deviation given by our model outputs; and LMAs values were randomly sampled from a lognormal distribution with the log-scale mean given by our model outputs and the log-scale standard deviation raging from log(1.01) to log(10) across simulated datasets.
-In contrast to GLOPNET and Panama sun leaves, our analysis revealed a negative correlation of *r* = `r para_val$PA$rho_shade` between LMAm and LMAs for Panama shade leaves (see Appendix S3).
+In contrast to GLOPNET and Panama sun leaves, our analysis revealed a negative correlation of *r* = `r para_val$PA$rho_shade` between LMAm and LMAs for Panama shade leaves (see `r appendix("mass-prop-sim")`).
 Therefore, we used a multivariate normal distribution with *r* = `r para_val$PA$rho_shade` to generate log(LMAm) and log(LMAs) for the Panama shade simulations.
 Otherwise, the simulation protocol was as described above for GLOPNET and Panama sun leaves.
 
