@@ -189,7 +189,7 @@
 \date{}
 
 \begin{document}
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, sharp corners, frame hidden, interior hidden, borderline west={3pt}{0pt}{shadecolor}, breakable, enhanced]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, boxrule=0pt, enhanced, borderline west={3pt}{0pt}{shadecolor}, sharp corners, interior hidden, breakable]}{\end{tcolorbox}}\fi
 
 \textbf{Decomposing leaf mass into metabolic and structural components
 explains divergent patterns of trait variation within and among plant
@@ -241,7 +241,7 @@ contrast, intraspecific variation in these rates is strongly
 mass-dependent. These contrasting patterns suggest that the causes of
 variation in leaf mass per area (LMA) may be fundamentally different
 within vs.~among species. In order to explain these contrasting
-patterns, We developed a statistical modeling framework to decompose LMA
+patterns, we developed a statistical modeling framework to decompose LMA
 into two conceptual components -- metabolic LMAm (which determines
 photosynthetic capacity and dark respiration) and structural LMAs (which
 determines leaf toughness and potential leaf lifespan) - using leaf
@@ -264,74 +264,76 @@ components separately.
 \section{Introduction}\label{introduction}}
 
 Leaf functional traits play an important role in ecological and
-physiological tradeoffs (\protect\hyperlink{ref-Wright2004a}{Wright et
-al. 2004}, \protect\hyperlink{ref-Reich2014}{Reich 2014},
-\protect\hyperlink{ref-Onoda2017}{Onoda et al. 2017}) and in carbon and
-nutrient cycling (\protect\hyperlink{ref-Tcherkez2017}{Tcherkez et al.
-2017}, e.g., \protect\hyperlink{ref-Huntingford2017}{Huntingford et al.
-2017}). Thus, understanding the causes and consequences of leaf trait
-variation is an important goal in ecology, plant physiology, and
-biogeochemistry (\protect\hyperlink{ref-Bonan2002}{Bonan et al. 2002},
-\protect\hyperlink{ref-Poorter2009}{Poorter et al. 2009}). Different
+physiological tradeoffs (\protect\hyperlink{ref-Onoda2017}{Onoda et al.,
+2017}; \protect\hyperlink{ref-Reich2014}{Reich, 2014};
+\protect\hyperlink{ref-Wright2004a}{Wright et al., 2004}) and in carbon
+and nutrient cycling (e.g.,
+\protect\hyperlink{ref-Huntingford2017}{Huntingford et al., 2017};
+\protect\hyperlink{ref-Tcherkez2017}{Tcherkez et al., 2017}). Thus,
+understanding the causes and consequences of leaf trait variation is an
+important goal in ecology, plant physiology, and biogeochemistry
+(\protect\hyperlink{ref-Bonan2002}{Bonan et al., 2002};
+\protect\hyperlink{ref-Poorter2009}{Poorter et al., 2009}). Different
 leaf assemblages exhibit markedly different patterns of trait variation.
 For example, across global species, whole-leaf values of traits related
 to photosynthesis and metabolism (e.g., the photosynthetic capacity,
 respiration rate, or nutrient content of entire leaves) tend to increase
 more strongly with leaf area than leaf mass
-(\protect\hyperlink{ref-Osnas2013}{Osnas et al. 2013}), whereas the
+(\protect\hyperlink{ref-Osnas2013}{Osnas et al., 2013}), whereas the
 opposite pattern (strong mass-dependence of these same traits) is
 observed within species across light gradients
-(\protect\hyperlink{ref-Osada2001}{Osada et al. 2001},
-\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}). Functional groups
-(e.g., deciduous vs.~evergreen angiosperms) also differ from each other
-in terms of how photosynthetic and metabolic traits variation depend on
-leaf mass and area (\protect\hyperlink{ref-Lusk2008}{Lusk et al. 2008},
-\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}). These divergent
-patterns suggest the presence of multiple drivers of trait variation.
+(\protect\hyperlink{ref-Osada2001}{Osada et al., 2001};
+\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}). Functional
+groups (e.g., deciduous vs.~evergreen angiosperms) also differ from each
+other in terms of how photosynthetic and metabolic traits variation
+depend on leaf mass and area (\protect\hyperlink{ref-Lusk2008}{Lusk et
+al., 2008}; \protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}).
+These divergent patterns suggest the presence of multiple drivers of
+trait variation.
 
 Strong interspecific correlations among leaf mass per area (LMA), leaf
 lifespan (LL), and mass-normalized leaf traits related to photosynthesis
 and metabolism (hereafter, `metabolic traits') have been interpreted as
 evidence for a single dominant axis of leaf functional variation
-(\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}). However, the
+(\protect\hyperlink{ref-Wright2004a}{Wright et al., 2004}). However, the
 interpretation of these strong correlations, which can result from
 mass-normalization of area-dependent traits
-(\protect\hyperlink{ref-Lloyd2013}{Lloyd et al. 2013},
-\protect\hyperlink{ref-Osnas2013}{Osnas et al. 2013}), is controversial.
-On the one hand, mass-normalization has been justified based on economic
-principles alone (\protect\hyperlink{ref-Westoby2013}{Westoby et al.
-2013}), because leaf mass provides a simple index of investment that
-underlies the leaf economics spectrum (LES), ranging from cheap, low-LMA
-leaves with a fast rate of return per-unit investment to expensive,
-high-LMA leaves with a slow rate of return
-(\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}). On the other
-hand, because the lifetime return on investment depends on LL
-(\protect\hyperlink{ref-Westoby2000}{Westoby et al. 2000},
-\protect\hyperlink{ref-Falster2012}{Falster et al. 2012}), traits should
-be normalized by their annualized construction costs (or mass/LL), which
-should be used as a normalizer in leaf economics analyses
-(\protect\hyperlink{ref-Osnas2013}{Osnas et al. 2013}). In global
-analyses, normalizing leaf traits by mass/LL yields similarly weak
-correlations as area-normalization, because leaf area is roughly
+(\protect\hyperlink{ref-Lloyd2013}{Lloyd et al., 2013};
+\protect\hyperlink{ref-Osnas2013}{Osnas et al., 2013}), is
+controversial. On the one hand, mass-normalization has been justified
+based on economic principles alone
+(\protect\hyperlink{ref-Westoby2013}{Westoby et al., 2013}), because
+leaf mass provides a simple index of investment that underlies the leaf
+economics spectrum (LES), ranging from cheap, low-LMA leaves with a fast
+rate of return per-unit investment to expensive, high-LMA leaves with a
+slow rate of return (\protect\hyperlink{ref-Wright2004a}{Wright et al.,
+2004}). On the other hand, because the lifetime return on investment
+depends on LL (\protect\hyperlink{ref-Falster2012}{Falster et al.,
+2012}; \protect\hyperlink{ref-Westoby2000}{Westoby et al., 2000}),
+traits should be normalized by their annualized construction costs (or
+mass/LL), which should be used as a normalizer in leaf economics
+analyses (\protect\hyperlink{ref-Osnas2013}{Osnas et al., 2013}). In
+global analyses, normalizing leaf traits by mass/LL yields similarly
+weak correlations as area-normalization, because leaf area is roughly
 proportional to mass/LL across global species
-(\protect\hyperlink{ref-Osnas2013}{Osnas et al. 2013}). Area-dependence
+(\protect\hyperlink{ref-Osnas2013}{Osnas et al., 2013}). Area-dependence
 of metabolic traits and the inconsistent correlation strengths obtained
 from different normalizers (\protect\hyperlink{ref-Lloyd2013}{Lloyd et
-al. 2013}, \protect\hyperlink{ref-Osnas2013}{Osnas et al. 2013}) do not
-invalidate mass-normalization or the LES
-(\protect\hyperlink{ref-Westoby2013}{Westoby et al. 2013}). These
+al., 2013}; \protect\hyperlink{ref-Osnas2013}{Osnas et al., 2013}) do
+not invalidate mass-normalization or the LES
+(\protect\hyperlink{ref-Westoby2013}{Westoby et al., 2013}). These
 considerations do, however, lead us to question the evidence for a
 single dominant axis of leaf functional diversity, which has important
 implications for how trait variation is represented in ecosystem models
-(\protect\hyperlink{ref-Bonan2002}{Bonan et al. 2002},
-\protect\hyperlink{ref-Sakschewski2016}{Sakschewski et al. 2016}). On
+(\protect\hyperlink{ref-Bonan2002}{Bonan et al., 2002};
+\protect\hyperlink{ref-Sakschewski2016}{Sakschewski et al., 2016}). On
 the one hand, mass-normalization has been justified based on economic
-principles alone (\protect\hyperlink{ref-Kikuzawa1991}{Kikuzawa 1991},
-\protect\hyperlink{ref-Westoby2013}{Westoby et al. 2013}), because leaf
+principles alone (\protect\hyperlink{ref-Kikuzawa1991}{Kikuzawa, 1991};
+\protect\hyperlink{ref-Westoby2013}{Westoby et al., 2013}), because leaf
 mass provides a simple index of investment that underlies the leaf
 economics spectrum (LES), ranging from cheap, low-LMA leaves with a fast
 rate of return per-unit investment to expensive, high-LMA leaves with a
-slow rate of return (\protect\hyperlink{ref-Wright2004a}{Wright et al.
+slow rate of return (\protect\hyperlink{ref-Wright2004a}{Wright et al.,
 2004}).
 
 To understand why the same data can be interpreted as either supporting
@@ -343,10 +345,10 @@ chloroplasts and other metabolically active leaf components that
 contribute directly to photosynthesis and respiration -- and structural
 LMA (LMAs) -- the mass per area of structural leaf components that
 contribute to toughness and durability
-(\protect\hyperlink{ref-Kitajima2012}{Kitajima et al. 2012},
-\protect\hyperlink{ref-Kitajima2016}{2016},
-\protect\hyperlink{ref-Onoda2017}{Onoda et al. 2017}). Suppose these two
-LMA components are independent axes of functional variation, so that
+(\protect\hyperlink{ref-Kitajima2016}{Kitajima et al., 2016},
+\protect\hyperlink{ref-Kitajima2012}{2012};
+\protect\hyperlink{ref-Onoda2017}{Onoda et al., 2017}). Suppose these
+two LMA components are independent axes of functional variation, so that
 LMAm and LMAs are uncorrelated across species (Fig.~\ref{fig-hypo}a).
 These two independent axes can be translated into either a
 two-dimensional trait space (if metabolic traits are area-normalized;
@@ -373,10 +375,10 @@ one-dimensional LMA model in terms of their capacities to explain
 variation in other traits. However, implementing the `LMAm-LMAs' model
 is challenging, because although certain leaf mass components can be
 neatly classified as `metabolic' or `structural'
-(\protect\hyperlink{ref-Poorter2009}{Poorter et al. 2009},
-\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}), other leaf mass
-components cannot. For example, thick cell walls contribute to
-structural toughness (\protect\hyperlink{ref-Onoda2015}{Onoda et al.
+(\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018};
+\protect\hyperlink{ref-Poorter2009}{Poorter et al., 2009}), other leaf
+mass components cannot. For example, thick cell walls contribute to
+structural toughness (\protect\hyperlink{ref-Onoda2015}{Onoda et al.,
 2015}), but at least some cell wall mass is required for the
 biomechanical support that enables photosynthesis. Thus, partitioning
 LMA into different functional components requires novel empirical or
@@ -390,7 +392,7 @@ which resist simplistic `metabolic' or `structural' categorization. We
 develop and test this two-dimensional trait space model using leaf trait
 data from two tropical forest sites (sun and shade leaves from wet and
 dry sites in Panama) and the GLOPNET global leaf traits database
-(\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}). We use the
+(\protect\hyperlink{ref-Wright2004a}{Wright et al., 2004}). We use the
 model to address the following questions: (1) Are measured leaf traits
 (including photosynthetic capacity, dark respiration rate, LL, and
 concentrations of nutrients and cellulose) better predicted by a
@@ -437,7 +439,7 @@ models assume that LMAm the contribution of LMAm to metabolic rates is
 not direct or linear, which reflects that leaf mass components still
 cannot be neatly classified as `metabolic' or `structural'. We fit the
 models to two datasets: the GLOPNET global leaf traits dataset
-(\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}), which
+(\protect\hyperlink{ref-Wright2004a}{Wright et al., 2004}), which
 primarily represents interspecific variation; and the Panama dataset
 described by Osnas et al. (\protect\hyperlink{ref-Osnas2018}{2018}),
 which includes traits for both sun and shade leaves at wet and dry
@@ -446,11 +448,10 @@ observed), the two-dimensional models require one parameter per analysis
 unit (a species in GLOPNET or a species \(\times\) canopy-position in
 the Panama dataset) to partition observed LMA into LMAm and LMAs. Given
 the large number of parameters in these models, we performed tests with
-randomized data to evaluate whether our two-dimensional models were
-prone to creating patterns from noise, which could lead to spurious
-conclusions. These tests suggested that our two-dimensional modeling
-approach revealed meaningful patterns in the observed trait data
-(Appendix S3).
+randomized data to evaluate if our two-dimensional models were prone to
+creating patterns from noise, which could lead to spurious conclusions.
+These tests suggested that our two-dimensional modeling approach
+revealed meaningful patterns in the observed trait data (Appendix S3).
 
 To better understand the factors affecting relationships between
 \emph{A}\textsubscript{max} and LMA (Appendix S4), we simulated datasets
@@ -465,9 +466,9 @@ total LMA variance, using both simulated and actual datasets (Appendix
 S6).
 
 All statistical analyses were conducted in R version 4.2.1
-(\protect\hyperlink{ref-RCoreTeam2022}{R Core Team 2022}) using the R
+(\protect\hyperlink{ref-RCoreTeam2022}{R Core Team, 2022}) using the R
 package \emph{targets} version 0.12.0 for workflow management
-(\protect\hyperlink{ref-Landau2021}{Landau 2021})
+(\protect\hyperlink{ref-Landau2021}{Landau, 2021})
 
 \hypertarget{modeling-leaf-lifespan-photosynthetic-capacity-and-dark-respiration-rate}{%
 \subsection{Modeling leaf lifespan, photosynthetic capacity, and dark
@@ -534,8 +535,8 @@ performed better than the power-law forms and are not discussed further.
 We also considered models in which LMAs in Eq. 4 was replaced by leaf
 structural density (LMAs/LT, where LT is leaf thickness), which is based
 on the observation that cellulose density is a good predictor for LL in
-some species assemblages (\protect\hyperlink{ref-Kitajima2012}{Kitajima
-et al. 2012}, \protect\hyperlink{ref-Kitajima2013}{2013}). These models
+some species assemblages (\protect\hyperlink{ref-Kitajima2013}{Kitajima
+et al., 2013}, \protect\hyperlink{ref-Kitajima2012}{2012}). These models
 with leaf thickness yielded qualitatively similar results as those
 without leaf thickness, but they did not perform as well in the model
 evaluation (see below).
@@ -558,14 +559,14 @@ Appendix S2 for more detail.
 Finally, we considered a functional form that accounts for the effects
 of light availability on LL. This light-dependent model is motivated by
 optimal LL theory, which predicts decreasing LL with increasing light
-availability (\protect\hyperlink{ref-Kikuzawa1991}{Kikuzawa 1991}), and
+availability (\protect\hyperlink{ref-Kikuzawa1991}{Kikuzawa, 1991}), and
 also by the often-observed `LMA counter-gradient', whereby LL and LMA
 positively covary across species but negatively covary within species
-across light gradients (\protect\hyperlink{ref-Lusk2008}{Lusk et al.
-2008}, \protect\hyperlink{ref-Russo2016}{Russo and Kitajima 2016},
-\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}). Mechanistically
-modeling how light affects LL via leaf carbon balance
-(\protect\hyperlink{ref-Xu2017}{Xu et al. 2017}) is beyond the scope of
+across light gradients (\protect\hyperlink{ref-Lusk2008}{Lusk et al.,
+2008}; \protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018};
+\protect\hyperlink{ref-Russo2016}{Russo and Kitajima, 2016}).
+Mechanistically modeling how light affects LL via leaf carbon balance
+(\protect\hyperlink{ref-Xu2017}{Xu et al., 2017}) is beyond the scope of
 our study. Instead, we introduced light effects in a simple way by
 modifying Eq. 4a to 4b where the dummy variable
 Light\textsubscript{\emph{i}} is set to 1 for sun leaves and 0 for shade
@@ -579,7 +580,7 @@ m\textsuperscript{-2}), \emph{A}\textsubscript{area} (mol
 s\textsuperscript{-1} m\textsuperscript{-2}),
 \emph{R}\textsubscript{area} (mol s\textsuperscript{-1}
 m\textsuperscript{-2}) and LL (months) from the GLOPNET global leaf
-traits database (\protect\hyperlink{ref-Wright2004a}{Wright et al.
+traits database (\protect\hyperlink{ref-Wright2004a}{Wright et al.,
 2004}) and from two tropical forest sites in Panama: Parque Natural
 Metropolitano (PNM, ``dry site'') and Bosque Protector San Lorenzo (SL,
 ``wet site''). The GLOPNET data primarily represents interspecific
@@ -587,27 +588,30 @@ variation (the dataset reports 2,548 species \(\times\) site
 combinations, with 2,021 unique species and only 350 species occurring
 at more than one site) and only reports data for sun leaves if data for
 both sun and shade leaves are available
-(\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}). In contrast,
+(\protect\hyperlink{ref-Wright2004a}{Wright et al., 2004}). In contrast,
 the Panama dataset represents both inter- and intraspecific variation,
 including leaves sampled at two canopy positions (``sun'': full sun at
 the top of the canopy; and ``shade'': well shaded, sampled within 2 m of
 the forest floor) from trees within reach of canopy cranes. The dry PNM
 site is a semi-deciduous coastal Pacific forest with a 5-month dry
 season from December-April and 1740 mm of annual rainfall
-(\protect\hyperlink{ref-Wright2003}{Wright et al. 2003}). The wet SL
+(\protect\hyperlink{ref-Wright2003}{Wright et al., 2003}). The wet SL
 site is an evergreen Caribbean coastal forest with 3100 mm of annual
-rainfall (\protect\hyperlink{ref-Wright2003}{Wright et al. 2003}).
+rainfall (\protect\hyperlink{ref-Wright2003}{Wright et al., 2003}).
 Additional details of the Panama dataset are described in Osnas et al.
 (\protect\hyperlink{ref-Osnas2018}{2018}).
 
 We restricted our analysis to database records for which all four traits
 (LMA, \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area}, and
-LL; each typically averaged over multiple leaves) were available. After
-excluding database records that lacked one or more of the four traits,
-198 samples for 198 unique species were available for GLOPNET, and 130
-samples for 104 unique species were available for Panama (dry and wet
-sites combined; 26 species sampled in both sun and shade; no species
-with all four traits available at both sites). In addition to LMA,
+LL; each typically averaged over multiple leaves) were available. Each
+database record corresponds to an analysis unit (or `leaf sample') as
+described above; i.e., a species in GLOPNET, or a species \(\times\)
+canopy position in the Panama dataset. After excluding database records
+that lacked one or more of the four traits, 198 samples for 198 unique
+species were available for GLOPNET, and 130 samples for 104 unique
+species were available for Panama (dry and wet sites combined; 26
+species sampled in both sun and shade; no species with all four traits
+available at both sites). In addition to LMA,
 \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area}, and LL, the
 model based on structural leaf density also requires observations of
 leaf thickness, which was not available in GLOPNET but was available for
@@ -630,25 +634,25 @@ LL for GLOPNET, we used Eq. 4a, because GLOPNET does not report canopy
 position (and prioritizes data for sun leaves, as described above). To
 model LL for Panama, we also used Eq. 4b (light effects model), which
 was motivated by the negative intraspecific LL-LMA relationship observed
-in Panama (\protect\hyperlink{ref-Xu2017}{Xu et al. 2017},
-\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}) and elsewhere
-(\protect\hyperlink{ref-Lusk2008}{Lusk et al. 2008},
-\protect\hyperlink{ref-Russo2016}{Russo and Kitajima 2016}).
+in Panama (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018};
+\protect\hyperlink{ref-Xu2017}{Xu et al., 2017}) and elsewhere
+(\protect\hyperlink{ref-Lusk2008}{Lusk et al., 2008};
+\protect\hyperlink{ref-Russo2016}{Russo and Kitajima, 2016}).
 
 Posterior distributions of all parameters were estimated using the
 Hamiltonian Monte Carlo algorithm (HMC) implemented in Stan
-(\protect\hyperlink{ref-Carpenter2017}{Carpenter et al. 2017}). We used
+(\protect\hyperlink{ref-Carpenter2017}{Carpenter et al., 2017}). We used
 non-informative or weakly informative prior distributions
-(\protect\hyperlink{ref-Lemoine2019}{Lemoine 2019}). Prior distributions
-for the latent variables \emph{f\textsubscript{i}} (which are used to
-partition LMA into LMAm and LMAs according to Eq. 1 were non-informative
-uniform(0, 1) distributions, (i.e., LMA was partitioned based on
-patterns in the data). See Appendix S1 for more details. The Stan code
-use to fit models is available from Github at:
+(\protect\hyperlink{ref-Lemoine2019}{Lemoine, 2019}). Prior
+distributions for the latent variables \emph{f\textsubscript{i}} (which
+are used to partition LMA into LMAm and LMAs according to Eq. 1 were
+non-informative uniform(0, 1) distributions, (i.e., LMA was partitioned
+based on patterns in the data). See Appendix S1 for more details. The
+Stan code use to fit models is available from Github at:
 \url{https://github.com/mattocci27/LMAms}. Convergence of the posterior
 distribution was assessed with the Gelman-Rubin statistic with a
 convergence threshold of 1.05 for all parameters
-(\protect\hyperlink{ref-Gelman2013}{Gelman et al. 2013}).
+(\protect\hyperlink{ref-Gelman2013}{Gelman et al., 2013}).
 
 Considering the complexity of our two-dimensional modeling approach,
 which involves numerous latent parameters, we validated our estimates of
@@ -659,14 +663,14 @@ exploration of our questions.
 
 To compare the performance of different models, we used Pareto-smoothed
 importance sampling leave-one-out cross-validation (PSIS-LOO;
-(\protect\hyperlink{ref-Vehtari2017}{Vehtari et al. 2017})). PSIS-LOO is
-an accurate and reliable approximation to standard leave-one-out
+(\protect\hyperlink{ref-Vehtari2017}{Vehtari et al., 2017})). PSIS-LOO
+is an accurate and reliable approximation to standard leave-one-out
 cross-validation (LOO), which is a robust method for comparing models
 with different numbers of parameters
-(\protect\hyperlink{ref-Vehtari2017}{Vehtari et al. 2017}). We used
+(\protect\hyperlink{ref-Vehtari2017}{Vehtari et al., 2017}). We used
 PSIS-LOO to calculate the LOO Information Criterion (LOOIC) for each
 model. A model with lower LOOIC is considered to have better predictive
-accuracy (\protect\hyperlink{ref-Vehtari2017}{Vehtari et al. 2017}).
+accuracy (\protect\hyperlink{ref-Vehtari2017}{Vehtari et al., 2017}).
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
@@ -712,10 +716,10 @@ nearly all leaf dark respiration; i.e., the estimated dark respiration
 rate per-unit structural mass (\(\gamma_s\)) was close to zero for both
 GLOPNET and Panama (Table 2). Thus, although building costs appear
 similar for different leaf chemical components and tissues
-(\protect\hyperlink{ref-Williams1989}{Williams et al. 1989},
-\protect\hyperlink{ref-Villar2001}{Villar and Merino 2001}), our results
-suggest that leaf mass associated with structural function (i.e.,
-toughness and LL) has roughly zero maintenance cost.
+(\protect\hyperlink{ref-Villar2001}{Villar and Merino, 2001};
+\protect\hyperlink{ref-Williams1989}{Williams et al., 1989}), our
+results suggest that leaf mass associated with structural function
+(i.e., toughness and LL) has roughly zero maintenance cost.
 
 \hypertarget{evergreen-leaves-have-greater-lmas-than-deciduous-leaves-and-sun-leaves-have-both-greater-lmam-and-lmas-than-shade-leaves.}{%
 \subsection{Evergreen leaves have greater LMAs than deciduous leaves,
@@ -829,60 +833,60 @@ unrelated to LMAs (Panama) or decreased with LMAs (GLOPNET; Figs.
 \ref{fig-gl_point}-\ref{fig-pa_point} and Table 2). The decline in
 GLOPNET \emph{A}\textsubscript{area} with increasing LMAs may be due to
 decreasing mesophyll conductance, which decreases with increasing cell
-wall thickness (\protect\hyperlink{ref-Evans2009}{Evans et al. 2009},
-\protect\hyperlink{ref-Terashima2011}{Terashima et al. 2011},
-\protect\hyperlink{ref-Onoda2017}{Onoda et al. 2017}). This trend may be
-less apparent in our Panama analysis due to the relatively small LMA
-range (16-193 g m\textsuperscript{2} in Panama, compared to 21-776 g
-m\textsuperscript{2} in GLOPNET) or may be obscured by pooling sun and
-shade leaves in a single analysis. In any case, an increase in
+wall thickness (\protect\hyperlink{ref-Evans2009}{Evans et al., 2009};
+\protect\hyperlink{ref-Onoda2017}{Onoda et al., 2017};
+\protect\hyperlink{ref-Terashima2011}{Terashima et al., 2011}). This
+trend may be less apparent in our Panama analysis due to the relatively
+small LMA range (16-193 g m\textsuperscript{2} in Panama, compared to
+21-776 g m\textsuperscript{2} in GLOPNET) or may be obscured by pooling
+sun and shade leaves in a single analysis. In any case, an increase in
 \emph{A}\textsubscript{area} with LMAm but not LMAs, as observed for
 both GLOPNET and Panama, is consistent with the view that LMA is a
 composite trait comprised of metabolically active and inactive
-components (\protect\hyperlink{ref-Poorter2009}{Poorter et al. 2009},
-\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018},
-\protect\hyperlink{ref-Lichstein2021}{Lichstein et al. 2021}).
+components (\protect\hyperlink{ref-Lichstein2021}{Lichstein et al.,
+2021}; \protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018};
+\protect\hyperlink{ref-Poorter2009}{Poorter et al., 2009}).
 
 \emph{R}\textsubscript{dark} per-unit leaf area
 (\emph{R}\textsubscript{area}) increased with LMAm and was unrelated to
 LMAs (Figs. \ref{fig-gl_point}-\ref{fig-pa_point} and Table 2),
 consistent with the view that LMAs is comprised of non-metabolic leaf
 mass components, such as cellulose, lignin, and other fibres
-(\protect\hyperlink{ref-Onoda2011}{Onoda et al. 2011},
-\protect\hyperlink{ref-Kitajima2012}{Kitajima et al. 2012},
-\protect\hyperlink{ref-Kitajima2016}{2016}). Median values of LMAs, as a
-percent of total LMA, were \textasciitilde60\% for evergreen species and
-\textasciitilde40\% for deciduous species (Fig. S2), and 15-40\% for
-shade leaves and 50-70\% for sun leaves (Fig. S3). These estimates align
-with measurements of cell wall (fibre) content from a global dataset
-(14--77\%, median 47\% of total leaf mass, with higher values for shade
-than sun leaves; Onoda et al.~2011) and a Panama study site (Barro
-Colorado Island, BCI: \textasciitilde50\% mean across species, with
-higher values for shade leaves; Kitajima et al.~2016).
+(\protect\hyperlink{ref-Kitajima2016}{Kitajima et al., 2016},
+\protect\hyperlink{ref-Kitajima2012}{2012};
+\protect\hyperlink{ref-Onoda2011}{Onoda et al., 2011}). Median values of
+LMAs, as a percent of total LMA, were \textasciitilde60\% for evergreen
+species and \textasciitilde40\% for deciduous species (Fig. S2), and
+15-40\% for shade leaves and 50-70\% for sun leaves (Fig. S3). These
+estimates align with measurements of cell wall (fibre) content from a
+global dataset (14--77\%, median 47\% of total leaf mass, with higher
+values for shade than sun leaves; Onoda et al.~2011) and a Panama study
+site (Barro Colorado Island, BCI: \textasciitilde50\% mean across
+species, with higher values for shade leaves; Kitajima et al.~2016).
 
 LL increased with LMAs but was unrelated to LMAm (Figs.
 \ref{fig-gl_point}-\ref{fig-pa_point} and Tables 1-2), consistent with
 well-established relationships between leaf fibre content, toughness,
-and LL (\protect\hyperlink{ref-Onoda2011}{Onoda et al. 2011},
-\protect\hyperlink{ref-Onoda2017}{2017},
-\protect\hyperlink{ref-Kitajima2012}{Kitajima et al. 2012},
-\protect\hyperlink{ref-Kitajima2016}{2016}). For a given LMAs, shade
-leaves had longer LL than sun leaves (see Fig.~\ref{fig-pa_point}i and
+and LL (\protect\hyperlink{ref-Kitajima2016}{Kitajima et al., 2016},
+\protect\hyperlink{ref-Kitajima2012}{2012};
+\protect\hyperlink{ref-Onoda2017}{Onoda et al., 2017},
+\protect\hyperlink{ref-Onoda2011}{2011}). For a given LMAs, shade leaves
+had longer LL than sun leaves (see Fig.~\ref{fig-pa_point}i and
 parameter \(\theta\) in Table 2). Thus, partitioning LMA into LMAm and
 LMAs is not sufficient to explain the widely observed counter-gradient,
 whereby LL increases with increasing LMA across species but decreases
 with increasing LMA within species from shade to sun
-(\protect\hyperlink{ref-Lusk2008}{Lusk et al. 2008},
-\protect\hyperlink{ref-Russo2016}{Russo and Kitajima 2016},
-\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}). The failure of
-LMAs to provide robust predictions of LL across canopy positions may
-reflect factors unlreated to leaf toughness - e.g., how optimal LL
-depends on light availability
-(\protect\hyperlink{ref-Kikuzawa1991}{Kikuzawa 1991}) - as well as
+(\protect\hyperlink{ref-Lusk2008}{Lusk et al., 2008};
+\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018};
+\protect\hyperlink{ref-Russo2016}{Russo and Kitajima, 2016}). The
+failure of LMAs to provide robust predictions of LL across canopy
+positions may reflect factors unlreated to leaf toughness - e.g., how
+optimal LL depends on light availability
+(\protect\hyperlink{ref-Kikuzawa1991}{Kikuzawa, 1991}) - as well as
 variation in leaf toughness for a given value of LMAs. In a global
 meta-analysis, leaf toughness was strongly related to toughness per-unit
 leaf tissue density, but only weakly related to leaf thickness or
-density (\protect\hyperlink{ref-Onoda2011}{Onoda et al. 2011}).
+density (\protect\hyperlink{ref-Onoda2011}{Onoda et al., 2011}).
 Accordingly, on BCI, Panama, the difference between shade and sun leaves
 was greater for cellulose content (\% of leaf mass) than cell wall
 content (which includes cellulose, as well as other fibres that provide
@@ -890,7 +894,7 @@ less structural toughness). Thus, just as not all LMA is equal, it is
 almost certainly true that not all LMAs is equal, with some LMAs
 components (e.g., cellulose) imparting greater toughness and longevity
 than others (e.g., lignin in secondary cell walls of vascular tissue,
-\protect\hyperlink{ref-Kitajima2016}{Kitajima et al. 2016}).
+\protect\hyperlink{ref-Kitajima2016}{Kitajima et al., 2016}).
 
 In summary, the dependencies of \emph{A}\textsubscript{area},
 \emph{R}\textsubscript{area}, and LL on model-inferred values of LMAm
@@ -911,7 +915,7 @@ edaphic-climate gradients.
 \subsection{Implications for understanding LL
 variation}\label{implications-for-understanding-ll-variation}}
 
-Optimal LL theory (\protect\hyperlink{ref-Kikuzawa1991}{Kikuzawa 1991})
+Optimal LL theory (\protect\hyperlink{ref-Kikuzawa1991}{Kikuzawa, 1991})
 predicts that LL should increase with toughness (which increases
 building costs and decreases the rate of photosynthetic decline with
 leaf age) and decrease with initial (pre-aging) net assimilation rate.
@@ -962,10 +966,10 @@ Several factors could contribute to the less-than-proportional increase
 in \emph{A}\textsubscript{area} with LMAm (\(\alpha_p\) \textless{} 1
 for both GLOPNET and Panama; Table 2). High LMAm may lead to low
 mesophyll conductance, e.g., due to a longer CO\textsubscript{2}
-diffusion pathway (\protect\hyperlink{ref-Evans2009}{Evans et al.
+diffusion pathway (\protect\hyperlink{ref-Evans2009}{Evans et al.,
 2009}). Similarly, high LMAm may lead to a high level of chloroplast
 self-shading within a leaf
-(\protect\hyperlink{ref-Terashima2011}{Terashima et al. 2011}). Both of
+(\protect\hyperlink{ref-Terashima2011}{Terashima et al., 2011}). Both of
 these factors would decrease the marginal benefit of additional units of
 LMAm, and this marginal decrease may be especially strong in GLOPNET due
 to its large LMAm range (3.2 - 591 g m\textsuperscript{2}) relative to
@@ -977,9 +981,9 @@ leaf mass unrelated to photosynthesis and/or non-metabolic leaf mass
 that is statistically assigned (by default) to LMAm simply because it
 does not affect LL. For example, non-structural carbohydrates, which are
 ignored in our model, can account for 5-8\% of leaf mass in deciduous
-species (\protect\hyperlink{ref-Wurth2005}{Würth et al. 2005}) and up to
-20\% of leaf mass in evergreen species
-(\protect\hyperlink{ref-Martinez-Vilalta2016}{Martínez‐Vilalta et al.
+species (\protect\hyperlink{ref-Wurth2005}{Würth et al., 2005}) and up
+to 20\% of leaf mass in evergreen species
+(\protect\hyperlink{ref-Martinez-Vilalta2016}{Martínez‐Vilalta et al.,
 2016}). Although scaling parameters in our model allow us to include
 non-metabolic leaf mass in LMAm, a more refined model that accounts for
 more than two LMA components may reveal stronger relationships between
@@ -989,18 +993,18 @@ metabolic traits (\emph{A}\textsubscript{area} and
 In addition to providing insights as to why metabolic traits tend to be
 area-dependent across species, our analysis also helps explain why these
 same traits tend to be mass-dependent within species across light levels
-(\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}). LMA increased
+(\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}). LMA increased
 from shade to sun primarily due to an increase in LMAm (Figs.
 \ref{fig-box_pa} and S1), which should lead to strong mass-dependence of
 \emph{A}\textsubscript{max} and \emph{R}\textsubscript{dark}
 (Fig.~\ref{fig-mass_prop}) and likely reflects an increase in the size
 and number of palisade mesophyll cells with increasing light levels
-(\protect\hyperlink{ref-Onoda2008}{Onoda et al. 2008},
-\protect\hyperlink{ref-Terashima2011}{Terashima et al. 2011}). In
+(\protect\hyperlink{ref-Onoda2008}{Onoda et al., 2008};
+\protect\hyperlink{ref-Terashima2011}{Terashima et al., 2011}). In
 contrast to our interspecific analysis within sun and shade leaves
 (Fig.~\ref{fig-mass_prop}), estimates of intraspecific mass-dependence
 of metabolic traits across light levels are around 0.8-1.0 for the same
-Panama dataset (\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
+Panama dataset (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}).
 
 Although values of \emph{b} greater than 1 are theoretically possible
 (which implies an exponential increase in area-normalized traits with
@@ -1021,25 +1025,24 @@ models}\label{implications-for-terrestrial-ecosystem-models}}
 For over two decades, low-dimensional trait tradeoffs have been explored
 as a means to represent plant functional diversity in the vegetation
 components of biogeochemical models
-(\protect\hyperlink{ref-Moorcroft2001}{Moorcroft et al. 2001},
-\protect\hyperlink{ref-Bonan2002}{Bonan et al. 2002},
-\protect\hyperlink{ref-Verheijen2013}{Verheijen et al. 2013}), with the
+(\protect\hyperlink{ref-Bonan2002}{Bonan et al., 2002};
+\protect\hyperlink{ref-Moorcroft2001}{Moorcroft et al., 2001};
+\protect\hyperlink{ref-Verheijen2013}{Verheijen et al., 2013}), with the
 ultimate goal of adding ecological and physiological realism to coupled
 Earth System Models (ESMs,
-\protect\hyperlink{ref-Moorcroft2006}{Moorcroft 2006},
-\protect\hyperlink{ref-Wullschleger2014}{Wullschleger et al. 2014}).
+\protect\hyperlink{ref-Moorcroft2006}{Moorcroft, 2006};
+\protect\hyperlink{ref-Wullschleger2014}{Wullschleger et al., 2014}).
 Recently, there has been a proliferation of interest in this topic
-(\protect\hyperlink{ref-Scheiter2013}{Scheiter et al. 2013},
-\protect\hyperlink{ref-Sakschewski2015}{Sakschewski et al. 2015},
-\protect\hyperlink{ref-Fisher2015}{Fisher et al. 2015},
-\protect\hyperlink{ref-Sakschewski2016}{Sakschewski et al. 2016},
-\protect\hyperlink{ref-DantasdePaula2021}{Dantas de Paula et al. 2021})
-along with demographic approaches capable of representing the dynamics
-of diverse communities in ESMs
-(\protect\hyperlink{ref-Fisher2018}{Fisher et al. 2018}). The leaf
-economics spectrum (LES) has been interpreted as a single dominant axis
-of global leaf functional variation
-(\protect\hyperlink{ref-Wright2004a}{Wright et al. 2004}), and this
+(\protect\hyperlink{ref-DantasdePaula2021}{Dantas de Paula et al.,
+2021}; \protect\hyperlink{ref-Fisher2015}{Fisher et al., 2015};
+\protect\hyperlink{ref-Sakschewski2016}{Sakschewski et al., 2016};
+\protect\hyperlink{ref-Sakschewski2015}{Sakschewski et al., 2015};
+\protect\hyperlink{ref-Scheiter2013}{Scheiter et al., 2013}) along with
+demographic approaches capable of representing the dynamics of diverse
+communities in ESMs (\protect\hyperlink{ref-Fisher2018}{Fisher et al.,
+2018}). The leaf economics spectrum (LES) has been interpreted as a
+single dominant axis of global leaf functional variation
+(\protect\hyperlink{ref-Wright2004a}{Wright et al., 2004}), and this
 simple framework has been adopted in some of these dynamic vegetation
 models. Our results demonstrate the value of considering metabolic and
 structural leaf mass separately, and indicate weak if any interspecific
@@ -1049,13 +1052,13 @@ variation is too simplistic. Consistent with our conclusion that leaf
 function is multi-dimensional, analyses of leaf nitrogen indicate
 significant independent contributions of metabolic (e.g., rubisco) and
 structural leaf nitrogen components
-(\protect\hyperlink{ref-Dong2017}{Dong et al. 2017},
-\protect\hyperlink{ref-Dong2022}{2022}), with over 20\% of total leaf
+(\protect\hyperlink{ref-Dong2022}{Dong et al., 2022},
+\protect\hyperlink{ref-Dong2017}{2017}), with over 20\% of total leaf
 nitrogen in high-LMA leaves occurring in cell walls
-(\protect\hyperlink{ref-Onoda2017}{Onoda et al. 2017}). Similarly,
+(\protect\hyperlink{ref-Onoda2017}{Onoda et al., 2017}). Similarly,
 partitioning leaf phosphorus reveals substantial, LMA-dependent
 metabolic, structural, and nucleic acid fractions
-(\protect\hyperlink{ref-Hidaka2011}{Hidaka and Kitayama 2011}). We
+(\protect\hyperlink{ref-Hidaka2011}{Hidaka and Kitayama, 2011}). We
 suggest that future biogeochemical model developments consider multiple
 axes of leaf functional diversity, and that models with coupled
 carbon-nutrient cycles consider how LMA, nitrogen, and phosphorus are
@@ -1102,353 +1105,339 @@ Github at https://github.com/mattocci27/LMAms.
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
 \leavevmode\vadjust pre{\hypertarget{ref-Bonan2002}{}}%
-Bonan, G. B., S. Levis, L. Kergoat, and K. W. Oleson. 2002.
-\href{https://doi.org/10.1029/2000GB001360}{Landscapes as patches of
-plant functional types: {An} integrating concept for climate and
-ecosystem models}. Global Biogeochemical Cycles 16:5-1-5-23.
+Bonan, G.B., Levis, S., Kergoat, L., Oleson, K.W., 2002. Landscapes as
+patches of plant functional types: {An} integrating concept for climate
+and ecosystem models. Global Biogeochemical Cycles 16, 5-1-5-23.
+\url{https://doi.org/10.1029/2000GB001360}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Carpenter2017}{}}%
-Carpenter, B., A. Gelman, M. D. Hoffman, D. Lee, B. Goodrich, M.
-Betancourt, M. Brubaker, J. Guo, P. Li, and A. Riddell. 2017.
-\href{https://doi.org/10.18637/jss.v076.i01}{Stan : {A Probabilistic
-Programming Language}}. Journal of Statistical Software 76:1--32.
+Carpenter, B., Gelman, A., Hoffman, M.D., Lee, D., Goodrich, B.,
+Betancourt, M., Brubaker, M., Guo, J., Li, P., Riddell, A., 2017. Stan :
+{A Probabilistic Programming Language}. Journal of Statistical Software
+76, 1--32. \url{https://doi.org/10.18637/jss.v076.i01}
 
 \leavevmode\vadjust pre{\hypertarget{ref-DantasdePaula2021}{}}%
-Dantas de Paula, M., M. Forrest, L. Langan, J. Bendix, J. Homeier, A.
-Velescu, W. Wilcke, and T. Hickler. 2021.
-\href{https://doi.org/10.1111/nph.17600}{Nutrient cycling drives plant
-community trait assembly and ecosystem functioning in a tropical
-mountain biodiversity hotspot}. New Phytologist 232:551--566.
+Dantas de Paula, M., Forrest, M., Langan, L., Bendix, J., Homeier, J.,
+Velescu, A., Wilcke, W., Hickler, T., 2021. Nutrient cycling drives
+plant community trait assembly and ecosystem functioning in a tropical
+mountain biodiversity hotspot. New Phytologist 232, 551--566.
+\url{https://doi.org/10.1111/nph.17600}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Dong2017}{}}%
-Dong, N., I. C. Prentice, B. J. Evans, S. Caddy-Retalic, A. J. Lowe, and
-I. J. Wright. 2017. \href{https://doi.org/10.5194/bg-14-481-2017}{Leaf
-nitrogen from first principles: Field evidence for adaptive variation
-with climate}. Biogeosciences 14:481--495.
+Dong, N., Prentice, I.C., Evans, B.J., Caddy-Retalic, S., Lowe, A.J.,
+Wright, I.J., 2017. Leaf nitrogen from first principles: Field evidence
+for adaptive variation with climate. Biogeosciences 14, 481--495.
+\url{https://doi.org/10.5194/bg-14-481-2017}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Dong2022}{}}%
-Dong, N., I. C. Prentice, I. J. Wright, H. Wang, O. K. Atkin, K. J.
-Bloomfield, T. F. Domingues, S. M. Gleason, V. Maire, Y. Onoda, H.
-Poorter, and N. G. Smith. 2022.
-\href{https://doi.org/10.1111/1365-2745.13967}{Leaf nitrogen from the
-perspective of optimal plant function}. Journal of Ecology
-110:2585--2602.
+Dong, N., Prentice, I.C., Wright, I.J., Wang, H., Atkin, O.K.,
+Bloomfield, K.J., Domingues, T.F., Gleason, S.M., Maire, V., Onoda, Y.,
+Poorter, H., Smith, N.G., 2022. Leaf nitrogen from the perspective of
+optimal plant function. Journal of Ecology 110, 2585--2602.
+\url{https://doi.org/10.1111/1365-2745.13967}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Evans2009}{}}%
-Evans, J. R., R. Kaldenhoff, B. Genty, and I. Terashima. 2009.
-\href{https://doi.org/10.1093/jxb/erp117}{Resistances along the {CO2}
-diffusion pathway inside leaves}. Journal of Experimental Botany
-60:2235--2248.
+Evans, J.R., Kaldenhoff, R., Genty, B., Terashima, I., 2009. Resistances
+along the {CO2} diffusion pathway inside leaves. Journal of Experimental
+Botany 60, 2235--2248. \url{https://doi.org/10.1093/jxb/erp117}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Falster2012}{}}%
-Falster, D. S., P. B. Reich, D. S. Ellsworth, I. J. Wright, M. Westoby,
-J. Oleksyn, and T. D. Lee. 2012.
-\href{https://doi.org/10.1111/j.1469-8137.2011.03940.x}{Lifetime return
-on investment increases with leaf lifespan among 10 {Australian}
-woodland species}. New Phytologist 193:409--419.
+Falster, D.S., Reich, P.B., Ellsworth, D.S., Wright, I.J., Westoby, M.,
+Oleksyn, J., Lee, T.D., 2012. Lifetime return on investment increases
+with leaf lifespan among 10 {Australian} woodland species. New
+Phytologist 193, 409--419.
+\url{https://doi.org/10.1111/j.1469-8137.2011.03940.x}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Fisher2018}{}}%
-Fisher, R. A., C. D. Koven, W. R. L. Anderegg, B. O. Christoffersen, M.
-C. Dietze, C. E. Farrior, J. A. Holm, G. C. Hurtt, R. G. Knox, P. J.
-Lawrence, J. W. Lichstein, M. Longo, A. M. Matheny, D. Medvigy, H. C.
-Muller-Landau, T. L. Powell, S. P. Serbin, H. Sato, J. K. Shuman, B.
-Smith, A. T. Trugman, T. Viskari, H. Verbeeck, E. Weng, C. Xu, X. Xu, T.
-Zhang, and P. R. Moorcroft. 2018.
-\href{https://doi.org/10.1111/gcb.13910}{Vegetation demographics in
-{Earth System Models}: {A} review of progress and priorities}. Global
-Change Biology 24:35--54.
+Fisher, R.A., Koven, C.D., Anderegg, W.R.L., Christoffersen, B.O.,
+Dietze, M.C., Farrior, C.E., Holm, J.A., Hurtt, G.C., Knox, R.G.,
+Lawrence, P.J., Lichstein, J.W., Longo, M., Matheny, A.M., Medvigy, D.,
+Muller-Landau, H.C., Powell, T.L., Serbin, S.P., Sato, H., Shuman, J.K.,
+Smith, B., Trugman, A.T., Viskari, T., Verbeeck, H., Weng, E., Xu, C.,
+Xu, X., Zhang, T., Moorcroft, P.R., 2018. Vegetation demographics in
+{Earth System Models}: {A} review of progress and priorities. Global
+Change Biology 24, 35--54. \url{https://doi.org/10.1111/gcb.13910}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Fisher2015}{}}%
-Fisher, R. A., S. Muszala, M. Verteinstein, P. Lawrence, C. Xu, N. G.
-McDowell, R. G. Knox, C. Koven, J. Holm, B. M. Rogers, A. Spessa, D.
-Lawrence, and G. Bonan. 2015.
-\href{https://doi.org/10.5194/gmd-8-3593-2015}{Taking off the training
-wheels: The properties of a dynamic vegetation model without climate
-envelopes, {CLM4}.5({ED})}. Geoscientific Model Development
-8:3593--3619.
+Fisher, R.A., Muszala, S., Verteinstein, M., Lawrence, P., Xu, C.,
+McDowell, N.G., Knox, R.G., Koven, C., Holm, J., Rogers, B.M., Spessa,
+A., Lawrence, D., Bonan, G., 2015. Taking off the training wheels: The
+properties of a dynamic vegetation model without climate envelopes,
+{CLM4}.5({ED}). Geoscientific Model Development 8, 3593--3619.
+\url{https://doi.org/10.5194/gmd-8-3593-2015}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Gelman2013}{}}%
-Gelman, A., J. B. Carlin, H. S. Stern, D. B. Dunson, A. Vehtari, and D.
-B. Rubin. 2013.
+Gelman, A., Carlin, J.B., Stern, H.S., Dunson, D.B., Vehtari, A., Rubin,
+D.B., 2013.
 \href{https://books.google.com.pa/books?id=eSHSBQAAQBAJ}{Bayesian {Data
 Analysis}, {Third Edition}}. {Chapman \& Hall/CRC}, {Boca Raton, FL,
 USA.}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Hidaka2011}{}}%
-Hidaka, A., and K. Kitayama. 2011.
-\href{https://doi.org/10.1111/j.1365-2745.2011.01805.x}{Allocation of
-foliar phosphorus fractions and leaf traits of tropical tree species in
-response to decreased soil phosphorus availability on {Mount Kinabalu},
-{Borneo}}. Journal of Ecology 99:849--857.
+Hidaka, A., Kitayama, K., 2011. Allocation of foliar phosphorus
+fractions and leaf traits of tropical tree species in response to
+decreased soil phosphorus availability on {Mount Kinabalu}, {Borneo}.
+Journal of Ecology 99, 849--857.
+\url{https://doi.org/10.1111/j.1365-2745.2011.01805.x}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Huntingford2017}{}}%
-Huntingford, C., O. K. Atkin, A. Martinez-de la Torre, L. M. Mercado, M.
-A. Heskel, A. B. Harper, K. J. Bloomfield, O. S. O'Sullivan, P. B.
-Reich, K. R. Wythers, E. E. Butler, M. Chen, K. L. Griffin, P. Meir, M.
-G. Tjoelker, M. H. Turnbull, S. Sitch, A. Wiltshire, and Y. Malhi. 2017.
-\href{https://doi.org/10.1038/s41467-017-01774-z}{Implications of
-improved representations of plant respiration in a changing climate}.
-Nature Communications 8:1602.
+Huntingford, C., Atkin, O.K., Martinez-de la Torre, A., Mercado, L.M.,
+Heskel, M.A., Harper, A.B., Bloomfield, K.J., O'Sullivan, O.S., Reich,
+P.B., Wythers, K.R., Butler, E.E., Chen, M., Griffin, K.L., Meir, P.,
+Tjoelker, M.G., Turnbull, M.H., Sitch, S., Wiltshire, A., Malhi, Y.,
+2017. Implications of improved representations of plant respiration in a
+changing climate. Nature Communications 8, 1602.
+\url{https://doi.org/10.1038/s41467-017-01774-z}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Kikuzawa1991}{}}%
-Kikuzawa, K. 1991. \href{https://doi.org/10.2307/2462519}{A
-{Cost-Benefit Analysis} of {Leaf Habit} and {Leaf Longevity} of {Trees}
-and {Their Geographical}}. The American Naturalist 138:1250--1263.
+Kikuzawa, K., 1991. A {Cost-Benefit Analysis} of {Leaf Habit} and {Leaf
+Longevity} of {Trees} and {Their Geographical}. The American Naturalist
+138, 1250--1263. \url{https://doi.org/10.2307/2462519}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Kitajima2013}{}}%
-Kitajima, K., R. A. Cordero, and S. J. Wright. 2013.
-\href{https://doi.org/10.1093/aob/mct036}{Leaf life span spectrum of
-tropical woody seedlings: {Effects} of light and ontogeny and
-consequences for survival}. Annals of Botany 112:685--699.
+Kitajima, K., Cordero, R.A., Wright, S.J., 2013. Leaf life span spectrum
+of tropical woody seedlings: {Effects} of light and ontogeny and
+consequences for survival. Annals of Botany 112, 685--699.
+\url{https://doi.org/10.1093/aob/mct036}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Kitajima2012}{}}%
-Kitajima, K., A. M. Llorens, C. Stefanescu, M. V. Timchenko, P. W.
-Lucas, and S. J. Wright. 2012.
-\href{https://doi.org/10.1111/j.1469-8137.2012.04203.x}{How
-cellulose-based leaf toughness and lamina density contribute to long
-leaf lifespans of shade-tolerant species}. New Phytologist 195:640--652.
+Kitajima, K., Llorens, A.M., Stefanescu, C., Timchenko, M.V., Lucas,
+P.W., Wright, S.J., 2012. How cellulose-based leaf toughness and lamina
+density contribute to long leaf lifespans of shade-tolerant species. New
+Phytologist 195, 640--652.
+\url{https://doi.org/10.1111/j.1469-8137.2012.04203.x}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Kitajima2016}{}}%
-Kitajima, K., S. J. Wright, and J. W. Westbrook. 2016.
-\href{https://doi.org/10.1098/rsfs.2015.0100}{Leaf cellulose density as
-the key determinant of inter- and intra-specific variation in leaf
-fracture toughness in a species-rich tropical forest}. Interface Focus
-6:20150100.
+Kitajima, K., Wright, S.J., Westbrook, J.W., 2016. Leaf cellulose
+density as the key determinant of inter- and intra-specific variation in
+leaf fracture toughness in a species-rich tropical forest. Interface
+Focus 6, 20150100. \url{https://doi.org/10.1098/rsfs.2015.0100}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Landau2021}{}}%
-Landau, W. M. 2021. \href{https://doi.org/10.21105/joss.02959}{The
-targets {R} package: A dynamic {Make-like} function-oriented pipeline
-toolkit for reproducibility and high-performance computing}. Journal of
-Open Source Software 6:2959.
+Landau, W.M., 2021. The targets {R} package: A dynamic {Make-like}
+function-oriented pipeline toolkit for reproducibility and
+high-performance computing. Journal of Open Source Software 6, 2959.
+\url{https://doi.org/10.21105/joss.02959}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Lemoine2019}{}}%
-Lemoine, N. P. 2019. \href{https://doi.org/10.1111/oik.05985}{Moving
-beyond noninformative priors: Why and how to choose weakly informative
-priors in {Bayesian} analyses}. Oikos 128:912--928.
+Lemoine, N.P., 2019. Moving beyond noninformative priors: Why and how to
+choose weakly informative priors in {Bayesian} analyses. Oikos 128,
+912--928. \url{https://doi.org/10.1111/oik.05985}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Lichstein2021}{}}%
-Lichstein, J. W., B. T. Peterson, J. Langebrake, and S. A. McKinley.
-2021. \href{https://doi.org/10.1086/715453}{Leaf economics of early-and
-late-successional plants}. The American Naturalist.
+Lichstein, J.W., Peterson, B.T., Langebrake, J., McKinley, S.A., 2021.
+Leaf economics of early-and late-successional plants. The American
+Naturalist. \url{https://doi.org/10.1086/715453}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Lloyd2013}{}}%
-Lloyd, J., K. Bloomfield, T. F. Domingues, and G. D. Farquhar. 2013.
-\href{https://doi.org/10.1111/nph.12281}{Photosynthetically relevant
-foliar traits correlating better on a mass vs an area basis: {Of}
-ecophysiological relevance or just a case of mathematical imperatives
-and statistical quicksand?} New Phytologist 199:311--321.
+Lloyd, J., Bloomfield, K., Domingues, T.F., Farquhar, G.D., 2013.
+Photosynthetically relevant foliar traits correlating better on a mass
+vs an area basis: {Of} ecophysiological relevance or just a case of
+mathematical imperatives and statistical quicksand? New Phytologist 199,
+311--321. \url{https://doi.org/10.1111/nph.12281}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Lusk2008}{}}%
-Lusk, C. H., P. B. Reich, R. A. Montgomery, D. D. Ackerly, and J.
-Cavender-Bares. 2008.
-\href{https://doi.org/10.1016/j.tree.2008.02.006}{Why are evergreen
-leaves so contrary about shade?} Trends in Ecology and Evolution
-23:299--303.
+Lusk, C.H., Reich, P.B., Montgomery, R.A., Ackerly, D.D.,
+Cavender-Bares, J., 2008. Why are evergreen leaves so contrary about
+shade? Trends in Ecology and Evolution 23, 299--303.
+\url{https://doi.org/10.1016/j.tree.2008.02.006}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Martinez-Vilalta2016}{}}%
-Martínez‐Vilalta, J., A. Sala, D. Asensio, L. Galiano, G. Hoch, S.
-Palacio, F. I. Piper, and F. Lloret. 2016.
-\href{https://doi.org/10.1002/ecm.1231}{Dynamics of non-structural
-carbohydrates in terrestrial plants: A global synthesis}. Ecological
-Monographs 86:495--516.
+Martínez‐Vilalta, J., Sala, A., Asensio, D., Galiano, L., Hoch, G.,
+Palacio, S., Piper, F.I., Lloret, F., 2016. Dynamics of non-structural
+carbohydrates in terrestrial plants: A global synthesis. Ecological
+Monographs 86, 495--516. \url{https://doi.org/10.1002/ecm.1231}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Moorcroft2006}{}}%
-Moorcroft, P. R. 2006.
-\href{https://doi.org/10.1016/j.tree.2006.04.009}{How close are we to a
-predictive science of the biosphere?} Trends in Ecology \& Evolution
-21:400--407.
+Moorcroft, P.R., 2006. How close are we to a predictive science of the
+biosphere? Trends in Ecology \& Evolution 21, 400--407.
+\url{https://doi.org/10.1016/j.tree.2006.04.009}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Moorcroft2001}{}}%
-Moorcroft, P. R., G. C. Hurtt, and S. W. Pacala. 2001.
-\href{https://doi.org/10.2307/3100036}{A {Method} for {Scaling
-Vegetation Dynamics}: {The Ecosystem Demography Model} ({ED})}.
-Ecological Monographs 71:557--585.
-
-\leavevmode\vadjust pre{\hypertarget{ref-Onoda2008}{}}%
-Onoda, Y., F. Schieving, and N. P. R. Anten. 2008.
-\href{https://doi.org/10.1093/aob/mcn013}{Effects of light and nutrient
-availability on leaf mechanical properties of {\emph{Plantago}}{
-\emph{Major}}: {A} conceptual approach}. Annals of Botany 101:727--736.
+Moorcroft, P.R., Hurtt, G.C., Pacala, S.W., 2001. A {Method} for
+{Scaling Vegetation Dynamics}: {The Ecosystem Demography Model} ({ED}).
+Ecological Monographs 71, 557--585.
+\url{https://doi.org/10.2307/3100036}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Onoda2015}{}}%
-Onoda, Y., F. Schieving, and N. P. R. Anten. 2015.
-\href{https://doi.org/10.1093/jxb/erv024}{A novel method of measuring
-leaf epidermis and mesophyll stiffness shows the ubiquitous nature of
-the sandwich structure of leaf laminas in broad-leaved angiosperm
-species}. Journal of Experimental Botany 66:2487--2499.
+Onoda, Y., Schieving, F., Anten, N.P.R., 2015. A novel method of
+measuring leaf epidermis and mesophyll stiffness shows the ubiquitous
+nature of the sandwich structure of leaf laminas in broad-leaved
+angiosperm species. Journal of Experimental Botany 66, 2487--2499.
+\url{https://doi.org/10.1093/jxb/erv024}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Onoda2008}{}}%
+Onoda, Y., Schieving, F., Anten, N.P.R., 2008. Effects of light and
+nutrient availability on leaf mechanical properties of
+{\emph{Plantago}}{ \emph{Major}}: {A} conceptual approach. Annals of
+Botany 101, 727--736. \url{https://doi.org/10.1093/aob/mcn013}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Onoda2011}{}}%
-Onoda, Y., M. Westoby, P. B. Adler, A. M. F. Choong, F. J. Clissold, J.
-H. C. Cornelissen, S. Díaz, N. J. Dominy, A. Elgart, L. Enrico, P. V. A.
-Fine, J. J. Howard, A. Jalili, K. Kitajima, H. Kurokawa, C. McArthur, P.
-W. Lucas, L. Markesteijn, N. Pérez-Harguindeguy, L. Poorter, L.
-Richards, L. S. Santiago, E. E. Sosinski, S. A. Van Bael, D. I. Warton,
-I. J. Wright, S. Joseph Wright, and N. Yamashita. 2011.
-\href{https://doi.org/10.1111/j.1461-0248.2010.01582.x}{Global patterns
-of leaf mechanical properties}. Ecology Letters 14:301--312.
+Onoda, Y., Westoby, M., Adler, P.B., Choong, A.M.F., Clissold, F.J.,
+Cornelissen, J.H.C., Díaz, S., Dominy, N.J., Elgart, A., Enrico, L.,
+Fine, P.V.A., Howard, J.J., Jalili, A., Kitajima, K., Kurokawa, H.,
+McArthur, C., Lucas, P.W., Markesteijn, L., Pérez-Harguindeguy, N.,
+Poorter, L., Richards, L., Santiago, L.S., Sosinski, E.E., Van Bael,
+S.A., Warton, D.I., Wright, I.J., Joseph Wright, S., Yamashita, N.,
+2011. Global patterns of leaf mechanical properties. Ecology Letters 14,
+301--312. \url{https://doi.org/10.1111/j.1461-0248.2010.01582.x}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Onoda2017}{}}%
-Onoda, Y., I. J. Wright, J. R. Evans, K. Hikosaka, K. Kitajima, Ü.
-Niinemets, H. Poorter, T. Tosens, and M. Westoby. 2017.
-\href{https://doi.org/10.1111/nph.14496}{Physiological and structural
-tradeoffs underlying the leaf economics spectrum}. New Phytologist
-214:1447--1463.
+Onoda, Y., Wright, I.J., Evans, J.R., Hikosaka, K., Kitajima, K.,
+Niinemets, Ü., Poorter, H., Tosens, T., Westoby, M., 2017. Physiological
+and structural tradeoffs underlying the leaf economics spectrum. New
+Phytologist 214, 1447--1463. \url{https://doi.org/10.1111/nph.14496}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Osada2001}{}}%
-Osada, N., H. Takeda, A. Furukawa, and M. Awang. 2001.
-\href{https://doi.org/10.1046/j.0022-0477.2001.00590.x}{Leaf dynamics
-and maintenance of tree crowns in a malaysian rain forest stand}.
-Journal of Ecology 89:774--782.
+Osada, N., Takeda, H., Furukawa, A., Awang, M., 2001. Leaf dynamics and
+maintenance of tree crowns in a malaysian rain forest stand. Journal of
+Ecology 89, 774--782.
+\url{https://doi.org/10.1046/j.0022-0477.2001.00590.x}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Osnas2018}{}}%
-Osnas, J. L. D., M. Katabuchi, K. Kitajima, S. J. Wright, P. B. Reich,
-S. A. Van Bael, N. J. B. Kraft, M. J. Samaniego, S. W. Pacala, and J. W.
-Lichstein. 2018.
-\href{https://doi.org/10.1073/pnas.1803989115}{Divergent drivers of leaf
-trait variation within species, among species, and among functional
-groups.} Proceedings of the National Academy of Sciences of the United
-States of America 115:5480--5485.
+Osnas, J.L.D., Katabuchi, M., Kitajima, K., Wright, S.J., Reich, P.B.,
+Van Bael, S.A., Kraft, N.J.B., Samaniego, M.J., Pacala, S.W., Lichstein,
+J.W., 2018. Divergent drivers of leaf trait variation within species,
+among species, and among functional groups. Proceedings of the National
+Academy of Sciences of the United States of America 115, 5480--5485.
+\url{https://doi.org/10.1073/pnas.1803989115}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Osnas2013}{}}%
-Osnas, J. L. D., J. W. Lichstein, P. B. Reich, and S. W. Pacala. 2013.
-\href{https://doi.org/10.1126/science.1231574}{Global leaf trait
-relationships: {Mass}, area, and the leaf economics spectrum}. Science
-340:741--744.
+Osnas, J.L.D., Lichstein, J.W., Reich, P.B., Pacala, S.W., 2013. Global
+leaf trait relationships: {Mass}, area, and the leaf economics spectrum.
+Science 340, 741--744. \url{https://doi.org/10.1126/science.1231574}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Poorter2009}{}}%
-Poorter, H., Ü. Niinemets, L. Poorter, I. J. Wright, and R. Villar.
-2009. \href{https://doi.org/10.1111/j.1469-8137.2009.02830.x}{Causes and
-consequences of variation in leaf mass per area ({LMA}): {A}
-meta-analysis}. New Phytologist 182:565--588.
+Poorter, H., Niinemets, Ü., Poorter, L., Wright, I.J., Villar, R., 2009.
+Causes and consequences of variation in leaf mass per area ({LMA}): {A}
+meta-analysis. New Phytologist 182, 565--588.
+\url{https://doi.org/10.1111/j.1469-8137.2009.02830.x}
 
 \leavevmode\vadjust pre{\hypertarget{ref-RCoreTeam2022}{}}%
-R Core Team. 2022. \href{https://www.R-project.org/}{R: {A} language and
-environment for statistical computing}. manual, {R Foundation for
-Statistical Computing}, {Vienna, Austria}.
+R Core Team, 2022. \href{https://www.R-project.org/}{R: {A} language and
+environment for statistical computing}. {R Foundation for Statistical
+Computing}, {Vienna, Austria}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Reich2014}{}}%
-Reich, P. B. 2014. \href{https://doi.org/10.1111/1365-2745.12211}{The
-world-wide 'fast-slow' plant economics spectrum: {A} traits manifesto}.
-Journal of Ecology 102:275--301.
+Reich, P.B., 2014. The world-wide 'fast-slow' plant economics spectrum:
+{A} traits manifesto. Journal of Ecology 102, 275--301.
+\url{https://doi.org/10.1111/1365-2745.12211}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Russo2016}{}}%
-Russo, S. E., and K. Kitajima. 2016.
-\href{https://doi.org/10.1007/978-3-319-27422-5_17}{The {Ecophysiology}
-of {Leaf Lifespan} in {Tropical Forests}: {Adaptive} and {Plastic
-Responses} to {Environmental Heterogeneity}}. Pages 357--383 \emph{in}
-G. Goldstein and S. L. Santiago, editors. Tropical {Tree Physiology}.
-{Springer International Publishing}, {Cham}.
+Russo, S.E., Kitajima, K., 2016. The {Ecophysiology} of {Leaf Lifespan}
+in {Tropical Forests}: {Adaptive} and {Plastic Responses} to
+{Environmental Heterogeneity}, in: Goldstein, G., Santiago, S.L. (Eds.),
+Tropical {Tree Physiology}. {Springer International Publishing}, {Cham},
+pp. 357--383. \url{https://doi.org/10.1007/978-3-319-27422-5_17}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Sakschewski2016}{}}%
-Sakschewski, B., W. von Bloh, A. Boit, L. Poorter, M. Peña-Claros, J.
-Heinke, J. Joshi, and K. Thonicke. 2016.
-\href{https://doi.org/10.1038/nclimate3109}{Resilience of {Amazon}
-forests emerges from plant trait diversity}. Nature Climate Change
-6:1032--1036.
+Sakschewski, B., von Bloh, W., Boit, A., Poorter, L., Peña-Claros, M.,
+Heinke, J., Joshi, J., Thonicke, K., 2016. Resilience of {Amazon}
+forests emerges from plant trait diversity. Nature Clim Change 6,
+1032--1036. \url{https://doi.org/10.1038/nclimate3109}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Sakschewski2015}{}}%
-Sakschewski, B., W. von Bloh, A. Boit, A. Rammig, J. Kattge, L. Poorter,
-J. Peñuelas, and K. Thonicke. 2015.
-\href{https://doi.org/10.1111/gcb.12870}{Leaf and stem economics spectra
-drive diversity of functional plant traits in a dynamic global
-vegetation model}. Global Change Biology 21:2711--2725.
+Sakschewski, B., von Bloh, W., Boit, A., Rammig, A., Kattge, J.,
+Poorter, L., Peñuelas, J., Thonicke, K., 2015. Leaf and stem economics
+spectra drive diversity of functional plant traits in a dynamic global
+vegetation model. Global Change Biology 21, 2711--2725.
+\url{https://doi.org/10.1111/gcb.12870}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Scheiter2013}{}}%
-Scheiter, S., L. Langan, and S. I. Higgins. 2013.
-\href{https://doi.org/10.1111/nph.12210}{Next-generation dynamic global
-vegetation models: {Learning} from community ecology}. New Phytologist
-198:957--969.
+Scheiter, S., Langan, L., Higgins, S.I., 2013. Next-generation dynamic
+global vegetation models: {Learning} from community ecology. New
+Phytologist 198, 957--969. \url{https://doi.org/10.1111/nph.12210}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Tcherkez2017}{}}%
-Tcherkez, G., P. Gauthier, T. N. Buckley, F. A. Busch, M. M. Barbour, D.
-Bruhn, M. A. Heskel, X. Y. Gong, K. Y. Crous, K. Griffin, D. Way, M.
-Turnbull, M. A. Adams, O. K. Atkin, G. D. Farquhar, and G. Cornic. 2017.
-\href{https://doi.org/10.1111/nph.14816}{Leaf day respiration: Low {CO2}
-flux but high significance for metabolism and carbon balance}. New
-Phytologist 216:986--1001.
+Tcherkez, G., Gauthier, P., Buckley, T.N., Busch, F.A., Barbour, M.M.,
+Bruhn, D., Heskel, M.A., Gong, X.Y., Crous, K.Y., Griffin, K., Way, D.,
+Turnbull, M., Adams, M.A., Atkin, O.K., Farquhar, G.D., Cornic, G.,
+2017. Leaf day respiration: Low {CO2} flux but high significance for
+metabolism and carbon balance. New Phytologist 216, 986--1001.
+\url{https://doi.org/10.1111/nph.14816}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Terashima2011}{}}%
-Terashima, I., Y. T. Hanba, D. Tholen, and U. Niinemets. 2011.
-\href{https://doi.org/10.1104/pp.110.165472}{Leaf {Functional Anatomy}
-in {Relation} to {Photosynthesis}}. Plant Physiology 155:108--116.
+Terashima, I., Hanba, Y.T., Tholen, D., Niinemets, U., 2011. Leaf
+{Functional Anatomy} in {Relation} to {Photosynthesis}. Plant Physiology
+155, 108--116. \url{https://doi.org/10.1104/pp.110.165472}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Vehtari2017}{}}%
-Vehtari, A., A. Gelman, and J. Gabry. 2017.
-\href{https://doi.org/10.1007/s11222-016-9696-4}{Practical {Bayesian}
-model evaluation using leave-one-out cross-validation and {WAIC}}.
-Statistics and Computing:1413--1432.
+Vehtari, A., Gelman, A., Gabry, J., 2017. Practical {Bayesian} model
+evaluation using leave-one-out cross-validation and {WAIC}. Statistics
+and Computing 1413--1432.
+\url{https://doi.org/10.1007/s11222-016-9696-4}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Verheijen2013}{}}%
-Verheijen, L. M., V. Brovkin, R. Aerts, G. Bönisch, J. H. C.
-Cornelissen, J. Kattge, P. B. Reich, I. J. Wright, and P. M. van
-Bodegom. 2013. \href{https://doi.org/10.5194/bg-10-5497-2013}{Impacts of
-trait variation through observed trait--climate relationships on
-performance of an {Earth} system model: A conceptual analysis}.
-Biogeosciences 10:5497--5515.
+Verheijen, L.M., Brovkin, V., Aerts, R., Bönisch, G., Cornelissen,
+J.H.C., Kattge, J., Reich, P.B., Wright, I.J., Bodegom, P.M. van, 2013.
+Impacts of trait variation through observed trait--climate relationships
+on performance of an {Earth} system model: A conceptual analysis.
+Biogeosciences 10, 5497--5515.
+\url{https://doi.org/10.5194/bg-10-5497-2013}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Villar2001}{}}%
-Villar, R., and J. Merino. 2001.
-\href{https://doi.org/10.1046/j.1469-8137.2001.00147.x}{Comparison of
-leaf construction costs in woody species with differing leaf life-spans
-in contrasting ecosystems}. New Phytologist 151:213--226.
+Villar, R., Merino, J., 2001. Comparison of leaf construction costs in
+woody species with differing leaf life-spans in contrasting ecosystems.
+New Phytologist 151, 213--226.
+\url{https://doi.org/10.1046/j.1469-8137.2001.00147.x}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Westoby2013}{}}%
-Westoby, M., P. B. Reich, and I. J. Wright. 2013.
-\href{https://doi.org/10.1111/nph.12345}{Understanding ecological
+Westoby, M., Reich, P.B., Wright, I.J., 2013. Understanding ecological
 variation across species: {Area-based} vs mass-based expression of leaf
-traits}. New Phytologist 199:322--323.
+traits. New Phytologist 199, 322--323.
+\url{https://doi.org/10.1111/nph.12345}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Westoby2000}{}}%
-Westoby, M., D. Warton, and P. B. Reich. 2000.
-\href{https://doi.org/10.1086/303346}{The {Time Value} of {Leaf Area}}.
-The American Naturalist 155:649--656.
+Westoby, M., Warton, D., Reich, P.B., 2000. The {Time Value} of {Leaf
+Area}. The American Naturalist 155, 649--656.
+\url{https://doi.org/10.1086/303346}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Williams1989}{}}%
-Williams, K., C. B. Field, and H. A. Mooney. 1989.
-\href{https://doi.org/10.1086/284910}{Relationships {Among Leaf
+Williams, K., Field, C.B., Mooney, H.A., 1989. Relationships {Among Leaf
 Construction Cost}, {Leaf Longevity}, and {Light Environment} in
-{Rain-Forest Plants} of the {Genus Piper}}. The American Naturalist
-133:198--211.
+{Rain-Forest Plants} of the {Genus Piper}. The American Naturalist 133,
+198--211. \url{https://doi.org/10.1086/284910}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Wright2004a}{}}%
-Wright, I. J., P. B. Reich, M. Westoby, D. D. Ackerly, Z. Baruch, F.
-Bongers, J. Cavender-Bares, T. Chapin, J. H. C. Cornellssen, M. Diemer,
-J. Flexas, E. Garnier, P. K. Groom, J. Gulias, K. Hikosaka, B. B.
-Lamont, T. Lee, W. Lee, C. Lusk, J. J. Midgley, M. L. Navas, Ü.
-Niinemets, J. Oleksyn, H. Osada, H. Poorter, P. Pool, L. Prior, V. I.
-Pyankov, C. Roumet, S. C. Thomas, M. G. Tjoelker, E. J. Veneklaas, and
-R. Villar. 2004. \href{https://doi.org/10.1038/nature02403}{The
-worldwide leaf economics spectrum}. Nature 428:821--827.
+Wright, I.J., Reich, P.B., Westoby, M., Ackerly, D.D., Baruch, Z.,
+Bongers, F., Cavender-Bares, J., Chapin, T., Cornellssen, J.H.C.,
+Diemer, M., Flexas, J., Garnier, E., Groom, P.K., Gulias, J., Hikosaka,
+K., Lamont, B.B., Lee, T., Lee, W., Lusk, C., Midgley, J.J., Navas,
+M.L., Niinemets, Ü., Oleksyn, J., Osada, H., Poorter, H., Pool, P.,
+Prior, L., Pyankov, V.I., Roumet, C., Thomas, S.C., Tjoelker, M.G.,
+Veneklaas, E.J., Villar, R., 2004. The worldwide leaf economics
+spectrum. Nature 428, 821--827.
+\url{https://doi.org/10.1038/nature02403}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Wright2003}{}}%
-Wright, S. J., V. Horlyck, Y. Basset, H. Barrios, A. Bethancourt, S.
-Bohlman, G. Gilbert, G. Goldstein, E. A. Graham, K. Kitajima, M. T.
-Lerdau, F. C. Meinzer, F. Ødegaard, D. R. Reynolds, D. W. Roubik, S.
-Sakai, M. Samaniego, J. P. Sparks, S. Van Bael, K. Winter, and G. Zotz.
-2003. Tropical {Canopy Biology Program}, {Republic} of {Panama}. Pages
-137--155 \emph{in} Y. Basset, V. Horlyck, and S. J. Wright, editors.
-Studying {Forest Canopies} from {Above}: {The International Canopy Crane
-Network}. {Panama}.
+Wright, S.J., Horlyck, V., Basset, Y., Barrios, H., Bethancourt, A.,
+Bohlman, S., Gilbert, G., Goldstein, G., Graham, E.A., Kitajima, K.,
+Lerdau, M.T., Meinzer, F.C., Ødegaard, F., Reynolds, D.R., Roubik, D.W.,
+Sakai, S., Samaniego, M., Sparks, J.P., Van Bael, S., Winter, K., Zotz,
+G., 2003. Tropical {Canopy Biology Program}, {Republic} of {Panama}, in:
+Basset, Y., Horlyck, V., Wright, S.J. (Eds.), Studying {Forest Canopies}
+from {Above}: {The International Canopy Crane Network}. {Panama}, pp.
+137--155.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Wullschleger2014}{}}%
-Wullschleger, S. D., H. E. Epstein, E. O. Box, E. S. Euskirchen, S.
-Goswami, C. M. Iversen, J. Kattge, R. J. Norby, P. M. Van Bodegom, and
-X. Xu. 2014. \href{https://doi.org/10.1093/aob/mcu077}{Plant functional
-types in {Earth} system models: {Past} experiences and future directions
-for application of dynamic vegetation models in high-latitude
-ecosystems}. Annals of Botany 114:1--16.
+Wullschleger, S.D., Epstein, H.E., Box, E.O., Euskirchen, E.S., Goswami,
+S., Iversen, C.M., Kattge, J., Norby, R.J., Van Bodegom, P.M., Xu, X.,
+2014. Plant functional types in {Earth} system models: {Past}
+experiences and future directions for application of dynamic vegetation
+models in high-latitude ecosystems. Annals of Botany 114, 1--16.
+\url{https://doi.org/10.1093/aob/mcu077}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Wurth2005}{}}%
-Würth, M. K. R., S. Peláez-Riedl, S. J. Wright, and C. Körner. 2005.
-\href{https://doi.org/10.1007/s00442-004-1773-2}{Non-structural
-carbohydrate pools in a tropical forest}. Oecologia 143:11--24.
+Würth, M.K.R., Peláez-Riedl, S., Wright, S.J., Körner, C., 2005.
+Non-structural carbohydrate pools in a tropical forest. Oecologia 143,
+11--24. \url{https://doi.org/10.1007/s00442-004-1773-2}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Xu2017}{}}%
-Xu, X., D. Medvigy, S. Joseph Wright, K. Kitajima, J. Wu, L. P. Albert,
-G. A. Martins, S. R. Saleska, and S. W. Pacala. 2017.
-\href{https://doi.org/10.1111/ele.12804}{Variations of leaf longevity in
-tropical moist forests predicted by a trait-driven carbon optimality
-model}. Ecology Letters 20:1097--1106.
+Xu, X., Medvigy, D., Joseph Wright, S., Kitajima, K., Wu, J., Albert,
+L.P., Martins, G.A., Saleska, S.R., Pacala, S.W., 2017. Variations of
+leaf longevity in tropical moist forests predicted by a trait-driven
+carbon optimality model. Ecology Letters 20, 1097--1106.
+\url{https://doi.org/10.1111/ele.12804}
 
 \end{CSLReferences}
 
@@ -1716,10 +1705,10 @@ dataset). The y-axis values indicates if photosynthetic capacity
 (\emph{A}\textsubscript{max}) is is primarily mass-dependent (\emph{b}
 \textgreater{} 0.5) or primarily area-dependent (0.5 \textgreater{}
 \emph{b} \textgreater{} 0), with \emph{b} near 0 indicating purely
-area-dependendence (\protect\hyperlink{ref-Osnas2018}{Osnas et al.
+area-dependendence (\protect\hyperlink{ref-Osnas2018}{Osnas et al.,
 2018}). If \emph{b} \textgreater{} 1, then \emph{A}\textsubscript{max}
 increases exponentially with LMA, which is not consistent with observed
-relationships (\protect\hyperlink{ref-Osnas2018}{Osnas et al. 2018}).
+relationships (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}).
 See Appendices S4-S6 for details.}
 
 \end{figure}

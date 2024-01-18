@@ -2,7 +2,7 @@
 fontsize: 12pt
 geometry: margin=1in
 link-citations: true
-csl: ecology.csl
+csl: ecological-modelling.csl
 bibliography: [LMA.bib]
 crossref:
   fig-title: Fig.
@@ -140,7 +140,7 @@ optimal leaf lifespan
 Across the global flora, interspecific variation in photosynthetic and metabolic rates depends more strongly on leaf area than leaf mass.
 In contrast, intraspecific variation in these rates is strongly mass-dependent.
 These contrasting patterns suggest that the causes of variation in leaf mass per area (LMA) may be fundamentally different within vs. among species.
-In order to explain these contrasting patterns, We developed a statistical modeling framework to decompose LMA into two conceptual components – metabolic LMAm (which determines photosynthetic capacity and dark respiration) and structural LMAs (which determines leaf toughness and potential leaf lifespan) - using leaf trait data from tropical forests in Panama and a global leaf-trait database.
+In order to explain these contrasting patterns, we developed a statistical modeling framework to decompose LMA into two conceptual components – metabolic LMAm (which determines photosynthetic capacity and dark respiration) and structural LMAs (which determines leaf toughness and potential leaf lifespan) - using leaf trait data from tropical forests in Panama and a global leaf-trait database.
 Decomposing LMA into LMAm and LMAs improves predictions of leaf trait variation (photosynthesis, respiration, and lifespan).
 We show that strong area-dependence of metabolic traits across species can result from multiple factors, including high LMAs variance and/or a slow increase in photosynthetic capacity with increasing LMAm.
 In contrast, strong mass-dependence of metabolic traits within species results from LMAm increasing from shady to sunny conditions.
@@ -205,7 +205,7 @@ To implement the two-dimensional models, we developed a statistical modeling fra
 By using power-law relationships, our models assume that LMAm the contribution of LMAm to metabolic rates is not direct or linear, which reflects that leaf mass components still cannot be neatly classified as 'metabolic' or 'structural'.
 We fit the models to two datasets: the GLOPNET global leaf traits dataset [@Wright2004a], which primarily represents interspecific variation; and the Panama dataset described by @Osnas2018, which includes traits for both sun and shade leaves at wet and dry tropical forest sites.
 Because LMAm and LMAs are modeled (rather than observed), the two-dimensional models require one parameter per analysis unit (a species in GLOPNET or a species $\times$ canopy-position in the Panama dataset) to partition observed LMA into LMAm and LMAs.
-Given the large number of parameters in these models, we performed tests with randomized data to evaluate whether our two-dimensional models were prone to creating patterns from noise, which could lead to spurious conclusions.
+Given the large number of parameters in these models, we performed tests with randomized data to evaluate if our two-dimensional models were prone to creating patterns from noise, which could lead to spurious conclusions.
 These tests suggested that our two-dimensional modeling approach revealed meaningful patterns in the observed trait data (`r appendix("rand")`).
 
 To better understand the factors affecting relationships between *A*~max~ and LMA (`r appendix("mass-prop")`), we simulated datasets varying in LMAm and LMAs (`r appendix("mass-prop-sim")`).
@@ -285,6 +285,7 @@ The wet SL site is an evergreen Caribbean coastal forest with 3100 mm of annual 
 Additional details of the Panama dataset are described in @Osnas2018.
 
 We restricted our analysis to database records for which all four traits (LMA, *A*~area~, *R*~area~, and LL; each typically averaged over multiple leaves) were available.
+Each database record corresponds to an analysis unit (or 'leaf sample') as described above; i.e., a species in GLOPNET, or a species $\times$ canopy position in the Panama dataset.
 After excluding database records that lacked one or more of the four traits, 198 samples for 198 unique species were available for GLOPNET, and 130 samples for 104 unique species were available for Panama (dry and wet sites combined; 26 species sampled in both sun and shade; no species with all four traits available at both sites).
 In addition to LMA, *A*~area~, *R*~area~, and LL, the model based on structural leaf density also requires observations of leaf thickness, which was not available in GLOPNET but was available for 106/130 Panama samples.
 Both the GLOPNET and Panama datasets include additional traits that we used to interpret model results, but which were not used to fit models.

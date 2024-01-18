@@ -3,12 +3,8 @@ title: "Katabuchi et al., Decomposing leaf mass into metabolic and structural co
 fontsize: 12pt
 geometry: margin=1in
 link-citations: true
-csl: apa.csl
+csl: ecological-modelling.csl
 bibliography: [LMA.bib]
-# crossref:
-#   eq-prefix: Eq.
-#   fig-title: Fig. S
-#   fig-prefix: Fig. S
 format:
   html:
     theme: spacelab #readable #sandstone #spacelab #flatly
