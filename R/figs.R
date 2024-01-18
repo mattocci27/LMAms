@@ -730,7 +730,7 @@ pa_point_par_ll <- function(pa_res_csv, settings_yml, r_vals_yml) {
      val = min(dat$res_LMAs_light),
      val_max = max(dat$res_LMAs_light),
      gr = "Sun-Dry",
-     r_vals = r_vals$r_vals$PA_par$LMAs_LL
+     r_vals = r_vals$r_vals$PA_LL_par$LMAs_LL
    )
 
   ggplot(dat, aes(y = res_LL_light,
@@ -754,7 +754,7 @@ pa_point_par_ll <- function(pa_res_csv, settings_yml, r_vals_yml) {
              show.legend = FALSE) +
    coord_fixed() +
    coord_cartesian(xlim = c(-2, max(labLL$val_max)),
-    ylim = c(-2, labLL$val_max)) +
+     ylim = c(-2, labLL$val_max)) +
    theme_LES() +
    theme(
      legend.position = c(0.2, 0.85),
