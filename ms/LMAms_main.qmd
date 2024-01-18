@@ -83,10 +83,10 @@ s_eq("s5")
 s_eq("var")
 
 appendix("prior")
-appendix("model-cons")
+appendix("model_cons")
 appendix("rand")
-appendix("mass-prop")
-appendix("mass-prop-sim")
+appendix("mass_prop")
+appendix("mass_prop-sim")
 appendix("vpart")
 appendix("stan")
 
@@ -155,7 +155,7 @@ Thus, understanding the causes and consequences of leaf trait variation is an im
 Different leaf assemblages exhibit markedly different patterns of trait variation.
 For example, across global species, whole-leaf values of traits related to photosynthesis and metabolism (e.g., the photosynthetic capacity, respiration rate, or nutrient content of entire leaves) tend to increase more strongly with leaf area than leaf mass [@Osnas2013],
 whereas the opposite pattern (strong mass-dependence of these same traits) is observed within species across light gradients [@Osnas2018; @Osada2001].
-Functional groups (e.g., deciduous vs. evergreen angiosperms) also differ from each other in terms of how photosynthetic and metabolic traits variation depend on leaf mass and area [@Lusk2008; @Osnas2018].
+Functional groups (e.g., deciduous vs. evergreen angiosperms) also differ from each other in terms of how variation in photosynthetic and metabolic traits depends on leaf mass and area [@Lusk2008; @Osnas2018].
 These divergent patterns suggest the presence of multiple drivers of trait variation.
 
 Strong interspecific correlations among leaf mass per area (LMA), leaf lifespan (LL), and mass-normalized leaf traits related to photosynthesis and metabolism (hereafter, 'metabolic traits') have been interpreted as evidence for a single dominant axis of leaf functional variation [@Wright2004a].
@@ -182,10 +182,9 @@ For example, thick cell walls contribute to structural toughness [@Onoda2015], b
 Thus, partitioning LMA into different functional components requires novel empirical or modeling approaches.
 
 In this paper, we present a statistical modeling framework to partition LMA into metabolic and structural components: LMAm and LMAs.
-Our models assume that the influence of LMAm on metabolic rates is complex and non-linear, reflecting the intricate nature of leaf mass components, which resist simplistic 'metabolic' or 'structural' categorization.
 We develop and test this two-dimensional trait space model using leaf trait data from two tropical forest sites (sun and shade leaves from wet and dry sites in Panama) and the GLOPNET global leaf traits database [@Wright2004a].
 We use the model to address the following questions:
-(1) Are measured leaf traits (including photosynthetic capacity, dark respiration rate, LL, and concentrations of nutrients and cellulose) better predicted by a one-dimensional (total LMA) or two-dimensional (LMAm-LMAs) trait space model?
+(1) Are measured leaf traits (including photosynthetic capacity, dark respiration rate, LL, and concentrations of nutrients and cellulose) better predicted by a one-dimensional (total LMA) or two-dimensional (LMAm-LMAs) trait model?
 (2) What are the relative contributions of LMAm and LMAs to total LMA variance in different leaf assemblages (Panama sun leaves, Panama shade leaves, and the global flora)?
 (3) Do LMAm and LMAs differ between evergreen and deciduous species, and between sun and shade leaves? If so, how? and
 (4) How do the answers to the preceding questions inform our understanding of empirical patterns of trait variation (e.g., relationships among measured leaf traits)?
@@ -201,17 +200,17 @@ Instead, we reserved observations of leaf N and P concentrations (and cellulose 
 We considered a simple one-dimensional model that predicts LL, *A*~max~, and *R*~dark~ from LMA alone, as well as two-dimensional models that predict LL, *A*~max~, and *R*~dark~ from two additive LMA components: metabolic and structural leaf mass per area (LMAm and LMAs, respectively).
 We formulate the models in terms of area-normalized *A*~max~ and *R*~dark~ (*A*~area~ and *R*~area~, respectively), as these trait forms share the same denominator as LMA and its components.
 
-To implement the two-dimensional models, we developed a statistical modeling framework to partition LMA into additive LMAm and LMAs components (Appendices `r appendix_num("prior")`-`r appendix_num("model-cons")`).
+To implement the two-dimensional models, we developed a statistical modeling framework to partition LMA into additive LMAm and LMAs components (Appendices `r appendix_num("prior")`-`r appendix_num("model_cons")`).
 By using power-law relationships, our models assume that LMAm the contribution of LMAm to metabolic rates is not direct or linear, which reflects that leaf mass components still cannot be neatly classified as 'metabolic' or 'structural'.
 We fit the models to two datasets: the GLOPNET global leaf traits dataset [@Wright2004a], which primarily represents interspecific variation; and the Panama dataset described by @Osnas2018, which includes traits for both sun and shade leaves at wet and dry tropical forest sites.
 Because LMAm and LMAs are modeled (rather than observed), the two-dimensional models require one parameter per analysis unit (a species in GLOPNET or a species $\times$ canopy-position in the Panama dataset) to partition observed LMA into LMAm and LMAs.
 Given the large number of parameters in these models, we performed tests with randomized data to evaluate if our two-dimensional models were prone to creating patterns from noise, which could lead to spurious conclusions.
 These tests suggested that our two-dimensional modeling approach revealed meaningful patterns in the observed trait data (`r appendix("rand")`).
 
-To better understand the factors affecting relationships between *A*~max~ and LMA (`r appendix("mass-prop")`), we simulated datasets varying in LMAm and LMAs (`r appendix("mass-prop-sim")`).
-We quantified the mass-dependence of *A*~max~ based on the scaling exponent of *A*~max~ with LMA (`r appendix("mass-prop")`) following @Osnas2013.
-These simulations allow us to explore the controversial mass versus area normalization debate in leaf trait analysis.
+To better understand the factors affecting relationships between *A*~max~ and LMA (`r appendix("mass_prop")`), we simulated datasets varying in LMAm and LMAs (`r appendix("mass_prop_sim")`).
+This approach allows us to directly examine the cause of mass-dependence of *A*~max~ in relation to LMA, which we quantified as the scaling exponent of *A*~max~ with LMA (`r appendix("mass_prop")`) following @Osnas2013.
 Additionally, we performed variance partitioning to determine the contributions of LMAm and LMAs to total LMA variance, using both simulated and actual datasets (`r appendix("vpart")`).
+These analyses are key in exploring the controversial mass versus area normalization debate in leaf trait analysis.
 
 All statistical analyses were conducted in R version 4.2.1 [@RCoreTeam2022] using the R package *targets* version 0.12.0 for workflow management [@Landau2021]
 
@@ -268,7 +267,7 @@ To ensure that the model was identifiable, we imposed two broad assumptions:
 (ii) LL depends more strongly on LMAs ($\beta_s$ in `r eq("LL")` than LMAm ($\beta_m$).
 The first assumption was implemented in different model versions either by setting $\alpha_s$ = 0 or by imposing the constraint $\alpha_m$ > $\alpha_s$.
 Similarly, the second assumption was implemented either by setting $\beta_m$ = 0 or by imposing the constraint  $\beta_s$ > $\beta_m$.
-See Table 1 and `r appendix("model-cons")` for more detail.
+See Table 1 and `r appendix("model_cons")` for more detail.
 
 Finally, we considered a functional form that accounts for the effects of light availability on LL.
 This light-dependent model is motivated by optimal LL theory, which predicts decreasing LL with increasing light availability [@Kikuzawa1991], and also by the often-observed 'LMA counter-gradient', whereby LL and LMA positively covary across species but negatively covary within species across light gradients [@Lusk2008; @Russo2016; @Osnas2018].
@@ -406,7 +405,7 @@ Thus, while optimal LL theory provides important insights regarding the coordina
 
 ## Implications for understanding relationships between photosynthetic capacity and LMA
 
-@Osnas2018 suggested that in leaf assemblages where LMA variation is largely due to variation in structural leaf mass components that contribute to toughness but not photosynthetic capacity, metabolic traits (including *A*~max~) should be primarily area-dependent rather than mass-dependent (parameter *b* in `r eq("mass")`, with *b* > 0.5 indicating greatermass- than area-dependence).
+@Osnas2018 suggested that in leaf assemblages where LMA variation is largely due to variation in structural leaf mass components that contribute to toughness but not photosynthetic capacity, metabolic traits (including *A*~max~) should be primarily area-dependent rather than mass-dependent (parameter *b* in `r eq("mass")`, with *b* > 0.5 indicating greater mass- than area-dependence).
 Our simulations show that all else being equal, area-dependence of *A*~max~ increases (mass-dependence decreases) as LMAs variance increases ([@fig-mass_prop]), as hypothesized by @Osnas2018.
 However, our analysis also revealed complexities that were not anticipated by @Osnas2018.
 For example, if *A*~area~ only weakly increases with LMAm and/or decreases with LMAs (as in GLOPNET; Table 2), then *A*~max~ can be strongly area-dependent (weakly mass-dependent) even if LMAs accounts for relatively little LMA variance ([@fig-mass_prop]).
@@ -440,6 +439,40 @@ Consistent with our conclusion that leaf function is multi-dimensional, analyses
 Similarly, partitioning leaf phosphorus reveals substantial, LMA-dependent metabolic, structural, and nucleic acid fractions [@Hidaka2011].
 We suggest that future biogeochemical model developments consider multiple axes of leaf functional diversity, and that models with coupled carbon-nutrient cycles consider how LMA, nitrogen, and phosphorus are allocated to different functions
 
+# CRediT authorship contribution statement
+
+**Mastaoshi Katabuchi:**
+Conceptualization,
+Methodology,
+Formal analysis,
+Visualization,
+Writing - Original Draft,
+Writing - Review & Editing.
+**Kaoru Kitajima:**
+Resources,
+Writing - Review & Editing.
+**S. Joseph Wright:**
+Resources,
+Writing - Review & Editing.
+**Sunshine A. Van Bael:**
+Resources,
+Writing - Review & Editing.
+**Jeanne L. D. Osnas:**
+Conceptualization,
+Writing - Review & Editing.
+**Jeremy W. Lichstein:**
+Conceptualization,
+Writing - Original Draft,
+Writing - Review & Editing.
+
+# Conflict of Interest
+
+The authors declare no conflicts of interest.
+
+# Data availability statement
+
+Data, codes and computing environments to reproduce this manuscript will be archived on Zenodo at https://doi.org/xxx and also available on Github at https://github.com/mattocci27/LMAms.
+
 # Acknowledgments
 
 We thank Jonathan Dushoff for statistical advice and Martijn Slot for helpful comments that improved the paper.
@@ -450,22 +483,6 @@ a Xishuangbanna State Rainforest Talent Support Program,
 a CAS President's International Fellowship Initiative (2020FYB0003),
 a ZiHui (Wisdom) Yunnan Program (202203AM140026), and
 a Postdoctoral Fellowship for Research Abroad from the Japan Society for the Promotion of Science (25-504).
-
-# Conflict of Interest
-
-The authors declare no conflicts of interest.
-
-# Author contributions
-
-MK, JWL and JLDO conceived of the study;
-KK provided guidance on leaf physiology and interpreting trait data;
-KK, SJW and SAVB contributed data;
-MK devised the analytical approach and performed analyses;
-MK and JWL wrote the first draft of the manuscript, and all authors contributed to revisions.
-
-# Data availability statement
-
-Data, codes and computing environments to reproduce this manuscript will be archived on Zenodo at https://doi.org/xxx and also available on Github at https://github.com/mattocci27/LMAms.
 
 # References
 
@@ -488,7 +505,7 @@ We combined the two-dimensional model forms with four types of parameter constra
 Those constraints were based on the following hypotheses:
 (1) *A*~area~ depends more strongly on metabolic leaf mass (LMAm: parameter $\alpha_m$ in `r eq("Aarea")`) than structural leaf mass (LMAs: parameter $\alpha_s$), and
 (2) LL depends more strongly on LMAs ($\beta_s$ in `r eq("LL")`) than LMAm ($\beta_m$).
-See `r appendix("model-fit")` for more details.
+See `r appendix("model_cons")` for more details.
 
 ```{r lootab, eval=TRUE, echo=FALSE}
 loo_tbl <- read_csv(here("data/model_selection.csv"))  |>
@@ -546,7 +563,7 @@ Simulated two-dimensional functional space that can result in either a two- or o
 Panels b and c represent normalization by leaf area and leaf mass, respectively.
 (b) Two-dimensional relationship between photosynthetic capacity (*A*~max~) per-unit leaf area and total LMA (equal to LMAm + LMAs).
 (c) One-dimensional relationship between *A*~max~ per-unit leaf mass and total LMA.
-Methods used to simulate the data are explained in Appendix S3.
+Methods used to simulate the data are explained in `r appendix("mass_prop_sim")`
 ](`r here::here("figs/hypo.png")`){#fig-hypo}
 
 

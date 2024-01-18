@@ -189,7 +189,7 @@
 \date{}
 
 \begin{document}
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, boxrule=0pt, enhanced, borderline west={3pt}{0pt}{shadecolor}, sharp corners, interior hidden, breakable]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, borderline west={3pt}{0pt}{shadecolor}, enhanced, interior hidden, boxrule=0pt, breakable, frame hidden]}{\end{tcolorbox}}\fi
 
 \textbf{Decomposing leaf mass into metabolic and structural components
 explains divergent patterns of trait variation within and among plant
@@ -285,8 +285,8 @@ observed within species across light gradients
 (\protect\hyperlink{ref-Osada2001}{Osada et al., 2001};
 \protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}). Functional
 groups (e.g., deciduous vs.~evergreen angiosperms) also differ from each
-other in terms of how photosynthetic and metabolic traits variation
-depend on leaf mass and area (\protect\hyperlink{ref-Lusk2008}{Lusk et
+other in terms of how variation in photosynthetic and metabolic traits
+depends on leaf mass and area (\protect\hyperlink{ref-Lusk2008}{Lusk et
 al., 2008}; \protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}).
 These divergent patterns suggest the presence of multiple drivers of
 trait variation.
@@ -385,21 +385,18 @@ LMA into different functional components requires novel empirical or
 modeling approaches.
 
 In this paper, we present a statistical modeling framework to partition
-LMA into metabolic and structural components: LMAm and LMAs. Our models
-assume that the influence of LMAm on metabolic rates is complex and
-non-linear, reflecting the intricate nature of leaf mass components,
-which resist simplistic `metabolic' or `structural' categorization. We
-develop and test this two-dimensional trait space model using leaf trait
-data from two tropical forest sites (sun and shade leaves from wet and
-dry sites in Panama) and the GLOPNET global leaf traits database
+LMA into metabolic and structural components: LMAm and LMAs. We develop
+and test this two-dimensional trait space model using leaf trait data
+from two tropical forest sites (sun and shade leaves from wet and dry
+sites in Panama) and the GLOPNET global leaf traits database
 (\protect\hyperlink{ref-Wright2004a}{Wright et al., 2004}). We use the
 model to address the following questions: (1) Are measured leaf traits
 (including photosynthetic capacity, dark respiration rate, LL, and
 concentrations of nutrients and cellulose) better predicted by a
-one-dimensional (total LMA) or two-dimensional (LMAm-LMAs) trait space
-model? (2) What are the relative contributions of LMAm and LMAs to total
-LMA variance in different leaf assemblages (Panama sun leaves, Panama
-shade leaves, and the global flora)? (3) Do LMAm and LMAs differ between
+one-dimensional (total LMA) or two-dimensional (LMAm-LMAs) trait model?
+(2) What are the relative contributions of LMAm and LMAs to total LMA
+variance in different leaf assemblages (Panama sun leaves, Panama shade
+leaves, and the global flora)? (3) Do LMAm and LMAs differ between
 evergreen and deciduous species, and between sun and shade leaves? If
 so, how? and (4) How do the answers to the preceding questions inform
 our understanding of empirical patterns of trait variation (e.g.,
@@ -455,15 +452,16 @@ revealed meaningful patterns in the observed trait data (Appendix S3).
 
 To better understand the factors affecting relationships between
 \emph{A}\textsubscript{max} and LMA (Appendix S4), we simulated datasets
-varying in LMAm and LMAs (Appendix S5). We quantified the
-mass-dependence of \emph{A}\textsubscript{max} based on the scaling
-exponent of \emph{A}\textsubscript{max} with LMA (Appendix S4) following
-Osnas et al. (\protect\hyperlink{ref-Osnas2013}{2013}). These
-simulations allow us to explore the controversial mass versus area
-normalization debate in leaf trait analysis. Additionally, we performed
-variance partitioning to determine the contributions of LMAm and LMAs to
-total LMA variance, using both simulated and actual datasets (Appendix
-S6).
+varying in LMAm and LMAs (Appendix S8). This approach allows us to
+directly examine the cause of mass-dependence of
+\emph{A}\textsubscript{max} in relation to LMA, which we quantified as
+the scaling exponent of \emph{A}\textsubscript{max} with LMA (Appendix
+S4) following Osnas et al. (\protect\hyperlink{ref-Osnas2013}{2013}).
+Additionally, we performed variance partitioning to determine the
+contributions of LMAm and LMAs to total LMA variance, using both
+simulated and actual datasets (Appendix S6). These analyses are key in
+exploring the controversial mass versus area normalization debate in
+leaf trait analysis.
 
 All statistical analyses were conducted in R version 4.2.1
 (\protect\hyperlink{ref-RCoreTeam2022}{R Core Team, 2022}) using the R
@@ -947,7 +945,7 @@ structural leaf mass components that contribute to toughness but not
 photosynthetic capacity, metabolic traits (including
 \emph{A}\textsubscript{max}) should be primarily area-dependent rather
 than mass-dependent (parameter \emph{b} in Eq. 6, with \emph{b}
-\textgreater{} 0.5 indicating greatermass- than area-dependence). Our
+\textgreater{} 0.5 indicating greater mass- than area-dependence). Our
 simulations show that all else being equal, area-dependence of
 \emph{A}\textsubscript{max} increases (mass-dependence decreases) as
 LMAs variance increases (Fig.~\ref{fig-mass_prop}), as hypothesized by
@@ -1064,6 +1062,32 @@ axes of leaf functional diversity, and that models with coupled
 carbon-nutrient cycles consider how LMA, nitrogen, and phosphorus are
 allocated to different functions
 
+\hypertarget{credit-authorship-contribution-statement}{%
+\section{CRediT authorship contribution
+statement}\label{credit-authorship-contribution-statement}}
+
+\textbf{Mastaoshi Katabuchi:} Conceptualization, Methodology, Formal
+analysis, Visualization, Writing - Original Draft, Writing - Review \&
+Editing. \textbf{Kaoru Kitajima:} Resources, Writing - Review \&
+Editing. \textbf{S. Joseph Wright:} Resources, Writing - Review \&
+Editing. \textbf{Sunshine A. Van Bael:} Resources, Writing - Review \&
+Editing. \textbf{Jeanne L. D. Osnas:} Conceptualization, Writing -
+Review \& Editing. \textbf{Jeremy W. Lichstein:} Conceptualization,
+Writing - Original Draft, Writing - Review \& Editing.
+
+\hypertarget{conflict-of-interest}{%
+\section{Conflict of Interest}\label{conflict-of-interest}}
+
+The authors declare no conflicts of interest.
+
+\hypertarget{data-availability-statement}{%
+\section{Data availability
+statement}\label{data-availability-statement}}
+
+Data, codes and computing environments to reproduce this manuscript will
+be archived on Zenodo at https://doi.org/xxx and also available on
+Github at https://github.com/mattocci27/LMAms.
+
 \hypertarget{acknowledgments}{%
 \section{Acknowledgments}\label{acknowledgments}}
 
@@ -1076,28 +1100,6 @@ CAS President's International Fellowship Initiative (2020FYB0003), a
 ZiHui (Wisdom) Yunnan Program (202203AM140026), and a
 Postdoctoral~Fellowship for~Research Abroad from the Japan Society for
 the Promotion of Science (25-504).
-
-\hypertarget{conflict-of-interest}{%
-\section{Conflict of Interest}\label{conflict-of-interest}}
-
-The authors declare no conflicts of interest.
-
-\hypertarget{author-contributions}{%
-\section{Author contributions}\label{author-contributions}}
-
-MK, JWL and JLDO conceived of the study; KK provided guidance on leaf
-physiology and interpreting trait data; KK, SJW and SAVB contributed
-data; MK devised the analytical approach and performed analyses; MK and
-JWL wrote the first draft of the manuscript, and all authors contributed
-to revisions.
-
-\hypertarget{data-availability-statement}{%
-\section{Data availability
-statement}\label{data-availability-statement}}
-
-Data, codes and computing environments to reproduce this manuscript will
-be archived on Zenodo at https://doi.org/xxx and also available on
-Github at https://github.com/mattocci27/LMAms.
 
 \hypertarget{references}{%
 \section{References}\label{references}}
@@ -1466,7 +1468,7 @@ constraints were based on the following hypotheses: (1)
 \emph{A}\textsubscript{area} depends more strongly on metabolic leaf
 mass (LMAm: parameter \(\alpha_m\) in Eq. 2) than structural leaf mass
 (LMAs: parameter \(\alpha_s\)), and (2) LL depends more strongly on LMAs
-(\(\beta_s\) in Eq. 4) than LMAm (\(\beta_m\)). See Appendix S8 for more
+(\(\beta_s\) in Eq. 4) than LMAm (\(\beta_m\)). See Appendix S2 for more
 details.
 
 \begin{table}
@@ -1562,7 +1564,7 @@ between photosynthetic capacity (\emph{A}\textsubscript{max}) per-unit
 leaf area and total LMA (equal to LMAm + LMAs). (c) One-dimensional
 relationship between \emph{A}\textsubscript{max} per-unit leaf mass and
 total LMA. Methods used to simulate the data are explained in Appendix
-S3.}
+S8}
 
 \end{figure}
 
@@ -1709,7 +1711,7 @@ area-dependendence (\protect\hyperlink{ref-Osnas2018}{Osnas et al.,
 2018}). If \emph{b} \textgreater{} 1, then \emph{A}\textsubscript{max}
 increases exponentially with LMA, which is not consistent with observed
 relationships (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}).
-See Appendices S4-S6 for details.}
+See Appendices S9-S6 for details.}
 
 \end{figure}
 
