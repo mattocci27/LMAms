@@ -10,6 +10,7 @@
   numbers=noendperiod]{scrartcl}
 
 \usepackage{amsmath,amssymb}
+\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -19,10 +20,6 @@
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
-\fi
-\usepackage{lmodern}
-\ifPDFTeX\else  
-    % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -215,12 +212,10 @@
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
 \makeatletter
-\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
 \makeatother
 \makeatletter
 \@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
-\makeatother
-\makeatletter
 \makeatother
 \makeatletter
 \makeatother
@@ -247,7 +242,7 @@ within and among plant species}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, enhanced, interior hidden, breakable, borderline west={3pt}{0pt}{shadecolor}, frame hidden, sharp corners]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, breakable, boxrule=0pt, enhanced, sharp corners, interior hidden, frame hidden]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -319,9 +314,9 @@ with range (0, 1).
 
 \newpage
 
-\hypertarget{appendix-s2-model-parametrization}{%
+\hypertarget{appendix-s2-model-constraints}{%
 \section{Appendix S2: Model
-parametrization}\label{appendix-s2-model-parametrization}}
+constraints}\label{appendix-s2-model-constraints}}
 
 To ensure that the model was identifiable, we imposed two broad
 assumptions: (i) \emph{A}\textsubscript{area} depends more strongly on
@@ -401,12 +396,10 @@ do not provide reliable inferences
 \end{itemize}
 
 \begin{longtable}[]{@{}llrr@{}}
-\toprule\noalign{}
+\toprule()
 Data & Simulation\_ID & No\_large\_Rhat & No\_divergence \\
-\midrule\noalign{}
+\midrule()
 \endhead
-\bottomrule\noalign{}
-\endlastfoot
 GLOPNET & sim-01 & 4 & 13 \\
 GLOPNET & sim-02 & 4 & 0 \\
 GLOPNET & sim-03 & 0 & 0 \\
@@ -427,6 +420,7 @@ Panama & sim-07 & 7 & 122 \\
 Panama & sim-08 & 160 & 131 \\
 Panama & sim-09 & 451 & 579 \\
 Panama & sim-10 & 601 & 148 \\
+\bottomrule()
 \end{longtable}
 
 \newpage
@@ -449,7 +443,7 @@ datasets were not significantly different from zero. These tests with
 randomized data indicate that our model is not inherently prone to
 overfitting or to producing patterns from noise.
 
-\includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/coef_sim_gl.png}
+\includegraphics{/home/mattocci/LMAms/figs/coef_sim_gl.png}
 
 \newpage
 
@@ -466,7 +460,7 @@ randomized datasets did not show any patterns. Again, these tests with
 randomized data indicate that our model is not inherently prone to
 overfitting or to producing patterns from noise.
 
-\includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/coef_sim_pa.png}
+\includegraphics{/home/mattocci/LMAms/figs/coef_sim_pa.png}
 
 \newpage
 
@@ -509,13 +503,13 @@ quantified the \emph{A}\textsubscript{max} vs.~LMA relationship
 following Osnas et al. (\protect\hyperlink{ref-Osnas2018}{2018}):
 
 \[
-A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i \qquad(5)
+A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i \qquad(\mathrm{S}4)
 \]
 
 where LMA is the sum of LMAm and LMAs Eq. 1, \emph{c} is a fitted
 constant, and \emph{b} is an index of mass-dependence as illustrated by
-the following cases (\protect\hyperlink{ref-Osnas2013}{Osnas et al.,
-2013}, \protect\hyperlink{ref-Osnas2018}{2018}): if \emph{b} = 0, then
+the following cases (\protect\hyperlink{ref-Osnas2018}{Osnas et al.,
+2018}, \protect\hyperlink{ref-Osnas2013}{2013}): if \emph{b} = 0, then
 \emph{A}\textsubscript{area} is independent of LMA, which implies that
 whole-leaf \emph{A}\textsubscript{max} is proportional to leaf area;
 conversely, if \emph{b} = 1, then \emph{A}\textsubscript{area} is
@@ -525,7 +519,7 @@ cases (0 \textless{} \emph{b} \textless{} 1), as well as more extreme
 cases (\emph{b} \(\le\) 0 or \emph{b} \(\geq\) 1), are also possible,
 with reported estiamtes being between 0 and 1
 (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}). Note that
-applying Eq. 5 to either mass- or area-normalized
+applying Eq. S4 to either mass- or area-normalized
 \emph{A}\textsubscript{max} yields equivalent results
 (\protect\hyperlink{ref-Osnas2018}{Osnas et al., 2018}).
 
@@ -535,7 +529,7 @@ varying the LMAs variance (so that LMAs contributed different fractions
 of total LMA variance in different simulated datasets). Although Panama
 sun and shade leaves were analyzed together when fitting the LMAm-LMAs
 models Eqs. 2 - 4, they were analyzed separately here due to their
-different estimated covariance structures (see details below).
+different estimated covariance structures (see the main text).
 
 For GLOPNET and Panama sun leaves, LMAm and LMAs were generated
 independently of each other, consistent with the low estimated
@@ -547,7 +541,7 @@ distribution with the log-scale mean given by our model outputs and the
 log-scale standard deviation raging from log(1.01) to log(10) across
 simulated datasets. In contrast to GLOPNET and Panama sun leaves, our
 analysis revealed a negative correlation of \emph{r} = -0.47 between
-LMAm and LMAs for Panama shade leaves (see Appendix S3). Therefore, we
+LMAm and LMAs for Panama shade leaves (see Appendix S5). Therefore, we
 used a multivariate normal distribution with \emph{r} = -0.47 to
 generate log(LMAm) and log(LMAs) for the Panama shade simulations.
 Otherwise, the simulation protocol was as described above for GLOPNET
@@ -578,11 +572,11 @@ used univariate normal distributions (N) to generate the LMAm and LMAs
 samples:
 
 \[
-\mathrm{ln}(\mathrm{LMAm}) \sim \mathrm{N}(\mathrm{ln}(\mu_m), \sigma_m) \qquad(\mathrm{S}3.1)
+\mathrm{ln}(\mathrm{LMAm}) \sim \mathrm{N}(\mathrm{ln}(\mu_m), \sigma_m) \qquad(\mathrm{S}5.1)
 \]
 
 \[
-\mathrm{ln}(\mathrm{LMAs}) \sim \mathrm{N}(\mathrm{ln}(\mu_s), \sigma_s) \qquad(\mathrm{S}3.2)
+\mathrm{ln}(\mathrm{LMAs}) \sim \mathrm{N}(\mathrm{ln}(\mu_s), \sigma_s) \qquad(\mathrm{S}5.2)
 \]
 
 where \(\mathrm{ln}(\mu_m)\) and \(\mathrm{ln}(\mu_s)\) are the means of
@@ -608,7 +602,7 @@ distribution (MVN) to generate the LMAm and LMAs samples:
 \ln(\mu_{s}) &
 \end{matrix},
 \boldsymbol{\Sigma}
-\right] \qquad(\mathrm{S}3.3)
+\right] \qquad(\mathrm{S}5.3)
 \]
 
 \[
@@ -616,7 +610,7 @@ distribution (MVN) to generate the LMAm and LMAs samples:
 \begin{bmatrix}
 \sigma_m^2 & \rho \sigma_m \sigma_s \\
 \rho \sigma_m \sigma_s & \sigma_s^2 \\
-\end{bmatrix} \qquad(\mathrm{S}3.4)
+\end{bmatrix} \qquad(\mathrm{S}5.4)
 \]
 
 where \(\boldsymbol{\Sigma}\) is the covariance matrix of ln(LMAm) and
@@ -645,7 +639,7 @@ For each simulated dataset, we quantified the mass-dependence (\emph{b})
 using the ordinary least squares regression (log-log) form of Eq. 5. We
 repeated these steps 1000 times for each set of parameter values.
 
-We also used Eqs. S3.1-S3.2 to create the simulated LMA datasets in Fig.
+We also used Eqs. S5.1-S5.2 to create the simulated LMA datasets in Fig.
 1, which is based on our analysis of GLOPNET data.
 \emph{A}\textsubscript{area} values were generated using Eq. 2 and Eq.
 S1. Based on our GLOPNET results, the standard deviations of ln(LMAs)
@@ -660,7 +654,7 @@ To estimate the contributions of LMAm and LMAs to total LMA variance
 (where LMA = LMAm + LMAs), we used the following identity:
 
 \[
-\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \qquad(6)
+\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \qquad(\mathrm{S}6)
 \]
 
 where Var(\(\cdot\)) is variance and Cov(\(\cdot\)) is covariance. Thus,
@@ -684,7 +678,7 @@ posterior median parameter values.
 \hypertarget{fig.-s1}{%
 \subsection{Fig. S1}\label{fig.-s1}}
 
-\includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/box_inter.png}
+\includegraphics{/home/mattocci/LMAms/figs/box_inter.png}
 
 \textbf{Fig. S1}: Boxplots comparing leaf mass per area (LMA),
 photosynthetic leaf mass per area (LMAm; posterior medians), and
@@ -702,7 +696,7 @@ t-tests). Estiamtes are from the best Panama model (Table 1).
 \hypertarget{fig.-s2}{%
 \subsection{Fig. S2}\label{fig.-s2}}
 
-\includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/box_frac_de.png}
+\includegraphics{/home/mattocci/LMAms/figs/box_frac_de.png}
 
 \textbf{Fig. S2}: Boxplots comparing posterior medians of the latent
 variable \emph{f} (the fraction of total LMA comprised by LMAm) across
@@ -720,7 +714,7 @@ Panama models (Table 1).
 \hypertarget{fig.-s3}{%
 \subsection{Fig. S3}\label{fig.-s3}}
 
-\includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/box_frac_pa.png}
+\includegraphics{/home/mattocci/LMAms/figs/box_frac_pa.png}
 
 \textbf{Fig. S3}: Boxplots comparing posterior medians of the latent
 variable \emph{f} (the fraction of total LMA comprised by LMAm) across
@@ -738,7 +732,7 @@ t-tests). Estiamtes are from the best GLOPNET and Panama models (Table
 \hypertarget{fig.-s4}{%
 \subsection{Fig. S4}\label{fig.-s4}}
 
-\includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/mass_prop_sim.png}
+\includegraphics{/home/mattocci/LMAms/figs/mass_prop_sim.png}
 
 \textbf{Fig. S4}: The relationships between mass dependency of
 \emph{A}\textsubscript{max} (\emph{b} in Eq. 5 in the main text) and
@@ -763,7 +757,7 @@ al., 2018}). Parameter values are based on the best GLOPNET model (Table
 \hypertarget{fig.-s5}{%
 \subsection{Fig. S5}\label{fig.-s5}}
 
-\includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/mass_prop_comp.png}
+\includegraphics{/home/mattocci/LMAms/figs/mass_prop_comp.png}
 
 \textbf{Fig. S5}: The relationships between mass dependency of
 \emph{A}\textsubscript{max} (\emph{b} in Eq. 5 in the main text) and
@@ -779,7 +773,7 @@ model (Table 1) and Appendix S3: \(\alpha_0\) = 0.34, \(\alpha_m\) =
 \hypertarget{fig.-s6}{%
 \subsection{Fig. S6}\label{fig.-s6}}
 
-\includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/gl_point_np2.png}
+\includegraphics{/home/mattocci/LMAms/figs/gl_point_np2.png}
 
 \textbf{Fig. S6}: Measured traits related to photosynthesis and
 metabolism (nitrogen and phosphorus per-unit leaf area;
@@ -798,7 +792,7 @@ for LMAm (middle column) and LMAs (right column) are shown.
 \hypertarget{fig.-s7}{%
 \subsection{Fig. S7}\label{fig.-s7}}
 
-\includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/pa_point_npc_par.png}
+\includegraphics{/home/mattocci/LMAms/figs/pa_point_npc_par.png}
 
 \textbf{Fig. S7}: Partial regression plots for nitrogen, phosphorus and
 cellulose per-unit leaf area (\emph{N}\textsubscript{area},
@@ -816,7 +810,7 @@ difference). Posterior medians of partial correlation coefficients
 \hypertarget{fig.-s8}{%
 \subsection{Fig. S8}\label{fig.-s8}}
 
-\includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/ps_point.png}
+\includegraphics{/home/mattocci/LMAms/figs/ps_point.png}
 
 \textbf{Fig. S8} Pearson correlation coefficients for posterior medians
 of LMAm vs LMAs in the (a) GLOPNET and (b) Panama datasets. The

@@ -10,6 +10,7 @@
   numbers=noendperiod]{scrartcl}
 
 \usepackage{amsmath,amssymb}
+\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -19,10 +20,6 @@
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
-\fi
-\usepackage{lmodern}
-\ifPDFTeX\else  
-    % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -167,12 +164,10 @@
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
 \makeatletter
-\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
 \makeatother
 \makeatletter
 \@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
-\makeatother
-\makeatletter
 \makeatother
 \makeatletter
 \makeatother
@@ -194,7 +189,7 @@
 \date{}
 
 \begin{document}
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, borderline west={3pt}{0pt}{shadecolor}, sharp corners, frame hidden, enhanced, boxrule=0pt, breakable]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, sharp corners, frame hidden, interior hidden, borderline west={3pt}{0pt}{shadecolor}, breakable, enhanced]}{\end{tcolorbox}}\fi
 
 \textbf{Decomposing leaf mass into metabolic and structural components
 explains divergent patterns of trait variation within and among plant
@@ -1532,7 +1527,7 @@ different from zero based on the 95\% credible interval.
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4271}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2917}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2812}}@{}}
-\toprule\noalign{}
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 Parameters
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -1540,10 +1535,8 @@ GLOPNET
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Panama
 \end{minipage} \\
-\midrule\noalign{}
+\midrule()
 \endhead
-\bottomrule\noalign{}
-\endlastfoot
 Effect of LMAm on \emph{A}\textsubscript{area} (\(\alpha_p\)) &
 \textbf{0.281 {[}0.204, 0.36{]}} & \textbf{0.577 {[}0.429, 0.723{]}} \\
 Effect of LMAs on \emph{A}\textsubscript{area} (\(\alpha_s\)) &
@@ -1556,13 +1549,14 @@ Effect of LMAs on \emph{R}\textsubscript{area} (\(\gamma_s\)) & 0.035
 {[}-0.045, 0.115{]} & 0.032 {[}-0.25, 0.351{]} \\
 Effect of light on LL (\(\theta\)) & - & \textbf{-0.83 {[}-1.116,
 -0.538{]}} \\
+\bottomrule()
 \end{longtable}
 
 \newpage
 
 \begin{figure}
 
-{\centering \includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/hypo.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/hypo.png}
 
 }
 
@@ -1585,7 +1579,7 @@ S3.}
 
 \begin{figure}
 
-{\centering \includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/gl_point.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/gl_point.png}
 
 }
 
@@ -1611,7 +1605,7 @@ predictor variables).}
 
 \begin{figure}
 
-{\centering \includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/pa_point.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/pa_point.png}
 
 }
 
@@ -1631,7 +1625,7 @@ model predictions Fig.~\ref{fig-ll_point}.}
 
 \begin{figure}
 
-{\centering \includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/pa_point_par_ll.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/pa_point_par_ll.png}
 
 }
 
@@ -1648,7 +1642,7 @@ shown. The results shown here include all leaves in the Panama dataset.}
 
 \begin{figure}
 
-{\centering \includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/vpart_intra.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/vpart_intra.png}
 
 }
 
@@ -1666,7 +1660,7 @@ available.}
 
 \begin{figure}
 
-{\centering \includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/box_de.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/box_de.png}
 
 }
 
@@ -1689,7 +1683,7 @@ axis is on a log\textsubscript{10} scale.}
 
 \begin{figure}
 
-{\centering \includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/box_pa.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/box_pa.png}
 
 }
 
@@ -1707,7 +1701,7 @@ included (Fig. S1). Details as for Fig.~\ref{fig-box_de}.}
 
 \begin{figure}
 
-{\centering \includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/mass_prop_mv.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/mass_prop_mv.png}
 
 }
 
@@ -1734,7 +1728,7 @@ See Appendices S4-S6 for details.}
 
 \begin{figure}
 
-{\centering \includegraphics{/Users/mattocci/Dropbox/Reserach/MS/LMAms/figs/pa_point_npc.png}
+{\centering \includegraphics{/home/mattocci/LMAms/figs/pa_point_npc.png}
 
 }
 
