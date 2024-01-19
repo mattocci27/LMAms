@@ -750,6 +750,7 @@ pa_point_par_ll <- function(pa_res_csv, settings_yml, r_vals_yml) {
              colour = "black",
              hjust = 1.2,
              vjust = 0,
+             size = 3.4,
              parse = TRUE,
              show.legend = FALSE) +
    coord_fixed() +
