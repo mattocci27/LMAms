@@ -3,7 +3,7 @@ services:
   LMAms:
     image: mattocci/cmdstan-verse-zsh:4.2.1
     container_name: LMAms
-    user: rstudio
+    user: ${HOST_UID}:${HOST_GID}
     environment:
       - RENV_PATHS_CACHE=/renv
       - INSIDE_CONTAINER=true

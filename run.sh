@@ -2,34 +2,40 @@
 set -e
 
 menu() {
-	echo "1) tar_make() on local"
-	echo "2) tar_make() on Apptainer"
-	echo "3) Enter in the Apptainer container"
-	echo "4) make (render manuscript) on Apptainer container"
-	read -rp "Enter number：" menu_num
-  case $menu_num in
-  1)
-    Rscript run.R
-    ;;
-  2)
- 		apptainer exec --env RENV_PATHS_CACHE=/home/${USER}/renv \
-		--env RENV_PATHS_PREFIX_AUTO=TRUE \
- 		radian.sif Rscript run.R
-    ;;
-  3)
- 		apptainer shell --env RENV_PATHS_CACHE=/home/${USER}/renv \
-		--env RENV_PATHS_PREFIX_AUTO=TRUE \
- 		radian.sif bash
-    ;;
-  4)
- 		apptainer exec --env RENV_PATHS_CACHE=/home/${USER}/renv \
-		--env RENV_PATHS_PREFIX_AUTO=TRUE \
- 		radian.sif make
-    ;;
-	*)
-    echo "Type 1-4"
-    ;;
-  esac
+    echo "1) tar_make() on local (or inside docker)"
+    echo "2) tar_make() on Apptainer"
+    echo "3) Enter in the Apptainer container"
+    echo "4) Enter in the Singularity container on HPC"
+    read -rp "Enter number: " menu_num
+    case $menu_num in
+    1|2)
+        # Prompt for the number of CPUs after selecting option 1 or 2
+        read -rp "Enter the number of CPUs to use: " num_cpus
+        if [[ "$menu_num" == "1" ]]; then
+            Rscript R/run.R "$num_cpus"
+        elif [[ "$menu_num" == "2" ]]; then
+            apptainer exec \
+            --env RENV_PATHS_CACHE=$HOME/renv \
+            --env INSIDE_CONTAINER=true \
+            apptainer.sif Rscript R/run.R "$num_cpus"
+        fi
+        ;;
+    3)
+        apptainer shell \
+        --env RENV_PATHS_CACHE=$HOME/renv \
+        --env INSIDE_CONTAINER=true \
+        apptainer.sif bash
+        ;;
+    4)
+        singularity shell \
+        --env RENV_PATHS_CACHE=$HOME/renv \
+        --env INSIDE_CONTAINER=true \
+        apptainer.sif bash
+        ;;
+    *)
+        echo "Invalid option. Please type a number from 1-4."
+        ;;
+    esac
 }
 
 menu "$@"
