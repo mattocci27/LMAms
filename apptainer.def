@@ -1,0 +1,12 @@
+BootStrap: docker
+From: mattocci/radian-verse:4.2.1
+
+%apprun R
+  exec R "${@}"
+
+%apprun Rscript
+  exec Rscript "${@}"
+
+%runscript
+  exec R "${@}"
+
