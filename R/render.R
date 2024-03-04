@@ -14,13 +14,13 @@ s_eq_full <- captioner::captioner(prefix = "Eq. S", auto_space = FALSE)
 appendix_full <- captioner::captioner(prefix = "Appendix S", auto_space = FALSE)
 
 # - Make a short function that prints only the object type and number, e.g., "Figure 1"
-fig <- pryr::partial(fig_full, display = "cite", caption = "blank")
-table <- pryr::partial(table_full, display = "cite", caption = "blank")
-eq <- pryr::partial(eq_full, display = "cite", caption = "blank")
-s_fig <- pryr::partial(s_fig_full, display = "cite", caption = "blank")
-s_table <- pryr::partial(s_table_full, display = "cite", caption = "blank")
-s_eq <- pryr::partial(s_eq_full, display = "cite", caption = "blank")
-appendix <- pryr::partial(appendix_full, display = "cite", caption = "blank")
+fig <- purrr::partial(fig_full, display = "cite", caption = "blank")
+table <- purrr::partial(table_full, display = "cite", caption = "blank")
+eq <- purrr::partial(eq_full, display = "cite", caption = "blank")
+s_fig <- purrr::partial(s_fig_full, display = "cite", caption = "blank")
+s_table <- purrr::partial(s_table_full, display = "cite", caption = "blank")
+s_eq <- purrr::partial(s_eq_full, display = "cite", caption = "blank")
+appendix <- purrr::partial(appendix_full, display = "cite", caption = "blank")
 
 # - Make a short function that prints only the number (e.g., "1")
 # |> doen't work
