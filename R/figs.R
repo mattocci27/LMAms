@@ -730,7 +730,7 @@ pa_point_par_ll <- function(pa_res_csv, settings_yml, r_vals_yml) {
      val = min(dat$res_LMAs_light),
      val_max = max(dat$res_LMAs_light),
      gr = "Sun-Dry",
-     r_vals = r_vals$r_vals$PA_par$LMAs_LL
+     r_vals = r_vals$r_vals$PA_LL_par$LMAs_LL
    )
 
   ggplot(dat, aes(y = res_LL_light,
@@ -739,8 +739,8 @@ pa_point_par_ll <- function(pa_res_csv, settings_yml, r_vals_yml) {
    geom_point(shape = 21) +
    scale_fill_manual(values = fills) +
    scale_colour_manual(values = cols) +
-   ylab("Residuals of LL regressed on light") +
-   xlab("Residuals of LMAs regressed on light") +
+   ylab("Residuals of LL \n(adjusted for light conditions)") +
+   xlab("Residuals of LMAs \n(adjusted for light conditions)") +
    geom_abline(aes(slope = 1, intercept = 0),
                lty = 2,
                lwd = 0.25,
@@ -750,11 +750,12 @@ pa_point_par_ll <- function(pa_res_csv, settings_yml, r_vals_yml) {
              colour = "black",
              hjust = 1.2,
              vjust = 0,
+             size = 3.4,
              parse = TRUE,
              show.legend = FALSE) +
    coord_fixed() +
    coord_cartesian(xlim = c(-2, max(labLL$val_max)),
-    ylim = c(-2, labLL$val_max)) +
+     ylim = c(-2, labLL$val_max)) +
    theme_LES() +
    theme(
      legend.position = c(0.2, 0.85),

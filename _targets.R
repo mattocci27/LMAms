@@ -2,7 +2,7 @@ library(targets)
 library(tarchetypes)
 library(tidyverse)
 library(stantargets)
-library(cmdstanr)
+# library(cmdstanr)
 library(furrr)
 library(jsonlite)
 
@@ -37,12 +37,12 @@ tar_option_set(packages = c(
 # )
 
 # check if it's inside a container
-if (file.exists("/.dockerenv") | file.exists("/.singularity.d/startscript")) {
-  Sys.setenv(CMDSTAN = "/opt/cmdstan/cmdstan-2.29.2")
-  set_cmdstan_path("/opt/cmdstan/cmdstan-2.29.2")
-}
+# if (file.exists("/.dockerenv") | file.exists("/.singularity.d/startscript")) {
+#   Sys.setenv(CMDSTAN = "/opt/cmdstan/cmdstan-2.29.2")
+#   set_cmdstan_path("/opt/cmdstan/cmdstan-2.29.2")
+# }
 
-cmdstan_version()
+# cmdstan_version()
 
 stan_names <- generate_stan_names("templates/model.json",
       "templates/model_LMA.json")
