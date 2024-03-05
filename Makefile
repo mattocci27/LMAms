@@ -1,13 +1,11 @@
 GIT = 621812a
 GIT2 = 621812a
-# GIT2 = 6f7f0dc
 COVER = ms/cover
 MAIN = ms/LMAms_main
 SI = ms/LMAms_SI
-# all: $(MAIN).pdf $(MAIN).docx $(SI).pdf $(SI).docx $(COVER).pdf $(COVER).docx
 all: $(MAIN).pdf $(MAIN).docx $(SI).pdf $(SI).docx $(MAIN)_diff.pdf $(SI)_diff.pdf
-diff: ms/LMAms_main-diff$(GIT).pdf
-diff2: ms/LMAms_SI-diff$(GIT2).pdf
+diff: $(MAIN)_diff.pdf
+diff2: $(SI)_diff.pdf
 
 $(MAIN).pdf: $(MAIN).qmd
 	quarto render $< --to pdf
@@ -27,20 +25,22 @@ $(SI).docx: $(SI).qmd
 # $(COVER).docx: $(COVER).qmd
 # 	quarto render $< --to docx
 
-# ms/LMA.bib: ~/LMA.bib
-# 	cp $< $@
+# because different quarto verions produce different latex files
+$(MAIN)_diff.pdf: $(MAIN).tex
+	git show $(GIT):$(MAIN).qmd > $(MAIN)_old.qmd
+	sed -i 's/link-citations: yes/link-citations: true/' $(MAIN)_old.qmd
+	quarto render ms/LMAms_main_old.qmd --to pdf && \
+	cd ms && \
+	latexdiff LMAms_main_old.tex LMAms_main.tex > LMAms_main_diff.tex && \
+	xelatex LMAms_main_diff.tex
 
-$(MAIN)_diff.pdf: ms/LMAms_main.tex
-	latexdiff-vc --git --flatten --force -r $(GIT) $^ ; \
-	cd ms; xelatex LMAms_main-diff$(GIT).tex ; \
-	mv LMAms_main-diff$(GIT).pdf LMAms_main_diff.pdf; \
-	rm LMAms_main-diff$(GIT).*
-
-$(SI)_diff.pdf: ms/LMAms_SI.tex
-	latexdiff-vc --git --flatten --force -r $(GIT2) $^ ; \
-	cd ms; xelatex LMAms_SI-diff$(GIT2).tex ;  \
-	mv LMAms_SI-diff$(GIT2).pdf LMAms_SI_diff.pdf; \
-	rm LMAms_SI-diff$(GIT2).*
+$(SI)_diff.pdf: $(SI).tex
+	git show $(GIT2):$(SI).qmd > $(SI)_old.qmd
+	sed -i 's/link-citations: yes/link-citations: true/' $(SI)_old.qmd
+	quarto render ms/LMAms_SI_old.qmd --to pdf && \
+	cd ms && \
+	latexdiff LMAms_SI_old.tex LMAms_SI.tex > LMAms_SI_diff.tex && \
+	xelatex LMAms_SI_diff.tex
 
 .PHONY: clean
 clean:

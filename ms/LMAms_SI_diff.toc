@@ -1,0 +1,23 @@
+\contentsline {section}{\nonumberline Appendix S1: Prior information}{2}{section*.3}%
+\contentsline {section}{\nonumberline Appendix S2: Model \DIFdelbegin {\color {red}\sout {tests with randomized data }}\DIFdelend \DIFaddbegin {\color {blue}\uwave {constraints}}}{3}{section*.5}%
+\contentsline {section}{\nonumberline {\color {blue}\uwave {Appendix S3: Model tests with randomized data (including Table AS1 and Figure AS1)}}}{4}{section*.7}%
+\contentsline {subsection}{\nonumberline Table AS1}{4}{subsection*.9}%
+\contentsline {subsection}{\nonumberline Figure AS1}{6}{subsection*.11}%
+\contentsline {subsection}{\nonumberline Figure AS2}{7}{subsection*.13}%
+\contentsline {section}{\nonumberline Appendix \DIFdelbegin {\color {red}\sout {S3}}\DIFdelend \DIFaddbegin {\color {blue}\uwave {S4}}\DIFaddend : \DIFdelbegin {\color {red}\sout {Simulated datasets to study }}\DIFdelend \DIFaddbegin {\color {blue}\uwave {Understanding }}\DIFaddend relationships between photosynthetic capacity and LMA}{8}{section*.15}%
+\contentsline {section}{\nonumberline {\color {blue}\uwave {Appendix S5: Simulated datasets to study relationships between photosynthetic capacity and LMA}}}{9}{section*.17}%
+\contentsline {section}{\nonumberline \DIFdelbegin {\color {red}\sout {Figures}}\DIFdelend \DIFaddbegin {\color {blue}\uwave {Appendix S6: Variance partitioning}}\DIFaddend }{10}{section*.19}%
+\contentsline {subsection}{\nonumberline {\color {red}\sout {Fig. S1}}}{10}{subsection*.21}%
+\contentsline {subsection}{\nonumberline {\color {red}\sout {Fig. S2}}}{11}{subsection*.23}%
+\contentsline {subsection}{\nonumberline {\color {red}\sout {Fig. S3}}}{12}{subsection*.25}%
+\contentsline {section}{\nonumberline {\color {blue}\uwave {Figures}}}{12}{section*.27}%
+\contentsline {subsection}{\nonumberline {\color {red}\sout {Fig. S4}}}{13}{subsection*.29}%
+\contentsline {subsection}{\nonumberline {\color {red}\sout {Fig. S5}}}{15}{subsection*.31}%
+\contentsline {subsection}{\nonumberline {\color {red}\sout {Fig. S6}}}{16}{subsection*.33}%
+\contentsline {subsection}{\nonumberline {\color {red}\sout {Fig. S7}}}{17}{subsection*.35}%
+\contentsline {subsection}{\nonumberline {\color {red}\sout {Fig. S8}}}{18}{subsection*.37}%
+\contentsline {section}{\nonumberline Appendix \DIFdelbegin {\color {red}\sout {S4}}\DIFdelend \DIFaddbegin {\color {blue}\uwave {S7}}\DIFaddend : Stan code}{19}{section*.39}%
+\contentsline {subsection}{\nonumberline Stan code for the GLOPNET dataset}{19}{subsection*.41}%
+\contentsline {subsection}{\nonumberline Stan code for the Panama dataset}{21}{subsection*.43}%
+\contentsline {section}{References}{24}{section*.44}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
