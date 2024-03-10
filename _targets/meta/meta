@@ -1,5 +1,5 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-.Random.seed|object|3a310a56026145c3|||||||||||||||
+.Random.seed|object|0221ea0df6798b03|||||||||||||||
 am_bs_opt|stem|796b1e6dfa860bbe|a270102a16281410|d08213f484b3e9b9|-1396709231|stan/am_bs_opt.stan|t19276.2874305556s|d931c34d8858571a|2347|file|local|vector|||47.583||
 ams_bs|stem|27feecfefd81fe04|fc82e1a89d72bba3|d08213f484b3e9b9|-1029912825|stan/ams_bs.stan|t19276.2874305556s|4dd662639d0ae2b7|2236|file|local|vector|||43.391||
 box_de|function|dee9b72c421ff42a|||||||||||||||
@@ -166,7 +166,7 @@ loo_gl_mcmc_ams_bms|stem|cbe9610f1f0fad85|a760abdeb51a5bb3|bebea2bd9c152cde|-180
 loo_gl_mcmc_ams_bs|stem|b181efd15747043b|6693cbc8d1d10d49|3e8350e9899a1d10|1528239023||t19791.582782689s|8cc5f55887f240a7|10459|rds|local|vector|||1.348|Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.|
 loo_gl_mcmc_lma|stem|50c5bf7730e08896|eec56e0538ddd639|7385e2b148fda61d|-756994711||t19791.5828042638s|80f4da1149c91e2e|10441|rds|local|vector|||0.915||
 loo_list|stem|4f8a522c268fe107|9b4bd8062187e5b7|62286469b4aa5252|1448719751||t19791.5887417278s|f4c8409f0f1d1244|148449|rds|local|vector|||0||
-loo_map|object|b6372da765b47a03|||||||||||||||
+loo_map|object|263d792fe9f03891|||||||||||||||
 loo_pa_mcmc_am_bms|stem|92a7d92ae198d622|6c97e11a01583181|360658cb97dcff48|269771856||t19791.5836691085s|858876a279785361|5832|rds|local|vector|||1.019|Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.|
 loo_pa_mcmc_am_bms_ld|stem|8c7b277625ddcb6f|6bbe0ab5257929dd|5db3ca3af33838e2|-1841978530||t19791.5839163392s|813949aba5b4601e|5830|rds|local|vector|||1.761|Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.|
 loo_pa_mcmc_am_bms_ld_opt|stem|50033034413aa43a|4914c3ed71ea63ae|bc56e317fc23b8e5|-1522101371||t19791.5837028597s|d274913b68209e1b|5837|rds|local|vector|||1.044|Some Pareto k diagnostic values are too high. See helpparetokdiagnostic for details.|
@@ -187,7 +187,7 @@ loo_pa_mcmc_lma|stem|7791008988db9f02|5e90e1015c20ac81|5c49f3fe1df9f1b4|-5897891
 loo_pa_mcmc_lma_opt|stem|b97ce73f1394ba77|6663ef58d127f97b|5e92573633942531|374090674||t19791.5840219446s|e38580c0cc49f4a0|5819|rds|local|vector|||1.43||
 loo_tbl|stem|04c4ab2df887471b|dec009b4b9a18854|897404ee63bc05b1|1654956673|data/loo.csv|t19791.5887434871s|4f5338fffcd0c592|1535|file|local|vector|||0.007||
 loop_fun|function|42314d0682666d3f|||||||||||||||
-main_list|object|104e27295071f49e|||||||||||||||
+main_list|object|dc4bbbb08f5a15d6|||||||||||||||
 mass_obs_dat|stem|fd2ec7ba2e1c6c19|38c161feaf1dab43|6375e50e04ae5618|1931722978||t19791.5863297527s|44d8296aaebe8c60|317|rds|local|vector|||0.21||
 mass_prop_comp_plot|stem|bb85fcc44cef5624|4f1e9595baed0b40|43605cc33ed0d31e|-1642947083|figs/mass_prop_comp.png*figs/mass_prop_comp.pdf|t19791.5864660534s|bd664b76515e1f85|69142|file|local|vector|||0.255|The legend.text.align argument of theme is deprecated as of ggplot23.5.0.ℹ Please use themelegend.text  element_texthjust instead.|
 mass_prop_comp_point|function|0dc9586356a57a53|||||||||||||||
@@ -395,7 +395,7 @@ r_vals_yml|stem|c13bea6200efd54f|0d1c545779d504f9|7b41a1251fd88596|1933855171|ym
 rand_fun|function|d93afbbe8134dc0c|||||||||||||||
 rand_fun2|function|a97257ca057b5d1a|||||||||||||||
 rand_summary|function|4c4aaccd62bae143|||||||||||||||
-raw_data_list|object|abbbf0967d95d17f|||||||||||||||
+raw_data_list|object|7b27e3f10e305a49|||||||||||||||
 report|stem|76c91ffb9112dd27|85b107ceedb881d2|abd978d30d79bbfe|-237041703|report_files*report.html*report.qmd|t19276.3004440944s|cc3f3afe57600900|100320|file|local|vector|||4.828||
 scatter_plt|function|0be78b37e870ed78|||||||||||||||
 settings_yml|stem|2e5d64611d1dfd9d|a127041ac8f198f3|ef46db3751d8e999|1490849579|yml/settings.yml|t19220.3786111111s|0f05aa39aab40022|347|file|local|vector|||0.073||
