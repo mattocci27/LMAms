@@ -295,7 +295,7 @@ assumed to have a multivariate normal distribution:
 
 where E{[}\(\cdot\){]} indicates expected value and
 \(\boldsymbol{\Sigma}\) indicates a covariance matrix. Expected values
-are based on Eqs. 2- 4 in the main text.
+are based on Eqs. 2-4 in the main text.
 
 We used non-informative or weakly informative prior distributions
 (\citeproc{ref-Lemoine2019}{Lemoine, 2019}). The covariance matrix in
@@ -319,10 +319,10 @@ location 0 and scale 2.5, which is weakly informative and allows for
 occasional large coefficients while still performing a reasonable amount
 of shrinkage for coefficients near zero
 (\citeproc{ref-Gelman2008}{Gelman et al., 2008}). Priors for
-\(\alpha_{0,m,s}\), \(\beta_{0,m,s}\), and \(\gamma_{0,m,s}\) in Eqs. 2-
-4 were weakly informative and specified as normal distributions with
+\(\alpha_{0,m,s}\), \(\beta_{0,m,s}\), and \(\gamma_{0,m,s}\) in Eqs.
+2-4 were weakly informative and specified as normal distributions with
 mean 0 and standard deviation 5. Priors for \emph{f\textsubscript{i}} in
-Eqs. 1- 4 were non-informative and specified as uniform distributions
+Eqs. 1-4 were non-informative and specified as uniform distributions
 with range (0, 1).
 
 \newpage
@@ -405,34 +405,35 @@ do not provide reliable inferences
   transitions.
 \end{itemize}
 
-\begin{longtable}[]{@{}llrr@{}}
-\toprule\noalign{}
-Data & Simulation\_ID & No\_large\_Rhat & No\_divergence \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-GLOPNET & sim-01 & 4 & 13 \\
-GLOPNET & sim-02 & 4 & 0 \\
-GLOPNET & sim-03 & 0 & 0 \\
-GLOPNET & sim-04 & 0 & 0 \\
-GLOPNET & sim-05 & 0 & 1 \\
-GLOPNET & sim-06 & 0 & 1 \\
-GLOPNET & sim-07 & 12 & 0 \\
-GLOPNET & sim-08 & 4 & 0 \\
-GLOPNET & sim-09 & 0 & 0 \\
-GLOPNET & sim-10 & 104 & 1 \\
-Panama & sim-01 & 4 & 131 \\
-Panama & sim-02 & 64 & 23 \\
-Panama & sim-03 & 397 & 28 \\
-Panama & sim-04 & 0 & 15 \\
-Panama & sim-05 & 7 & 58 \\
-Panama & sim-06 & 79 & 4 \\
-Panama & sim-07 & 7 & 122 \\
-Panama & sim-08 & 160 & 131 \\
-Panama & sim-09 & 451 & 579 \\
-Panama & sim-10 & 601 & 148 \\
-\end{longtable}
+\begin{longtable*}[t]{llrr}
+\toprule
+Data & Simulation\_ID & No\_large\_Rhat & No\_divergence\\
+\midrule
+GLOPNET & sim-01 & 4 & 0\\
+GLOPNET & sim-02 & 99 & 7\\
+GLOPNET & sim-03 & 0 & 0\\
+GLOPNET & sim-04 & 643 & 10\\
+GLOPNET & sim-05 & 0 & 0\\
+\addlinespace
+GLOPNET & sim-06 & 0 & 0\\
+GLOPNET & sim-07 & 15 & 0\\
+GLOPNET & sim-08 & 0 & 12\\
+GLOPNET & sim-09 & 267 & 0\\
+GLOPNET & sim-10 & 0 & 0\\
+\addlinespace
+Panama & sim-01 & 357 & 54\\
+Panama & sim-02 & 357 & 125\\
+Panama & sim-03 & 426 & 1418\\
+Panama & sim-04 & 475 & 24\\
+Panama & sim-05 & 635 & 163\\
+\addlinespace
+Panama & sim-06 & 3 & 58\\
+Panama & sim-07 & 4 & 42\\
+Panama & sim-08 & 532 & 31\\
+Panama & sim-09 & 497 & 123\\
+Panama & sim-10 & 597 & 119\\
+\bottomrule
+\end{longtable*}
 
 \newpage
 
@@ -444,7 +445,7 @@ not converge, we nevertheless examined the regression coefficients to
 evaluate if our model framework is prone to overfitting. Figure AS1
 shows the regression coefficients for the randomized GLOPNET data
 (\(\alpha_{0, m, s}\), \(\beta_{0, s}\), and \(\gamma_{0, m, s}\) in
-Eqs. 2- 4 in the main text). There are 10 independent simulations
+Eqs. 2-4 in the main text). There are 10 independent simulations
 (randomizations) in total. Points and lines indicate posterior medians
 and 95\% credible intervals (CIs), respectively. Although intercepts
 were significant, the scaling parameters (\(\alpha_{m, s}\),
@@ -453,7 +454,7 @@ datasets were not significantly different from zero. These tests with
 randomized data indicate that our model is not inherently prone to
 overfitting or to producing patterns from noise.
 
-\includegraphics{/home/rstudio/LMAms/figs/coef_sim_gl.png}
+\includegraphics{/workspaces/LMAms/figs/coef_sim_gl.png}
 
 \newpage
 
@@ -461,7 +462,7 @@ overfitting or to producing patterns from noise.
 
 Figure AS2 showsWe also checked the regression coefficients for the
 randomized Panama dataset (\(\alpha_{0, m}\), \(\beta_{0, s}\),
-\(\gamma_{0, m, s}\), and \(\theta\) in Eqs. 2- 4 in the main text).
+\(\gamma_{0, m, s}\), and \(\theta\) in Eqs.2-4 in the main text).
 Details as for Figure AS1. The scaling parameters (\(\alpha_{m}\),
 \(\beta_{s}\), and \(\gamma_{m, s}\)) and the effect of light on leaf
 lifespan (\(\theta\)) were not significantly different from zero in the
@@ -469,7 +470,7 @@ randomized datasets did not show any patterns. Again, these tests with
 randomized data indicate that our model is not inherently prone to
 overfitting or to producing patterns from noise.
 
-\includegraphics{/home/rstudio/LMAms/figs/coef_sim_pa.png}
+\includegraphics{/workspaces/LMAms/figs/coef_sim_pa.png}
 
 \newpage
 
@@ -572,7 +573,7 @@ LMAm and LMAs values by sampling ln(LMAm) and ln(LMAs) from normal
 distributions.
 
 For GLOPNET and Panama sun leaves, results from the LMAm-LMAs models
-(Eqs. 2- 4) indicated little correlation between LMAm and LMAs, so we
+(Eqs. 2-4) indicated little correlation between LMAm and LMAs, so we
 used univariate normal distributions (N) to generate the LMAm and LMAs
 samples:
 
@@ -632,11 +633,11 @@ ln(10) across simulated datasets. For each of the 100 leaves in a given
 simulated dataset, \emph{A}\textsubscript{area} was calculated according
 to Eq. 2.
 
-Parameter values were \(\mu_m\) = 56.5, \(\mu_s\) = 61.2, \(\sigma_m\) =
-0.83, \(\alpha_0\) = 1.77, \(\alpha_m\) = 0.28, and \(\alpha_s\) = -0.13
-for GLOPNET; \(\mu_m\) = 47.3, \(\mu_s\) = 30.1, \(\sigma_m\) = 1.58,
+Parameter values were \(\mu_m\) = 56.4, \(\mu_s\) = 61.4, \(\sigma_m\) =
+0.84, \(\alpha_0\) = 1.77, \(\alpha_m\) = 0.28, and \(\alpha_s\) = -0.13
+for GLOPNET; \(\mu_m\) = 48, \(\mu_s\) = 30.1, \(\sigma_m\) = 1.58,
 \(\alpha_0\) = 0.34, \(\alpha_m\) = 0.56, and \(\alpha_s\) = 0 for
-Panama sun leaves; and \(\mu_m\) = 7.6, \(\mu_s\) = 26.7, \(\sigma_m\) =
+Panama sun leaves; and \(\mu_m\) = 7.7, \(\mu_s\) = 26.6, \(\sigma_m\) =
 1.95, \(\alpha_0\) = 0.34, \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, and
 \(\rho\) = -0.47 for Panama shade leaves.
 
@@ -648,7 +649,7 @@ We also used Eqs. S5.1-S5.2 to create the simulated LMA datasets in Fig.
 1, which is based on our analysis of GLOPNET data.
 \emph{A}\textsubscript{area} values were generated using Eq. 2 and Eq.
 S1. Based on our GLOPNET results, the standard deviations of ln(LMAs)
-and ln(\emph{A}\textsubscript{area}) were set to 1 and 0.31,
+and ln(\emph{A}\textsubscript{area}) were set to 0.99 and 0.31,
 respectively, and other GLOPNET parameter values are listed above.
 
 \section{Appendix S6: Variance
@@ -682,7 +683,7 @@ posterior median parameter values.
 
 \centering{
 
-\includegraphics{/home/rstudio/LMAms/figs/box_inter.png}
+\includegraphics{/workspaces/LMAms/figs/box_inter.png}
 
 }
 
@@ -691,10 +692,10 @@ posterior median parameter values.
 structural leaf mass per area (LMAs; posterior medians) across (a)
 deciduous (Dev) and evergreen (Eve) leaves and (b) sites (wet and dry)
 and canopy strata (sun and shade) in Panama. The results shown here
-include all leaves in the Panama dataset, whereas Figs. 6- 7 in the main
+include all leaves in the Panama dataset, whereas Figs. 6-7 in the main
 text only include Panama species for which both sun and shade leaves
-were available. Boxplot symbols as in Figs. 6- 7. Groups sharing the
-same letters are not significantly different (P \textgreater{} 0.05;
+were available. Boxplot symbols as in Figs. 6-7. Groups sharing the same
+letters are not significantly different (P \textgreater{} 0.05;
 t-tests). Estiamtes are from the best Panama model (Table 1).}
 
 \end{suppfig}%
@@ -705,7 +706,7 @@ t-tests). Estiamtes are from the best Panama model (Table 1).}
 
 \centering{
 
-\includegraphics{/home/rstudio/LMAms/figs/box_frac_de.png}
+\includegraphics{/workspaces/LMAms/figs/box_frac_de.png}
 
 }
 
@@ -728,7 +729,7 @@ Panama models (Table 1).}
 
 \centering{
 
-\includegraphics{/home/rstudio/LMAms/figs/box_frac_pa.png}
+\includegraphics{/workspaces/LMAms/figs/box_frac_pa.png}
 
 }
 
@@ -751,7 +752,7 @@ Panama models (Table 1).}
 
 \centering{
 
-\includegraphics{/home/rstudio/LMAms/figs/mass_prop_sim.png}
+\includegraphics{/workspaces/LMAms/figs/mass_prop_sim.png}
 
 }
 
@@ -770,8 +771,8 @@ typically between 0 and 1 (\citeproc{ref-Osnas2018}{Osnas et al.,
 \emph{b} \textgreater{} 0.5, and primarily area-dependent if 0.5
 \textgreater{} \emph{b} \textgreater{} 0 (\citeproc{ref-Osnas2018}{Osnas
 et al., 2018}). Parameter values are based on the best GLOPNET model
-(Table 1) and Appendix S5: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.5,
-\(\mu_s\) = 61.2, and \(\sigma_m\) = 0.83.}
+(Table 1) and Appendix S5: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.4,
+\(\mu_s\) = 61.4, and \(\sigma_m\) = 0.84.}
 
 \end{suppfig}%
 
@@ -781,7 +782,7 @@ et al., 2018}). Parameter values are based on the best GLOPNET model
 
 \centering{
 
-\includegraphics{/home/rstudio/LMAms/figs/mass_prop_comp.png}
+\includegraphics{/workspaces/LMAms/figs/mass_prop_comp.png}
 
 }
 
@@ -791,8 +792,8 @@ text) and LMAs variance (relative to total LMA variance; Eq. 6) for
 simulated datasets generated from a normal distribution (N) vs.~a
 multivariate normal distribution (MVN). Parameter values are based on
 the best Panama model (Table 1) and Appendix S5: \(\alpha_0\) = 0.34,
-\(\alpha_m\) = 0.56, \(\alpha_s\) = 0, \(\mu_m\) = 7.6, \(\mu_s\) =
-26.7, \(\sigma_m\) = 1.95, and \(\rho\) = -0.47.}
+\(\alpha_m\) = 0.56, \(\alpha_s\) = 0, \(\mu_m\) = 7.7, \(\mu_s\) =
+26.6, \(\sigma_m\) = 1.95, and \(\rho\) = -0.47.}
 
 \end{suppfig}%
 
@@ -802,7 +803,7 @@ the best Panama model (Table 1) and Appendix S5: \(\alpha_0\) = 0.34,
 
 \centering{
 
-\includegraphics{/home/rstudio/LMAms/figs/gl_point_np2.png}
+\includegraphics{/workspaces/LMAms/figs/gl_point_np2.png}
 
 }
 
@@ -826,7 +827,7 @@ for LMAm (middle column) and LMAs (right column) are shown.}
 
 \centering{
 
-\includegraphics{/home/rstudio/LMAms/figs/pa_point_npc_par.png}
+\includegraphics{/workspaces/LMAms/figs/pa_point_npc_par.png}
 
 }
 
@@ -849,7 +850,7 @@ partial correlation coefficients (\(\bar{\rho}\)) are shown.}
 
 \centering{
 
-\includegraphics{/home/rstudio/LMAms/figs/ps_point.png}
+\includegraphics{/workspaces/LMAms/figs/ps_point.png}
 
 }
 
@@ -857,7 +858,7 @@ partial correlation coefficients (\(\bar{\rho}\)) are shown.}
 posterior medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama
 datasets. The non-significant or weak \emph{r} values indicate that a
 single axis could not accurately represent the two-dimensional space.
-Symbols as in main text Figs. 2- 3.}
+Symbols as in main text Figs. 2-3.}
 
 \end{suppfig}%
 

@@ -1,11 +1,11 @@
 r_vals:
   GL:
     LMA_Aarea: 'italic(r) == 0.10'
-    LMAm_Aarea: 'italic(bar(rho)) == 0.65'
-    LMAs_Aarea: 'italic(bar(rho)) == -0.40'
+    LMAm_Aarea: 'italic(bar(rho)) == 0.66'
+    LMAs_Aarea: 'italic(bar(rho)) == -0.41'
     LMA_Rarea: 'italic(r) == 0.34'
-    LMAm_Rarea: 'italic(bar(rho)) == 0.53'
-    LMAs_Rarea: 'italic(bar(rho)) ==  0.09'
+    LMAm_Rarea: 'italic(bar(rho)) == 0.54'
+    LMAs_Rarea: 'italic(bar(rho)) ==  0.08'
     LMA_LL: 'italic(r) == 0.72'
     LMAm_LL: "italic(bar(r)) == 'NA'"
     LMAs_LL: 'italic(bar(r)) == 0.89'
@@ -15,36 +15,36 @@ r_vals:
     LMAs_Narea: 'italic(bar(r)) == 0.35'
     LMA_Parea: 'italic(r) == 0.43'
     LMAm_Parea: 'italic(bar(r)) == 0.40'
-    LMAs_Parea: 'italic(bar(r)) == 0.21'
+    LMAs_Parea: 'italic(bar(r)) == 0.20'
   GL_LMAms:
     LMAs_LMAm: '-0.03 [-0.11,  0.05]'
   PA:
     LMA_Aarea: 'italic(r) == 0.66'
-    LMAm_Aarea: 'italic(bar(r)) == 0.91'
+    LMAm_Aarea: 'italic(bar(r)) == 0.90'
     LMAs_Aaera: "italic(bar(r)) == 'NA'"
     LMA_Rarea: 'italic(r) == 0.49'
-    LMAm_Rarea: 'italic(bar(rho)) == 0.64'
-    LMAs_Rarea: 'italic(bar(rho)) ==  0.04'
+    LMAm_Rarea: 'italic(bar(rho)) == 0.65'
+    LMAs_Rarea: 'italic(bar(rho)) ==  0.05'
     LMA_LL: 'italic(r) == -0.03'
     LMAm_LL: "italic(bar(r)) == 'NA'"
     LMAs_LL: 'italic(bar(r)) == 0.43'
   PA_LMAms:
-    LMAs_LMAm: '-0.16 [-0.26, -0.06]'
+    LMAs_LMAm: '-0.17 [-0.26, -0.06]'
   PA_NP:
     LMA_Narea: 'italic(r) == 0.79'
     LMAm_Narea: 'italic(bar(r)) == 0.79'
     LMAs_Narea: 'italic(bar(r)) ==  0.12'
     LMA_Parea: 'italic(r) == 0.69'
     LMAm_Parea: 'italic(bar(r)) == 0.75'
-    LMAs_Parea: 'italic(bar(r)) ==  0.02'
+    LMAs_Parea: 'italic(bar(r)) ==  0.03'
     LMA_cell_area: 'italic(r) == 0.81'
     LMAm_cell_area: 'italic(bar(r)) == 0.48'
     LMAs_cell_area: 'italic(bar(r)) == 0.43'
   PA_NP_par:
     LMAm_Narea: 'italic(bar(rho)) == 0.82'
     LMAs_Narea: 'italic(bar(rho)) == 0.41'
-    LMAm_Parea: 'italic(bar(rho)) == 0.77'
-    LMAs_Parea: 'italic(bar(rho)) == 0.22'
+    LMAm_Parea: 'italic(bar(rho)) == 0.76'
+    LMAs_Parea: 'italic(bar(rho)) == 0.23'
     LMAm_cell_area: 'italic(bar(rho)) == 0.61'
     LMAs_cell_area: 'italic(bar(rho)) == 0.58'
   PA_R2:

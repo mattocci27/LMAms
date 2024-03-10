@@ -33,6 +33,7 @@ $(MAIN)_diff.pdf: $(MAIN).tex
 	cd ms && \
 	latexdiff LMAms_main_old.tex LMAms_main.tex > LMAms_main_diff.tex && \
 	xelatex LMAms_main_diff.tex
+	rm $(MAIN)_old.*
 
 $(SI)_diff.pdf: $(SI).tex
 	git show $(GIT2):$(SI).qmd > $(SI)_old.qmd
@@ -41,6 +42,7 @@ $(SI)_diff.pdf: $(SI).tex
 	cd ms && \
 	latexdiff LMAms_SI_old.tex LMAms_SI.tex > LMAms_SI_diff.tex && \
 	xelatex LMAms_SI_diff.tex
+	rm $(SI)_old.*
 
 .PHONY: clean
 clean:

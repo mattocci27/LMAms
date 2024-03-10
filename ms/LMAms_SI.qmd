@@ -178,6 +178,10 @@ Most of the model results obtained from the randomized datasets did not converge
 
 - No_divergence: The number of iterations that shows divergent transitions.
 
+```{r exit}
+# knitr::knit_exit()
+```
+
 ```{r randtab, echo=FALSE, eval=TRUE}
 d <- read_csv(here("data/sim_summary_diagnostics.csv")) #|>
   # dplyr::select(Data = data, Simulation_ID = sim_id, No_large_Rhat = rhat, No_divergence = div)
@@ -189,8 +193,8 @@ if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
     kable_classic(full_width = FALSE)
 } else if ("docx" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
   d |>
-    kable(format = "pipe", escape = FALSE) |>
-    kable_classic(full_width = FALSE)
+    kable(format = "pipe", escape = FALSE) #|>
+    # kable_classic(full_width = FALSE)
 } else if ("latex" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
   d |>
     kable(format = "pipe", escape = FALSE) |>
@@ -213,6 +217,7 @@ These tests with randomized data indicate that our model is not inherently prone
 
 \newpage
 
+
 ## Figure AS2
 
 Figure AS2 showsWe also checked the regression coefficients for the randomized Panama dataset ($\alpha_{0, m}$, $\beta_{0, s}$, $\gamma_{0, m, s}$, and $\theta$ in Eqs.`r eq_num("Aarea")`-`r eq_num("LL")` in the main text).
@@ -223,6 +228,7 @@ Again, these tests with randomized data indicate that our model is not inherentl
 ![](`r here("figs/coef_sim_pa.png")`)
 
 \newpage
+
 
 # `r appendix("mass_prop")`: Understanding relationships between photosynthetic capacity and LMA
 

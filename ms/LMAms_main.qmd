@@ -31,6 +31,7 @@ format:
     smooth-scroll: true
     highlight-style: github
   docx:
+    prefer-html: true
     toc: false
     number-sections: true
     highlight-style: github
@@ -46,7 +47,6 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(tidyverse)
 library(knitr)
 library(kableExtra)
-library(flextable)
 library(here)
 # here::i_am("ms/LMAms_main.qmd")
 source(here("R/vpart.R"))
@@ -507,6 +507,7 @@ Those constraints were based on the following hypotheses:
 (2) LL depends more strongly on LMAs ($\beta_s$ in `r eq("LL")`) than LMAm ($\beta_m$).
 See `r appendix("model_cons")` for more details.
 
+
 ```{r lootab, eval=TRUE, echo=FALSE}
 loo_tbl <- read_csv(here("data/model_selection.csv"))  |>
   # arrange(Data) |>
@@ -534,6 +535,7 @@ if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
 
 \newpage
 
+
 Table 2.
 Posterior medians [95% credible interval] of parameters for the best GLOPNET and Panama models.
 Bold values are significantly different from zero based on the 95% credible interval.
@@ -546,8 +548,8 @@ if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
     kable_classic(full_width = FALSE)
 } else if ("docx" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
   para_tbl |>
-    kable(format = "pipe", escape = FALSE) |>
-    kable_classic(full_width = FALSE)
+    kable(format = "pipe", escape = FALSE) #|>
+    # kable_classic(full_width = FALSE)
 } else if ("latex" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
   para_tbl |>
     kable(format = "pipe", escape = FALSE) |>
@@ -555,7 +557,9 @@ if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
 }
 ```
 
+
 \newpage
+
 
 ::: {#fig-hypo}
 

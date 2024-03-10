@@ -2,7 +2,6 @@ library(targets)
 library(tarchetypes)
 library(tidyverse)
 library(stantargets)
-# library(cmdstanr)
 library(furrr)
 library(jsonlite)
 
@@ -14,13 +13,13 @@ source("R/vpart.R")
 source("R/mass_prop.R")
 source("R/yml.R")
 source("R/t_yml.R")
-# source("R/tar_stan_mcmc_list.R")
 
 plan(multicore)
 options(clustermq.scheduler = "multicore")
 
 tar_option_set(packages = c(
   "tidyverse",
+  "cmdstanr",
   "patchwork",
   "parallel",
   "janitor",
@@ -35,14 +34,6 @@ tar_option_set(packages = c(
 #   garbage_collection = TRUE,
 #   memory = "transient"
 # )
-
-# check if it's inside a container
-# if (file.exists("/.dockerenv") | file.exists("/.singularity.d/startscript")) {
-#   Sys.setenv(CMDSTAN = "/opt/cmdstan/cmdstan-2.29.2")
-#   set_cmdstan_path("/opt/cmdstan/cmdstan-2.29.2")
-# }
-
-# cmdstan_version()
 
 stan_names <- generate_stan_names("templates/model.json",
       "templates/model_LMA.json")
@@ -925,6 +916,4 @@ main_list <- list(
   NULL
 )
 
-# targets <- append(raw_data_list, tar_stan_mcmc_list)
-# targets <- append(targets, tar_stan_mcmc_list)
 append(raw_data_list, main_list)

@@ -3,25 +3,25 @@ GL:
   am: 0.28
   as: -0.13
   sig1: 0.31
-  LMAm_mu_gl: 56.5
-  LMAs_mu_gl: 61.2
-  LMAm_sig_gl: 0.83
-  LMAs_sig_gl: 1
+  LMAm_mu_gl: 56.4
+  LMAs_mu_gl: 61.4
+  LMAm_sig_gl: 0.84
+  LMAs_sig_gl: 0.99
   rho_gl: 0.13
-  LMAm_min: 3.18
-  LMAm_max: 591.48
+  LMAm_min: 3.2
+  LMAm_max: 593.65
 PA:
   a0: 0.34
   am: 0.56
   as: 
-  sig1: 0.24
-  LMAm_mu_sun: 47.3
+  sig1: 0.23
+  LMAm_mu_sun: 48
   LMAs_mu_sun: 30.1
   LMAm_sig_sun: 1.58
   rho_sun: -0.16
-  LMAm_mu_shade: 7.6
-  LMAs_mu_shade: 26.7
+  LMAm_mu_shade: 7.7
+  LMAs_mu_shade: 26.6
   LMAm_sig_shade: 1.95
   rho_shade: -0.47
-  LMAm_min: 1.83
-  LMAm_max: 133.43
+  LMAm_min: 1.86
+  LMAm_max: 133.01

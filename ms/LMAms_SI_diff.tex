@@ -1,7 +1,7 @@
 % Options for packages loaded elsewhere
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL LMAms_SI_old.tex   Tue Mar  5 02:40:45 2024
-%DIF ADD LMAms_SI.tex       Mon Mar  4 16:09:35 2024
+%DIF DEL LMAms_SI_old.tex   Sun Mar 10 03:11:51 2024
+%DIF ADD LMAms_SI.tex       Sun Mar 10 03:11:26 2024
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -378,7 +378,7 @@ assumed to have a multivariate normal distribution:
 
 where E{[}\(\cdot\){]} indicates expected value and
 \(\boldsymbol{\Sigma}\) indicates a covariance matrix. Expected values
-are based on Eqs. 2- 4 in the main text.
+are based on Eqs. 2-4 in the main text.
 
 We used non-informative or weakly informative prior distributions
 (\citeproc{ref-Lemoine2019}{Lemoine, 2019}). The covariance matrix in
@@ -402,10 +402,10 @@ location 0 and scale 2.5, which is weakly informative and allows for
 occasional large coefficients while still performing a reasonable amount
 of shrinkage for coefficients near zero
 (\citeproc{ref-Gelman2008}{Gelman et al., 2008}). Priors for
-\(\alpha_{0,m,s}\), \(\beta_{0,m,s}\), and \(\gamma_{0,m,s}\) in Eqs. 2-
-4 were weakly informative and specified as normal distributions with
+\(\alpha_{0,m,s}\), \(\beta_{0,m,s}\), and \(\gamma_{0,m,s}\) in Eqs.
+2-4 were weakly informative and specified as normal distributions with
 mean 0 and standard deviation 5. Priors for \emph{f\textsubscript{i}} in
-Eqs. 1- 4 were non-informative and specified as uniform distributions
+Eqs. 1-4 were non-informative and specified as uniform distributions
 with range (0, 1).
 
 \newpage
@@ -496,34 +496,35 @@ do not provide reliable inferences
   transitions.
 \end{itemize}
 
-\begin{longtable}[]{@{}llrr@{}}
-\toprule\noalign{}
-Data & Simulation\_ID & No\_large\_Rhat & No\_divergence \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-GLOPNET & sim-01 & 4 & 13 \\
-GLOPNET & sim-02 & 4 & 0 \\
-GLOPNET & sim-03 & 0 & 0 \\
-GLOPNET & sim-04 & 0 & 0 \\
-GLOPNET & sim-05 & 0 & 1 \\
-GLOPNET & sim-06 & 0 & 1 \\
-GLOPNET & sim-07 & 12 & 0 \\
-GLOPNET & sim-08 & 4 & 0 \\
-GLOPNET & sim-09 & 0 & 0 \\
-GLOPNET & sim-10 & 104 & 1 \\
-Panama & sim-01 & 4 & 131 \\
-Panama & sim-02 & 64 & 23 \\
-Panama & sim-03 & 397 & 28 \\
-Panama & sim-04 & 0 & 15 \\
-Panama & sim-05 & 7 & 58 \\
-Panama & sim-06 & 79 & 4 \\
-Panama & sim-07 & 7 & 122 \\
-Panama & sim-08 & 160 & 131 \\
-Panama & sim-09 & 451 & 579 \\
-Panama & sim-10 & 601 & 148 \\
-\end{longtable}
+\begin{longtable*}[t]{llrr}
+\toprule
+Data & Simulation\_ID & No\_large\_Rhat & No\_divergence\\
+\midrule
+GLOPNET & sim-01 & 4 & 0\\
+GLOPNET & sim-02 & 99 & 7\\
+GLOPNET & sim-03 & 0 & 0\\
+GLOPNET & sim-04 & 643 & 10\\
+GLOPNET & sim-05 & 0 & 0\\
+\addlinespace
+GLOPNET & sim-06 & 0 & 0\\
+GLOPNET & sim-07 & 15 & 0\\
+GLOPNET & sim-08 & 0 & 12\\
+GLOPNET & sim-09 & 267 & 0\\
+GLOPNET & sim-10 & 0 & 0\\
+\addlinespace
+Panama & sim-01 & 357 & 54\\
+Panama & sim-02 & 357 & 125\\
+Panama & sim-03 & 426 & 1418\\
+Panama & sim-04 & 475 & 24\\
+Panama & sim-05 & 635 & 163\\
+\addlinespace
+Panama & sim-06 & 3 & 58\\
+Panama & sim-07 & 4 & 42\\
+Panama & sim-08 & 532 & 31\\
+Panama & sim-09 & 497 & 123\\
+Panama & sim-10 & 597 & 119\\
+\bottomrule
+\end{longtable*}
 
 \newpage
 
@@ -535,7 +536,7 @@ not converge, we nevertheless examined the regression coefficients to
 evaluate if our model framework is prone to overfitting. Figure AS1
 shows the regression coefficients for the randomized GLOPNET data
 (\(\alpha_{0, m, s}\), \(\beta_{0, s}\), and \(\gamma_{0, m, s}\) in
-Eqs. 2- 4 in the main text). There are 10 independent simulations
+Eqs. 2-4 in the main text). There are 10 independent simulations
 (randomizations) in total. Points and lines indicate posterior medians
 and 95\% credible intervals (CIs), respectively. Although intercepts
 were significant, the scaling parameters (\(\alpha_{m, s}\),
@@ -544,7 +545,7 @@ datasets were not significantly different from zero. These tests with
 randomized data indicate that our model is not inherently prone to
 overfitting or to producing patterns from noise.
 
-\includegraphics{/home/rstudio/LMAms/figs/coef_sim_gl.png}
+\includegraphics{/workspaces/LMAms/figs/coef_sim_gl.png}
 
 \newpage
 
@@ -552,7 +553,7 @@ overfitting or to producing patterns from noise.
 
 Figure AS2 showsWe also checked the regression coefficients for the
 randomized Panama dataset (\(\alpha_{0, m}\), \(\beta_{0, s}\),
-\(\gamma_{0, m, s}\), and \(\theta\) in Eqs. 2- 4 in the main text).
+\(\gamma_{0, m, s}\), and \(\theta\) in Eqs.2-4 in the main text).
 Details as for Figure AS1. The scaling parameters (\(\alpha_{m}\),
 \(\beta_{s}\), and \(\gamma_{m, s}\)) and the effect of light on leaf
 lifespan (\(\theta\)) were not significantly different from zero in the
@@ -560,7 +561,7 @@ randomized datasets did not show any patterns. Again, these tests with
 randomized data indicate that our model is not inherently prone to
 overfitting or to producing patterns from noise.
 
-\includegraphics{/home/rstudio/LMAms/figs/coef_sim_pa.png}
+\includegraphics{/workspaces/LMAms/figs/coef_sim_pa.png}
 
 \newpage
 
@@ -696,7 +697,7 @@ LMAm and LMAs values by sampling ln(LMAm) and ln(LMAs) from normal
 distributions.
 
 For GLOPNET and Panama sun leaves, results from the LMAm-LMAs models
-(Eqs. 2- 4) indicated little correlation between LMAm and LMAs, so we
+(Eqs. 2-4) indicated little correlation between LMAm and LMAs, so we
 used univariate normal distributions (N) to generate the LMAm and LMAs
 samples:
 
@@ -756,11 +757,11 @@ ln(10) across simulated datasets. For each of the 100 leaves in a given
 simulated dataset, \emph{A}\textsubscript{area} was calculated according
 to Eq. 2.
 
-Parameter values were \(\mu_m\) = 56.5, \(\mu_s\) = 61.2, \(\sigma_m\) =
-0.83, \(\alpha_0\) = 1.77, \(\alpha_m\) = 0.28, and \(\alpha_s\) = -0.13
-for GLOPNET; \(\mu_m\) = 47.3, \(\mu_s\) = 30.1, \(\sigma_m\) = 1.58,
+Parameter values were \(\mu_m\) = 56.4, \(\mu_s\) = 61.4, \(\sigma_m\) =
+0.84, \(\alpha_0\) = 1.77, \(\alpha_m\) = 0.28, and \(\alpha_s\) = -0.13
+for GLOPNET; \(\mu_m\) = 48, \(\mu_s\) = 30.1, \(\sigma_m\) = 1.58,
 \(\alpha_0\) = 0.34, \(\alpha_m\) = 0.56, and \(\alpha_s\) = 0 for
-Panama sun leaves; and \(\mu_m\) = 7.6, \(\mu_s\) = 26.7, \(\sigma_m\) =
+Panama sun leaves; and \(\mu_m\) = 7.7, \(\mu_s\) = 26.6, \(\sigma_m\) =
 1.95, \(\alpha_0\) = 0.34, \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, and
 \(\rho\) = -0.47 for Panama shade leaves.
 
@@ -772,7 +773,7 @@ We also used Eqs. \DIFdelbegin \DIFdel{S3}\DIFdelend \DIFaddbegin \DIFadd{S5}\DI
 1, which is based on our analysis of GLOPNET data.
 \emph{A}\textsubscript{area} values were generated using Eq. 2 and Eq.
 S1. Based on our GLOPNET results, the standard deviations of ln(LMAs)
-and ln(\emph{A}\textsubscript{area}) were set to 1 and 0.31,
+and ln(\emph{A}\textsubscript{area}) were set to 0.99 and 0.31,
 respectively, and other GLOPNET parameter values are listed above.
 
 \DIFdelbegin %DIFDELCMD < \newpage
@@ -789,7 +790,7 @@ partitioning}\DIFaddend }\DIFdelbegin %DIFDELCMD < \label{figures}
 %DIFDELCMD < \label{fig.-s1}
 %DIFDELCMD < 
 
-%DIFDELCMD < \includegraphics{/home/rstudio/LMAms/figs/box_inter.png}
+%DIFDELCMD < \includegraphics{/workspaces/LMAms/figs/box_inter.png}
 %DIFDELCMD < %%%
 \DIFdelend \DIFaddbegin \label{appendix-s6-variance-partitioning}
 \DIFaddend 
@@ -797,10 +798,10 @@ partitioning}\DIFaddend }\DIFdelbegin %DIFDELCMD < \label{figures}
 \DIFdelbegin \textbf{\DIFdel{Fig. S1}}%DIFAUXCMD
 \DIFdel{: Boxplots comparing leaf mass per area (LMA),
 photosynthetic leaf mass per area (LMAm ; posterior medians), and structural leaf mass per area (LMAs ; posterior medians) across (a)deciduous (Dev) }\DIFdelend \DIFaddbegin \DIFadd{To estimate the contributions of LMAm }\DIFaddend and \DIFdelbegin \DIFdel{evergreen (Eve) leaves and (b)sites (wet and dry) and canopy strata (sun and shade) in Panama. The results shown here
-include all leaves in the Panama dataset, whereas Figs. 6- 7 in the main
+include all leaves in the Panama dataset, whereas Figs. 6-7 in the main
 text only include Panama species for which both sun and shade leaves
-were available. Boxplot symbols as in Figs. 6- 7. Groups sharing the
-same letters are not significantly different (P \textgreater{} 0.05;
+were available. Boxplot symbols as in Figs. 6-7. Groups sharing the same
+letters are not significantly different (P \textgreater{} 0.05;
 t-tests). Estiamtes are from the best Panama model (Table 1).
 }%DIFDELCMD < 
 
@@ -816,7 +817,7 @@ t-tests). Estiamtes are from the best Panama model (Table 1).
 (where LMA = LMAm + LMAs), we used the following identity:
 }\DIFaddend 
 
-\DIFdelbegin %DIFDELCMD < \includegraphics{/home/rstudio/LMAms/figs/box_frac_de.png}
+\DIFdelbegin %DIFDELCMD < \includegraphics{/workspaces/LMAms/figs/box_frac_de.png}
 %DIFDELCMD < %%%
 \DIFdelend \DIFaddbegin \[
 \DIFadd{\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \qquad(\mathrm{S}6)
@@ -857,7 +858,7 @@ posterior median parameter values}\DIFaddend .
 \DIFdelend \DIFaddbegin \section{\DIFadd{Figures}}\label{figures}
 \DIFaddend 
 
-\DIFdelbegin %DIFDELCMD < \includegraphics{/home/rstudio/LMAms/figs/box_frac_pa.png}
+\DIFdelbegin %DIFDELCMD < \includegraphics{/workspaces/LMAms/figs/box_frac_pa.png}
 %DIFDELCMD < %%%
 \DIFdelend \DIFaddbegin \begin{suppfig}
 \DIFaddend 
@@ -867,7 +868,7 @@ posterior median parameter values}\DIFaddend .
 variable }\emph{\DIFdel{f}} %DIFAUXCMD
 \DIFdel{(the fraction of total LMA comprised by LMAm)}\DIFdelend \DIFaddbegin \centering{
 
-\includegraphics{/home/rstudio/LMAms/figs/box_inter.png}
+\includegraphics{/workspaces/LMAms/figs/box_inter.png}
 
 }
 
@@ -882,12 +883,12 @@ available). Note that LMAm = }\emph{\DIFdel{f}} %DIFAUXCMD
 \DIFdel{\(\times\) LMA, and LMAs = }\DIFdelend \DIFaddbegin \DIFadd{dry)
 and canopy strata }\DIFaddend (\DIFdelbegin \DIFdel{1 --
 }\emph{\DIFdel{f}}%DIFAUXCMD
-\DIFdelend \DIFaddbegin \DIFadd{sun and shade}\DIFaddend ) \DIFdelbegin \DIFdel{\(\times\) LMA. Boxplot symbols as in Fig. }\DIFdelend \DIFaddbegin \DIFadd{in Panama. The results shown here
-include all leaves in the Panama dataset, whereas Figs. 6- 7 in the main
+\DIFdelend \DIFaddbegin \DIFadd{sun and shade}\DIFaddend ) \DIFdelbegin \DIFdel{\(\times\) LMA. Boxplot symbols as in Fig. 7. Groups sharing
+the same letters are not significantly different (P }\DIFdelend \DIFaddbegin \DIFadd{in Panama. The results shown here
+include all leaves in the Panama dataset, whereas Figs. 6-7 in the main
 text only include Panama species for which both sun and shade leaves
-were available. Boxplot symbols as in Figs. 6- }\DIFaddend 7. \DIFdelbegin \DIFdel{Groups sharing
-the same letters are not significantly different (P }\DIFdelend \DIFaddbegin \DIFadd{Groups sharing the
-same letters are not significantly different (P }\DIFaddend \textgreater{} 0.05;
+were available. Boxplot symbols as in Figs. 6-7. Groups sharing the same
+letters are not significantly different (P }\DIFaddend \textgreater{} 0.05;
 t-tests\DIFdelbegin \DIFdel{). Estiamtes are from the best GLOPNET and Panama models (Table
 }\DIFdelend \DIFaddbegin \DIFadd{). Estiamtes are from the best Panama model (Table }\DIFaddend 1).\DIFaddbegin }
 
@@ -907,7 +908,7 @@ t-tests\DIFdelbegin \DIFdel{). Estiamtes are from the best GLOPNET and Panama mo
 %DIFDELCMD < %%%
 \DIFdelendFL \DIFaddbeginFL \centering{
 
-\includegraphics{/home/rstudio/LMAms/figs/box_frac_de.png}
+\includegraphics{/workspaces/LMAms/figs/box_frac_de.png}
 
 }
 \DIFaddendFL 
@@ -915,7 +916,7 @@ t-tests\DIFdelbegin \DIFdel{). Estiamtes are from the best GLOPNET and Panama mo
 \DIFdelbeginFL %DIFDELCMD < \centering{
 %DIFDELCMD < 
 
-%DIFDELCMD < \captionsetup{labelsep=none}\includegraphics{/home/rstudio/LMAms/figs/mass_prop_sim.png}
+%DIFDELCMD < \captionsetup{labelsep=none}\includegraphics{/workspaces/LMAms/figs/mass_prop_sim.png}
 %DIFDELCMD < 
 
 %DIFDELCMD < }
@@ -944,7 +945,7 @@ Panama models (Table 1).}}
 
 \centering{
 
-\includegraphics{/home/rstudio/LMAms/figs/box_frac_pa.png}
+\includegraphics{/workspaces/LMAms/figs/box_frac_pa.png}
 
 }
 
@@ -987,15 +988,15 @@ between 0 and 1 (\mbox{%DIFAUXCMD
 \citeproc{ref-Osnas2018}{Osnas et al.,
 2018}}\hspace{0pt}%DIFAUXCMD
 ). Parameter values are based on the best GLOPNET model (Table 1)
-and Appendix S3: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.5, \(\mu_s\) =
-61.2, and \(\sigma_m\) = 0.83.
+and Appendix S3: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.4, \(\mu_s\) =
+61.4, and \(\sigma_m\) = 0.84.
 }\DIFdelend \DIFaddbegin \newpage
 
 \begin{suppfig}
 
 \centering{
 
-\includegraphics{/home/rstudio/LMAms/figs/mass_prop_sim.png}
+\includegraphics{/workspaces/LMAms/figs/mass_prop_sim.png}
 
 }
 
@@ -1018,8 +1019,8 @@ typically between 0 and 1 (\mbox{%DIFAUXCMD
 \citeproc{ref-Osnas2018}{Osnas
 et al., 2018}}\hspace{0pt}%DIFAUXCMD
 ). Parameter values are based on the best GLOPNET model
-(Table 1) and Appendix S5: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.5,
-\(\mu_s\) = 61.2, and \(\sigma_m\) = 0.83.}}
+(Table 1) and Appendix S5: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.4,
+\(\mu_s\) = 61.4, and \(\sigma_m\) = 0.84.}}
 
 \end{suppfig}%DIF > 
 \DIFaddend 
@@ -1033,11 +1034,11 @@ et al., 2018}}\hspace{0pt}%DIFAUXCMD
 \DIFdelend \DIFaddbegin \begin{suppfig}
 \DIFaddend 
 
-\DIFdelbegin %DIFDELCMD < \includegraphics{/home/rstudio/LMAms/figs/mass_prop_comp.png}
+\DIFdelbegin %DIFDELCMD < \includegraphics{/workspaces/LMAms/figs/mass_prop_comp.png}
 %DIFDELCMD < %%%
 \DIFdelend \DIFaddbegin \centering{
 
-\includegraphics{/home/rstudio/LMAms/figs/mass_prop_comp.png}
+\includegraphics{/workspaces/LMAms/figs/mass_prop_comp.png}
 
 }
 \DIFaddend 
@@ -1051,7 +1052,7 @@ LMAs variance (relative to total LMA variance; Eq. 6) for simulated
 datasets generated from a normal distribution (N) vs.~a multivariate
 normal distribution (MVN). Parameter values are based on the best Panama
 model (Table 1) and Appendix S3: \(\alpha_0\) = 0.34, \(\alpha_m\) =
-0.56, \(\alpha_s\) = 0, \(\mu_m\) = 7.6, \(\mu_s\) = 26.7, \(\sigma_m\)
+0.56, \(\alpha_s\) = 0, \(\mu_m\) = 7.7, \(\mu_s\) = 26.6, \(\sigma_m\)
 = 1.95, and \(\rho\) = -0.47.
 }\DIFdelend \DIFaddbegin \caption{\label{suppfig-mass_prop_comp}\DIFadd{The relationships between mass
 dependency of }\emph{\DIFadd{A}}\DIFadd{\textsubscript{max} (}\emph{\DIFadd{b}} \DIFadd{in Eq. 5 in the main
@@ -1059,8 +1060,8 @@ text) and LMAs variance (relative to total LMA variance; Eq. 6) for
 simulated datasets generated from a normal distribution (N) vs.~a
 multivariate normal distribution (MVN). Parameter values are based on
 the best Panama model (Table 1) and Appendix S5: \(\alpha_0\) = 0.34,
-\(\alpha_m\) = 0.56, \(\alpha_s\) = 0, \(\mu_m\) = 7.6, \(\mu_s\) =
-26.7, \(\sigma_m\) = 1.95, and \(\rho\) = -0.47.}}
+\(\alpha_m\) = 0.56, \(\alpha_s\) = 0, \(\mu_m\) = 7.7, \(\mu_s\) =
+26.6, \(\sigma_m\) = 1.95, and \(\rho\) = -0.47.}}
 
 \end{suppfig}%DIF > 
 \DIFaddend 
@@ -1074,11 +1075,11 @@ the best Panama model (Table 1) and Appendix S5: \(\alpha_0\) = 0.34,
 \DIFdelend \DIFaddbegin \begin{suppfig}
 \DIFaddend 
 
-\DIFdelbegin %DIFDELCMD < \includegraphics{/home/rstudio/LMAms/figs/gl_point_np2.png}
+\DIFdelbegin %DIFDELCMD < \includegraphics{/workspaces/LMAms/figs/gl_point_np2.png}
 %DIFDELCMD < %%%
 \DIFdelend \DIFaddbegin \centering{
 
-\includegraphics{/home/rstudio/LMAms/figs/gl_point_np2.png}
+\includegraphics{/workspaces/LMAms/figs/gl_point_np2.png}
 
 }
 \DIFaddend 
@@ -1122,11 +1123,11 @@ for LMAm (middle column) and LMAs (right column) are shown.}}
 \DIFdelend \DIFaddbegin \begin{suppfig}
 \DIFaddend 
 
-\DIFdelbegin %DIFDELCMD < \includegraphics{/home/rstudio/LMAms/figs/pa_point_npc_par.png}
+\DIFdelbegin %DIFDELCMD < \includegraphics{/workspaces/LMAms/figs/pa_point_npc_par.png}
 %DIFDELCMD < %%%
 \DIFdelend \DIFaddbegin \centering{
 
-\includegraphics{/home/rstudio/LMAms/figs/pa_point_npc_par.png}
+\includegraphics{/workspaces/LMAms/figs/pa_point_npc_par.png}
 
 }
 \DIFaddend 
@@ -1167,11 +1168,11 @@ partial correlation coefficients (\(\bar{\rho}\)) are shown.}}
 \DIFdelend \DIFaddbegin \begin{suppfig}
 \DIFaddend 
 
-\DIFdelbegin %DIFDELCMD < \includegraphics{/home/rstudio/LMAms/figs/ps_point.png}
+\DIFdelbegin %DIFDELCMD < \includegraphics{/workspaces/LMAms/figs/ps_point.png}
 %DIFDELCMD < %%%
 \DIFdelend \DIFaddbegin \centering{
 
-\includegraphics{/home/rstudio/LMAms/figs/ps_point.png}
+\includegraphics{/workspaces/LMAms/figs/ps_point.png}
 
 }
 \DIFaddend 
@@ -1182,12 +1183,12 @@ of LMAm vs LMAs in the (a) GLOPNET and (b) Panama datasets. The
 non-significant or weak }\emph{\DIFdel{r}} %DIFAUXCMD
 \DIFdel{values indicate that a single axis
 could not accurately represent the two-dimensional space. Symbols as in
-main text Figs. 2- 3.
+main text Figs. 2-3.
 }\DIFdelend \DIFaddbegin \caption{\label{suppfig-LMAm_LMAs}\DIFadd{Pearson correlation coefficients for
 posterior medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama
 datasets. The non-significant or weak }\emph{\DIFadd{r}} \DIFadd{values indicate that a
 single axis could not accurately represent the two-dimensional space.
-Symbols as in main text Figs. 2- 3.}}
+Symbols as in main text Figs. 2-3.}}
 
 \end{suppfig}%DIF > 
 \DIFaddend 

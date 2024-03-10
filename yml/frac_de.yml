@@ -1,9 +1,9 @@
 gl:
-  dec: 65.5
+  dec: 63
   eve: 36.6
 pa_inter:
-  dec: 68.4
-  eve: 44.8
+  dec: 68.5
+  eve: 45.4
 pa_intra:
-  dec: 61.9
-  eve: 36.1
+  dec: 61.3
+  eve: 36

@@ -1,10 +1,10 @@
 pa_inter:
-  sun_dry: 71.7
-  shade_dry: 36.4
-  sun_wet: 52.4
-  shade_wet: 16.6
+  sun_dry: 71.4
+  shade_dry: 35.9
+  sun_wet: 52
+  shade_wet: 17
 pa_intra:
-  sun_dry: 65
-  shade_dry: 37.3
-  sun_wet: 52.7
-  shade_wet: 19.6
+  sun_dry: 65.1
+  shade_dry: 37.1
+  sun_wet: 53
+  shade_wet: 19.7
