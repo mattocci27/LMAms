@@ -4,7 +4,7 @@
     "Repositories": [
       {
         "Name": "CRAN",
-        "URL": "https://packagemanager.posit.co/cran/latest"
+        "URL": "https://packagemanager.posit.co/cran/__linux__/jammy/latest"
       }
     ]
   },
@@ -2365,15 +2365,15 @@
     },
     "stantargets": {
       "Package": "stantargets",
-      "Version": "0.1.0.9001",
+      "Version": "0.1.0.9000",
       "Source": "GitHub",
-      "Remotes": "hyunjimoon/SBC, stan-dev/cmdstanr,",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteRepo": "stantargets",
       "RemoteUsername": "ropensci",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "bf761c3d4b0e545a63682e4185df015749d2290e",
+      "RemoteRepo": "stantargets",
+      "RemoteRef": "9c33079a4df81b6714cc9caf65f069f054878fd7",
+      "RemoteSha": "9c33079a4df81b6714cc9caf65f069f054878fd7",
+      "Remotes": "hyunjimoon/SBC, stan-dev/cmdstanr,",
       "Requirements": [
         "R",
         "cmdstanr",
@@ -2388,10 +2388,9 @@
         "tarchetypes",
         "targets",
         "tibble",
-        "tidyselect",
         "withr"
       ],
-      "Hash": "36e8d4874ffcf3f8f720081cd1f49853"
+      "Hash": "73853c1912cb343963b51da2e71927b6"
     },
     "stringfish": {
       "Package": "stringfish",
@@ -2467,7 +2466,7 @@
     },
     "tarchetypes": {
       "Package": "tarchetypes",
-      "Version": "0.7.12.9002",
+      "Version": "0.7.12",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -2484,11 +2483,11 @@
         "vctrs",
         "withr"
       ],
-      "Hash": "21c8eddf342b2097576c198d9e41c255"
+      "Hash": "27cbcc70b864c0df53cd454f062ac581"
     },
     "targets": {
       "Package": "targets",
-      "Version": "1.5.1.9001",
+      "Version": "1.5.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -2513,7 +2512,7 @@
         "vctrs",
         "yaml"
       ],
-      "Hash": "db06588ddbfe94d9ad25d6ea538994b1"
+      "Hash": "782fd3684f0e7b9d2c7229fee21d01c0"
     },
     "tensorA": {
       "Package": "tensorA",
