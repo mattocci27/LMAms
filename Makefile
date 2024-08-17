@@ -1,11 +1,12 @@
-GIT = 621812a
-GIT2 = 621812a
+GIT = a261a204
+GIT2 = a261a204
 COVER = ms/cover
 MAIN = ms/LMAms_main
 SI = ms/LMAms_SI
 all: $(MAIN).pdf $(MAIN).docx $(SI).pdf $(SI).docx $(MAIN)_diff.pdf $(SI)_diff.pdf
 diff: $(MAIN)_diff.pdf
 diff2: $(SI)_diff.pdf
+pdf: $(MAIN).pdf
 
 $(MAIN).pdf: $(MAIN).qmd
 	quarto render $< --to pdf

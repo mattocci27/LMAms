@@ -45,14 +45,28 @@
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \setcounter{secnumdepth}{5}
 % Make \paragraph and \subparagraph free-standing
+\makeatletter
 \ifx\paragraph\undefined\else
   \let\oldparagraph\paragraph
-  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
 \fi
 \ifx\subparagraph\undefined\else
   \let\oldsubparagraph\subparagraph
-  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
+\makeatother
 
 
 \providecommand{\tightlist}{%
@@ -174,6 +188,7 @@
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
+
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -189,10 +204,12 @@
   urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
 
+
 \author{}
 \date{}
 
 \begin{document}
+
 
 \textbf{Decomposing leaf mass into metabolic and structural components
 explains divergent patterns of trait variation within and among plant
@@ -245,23 +262,20 @@ mass-dependent. These contrasting patterns suggest that the causes of
 variation in leaf mass per area (LMA) may be fundamentally different
 within vs.~among species. In order to explain these contrasting
 patterns, we developed a statistical modeling framework to decompose LMA
-into two conceptual components -- metabolic LMAm (which determines
-photosynthetic capacity and dark respiration) and structural LMAs (which
-determines leaf toughness and potential leaf lifespan) - using leaf
-trait data from tropical forests in Panama and a global leaf-trait
-database. Decomposing LMA into LMAm and LMAs improves predictions of
-leaf trait variation (photosynthesis, respiration, and lifespan). We
-show that strong area-dependence of metabolic traits across species can
-result from multiple factors, including high LMAs variance and/or a slow
-increase in photosynthetic capacity with increasing LMAm. In contrast,
-strong mass-dependence of metabolic traits within species results from
-LMAm increasing from shady to sunny conditions. LMAm and LMAs were
-nearly independent of each other in both global and Panama datasets. Our
-results explain different patterns in variation in LMA between across-
-versus within-species. Additionally, our analysis highlights that leaf
-functional variation is multi-dimensional, suggesting that
-biogeochemical models should treat metabolic and structural leaf
-components separately.
+into two components -- metabolic LMAm (which determines photosynthetic
+capacity and dark respiration) and structural LMAs (which determines
+leaf toughness and potential leaf lifespan) -- using leaf trait data
+from tropical forests in Panama and a global leaf-trait database.
+Decomposing LMA into LMAm and LMAs improves predictions of leaf trait
+variation (photosynthesis, respiration, and lifespan) within and among
+species. We show that strong area-dependence of metabolic traits across
+species can result from multiple factors, including high LMAs variance
+and/or a slow increase in photosynthetic capacity with increasing LMAm.
+In contrast, strong mass-dependence of metabolic traits within species
+results from LMAm increasing from shady to sunny conditions. LMAm and
+LMAs were nearly independent of each other in both global and Panama
+datasets, suggesting the presence of at least two important dimensions
+of leaf functional variation.
 
 \section{Introduction}\label{introduction}
 
@@ -300,37 +314,41 @@ mass-normalization of area-dependent traits
 (\citeproc{ref-Lloyd2013}{Lloyd et al., 2013};
 \citeproc{ref-Osnas2013}{Osnas et al., 2013}), is controversial. On the
 one hand, mass-normalization has been justified based on economic
-principles alone (\citeproc{ref-Westoby2013}{Westoby et al., 2013}),
-because leaf mass provides a simple index of investment that underlies
-the leaf economics spectrum (LES), ranging from cheap, low-LMA leaves
-with a fast rate of return per-unit investment to expensive, high-LMA
-leaves with a slow rate of return (\citeproc{ref-Wright2004a}{Wright et
-al., 2004}). On the other hand, because the lifetime return on
-investment depends on LL (\citeproc{ref-Falster2012}{Falster et al.,
-2012}; \citeproc{ref-Westoby2000}{Westoby et al., 2000}), traits should
-be normalized by their annualized construction costs (or mass/LL), which
-should be used as a normalizer in leaf economics analyses
-(\citeproc{ref-Osnas2013}{Osnas et al., 2013}). In global analyses,
-normalizing leaf traits by mass/LL yields similarly weak correlations as
-area-normalization, because leaf area is roughly proportional to mass/LL
-across global species (\citeproc{ref-Osnas2013}{Osnas et al., 2013}).
-Area-dependence of metabolic traits and the inconsistent correlation
-strengths obtained from different normalizers
-(\citeproc{ref-Lloyd2013}{Lloyd et al., 2013};
-\citeproc{ref-Osnas2013}{Osnas et al., 2013}) do not invalidate
-mass-normalization or the LES (\citeproc{ref-Westoby2013}{Westoby et
-al., 2013}). These considerations do, however, lead us to question the
-evidence for a single dominant axis of leaf functional diversity, which
-has important implications for how trait variation is represented in
-ecosystem models (\citeproc{ref-Bonan2002}{Bonan et al., 2002};
-\citeproc{ref-Sakschewski2016}{Sakschewski et al., 2016}). On the one
-hand, mass-normalization has been justified based on economic principles
-alone (\citeproc{ref-Kikuzawa1991}{Kikuzawa, 1991};
+principles alone (\citeproc{ref-Kikuzawa1991}{Kikuzawa, 1991};
 \citeproc{ref-Westoby2013}{Westoby et al., 2013}), because leaf mass
 provides a simple index of investment that underlies the leaf economics
 spectrum (LES), ranging from cheap, low-LMA leaves with a fast rate of
 return per-unit investment to expensive, high-LMA leaves with a slow
-rate of return (\citeproc{ref-Wright2004a}{Wright et al., 2004}).
+rate of return (\citeproc{ref-Wright2004a}{Wright et al., 2004}). On the
+other hand, because the lifetime return on investment depends on LL
+(\citeproc{ref-Falster2012}{Falster et al., 2012};
+\citeproc{ref-Westoby2000}{Westoby et al., 2000}), leaf economics
+analyses should arguably use annualized construction costs (or mass/LL),
+rather than mass \emph{per se}, as an index of leaf cost
+(\citeproc{ref-Osnas2013}{Osnas et al., 2013}). In global analyses,
+normalizing leaf traits by mass/LL yields similarly weak correlations as
+area-normalization, because leaf area is roughly proportional to mass/LL
+across global species (\citeproc{ref-Osnas2013}{Osnas et al., 2013}).
+
+Area-dependence of metabolic traits and the inconsistent correlation
+strengths obtained from different normalizers
+(\citeproc{ref-Lloyd2013}{Lloyd et al., 2013};
+\citeproc{ref-Osnas2013}{Osnas et al., 2013}) suggest that strong
+mass-based correlations should not, by themselves, be taken as strong
+evidence for a single dominant axis of leaf functional diversity. The
+existence of multiple important axes of leaf functional diversity would
+not invalidate mass-normalization or the LES
+(\citeproc{ref-Westoby2013}{Westoby et al., 2013}). This
+multi-dimensionality would, however, have important implications for our
+understanding of leaf function (\citeproc{ref-Onoda2017}{Onoda et al.,
+2017}), the role of trait variation in community assembly (e.g.,
+\citeproc{ref-Falster2017}{Falster et al., 2017};
+\citeproc{ref-Lichstein2021}{Lichstein et al., 2021}), and how to
+accurately represent trait variation in ecosystem models, including
+dynamic global vegetation models {[}DGVMs; e.g., Bonan et al.
+(\citeproc{ref-Bonan2002}{2002}); Fisher et al.
+(\citeproc{ref-Fisher2015}{2015}); Sakschewski et al.
+(\citeproc{ref-Sakschewski2016}{2016}){]}.
 
 To understand why the same data can be interpreted as either supporting
 or opposing the existence of a single dominant axis of leaf trait
@@ -347,9 +365,9 @@ al., 2017}). Suppose these two LMA components are independent axes of
 functional variation, so that LMAm and LMAs are uncorrelated across
 species (Fig.~\ref{fig-hypo}a). These two independent axes can be
 translated into either a two-dimensional trait space (if metabolic
-traits are area-normalized; Fig.~\ref{fig-hypo}b) or a one-dimensional
-trait space (if metabolic traits are mass-normalized;
-Fig.~\ref{fig-hypo}c). While both Fig.~\ref{fig-hypo}b and
+traits are area-normalized; Fig.~\ref{fig-hypo}b) or a primarily
+one-dimensional trait space (if metabolic traits are mass-normalized;
+Fig.~\ref{fig-hypo}c). While Fig.~\ref{fig-hypo}b and
 Fig.~\ref{fig-hypo}c are both `correct' representations of the same
 data, they lead to different perceptions about the dimensionality of
 leaf functional variation. If LMAm, LMAs, and/or other axes are largely
@@ -363,16 +381,16 @@ appear one-dimensional, but the dimensionality of functional variation
 in real leaf assemblages remains an open question. One way to better
 understand the dimensionality of leaf trait variation is to compare
 models with different numbers of dimensions, and to ask if models with
-multiple dimensions provide improved statistical fits and conceptual
-insights compared to a single axis. For example, the two-dimensional
-`LMAm-LMAs' model proposed by Osnas et al.
-(\citeproc{ref-Osnas2018}{2018}) could be compared to a one-dimensional
-LMA model in terms of their capacities to explain variation in other
-traits. However, implementing the `LMAm-LMAs' model is challenging,
-because although certain leaf mass components can be neatly classified
-as `metabolic' or `structural' (\citeproc{ref-Osnas2018}{Osnas et al.,
-2018}; \citeproc{ref-Poorter2009}{Poorter et al., 2009}), other leaf
-mass components cannot. For example, thick cell walls contribute to
+multiple dimensions provide improved statistical fits compared to a
+single axis. For example, the two-dimensional `LMAm-LMAs' model proposed
+by Osnas et al. (\citeproc{ref-Osnas2018}{2018}) could be compared to a
+one-dimensional LMA model in terms of their capacities to explain
+variation in other traits. However, implementing the `LMAm-LMAs' model
+is challenging, because although certain leaf mass components can be
+neatly classified as `metabolic' or `structural'
+(\citeproc{ref-Osnas2018}{Osnas et al., 2018};
+\citeproc{ref-Poorter2009}{Poorter et al., 2009}), other leaf mass
+components cannot. For example, thick cell walls contribute to
 structural toughness (\citeproc{ref-Onoda2015}{Onoda et al., 2015}), but
 at least some cell wall mass is required for the biomechanical support
 that enables photosynthesis. Thus, partitioning LMA into different
@@ -1107,6 +1125,12 @@ Evans, J.R., Kaldenhoff, R., Genty, B., Terashima, I., 2009. Resistances
 along the {CO2} diffusion pathway inside leaves. Journal of Experimental
 Botany 60, 2235--2248. \url{https://doi.org/10.1093/jxb/erp117}
 
+\bibitem[\citeproctext]{ref-Falster2017}
+Falster, D.S., Brännström, Å., Westoby, M., Dieckmann, U., 2017.
+Multitrait successional forest dynamics enable diverse competitive
+coexistence. Proceedings of the National Academy of Sciences 114,
+E2719--E2728. \url{https://doi.org/10.1073/pnas.1610206114}
+
 \bibitem[\citeproctext]{ref-Falster2012}
 Falster, D.S., Reich, P.B., Ellsworth, D.S., Wright, I.J., Westoby, M.,
 Oleksyn, J., Lee, T.D., 2012. Lifetime return on investment increases
@@ -1136,8 +1160,7 @@ properties of a dynamic vegetation model without climate envelopes,
 Gelman, A., Carlin, J.B., Stern, H.S., Dunson, D.B., Vehtari, A., Rubin,
 D.B., 2013.
 \href{https://books.google.com.pa/books?id=eSHSBQAAQBAJ}{Bayesian {Data
-Analysis}, {Third Edition}}. {Chapman \& Hall/CRC}, {Boca Raton, FL,
-USA.}
+Analysis}, {Third Edition}}. Chapman \& Hall/CRC, Boca Raton, FL, USA.
 
 \bibitem[\citeproctext]{ref-Hidaka2011}
 Hidaka, A., Kitayama, K., 2011. Allocation of foliar phosphorus
@@ -1281,8 +1304,8 @@ meta-analysis. New Phytologist 182, 565--588.
 
 \bibitem[\citeproctext]{ref-RCoreTeam2022}
 R Core Team, 2022. \href{https://www.R-project.org/}{R: {A} language and
-environment for statistical computing}. {R Foundation for Statistical
-Computing}, {Vienna, Austria}.
+environment for statistical computing}. R Foundation for Statistical
+Computing, Vienna, Austria.
 
 \bibitem[\citeproctext]{ref-Reich2014}
 Reich, P.B., 2014. The world-wide 'fast-slow' plant economics spectrum:
@@ -1293,8 +1316,8 @@ Reich, P.B., 2014. The world-wide 'fast-slow' plant economics spectrum:
 Russo, S.E., Kitajima, K., 2016. The {Ecophysiology} of {Leaf Lifespan}
 in {Tropical Forests}: {Adaptive} and {Plastic Responses} to
 {Environmental Heterogeneity}, in: Goldstein, G., Santiago, S.L. (Eds.),
-Tropical {Tree Physiology}. {Springer International Publishing}, {Cham},
-pp. 357--383. \url{https://doi.org/10.1007/978-3-319-27422-5_17}
+Tropical {Tree Physiology}. Springer International Publishing, Cham, pp.
+357--383. \url{https://doi.org/10.1007/978-3-319-27422-5_17}
 
 \bibitem[\citeproctext]{ref-Sakschewski2016}
 Sakschewski, B., von Bloh, W., Boit, A., Poorter, L., Peña-Claros, M.,
@@ -1382,7 +1405,7 @@ Lerdau, M.T., Meinzer, F.C., Ødegaard, F., Reynolds, D.R., Roubik, D.W.,
 Sakai, S., Samaniego, M., Sparks, J.P., Van Bael, S., Winter, K., Zotz,
 G., 2003. Tropical {Canopy Biology Program}, {Republic} of {Panama}, in:
 Basset, Y., Horlyck, V., Wright, S.J. (Eds.), Studying {Forest Canopies}
-from {Above}: {The International Canopy Crane Network}. {Panama}, pp.
+from {Above}: {The International Canopy Crane Network}. Panama, pp.
 137--155.
 
 \bibitem[\citeproctext]{ref-Wullschleger2014}
@@ -1442,31 +1465,31 @@ Model & Constraints & N & LOOIC\\
 \midrule
 \addlinespace[0.3em]
 \multicolumn{4}{l}{\textbf{GLOPNET}}\\
-\hspace{1em}LMAm-LMAs & ii & 198 & 721.2\\
-\hspace{1em}LMAm-LMAs & i & 198 & 759.8\\
-\hspace{1em}LMAm-LMAs & iv & 198 & 761.8\\
-\hspace{1em}LMAm-LMAs & iii & 198 & 764.2\\
-\hspace{1em}LMA & NA & 198 & 766.4\\
+\hspace{1em}LMAm-LMAs & ii & 198 & 720.5\\
+\hspace{1em}LMAm-LMAs & iv & 198 & 754.5\\
+\hspace{1em}LMAm-LMAs & i & 198 & 758.5\\
+\hspace{1em}LMAm-LMAs & iii & 198 & 766.3\\
+\hspace{1em}LMA & NA & 198 & 766.7\\
 \addlinespace[0.3em]
 \multicolumn{4}{l}{\textbf{Panama}}\\
-\hspace{1em}LMAm-LMAs-light & i & 106 & 461.0\\
-\hspace{1em}LMAm-LSD-light & i & 106 & 472.3\\
-\hspace{1em}LMAm-LMAs & iii & 106 & 478.2\\
-\hspace{1em}LMAm-LMAs-light & iii & 106 & 487.2\\
-\hspace{1em}LMAm-LSD & iii & 106 & 493.1\\
-\hspace{1em}LMAm-LMAs & i & 106 & 500.3\\
-\hspace{1em}LMAm-LSD-light & iii & 106 & 502.1\\
-\hspace{1em}LMAm-LMAs-light & ii & 106 & 508.2\\
-\hspace{1em}LMAm-LMAs-light & iv & 106 & 508.6\\
-\hspace{1em}LMA-light & NA & 106 & 510.1\\
-\hspace{1em}LMAm-LSD-light & iv & 106 & 511.7\\
-\hspace{1em}LMAm-LSD-light & ii & 106 & 512.7\\
-\hspace{1em}LMAm-LSD & i & 106 & 514.3\\
-\hspace{1em}LMAm-LMAs & ii & 106 & 526.7\\
-\hspace{1em}LMAm-LMAs & iv & 106 & 526.9\\
-\hspace{1em}LMA & NA & 106 & 536.8\\
-\hspace{1em}LMAm-LSD & ii & 106 & 537.0\\
-\hspace{1em}LMAm-LSD & iv & 106 & 537.6\\
+\hspace{1em}LMAm-LMAs-light & i & 106 & 456.4\\
+\hspace{1em}LMAm-LMAs & iii & 106 & 473.3\\
+\hspace{1em}LMAm-LSD-light & i & 106 & 473.6\\
+\hspace{1em}LMAm-LMAs-light & iii & 106 & 486.7\\
+\hspace{1em}LMAm-LSD & iii & 106 & 496.7\\
+\hspace{1em}LMAm-LSD-light & iii & 106 & 498.4\\
+\hspace{1em}LMAm-LMAs & i & 106 & 500.6\\
+\hspace{1em}LMAm-LMAs-light & ii & 106 & 505.0\\
+\hspace{1em}LMAm-LMAs-light & iv & 106 & 509.5\\
+\hspace{1em}LMA-light & NA & 106 & 510.0\\
+\hspace{1em}LMAm-LSD-light & iv & 106 & 512.3\\
+\hspace{1em}LMAm-LSD & i & 106 & 515.4\\
+\hspace{1em}LMAm-LSD-light & ii & 106 & 516.4\\
+\hspace{1em}LMAm-LMAs & iv & 106 & 521.9\\
+\hspace{1em}LMAm-LMAs & ii & 106 & 528.8\\
+\hspace{1em}LMAm-LSD & iv & 106 & 531.7\\
+\hspace{1em}LMAm-LSD & ii & 106 & 535.5\\
+\hspace{1em}LMA & NA & 106 & 536.9\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1481,13 +1504,13 @@ different from zero based on the 95\% credible interval.
 \toprule
 Parameters & GLOPNET & Panama\\
 \midrule
-Effect of LMAm on *A*\textasciitilde{}area\textasciitilde{} (\$\textbackslash{}alpha\_p\$) & **0.281 [0.204, 0.36]** & **0.577 [0.429, 0.723]**\\
-Effect of LMAs on *A*\textasciitilde{}area\textasciitilde{} (\$\textbackslash{}alpha\_s\$) & **-0.131 [-0.201, -0.058]** & -\\
-Effect of LMAs on LL (\$\textbackslash{}beta\_s\$) & **0.887 [0.761, 1.018]** & **0.352 [0.17, 0.531]**\\
-Effect of LMAm on *R*\textasciitilde{}area\textasciitilde{} (\$\textbackslash{}gamma\_p\$) & **0.289 [0.202, 0.38]** & **0.614 [0.388, 0.823]**\\
-Effect of LMAs on *R*\textasciitilde{}area\textasciitilde{} (\$\textbackslash{}gamma\_s\$) & 0.035 [-0.045, 0.115] & 0.032 [-0.25, 0.351]\\
+Effect of LMAm on *A*\textasciitilde{}area\textasciitilde{} (\$\textbackslash{}alpha\_p\$) & **0.283 [0.208, 0.361]** & **0.575 [0.426, 0.718]**\\
+Effect of LMAs on *A*\textasciitilde{}area\textasciitilde{} (\$\textbackslash{}alpha\_s\$) & **-0.134 [-0.209, -0.061]** & -\\
+Effect of LMAs on LL (\$\textbackslash{}beta\_s\$) & **0.889 [0.762, 1.028]** & **0.347 [0.163, 0.523]**\\
+Effect of LMAm on *R*\textasciitilde{}area\textasciitilde{} (\$\textbackslash{}gamma\_p\$) & **0.293 [0.2, 0.384]** & **0.613 [0.382, 0.833]**\\
+Effect of LMAs on *R*\textasciitilde{}area\textasciitilde{} (\$\textbackslash{}gamma\_s\$) & 0.031 [-0.051, 0.115] & 0.039 [-0.243, 0.362]\\
 \addlinespace
-Effect of light on LL (\$\textbackslash{}theta\$) & - & **-0.83 [-1.116, -0.538]**\\
+Effect of light on LL (\$\textbackslash{}theta\$) & - & **-0.823 [-1.114, -0.531]**\\
 \bottomrule
 \end{longtable*}
 
@@ -1497,7 +1520,7 @@ Effect of light on LL (\$\textbackslash{}theta\$) & - & **-0.83 [-1.116, -0.538]
 
 \centering{
 
-\includegraphics{/workspaces/LMAms/figs/hypo.png}
+\includegraphics{../figs/hypo.png}
 
 }
 
@@ -1524,7 +1547,7 @@ S8}
 
 \centering{
 
-\includegraphics{/workspaces/LMAms/figs/gl_point.png}
+\includegraphics{../figs/gl_point.png}
 
 }
 
@@ -1552,7 +1575,7 @@ predictor variables).}
 
 \centering{
 
-\includegraphics{/workspaces/LMAms/figs/pa_point.png}
+\includegraphics{../figs/pa_point.png}
 
 }
 
@@ -1574,7 +1597,7 @@ model predictions Fig.~\ref{fig-ll_point}.}
 
 \centering{
 
-\includegraphics{/workspaces/LMAms/figs/pa_point_par_ll.png}
+\includegraphics{../figs/pa_point_par_ll.png}
 
 }
 
@@ -1593,7 +1616,7 @@ shown. The results shown here include all leaves in the Panama dataset.}
 
 \centering{
 
-\includegraphics{/workspaces/LMAms/figs/vpart_intra.png}
+\includegraphics{../figs/vpart_intra.png}
 
 }
 
@@ -1613,7 +1636,7 @@ available.}
 
 \centering{
 
-\includegraphics{/workspaces/LMAms/figs/box_de.png}
+\includegraphics{../figs/box_de.png}
 
 }
 
@@ -1638,7 +1661,7 @@ axis is on a log\textsubscript{10} scale.}
 
 \centering{
 
-\includegraphics{/workspaces/LMAms/figs/box_pa.png}
+\includegraphics{../figs/box_pa.png}
 
 }
 
@@ -1658,23 +1681,22 @@ included (Fig. S1). Details as for Fig.~\ref{fig-box_de}.}
 
 \centering{
 
-\captionsetup{labelsep=none}Relationships between mass dependency
-(\emph{b} in Eq. S5) and LMAs variance (relative to total LMA variance;
-Eq. S7) for the global GLPNET dataset, sun leaves in Panama, and shade
-leaves in Panama. Solid lines indicate simulated medians and shaded
-regions indicate 95\% confidence intervals. Each point indicates the
-estimated values from the empirical data and represents interspecific
-variation (e.g., across species within a canopy position in the Panama
-dataset). The y-axis values indicates if photosynthetic capacity
-(\emph{A}\textsubscript{max}) is is primarily mass-dependent (\emph{b}
-\textgreater{} 0.5) or primarily area-dependent (0.5 \textgreater{}
-\emph{b} \textgreater{} 0), with \emph{b} near 0 indicating purely
-area-dependendence (\citeproc{ref-Osnas2018}{Osnas et al., 2018}). If
-\emph{b} \textgreater{} 1, then \emph{A}\textsubscript{max} increases
-exponentially with LMA, which is not consistent with observed
-relationships (\citeproc{ref-Osnas2018}{Osnas et al., 2018}). See
-Appendices S9-S6 for details.
-\includegraphics{/workspaces/LMAms/figs/mass_prop_mv.png}
+Relationships between mass dependency (\emph{b} in Eq. S5) and LMAs
+variance (relative to total LMA variance; Eq. S7) for the global GLPNET
+dataset, sun leaves in Panama, and shade leaves in Panama. Solid lines
+indicate simulated medians and shaded regions indicate 95\% confidence
+intervals. Each point indicates the estimated values from the empirical
+data and represents interspecific variation (e.g., across species within
+a canopy position in the Panama dataset). The y-axis values indicates if
+photosynthetic capacity (\emph{A}\textsubscript{max}) is is primarily
+mass-dependent (\emph{b} \textgreater{} 0.5) or primarily area-dependent
+(0.5 \textgreater{} \emph{b} \textgreater{} 0), with \emph{b} near 0
+indicating purely area-dependendence (\citeproc{ref-Osnas2018}{Osnas et
+al., 2018}). If \emph{b} \textgreater{} 1, then
+\emph{A}\textsubscript{max} increases exponentially with LMA, which is
+not consistent with observed relationships
+(\citeproc{ref-Osnas2018}{Osnas et al., 2018}). See Appendices S9-S6 for
+details. \includegraphics{../figs/mass_prop_mv.png}
 
 }
 
@@ -1688,7 +1710,7 @@ Appendices S9-S6 for details.
 
 \centering{
 
-\includegraphics{/workspaces/LMAms/figs/pa_point_npc.png}
+\includegraphics{../figs/pa_point_npc.png}
 
 }
 
@@ -1710,6 +1732,7 @@ shown here include all leaves for which \emph{N}\textsubscript{area},
 \emph{P}\textsubscript{area} and CL\textsubscript{area} are available.}
 
 \end{figure}%
+
 
 
 

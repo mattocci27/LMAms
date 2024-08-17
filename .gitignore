@@ -110,3 +110,5 @@ rsync.sh
 sftp.sh
 
 ms/cover.*
+
+/.quarto/
