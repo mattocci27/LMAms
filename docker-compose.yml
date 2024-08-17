@@ -1,0 +1,7 @@
+version: '3'
+services:
+  cmdstan-verse-zsh-lma_4.3.2:
+    image: mattocci/cmdstan-verse-zsh-lma:4.3.2
+    build:
+      context: .
+      dockerfile: Dockerfile
