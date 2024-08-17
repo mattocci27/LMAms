@@ -34,10 +34,10 @@ make
 
 Requirements:
 
-- cmdstan 2.29.2
+- cmdstan 2.34.1
 - quarto
 - latexdiff
-- R (4.2.1)
+- R (4.3.2)
 	- renv (`renv::restore()` will install all the R packages)
 
 ### Running code in Apptainer (Linux)
