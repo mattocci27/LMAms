@@ -6,7 +6,7 @@
     },
     "cmdstan-verse-zsh-lma": {
       "context": ".",
-      "dockerfile": "Dockerfile",
+      "dockerfile": "./Dockerfile",
       "tags": ["mattocci/cmdstan-verse-zsh-lma:4.3.2"],
       "platforms": ["linux/amd64", "linux/arm64"],
       "cache-from": ["docker.io/mattocci/cmdstan-verse-zsh:4.3.2"],
