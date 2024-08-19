@@ -112,3 +112,5 @@ sftp.sh
 ms/cover.*
 
 /.quarto/
+
+!Dockerfile
