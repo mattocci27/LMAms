@@ -1,11 +1,11 @@
 name: Build and push
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'Dockerfile'
       - 'bakefiles/**'
-  workflow_dispatch:
 
 jobs:
   build:
