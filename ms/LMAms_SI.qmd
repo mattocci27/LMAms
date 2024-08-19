@@ -97,9 +97,9 @@ s_eq("var")
 appendix("prior")
 appendix("model_cons")
 appendix("rand")
+appendix("vpart")
 appendix("mass_prop")
 appendix("mass_prop_sim")
-appendix("vpart")
 appendix("stan")
 
 ```
@@ -231,6 +231,25 @@ Again, these tests with randomized data indicate that our model is not inherentl
 
 \newpage
 
+# `r appendix("vpart")`: Variance partitioning
+
+To estimate the contributions of LMAm and LMAs to total LMA variance (where LMA = LMAm + LMAs), we used the following identity:
+
+<!-- $$
+\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \tag{6}
+$$ -->
+
+$$
+\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \qquad(\mathrm{S}6)
+$$
+
+where Var($\cdot$) is variance and Cov($\cdot$) is covariance.
+Thus, the fractions of total LMA variance due to variance in LMAm and LMAs are Cov(LMA, LMAm)/Var(LMA) and Cov(LMA, LMAs)/Var(LMA), respectively.
+We applied this method to the simulated datasets described above and also to estimates of LMAm and LMAs for GLOPNET and Panama sun and shade leaves.
+Note that Cov(LMA, LMAs)/Var(LMA) can be greater than 100% when there is a negative covariance between LMA and LMAm.
+
+To estimate the variation in each LMA component between and within leaf habits (evergreen vs. deciduous), sites (wet vs. dry), and light (sun vs. shade), we used ANOVA.
+Those post-hoc analyes were performed with posterior median parameter values.
 
 # `r appendix("mass_prop")`: Understanding relationships between photosynthetic capacity and LMA
 
@@ -352,25 +371,6 @@ We also used Eqs. S5.1-S5.2 to create the simulated LMA datasets in `r fig("hypo
 *A*~area~ values were generated using `r eq("Aarea")` and Eq. S1.
 Based on our GLOPNET results, the standard deviations of ln(LMAs) and ln(*A*~area~) were set to `r para$GL$LMAs_sig_gl` and 0.31, respectively, and other GLOPNET parameter values are listed above.
 
-# `r appendix("vpart")`: Variance partitioning
-
-To estimate the contributions of LMAm and LMAs to total LMA variance (where LMA = LMAm + LMAs), we used the following identity:
-
-<!-- $$
-\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \tag{6}
-$$ -->
-
-$$
-\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \qquad(\mathrm{S}6)
-$$
-
-where Var($\cdot$) is variance and Cov($\cdot$) is covariance.
-Thus, the fractions of total LMA variance due to variance in LMAm and LMAs are Cov(LMA, LMAm)/Var(LMA) and Cov(LMA, LMAs)/Var(LMA), respectively.
-We applied this method to the simulated datasets described above and also to estimates of LMAm and LMAs for GLOPNET and Panama sun and shade leaves.
-Note that Cov(LMA, LMAs)/Var(LMA) can be greater than 100% when there is a negative covariance between LMA and LMAm.
-
-To estimate the variation in each LMA component between and within leaf habits (evergreen vs. deciduous), sites (wet vs. dry), and light (sun vs. shade), we used ANOVA.
-Those post-hoc analyes were performed with posterior median parameter values.
 
 \newpage
 
