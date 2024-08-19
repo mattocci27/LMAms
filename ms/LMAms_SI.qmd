@@ -13,6 +13,8 @@ crossref:
       reference-prefix: Fig. S
       space-before-numbering: false
       latex-list-of-description: Supplementary Figure
+project:
+  execute-dir: ms
 format:
   html:
     theme: spacelab #readable #sandstone #spacelab #flatly
@@ -52,6 +54,7 @@ format:
 
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+knitr::opts_knit$set(root.dir = here::here())
 ```
 
 ```{r caching, include=FALSE}
@@ -59,7 +62,6 @@ library(knitr)
 library(kableExtra)
 library(tidyverse)
 library(here)
-here::i_am("ms/LMAms_SI.qmd")
 para <- yaml::yaml.load_file(here("yml/para.yml"))
 para_val <-  para
 source(here("R/render.R"))
@@ -213,7 +215,7 @@ Points and lines indicate posterior medians and 95% credible intervals (CIs), re
 Although intercepts were significant, the scaling parameters ($\alpha_{m, s}$, $\beta_{s}$, and $\gamma_{m, s}$) obtained for the randomized datasets were not significantly different from zero.
 These tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
 
-![](`r here("figs/coef_sim_gl.png")`)
+![](../figs/coef_sim_gl.png)
 
 \newpage
 
@@ -225,7 +227,7 @@ Details as for Figure AS1.
 The scaling parameters ($\alpha_{m}$, $\beta_{s}$, and $\gamma_{m, s}$) and the effect of light on leaf lifespan ($\theta$) were not significantly different from zero in the randomized datasets did not show any patterns.
 Again, these tests with randomized data indicate that our model is not inherently prone to overfitting or to producing patterns from noise.
 
-![](`r here("figs/coef_sim_pa.png")`)
+![](../figs/coef_sim_pa.png)
 
 \newpage
 
@@ -376,7 +378,7 @@ Those post-hoc analyes were performed with posterior median parameter values.
 
 ::: {#suppfig-box_inter}
 
-![](`r here("figs/box_inter.png")`)
+![](../figs/box_inter.png)
 
 Boxplots comparing leaf mass per area (LMA), photosynthetic leaf mass per area (LMAm; posterior medians), and structural leaf mass per area (LMAs; posterior medians) across
 (a) deciduous (Dev) and evergreen (Eve) leaves and
@@ -392,7 +394,7 @@ Estiamtes are from the best Panama model (`r table("looic")`).
 
 ::: {#suppfig-box_frac_de}
 
-![](`r here("figs/box_frac_de.png")`)
+![](../figs/box_frac_de.png)
 
 Boxplots comparing posterior medians of the latent variable *f* (the fraction of total LMA comprised by LMAm) across deciduous (Dev) and evergreen (Eve) leaves.
 Left: GLOPNET dataset.
@@ -409,7 +411,7 @@ Estiamtes are from the best GLOPNET and Panama models (`r table("looic")`).
 
 ::: {#suppfig-box_frac_pa}
 
-![](`r here("figs/box_frac_pa.png")`)
+![](../figs/box_frac_pa.png)
 
 Boxplots comparing posterior medians of the latent variable *f* (the fraction of total LMA comprised by LMAm) across sites (wet and dry) and canopy strata (sun and shade) in Panama.
 Left: All leaf samples in the Panama dataset.
@@ -425,7 +427,7 @@ Estiamtes are from the best GLOPNET and Panama models (`r table("looic")`).
 
 ::: {#suppfig-mass_prop_sim}
 
-![](`r here("figs/mass_prop_sim.png")`){#fig-mass_prop_sim}
+![](../figs/mass_prop_sim.png){#fig-mass_prop_sim}
 
 The relationships between mass dependency of *A*~max~ (*b* in `r eq("mass")` in the main text) and LMAs variance (relative to total LMA variance; `r eq("var")`) for the different values of the scaling exponents $\alpha_m$ and $\alpha_s$ (`r eq("Aarea")`).
 (a) The scaling exponent $\alpha_m$ varies from 0.1 to 1.0 while the scaling exponent $\alpha_s$ is constant ($\alpha_s$ = `r para$GL$as`).
@@ -445,7 +447,7 @@ $\sigma_m$ = `r para$GL$LMAm_sig_gl`.
 
 ::: {#suppfig-mass_prop_comp}
 
-![](`r here("figs/mass_prop_comp.png")`)
+![](../figs/mass_prop_comp.png)
 
 The relationships between mass dependency of *A*~max~ (*b* in `r eq("mass")` in the main text) and LMAs variance (relative to total LMA variance; `r eq("var")`) for simulated datasets generated from a normal distribution (N) vs. a multivariate normal distribution (MVN).
 Parameter values are based on the best Panama model (`r table("looic")`) and `r appendix("mass_prop_sim")`:
@@ -463,7 +465,7 @@ $\rho$ = `r para$PA$rho_shade`.
 
 ::: {#suppfig-gl_point_np2}
 
-![](`r here("figs/gl_point_np2.png")`)
+![](../figs/gl_point_np2.png)
 
 Measured traits related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are positively correlated with LMA and with estimates (posterior medians) of the metabolic and structural LMA components (LMAm and LMAs, respectively) in the GLOPNET dataset.
 LMAm yields more consistent relationships compared to LMA and LMAs; e.g., evergreen and deciduous leaves align along a single relationship in panel b, but not in panels a or c.
@@ -475,7 +477,7 @@ Pearson correlation coefficients (*r*) for LMA (left column) and posterior media
 
 ::: {#suppfig-pa_point_npc_par}
 
-![](`r here("figs/pa_point_npc_par.png")`)
+![](../figs/pa_point_npc_par.png)
 
 Partial regression plots for nitrogen, phosphorus and cellulose per-unit leaf area (*N*~area~, *P*~area~ and CL~area~).
 (a) LMAs variation is controlled.
@@ -489,7 +491,7 @@ Posterior medians of partial correlation coefficients ($\bar{\rho}$) are shown.
 
 ::: {#suppfig-LMAm_LMAs}
 
-![](`r here("figs/ps_point.png")`)
+![](../figs/ps_point.png)
 
 Pearson correlation coefficients for posterior medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama datasets.
 The non-significant or weak *r* values indicate that a single axis could not accurately represent the two-dimensional space.
