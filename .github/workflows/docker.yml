@@ -5,6 +5,7 @@ on:
     paths:
       - 'Dockerfile'
       - 'bakefiles/**'
+      - '.github/workflows/**'
   workflow_dispatch:
     inputs:
       logLevel:
