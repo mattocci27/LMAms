@@ -235,13 +235,10 @@ Again, these tests with randomized data indicate that our model is not inherentl
 
 To estimate the contributions of LMAm and LMAs to total LMA variance (where LMA = LMAm + LMAs), we used the following identity:
 
-<!-- $$
-\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \tag{6}
-$$ -->
+$$
+\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \qquad(\mathrm{S}4)
+$$
 
-$$
-\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \qquad(\mathrm{S}6)
-$$
 
 where Var($\cdot$) is variance and Cov($\cdot$) is covariance.
 Thus, the fractions of total LMA variance due to variance in LMAm and LMAs are Cov(LMA, LMAm)/Var(LMA) and Cov(LMA, LMAs)/Var(LMA), respectively.
@@ -267,7 +264,7 @@ A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i \tag{5}
 $$ -->
 
 $$
-A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i \qquad(\mathrm{S}4)
+A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i \qquad(\mathrm{S}5)
 $$
 
 where LMA is the sum of LMAm and LMAs `r eq("LMA")`, *c* is a fitted constant, and *b* is an index of mass-dependence as illustrated by the following cases [@Osnas2013; @Osnas2018]: if *b* = 0, then *A*~area~ is independent of LMA, which implies that whole-leaf *A*~max~ is proportional to leaf area;
@@ -296,11 +293,11 @@ To create simulated datasets to study relationships between photosynthetic capac
 For GLOPNET and Panama sun leaves, results from the LMAm-LMAs models (Eqs. `r eq_num("Aarea")`-`r eq_num("LL")`) indicated little correlation between LMAm and LMAs, so we used univariate normal distributions (N) to generate the LMAm and LMAs samples:
 
 $$
-\mathrm{ln}(\mathrm{LMAm}) \sim \mathrm{N}(\mathrm{ln}(\mu_m), \sigma_m) \qquad(\mathrm{S}5.1)
+\mathrm{ln}(\mathrm{LMAm}) \sim \mathrm{N}(\mathrm{ln}(\mu_m), \sigma_m) \qquad(\mathrm{S}6.1)
 $$
 
 $$
-\mathrm{ln}(\mathrm{LMAs}) \sim \mathrm{N}(\mathrm{ln}(\mu_s), \sigma_s) \qquad(\mathrm{S}5.2)
+\mathrm{ln}(\mathrm{LMAs}) \sim \mathrm{N}(\mathrm{ln}(\mu_s), \sigma_s) \qquad(\mathrm{S}6.2)
 $$
 
 where
@@ -322,7 +319,7 @@ $$
 \ln(\mu_{s}) &
 \end{matrix},
 \boldsymbol{\Sigma}
-\right] \qquad(\mathrm{S}5.3)
+\right] \qquad(\mathrm{S}6.3)
 $$
 
 $$
@@ -330,7 +327,7 @@ $$
 \begin{bmatrix}
 \sigma_m^2 & \rho \sigma_m \sigma_s \\
 \rho \sigma_m \sigma_s & \sigma_s^2 \\
-\end{bmatrix} \qquad(\mathrm{S}5.4)
+\end{bmatrix} \qquad(\mathrm{S}6.4)
 $$
 
 where $\boldsymbol{\Sigma}$ is the covariance matrix of ln(LMAm) and ln(LMAs), and

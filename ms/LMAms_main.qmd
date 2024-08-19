@@ -329,7 +329,7 @@ Each of these traits (*A*~area~, *R*~area~ and LL) had a strong positive relatio
 In the best GLOPNET model (lowest LOOIC), *A*~area~ increased with LMAm and decreased with LMAs, *R*~area~ increased with LMAm and had little dependence on LMAs, and LL increased with LMAs and was independent of LMAm (Tables 1-2; @fig-gl_point).
 
 In the best Panama model, *A*~area~ increased with LMAm and was independent of LMAs, *R*~area~ increased with LMAm and had little dependence on LMAs, and LL increased with LMAs and was independent of LMAm (Tables 1-2; @fig-pa_point).
-The best Panama model also included the effect of light (sun vs. shade) on LL (Tables 1-2;  @fig-ll_point).
+The best Panama model also included the effect of light with shade leaves having longer LL than sun leaves for a given LMAs (Tables 1-2;  @fig-ll_point).
 The light effect was not tested for GLOPNET because GLOPNET does not report canopy position.
 
 ## Nearly all leaf dark respiration is associated with metabolic leaf tissue mass.
@@ -340,28 +340,30 @@ Thus, although building costs appear similar for different leaf chemical compone
 ## Evergreen leaves have greater LMAs than deciduous leaves, and sun leaves have both greater LMAm and LMAs than shade leaves.
 
 Leaf habit (evergreen vs. deciduous) explained very little variation in LMAm but substantial variation in LMAs for both GLOPNET and Panama ([@fig-vpart]a-b).
-Despite the relatively large residuals in LMAs ([@fig-vpart]a-b), the higher total LMA in evergreen compared to deciduous leaves was primarily due to differences in LMAs (Figs. [-@fig-box_de], `r s_fig_num("box_inter")`, and `r s_fig_num("box_frac_de")`).
-In the Panama dataset, light (sun vs. shade) explained much more variation in LMAm than LMAs, whereas site (wet vs. dry) explained much more variation in LMAs than LMAm ([@fig-vpart]c).
-Panama wet-site leaves had higher total LMA than dry-site leaves due to greater LMAs when we compared the same canopy strata (Figs. [-@fig-box_pa] and `r s_fig_num("box_inter")`).
+The higher total LMA in evergreen compared to deciduous leaves was primarily due to differences in LMAs (Figs. [-@fig-box_de], `r s_fig_num("box_inter")`, and `r s_fig_num("box_frac_de")`).
+In the Panama dataset, light (sun vs. shade) explained more variation in LMAm than LMAs, whereas site (wet vs. dry) explained much more variation in LMAs than LMAm ([@fig-vpart]c).
+Panama wet-site leaves had higher total LMA than dry-site leaves due to greater wet-site LMAs for both sun and shade leaves (Figs. [-@fig-box_pa] and `r s_fig_num("box_inter")`).
 In contrast, Panama sun leaves had higher total LMA than shade leaves primarily due to greater LMAm, with a smaller but significant contribution from LMAs (Figs. [-@fig-box_pa] and `r s_fig_num("box_inter")`).
-Thus, LMAs comprised a larger fraction of total LMA for shade leaves than for sun leaves (`r s_fig("box_frac_de")`).
+LMAs comprised a larger fraction of total LMA for shade leaves than for sun leaves (`r s_fig("box_frac_de")`).
 
 ## LMA variance components affect the area- vs. mass-dependence of leaf photosynthetic capacity (*A*~max~).
 
-Analysis of simulated data showed that the percent of LMA variation due to LMAs variation (`r eq("var")`) strongly affected the area- vs. mass-dependence of *A*~max~ (i.e., the degree to which whole-leaf *A*~max~ depends on leaf area or mass; @Osnas2013; @Osnas2018).
-Generally, mass-dependence of *A*~max~ decreased (area-dependence increased) with increasing LMAs variance (@fig-mass_prop).
-Other factors, including the sensitivity of *A*~max~ per-unit leaf area (*A*~area~) to variation in LMAm and LMAs ($\alpha_m$ and $\alpha_s$ in `r eq("Aarea")`) and covariance between LMAm and LMAs, also affect the mass-dependence of *A*~max~ (@fig-mass_prop, Figs. `r s_fig_num("mass_prop_sim")`-`r s_fig_num("mass_prop_comp")`).
-For example, LMAs variance was relatively low in GLOPNET (`r var_val$GL |> round(0)`% of total LMA variance).
-However, variation in *A*~max~ in GLOPNET was strongly area-dependent.
-This is because the relatively weak dependence of *A*~area~ on LMAm and the negative dependence of *A*~area~ on LMAs (Table 2) led to a weak overall dependence of *A*~area~ on LMA.
-Thus, mass-dependence of *A*~max~ in GLOPNET was similar or weaker than in the Panama data, despite LMAs variance comprising a larger fraction of LMA variance in Panama (`r var_val$sun_intra |> round(0)`% and `r var_val$shade_intra |> floor()`% of total LMA variance for Panama sun and shade leaves, respectively).
+Analysis of simulated data showed that the percent of LMA variation due to LMAs variation strongly affected the area- vs. mass-dependence of *A*~max~ (i.e., the degree to which whole-leaf *A*~max~ depends on leaf area or mass; see `r appendix("vpart")`).
+As expected, mass-dependence of *A*~max~ was generally weak (area-dependence was strong) when LMA variance was dominated by LMAs (@fig-mass_prop).
+In this case, *A*~max~ per-unit leaf area (*A*~area~)  and LMA are not strongly correlated because LMA variance is dominated by structural mass (LMAs) that does not directly contribute to photosynthesis (and whole-leaf *A*~max~  thus depends primarily on leaf area rather than mass).
+
+Factors other than LMA variance components also affected the area- vs. mass-dependence of *A*~max~ , including the sensitivity of *A*~area~ to variation in LMAm and LMAs ($\alpha_m$ and $\alpha_s$ in `r eq("Aarea")`) and covariance between LMAm and LMAs (@fig-mass_prop, Figs. `r s_fig_num("mass_prop_sim")`-`r s_fig_num("mass_prop_comp")`).
+For example, in GLOPNET, LMAs variance was relatively low (`r var_val$GL |> round(0)`% of total LMA variance), yet *A*~max~ was strongly area-depedent.
+Thus, in GLOPNET, strong area-dependence of *A*~max~ did not emerge from high LMAs variance, but instead reflected a relatively weak dependence of *A*~area~ on LMAm and a negative dependence of *A*~area~ on LMAs (Table 2), which together led to a weak dependence of *A*~area~  on LMA.
+These factors resulted in similar mass-dependence of *A*~max~ across GLOPNET and Panama datasets, despite LMAs variance comprising a larger fraction of LMA variance in Panama (`r var_val$sun_intra |> round(0)`% and `r var_val$shade_intra |> floor()`%  of total LMA variance for Panama sun and shade leaves, respectively) compared to GLOPNET (`r var_val$GL |> round(0)`%; @fig-mass_prop).
+
 
 ## Nitrogen and phosphorus per-unit leaf area are strongly correlated with LMAm, and cellulose per-unit leaf area is strongly correlated with total LMA.
 
 In the GLOPNET dataset, *N*~area~ and *P*~area~ had strong positive correlations with LMAm, but only weak correlations with LMAs (`r s_fig("gl_point_np2")`).
 Similarly, in the Panama dataset, *N*~area~ and *P*~area~ had strong positive correlations with LMAm but not with LMAs (@fig-pa_npc).
 Cellulose content per-unit leaf area (CL~area~), which was only available for the Panama dataset, was most strongly correlated with total LMA, but also showed a clear relationship with LMAs that was consistent across canopy positions and sites (@fig-pa_npc).
-Partial regression plots showed that the higher *N*~area~, *P*~area~, and CL~area~ in sun leaves (compared to shade leaves; @fig-pa_npc) was due to sun leaves having higher LMAm than shade leaves (`r s_fig("pa_point_npc_par")`).
+Partial regression plots showed that the higher *N*~area~, *P*~area~, and CL~area~ in sun leaves (compared to shade leaves; @fig-pa_npc) was primarily due to sun leaves having higher LMAm than shade leaves (`r s_fig("pa_point_npc_par")`).
 
 # Discussion
 

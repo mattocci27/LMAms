@@ -498,7 +498,7 @@ To estimate the contributions of LMAm and LMAs to total LMA variance
 (where LMA = LMAm + LMAs), we used the following identity:
 
 \[
-\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \qquad(\mathrm{S}6)
+\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \qquad(\mathrm{S}4)
 \]
 
 where Var(\(\cdot\)) is variance and Cov(\(\cdot\)) is covariance. Thus,
@@ -551,7 +551,7 @@ quantified the \emph{A}\textsubscript{max} vs.~LMA relationship
 following Osnas et al. (\citeproc{ref-Osnas2018}{2018}):
 
 \[
-A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i \qquad(\mathrm{S}4)
+A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i \qquad(\mathrm{S}5)
 \]
 
 where LMA is the sum of LMAm and LMAs Eq. 1, \emph{c} is a fitted
@@ -618,11 +618,11 @@ used univariate normal distributions (N) to generate the LMAm and LMAs
 samples:
 
 \[
-\mathrm{ln}(\mathrm{LMAm}) \sim \mathrm{N}(\mathrm{ln}(\mu_m), \sigma_m) \qquad(\mathrm{S}5.1)
+\mathrm{ln}(\mathrm{LMAm}) \sim \mathrm{N}(\mathrm{ln}(\mu_m), \sigma_m) \qquad(\mathrm{S}6.1)
 \]
 
 \[
-\mathrm{ln}(\mathrm{LMAs}) \sim \mathrm{N}(\mathrm{ln}(\mu_s), \sigma_s) \qquad(\mathrm{S}5.2)
+\mathrm{ln}(\mathrm{LMAs}) \sim \mathrm{N}(\mathrm{ln}(\mu_s), \sigma_s) \qquad(\mathrm{S}6.2)
 \]
 
 where \(\mathrm{ln}(\mu_m)\) and \(\mathrm{ln}(\mu_s)\) are the means of
@@ -648,7 +648,7 @@ distribution (MVN) to generate the LMAm and LMAs samples:
 \ln(\mu_{s}) &
 \end{matrix},
 \boldsymbol{\Sigma}
-\right] \qquad(\mathrm{S}5.3)
+\right] \qquad(\mathrm{S}6.3)
 \]
 
 \[
@@ -656,7 +656,7 @@ distribution (MVN) to generate the LMAm and LMAs samples:
 \begin{bmatrix}
 \sigma_m^2 & \rho \sigma_m \sigma_s \\
 \rho \sigma_m \sigma_s & \sigma_s^2 \\
-\end{bmatrix} \qquad(\mathrm{S}5.4)
+\end{bmatrix} \qquad(\mathrm{S}6.4)
 \]
 
 where \(\boldsymbol{\Sigma}\) is the covariance matrix of ln(LMAm) and
