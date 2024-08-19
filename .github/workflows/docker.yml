@@ -44,4 +44,4 @@ jobs:
 
       - name: Build and push Docker images
         run: |
-          docker buildx bake -f bakefiles/bakefile.json --push cmdstan-verse-zsh-lma
+          docker buildx bake -f bakefiles/bakefile.json --push cmdstan-verse-zsh-lma --no-cache
