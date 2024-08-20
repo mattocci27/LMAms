@@ -796,21 +796,19 @@ respiration rate (\emph{R}\textsubscript{dark}), and leaf lifespan (LL)
 relative to a simpler one-dimensional model based on total LMA.
 Furthermore, LMAm and LMAs showed clear relationships with independent
 model evaluation data (nitrogen, phosphorus, and cellulose content
-per-unit leaf area). In our analysis, LMAm and LMAs are model-inferred
-(rather than observed) traits. Nevertheless, several observations
-suggest that we can derive meaningful insights from these modeled LMA
-components. Firstly, our analysis revealed several patterns that are
-consistent with previous analyses of measured traits (summarized below).
-Secondly, although our modeling approach requires many parameters to
-partition LMA into LMAm and LMAs (one latent variable per leaf sample),
-which could lead to over-fitting or spurious results, our model
-performed poorly (often failing to converge) when applied to randomized
-data. Thus, the model structure is not prone to creating signals from
-noise. Together, these observations lend credibility to our
-model-inferred estimates of LMAm and LMAs. We first summarize and
-interpret our model results in the context of previous studies. We then
-discuss the new insights derived from our analysis and implications for
-vegetation models, including the land components of Earth system models.
+per-unit leaf area).
+
+Although LMAm and LMAs are model-inferred (rather than observed) traits
+in our study, two observations suggest that we can derive meaningful
+insights from these modeled LMA components. Firstly, our analysis
+revealed patterns that are consistent with previous analyses of measured
+traits (summarized below). Secondly, although our modeling approach
+requires many parameters to partition LMA into LMAm and LMAs (one latent
+variable per leaf sample), which could lead to over-fitting or spurious
+results, our model performed poorly (often failing to converge) when
+applied to randomized data. Thus, the model structure is not prone to
+creating signals from noise. Together, these observations lend
+credibility to our model-inferred estimates of LMAm and LMAs.
 
 \subsection{\texorpdfstring{Modeling \emph{A}\textsubscript{max},
 \emph{R}\textsubscript{dark}, and LL as functions of metabolic and
@@ -833,8 +831,7 @@ shade leaves in a single analysis. In any case, an increase in
 \emph{A}\textsubscript{area} with LMAm but not LMAs, as observed for
 both GLOPNET and Panama, is consistent with the view that LMA is a
 composite trait comprised of metabolically active and inactive
-components (\citeproc{ref-Lichstein2021}{Lichstein et al., 2021};
-\citeproc{ref-Osnas2018}{Osnas et al., 2018};
+components (\citeproc{ref-Osnas2018}{Osnas et al., 2018};
 \citeproc{ref-Poorter2009}{Poorter et al., 2009}).
 
 \emph{R}\textsubscript{dark} per-unit leaf area
@@ -845,13 +842,14 @@ mass components, such as cellulose, lignin, and other fibres
 (\citeproc{ref-Kitajima2016}{Kitajima et al., 2016},
 \citeproc{ref-Kitajima2012}{2012}; \citeproc{ref-Onoda2011}{Onoda et
 al., 2011}). Median values of LMAs, as a percent of total LMA, were
-\textasciitilde60\% for evergreen species and \textasciitilde40\% for
-deciduous species (Fig. S2), and 15-40\% for shade leaves and 50-70\%
-for sun leaves (Fig. S3). These estimates align with measurements of
-cell wall (fibre) content from a global dataset (14--77\%, median 47\%
-of total leaf mass, with higher values for shade than sun leaves; Onoda
-et al.~2011) and a Panama study site (Barro Colorado Island, BCI:
-\textasciitilde50\% mean across species, with higher values for shade
+\textasciitilde60\% for evergreen species vs.~\textasciitilde40\% for
+deciduous species (Fig. S2), and \textasciitilde70\% for shade leaves
+vs.~\textasciitilde40\% for sun leaves (Fig. S3). These estimates align
+with measurements of cell wall (fibre) content from a global dataset
+(median 47\% of total leaf mass across species and canopy positions,
+with higher values for shade than sun leaves; Onoda et al.~2011) and a
+Panama study site (Barro Colorado Island, BCI: \textasciitilde50\% mean
+across species and canopy positions, with higher values for shade
 leaves; Kitajima et al.~2016).
 
 LL increased with LMAs but was unrelated to LMAm (Figs.
@@ -869,8 +867,8 @@ with increasing LMA within species from shade to sun
 \citeproc{ref-Osnas2018}{Osnas et al., 2018};
 \citeproc{ref-Russo2016}{Russo and Kitajima, 2016}). The failure of LMAs
 to provide robust predictions of LL across canopy positions may reflect
-factors unlreated to leaf toughness - e.g., how optimal LL depends on
-light availability (\citeproc{ref-Kikuzawa1991}{Kikuzawa, 1991}) - as
+factors unlreated to leaf toughness − e.g., how optimal LL depends on
+light availability (\citeproc{ref-Kikuzawa1991}{Kikuzawa, 1991}) − as
 well as variation in leaf toughness for a given value of LMAs. In a
 global meta-analysis, leaf toughness was strongly related to toughness
 per-unit leaf tissue density, but only weakly related to leaf thickness
@@ -878,11 +876,12 @@ or density (\citeproc{ref-Onoda2011}{Onoda et al., 2011}). Accordingly,
 on BCI, Panama, the difference between shade and sun leaves was greater
 for cellulose content (\% of leaf mass) than cell wall content (which
 includes cellulose, as well as other fibres that provide less structural
-toughness). Thus, just as not all LMA is equal, it is almost certainly
-true that not all LMAs is equal, with some LMAs components (e.g.,
-cellulose) imparting greater toughness and longevity than others (e.g.,
-lignin in secondary cell walls of vascular tissue,
-\citeproc{ref-Kitajima2016}{Kitajima et al., 2016}).
+toughness) (\citeproc{ref-Kitajima2016}{Kitajima et al., 2016}). Thus,
+just as not all LMA is equal, it is almost certainly true that not all
+LMAs is equal, with some LMAs components (e.g., cellulose) imparting
+greater toughness and longevity than others (e.g., lignin in secondary
+cell walls of vascular tissue, \citeproc{ref-Kitajima2016}{Kitajima et
+al., 2016}).
 
 In summary, the dependencies of \emph{A}\textsubscript{area},
 \emph{R}\textsubscript{area}, and LL on model-inferred values of LMAm
@@ -932,7 +931,7 @@ assemblages where LMA variation is largely due to variation in
 structural leaf mass components that contribute to toughness but not
 photosynthetic capacity, metabolic traits (including
 \emph{A}\textsubscript{max}) should be primarily area-dependent rather
-than mass-dependent (parameter \emph{b} in Eq. 5, with \emph{b}
+than mass-dependent (parameter \emph{b} in Eq. S5, with \emph{b}
 \textgreater{} 0.5 indicating greater mass- than area-dependence). Our
 simulations show that all else being equal, area-dependence of
 \emph{A}\textsubscript{max} increases (mass-dependence decreases) as
@@ -941,12 +940,12 @@ Osnas et al. (\citeproc{ref-Osnas2018}{2018}). However, our analysis
 also revealed complexities that were not anticipated by Osnas et al.
 (\citeproc{ref-Osnas2018}{2018}). For example, if
 \emph{A}\textsubscript{area} only weakly increases with LMAm and/or
-decreases with LMAs (as in GLOPNET; Table 2), then
-\emph{A}\textsubscript{max} can be strongly area-dependent (weakly
-mass-dependent) even if LMAs accounts for relatively little LMA variance
-(Fig.~\ref{fig-mass_prop}). We conclude that area- vs.~mass-dependence
-depends not only LMAs variance, but also on how metabolic traits vary
-with different LMA components.
+\emph{A}\textsubscript{area} decreases with LMAs (as in GLOPNET; Table
+2), then \emph{A}\textsubscript{max} can be strongly area-dependent
+(weakly mass-dependent) even if LMAs accounts for relatively little LMA
+variance (Fig.~\ref{fig-mass_prop}). We conclude that area-
+vs.~mass-dependence depends not only LMAs variance, but also on how
+metabolic traits vary with different LMA components.
 
 Several factors could contribute to the less-than-proportional increase
 in \emph{A}\textsubscript{area} with LMAm (\(\alpha_p\) \textless{} 1
@@ -956,25 +955,24 @@ diffusion pathway (\citeproc{ref-Evans2009}{Evans et al., 2009}).
 Similarly, high LMAm may lead to a high level of chloroplast
 self-shading within a leaf (\citeproc{ref-Terashima2011}{Terashima et
 al., 2011}). Both of these factors would decrease the marginal benefit
-of additional units of LMAm, and this marginal decrease may be
-especially strong in GLOPNET due to its large LMAm range (3.2 - 594 g
-m\textsuperscript{2}) relative to Panama (1.9 - 133 g
-m\textsuperscript{2}).
+of additional LMAm, and this marginal decrease may be especially strong
+in GLOPNET due to its large LMAm range (3.2 - 594 g
+m\textsuperscript{2}, according to our model results) relative to Panama
+(1.9 - 133 g m\textsuperscript{2}).
 
 Finally, while much of the model-inferred LMAm may be directly or
-indirectly related to photosynthesis, `LMAm' may also include metabolic
+indirectly related to photosynthesis, LMAm may also include metabolic
 leaf mass unrelated to photosynthesis and/or non-metabolic leaf mass
-that is statistically assigned (by default) to LMAm simply because it
+that is, in our modeling framework, attributed to LMAm simply because it
 does not affect LL. For example, non-structural carbohydrates, which are
 ignored in our model, can account for 5-8\% of leaf mass in deciduous
 species (\citeproc{ref-Wurth2005}{Würth et al., 2005}) and up to 20\% of
 leaf mass in evergreen species
-(\citeproc{ref-Martinez-Vilalta2016}{Martínez‐Vilalta et al., 2016}).
-Although scaling parameters in our model allow us to include
-non-metabolic leaf mass in LMAm, a more refined model that accounts for
-more than two LMA components may reveal stronger relationships between
-metabolic traits (\emph{A}\textsubscript{area} and
-\emph{R}\textsubscript{area}) and LMAm.
+(\citeproc{ref-Martinez-Vilalta2016}{Martínez‐Vilalta et al., 2016}). A
+more refined model that accounts for more than two LMA components may
+reveal stronger relationships between metabolic traits
+(\emph{A}\textsubscript{area} and \emph{R}\textsubscript{area}) and LMA
+components than in the present study.
 
 In addition to providing insights as to why metabolic traits tend to be
 area-dependent across species, our analysis also helps explain why these
@@ -987,22 +985,24 @@ S1), which should lead to strong mass-dependence of
 and number of palisade mesophyll cells with increasing light levels
 (\citeproc{ref-Onoda2008}{Onoda et al., 2008};
 \citeproc{ref-Terashima2011}{Terashima et al., 2011}). In contrast to
-our interspecific analysis within sun and shade leaves
-(Fig.~\ref{fig-mass_prop}), estimates of intraspecific mass-dependence
-of metabolic traits across light levels are around 0.8-1.0 for the same
-Panama dataset (\citeproc{ref-Osnas2018}{Osnas et al., 2018}).
+our interspecific analysis suggesting weak mass-dependence of
+\emph{A}\textsubscript{max} within sun and shade leaves
+(Fig.~\ref{fig-mass_prop}), estimates of intraspecific analysis of the
+same Panama dataset suggests strong mass-dependence of metabolic traits
+across light levels (\citeproc{ref-Osnas2018}{Osnas et al., 2018}).
 
-Although values of \emph{b} greater than 1 are theoretically possible
-(which implies an exponential increase in area-normalized traits with
-increasing LMA), two factors likely constrain the observed values of
-\emph{b}. Firstly, at least some of the LMA increase from shade to sun
-is due to LMAs (Figs. \ref{fig-box_pa} and S1), which may reflect the
-additional LMAs needed to protect and support the high LMAm of sun
-leaves and/or additional LMAs required to withstand hydraulic or other
-stress in the upper canopy. Secondly, as discussed above,
-\emph{A}\textsubscript{area} and \emph{R}\textsubscript{area} increase
-at a less-than-proportional rate with increasing LMAm, which in turn
-moderates the LMA scaling exponent (\emph{b}).
+Although the index of mass-dependence (\emph{b}; Eq. S5) can,
+theoretically, be greater than 1 (impliying an exponential increase in
+area-normalized traits with increasing LMA), two factors likely
+constrain the observed values of \emph{b}. Firstly, at least some of the
+LMA increase from shade to sun is due to LMAs (Figs. \ref{fig-box_pa}
+and S1), which may reflect the additional LMAs needed to protect and
+support the high LMAm of sun leaves and/or additional LMAs required to
+withstand hydraulic or other stress in the upper canopy. Secondly, as
+discussed above, \emph{A}\textsubscript{area} and
+\emph{R}\textsubscript{area} increase at a less-than-proportional rate
+with increasing LMAm, which in turn moderates the LMA scaling exponent
+(\emph{b}).
 
 \subsection{Implications for terrestrial ecosystem
 models}\label{implications-for-terrestrial-ecosystem-models}
@@ -1013,7 +1013,7 @@ components of biogeochemical models (\citeproc{ref-Bonan2002}{Bonan et
 al., 2002}; \citeproc{ref-Moorcroft2001}{Moorcroft et al., 2001};
 \citeproc{ref-Verheijen2013}{Verheijen et al., 2013}), with the ultimate
 goal of adding ecological and physiological realism to coupled Earth
-System Models (ESMs, \citeproc{ref-Moorcroft2006}{Moorcroft, 2006};
+system models (ESMs, \citeproc{ref-Moorcroft2006}{Moorcroft, 2006};
 \citeproc{ref-Wullschleger2014}{Wullschleger et al., 2014}). Recently,
 there has been a proliferation of interest in this topic
 (\citeproc{ref-DantasdePaula2021}{Dantas de Paula et al., 2021};
@@ -1532,7 +1532,7 @@ between photosynthetic capacity (\emph{A}\textsubscript{max}) per-unit
 leaf area and total LMA (equal to LMAm + LMAs). (c) One-dimensional
 relationship between \emph{A}\textsubscript{max} per-unit leaf mass and
 total LMA. Methods used to simulate the data are explained in Appendix
-S6}
+S6.}
 
 \end{figure}%
 
