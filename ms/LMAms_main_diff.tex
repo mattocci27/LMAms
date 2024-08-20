@@ -1,7 +1,7 @@
 % Options for packages loaded elsewhere
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL LMAms_main_old.tex   Tue Aug 20 02:49:13 2024
-%DIF ADD LMAms_main.tex       Tue Aug 20 02:48:41 2024
+%DIF DEL LMAms_main_old.tex   Tue Aug 20 06:38:11 2024
+%DIF ADD LMAms_main.tex       Tue Aug 20 06:37:44 2024
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -437,23 +437,14 @@ not invalidate mass-normalization or the LES
 (\mbox{%DIFAUXCMD
 \citeproc{ref-Westoby2013}{Westoby et al., 2013}}\hspace{0pt}%DIFAUXCMD
 ). This
-multi-dimensionality would, however, have }\DIFaddend important implications for \DIFdelbegin \DIFdel{how trait variation is represented }\DIFdelend \DIFaddbegin \DIFadd{our
-understanding of leaf function (\mbox{%DIFAUXCMD
-\citeproc{ref-Onoda2017}{Onoda et al.,
-2017}}\hspace{0pt}%DIFAUXCMD
-), the role of trait variation in community assembly (e.g.,
-\mbox{%DIFAUXCMD
-\citeproc{ref-Falster2017}{Falster et al., 2017}}\hspace{0pt}%DIFAUXCMD
+multi-dimensionality would, however, have }\DIFaddend important implications for \DIFdelbegin \DIFdel{how trait variation is represented in ecosystem models (\mbox{%DIFAUXCMD
+\citeproc{ref-Bonan2002}{Bonan et al., 2002}}\hspace{0pt}%DIFAUXCMD
 ;
 \mbox{%DIFAUXCMD
-\citeproc{ref-Lichstein2021}{Lichstein et al., 2021}}\hspace{0pt}%DIFAUXCMD
-), and how to
-accurately represent trait variation }\DIFaddend in ecosystem models\DIFdelbegin \DIFdel{(\mbox{%DIFAUXCMD
-\citeproc{ref-Bonan2002}{Bonan et al., 2002}}\hspace{0pt}%DIFAUXCMD
-; \mbox{%DIFAUXCMD
 \citeproc{ref-Sakschewski2016}{Sakschewski et al., 2016}}\hspace{0pt}%DIFAUXCMD
 ).On the one
-hand, mass-normalization has been justified based on economic principles
+hand,
+mass-normalization has been justified based on economic principles
 alone (\mbox{%DIFAUXCMD
 \citeproc{ref-Kikuzawa1991}{Kikuzawa, 1991}}\hspace{0pt}%DIFAUXCMD
 ;
@@ -465,17 +456,20 @@ spectrum (LES), ranging from cheap, low-LMA leaves with a fast rate of
 return per-unit investment to expensive, high-LMA leaves with a slow
 rate of return (\mbox{%DIFAUXCMD
 \citeproc{ref-Wright2004a}{Wright et al., 2004}}\hspace{0pt}%DIFAUXCMD
-)}\DIFdelend \DIFaddbegin \DIFadd{, including
-dynamic global vegetation models }{[}\DIFadd{DGVMs; e.g., Bonan et al.
-(\mbox{%DIFAUXCMD
-\citeproc{ref-Bonan2002}{2002}}\hspace{0pt}%DIFAUXCMD
-); Fisher et al.
-(\mbox{%DIFAUXCMD
-\citeproc{ref-Fisher2015}{2015}}\hspace{0pt}%DIFAUXCMD
-); Sakschewski et al.
-(\mbox{%DIFAUXCMD
-\citeproc{ref-Sakschewski2016}{2016}}\hspace{0pt}%DIFAUXCMD
-)}{]}\DIFaddend .
+}\DIFdelend \DIFaddbegin \DIFadd{our
+understanding of leaf function (\mbox{%DIFAUXCMD
+\citeproc{ref-Onoda2017}{Onoda et al.,
+2017}}\hspace{0pt}%DIFAUXCMD
+), the role of trait variation in community assembly (e.g.,
+\mbox{%DIFAUXCMD
+\citeproc{ref-Falster2017}{Falster et al., 2017}}\hspace{0pt}%DIFAUXCMD
+;
+\mbox{%DIFAUXCMD
+\citeproc{ref-Lichstein2021}{Lichstein et al., 2021}}\hspace{0pt}%DIFAUXCMD
+), and how to
+accurately represent trait variation in ecosystem models, including
+dynamic global vegetation models (DGVMs; e.g., Bonan et al., 2002;
+Fisher et al., 2015; Sakschewski et al., 2016}\DIFaddend ).
 
 To understand why the same data can be interpreted as either supporting
 or opposing the existence of a single dominant axis of leaf trait
@@ -1949,27 +1943,31 @@ included (Fig. S1). Details as for Fig.~\ref{fig-box_de}.}
 %DIFDELCMD < %%%
 \DIFdelendFL \DIFaddbeginFL \centering{
 
-Relationships between mass dependency (\emph{b} in Eq. S5) and LMAs
-variance (relative to total LMA variance; Eq. S7) for the global GLPNET
-dataset, sun leaves in Panama, and shade leaves in Panama. Solid lines
-indicate simulated medians and shaded regions indicate 95\% confidence
-intervals. Each point indicates the estimated values from the empirical
-data and represents interspecific variation (e.g., across species within
-a canopy position in the Panama dataset). The y-axis values indicates if
-photosynthetic capacity (\emph{A}\textsubscript{max}) is is primarily
-mass-dependent (\emph{b} \textgreater{} 0.5) or primarily area-dependent
-(0.5 \textgreater{} \emph{b} \textgreater{} 0), with \emph{b} near 0
-indicating purely area-dependendence (\citeproc{ref-Osnas2018}{Osnas et
-al., 2018}). If \emph{b} \textgreater{} 1, then
-\emph{A}\textsubscript{max} increases exponentially with LMA, which is
-not consistent with observed relationships
-(\citeproc{ref-Osnas2018}{Osnas et al., 2018}). See Appendices S8-S4 for
-details. \includegraphics{../figs/mass_prop_mv.png}
+\includegraphics{../figs/mass_prop_mv.png}
 
 }
 \DIFaddendFL 
 
-\caption{\label{fig-mass_prop}}
+\caption{\label{fig-mass_prop}\DIFaddbeginFL \DIFaddFL{Relationships between mass dependency
+(}\emph{\DIFaddFL{b}} \DIFaddFL{in Eq. S5) and LMAs variance (relative to total LMA variance;
+Eq. S7) for the global GLPNET dataset, sun leaves in Panama, and shade
+leaves in Panama. Solid lines indicate simulated medians and shaded
+regions indicate 95\% confidence intervals. Each point indicates the
+estimated values from the empirical data and represents interspecific
+variation (e.g., across species within a canopy position in the Panama
+dataset). The y-axis values indicates if photosynthetic capacity
+(}\emph{\DIFaddFL{A}}\DIFaddFL{\textsubscript{max}) is is primarily mass-dependent (}\emph{\DIFaddFL{b}}
+\DIFaddFL{\textgreater{} 0.5) or primarily area-dependent (0.5 \textgreater{}
+}\emph{\DIFaddFL{b}} \DIFaddFL{\textgreater{} 0), with }\emph{\DIFaddFL{b}} \DIFaddFL{near 0 indicating purely
+area-dependence (\mbox{%DIFAUXCMD
+\citeproc{ref-Osnas2018}{Osnas et al., 2018}}\hspace{0pt}%DIFAUXCMD
+). If
+}\emph{\DIFaddFL{b}} \DIFaddFL{\textgreater{} 1, then }\emph{\DIFaddFL{A}}\DIFaddFL{\textsubscript{max} increases
+exponentially with LMA, which is not consistent with observed
+relationships (\mbox{%DIFAUXCMD
+\citeproc{ref-Osnas2018}{Osnas et al., 2018}}\hspace{0pt}%DIFAUXCMD
+). See
+Appendices S4-S6 for details.}\DIFaddendFL }
 
 \end{figure}%
 

@@ -167,7 +167,8 @@ In global analyses, normalizing leaf traits by mass/LL yields similarly weak cor
 
 Area-dependence of metabolic traits and the inconsistent correlation strengths obtained from different normalizers [@Lloyd2013; @Osnas2013] suggest that strong mass-based correlations should not, by themselves, be taken as strong evidence for a single dominant axis of leaf functional diversity.
 The existence of multiple important axes of leaf functional diversity would not invalidate mass-normalization or the LES [@Westoby2013].
-This multi-dimensionality would, however, have important implications for our understanding of leaf function [@Onoda2017], the role of trait variation in community assembly [e.g., @Falster2017; @Lichstein2021], and how to accurately represent trait variation in ecosystem models, including dynamic global vegetation models [DGVMs; e.g., @Bonan2002; @Fisher2015; @Sakschewski2016].
+This multi-dimensionality would, however, have important implications for our understanding of leaf function [@Onoda2017], the role of trait variation in community assembly [e.g., @Falster2017; @Lichstein2021], and how to accurately represent trait variation in ecosystem models, including dynamic global vegetation models (DGVMs; e.g., Bonan et al., 2002; Fisher et al., 2015; Sakschewski et al., 2016).
+<!-- (DGVMs; e.g., [@Bonan2002; @Fisher2015; @Sakschewski2016]) -->
 
 To understand why the same data can be interpreted as either supporting or opposing the existence of a single dominant axis of leaf trait variation, consider the conceptual model proposed by @Osnas2018, in which LMA is comprised of two additive components:
 metabolic LMA (LMAm) -- the mass per area of chloroplasts and other metabolically active leaf components that contribute directly to photosynthesis and respiration -- and structural LMA (LMAs) -- the mass per area of structural leaf components that contribute to toughness and durability [@Kitajima2012; @Kitajima2016; @Onoda2017].
@@ -667,13 +668,14 @@ Details as for [@fig-box_de].
 
 ::: {#fig-mass_prop}
 
+![](../figs/mass_prop_mv.png)
+
 Relationships between mass dependency (*b* in `r s_eq("mass")`) and LMAs variance (relative to total LMA variance; `r s_eq("var")`) for the global GLPNET dataset, sun leaves in Panama, and shade leaves in Panama.
 Solid lines indicate simulated medians and shaded regions indicate 95% confidence intervals.
 Each point indicates the estimated values from the empirical data and represents interspecific variation (e.g., across species within a canopy position in the Panama dataset).
-The y-axis values indicates if photosynthetic capacity (*A*~max~) is is primarily mass-dependent (*b* > 0.5) or primarily area-dependent (0.5 > *b* > 0), with *b* near 0 indicating  purely area-dependendence [@Osnas2018].
+The y-axis values indicates if photosynthetic capacity (*A*~max~) is is primarily mass-dependent (*b* > 0.5) or primarily area-dependent (0.5 > *b* > 0), with *b* near 0 indicating  purely area-dependence [@Osnas2018].
 If *b* > 1, then *A*~max~ increases exponentially with LMA, which is not consistent with observed relationships [@Osnas2018].
-See Appendices `r appendix_num("mass-prop")`-`r appendix_num("vpart")` for details.
-![](../figs/mass_prop_mv.png)
+See Appendices `r appendix_num("vpart")`-`r appendix_num("mass_prop_sim")` for details.
 
 :::
 
