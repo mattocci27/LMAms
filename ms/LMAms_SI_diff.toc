@@ -1,16 +1,17 @@
-\contentsline {section}{\nonumberline \DIFdelbegin {\color {red}\sout {Supplementary Section 1}}\DIFdelend \DIFaddbegin {\color {blue}\uwave {Appendix S1}}\DIFaddend : Prior information}{3}{section*.3}%
-\contentsline {section}{\nonumberline \DIFdelbegin {\color {red}\sout {Supplementary Section 2}}\DIFdelend \DIFaddbegin {\color {blue}\uwave {Appendix S2}}\DIFaddend : Model constraints}{4}{section*.5}%
-\contentsline {section}{\nonumberline \DIFdelbegin {\color {red}\sout {Supplementary Section 3}}\DIFdelend \DIFaddbegin {\color {blue}\uwave {Appendix S3}}\DIFaddend : Model tests with randomized data (including Table AS1 and Figure AS1)}{5}{section*.7}%
-\contentsline {subsection}{\nonumberline Table AS1}{5}{subsection*.9}%
-\contentsline {subsection}{\nonumberline Figure AS1}{7}{subsection*.11}%
-\contentsline {subsection}{\nonumberline Figure AS2}{8}{subsection*.13}%
-\contentsline {section}{\nonumberline \DIFdelbegin {\color {red}\sout {Supplementary Section 4}}\DIFdelend \DIFaddbegin {\color {blue}\uwave {Appendix S4}}\DIFaddend : \DIFdelbegin {\color {red}\sout {Understanding relationships between photosynthetic capacity and LMA}}\DIFdelend \DIFaddbegin {\color {blue}\uwave {Variance partitioning}}\DIFaddend }{9}{section*.15}%
-\contentsline {section}{\nonumberline {\color {blue}\uwave {Appendix S5: Understanding relationships between photosynthetic capacity and LMA}}}{9}{section*.17}%
-\contentsline {section}{\nonumberline \DIFdelbegin {\color {red}\sout {Supplementary Section 5}}\DIFdelend \DIFaddbegin {\color {blue}\uwave {Appendix S6}}\DIFaddend : Simulated datasets to study relationships between photosynthetic capacity and LMA}{10}{section*.19}%
-\contentsline {section}{\nonumberline {\color {red}\sout {Supplementary Section 6: Variance partitioning}}}{12}{section*.21}%
-\contentsline {section}{\nonumberline Figures}{13}{section*.23}%
-\contentsline {section}{\nonumberline \DIFdelbegin {\color {red}\sout {Supplementary Section 7}}\DIFdelend \DIFaddbegin {\color {blue}\uwave {Appendix S7}}\DIFaddend : Stan code}{21}{section*.25}%
-\contentsline {subsection}{\nonumberline Stan code for the GLOPNET dataset}{21}{subsection*.27}%
-\contentsline {subsection}{\nonumberline Stan code for the Panama dataset}{23}{subsection*.29}%
-\contentsline {section}{References}{26}{section*.30}%
+\contentsline {section}{\numberline {S1}\DIFdelbegin {\color {red}\sout {Supplementary Section 1: }}\DIFdelend Prior information}{2}{section.1}%
+\contentsline {section}{\numberline {S2}\DIFdelbegin {\color {red}\sout {Supplementary Section 2: }}\DIFdelend Model constraints}{3}{section.2}%
+\contentsline {section}{\numberline {S3}\DIFdelbegin {\color {red}\sout {Supplementary Section 3: }}\DIFdelend Model tests with randomized data (including Table AS1 and Figure AS1\DIFaddbegin {\color {blue}\uwave {, 2}}\DIFaddend )}{4}{section.3}%
+\contentsline {subsection}{\numberline {S3.1}Table AS1}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {S3.2}Figure AS1}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {S3.3}Figure AS2}{7}{subsection.3.3}%
+\contentsline {section}{\numberline {S4}\DIFdelbegin {\color {red}\sout {Supplementary Section 4: Understanding relationships between photosynthetic capacity and LMA}}\DIFdelend \DIFaddbegin {\color {blue}\uwave {Variance partitioning}}\DIFaddend }{8}{section.4}%
+\contentsline {section}{\numberline {S5}{\color {blue}\uwave {Understanding relationships between photosynthetic capacity and LMA}}}{8}{section.5}%
+\contentsline {section}{\numberline {S6}\DIFdelbegin {\color {red}\sout {Supplementary Section 5: }}\DIFdelend Simulated datasets to study relationships between photosynthetic capacity and LMA}{10}{section.6}%
+\contentsline {section}{\numberline {S7}{\color {red}\sout {Supplementary Section 6: Variance partitioning}}}{11}{section.7}%
+\contentsline {section}{\numberline {S7}{\color {red}\sout {Figures}}}{12}{section.7}%
+\contentsline {section}{\numberline {S7}\DIFdelbegin {\color {red}\sout {Supplementary Section 7: }}\DIFdelend Stan code}{14}{section.7}%
+\contentsline {subsection}{\numberline {S7.1}Stan code for the GLOPNET dataset}{14}{subsection.7.1}%
+\contentsline {subsection}{\numberline {S7.2}Stan code for the Panama dataset}{16}{subsection.7.2}%
+\contentsline {section}{{\color {blue}\uwave {Figures}}}{19}{section*.9}%
+\contentsline {section}{References}{27}{section*.10}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

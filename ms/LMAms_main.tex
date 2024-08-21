@@ -441,17 +441,17 @@ the same denominator as LMA and its components.
 
 To implement the two-dimensional models, we developed a statistical
 modeling framework to partition LMA into additive LMAm and LMAs
-components (Appendices 1-2). We fit the models to two datasets: the
-GLOPNET global leaf traits dataset (\citeproc{ref-Wright2004a}{Wright et
-al., 2004}), which primarily represents interspecific variation; and the
-Panama dataset described by Osnas et al.
-(\citeproc{ref-Osnas2018}{2018}), which includes traits for both sun and
-shade leaves at wet and dry tropical forest sites. Because LMAm and LMAs
-are modeled (rather than observed), the two-dimensional models require
-one parameter per analysis unit (a species in GLOPNET or a species
-\(\times\) canopy-position in the Panama dataset) to partition observed
-LMA into LMAm and LMAs. Given the large number of parameters in these
-models, we performed tests with randomized data to evaluate if our
+components (Section 2.2 and Supplementary Sections 1-2). We fit the
+models to two datasets: the GLOPNET global leaf traits dataset
+(\citeproc{ref-Wright2004a}{Wright et al., 2004}), which primarily
+represents interspecific variation; and the Panama dataset described by
+Osnas et al. (\citeproc{ref-Osnas2018}{2018}), which includes traits for
+both sun and shade leaves at wet and dry tropical forest sites. Because
+LMAm and LMAs are modeled (rather than observed), the two-dimensional
+models require one parameter per analysis unit (a species in GLOPNET or
+a species \(\times\) canopy-position in the Panama dataset) to partition
+observed LMA into LMAm and LMAs. Given the large number of parameters in
+these models, we performed tests with randomized data to evaluate if our
 two-dimensional models were prone to creating patterns from noise, which
 could lead to spurious conclusions. These tests suggested that our
 two-dimensional modeling approach revealed meaningful patterns in the
@@ -935,7 +935,7 @@ assemblages where LMA variation is largely due to variation in
 structural leaf mass components that contribute to toughness but not
 photosynthetic capacity, metabolic traits (including
 \emph{A}\textsubscript{max}) should be primarily area-dependent rather
-than mass-dependent (parameter \emph{b} in Eq. S5, with \emph{b}
+than mass-dependent (parameter \emph{b} in Eq. S5.1, with \emph{b}
 \textgreater{} 0.5 indicating greater mass- than area-dependence). Our
 simulations show that all else being equal, area-dependence of
 \emph{A}\textsubscript{max} increases (mass-dependence decreases) as
@@ -972,7 +972,7 @@ does not affect LL. For example, non-structural carbohydrates, which are
 ignored in our model, can account for 5-8\% of leaf mass in deciduous
 species (\citeproc{ref-Wurth2005}{Würth et al., 2005}) and up to 20\% of
 leaf mass in evergreen species
-(\citeproc{ref-Martinez-Vilalta2016}{Martínez‐Vilalta et al., 2016}). A
+(\citeproc{ref-Martinez-Vilalta2016}{Martínez-Vilalta et al., 2016}). A
 more refined model that accounts for more than two LMA components may
 reveal stronger relationships between metabolic traits
 (\emph{A}\textsubscript{area} and \emph{R}\textsubscript{area}) and LMA
@@ -995,7 +995,7 @@ our interspecific analysis suggesting weak mass-dependence of
 same Panama dataset suggests strong mass-dependence of metabolic traits
 across light levels (\citeproc{ref-Osnas2018}{Osnas et al., 2018}).
 
-Although the index of mass-dependence (\emph{b}; Eq. S5) can,
+Although the index of mass-dependence (\emph{b}; Eq. S5.1) can,
 theoretically, be greater than 1 (impliying an exponential increase in
 area-normalized traits with increasing LMA), two factors likely
 constrain the observed values of \emph{b}. Firstly, at least some of the
@@ -1157,9 +1157,8 @@ properties of a dynamic vegetation model without climate envelopes,
 
 \bibitem[\citeproctext]{ref-Gelman2013}
 Gelman, A., Carlin, J.B., Stern, H.S., Dunson, D.B., Vehtari, A., Rubin,
-D.B., 2013.
-\href{https://books.google.com.pa/books?id=eSHSBQAAQBAJ}{Bayesian {Data
-Analysis}, {Third Edition}}. Chapman \& Hall/CRC, Boca Raton, FL, USA.
+D.B., 2013. Bayesian {Data Analysis}, {Third Edition}. Chapman \&
+Hall/CRC, Boca Raton, FL, USA.
 
 \bibitem[\citeproctext]{ref-Hidaka2011}
 Hidaka, A., Kitayama, K., 2011. Allocation of foliar phosphorus
@@ -1231,7 +1230,7 @@ shade? Trends in Ecology and Evolution 23, 299--303.
 \url{https://doi.org/10.1016/j.tree.2008.02.006}
 
 \bibitem[\citeproctext]{ref-Martinez-Vilalta2016}
-Martínez‐Vilalta, J., Sala, A., Asensio, D., Galiano, L., Hoch, G.,
+Martínez-Vilalta, J., Sala, A., Asensio, D., Galiano, L., Hoch, G.,
 Palacio, S., Piper, F.I., Lloret, F., 2016. Dynamics of non-structural
 carbohydrates in terrestrial plants: A global synthesis. Ecological
 Monographs 86, 495--516. \url{https://doi.org/10.1002/ecm.1231}
@@ -1313,9 +1312,8 @@ meta-analysis. New Phytologist 182, 565--588.
 \url{https://doi.org/10.1111/j.1469-8137.2009.02830.x}
 
 \bibitem[\citeproctext]{ref-RCoreTeam2022}
-R Core Team, 2022. \href{https://www.R-project.org/}{R: {A} language and
-environment for statistical computing}. R Foundation for Statistical
-Computing, Vienna, Austria.
+R Core Team, 2022. R: {A} language and environment for statistical
+computing. R Foundation for Statistical Computing, Vienna, Austria.
 
 \bibitem[\citeproctext]{ref-Reich2014}
 Reich, P.B., 2014. The world-wide 'fast-slow' plant economics spectrum:
@@ -1332,7 +1330,7 @@ Tropical {Tree Physiology}. Springer International Publishing, Cham, pp.
 \bibitem[\citeproctext]{ref-Sakschewski2016}
 Sakschewski, B., von Bloh, W., Boit, A., Poorter, L., Peña-Claros, M.,
 Heinke, J., Joshi, J., Thonicke, K., 2016. Resilience of {Amazon}
-forests emerges from plant trait diversity. Nature Clim Change 6,
+forests emerges from plant trait diversity. Nature Climate Change 6,
 1032--1036. \url{https://doi.org/10.1038/nclimate3109}
 
 \bibitem[\citeproctext]{ref-Sakschewski2015}
@@ -1696,21 +1694,22 @@ included (Fig. S1). Details as for Fig.~\ref{fig-box_de}.}
 }
 
 \caption{\label{fig-mass_prop}Relationships between mass dependency
-(\emph{b} in Eq. S5) and LMAs variance (relative to total LMA variance;
-Eq. S7) for the global GLPNET dataset, sun leaves in Panama, and shade
-leaves in Panama. Solid lines indicate simulated medians and shaded
-regions indicate 95\% confidence intervals. Each point indicates the
-estimated values from the empirical data and represents interspecific
-variation (e.g., across species within a canopy position in the Panama
-dataset). The y-axis values indicates if photosynthetic capacity
-(\emph{A}\textsubscript{max}) is is primarily mass-dependent (\emph{b}
-\textgreater{} 0.5) or primarily area-dependent (0.5 \textgreater{}
-\emph{b} \textgreater{} 0), with \emph{b} near 0 indicating purely
-area-dependence (\citeproc{ref-Osnas2018}{Osnas et al., 2018}). If
-\emph{b} \textgreater{} 1, then \emph{A}\textsubscript{max} increases
-exponentially with LMA, which is not consistent with observed
-relationships (\citeproc{ref-Osnas2018}{Osnas et al., 2018}). See
-Appendices 4-6 for details.}
+(\emph{b} in Eq. S5.1) and LMAs variance (relative to total LMA
+variance; Eq. S4.1) for the global GLPNET dataset, sun leaves in Panama,
+and shade leaves in Panama. Solid lines indicate simulated medians and
+shaded regions indicate 95\% confidence intervals. Each point indicates
+the estimated values from the empirical data and represents
+interspecific variation (e.g., across species within a canopy position
+in the Panama dataset). The y-axis values indicates if photosynthetic
+capacity (\emph{A}\textsubscript{max}) is is primarily mass-dependent
+(\emph{b} \textgreater{} 0.5) or primarily area-dependent (0.5
+\textgreater{} \emph{b} \textgreater{} 0), with \emph{b} near 0
+indicating purely area-dependence (\citeproc{ref-Osnas2018}{Osnas et
+al., 2018}). If \emph{b} \textgreater{} 1, then
+\emph{A}\textsubscript{max} increases exponentially with LMA, which is
+not consistent with observed relationships
+(\citeproc{ref-Osnas2018}{Osnas et al., 2018}). See Supplementary
+Sections 4-6 for details.}
 
 \end{figure}%
 

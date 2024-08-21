@@ -80,10 +80,9 @@ eq("LL")
 s_eq("s1")
 s_eq("s2")
 s_eq("s3")
-s_eq("s4")
-s_eq("mass")
-s_eq("s5")
-s_eq("var")
+s_eq("var") #4
+s_eq("mass") #5
+s_eq("s6")
 
 appendix("prior")
 appendix("model_cons")
@@ -204,7 +203,7 @@ Instead, we reserved observations of leaf N and P concentrations (and cellulose 
 We considered a simple one-dimensional model that predicts LL, *A*~max~, and *R*~dark~ from LMA alone, as well as two-dimensional models that predict LL, *A*~max~, and *R*~dark~ from two additive LMA components: metabolic and structural leaf mass per area (LMAm and LMAs, respectively).
 We formulate the models in terms of area-normalized *A*~max~ and *R*~dark~ (*A*~area~ and *R*~area~, respectively), as these trait forms share the same denominator as LMA and its components.
 
-To implement the two-dimensional models, we developed a statistical modeling framework to partition LMA into additive LMAm and LMAs components (Appendices `r appendix_num("prior")`-`r appendix_num("model_cons")`).
+To implement the two-dimensional models, we developed a statistical modeling framework to partition LMA into additive LMAm and LMAs components (Section 2.2 and Supplementary Sections `r appendix_num("prior")`-`r appendix_num("model_cons")`).
 We fit the models to two datasets: the GLOPNET global leaf traits dataset [@Wright2004a], which primarily represents interspecific variation; and the Panama dataset described by @Osnas2018, which includes traits for both sun and shade leaves at wet and dry tropical forest sites.
 Because LMAm and LMAs are modeled (rather than observed), the two-dimensional models require one parameter per analysis unit (a species in GLOPNET or a species $\times$ canopy-position in the Panama dataset) to partition observed LMA into LMAm and LMAs.
 Given the large number of parameters in these models, we performed tests with randomized data to evaluate if our two-dimensional models were prone to creating patterns from noise, which could lead to spurious conclusions.
@@ -413,7 +412,7 @@ Thus, while optimal LL theory provides important insights regarding the coordina
 
 ## Implications for understanding relationships between photosynthetic capacity and LMA
 
-@Osnas2018 suggested that in leaf assemblages where LMA variation is largely due to variation in structural leaf mass components that contribute to toughness but not photosynthetic capacity, metabolic traits (including *A*~max~) should be primarily area-dependent rather than mass-dependent (parameter *b* in `r s_eq("mass")`, with *b* > 0.5 indicating greater mass- than area-dependence).
+@Osnas2018 suggested that in leaf assemblages where LMA variation is largely due to variation in structural leaf mass components that contribute to toughness but not photosynthetic capacity, metabolic traits (including *A*~max~) should be primarily area-dependent rather than mass-dependent (parameter *b* in `r s_eq("mass")`.1, with *b* > 0.5 indicating greater mass- than area-dependence).
 Our simulations show that all else being equal, area-dependence of *A*~max~ increases (mass-dependence decreases) as LMAs variance increases ([@fig-mass_prop]), as hypothesized by @Osnas2018.
 However, our analysis also revealed complexities that were not anticipated by @Osnas2018.
 For example, if *A*~area~ only weakly increases with LMAm and/or *A*~area~ decreases with LMAs (as in GLOPNET; Table 2), then *A*~max~ can be strongly area-dependent (weakly mass-dependent) even if LMAs accounts for relatively little LMA variance ([@fig-mass_prop]).
@@ -432,7 +431,7 @@ In addition to providing insights as to why metabolic traits tend to be area-dep
 LMA increased from shade to sun primarily due to an increase in LMAm (Figs. [-@fig-box_pa] and `r s_fig_num("box_inter")`), which should lead to strong mass-dependence of *A*~max~ and *R*~dark~ ([@fig-mass_prop]) and likely reflects an increase in the size and number of palisade mesophyll cells with increasing light levels [@Onoda2008; @Terashima2011].
 In contrast to our interspecific analysis suggesting weak mass-dependence of *A*~max~ within sun and shade leaves ([@fig-mass_prop]), estimates of intraspecific analysis of the same Panama dataset suggests strong  mass-dependence of metabolic traits across light levels [@Osnas2018].
 
-Although the index of mass-dependence (*b*; `r s_eq("mass")`) can, theoretically, be greater than 1 (impliying an exponential increase in area-normalized traits with increasing LMA), two factors likely constrain the observed values of *b*.
+Although the index of mass-dependence (*b*; `r s_eq("mass")`.1) can, theoretically, be greater than 1 (impliying an exponential increase in area-normalized traits with increasing LMA), two factors likely constrain the observed values of *b*.
 Firstly, at least some of the LMA increase from shade to sun is due to LMAs (Figs. [-@fig-box_pa] and `r s_fig_num("box_inter")`), which may reflect the additional LMAs needed to protect and support the high LMAm of sun leaves and/or additional LMAs required to withstand hydraulic or other stress in the upper canopy.
 Secondly, as discussed above, *A*~area~ and *R*~area~ increase at a less-than-proportional rate with increasing LMAm, which in turn moderates the LMA scaling exponent (*b*).
 
@@ -670,12 +669,12 @@ Details as for [@fig-box_de].
 
 ![](../figs/mass_prop_mv.png)
 
-Relationships between mass dependency (*b* in `r s_eq("mass")`) and LMAs variance (relative to total LMA variance; `r s_eq("var")`) for the global GLPNET dataset, sun leaves in Panama, and shade leaves in Panama.
+Relationships between mass dependency (*b* in `r s_eq("mass")`.1) and LMAs variance (relative to total LMA variance; `r s_eq("var")`.1) for the global GLPNET dataset, sun leaves in Panama, and shade leaves in Panama.
 Solid lines indicate simulated medians and shaded regions indicate 95% confidence intervals.
 Each point indicates the estimated values from the empirical data and represents interspecific variation (e.g., across species within a canopy position in the Panama dataset).
 The y-axis values indicates if photosynthetic capacity (*A*~max~) is is primarily mass-dependent (*b* > 0.5) or primarily area-dependent (0.5 > *b* > 0), with *b* near 0 indicating  purely area-dependence [@Osnas2018].
 If *b* > 1, then *A*~max~ increases exponentially with LMA, which is not consistent with observed relationships [@Osnas2018].
-See Appendices `r appendix_num("vpart")`-`r appendix_num("mass_prop_sim")` for details.
+See Supplementary Sections `r appendix_num("vpart")`-`r appendix_num("mass_prop_sim")` for details.
 
 :::
 

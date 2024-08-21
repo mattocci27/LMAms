@@ -43,7 +43,7 @@
 \usepackage{xcolor}
 \usepackage[margin=1in]{geometry}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\setcounter{secnumdepth}{5}
 % Make \paragraph and \subparagraph free-standing
 \makeatletter
 \ifx\paragraph\undefined\else
@@ -181,19 +181,19 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\usepackage{xr}
-\externaldocument{LMAms_main}
-\usepackage{float}
-\usepackage{booktabs}
-\usepackage{colortbl}
-\usepackage{fancyhdr}
-\pagestyle{fancy}
+\usepackage{fontspec}
 \usepackage[default]{sourcesanspro}
 \usepackage{sourcecodepro}
+\usepackage{amsmath}
+\numberwithin{equation}{section}
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\renewcommand{\thesection}{S\arabic{section}}
 \usepackage{fvextra}
 \usepackage{multirow}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
-\fancyhead[RE,RO]{Katabuchi \textit{et al}.  Appendix}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{fontsize=\small,breaklines,commandchars=\\\{\}}
+\usepackage{titling}
+\pretitle{\begin{center}\large\textbf}
+\posttitle{\end{center}}
 \KOMAoption{captions}{tableheading}
 \makeatletter
 \@ifpackageloaded{float}{}{\usepackage{float}}
@@ -281,16 +281,13 @@ within and among plant species}
 \tableofcontents
 }
 
-\newpage
-
-\section{Appendix S1: Prior
-information}\label{appendix-s1-prior-information}
+\section{Prior information}\label{prior-information}
 
 The logarithms of \emph{A}\textsubscript{area},
 \emph{R}\textsubscript{area}, and LL for leaf sample \emph{i} were
 assumed to have a multivariate normal distribution:
 
-\[
+\begin{equation}\phantomsection\label{eq-mvn}{
 \begin{aligned}
 \left(
 \begin{array}{ccc}
@@ -306,9 +303,9 @@ assumed to have a multivariate normal distribution:
 \mathrm{E}[R_{\mathrm{area} \, i}] &, \boldsymbol{\Sigma}\\
 \mathrm{E}[\mathrm{LL}_i] &
 \end{array}
-\right) \qquad(\mathrm{S}1)
+\right)
 \end{aligned}
-\]
+}\end{equation}
 
 where E{[}\(\cdot\){]} indicates expected value and
 \(\boldsymbol{\Sigma}\) indicates a covariance matrix. Expected values
@@ -344,8 +341,7 @@ with range (0, 1).
 
 \newpage
 
-\section{Appendix S2: Model
-constraints}\label{appendix-s2-model-constraints}
+\section{Model constraints}\label{model-constraints}
 
 To ensure that the model was identifiable, we imposed two broad
 assumptions: (i) \emph{A}\textsubscript{area} depends more strongly on
@@ -372,44 +368,39 @@ any constraints on \emph{R}\textsubscript{area} (\(\gamma_m\) and
 
 \newpage
 
-\section{Appendix S3: Model tests with randomized data (including Table
-AS1 and Figure
-AS1)}\label{appendix-s3-model-tests-with-randomized-data-including-table-as1-and-figure-as1}
+\section{Model tests with randomized data (including Table AS1 and
+Figure AS1,
+2)}\label{model-tests-with-randomized-data-including-table-as1-and-figure-as1-2}
 
 Because our two-dimensional (LMAm-LMAs) modeling approach includes many
 parameters (one latent variable \emph{f\textsubscript{i}} to partition
 LMA into LMAm and LMAs for each leaf sample), we implemented tests with
-randomized data to assess potential overfitting. We generated 10
-different randomized datasets by randomizing all trait values (LMA,
-\emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and LL)
-across species. Thus, the randomized datasets had zero expected
-covariance among traits. Models fit to the randomized datasets either
-did not converge or showed divergent transitions (Appendix S3),
-indicating that models fit to randomized data do not provide reliable
-inferences (\citeproc{ref-Betancourt2016}{Betancourt, 2016}).
-Furthermore, when models were fit to randomized data, the scaling
-exponents (\(\alpha_{m,s}\), \(\beta_{m,s}\), and \(\gamma_{m,s}\)) were
-not significantly different from zero. In simple terms, the
-two-dimensional models failed when fit to randomized data. In contrast,
-when fit to the observed (non-randomized) data, the two-dimensional
-models converged without divergent transitions and out-performed
-one-dimensional models (total LMA) for both GLOPNET and Panama (see
-Results). Thus, the tests with randomized data indicate that our
-two-dimensional approach is not inherently prone to overfitting or to
-creating spurious results. We therefore assume that estimates of LMAm
+randomized data to assess potential overfitting.
+
+We generated 10 different randomized datasets by randomizing all trait
+values (LMA, \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area}
+and LL) across leaf samples, and then we fitted the best models (Table
+1) to these randomized datasets. As a result, the randomized datasets
+had zero expected covariance among traits.
+
+Models fit to the randomized datasets either did not converge or showed
+divergent transitions (Table AS1, Figure AS1-2), indicating that models
+fit to randomized data do not provide reliable inferences
+(\citeproc{ref-Betancourt2016}{Betancourt, 2016}). Furthermore, when
+models were fit to randomized data, the scaling exponents
+(\(\alpha_{m,s}\), \(\beta_{m,s}\), and \(\gamma_{m,s}\)) were not
+significantly different from zero. In simple terms, the two-dimensional
+models failed when fit to randomized data.
+
+In contrast, when fit to the observed (non-randomized) data, the
+two-dimensional models converged without divergent transitions and
+out-performed one-dimensional models (total LMA) for both GLOPNET and
+Panama (see Results). Thus, the tests with randomized data indicate that
+our two-dimensional approach is not inherently prone to overfitting or
+to creating spurious results. We therefore assume that estimates of LMAm
 and LMAs obtained from the GLOPNET and Panama datasets reflect
 meaningful patterns in the observations and allow for a meaningful
 exploration of our questions.
-
-We generated 10 randomized datasets for each of the GLOPNET and the
-Panama datasets by randomly shuffling each trait value across leaf
-samples, and we fit the best models (Table 1) to the randomized data.
-
-Most of the model results obtained from the randomized datasets did not
-convergent based on the Gelman-Rubin statistic or showed divergent
-transitions (Table AS1), indicating that models fit to randomized data
-do not provide reliable inferences
-(\citeproc{ref-Betancourt2016}{Betancourt, 2016}).
 
 \subsection{Table AS1}\label{table-as1}
 
@@ -471,7 +462,7 @@ datasets were not significantly different from zero. These tests with
 randomized data indicate that our model is not inherently prone to
 overfitting or to producing patterns from noise.
 
-\includegraphics{../figs/coef_sim_gl.png}
+\includegraphics{../figs/coef_sim_gl.pdf}
 
 \newpage
 
@@ -487,19 +478,18 @@ randomized datasets did not show any patterns. Again, these tests with
 randomized data indicate that our model is not inherently prone to
 overfitting or to producing patterns from noise.
 
-\includegraphics{../figs/coef_sim_pa.png}
+\includegraphics{../figs/coef_sim_pa.pdf}
 
 \newpage
 
-\section{Appendix S4: Variance
-partitioning}\label{appendix-s4-variance-partitioning}
+\section{Variance partitioning}\label{variance-partitioning}
 
 To estimate the contributions of LMAm and LMAs to total LMA variance
 (where LMA = LMAm + LMAs), we used the following identity:
 
-\[
-\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \qquad(\mathrm{S}4)
-\]
+\begin{equation}\phantomsection\label{eq-vpart}{
+\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2)
+}\end{equation}
 
 where Var(\(\cdot\)) is variance and Cov(\(\cdot\)) is covariance. Thus,
 the fractions of total LMA variance due to variance in LMAm and LMAs are
@@ -514,9 +504,8 @@ habits (evergreen vs.~deciduous), sites (wet vs.~dry), and light (sun
 vs.~shade), we used ANOVA. Those post-hoc analyes were performed with
 posterior median parameter values.
 
-\section{Appendix S5: Understanding relationships between photosynthetic
-capacity and
-LMA}\label{appendix-s5-understanding-relationships-between-photosynthetic-capacity-and-lma}
+\section{Understanding relationships between photosynthetic capacity and
+LMA}\label{understanding-relationships-between-photosynthetic-capacity-and-lma}
 
 We applied our LMAm-LMAs model to simulated data to better understand
 relationships between photosynthetic capacity
@@ -550,9 +539,9 @@ variance due to variance in LMAs. For each simulated dataset, we
 quantified the \emph{A}\textsubscript{max} vs.~LMA relationship
 following Osnas et al. (\citeproc{ref-Osnas2018}{2018}):
 
-\[
-A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i \qquad(\mathrm{S}5)
-\]
+\begin{equation}\phantomsection\label{eq-mass}{
+A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i
+}\end{equation}
 
 where LMA is the sum of LMAm and LMAs Eq. 1, \emph{c} is a fitted
 constant, and \emph{b} is an index of mass-dependence as illustrated by
@@ -566,9 +555,10 @@ proportional to LMA, which implies that whole-leaf
 cases (0 \textless{} \emph{b} \textless{} 1), as well as more extreme
 cases (\emph{b} \(\le\) 0 or \emph{b} \(\geq\) 1), are also possible,
 with reported estiamtes being between 0 and 1
-(\citeproc{ref-Osnas2018}{Osnas et al., 2018}). Note that applying Eq.
-S4 to either mass- or area-normalized \emph{A}\textsubscript{max} yields
-equivalent results (\citeproc{ref-Osnas2018}{Osnas et al., 2018}).
+(\citeproc{ref-Osnas2018}{Osnas et al., 2018}). Note that applying
+Eq.~\ref{eq-mass} to either mass- or area-normalized
+\emph{A}\textsubscript{max} yields equivalent results
+(\citeproc{ref-Osnas2018}{Osnas et al., 2018}).
 
 For these simulations, we generated LMAm and LMAs values based on their
 estimated distributions in our GLOPNET and Panama analyses, while
@@ -588,11 +578,11 @@ distribution with the log-scale mean given by our model outputs and the
 log-scale standard deviation raging from log(1.01) to log(10) across
 simulated datasets. In contrast to GLOPNET and Panama sun leaves, our
 analysis revealed a negative correlation of \emph{r} = -0.47 between
-LMAm and LMAs for Panama shade leaves (see Appendix S6). Therefore, we
-used a multivariate normal distribution with \emph{r} = -0.47 to
-generate log(LMAm) and log(LMAs) for the Panama shade simulations.
-Otherwise, the simulation protocol was as described above for GLOPNET
-and Panama sun leaves.
+LMAm and LMAs for Panama shade leaves (see Supplementary Section 6).
+Therefore, we used a multivariate normal distribution with \emph{r} =
+-0.47 to generate log(LMAm) and log(LMAs) for the Panama shade
+simulations. Otherwise, the simulation protocol was as described above
+for GLOPNET and Panama sun leaves.
 
 For each simulated set of LMAm and LMAs values, we generated
 \emph{A}\textsubscript{area} values using the estimated values of
@@ -600,12 +590,12 @@ For each simulated set of LMAm and LMAs values, we generated
 best-fitting model (GLOPNET or Panama); i.e., the model with the lowest
 LOOIC. We generated 1000 simulated datasets for GLOPNET, Panama sun
 leaves, and Panama shade leaves, with each dataset having a sample size
-of 100 leaves. For each simulated dataset, we used Eq. 5 to quantify the
-relationship between \emph{A}\textsubscript{area} and LMA.
+of 100 leaves. For each simulated dataset, we used Eq.~\ref{eq-mass} to
+quantify the relationship between \emph{A}\textsubscript{area} and LMA.
 
-\section{Appendix S6: Simulated datasets to study relationships between
+\section{Simulated datasets to study relationships between
 photosynthetic capacity and
-LMA}\label{appendix-s6-simulated-datasets-to-study-relationships-between-photosynthetic-capacity-and-lma}
+LMA}\label{simulated-datasets-to-study-relationships-between-photosynthetic-capacity-and-lma}
 
 To create simulated datasets to study relationships between
 photosynthetic capacity and LMA , we generated log-normally distributed
@@ -617,13 +607,13 @@ For GLOPNET and Panama sun leaves, results from the LMAm-LMAs models
 used univariate normal distributions (N) to generate the LMAm and LMAs
 samples:
 
-\[
-\mathrm{ln}(\mathrm{LMAm}) \sim \mathrm{N}(\mathrm{ln}(\mu_m), \sigma_m) \qquad(\mathrm{S}6.1)
-\]
+\begin{equation}\phantomsection\label{eq-sim_LMAm}{
+\mathrm{ln}(\mathrm{LMAm}) \sim \mathrm{N}(\mathrm{ln}(\mu_m), \sigma_m)
+}\end{equation}
 
-\[
-\mathrm{ln}(\mathrm{LMAs}) \sim \mathrm{N}(\mathrm{ln}(\mu_s), \sigma_s) \qquad(\mathrm{S}6.2)
-\]
+\begin{equation}\phantomsection\label{eq-sim_LMAs}{
+\mathrm{ln}(\mathrm{LMAs}) \sim \mathrm{N}(\mathrm{ln}(\mu_s), \sigma_s)
+}\end{equation}
 
 where \(\mathrm{ln}(\mu_m)\) and \(\mathrm{ln}(\mu_s)\) are the means of
 LMAm and LMAs, respectively, on the log-scale and \(\sigma_m\) and
@@ -636,7 +626,7 @@ For Panama shade leaves, LMAm-LMAs model results indicated a negative
 correlation between LMAm and LMAs, so we used a multivariate normal
 distribution (MVN) to generate the LMAm and LMAs samples:
 
-\[
+\begin{equation}\phantomsection\label{eq-sim_LMAm_LMAs}{
 \begin{bmatrix}
 \mathrm{ln}(\mathrm{LMAm})\\
 \mathrm{ln}(\mathrm{LMAs})
@@ -648,16 +638,18 @@ distribution (MVN) to generate the LMAm and LMAs samples:
 \ln(\mu_{s}) &
 \end{matrix},
 \boldsymbol{\Sigma}
-\right] \qquad(\mathrm{S}6.3)
-\]
+\right]
+}\end{equation}
 
-\[
+where
+
+\begin{equation}\phantomsection\label{eq-Sigma}{
 \boldsymbol{\Sigma} = \
 \begin{bmatrix}
 \sigma_m^2 & \rho \sigma_m \sigma_s \\
 \rho \sigma_m \sigma_s & \sigma_s^2 \\
-\end{bmatrix} \qquad(\mathrm{S}6.4)
-\]
+\end{bmatrix}
+}\end{equation}
 
 where \(\boldsymbol{\Sigma}\) is the covariance matrix of ln(LMAm) and
 ln(LMAs), and \(\rho\) is the correlation coefficient between ln(LMAm)
@@ -694,194 +686,7 @@ respectively, and other GLOPNET parameter values are listed above.
 
 \newpage
 
-\section{Figures}\label{figures}
-
-\begin{suppfig}
-
-\centering{
-
-\includegraphics{../figs/box_inter.png}
-
-}
-
-\caption{\label{suppfig-box_inter}Boxplots comparing leaf mass per area
-(LMA), photosynthetic leaf mass per area (LMAm; posterior medians), and
-structural leaf mass per area (LMAs; posterior medians) across (a)
-deciduous (Dev) and evergreen (Eve) leaves and (b) sites (wet and dry)
-and canopy strata (sun and shade) in Panama. The results shown here
-include all leaves in the Panama dataset, whereas Figs. 6-7 in the main
-text only include Panama species for which both sun and shade leaves
-were available. Boxplot symbols as in Figs. 6-7. Groups sharing the same
-letters are not significantly different (P \textgreater{} 0.05;
-t-tests). Estiamtes are from the best Panama model (Table 1).}
-
-\end{suppfig}%
-
-\newpage
-
-\begin{suppfig}
-
-\centering{
-
-\includegraphics{../figs/box_frac_de.png}
-
-}
-
-\caption{\label{suppfig-box_frac_de}Boxplots comparing posterior medians
-of the latent variable \emph{f} (the fraction of total LMA comprised by
-LMAm) across deciduous (Dev) and evergreen (Eve) leaves. Left: GLOPNET
-dataset. Middle: All leaf samples in the Panama dataset. Right: Paired
-leaf samples in the Panama dataset (species for which both sun and shade
-leaves were available). Note that LMAm = \emph{f} \(\times\) LMA, and
-LMAs = (1 -- \emph{f}) \(\times\) LMA. Boxplot symbols as in Fig. 6.
-Groups sharing the same letters are not significantly different (P
-\textgreater{} 0.05; t-tests). Estiamtes are from the best GLOPNET and
-Panama models (Table 1).}
-
-\end{suppfig}%
-
-\newpage
-
-\begin{suppfig}
-
-\centering{
-
-\includegraphics{../figs/box_frac_pa.png}
-
-}
-
-\caption{\label{suppfig-box_frac_pa}Boxplots comparing posterior medians
-of the latent variable \emph{f} (the fraction of total LMA comprised by
-LMAm) across sites (wet and dry) and canopy strata (sun and shade) in
-Panama. Left: All leaf samples in the Panama dataset. Right: Paired leaf
-samples in the Panama dataset (species for which both sun and shade
-leaves were available). Note that LMAm = \emph{f} \(\times\) LMA, and
-LMAs = (1 -- \emph{f}) \(\times\) LMA. Boxplot symbols as in Fig. 7.
-Groups sharing the same letters are not significantly different (P
-\textgreater{} 0.05; t-tests). Estiamtes are from the best GLOPNET and
-Panama models (Table 1).}
-
-\end{suppfig}%
-
-\newpage
-
-\begin{suppfig}
-
-\centering{
-
-\includegraphics{../figs/mass_prop_sim.png}
-
-}
-
-\caption{\label{suppfig-mass_prop_sim}The relationships between mass
-dependency of \emph{A}\textsubscript{max} (\emph{b} in Eq. 5 in the main
-text) and LMAs variance (relative to total LMA variance; Eq. 6) for the
-different values of the scaling exponents \(\alpha_m\) and \(\alpha_s\)
-(Eq. 2). (a) The scaling exponent \(\alpha_m\) varies from 0.1 to 1.0
-while the scaling exponent \(\alpha_s\) is constant (\(\alpha_s\) =
--0.13). (b) The scaling exponent \(\alpha_s\) vary from -0.5 to 0.5
-while the scaling exponent \(\alpha_m\) is constant (\(\alpha_m\) =
-0.28). Solid lines indicate simulated medians and shaded regions
-indicate 95\% confidence intervals. Empirical estimates of \emph{b} are
-typically between 0 and 1 (\citeproc{ref-Osnas2018}{Osnas et al.,
-2018}). \emph{A}\textsubscript{max} is primarily mass-dependent if
-\emph{b} \textgreater{} 0.5, and primarily area-dependent if 0.5
-\textgreater{} \emph{b} \textgreater{} 0 (\citeproc{ref-Osnas2018}{Osnas
-et al., 2018}). Parameter values are based on the best GLOPNET model
-(Table 1) and Appendix S6: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.4,
-\(\mu_s\) = 61.4, and \(\sigma_m\) = 0.84.}
-
-\end{suppfig}%
-
-\newpage
-
-\begin{suppfig}
-
-\centering{
-
-\includegraphics{../figs/mass_prop_comp.png}
-
-}
-
-\caption{\label{suppfig-mass_prop_comp}The relationships between mass
-dependency of \emph{A}\textsubscript{max} (\emph{b} in Eq. 5 in the main
-text) and LMAs variance (relative to total LMA variance; Eq. 6) for
-simulated datasets generated from a normal distribution (N) vs.~a
-multivariate normal distribution (MVN). Parameter values are based on
-the best Panama model (Table 1) and Appendix S6: \(\alpha_0\) = 0.34,
-\(\alpha_m\) = 0.56, \(\alpha_s\) = 0, \(\mu_m\) = 7.7, \(\mu_s\) =
-26.6, \(\sigma_m\) = 1.95, and \(\rho\) = -0.47.}
-
-\end{suppfig}%
-
-\newpage
-
-\begin{suppfig}
-
-\centering{
-
-\includegraphics{../figs/gl_point_np2.png}
-
-}
-
-\caption{\label{suppfig-gl_point_np2}Measured traits related to
-photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf
-area; \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area}) are
-positively correlated with LMA and with estimates (posterior medians) of
-the metabolic and structural LMA components (LMAm and LMAs,
-respectively) in the GLOPNET dataset. LMAm yields more consistent
-relationships compared to LMA and LMAs; e.g., evergreen and deciduous
-leaves align along a single relationship in panel b, but not in panels a
-or c. Pearson correlation coefficients (\emph{r}) for LMA (left column)
-and posterior medians of Pearson correlation coefficients (\(\bar{r}\))
-for LMAm (middle column) and LMAs (right column) are shown.}
-
-\end{suppfig}%
-
-\newpage
-
-\begin{suppfig}
-
-\centering{
-
-\includegraphics{../figs/pa_point_npc_par.png}
-
-}
-
-\caption{\label{suppfig-pa_point_npc_par}Partial regression plots for
-nitrogen, phosphorus and cellulose per-unit leaf area
-(\emph{N}\textsubscript{area}, \emph{P}\textsubscript{area} and
-CL\textsubscript{area}). (a) LMAs variation is controlled. (b) LMAm
-variation is controlled. The partial regression plots show separation
-between sun and shade when controlling for LMAs variation (i.e., LMAs
-does not explain the sun/shade difference), but overlapping
-distributions of sun and shade when controlling for LMAm variation
-(i.e., LMAm does explain the sun/shade difference). Posterior medians of
-partial correlation coefficients (\(\bar{\rho}\)) are shown.}
-
-\end{suppfig}%
-
-\newpage
-
-\begin{suppfig}
-
-\centering{
-
-\includegraphics{../figs/ps_point.png}
-
-}
-
-\caption{\label{suppfig-LMAm_LMAs}Pearson correlation coefficients for
-posterior medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama
-datasets. The non-significant or weak \emph{r} values indicate that a
-single axis could not accurately represent the two-dimensional space.
-Symbols as in main text Figs. 2-3.}
-
-\end{suppfig}%
-
-\newpage
-
-\section{Appendix S7: Stan code}\label{appendix-s7-stan-code}
+\section{Stan code}\label{stan-code}
 
 \subsection{Stan code for the GLOPNET
 dataset}\label{stan-code-for-the-glopnet-dataset}
@@ -1104,6 +909,196 @@ constraint of \(\alpha_s\) = 0 and \(\beta_m\) = 0.
 \end{Highlighting}
 \end{Shaded}
 
+\newpage
+
+\section*{Figures}
+\addcontentsline{toc}{section}{Figures}
+
+\begin{suppfig}
+
+\centering{
+
+\includegraphics{../figs/box_inter.pdf}
+
+}
+
+\caption{\label{suppfig-box_inter}Boxplots comparing leaf mass per area
+(LMA), photosynthetic leaf mass per area (LMAm; posterior medians), and
+structural leaf mass per area (LMAs; posterior medians) across (a)
+deciduous (Dev) and evergreen (Eve) leaves and (b) sites (wet and dry)
+and canopy strata (sun and shade) in Panama. The results shown here
+include all leaves in the Panama dataset, whereas Figs. 6-7 in the main
+text only include Panama species for which both sun and shade leaves
+were available. Boxplot symbols as in Figs. 6-7. Groups sharing the same
+letters are not significantly different (P \textgreater{} 0.05;
+t-tests). Estiamtes are from the best Panama model (Table 1).}
+
+\end{suppfig}%
+
+\newpage
+
+\begin{suppfig}
+
+\centering{
+
+\includegraphics{../figs/box_frac_de.pdf}
+
+}
+
+\caption{\label{suppfig-box_frac_de}Boxplots comparing posterior medians
+of the latent variable \emph{f} (the fraction of total LMA comprised by
+LMAm) across deciduous (Dev) and evergreen (Eve) leaves. Left: GLOPNET
+dataset. Middle: All leaf samples in the Panama dataset. Right: Paired
+leaf samples in the Panama dataset (species for which both sun and shade
+leaves were available). Note that LMAm = \emph{f} \(\times\) LMA, and
+LMAs = (1 -- \emph{f}) \(\times\) LMA. Boxplot symbols as in Fig. 6.
+Groups sharing the same letters are not significantly different (P
+\textgreater{} 0.05; t-tests). Estiamtes are from the best GLOPNET and
+Panama models (Table 1).}
+
+\end{suppfig}%
+
+\newpage
+
+\begin{suppfig}
+
+\centering{
+
+\includegraphics{../figs/box_frac_pa.pdf}
+
+}
+
+\caption{\label{suppfig-box_frac_pa}Boxplots comparing posterior medians
+of the latent variable \emph{f} (the fraction of total LMA comprised by
+LMAm) across sites (wet and dry) and canopy strata (sun and shade) in
+Panama. Left: All leaf samples in the Panama dataset. Right: Paired leaf
+samples in the Panama dataset (species for which both sun and shade
+leaves were available). Note that LMAm = \emph{f} \(\times\) LMA, and
+LMAs = (1 -- \emph{f}) \(\times\) LMA. Boxplot symbols as in Fig. 7.
+Groups sharing the same letters are not significantly different (P
+\textgreater{} 0.05; t-tests). Estiamtes are from the best GLOPNET and
+Panama models (Table 1).}
+
+\end{suppfig}%
+
+\newpage
+
+\begin{suppfig}
+
+\centering{
+
+\includegraphics{../figs/mass_prop_sim.pdf}
+
+}
+
+\caption{\label{suppfig-mass_prop_sim}The relationships between mass
+dependency of \emph{A}\textsubscript{max} (\emph{b} in Eq. 5 in the main
+text) and LMAs variance (relative to total LMA variance; Eq. 6) for the
+different values of the scaling exponents \(\alpha_m\) and \(\alpha_s\)
+(Eq. 2). (a) The scaling exponent \(\alpha_m\) varies from 0.1 to 1.0
+while the scaling exponent \(\alpha_s\) is constant (\(\alpha_s\) =
+-0.13). (b) The scaling exponent \(\alpha_s\) vary from -0.5 to 0.5
+while the scaling exponent \(\alpha_m\) is constant (\(\alpha_m\) =
+0.28). Solid lines indicate simulated medians and shaded regions
+indicate 95\% confidence intervals. Empirical estimates of \emph{b} are
+typically between 0 and 1 (\citeproc{ref-Osnas2018}{Osnas et al.,
+2018}). \emph{A}\textsubscript{max} is primarily mass-dependent if
+\emph{b} \textgreater{} 0.5, and primarily area-dependent if 0.5
+\textgreater{} \emph{b} \textgreater{} 0 (\citeproc{ref-Osnas2018}{Osnas
+et al., 2018}). Parameter values are based on the best GLOPNET model
+(Table 1) and Supplementary Section 6: \(\alpha_0\) = 1.77, \(\mu_m\) =
+56.4, \(\mu_s\) = 61.4, and \(\sigma_m\) = 0.84.}
+
+\end{suppfig}%
+
+\newpage
+
+\begin{suppfig}
+
+\centering{
+
+\includegraphics{../figs/mass_prop_comp.pdf}
+
+}
+
+\caption{\label{suppfig-mass_prop_comp}The relationships between mass
+dependency of \emph{A}\textsubscript{max} (\emph{b} in Eq. 5 in the main
+text) and LMAs variance (relative to total LMA variance; Eq. 6) for
+simulated datasets generated from a normal distribution (N) vs.~a
+multivariate normal distribution (MVN). Parameter values are based on
+the best Panama model (Table 1) and Supplementary Section 6:
+\(\alpha_0\) = 0.34, \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, \(\mu_m\) =
+7.7, \(\mu_s\) = 26.6, \(\sigma_m\) = 1.95, and \(\rho\) = -0.47.}
+
+\end{suppfig}%
+
+\newpage
+
+\begin{suppfig}
+
+\centering{
+
+\includegraphics{../figs/gl_point_np2.pdf}
+
+}
+
+\caption{\label{suppfig-gl_point_np2}Measured traits related to
+photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf
+area; \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area}) are
+positively correlated with LMA and with estimates (posterior medians) of
+the metabolic and structural LMA components (LMAm and LMAs,
+respectively) in the GLOPNET dataset. LMAm yields more consistent
+relationships compared to LMA and LMAs; e.g., evergreen and deciduous
+leaves align along a single relationship in panel b, but not in panels a
+or c. Pearson correlation coefficients (\emph{r}) for LMA (left column)
+and posterior medians of Pearson correlation coefficients (\(\bar{r}\))
+for LMAm (middle column) and LMAs (right column) are shown.}
+
+\end{suppfig}%
+
+\newpage
+
+\begin{suppfig}
+
+\centering{
+
+\includegraphics{../figs/pa_point_npc_par.pdf}
+
+}
+
+\caption{\label{suppfig-pa_point_npc_par}Partial regression plots for
+nitrogen, phosphorus and cellulose per-unit leaf area
+(\emph{N}\textsubscript{area}, \emph{P}\textsubscript{area} and
+CL\textsubscript{area}). (a) LMAs variation is controlled. (b) LMAm
+variation is controlled. The partial regression plots show separation
+between sun and shade when controlling for LMAs variation (i.e., LMAs
+does not explain the sun/shade difference), but overlapping
+distributions of sun and shade when controlling for LMAm variation
+(i.e., LMAm does explain the sun/shade difference). Posterior medians of
+partial correlation coefficients (\(\bar{\rho}\)) are shown.}
+
+\end{suppfig}%
+
+\newpage
+
+\begin{suppfig}
+
+\centering{
+
+\includegraphics{../figs/ps_point.pdf}
+
+}
+
+\caption{\label{suppfig-LMAm_LMAs}Pearson correlation coefficients for
+posterior medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama
+datasets. The non-significant or weak \emph{r} values indicate that a
+single axis could not accurately represent the two-dimensional space.
+Symbols as in main text Figs. 2-3.}
+
+\end{suppfig}%
+
+\newpage
+
 \section*{References}\label{references}
 \addcontentsline{toc}{section}{References}
 
@@ -1111,7 +1106,8 @@ constraint of \(\alpha_s\) = 0 and \(\beta_m\) = 0.
 \begin{CSLReferences}{1}{0}
 \bibitem[\citeproctext]{ref-Alvarez2014}
 Alvarez, I., Niemi, J., Simpson, M., 2014. Bayesian inference for a
-covariance matrix. \url{https://doi.org/10.1214/aos/1176348885}
+covariance matrix. arXiv preprint arXiv:1408.4050v2 1--12.
+\url{https://doi.org/10.1214/aos/1176348885}
 
 \bibitem[\citeproctext]{ref-Betancourt2016}
 Betancourt, M., 2016. Diagnosing {Suboptimal Cotangent Disintegrations}

@@ -405,6 +405,8 @@ The best model for the Panama dataset is LMAm-LMAs-light with the constraint of 
 ```{stan, output.var="hoge",file=here('stan/am_bs_opt.stan'), eval=FALSE, echo=TRUE}
 ```
 
+\newpage
+
 \section*{Figures}
 \addcontentsline{toc}{section}{Figures}
 
