@@ -114,3 +114,5 @@ ms/cover.*
 /.quarto/
 
 !Dockerfile
+
+*.tiff
