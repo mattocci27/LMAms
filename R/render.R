@@ -11,7 +11,7 @@ eq_full <- captioner::captioner(prefix = "Eq.")
 s_fig_full <- captioner::captioner(prefix = "Fig. S", auto_space = FALSE)
 s_table_full <- captioner::captioner(prefix = "Table S", auto_space = FALSE)
 s_eq_full <- captioner::captioner(prefix = "Eq. S", auto_space = FALSE)
-appendix_full <- captioner::captioner(prefix = "Appendix S", auto_space = FALSE)
+appendix_full <- captioner::captioner(prefix = "Supplementary Section ", auto_space = FALSE)
 
 # - Make a short function that prints only the object type and number, e.g., "Figure 1"
 fig <- purrr::partial(fig_full, display = "cite", caption = "blank")
@@ -30,4 +30,4 @@ eq_num <- function (name) {eq(name) %>% str_remove("Eq. ")}
 s_fig_num <- function (name) {s_fig(name) %>% str_remove("Fig. ")}
 s_table_num <- function (name) {s_table(name) %>% str_remove("Table ")}
 s_eq_num <- function (name) {s_eq(name) %>% str_remove("Eq. ")}
-appendix_num <- function (name) {appendix(name) %>% str_remove("Appendix ")}
+appendix_num <- function (name) {appendix(name) %>% str_remove("Supplementary Section ")}

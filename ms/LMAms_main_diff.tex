@@ -1,7 +1,7 @@
 % Options for packages loaded elsewhere
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL LMAms_main_old.tex   Tue Aug 20 07:42:43 2024
-%DIF ADD LMAms_main.tex       Tue Aug 20 07:41:31 2024
+%DIF DEL LMAms_main_old.tex   Wed Aug 21 06:40:10 2024
+%DIF ADD LMAms_main.tex       Wed Aug 21 05:55:21 2024
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -572,7 +572,7 @@ the same denominator as LMA and its components.
 
 To implement the two-dimensional models, we developed a statistical
 modeling framework to partition LMA into additive LMAm and LMAs
-components (Appendices S1-S2). \DIFdelbegin \DIFdel{By using power-law relationships, our
+components (Appendices 1-2). \DIFdelbegin \DIFdel{By using power-law relationships, our
 models assume that LMAm the contribution of LMAm to metabolic rates is
 not direct or linear, which reflects that leaf mass components still
 cannot be neatly classified as `metabolic' or `structural'. }\DIFdelend We fit the models to two datasets: the
@@ -589,29 +589,28 @@ models, we performed tests with randomized data to evaluate if our
 two-dimensional models were prone to creating patterns from noise, which
 could lead to spurious conclusions. These tests suggested that our
 two-dimensional modeling approach revealed meaningful patterns in the
-observed trait data (Appendix S3). \DIFaddbegin \DIFadd{We then used the model predictions to
-study how LMAm and LMAs contribute to LMA variance, evergreen-deciduous
-LMA differences, and sun-shade LMA differences (Appendix S4).
+observed trait data (Supplementary Section 3). \DIFaddbegin \DIFadd{We then used the model
+predictions to study how LMAm and LMAs contribute to LMA variance,
+evergreen-deciduous LMA differences, and sun-shade LMA differences
+(Supplementary Section 4).
 }\DIFaddend 
 
 To better understand the factors affecting relationships between
-\emph{A}\textsubscript{max} and LMA (Appendix \DIFdelbegin \DIFdel{S4}\DIFdelend \DIFaddbegin \DIFadd{S5}\DIFaddend ), we \DIFdelbegin \DIFdel{simulated datasets
-varying in }\DIFdelend \DIFaddbegin \DIFadd{generated
-simulated datasets with different }\emph{\DIFadd{A}}\DIFadd{\textsubscript{area}-LMAm
-relationships and different }\DIFaddend LMAm and LMAs \DIFdelbegin \DIFdel{(Appendix S8). This approach allows us to
-directly examine the cause of }\DIFdelend \DIFaddbegin \DIFadd{variances (Appendix S6). For
-each simulated dataset, we quantified the }\DIFaddend mass-dependence of
-\emph{A}\textsubscript{max} in relation to LMA, which we quantified as
-the scaling exponent of \emph{A}\textsubscript{max} with LMA (Appendix
-\DIFdelbegin \DIFdel{S4}\DIFdelend \DIFaddbegin \DIFadd{S5}\DIFaddend ) following Osnas et al. (\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\emph{A}\textsubscript{max} and LMA (Supplementary Section \DIFdelbegin \DIFdel{4}\DIFdelend \DIFaddbegin \DIFadd{5}\DIFaddend ), we
+\DIFdelbegin \DIFdel{simulated datasets varying in }\DIFdelend \DIFaddbegin \DIFadd{generated simulated datasets with different
+}\emph{\DIFadd{A}}\DIFadd{\textsubscript{area}-LMAm relationships and different }\DIFaddend LMAm and
+LMAs \DIFaddbegin \DIFadd{variances }\DIFaddend (Supplementary Section \DIFdelbegin \DIFdel{8). This approach allows us to directly examine the cause of }\DIFdelend \DIFaddbegin \DIFadd{6). For each simulated dataset, we
+quantified the }\DIFaddend mass-dependence of \emph{A}\textsubscript{max} in
+relation to LMA, which we quantified as the scaling exponent of
+\emph{A}\textsubscript{max} with LMA (Supplementary Section \DIFdelbegin \DIFdel{4}\DIFdelend \DIFaddbegin \DIFadd{5}\DIFaddend ) following
+Osnas et al. (\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \citeproc{ref-Osnas2013}{2013}}\hspace{0pt}%DIFAUXCMD
-).
-Additionally, we performed variance partitioning to determine the
-contributions of LMAm and LMAs to total LMA variance, using both
-simulated and actual datasets (Appendix S6).
-These analyses are key in
-exploring the controversial mass versus area normalization debate in
-leaf trait analysis.
+). Additionally, we performed variance
+partitioning to determine the contributions of LMAm and LMAs to total
+LMA variance, using both simulated and actual datasets (Supplementary
+Section 6).
+These analyses are key in exploring the controversial mass
+versus area normalization debate in leaf trait analysis.
 }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
 \citeproc{ref-Osnas2018}{2018}}\hspace{0pt}%DIFAUXCMD
 ).
@@ -682,8 +681,8 @@ values LMAm and LMAs according to multivariate power laws:
 \(\beta\), and \(\gamma\) terms are fitted parameters; and the
 logarithms of \emph{A}\textsubscript{area},
 \emph{R}\textsubscript{area}, and LL are assumed to have a multivariate
-normal distribution (Appendix S1). In preliminary analyses, we also
-considered alternative (non-power-law) forms, but none of these
+normal distribution (Supplementary Section 1). In preliminary analyses,
+we also considered alternative (non-power-law) forms, but none of these
 performed better than the power-law forms and are not \DIFdelbegin \DIFdel{discussed further}\DIFdelend \DIFaddbegin \DIFadd{presented}\DIFaddend .
 
 We \DIFdelbegin \DIFdel{also considered models in which }\DIFdelend \DIFaddbegin \DIFadd{considered two alternatives to Eq. 4a for modeling LL. First, we
@@ -747,7 +746,8 @@ was implemented in different model versions either by setting
 \textgreater{} \(\alpha_s\). Similarly, the second assumption was
 implemented either by setting \(\beta_m\) = 0 or by imposing the
 constraint \(\beta_s\) \textgreater{} \(\beta_m\). See }\DIFdelend \DIFaddbegin \DIFadd{than LMAm. The implementation
-of these assumptions is described in }\DIFaddend Table 1 and Appendix S2\DIFdelbegin \DIFdel{for more detail.
+of these assumptions is described in }\DIFaddend Table 1 and Supplementary Section
+\DIFdelbegin \DIFdel{2 for more detail.
 }%DIFDELCMD < 
 
 %DIFDELCMD < %%%
@@ -775,7 +775,9 @@ modeling how light affects LL via leaf carbon balance
 study. Instead, we introduced light effects in a simple way by modifying
 Eq. 4a to 4b where the dummy variable Light\textsubscript{\emph{i}} is
 set to 1 for sun leaves and 0 for shade leaves, and exp(\(\theta\)) is
-the sun:shade LL ratio}\DIFdelend .
+the sun:shade LL ratio.
+}\DIFdelend \DIFaddbegin \DIFadd{2.
+}\DIFaddend 
 
 \subsection{Datasets}\label{datasets}
 
@@ -857,20 +859,20 @@ non-informative or weakly informative prior distributions
 latent variables \emph{f\textsubscript{i}} (which are used to partition
 LMA into LMAm and LMAs according to Eq. 1 were non-informative
 uniform(0, 1) distributions, (i.e., LMA was partitioned based on
-patterns in the data). See Appendix S1 for more details. \DIFdelbegin \DIFdel{The Stan code
-use to fit models is available from Github at:
+patterns in the data). See Supplementary Section 1 for more details.
+\DIFdelbegin \DIFdel{The
+Stan code use to fit models is available from Github at:
 }%DIFDELCMD < \url{https://github.com/mattocci27/LMAms}%%%
-\DIFdel{. }\DIFdelend Convergence of
-the posterior distribution was assessed with the Gelman-Rubin statistic
-with a convergence threshold of 1.05 for all parameters
-(\citeproc{ref-Gelman2013}{Gelman et al., 2013}).
+\DIFdel{. }\DIFdelend Convergence of the posterior distribution was assessed with the
+Gelman-Rubin statistic with a convergence threshold of 1.05 for all
+parameters (\citeproc{ref-Gelman2013}{Gelman et al., 2013}).
 
 Considering the complexity of our two-dimensional modeling approach,
 which involves numerous latent parameters, we validated our estimates of
-LMAm and LMAs through randomized tests, detailed in Appendix S3. These
-tests support our assumption that the patterns observed in the GLOPNET
-and Panama datasets are meaningful and allow for a substantial
-exploration of our questions.
+LMAm and LMAs through randomized tests, detailed in Supplementary
+Section 3. These tests support our assumption that the patterns observed
+in the GLOPNET and Panama datasets are meaningful and allow for a
+substantial exploration of our questions.
 
 To compare the performance of different models, we used Pareto-smoothed
 importance sampling leave-one-out cross-validation (PSIS-LOO;
@@ -964,18 +966,17 @@ to LMAs variation \DIFdelbegin \DIFdel{(Eq. 5) }\DIFdelend strongly affected the
 ); Osnas et al.
 (\mbox{%DIFAUXCMD
 \citeproc{ref-Osnas2018}{2018}}\hspace{0pt}%DIFAUXCMD
-)). Generally}\DIFdelend \DIFaddbegin \DIFadd{see Appendix
-S4). As expected}\DIFaddend , mass-dependence of \emph{A}\textsubscript{max} \DIFdelbegin \DIFdel{decreased }\DIFdelend \DIFaddbegin \DIFadd{was
-generally weak }\DIFaddend (area-dependence \DIFdelbegin \DIFdel{increased) with
-increasing LMAs variance }\DIFdelend \DIFaddbegin \DIFadd{was strong) when LMA variance was
-dominated by LMAs }\DIFaddend (Fig.~\ref{fig-mass_prop}). \DIFdelbegin \DIFdel{Other factors,
-including the sensitivity of }\DIFdelend \DIFaddbegin \DIFadd{In this case,
-}\DIFaddend \emph{A}\textsubscript{max} per-unit leaf area
-(\emph{A}\textsubscript{area}) \DIFaddbegin \DIFadd{and LMA are not strongly correlated
-because LMA variance is dominated by structural mass (LMAs) that does
-not directly contribute to photosynthesis (and whole-leaf
-}\emph{\DIFadd{A}}\DIFadd{\textsubscript{max} thus depends primarily on leaf area rather
-than mass).
+)). Generally}\DIFdelend \DIFaddbegin \DIFadd{see
+Supplementary Section 4). As expected}\DIFaddend , mass-dependence of
+\emph{A}\textsubscript{max} \DIFdelbegin \DIFdel{decreased }\DIFdelend \DIFaddbegin \DIFadd{was generally weak }\DIFaddend (area-dependence \DIFdelbegin \DIFdel{increased) with
+increasing LMAs variance }\DIFdelend \DIFaddbegin \DIFadd{was
+strong) when LMA variance was dominated by LMAs
+}\DIFaddend (Fig.~\ref{fig-mass_prop}). \DIFdelbegin \DIFdel{Other factors, including the sensitivity of }\DIFdelend \DIFaddbegin \DIFadd{In this case, }\DIFaddend \emph{A}\textsubscript{max}
+per-unit leaf area (\emph{A}\textsubscript{area}) \DIFaddbegin \DIFadd{and LMA are not
+strongly correlated because LMA variance is dominated by structural mass
+(LMAs) that does not directly contribute to photosynthesis (and
+whole-leaf }\emph{\DIFadd{A}}\DIFadd{\textsubscript{max} thus depends primarily on leaf
+area rather than mass).
 }
 
 \DIFadd{Factors other than LMA variance components also affected the area-
@@ -1713,8 +1714,8 @@ constraints were based on the following hypotheses: (1)
 \emph{A}\textsubscript{area} depends more strongly on metabolic leaf
 mass (LMAm: parameter \(\alpha_m\) in Eq. 2) than structural leaf mass
 (LMAs: parameter \(\alpha_s\)), and (2) LL depends more strongly on LMAs
-(\(\beta_s\) in Eq. 4) than LMAm (\(\beta_m\)). See Appendix S2 for more
-details.
+(\(\beta_s\) in Eq. 4) than LMAm (\(\beta_m\)). See Supplementary
+Section 2 for more details.
 
 \begin{table}
 \centering
@@ -1795,8 +1796,8 @@ leaf area and leaf mass, respectively. (b) Two-dimensional relationship
 between photosynthetic capacity (\emph{A}\textsubscript{max}) per-unit
 leaf area and total LMA (equal to LMAm + LMAs). (c) One-dimensional
 relationship between \emph{A}\textsubscript{max} per-unit leaf mass and
-total LMA. Methods used to simulate the data are explained in Appendix
-\DIFdelbeginFL \DIFdelFL{S8}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{S6.}\DIFaddendFL }
+total LMA. Methods used to simulate the data are explained in
+Supplementary Section \DIFdelbeginFL \DIFdelFL{8}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{6.}\DIFaddendFL }
 
 \end{figure}%
 
@@ -1955,7 +1956,7 @@ included (Fig. S1). Details as for Fig.~\ref{fig-box_de}.}
 %DIFDELCMD < al., 2018}). If \emph{b} \textgreater{} 1, then
 %DIFDELCMD < \emph{A}\textsubscript{max} increases exponentially with LMA, which is
 %DIFDELCMD < not consistent with observed relationships
-%DIFDELCMD < (\citeproc{ref-Osnas2018}{Osnas et al., 2018}). See Appendices S9-S6 for
+%DIFDELCMD < (\citeproc{ref-Osnas2018}{Osnas et al., 2018}). See Appendices 9-6 for
 %DIFDELCMD < details. \includegraphics{../figs/mass_prop_mv.png}
 %DIFDELCMD < 
 
@@ -1987,7 +1988,7 @@ exponentially with LMA, which is not consistent with observed
 relationships (\mbox{%DIFAUXCMD
 \citeproc{ref-Osnas2018}{Osnas et al., 2018}}\hspace{0pt}%DIFAUXCMD
 ). See
-Appendices S4-S6 for details.}\DIFaddendFL }
+Appendices 4-6 for details.}\DIFaddendFL }
 
 \end{figure}%
 

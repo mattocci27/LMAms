@@ -441,7 +441,7 @@ the same denominator as LMA and its components.
 
 To implement the two-dimensional models, we developed a statistical
 modeling framework to partition LMA into additive LMAm and LMAs
-components (Appendices S1-S2). We fit the models to two datasets: the
+components (Appendices 1-2). We fit the models to two datasets: the
 GLOPNET global leaf traits dataset (\citeproc{ref-Wright2004a}{Wright et
 al., 2004}), which primarily represents interspecific variation; and the
 Panama dataset described by Osnas et al.
@@ -455,18 +455,20 @@ models, we performed tests with randomized data to evaluate if our
 two-dimensional models were prone to creating patterns from noise, which
 could lead to spurious conclusions. These tests suggested that our
 two-dimensional modeling approach revealed meaningful patterns in the
-observed trait data (Appendix S3). We then used the model predictions to
-study how LMAm and LMAs contribute to LMA variance, evergreen-deciduous
-LMA differences, and sun-shade LMA differences (Appendix S4).
+observed trait data (Supplementary Section 3). We then used the model
+predictions to study how LMAm and LMAs contribute to LMA variance,
+evergreen-deciduous LMA differences, and sun-shade LMA differences
+(Supplementary Section 4).
 
 To better understand the factors affecting relationships between
-\emph{A}\textsubscript{max} and LMA (Appendix S5), we generated
-simulated datasets with different \emph{A}\textsubscript{area}-LMAm
-relationships and different LMAm and LMAs variances (Appendix S6). For
-each simulated dataset, we quantified the mass-dependence of
-\emph{A}\textsubscript{max} in relation to LMA, which we quantified as
-the scaling exponent of \emph{A}\textsubscript{max} with LMA (Appendix
-S5) following Osnas et al. (\citeproc{ref-Osnas2018}{2018}).
+\emph{A}\textsubscript{max} and LMA (Supplementary Section 5), we
+generated simulated datasets with different
+\emph{A}\textsubscript{area}-LMAm relationships and different LMAm and
+LMAs variances (Supplementary Section 6). For each simulated dataset, we
+quantified the mass-dependence of \emph{A}\textsubscript{max} in
+relation to LMA, which we quantified as the scaling exponent of
+\emph{A}\textsubscript{max} with LMA (Supplementary Section 5) following
+Osnas et al. (\citeproc{ref-Osnas2018}{2018}).
 
 All statistical analyses were conducted in R version 4.3.2
 (\citeproc{ref-RCoreTeam2022}{R Core Team, 2022}) using the R package
@@ -526,8 +528,8 @@ where E{[}\(\cdot\){]} indicates expected value; the \(\alpha\),
 \(\beta\), and \(\gamma\) terms are fitted parameters; and the
 logarithms of \emph{A}\textsubscript{area},
 \emph{R}\textsubscript{area}, and LL are assumed to have a multivariate
-normal distribution (Appendix S1). In preliminary analyses, we also
-considered alternative (non-power-law) forms, but none of these
+normal distribution (Supplementary Section 1). In preliminary analyses,
+we also considered alternative (non-power-law) forms, but none of these
 performed better than the power-law forms and are not presented.
 
 We considered two alternatives to Eq. 4a for modeling LL. First, we
@@ -571,7 +573,8 @@ same model output as the set {[}0.6, 0.3, 0.8{]}. To ensure that the
 model was identifiable, we imposed two broad assumptions: (i)
 \emph{A}\textsubscript{area} depends more strongly on LMAm then LMAs,
 and (ii) LL depends more strongly on LMAs than LMAm. The implementation
-of these assumptions is described in Table 1 and Appendix S2.
+of these assumptions is described in Table 1 and Supplementary Section
+2.
 
 \subsection{Datasets}\label{datasets}
 
@@ -640,17 +643,17 @@ non-informative or weakly informative prior distributions
 latent variables \emph{f\textsubscript{i}} (which are used to partition
 LMA into LMAm and LMAs according to Eq. 1 were non-informative
 uniform(0, 1) distributions, (i.e., LMA was partitioned based on
-patterns in the data). See Appendix S1 for more details. Convergence of
-the posterior distribution was assessed with the Gelman-Rubin statistic
-with a convergence threshold of 1.05 for all parameters
-(\citeproc{ref-Gelman2013}{Gelman et al., 2013}).
+patterns in the data). See Supplementary Section 1 for more details.
+Convergence of the posterior distribution was assessed with the
+Gelman-Rubin statistic with a convergence threshold of 1.05 for all
+parameters (\citeproc{ref-Gelman2013}{Gelman et al., 2013}).
 
 Considering the complexity of our two-dimensional modeling approach,
 which involves numerous latent parameters, we validated our estimates of
-LMAm and LMAs through randomized tests, detailed in Appendix S3. These
-tests support our assumption that the patterns observed in the GLOPNET
-and Panama datasets are meaningful and allow for a substantial
-exploration of our questions.
+LMAm and LMAs through randomized tests, detailed in Supplementary
+Section 3. These tests support our assumption that the patterns observed
+in the GLOPNET and Panama datasets are meaningful and allow for a
+substantial exploration of our questions.
 
 To compare the performance of different models, we used Pareto-smoothed
 importance sampling leave-one-out cross-validation (PSIS-LOO;
@@ -736,16 +739,16 @@ vs.~mass-dependence of leaf photosynthetic capacity
 Analysis of simulated data showed that the percent of LMA variation due
 to LMAs variation strongly affected the area- vs.~mass-dependence of
 \emph{A}\textsubscript{max} (i.e., the degree to which whole-leaf
-\emph{A}\textsubscript{max} depends on leaf area or mass; see Appendix
-S4). As expected, mass-dependence of \emph{A}\textsubscript{max} was
-generally weak (area-dependence was strong) when LMA variance was
-dominated by LMAs (Fig.~\ref{fig-mass_prop}). In this case,
-\emph{A}\textsubscript{max} per-unit leaf area
-(\emph{A}\textsubscript{area}) and LMA are not strongly correlated
-because LMA variance is dominated by structural mass (LMAs) that does
-not directly contribute to photosynthesis (and whole-leaf
-\emph{A}\textsubscript{max} thus depends primarily on leaf area rather
-than mass).
+\emph{A}\textsubscript{max} depends on leaf area or mass; see
+Supplementary Section 4). As expected, mass-dependence of
+\emph{A}\textsubscript{max} was generally weak (area-dependence was
+strong) when LMA variance was dominated by LMAs
+(Fig.~\ref{fig-mass_prop}). In this case, \emph{A}\textsubscript{max}
+per-unit leaf area (\emph{A}\textsubscript{area}) and LMA are not
+strongly correlated because LMA variance is dominated by structural mass
+(LMAs) that does not directly contribute to photosynthesis (and
+whole-leaf \emph{A}\textsubscript{max} thus depends primarily on leaf
+area rather than mass).
 
 Factors other than LMA variance components also affected the area-
 vs.~mass-dependence of \emph{A}\textsubscript{max} , including the
@@ -1461,8 +1464,8 @@ constraints were based on the following hypotheses: (1)
 \emph{A}\textsubscript{area} depends more strongly on metabolic leaf
 mass (LMAm: parameter \(\alpha_m\) in Eq. 2) than structural leaf mass
 (LMAs: parameter \(\alpha_s\)), and (2) LL depends more strongly on LMAs
-(\(\beta_s\) in Eq. 4) than LMAm (\(\beta_m\)). See Appendix S2 for more
-details.
+(\(\beta_s\) in Eq. 4) than LMAm (\(\beta_m\)). See Supplementary
+Section 2 for more details.
 
 \begin{table}
 \centering
@@ -1543,8 +1546,8 @@ leaf area and leaf mass, respectively. (b) Two-dimensional relationship
 between photosynthetic capacity (\emph{A}\textsubscript{max}) per-unit
 leaf area and total LMA (equal to LMAm + LMAs). (c) One-dimensional
 relationship between \emph{A}\textsubscript{max} per-unit leaf mass and
-total LMA. Methods used to simulate the data are explained in Appendix
-S6.}
+total LMA. Methods used to simulate the data are explained in
+Supplementary Section 6.}
 
 \end{figure}%
 
@@ -1707,7 +1710,7 @@ area-dependence (\citeproc{ref-Osnas2018}{Osnas et al., 2018}). If
 \emph{b} \textgreater{} 1, then \emph{A}\textsubscript{max} increases
 exponentially with LMA, which is not consistent with observed
 relationships (\citeproc{ref-Osnas2018}{Osnas et al., 2018}). See
-Appendices S4-S6 for details.}
+Appendices 4-6 for details.}
 
 \end{figure}%
 

@@ -3,10 +3,37 @@ GIT2 = e97923ed
 COVER = ms/cover
 MAIN = ms/LMAms_main
 SI = ms/LMAms_SI
+
+FIG_DIR = figs
+FIG_DEST_DIR = submission-si/figs
+MS_DIR = ms
+MS_DEST_DIR = submission-si/ms
+
+FIG_FILES = coef_sim_gl.pdf coef_sim_pa.pdf box_inter.pdf box_frac_de.pdf box_frac_pa.pdf mass_prop_sim.pdf mass_prop_comp.pdf gl_point_np2.pdf pa_point_npc_par.pdf ps_point.pdf
+
+MS_FILES = LMA.bib LMAms_SI.tex
+
 all: $(MAIN).pdf $(MAIN).docx $(SI).pdf $(SI).docx $(MAIN)_diff.pdf $(SI)_diff.pdf
 diff: $(MAIN)_diff.pdf
 diff2: $(SI)_diff.pdf
 pdf: $(MAIN).pdf
+
+# Target to copy all files
+copy_files: copy_figs copy_ms
+
+# Target to copy figures
+copy_figs:
+	@mkdir -p $(FIG_DEST_DIR)
+	@for file in $(FILES); do \
+		cp $(FIG_DIR)/$$file $(FIG_DEST_DIR); \
+	done
+
+# Target to copy manuscript files
+copy_ms:
+	@mkdir -p $(MS_DEST_DIR)
+	@for file in $(MS_FILES); do \
+		cp $(MS_DIR)/$$file $(MS_DEST_DIR); \
+	done
 
 $(MAIN).pdf: $(MAIN).qmd
 	quarto render $< --to pdf
@@ -50,3 +77,5 @@ clean:
 	rm -f ms/*.tuc \
 	ms/*.log \
 	rm -rf ms/cache/*
+
+.PHONY: copy_files

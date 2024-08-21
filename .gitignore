@@ -116,3 +116,4 @@ ms/cover.*
 !Dockerfile
 
 *.tiff
+submission-si/*
