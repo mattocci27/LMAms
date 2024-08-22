@@ -1,7 +1,7 @@
 % Options for packages loaded elsewhere
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL LMAms_main_old.tex   Wed Aug 21 10:01:50 2024
-%DIF ADD LMAms_main.tex       Wed Aug 21 10:01:08 2024
+%DIF DEL LMAms_main_old.tex   Thu Aug 22 03:08:34 2024
+%DIF ADD LMAms_main.tex       Thu Aug 22 03:08:10 2024
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -507,14 +507,15 @@ mass-normalization can, in principle, make a two-dimensional trait space
 appear one-dimensional, but the dimensionality of functional variation
 in real leaf assemblages remains an open question. One way to better
 understand the dimensionality of leaf trait variation is to compare
-models with different numbers of dimensions, and to ask if models with
+models with different numbers of dimensions \DIFdelbegin \DIFdel{, }\DIFdelend and to ask if models with
 multiple dimensions provide improved statistical fits \DIFdelbegin \DIFdel{and conceptual
 insights }\DIFdelend compared to a
 single axis. For example, the two-dimensional `LMAm-LMAs' model proposed
 by Osnas et al. (\citeproc{ref-Osnas2018}{2018}) could be compared to a
 one-dimensional LMA model in terms of their capacities to explain
 variation in other traits. However, implementing the `LMAm-LMAs' model
-is challenging, because although certain leaf mass components can be
+is challenging \DIFdelbegin \DIFdel{,
+}\DIFdelend because although certain leaf mass components can be
 neatly classified as `metabolic' or `structural'
 (\citeproc{ref-Osnas2018}{Osnas et al., 2018};
 \citeproc{ref-Poorter2009}{Poorter et al., 2009}), other leaf mass
@@ -739,15 +740,16 @@ same model output as the set {[}0.6, 0.3, 0.8{]}\DIFdelbegin \DIFdel{in Eq. 2. }
 model was identifiable, we imposed two broad assumptions: (i)
 \emph{A}\textsubscript{area} depends more strongly on \DIFdelbegin \DIFdel{metabolic leaf
 mass (LMAm : parameter \(\alpha_m\) in Eq. 2) than structural leaf mass
-(LMAs: parameter \(\alpha_s\))}\DIFdelend \DIFaddbegin \DIFadd{LMAm then LMAs}\DIFaddend ,
-and (ii) LL depends more strongly on LMAs \DIFdelbegin \DIFdel{(\(\beta_s\) in Eq. 4 than LMAm(\(\beta_m\)). The first assumption
+(LMAs: parameter \(\alpha_s\))}\DIFdelend \DIFaddbegin \DIFadd{LMAm than on LMAs}\DIFaddend ,
+and (ii) LL depends more strongly on LMAs \DIFdelbegin \DIFdel{(\(\beta_s\) in Eq. 4 than LMAm (\(\beta_m\)). The
+first assumption
 was implemented in different model versions either by setting
 \(\alpha_s\) = 0 or by imposing the constraint \(\alpha_m\)
 \textgreater{} \(\alpha_s\). Similarly, the second assumption was
 implemented either by setting \(\beta_m\) = 0 or by imposing the
-constraint \(\beta_s\) \textgreater{} \(\beta_m\). See }\DIFdelend \DIFaddbegin \DIFadd{than LMAm. The implementation
-of these assumptions is described in }\DIFaddend Table 1 and Supplementary Section
-\DIFdelbegin \DIFdel{2 for more detail.
+constraint \(\beta_s\) \textgreater{} \(\beta_m\). See }\DIFdelend \DIFaddbegin \DIFadd{than on LMAm. The
+implementation of these assumptions is described in }\DIFaddend Table 1 and
+Supplementary Section \DIFdelbegin \DIFdel{2 for more detail.
 }%DIFDELCMD < 
 
 %DIFDELCMD < %%%
@@ -821,9 +823,10 @@ available at both sites). In addition to LMA,
 model based on structural leaf density also requires observations of
 leaf thickness, which was not available in GLOPNET but was available for
 106/130 Panama samples. Both the GLOPNET and Panama datasets include
-additional traits that we used to interpret model results, but which
-were not used to fit models. These traits include nitrogen and
-phosphorus content per leaf unit area (\emph{N}\textsubscript{area} and
+additional traits that we used to interpret model results, but \DIFdelbegin \DIFdel{which
+}\DIFdelend \DIFaddbegin \DIFadd{that }\DIFaddend were
+not used to fit models. These traits include nitrogen and phosphorus
+content per leaf unit area (\emph{N}\textsubscript{area} and
 \emph{P}\textsubscript{area}; g m\textsuperscript{-2}) and leaf habit
 (deciduous or evergreen) in both datasets, and cellulose content per
 unit area (CL\textsubscript{area}; g m\textsuperscript{-2}) in the
@@ -887,18 +890,22 @@ et al., 2017}).
 
 \section{Results}\label{results}
 
-\subsection{\texorpdfstring{Decomposing LMA into metabolic and
+\subsection{\DIFdelbegin %DIFDELCMD < \texorpdfstring{Decomposing LMA into metabolic and
+%DIFDELCMD < structural components leads to improved predictions of
+%DIFDELCMD < \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and
+%DIFDELCMD < LL.}{Decomposing LMA into metabolic and structural components leads to improved predictions of Aarea, Rarea and LL.}%%%
+\DIFdelend \DIFaddbegin \texorpdfstring{Decomposing LMA into metabolic and
 structural components leads to improved predictions of
-\emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and
-LL.}{Decomposing LMA into metabolic and structural components leads to improved predictions of Aarea, Rarea and LL.}}\label{decomposing-lma-into-metabolic-and-structural-components-leads-to-improved-predictions-of-aarea-rarea-and-ll.}
+\emph{A}\textsubscript{area}, \emph{R}\textsubscript{area}, and
+LL.}{Decomposing LMA into metabolic and structural components leads to improved predictions of Aarea, Rarea, and LL.}\DIFaddend }\label{decomposing-lma-into-metabolic-and-structural-components-leads-to-improved-predictions-of-aarea-rarea-and-ll.}
 
 For both the GLOPNET and Panama datasets, two-dimensional models
-(LMAm-LMAs) performed better in cross validation than one-dimensional
+(LMAm-LMAs) performed better in \DIFdelbegin \DIFdel{cross validation }\DIFdelend \DIFaddbegin \DIFadd{cross-validation }\DIFaddend than one-dimensional
 (LMA) models (Table 1). Thus, predictions of
-\emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and LL were
+\emph{A}\textsubscript{area}, \emph{R}\textsubscript{area}\DIFaddbegin \DIFadd{, }\DIFaddend and LL were
 improved by partitioning LMA into separate metabolic and structural
 components (see details below and Tables 1-2). Each of these traits
-(\emph{A}\textsubscript{area}, \emph{R}\textsubscript{area} and LL) had
+(\emph{A}\textsubscript{area}, \emph{R}\textsubscript{area}\DIFaddbegin \DIFadd{, }\DIFaddend and LL) had
 a strong positive relationship with either LMAm or LMAs (but not both),
 which was always stronger than the corresponding relationship with total
 LMA (Figs. \ref{fig-gl_point}-\ref{fig-pa_point}).
@@ -980,7 +987,7 @@ area rather than mass).
 }
 
 \DIFadd{Factors other than LMA variance components also affected the area-
-vs.~mass-dependence of }\emph{\DIFadd{A}}\DIFadd{\textsubscript{max} , including the
+vs.~mass-dependence of }\emph{\DIFadd{A}}\DIFadd{\textsubscript{max}, including the
 sensitivity of }\emph{\DIFadd{A}}\DIFadd{\textsubscript{area} }\DIFaddend to variation in LMAm and
 LMAs (\(\alpha_m\) and \(\alpha_s\) in Eq. 2) and covariance between
 LMAm and LMAs \DIFdelbegin \DIFdel{, also affect the mass-dependence of }\emph{\DIFdel{A}}%DIFAUXCMD
@@ -1019,7 +1026,7 @@ clear relationship with LMAs that was consistent across canopy positions
 and sites (Fig.~\ref{fig-pa_npc}). Partial regression plots showed that
 the higher \emph{N}\textsubscript{area}, \emph{P}\textsubscript{area},
 and CL\textsubscript{area} in sun leaves (compared to shade leaves;
-Fig.~\ref{fig-pa_npc}) was \DIFaddbegin \DIFadd{primarily }\DIFaddend due to sun leaves having higher
+Fig.~\ref{fig-pa_npc}) \DIFdelbegin \DIFdel{was }\DIFdelend \DIFaddbegin \DIFadd{were primarily }\DIFaddend due to sun leaves having higher
 LMAm than shade leaves (Fig. S7).
 
 \section{Discussion}\label{discussion}
@@ -1039,14 +1046,15 @@ per-unit leaf area).
 \DIFadd{Although }\DIFaddend LMAm and LMAs are model-inferred (rather than observed) traits
 \DIFdelbegin \DIFdel{. Nevertheless, several }\DIFdelend \DIFaddbegin \DIFadd{in our study, two }\DIFaddend observations suggest that we can derive meaningful
 insights from these modeled LMA components. Firstly, our analysis
-revealed \DIFdelbegin \DIFdel{several }\DIFdelend patterns that are consistent with previous analyses of measured
-traits (summarized below). Secondly, although our modeling approach
-requires many parameters to partition LMA into LMAm and LMAs (one latent
-variable per leaf sample), which could lead to over-fitting or spurious
-results, our model performed poorly (often failing to converge) when
-applied to randomized data. Thus, the model structure is not prone to
-creating signals from noise. Together, these observations lend
-credibility to our model-inferred estimates of LMAm and LMAs.
+revealed \DIFdelbegin \DIFdel{several patterns that are
+}\DIFdelend \DIFaddbegin \DIFadd{patterns }\DIFaddend consistent with previous analyses of measured traits
+(summarized below). Secondly, although our modeling approach requires
+many parameters to partition LMA into LMAm and LMAs (one latent variable
+per leaf sample), which could lead to over-fitting or spurious results,
+our model performed poorly (often failing to converge) when applied to
+randomized data. Thus, the model structure is not prone to creating
+signals from noise. Together, these observations lend credibility to our
+model-inferred estimates of LMAm and LMAs.
 \DIFdelbegin \DIFdel{We first summarize and
 interpret our model results in the context of previous studies. We then
 discuss the new insights derived from our analysis and implications for
@@ -1115,7 +1123,7 @@ with increasing LMA within species from shade to sun
 \citeproc{ref-Osnas2018}{Osnas et al., 2018};
 \citeproc{ref-Russo2016}{Russo and Kitajima, 2016}). The failure of LMAs
 to provide robust predictions of LL across canopy positions may reflect
-factors unlreated to leaf toughness \DIFdelbegin \DIFdel{- }\DIFdelend \DIFaddbegin \DIFadd{− }\DIFaddend e.g., how optimal LL depends on
+factors \DIFdelbegin \DIFdel{unlreated }\DIFdelend \DIFaddbegin \DIFadd{unrealted }\DIFaddend to leaf toughness \DIFdelbegin \DIFdel{- }\DIFdelend \DIFaddbegin \DIFadd{− }\DIFaddend e.g., how optimal LL depends on
 light availability (\citeproc{ref-Kikuzawa1991}{Kikuzawa, 1991}) \DIFdelbegin \DIFdel{- }\DIFdelend \DIFaddbegin \DIFadd{− }\DIFaddend as
 well as variation in leaf toughness for a given value of LMAs. In a
 global meta-analysis, leaf toughness was strongly related to toughness
@@ -1245,7 +1253,7 @@ Panama dataset }\DIFdelend (\citeproc{ref-Osnas2018}{Osnas et al., 2018}).
 
 Although \DIFdelbegin \DIFdel{values of }\DIFdelend \DIFaddbegin \DIFadd{the index of mass-dependence (}\DIFaddend \emph{b}\DIFaddbegin \DIFadd{; Eq. S5.1) can,
 theoretically, be }\DIFaddend greater than 1 \DIFdelbegin \DIFdel{are theoretically possible
-(which implies }\DIFdelend \DIFaddbegin \DIFadd{(impliying }\DIFaddend an exponential increase in
+(which implies }\DIFdelend \DIFaddbegin \DIFadd{(implying }\DIFaddend an exponential increase in
 area-normalized traits with increasing LMA), two factors likely
 constrain the observed values of \emph{b}. Firstly, at least some of the
 LMA increase from shade to sun is due to LMAs (Figs. \ref{fig-box_pa}
@@ -1257,8 +1265,9 @@ discussed above, \emph{A}\textsubscript{area} and
 with increasing LMAm, which in turn moderates the LMA scaling exponent
 (\emph{b}).
 
-\subsection{Implications for terrestrial ecosystem
-models}\label{implications-for-terrestrial-ecosystem-models}
+\subsection{Implications for \DIFdelbegin \DIFdel{terrestrial ecosystem
+models}\DIFdelend \DIFaddbegin \DIFadd{Terrestrial Ecosystem
+Models}\DIFaddend }\label{implications-for-terrestrial-ecosystem-models}
 
 For over two decades, low-dimensional trait tradeoffs have been explored
 as a means to represent plant functional diversity in the vegetation
@@ -1281,7 +1290,7 @@ dominant axis of global leaf functional variation
 (\citeproc{ref-Wright2004a}{Wright et al., 2004}), and this simple
 framework has been adopted in some of these dynamic vegetation models.
 Our results demonstrate the value of considering metabolic and
-structural leaf mass separately, and indicate weak if any interspecific
+structural leaf mass separately \DIFdelbegin \DIFdel{, }\DIFdelend and indicate weak\DIFdelbegin \DIFdel{if any }\DIFdelend \DIFaddbegin \DIFadd{,if any, }\DIFaddend interspecific
 correlation between these LMA components (Fig. S8). We therefore
 conclude that a one-dimensional representation of leaf functional
 variation is too simplistic. Consistent with our conclusion that leaf
