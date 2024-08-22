@@ -1,7 +1,7 @@
 % Options for packages loaded elsewhere
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL LMAms_SI_old.tex   Wed Aug 21 10:19:15 2024
-%DIF ADD LMAms_SI.tex       Wed Aug 21 10:18:55 2024
+%DIF DEL LMAms_SI_old.tex   Thu Aug 22 02:34:43 2024
+%DIF ADD LMAms_SI.tex       Thu Aug 22 02:34:24 2024
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -394,7 +394,7 @@ within and among plant species}
 
 The logarithms of \emph{A}\textsubscript{area},
 \emph{R}\textsubscript{area}, and LL for leaf sample \emph{i} were
-assumed to have a multivariate normal distribution:
+assumed to \DIFdelbegin \DIFdel{have }\DIFdelend \DIFaddbegin \DIFadd{follow }\DIFaddend a multivariate normal distribution:
 
 \DIFdelbegin \[
 \DIFdel{\begin{aligned}
@@ -435,37 +435,39 @@ assumed to have a multivariate normal distribution:
 \end{aligned}
 }}\end{equation}\DIFaddend 
 
-where E{[}\(\cdot\){]} indicates expected value and
+where E{[}\(\cdot\){]} indicates \DIFaddbegin \DIFadd{the }\DIFaddend expected value and
 \(\boldsymbol{\Sigma}\) indicates a covariance matrix. Expected values
 are based on Eqs. 2-4 in the main text.
 
 We used non-informative or weakly informative prior distributions
 (\citeproc{ref-Lemoine2019}{Lemoine, 2019}). The covariance matrix in
-Eq. S1 was decomposed as
+Eq.\DIFdelbegin \DIFdel{S1 }\DIFdelend \DIFaddbegin \DIFadd{~\ref{eq-mvn} }\DIFaddend was decomposed as
 \({\boldsymbol \Sigma} = \mathrm {diag}(\boldsymbol {\sigma}){\boldsymbol \Omega}\mathrm {diag}({\boldsymbol \sigma}) = \mathrm {diag}({\boldsymbol \sigma}){\boldsymbol L}{\boldsymbol L}\prime \mathrm {diag}({\boldsymbol \sigma})\)
 using a Cholesky decomposition, where \(\boldsymbol {\sigma}\) is a
 vector of \(\sigma_{1}\), \(\sigma_{2}\), and \(\sigma_{3}\);
 \({\boldsymbol \Omega}\) is a correlation matrix of \(\rho_{12}\),
 \(\rho_{13}\), and \(\rho_{23}\); and \textbf{L} is a lower triangular
 matrix. Instead of assigning prior distributions on
-\(\boldsymbol{\Sigma}\) directly, priors were assigned on
-\({\boldsymbol \sigma}\) and \textbf{L} to avoid a strong dependence
+\(\boldsymbol{\Sigma}\) directly, priors were assigned \DIFdelbegin \DIFdel{on
+}\DIFdelend \DIFaddbegin \DIFadd{to
+}\DIFaddend \({\boldsymbol \sigma}\) and \textbf{L} to avoid a strong dependence
 between \({\boldsymbol \sigma}\) and \({\boldsymbol \Omega}\)
 (\citeproc{ref-Alvarez2014}{Alvarez et al., 2014};
 \citeproc{ref-Lewandowski2009}{Lewandowski et al., 2009}). A prior for
-\textbf{L} was specified as a so-called LKJ distribution with shape
-parameter 2 (\citeproc{ref-Lewandowski2009}{Lewandowski et al., 2009}),
-which is weakly informative for the correlation matrix. A prior for
+\textbf{L} was specified as \DIFdelbegin \DIFdel{a so-called }\DIFdelend \DIFaddbegin \DIFadd{an }\DIFaddend LKJ distribution with \DIFdelbegin \DIFdel{shape
+parameter }\DIFdelend \DIFaddbegin \DIFadd{a shape parameter
+of }\DIFaddend 2 (\citeproc{ref-Lewandowski2009}{Lewandowski et al., 2009}), which
+is weakly informative for the correlation matrix. A prior for
 \(\boldsymbol{\sigma}\) was specified as a Half-Cauchy distribution with
 location 0 and scale 2.5, which is weakly informative and allows for
-occasional large coefficients while still performing a reasonable amount
-of shrinkage for coefficients near zero
-(\citeproc{ref-Gelman2008}{Gelman et al., 2008}). Priors for
-\(\alpha_{0,m,s}\), \(\beta_{0,m,s}\), and \(\gamma_{0,m,s}\) in Eqs.
-2-4 were weakly informative and specified as normal distributions with
-mean 0 and standard deviation 5. Priors for \emph{f\textsubscript{i}} in
-Eqs. 1-4 were non-informative and specified as uniform distributions
-with range (0, 1).
+occasional large coefficients while still \DIFdelbegin \DIFdel{performing a reasonable amount
+of }\DIFdelend \DIFaddbegin \DIFadd{providing reasonable }\DIFaddend shrinkage
+for coefficients near zero (\citeproc{ref-Gelman2008}{Gelman et al.,
+2008}). Priors for \(\alpha_{0,m,s}\), \(\beta_{0,m,s}\), and
+\(\gamma_{0,m,s}\) in Eqs. 2-4 were weakly informative and specified as
+normal distributions with mean 0 and standard deviation 5. Priors for
+\emph{f\textsubscript{i}} in Eqs. 1-4 were non-informative and specified
+as uniform distributions with range (0, 1).
 
 \newpage
 
@@ -476,11 +478,11 @@ with range (0, 1).
 
 To ensure that the model was identifiable, we imposed two broad
 assumptions: (i) \emph{A}\textsubscript{area} depends more strongly on
-metabolic leaf mass (LMAm: parameter \(\alpha_m\) in Eq. 2) than
-structural leaf mass (LMAs: parameter \(\alpha_s\)), and (ii) LL depends
-more strongly on LMAs (\(\beta_s\) in Eq. 4 than LMAm (\(\beta_m\)). The
-first assumption was implemented in different model versions either by
-setting \(\alpha_s\) = 0 or by imposing the constraint \(\alpha_m\)
+metabolic leaf mass (LMAm: parameter \(\alpha_m\) in Eq. 2) than \DIFaddbegin \DIFadd{on
+}\DIFaddend structural leaf mass (LMAs: parameter \(\alpha_s\)), and (ii) LL depends
+more strongly on LMAs (\(\beta_s\) in Eq. 4 than \DIFaddbegin \DIFadd{on }\DIFaddend LMAm (\(\beta_m\)).
+The first assumption was implemented in different model versions either
+by setting \(\alpha_s\) = 0 or by imposing the constraint \(\alpha_m\)
 \textgreater{} \(\alpha_s\). Similarly, the second assumption was
 implemented either by setting \(\beta_m\) = 0 or by imposing the
 constraint \(\beta_s\) \textgreater{} \(\beta_m\). The weaker form of
@@ -507,9 +509,10 @@ Figure AS1\DIFaddbegin \DIFadd{,
 \DIFaddend 
 
 Because our two-dimensional (LMAm-LMAs) modeling approach includes many
-parameters (one latent variable \emph{f\textsubscript{i}} to partition
-LMA into LMAm and LMAs for each leaf sample), we implemented tests with
-randomized data to assess potential overfitting.
+parameters (\DIFaddbegin \DIFadd{with }\DIFaddend one latent variable \emph{f\textsubscript{i}} to
+partition LMA into LMAm and LMAs for each leaf sample), we implemented
+tests \DIFdelbegin \DIFdel{with
+}\DIFdelend \DIFaddbegin \DIFadd{using }\DIFaddend randomized data to assess potential overfitting.
 \DIFaddbegin 
 
 \DIFaddend We generated 10 different randomized datasets by randomizing all trait
@@ -517,22 +520,23 @@ values (LMA, \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area}
 and LL) across \DIFdelbegin \DIFdel{species. Thus}\DIFdelend \DIFaddbegin \DIFadd{leaf samples, and then we fitted the best models (Table
 1) to these randomized datasets. As a result}\DIFaddend , the randomized datasets
 had zero expected covariance among traits.
-\DIFaddbegin 
+\DIFdelbegin \DIFdel{Models fit }\DIFdelend \DIFaddbegin 
 
-\DIFaddend Models fit to the randomized datasets either did not converge or showed
-divergent transitions (\DIFdelbegin \DIFdel{Supplementary Section
-3}\DIFdelend \DIFaddbegin \DIFadd{Table AS1, Figure AS1-2}\DIFaddend ), indicating that models
-fit to randomized data do not provide reliable inferences
+\DIFadd{Models fitted }\DIFaddend to the randomized datasets either did not converge or
+showed divergent transitions (\DIFdelbegin \DIFdel{Supplementary Section
+3}\DIFdelend \DIFaddbegin \DIFadd{Table AS1, Figure AS1-2}\DIFaddend ), indicating that
+models fit to randomized data do not provide reliable inferences
 (\citeproc{ref-Betancourt2016}{Betancourt, 2016}). Furthermore, when
-models were fit to randomized data, the scaling exponents
+models were \DIFdelbegin \DIFdel{fit }\DIFdelend \DIFaddbegin \DIFadd{fitted }\DIFaddend to randomized data, the scaling exponents
 (\(\alpha_{m,s}\), \(\beta_{m,s}\), and \(\gamma_{m,s}\)) were not
 significantly different from zero. In simple terms, the two-dimensional
-models failed when fit to randomized data.
+models failed when \DIFdelbegin \DIFdel{fit }\DIFdelend \DIFaddbegin \DIFadd{fitted }\DIFaddend to randomized data.
 \DIFaddbegin 
 
-\DIFaddend In contrast, when fit to the observed (non-randomized) data, the
+\DIFaddend In contrast, when \DIFdelbegin \DIFdel{fit }\DIFdelend \DIFaddbegin \DIFadd{fitted }\DIFaddend to the observed (non-randomized) data, the
 two-dimensional models converged without divergent transitions and
-out-performed one-dimensional models (total LMA) for both GLOPNET and
+\DIFdelbegin \DIFdel{out-performed
+}\DIFdelend \DIFaddbegin \DIFadd{outperformed }\DIFaddend one-dimensional models (total LMA) for both GLOPNET and
 Panama (see Results). Thus, the tests with randomized data indicate that
 our two-dimensional approach is not inherently prone to overfitting or
 to creating spurious results. We therefore assume that estimates of LMAm
@@ -601,17 +605,17 @@ Panama & sim-10 & 597 & 119\\
 
 \subsection{Figure AS1}\label{figure-as1}
 
-Although many parameters in models fit to randomized data had large Rhat
-values (Table AS1), which suggests that the posterior distributions did
-not converge, we nevertheless examined the regression coefficients to
-evaluate if our model framework is prone to overfitting. Figure AS1
+Although many parameters in models \DIFdelbegin \DIFdel{fit }\DIFdelend \DIFaddbegin \DIFadd{fitted }\DIFaddend to randomized data had large
+Rhat values (Table AS1), which suggests that the posterior distributions
+did not converge, we nevertheless examined the regression coefficients
+to evaluate if our model framework is prone to overfitting. Figure AS1
 shows the regression coefficients for the randomized GLOPNET data
-(\(\alpha_{0, m, s}\), \(\beta_{0, s}\), and \(\gamma_{0, m, s}\) in
+(\(\alpha_{0, m, s}\), \(\beta_{0, s}\), and \(\gamma_{0, m, s}\) \DIFaddbegin \DIFadd{as }\DIFaddend in
 Eqs. 2-4 in the main text). There are 10 independent simulations
 (randomizations) in total. Points and lines indicate posterior medians
 and 95\% credible intervals (CIs), respectively. Although intercepts
 were significant, the scaling parameters (\(\alpha_{m, s}\),
-\(\beta_{s}\), and \(\gamma_{m, s}\)) obtained for the randomized
+\(\beta_{s}\), and \(\gamma_{m, s}\)) obtained \DIFdelbegin \DIFdel{for }\DIFdelend \DIFaddbegin \DIFadd{from }\DIFaddend the randomized
 datasets were not significantly different from zero. These tests with
 randomized data indicate that our model is not inherently prone to
 overfitting or to producing patterns from noise.
@@ -625,15 +629,15 @@ overfitting or to producing patterns from noise.
 
 \subsection{Figure AS2}\label{figure-as2}
 
-Figure AS2 showsWe also checked the regression coefficients for the
-randomized Panama dataset (\(\alpha_{0, m}\), \(\beta_{0, s}\),
-\(\gamma_{0, m, s}\), and \(\theta\) in Eqs.2-4 in the main text).
-Details as for Figure AS1. The scaling parameters (\(\alpha_{m}\),
-\(\beta_{s}\), and \(\gamma_{m, s}\)) and the effect of light on leaf
-lifespan (\(\theta\)) were not significantly different from zero in the
-randomized datasets did not show any patterns. Again, these tests with
-randomized data indicate that our model is not inherently prone to
-overfitting or to producing patterns from noise.
+Figure AS2 \DIFdelbegin \DIFdel{showsWe also checked }\DIFdelend \DIFaddbegin \DIFadd{shows }\DIFaddend the regression coefficients for the randomized Panama
+dataset (\(\alpha_{0, m}\), \(\beta_{0, s}\), \(\gamma_{0, m, s}\), and
+\(\theta\) \DIFdelbegin \DIFdel{in Eqs.2-4 }\DIFdelend \DIFaddbegin \DIFadd{as in Eqs. 2-4 }\DIFaddend in the main text). Details as for Figure AS1.
+The scaling parameters (\(\alpha_{m}\), \(\beta_{s}\), and
+\(\gamma_{m, s}\)) and the effect of light on leaf lifespan (\(\theta\))
+were not significantly different from zero in the randomized datasets
+\DIFaddbegin \DIFadd{and }\DIFaddend did not show any patterns. Again, these tests with randomized data
+indicate that our model is not inherently prone to overfitting or to
+producing patterns from noise.
 
 \DIFdelbegin %DIFDELCMD < \includegraphics{../figs/coef_sim_pa.png}
 %DIFDELCMD < %%%
@@ -678,24 +682,26 @@ LMA}}\label{understanding-relationships-between-photosynthetic-capacity-and-lma}
 We applied our LMAm-LMAs model to simulated data to better understand
 relationships between photosynthetic capacity
 (\emph{A}\textsubscript{max}) and LMA. The causes and interpretation of
-relationships between \emph{A}\textsubscript{max} and LMA are
-controversial (\citeproc{ref-Westoby2013}{Westoby et al., 2013}).
-Although \emph{A}\textsubscript{max} is often mass-normalized
+\DIFdelbegin \DIFdel{relationships between }\emph{\DIFdel{A}}%DIFAUXCMD
+\DIFdel{\textsubscript{max} and LMA }\DIFdelend \DIFaddbegin \DIFadd{these relationships }\DIFaddend are controversial
+(\citeproc{ref-Westoby2013}{Westoby et al., 2013}). Although
+\emph{A}\textsubscript{max} is often mass-normalized
 (\citeproc{ref-Blonder2011}{Blonder et al., 2011};
 \citeproc{ref-Shipley2006}{Shipley et al., 2006}; e.g.,
 \citeproc{ref-Wright2004a}{Wright et al., 2004}), it has been argued
 that \emph{A}\textsubscript{max} should be area-normalized when
-exploring trait relationships, because photosynthesis is an area-based
+exploring trait relationships \DIFdelbegin \DIFdel{, }\DIFdelend because photosynthesis is an area-based
 process (\citeproc{ref-Lloyd2013}{Lloyd et al., 2013}). Consistent with
 this argument, Osnas et al. (\citeproc{ref-Osnas2013}{2013}) showed that
 across global species, variation in whole-leaf
 \emph{A}\textsubscript{max} is strongly dependent on leaf area, but only
 weakly dependent on leaf mass (after controlling for variation in leaf
-area). Osnas et al. (\citeproc{ref-Osnas2018}{2018}) further showed that
-the relationship between \emph{A}\textsubscript{max} and LMA (i.e., the
-degree of mass- vs.~area-dependence) is sensitive to the amount of LL
-variation in an assemblage, which we hypothesize depends on the fraction
-of total LMA variance in the assemblage that is due to LMAs variance.
+area). Osnas et al. (\citeproc{ref-Osnas2018}{2018}) further
+\DIFdelbegin \DIFdel{showed }\DIFdelend \DIFaddbegin \DIFadd{demonstrated }\DIFaddend that the relationship between \emph{A}\textsubscript{max}
+and LMA (i.e., the degree of mass- vs.~area-dependence) is sensitive to
+the amount of LL variation in an assemblage, which we hypothesize
+depends on the fraction of total LMA variance in the assemblage that is
+due to LMAs variance.
 
 To better understand the factors affecting relationships between
 \emph{A}\textsubscript{max} and LMA, we created simulated datasets in
@@ -714,7 +720,7 @@ following Osnas et al. (\citeproc{ref-Osnas2018}{2018}):
 A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i
 }}\end{equation}\DIFaddend 
 
-where LMA is the sum of LMAm and LMAs Eq. 1, \emph{c} is a fitted
+where LMA is the sum of LMAm and LMAs \DIFaddbegin \DIFadd{(}\DIFaddend Eq. 1\DIFaddbegin \DIFadd{)}\DIFaddend , \emph{c} is a fitted
 constant, and \emph{b} is an index of mass-dependence as illustrated by
 the following cases (\citeproc{ref-Osnas2018}{Osnas et al., 2018},
 \citeproc{ref-Osnas2013}{2013}): if \emph{b} = 0, then
@@ -723,9 +729,9 @@ whole-leaf \emph{A}\textsubscript{max} is proportional to leaf area;
 conversely, if \emph{b} = 1, then \emph{A}\textsubscript{area} is
 proportional to LMA, which implies that whole-leaf
 \emph{A}\textsubscript{max} is proportional to leaf mass. Intermediate
-cases (0 \textless{} \emph{b} \textless{} 1), as well as more extreme
-cases (\emph{b} \(\le\) 0 or \emph{b} \(\geq\) 1), are also possible,
-with reported estiamtes being between 0 and 1
+cases (0 \textless{} \emph{b} \textless{} 1) \DIFdelbegin \DIFdel{, as well as }\DIFdelend \DIFaddbegin \DIFadd{and }\DIFaddend more extreme cases
+(\emph{b} \(\le\) 0 or \emph{b} \(\geq\) 1) \DIFdelbegin \DIFdel{, }\DIFdelend are also possible, with
+reported estiamtes \DIFdelbegin \DIFdel{being }\DIFdelend \DIFaddbegin \DIFadd{ranging }\DIFaddend between 0 and 1
 (\citeproc{ref-Osnas2018}{Osnas et al., 2018}). Note that applying
 Eq.\DIFdelbegin \DIFdel{S4 }\DIFdelend \DIFaddbegin \DIFadd{~\ref{eq-mass} }\DIFaddend to either mass- or area-normalized
 \emph{A}\textsubscript{max} yields equivalent results
