@@ -27,26 +27,29 @@ vpart_bar <- function(gl_res_csv, pa_res_csv, intra = FALSE) {
   gl_eve_var <- bind_rows(
     LMAm = var_(gl, "LMAm", "leaf_habit"),
     LMAs = var_(gl, "LMAs", "leaf_habit"),
-    fct = c("Eve/Dec", "Residuals"))
+    fct = c("Eve/Dec", "Unexplained"))
 
   pa_eve_var <- bind_rows(
     LMAm = var_(pa, "LMAm", "leaf_habit"),
     LMAs = var_(pa, "LMAs", "leaf_habit"),
-    fct = c("Eve/Dec", "Residuals"))
+    fct = c("Eve/Dec", "Unexplained"))
 
   pa_leaf_var <- bind_rows(
     LMAm = var_(pa, "LMAm", "site + strata"),
     LMAs = var_(pa, "LMAs", "site + strata"),
-    fct = c("Wet/Dry", "Sun/Shade", "Residuals"))
+    fct = c("Wet/Dry", "Sun/Shade", "Unexplained")) |>
+  # dummy row for Eve/Dec
+    bind_rows(tibble(LMAm = 0, LMAs = 0, fct = "Eve/Dec"))
+
 
   my_col <- RColorBrewer::brewer.pal(4, "RdBu")
   my_col <- my_col[-1]
   my_col <- c(my_col, "#9E9E9E")
-  names(my_col) <- c("Eve/Dec", "Sun/Shade", "Wet/Dry", "Residuals")
+  names(my_col) <- c("Eve/Dec", "Sun/Shade", "Wet/Dry", "Unexplained")
 
   vpart_gl_eve <- gl_eve_var |>
     pivot_longer(1:2) |>
-    mutate(fct = factor(fct, c("Residuals", "Eve/Dec"))) |>
+    mutate(fct = factor(fct, c("Unexplained", "Eve/Dec"))) |>
     ggplot(aes(x = name, y = value, fill = fct)) +
       geom_col() +
       ggtitle("GLOPNET") +
@@ -59,7 +62,7 @@ vpart_bar <- function(gl_res_csv, pa_res_csv, intra = FALSE) {
 
   vpart_pa_eve <- pa_eve_var |>
     pivot_longer(1:2) |>
-    mutate(fct = factor(fct, c("Residuals", "Eve/Dec"))) |>
+    mutate(fct = factor(fct, c("Unexplained", "Eve/Dec"))) |>
     ggplot(aes(x = name, y = value, fill = fct)) +
       geom_col() +
       ggtitle("Panama") +
@@ -72,6 +75,7 @@ vpart_bar <- function(gl_res_csv, pa_res_csv, intra = FALSE) {
 
   vpart_pa_leaf <- pa_leaf_var |>
     pivot_longer(1:2) |>
+    mutate(fct = factor(fct, c("Unexplained", "Eve/Dec", "Sun/Shade", "Wet/Dry"))) |>
     ggplot(aes(x = name, y = value, fill = fct)) +
       geom_col() +
       ggtitle("Panama") +
@@ -89,6 +93,7 @@ vpart_bar <- function(gl_res_csv, pa_res_csv, intra = FALSE) {
         tag_suffix = ")") &
       ylab("Explained variance (%)") &
       xlab("")
+
 }
 
 write_vpart_csv <- function(gl_res_csv, pa_res_csv, file, intra = FALSE) {
@@ -119,19 +124,19 @@ write_vpart_csv <- function(gl_res_csv, pa_res_csv, file, intra = FALSE) {
   gl_eve_var <- bind_rows(
     LMAm = var_(gl, "LMAm", "leaf_habit"),
     LMAs = var_(gl, "LMAs", "leaf_habit"),
-    fct = c("Eve/Dec", "Residuals")) |>
+    fct = c("Eve/Dec", "Unexplained")) |>
     mutate(dataset = "gl_de")
 
   pa_eve_var <- bind_rows(
     LMAm = var_(pa, "LMAm", "leaf_habit"),
     LMAs = var_(pa, "LMAs", "leaf_habit"),
-    fct = c("Eve/Dec", "Residuals")) |>
+    fct = c("Eve/Dec", "Unexplained")) |>
     mutate(dataset = "pa_de")
 
   pa_leaf_var <- bind_rows(
     LMAm = var_(pa, "LMAm", "site + strata"),
     LMAs = var_(pa, "LMAs", "site + strata"),
-    fct = c("Wet/Dry", "Sun/Shade", "Residuals")) |>
+    fct = c("Wet/Dry", "Sun/Shade", "Unexplained")) |>
     mutate(dataset = "pa_leaf")
 
   bind_rows(gl_eve_var, pa_eve_var, pa_leaf_var) |>
@@ -151,4 +156,3 @@ get_vpart_para <- function(file, LMA, group, dataset, digits = 2, nsmall = 2) {
     filter(fct == {{group}}) |>
     pull({{LMA}})
 }
-
