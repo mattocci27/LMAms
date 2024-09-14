@@ -436,8 +436,8 @@ additive LMA components: metabolic and structural leaf mass per area
 (LMAm and LMAs, respectively). We formulate the models in terms of
 area-normalized \emph{A}\textsubscript{max} and
 \emph{R}\textsubscript{dark} (\emph{A}\textsubscript{area} and
-\emph{R}\textsubscript{area}, respectively), as these trait forms share
-the same denominator as LMA and its components.
+\emph{R}\textsubscript{area}, respectively), as these area-normalized
+traits share the same denominator as LMA and its components.
 
 To implement the two-dimensional models, we developed a statistical
 modeling framework to partition LMA into additive LMAm and LMAs
@@ -473,7 +473,7 @@ Osnas et al. (\citeproc{ref-Osnas2018}{2018}).
 All statistical analyses were conducted in R version 4.3.2
 (\citeproc{ref-RCoreTeam2022}{R Core Team, 2022}) using the R package
 \emph{targets} version 1.5.1 for workflow management
-(\citeproc{ref-Landau2021}{Landau, 2021})
+(\citeproc{ref-Landau2021}{Landau, 2021}).
 
 \subsection{Modeling leaf lifespan, photosynthetic capacity, and dark
 respiration
@@ -556,14 +556,11 @@ for sun or shade leaves, respectively; \(\theta\) is a fitted parameter;
 and exp(\(\theta\)) is the sun:shade LL ratio.
 
 The second alternative for LL involved replacing LMAs in Eq. 4a and 4b
-by leaf structural density (LMAs/LT, where LT is leaf thickness), which
-is based on the observation that cellulose density is a good predictor
-for LL in some species assemblages (\citeproc{ref-Kitajima2013}{Kitajima
-et al., 2013}, \citeproc{ref-Kitajima2012}{2012}).
-
-These models with leaf thickness yielded qualitatively similar results
-as those without leaf thickness, but they did not perform as well in the
-model evaluation (see below).
+by leaf structural density (LSD = LMAs/LT, where LT is leaf thickness),
+which is based on the observation that cellulose density is a good
+predictor for LL in some species assemblages
+(\citeproc{ref-Kitajima2013}{Kitajima et al., 2013},
+\citeproc{ref-Kitajima2012}{2012}).
 
 The LMAm-LMAs model framework (Eqs. 1-4) has multiple identical
 solutions due to the mathematical exchangeability of LMAm and LMAs in
@@ -578,10 +575,10 @@ Supplementary Section 2.
 
 \subsection{Datasets}\label{datasets}
 
-We fit the models described above using observations of LMA (g
-m\textsuperscript{-2}), \emph{A}\textsubscript{area} (mol
+We fit the models described abovµe using observations of LMA (g
+m\textsuperscript{-2}), \emph{A}\textsubscript{area} (µmol
 s\textsuperscript{-1} m\textsuperscript{-2}),
-\emph{R}\textsubscript{area} (mol s\textsuperscript{-1}
+\emph{R}\textsubscript{area} (µmol s\textsuperscript{-1}
 m\textsuperscript{-2}) and LL (months) from the GLOPNET global leaf
 traits database (\citeproc{ref-Wright2004a}{Wright et al., 2004}) and
 from two tropical forest sites in Panama: Parque Natural Metropolitano
@@ -634,31 +631,37 @@ using Eqs. 2 and 3, respectively, for both GLOPNET and Panama. To model
 LL for GLOPNET, we used Eq. 4a, because GLOPNET does not report canopy
 position (and prioritizes data for sun leaves, as described above). To
 model LL for Panama, we used both Eqs. 4a and 4b (light effects model).
+Because leaf thickness (LT) was available for the Panama dataset, we
+also fit the alternative forms of Eqs. 4a and 4b that were based on leaf
+structural density (LSD = LMAs/LT).
 
 Posterior distributions of all parameters were estimated using the
 Hamiltonian Monte Carlo algorithm (HMC) implemented in Stan
 (\citeproc{ref-Carpenter2017}{Carpenter et al., 2017}). We used
 non-informative or weakly informative prior distributions
 (\citeproc{ref-Lemoine2019}{Lemoine, 2019}). Prior distributions for the
-latent variables \emph{f\textsubscript{i}} (which are used to partition
-LMA into LMAm and LMAs according to Eq. 1 were non-informative
-uniform(0, 1) distributions, (i.e., LMA was partitioned based on
-patterns in the data). See Supplementary Section 1 for more details.
-Convergence of the posterior distribution was assessed with the
-Gelman-Rubin statistic with a convergence threshold of 1.05 for all
-parameters (\citeproc{ref-Gelman2013}{Gelman et al., 2013}).
+latent variables \emph{f\textsubscript{i}} (which partition LMA into
+LMAm and LMAs according to Eq. 1) were non-informative uniform(0, 1)
+distributions (i.e., LMA was partitioned based solely on patterns in the
+data). See Supplementary Section 1 for more details. Convergence of the
+joint posterior distribution was assessed with the Gelman-Rubin
+statistic with a convergence threshold of 1.05 for all parameters
+(\citeproc{ref-Gelman2013}{Gelman et al., 2013}).
 
-Considering the complexity of our two-dimensional modeling approach,
-which involves numerous latent parameters, we validated our estimates of
-LMAm and LMAs through randomized tests, detailed in Supplementary
-Section 3. These tests support our assumption that the patterns observed
-in the GLOPNET and Panama datasets are meaningful and allow for a
-substantial exploration of our questions.
+Because our two-dimensional modeling approach involves many latent
+parameters, which could lead to over-fitting, we tested the behavior of
+the model using randomized dataset. When fit to randomized data, the
+model failed to converge or provided unreliable inferences
+(Supplementary Section 3). In contrast, when fit to the observed data,
+the model converged, and parameters were well-constrained (see Results).
+These tests suggest that our modeling approach allows for meaningful
+exploration of additive LMA components and their relationships with
+other traits.
 
 To compare the performance of different models, we used Pareto-smoothed
 importance sampling leave-one-out cross-validation (PSIS-LOO;
 (\citeproc{ref-Vehtari2017}{Vehtari et al., 2017})). PSIS-LOO is an
-accurate and reliable approximation to standard leave-one-out
+accurate and reliable approximation for standard leave-one-out
 cross-validation (LOO), which is a robust method for comparing models
 with different numbers of parameters (\citeproc{ref-Vehtari2017}{Vehtari
 et al., 2017}). We used PSIS-LOO to calculate the LOO Information
@@ -694,10 +697,13 @@ In the best Panama model, \emph{A}\textsubscript{area} increased with
 LMAm and was independent of LMAs, \emph{R}\textsubscript{area} increased
 with LMAm and had little dependence on LMAs, and LL increased with LMAs
 and was independent of LMAm (Tables 1-2; Fig.~\ref{fig-pa_point}). The
-best Panama model also included the effect of light with shade leaves
+best Panama model also included the effect of light, with shade leaves
 having longer LL than sun leaves for a given LMAs (Tables 1-2;
 Fig.~\ref{fig-ll_point}). The light effect was not tested for GLOPNET
-because GLOPNET does not report canopy position.
+because GLOPNET does not report canopy position. Substituting leaf
+structural density (LSD = LMAs/LT) for LMAs yielded qualitatively
+similar results (not shown) but lower cross-validation performance
+(Table 1).
 
 \subsection{Nearly all leaf dark respiration is associated with
 metabolic leaf tissue
@@ -721,16 +727,16 @@ Leaf habit (evergreen vs.~deciduous) explained very little variation in
 LMAm but substantial variation in LMAs for both GLOPNET and Panama
 (Fig.~\ref{fig-vpart}a-b). The higher total LMA in evergreen compared to
 deciduous leaves was primarily due to differences in LMAs (Figs.
-\ref{fig-box_de}, S1, and S2). In the Panama dataset, light (sun
+\ref{fig-box_de}, S1a, and S2). In the Panama dataset, light (sun
 vs.~shade) explained more variation in LMAm than LMAs, whereas site (wet
-vs.~dry) explained much more variation in LMAs than LMAm
-(Fig.~\ref{fig-vpart}c). Panama wet-site leaves had higher total LMA
-than dry-site leaves due to greater wet-site LMAs for both sun and shade
-leaves (Figs. \ref{fig-box_pa} and S1). In contrast, Panama sun leaves
-had higher total LMA than shade leaves primarily due to greater LMAm,
-with a smaller but significant contribution from LMAs (Figs.
-\ref{fig-box_pa} and S1). LMAs comprised a larger fraction of total LMA
-for shade leaves than for sun leaves (Fig. S2).
+vs.~dry) explained near zero variation in LMAm but substantial variaion
+in LMAs (Fig.~\ref{fig-vpart}c). Panama wet-site leaves had higher total
+LMA than dry-site leaves due to greater wet-site LMAs for both sun and
+shade leaves (Figs. \ref{fig-box_pa} and S1b). In contrast, Panama sun
+leaves had higher total LMA than shade leaves primarily due to greater
+LMAm, with a smaller but significant contribution from LMAs (Figs.
+\ref{fig-box_pa} and S1b). LMAs comprised a larger fraction of total LMA
+for shade leaves than for sun leaves (Fig. S3).
 
 \subsection{\texorpdfstring{LMA variance components affect the area-
 vs.~mass-dependence of leaf photosynthetic capacity
