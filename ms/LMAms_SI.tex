@@ -532,13 +532,14 @@ due to LMAs variance.
 
 To better understand the factors affecting relationships between
 \emph{A}\textsubscript{max} and LMA, we created simulated datasets in
-which we varied the following factors: the sensitivity of
+which we varied the following factors: (1) the sensitivity of
 \emph{A}\textsubscript{area} to variation in LMAm (parameter
-\(\alpha_m\) in Eq. 2), the sensitivity of \emph{A}\textsubscript{area}
-to LMAs (parameter \(\alpha_s\) in Eq. 2), and the fraction of total LMA
-variance due to variance in LMAs. For each simulated dataset, we
-quantified the \emph{A}\textsubscript{max} vs.~LMA relationship
-following Osnas et al. (\citeproc{ref-Osnas2018}{2018}):
+\(\alpha_m\) in Eq. 2), (2) the sensitivity of
+\emph{A}\textsubscript{area} to LMAs (parameter \(\alpha_s\) in Eq. 2),
+and (3) the fraction of total LMA variance due to variance in LMAs. For
+each simulated dataset, we quantified the \emph{A}\textsubscript{max}
+vs.~LMA relationship following Osnas et al.
+(\citeproc{ref-Osnas2018}{2018}):
 
 \begin{equation}\phantomsection\label{eq-mass}{
 A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i
@@ -561,18 +562,10 @@ Eq.~\ref{eq-mass} to either mass- or area-normalized
 \emph{A}\textsubscript{max} yields equivalent results
 (\citeproc{ref-Osnas2018}{Osnas et al., 2018}).
 
-For these simulations, we generated LMAm and LMAs values based on their
-estimated distributions in our GLOPNET and Panama analyses, while
-varying the LMAs variance (so that LMAs contributed different fractions
-of total LMA variance in different simulated datasets). Although Panama
-sun and shade leaves were analyzed together when fitting the LMAm-LMAs
-models (Eqs. 2-4), they were analyzed separately here due to their
-different estimated covariance structures (Fig. 8, Figs. S9-S10).
-
 For GLOPNET and Panama sun leaves, results from the LMAm-LMAs models
-(Eqs. 2-4) indicated little correlation between LMAm and LMAs, so we
-used univariate normal distributions (N) to generate the LMAm and LMAs
-samples:
+(Eqs. 2-4) indicated little correlation between LMAm and LMAs
+(\quartosuppfigref{suppfig-LMAm_LMAs}a), so we used univariate normal
+distributions (N) to generate the LMAm and LMAs samples:
 
 \begin{equation}\phantomsection\label{eq-sim_LMAm}{
 \mathrm{ln}(\mathrm{LMAm}) \sim \mathrm{N}(\mathrm{ln}(\mu_m), \sigma_m)
@@ -590,8 +583,9 @@ LMAm and LMAs, respectively, on the log-scale and \(\sigma_m\) and
 LMAs.
 
 For Panama shade leaves, LMAm-LMAs model results indicated a negative
-correlation between LMAm and LMAs, so we used a multivariate normal
-distribution (MVN) to generate the LMAm and LMAs samples:
+correlation between LMAm and LMAs
+(\quartosuppfigref{suppfig-LMAm_LMAs}b), so we used a multivariate
+normal distribution (MVN) to generate the LMAm and LMAs samples:
 
 \begin{equation}\phantomsection\label{eq-sim_LMAm_LMAs}{
 \begin{bmatrix}
@@ -649,12 +643,12 @@ leaves, and Panama shade leaves, with each dataset having a sample size
 of 100 leaves. For each simulated dataset, we used Eq.~\ref{eq-mass} to
 quantify the relationship between \emph{A}\textsubscript{area} and LMA.
 
-We also used Eqs. S5.1-S5.2 to create the simulated LMA datasets in Fig.
+We also used Eqs. S5.2-S5.4 to create the simulated LMA datasets in Fig.
 1, which is based on our analysis of GLOPNET data.
-\emph{A}\textsubscript{area} values were generated using Eq. 2 and Eq.
-S1. Based on our GLOPNET results, the standard deviations of ln(LMAs)
-and ln(\emph{A}\textsubscript{area}) were set to 0.99 and 0.31,
-respectively, and other GLOPNET parameter values are listed above.
+\emph{A}\textsubscript{area} values were generated using Eq. 2 and
+Eq.~\ref{eq-mass}. Based on our GLOPNET results, the standard deviations
+of ln(LMAs) and ln(\emph{A}\textsubscript{area}) were set to 0.99 and
+0.31, respectively, and other GLOPNET parameter values are listed above.
 
 \newpage
 

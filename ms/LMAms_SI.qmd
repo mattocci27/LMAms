@@ -287,7 +287,10 @@ Although *A*~max~ is often mass-normalized [e.g., @Wright2004a; @Shipley2006; @B
 Consistent with this argument, @Osnas2013 showed that across global species, variation in whole-leaf *A*~max~ is strongly dependent on leaf area, but only weakly dependent on leaf mass (after controlling for variation in leaf area).
 @Osnas2018 further demonstrated that the relationship between *A*~max~ and LMA (i.e., the degree of mass- vs. area-dependence) is sensitive to the amount of LL variation in an assemblage, which we hypothesize depends on the fraction of total LMA variance in the assemblage that is due to LMAs variance.
 
-To better understand the factors affecting relationships between *A*~max~ and LMA, we created simulated datasets in which we varied the following factors: the sensitivity of *A*~area~ to variation in LMAm (parameter $\alpha_m$ in `r eq("Aarea")`), the sensitivity of *A*~area~ to LMAs (parameter $\alpha_s$ in `r eq("Aarea")`), and the fraction of total LMA variance due to variance in LMAs.
+To better understand the factors affecting relationships between *A*~max~ and LMA, we created simulated datasets in which we varied the following factors:
+(1) the sensitivity of *A*~area~ to variation in LMAm (parameter $\alpha_m$ in `r eq("Aarea")`),
+(2) the sensitivity of *A*~area~ to LMAs (parameter $\alpha_s$ in `r eq("Aarea")`),
+and (3) the fraction of total LMA variance due to variance in LMAs.
 For each simulated dataset, we quantified the *A*~max~ vs. LMA relationship following @Osnas2018:
 
 $$
@@ -299,11 +302,7 @@ conversely, if *b* = 1, then *A*~area~ is proportional to LMA, which implies tha
 Intermediate cases (0 < *b* < 1) and more extreme cases (*b* $\le$ 0 or *b* $\geq$ 1) are also possible, with reported estimates ranging between 0 and 1 [@Osnas2018].
 Note that applying @eq-mass to either mass- or area-normalized *A*~max~ yields equivalent results [@Osnas2018].
 
-For these simulations, we generated LMAm and LMAs values based on their estimated distributions in our GLOPNET and Panama analyses, while varying the LMAs variance (so that LMAs contributed different fractions of total LMA variance in different simulated datasets).
-Although Panama sun and shade leaves were analyzed together when fitting the LMAm-LMAs models (Eqs. `r eq_num("Aarea")`-`r eq_num("LL")`), they were analyzed separately here due to their different estimated covariance structures (`r fig("mass_prop")`, Figs. S4-S5).
-
-For GLOPNET and Panama sun leaves, results from the LMAm-LMAs models (Eqs. `r eq_num("Aarea")`-`r eq_num("LL")`) indicated little correlation between LMAm and LMAs, so we used univariate normal distributions (N) to generate the LMAm and LMAs samples:
-
+For GLOPNET and Panama sun leaves, results from the LMAm-LMAs models (Eqs. `r eq_num("Aarea")`-`r eq_num("LL")`) indicated little correlation between LMAm and LMAs ([@suppfig-LMAm_LMAs]a), so we used univariate normal distributions (N) to generate the LMAm and LMAs samples:
 
 $$
 \mathrm{ln}(\mathrm{LMAm}) \sim \mathrm{N}(\mathrm{ln}(\mu_m), \sigma_m)
@@ -318,7 +317,7 @@ $\mathrm{ln}(\mu_m)$ and $\mathrm{ln}(\mu_s)$ are the means of LMAm and LMAs, re
 $\sigma_m$ and $\sigma_s$ are the corresponding standard deviations.
 The parameters $\mathrm{ln}(\mu_m)$, $\mathrm{ln}(\mu_s)$, $\sigma_m$ and $\sigma_s$ were all estimated from the posterior medians of LMAm and LMAs.
 
-For Panama shade leaves, LMAm-LMAs model results indicated a negative correlation between LMAm and LMAs, so we used a multivariate normal distribution (MVN) to generate the LMAm and LMAs samples:
+For Panama shade leaves, LMAm-LMAs model results indicated a negative correlation between LMAm and LMAs ([@suppfig-LMAm_LMAs]b), so we used a multivariate normal distribution (MVN) to generate the LMAm and LMAs samples:
 
 $$
 \begin{bmatrix}
@@ -380,10 +379,9 @@ For each simulated set of LMAm and LMAs values, we generated *A*~area~ values us
 We generated 1000 simulated datasets for GLOPNET, Panama sun leaves, and Panama shade leaves, with each dataset having a sample size of 100 leaves.
 For each simulated dataset, we used @eq-mass to quantify the relationship between *A*~area~ and LMA.
 
-We also used Eqs. S5.1-S5.2 to create the simulated LMA datasets in `r fig("hypo")`, which is based on our analysis of GLOPNET data.
-*A*~area~ values were generated using `r eq("Aarea")` and Eq. S1.
+We also used Eqs. S5.2-S5.4 to create the simulated LMA datasets in `r fig("hypo")`, which is based on our analysis of GLOPNET data.
+*A*~area~ values were generated using `r eq("Aarea")` and @eq-mass.
 Based on our GLOPNET results, the standard deviations of ln(LMAs) and ln(*A*~area~) were set to `r para$GL$LMAs_sig_gl` and 0.31, respectively, and other GLOPNET parameter values are listed above.
-
 
 \newpage
 
