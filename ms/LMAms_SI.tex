@@ -503,8 +503,9 @@ habits (evergreen vs.~deciduous), sites (wet vs.~dry), and light (sun
 vs.~shade), we used ANOVA. Those post-hoc analyes were performed with
 posterior median parameter values.
 
-\section{Understanding relationships between photosynthetic capacity and
-LMA}\label{understanding-relationships-between-photosynthetic-capacity-and-lma}
+\section{Understanding and simulating relationships between
+photosynthetic capacity and
+LMA}\label{understanding-and-simulating-relationships-between-photosynthetic-capacity-and-lma}
 
 We applied our LMAm-LMAs model to simulated data to better understand
 relationships between photosynthetic capacity
@@ -554,7 +555,7 @@ proportional to LMA, which implies that whole-leaf
 \emph{A}\textsubscript{max} is proportional to leaf mass. Intermediate
 cases (0 \textless{} \emph{b} \textless{} 1) and more extreme cases
 (\emph{b} \(\le\) 0 or \emph{b} \(\geq\) 1) are also possible, with
-reported estiamtes ranging between 0 and 1
+reported estimates ranging between 0 and 1
 (\citeproc{ref-Osnas2018}{Osnas et al., 2018}). Note that applying
 Eq.~\ref{eq-mass} to either mass- or area-normalized
 \emph{A}\textsubscript{max} yields equivalent results
@@ -565,42 +566,8 @@ estimated distributions in our GLOPNET and Panama analyses, while
 varying the LMAs variance (so that LMAs contributed different fractions
 of total LMA variance in different simulated datasets). Although Panama
 sun and shade leaves were analyzed together when fitting the LMAm-LMAs
-models Eqs. 2 - 4, they were analyzed separately here due to their
-different estimated covariance structures (see the main text).
-
-For GLOPNET and Panama sun leaves, LMAm and LMAs were generated
-independently of each other, consistent with the low estimated
-correlations between LMAm and LMAs in these assemblages (see Results).
-Specifically, LMAm values were randomly sampled from a lognormal
-distribution with the log-scale mean and standard deviation given by our
-model outputs; and LMAs values were randomly sampled from a lognormal
-distribution with the log-scale mean given by our model outputs and the
-log-scale standard deviation raging from log(1.01) to log(10) across
-simulated datasets. In contrast to GLOPNET and Panama sun leaves, our
-analysis revealed a negative correlation of \emph{r} = -0.47 between
-LMAm and LMAs for Panama shade leaves (see Supplementary Section 6).
-Therefore, we used a multivariate normal distribution with \emph{r} =
--0.47 to generate log(LMAm) and log(LMAs) for the Panama shade
-simulations. Otherwise, the simulation protocol was as described above
-for GLOPNET and Panama sun leaves.
-
-For each simulated set of LMAm and LMAs values, we generated
-\emph{A}\textsubscript{area} values using the estimated values of
-\(\alpha_m\) and \(\alpha_s\) (Eq. 2) from the corresponding
-best-fitting model (GLOPNET or Panama); i.e., the model with the lowest
-LOOIC. We generated 1000 simulated datasets for GLOPNET, Panama sun
-leaves, and Panama shade leaves, with each dataset having a sample size
-of 100 leaves. For each simulated dataset, we used Eq.~\ref{eq-mass} to
-quantify the relationship between \emph{A}\textsubscript{area} and LMA.
-
-\section{Simulated datasets to study relationships between
-photosynthetic capacity and
-LMA}\label{simulated-datasets-to-study-relationships-between-photosynthetic-capacity-and-lma}
-
-To create simulated datasets to study relationships between
-photosynthetic capacity and LMA , we generated log-normally distributed
-LMAm and LMAs values by sampling ln(LMAm) and ln(LMAs) from normal
-distributions.
+models (Eqs. 2-4), they were analyzed separately here due to their
+different estimated covariance structures (Fig. 8, Figs. S9-S10).
 
 For GLOPNET and Panama sun leaves, results from the LMAm-LMAs models
 (Eqs. 2-4) indicated little correlation between LMAm and LMAs, so we
@@ -673,9 +640,14 @@ Panama sun leaves; and \(\mu_m\) = 7.7, \(\mu_s\) = 26.6, \(\sigma_m\) =
 1.95, \(\alpha_0\) = 0.34, \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, and
 \(\rho\) = -0.47 for Panama shade leaves.
 
-For each simulated dataset, we quantified the mass-dependence (\emph{b})
-using the ordinary least squares regression (log-log) form of Eq. 5. We
-repeated these steps 1000 times for each set of parameter values.
+For each simulated set of LMAm and LMAs values, we generated
+\emph{A}\textsubscript{area} values using the estimated values of
+\(\alpha_m\) and \(\alpha_s\) (Eq. 2) from the corresponding
+best-fitting model (GLOPNET or Panama); i.e., the model with the lowest
+LOOIC. We generated 1000 simulated datasets for GLOPNET, Panama sun
+leaves, and Panama shade leaves, with each dataset having a sample size
+of 100 leaves. For each simulated dataset, we used Eq.~\ref{eq-mass} to
+quantify the relationship between \emph{A}\textsubscript{area} and LMA.
 
 We also used Eqs. S5.1-S5.2 to create the simulated LMA datasets in Fig.
 1, which is based on our analysis of GLOPNET data.
