@@ -64,9 +64,11 @@ para_val <- yaml::yaml.load_file(here("yml/para.yml"))
 s_fig("box_inter")
 s_fig("box_frac_de")
 s_fig("box_frac_pa")
+s_fig("vpart")
 s_fig("mass_prop_sim")
 s_fig("mass_prop_comp")
 s_fig("gl_point_np2")
+s_fig("pa_point_np")
 s_fig("pa_point_npc_par")
 s_fig("LMAm_LMAs")
 
@@ -341,9 +343,9 @@ Thus, although building costs appear similar for different leaf chemical compone
 
 ## Evergreen leaves have greater LMAs than deciduous leaves, and sun leaves have both greater LMAm and LMAs than shade leaves.
 
-Leaf habit (evergreen vs. deciduous) explained very little variation in LMAm but substantial variation in LMAs for both GLOPNET and Panama ([@fig-vpart]a-b).
+Leaf habit (evergreen vs. deciduous) explained very little variation in LMAm but substantial variation in LMAs for both GLOPNET and Panama (`r s_fig_num("vpart")`a-b).
 The higher total LMA in evergreen compared to deciduous leaves was primarily due to differences in LMAs (Figs. [-@fig-box_de], `r s_fig_num("box_inter")`a, and `r s_fig_num("box_frac_de")`).
-In the Panama dataset, light (sun vs. shade) explained more variation in LMAm than LMAs, whereas site (wet vs. dry) explained near zero variation in LMAm but substantial variaion in LMAs ([@fig-vpart]c).
+In the Panama dataset, light (sun vs. shade) explained more variation in LMAm than LMAs, whereas site (wet vs. dry) explained near zero variation in LMAm but substantial variaion in LMAs (`r s_fig_num("vpart")`c).
 Panama wet-site leaves had higher total LMA than dry-site leaves due to greater wet-site LMAs for both sun and shade leaves (Figs. [-@fig-box_pa] and `r s_fig_num("box_inter")`b).
 In contrast, Panama sun leaves had higher total LMA than shade leaves primarily due to greater LMAm, with a smaller but significant contribution from LMAs (Figs. [-@fig-box_pa] and `r s_fig_num("box_inter")`b).
 LMAs comprised a larger fraction of total LMA for shade leaves than for sun leaves (`r s_fig("box_frac_pa")`).
@@ -363,9 +365,9 @@ These factors resulted in similar mass-dependence of *A*~max~ across GLOPNET and
 ## Nitrogen and phosphorus per-unit leaf area are strongly correlated with LMAm, and cellulose per-unit leaf area is strongly correlated with total LMA.
 
 In the GLOPNET dataset, *N*~area~ and *P*~area~ had strong positive correlations with LMAm, but only weak correlations with LMAs (`r s_fig("gl_point_np2")`).
-Similarly, in the Panama dataset, *N*~area~ and *P*~area~ had strong positive correlations with LMAm but not with LMAs (@fig-pa_npc).
-Cellulose content per-unit leaf area (CL~area~), which was only available for the Panama dataset, was most strongly correlated with total LMA, but also showed a clear relationship with LMAs that was consistent across canopy positions and sites (@fig-pa_npc).
-Partial regression plots showed that the higher *N*~area~, *P*~area~, and CL~area~ in sun leaves (compared to shade leaves; @fig-pa_npc) were primarily due to sun leaves having higher LMAm than shade leaves (`r s_fig("pa_point_npc_par")`).
+Similarly, in the Panama dataset, *N*~area~ and *P*~area~ had strong positive correlations with LMAm but not with LMAs (`r s_fig("pa_point_np")`).
+Cellulose content per-unit leaf area (CL~area~), which was only available for the Panama dataset, was most strongly correlated with total LMA, but also showed a clear relationship with LMAs that was consistent across canopy positions and sites (`r s_fig("pa_point_np")`).
+Partial regression plots showed that the higher *N*~area~, *P*~area~, and CL~area~ in sun leaves (compared to shade leaves; `r s_fig("pa_point_np")`) were primarily due to sun leaves having higher LMAm than shade leaves (`r s_fig("pa_point_npc_par")`).
 
 # Discussion
 
@@ -626,16 +628,6 @@ The results shown here include all leaves in the Panama dataset.
 
 :::
 
-\newpage
-
-::: {#fig-vpart}
-
-![](../figs/vpart_intra.png)
-
-Variance partitioning on LMA components between and within leaf habits (evergreen vs. deciduous) for the GLOPNET dataset and the Panama dataset, and between and within sites (wet vs. dry) and light (sun vs. shade) for the Panama dataset.
-To isolate the effects of intraspecific variation, the Panama results shown here only include species for which both sun and shade leaves were available.
-
-:::
 
 \newpage
 
@@ -681,15 +673,3 @@ See Supplementary Sections `r appendix_num("vpart")`-`r appendix_num("mass_prop_
 :::
 
 \newpage
-
-::: {#fig-pa_npc}
-
-![](../figs/pa_point_npc.png)
-
-Measured traits in the Panama dataset related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are better correlated with estimates (posterior medians) of the metabolic LMA component (LMAm) than the structural component (LMAs), whereas the opposite pattern occurs for a measured structural trait (cellulose per-unit leaf area; CL~area~).
-*N*~area~, *P*~area~, and CL~area~ data were not used to fit the models, and are presented here as independent support for the model results.
-Pearson correlation coefficients (*r*) for LMA and the posterior medians of Pearson correlation coefficients ($\bar{r}$) for LMAm and LMAs are shown.
-Analogous results were obtained for *N*~area~ and *P*~area~ for GLOPNET (`r s_fig("gl_point_np2")`).
-The results shown here include all leaves for which *N*~area~, *P*~area~  and CL~area~ are available.
-
-:::

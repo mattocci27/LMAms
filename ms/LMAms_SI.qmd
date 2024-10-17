@@ -104,7 +104,8 @@ fig("vpart")
 fig("box_de")
 fig("box_pa")
 fig("mass_prop")
-fig("pa_npc")
+# fig("pa_npc")
+# fig("gl_npc")
 
 # # Make sure the order is correct
 # s_fig("box_inter")
@@ -455,6 +456,17 @@ Estiamtes are from the best GLOPNET and Panama models (`r table("looic")`).
 
 \newpage
 
+::: {#suppfig-vpart}
+
+![](../figs/vpart_intra.pdf)
+
+Variance partitioning on LMA components between and within leaf habits (evergreen vs. deciduous) for the GLOPNET dataset and the Panama dataset, and between and within sites (wet vs. dry) and light (sun vs. shade) for the Panama dataset.
+To isolate the effects of intraspecific variation, the Panama results shown here only include species for which both sun and shade leaves were available.
+
+:::
+
+\newpage
+
 ::: {#suppfig-mass_prop_sim}
 
 ![](../figs/mass_prop_sim.pdf){#fig-mass_prop_sim}
@@ -500,6 +512,20 @@ $\rho$ = `r para$PA$rho_shade`.
 Measured traits related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are positively correlated with LMA and with estimates (posterior medians) of the metabolic and structural LMA components (LMAm and LMAs, respectively) in the GLOPNET dataset.
 LMAm yields more consistent relationships compared to LMA and LMAs; e.g., evergreen and deciduous leaves align along a single relationship in panel b, but not in panels a or c.
 Pearson correlation coefficients (*r*) for LMA (left column) and posterior medians of Pearson correlation coefficients ($\bar{r}$) for LMAm (middle column) and LMAs (right column) are shown.
+
+:::
+
+\newpage
+
+::: {#suppfig-pa_npc}
+
+![](../figs/pa_point_npc.pdf)
+
+Measured traits in the Panama dataset related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are better correlated with estimates (posterior medians) of the metabolic LMA component (LMAm) than the structural component (LMAs), whereas the opposite pattern occurs for a measured structural trait (cellulose per-unit leaf area; CL~area~).
+*N*~area~, *P*~area~, and CL~area~ data were not used to fit the models, and are presented here as independent support for the model results.
+Pearson correlation coefficients (*r*) for LMA and the posterior medians of Pearson correlation coefficients ($\bar{r}$) for LMAm and LMAs are shown.
+Analogous results were obtained for *N*~area~ and *P*~area~ for GLOPNET (`r s_fig("gl_point_np2")`).
+The results shown here include all leaves for which *N*~area~, *P*~area~  and CL~area~ are available.
 
 :::
 
