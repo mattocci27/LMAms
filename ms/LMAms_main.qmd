@@ -2,7 +2,7 @@
 fontsize: 12pt
 geometry: margin=1in
 link-citations: true
-csl: ecological-modelling.csl
+csl: oecologia.csl
 bibliography: [LMA.bib]
 crossref:
   fig-title: Fig.
@@ -12,11 +12,11 @@ project:
   execute-dir: ms
 format:
   pdf:
-    toc: false
+    # toc: false
     keep-tex: true
     latex-clean: false
     pdf-engine: xelatex
-    number-sections: true  # Enable section numbering
+    # number-sections: true  # Enable section numbering
     include-in-header:
       text: |
         \usepackage[default]{sourcesanspro}
@@ -35,7 +35,7 @@ format:
   docx:
     prefer-html: true
     toc: false
-    number-sections: true
+    # number-sections: true
     highlight-style: github
     html-math-method: katex
     reference-doc: my_template.docx
@@ -205,7 +205,7 @@ Instead, we reserved observations of leaf N and P concentrations (and cellulose 
 We considered a simple one-dimensional model that predicts LL, *A*~max~, and *R*~dark~ from LMA alone, as well as two-dimensional models that predict LL, *A*~max~, and *R*~dark~ from two additive LMA components: metabolic and structural leaf mass per area (LMAm and LMAs, respectively).
 We formulate the models in terms of area-normalized *A*~max~ and *R*~dark~ (*A*~area~ and *R*~area~, respectively), as these area-normalized traits share the same denominator as LMA and its components.
 
-To implement the two-dimensional models, we developed a statistical modeling framework to partition LMA into additive LMAm and LMAs components (Section 2.2 and Supplementary Sections `r appendix_num("prior")`-`r appendix_num("model_cons")`).
+To implement the two-dimensional models, we developed a statistical modeling framework to partition LMA into additive LMAm and LMAs components (In the following section and Supplementary Sections `r appendix_num("prior")`-`r appendix_num("model_cons")`).
 We fit the models to two datasets: the GLOPNET global leaf traits dataset [@Wright2004a], which primarily represents interspecific variation; and the Panama dataset described by @Osnas2018, which includes traits for both sun and shade leaves at wet and dry tropical forest sites.
 Because LMAm and LMAs are modeled (rather than observed), the two-dimensional models require one parameter per analysis unit (a species in GLOPNET or a species $\times$ canopy-position in the Panama dataset) to partition observed LMA into LMAm and LMAs.
 Given the large number of parameters in these models, we performed tests with randomized data to evaluate if our two-dimensional models were prone to creating patterns from noise, which could lead to spurious conclusions.
@@ -316,7 +316,7 @@ When fit to randomized data, the model failed to converge or provided unreliable
 In contrast, when fit to the observed data, the model converged, and parameters were well-constrained (see Results).
 These tests suggest that our modeling approach allows for meaningful exploration of additive LMA components and their relationships with other traits.
 
-To compare the performance of different models, we used Pareto-smoothed importance sampling leave-one-out cross-validation (PSIS-LOO; [@Vehtari2017]).
+To compare the performance of different models, we used Pareto-smoothed importance sampling leave-one-out cross-validation (PSIS-LOO; Vehtari et al. 2017).
 PSIS-LOO is an accurate and reliable approximation for standard leave-one-out cross-validation (LOO), which is a robust method for comparing models with different numbers of parameters [@Vehtari2017].
 We used PSIS-LOO to calculate the LOO Information Criterion (LOOIC) for each model.
 A model with lower LOOIC is considered to have better predictive accuracy [@Vehtari2017].

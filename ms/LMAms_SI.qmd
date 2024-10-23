@@ -3,7 +3,7 @@ title: "Katabuchi et al., Decomposing leaf mass into metabolic and structural co
 fontsize: 12pt
 geometry: margin=1in
 link-citations: true
-csl: ecological-modelling.csl
+csl: oecologia.csl
 bibliography: [LMA.bib]
 crossref:
   eq-prefix: Eq.
@@ -100,12 +100,9 @@ fig("hypo")
 fig("gl_point")
 fig("pa_point")
 fig("ll_point")
-fig("vpart")
 fig("box_de")
 fig("box_pa")
 fig("mass_prop")
-# fig("pa_npc")
-# fig("gl_npc")
 
 # # Make sure the order is correct
 # s_fig("box_inter")
