@@ -134,8 +134,6 @@ Jeremy W. Lichstein:
 Bayesian inference,
 functional diversity,
 global vegetation models,
-interspecific variation,
-intraspecific variability,
 latent variables,
 optimal leaf lifespan
 
@@ -450,7 +448,47 @@ Consistent with our conclusion that leaf function is multi-dimensional, analyses
 Similarly, partitioning leaf phosphorus reveals substantial, LMA-dependent metabolic, structural, and nucleic acid fractions [@Hidaka2011].
 We suggest that future biogeochemical model developments consider multiple axes of leaf functional diversity, and that models with coupled carbon-nutrient cycles consider how LMA, nitrogen, and phosphorus are allocated to different functions
 
-# CRediT authorship contribution statement
+# Acknowledgments
+
+We thank Jonathan Dushoff for statistical advice and Martijn Slot for helpful comments that improved the paper.
+Mirna Samaniego and Milton Garcia provided indispensable assistance in data collection.
+
+# Declarations
+
+## Funding
+
+We thank the Andrew W. Mellon Foundation for supporting this work.
+MK was supported by
+a Xishuangbanna State Rainforest Talent Support Program,
+a CAS President's International Fellowship Initiative (2020FYB0003),
+a ZiHui (Wisdom) Yunnan Program (202203AM140026), and
+a Postdoctoral Fellowship for Research Abroad from the Japan Society for the Promotion of Science (25-504).
+
+## Conflicts of interest/Competing interests
+
+The authors declare no conflicts of interest.
+
+## Ethics approval
+
+This article does not contain any studies with human participants or animals performed by any of the authors.
+
+## Consent to participate
+
+Not applicable.
+
+## Consent for publication
+
+Not applicable.
+
+## Availability of data and material
+
+The data used in this study are from the GLOPNET database [@Wright2004a] and the Panama dataset [@Osnas2018].
+
+## Code availability
+
+Data, codes and computing environments to reproduce this manuscript will be archived on Zenodo at https://doi.org/xxx and also available on Github at https://github.com/mattocci27/LMAms.
+
+## Authors' contributions
 
 **Mastaoshi Katabuchi:**
 Conceptualization,
@@ -475,25 +513,6 @@ Writing - Review & Editing.
 Conceptualization,
 Writing - Original Draft,
 Writing - Review & Editing.
-
-# Conflict of Interest
-
-The authors declare no conflicts of interest.
-
-# Data availability statement
-
-Data, codes and computing environments to reproduce this manuscript will be archived on Zenodo at https://doi.org/xxx and also available on Github at https://github.com/mattocci27/LMAms.
-
-# Acknowledgments
-
-We thank Jonathan Dushoff for statistical advice and Martijn Slot for helpful comments that improved the paper.
-Mirna Samaniego and Milton Garcia provided indispensable assistance in data collection.
-We thank the Andrew W. Mellon Foundation for supporting this work.
-MK was supported by
-a Xishuangbanna State Rainforest Talent Support Program,
-a CAS President's International Fellowship Initiative (2020FYB0003),
-a ZiHui (Wisdom) Yunnan Program (202203AM140026), and
-a Postdoctoral Fellowship for Research Abroad from the Japan Society for the Promotion of Science (25-504).
 
 # References
 

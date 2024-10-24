@@ -312,7 +312,7 @@ where E{[}\(\cdot\){]} indicates the expected value and
 are based on Eqs. 2-4 in the main text.
 
 We used non-informative or weakly informative prior distributions
-(\citeproc{ref-Lemoine2019}{Lemoine NP 2019}). The covariance matrix in
+(\citeproc{ref-Lemoine2019}{Lemoine 2019}). The covariance matrix in
 Eq.~\ref{eq-mvn} was decomposed as
 \({\boldsymbol \Sigma} = \mathrm {diag}(\boldsymbol {\sigma}){\boldsymbol \Omega}\mathrm {diag}({\boldsymbol \sigma}) = \mathrm {diag}({\boldsymbol \sigma}){\boldsymbol L}{\boldsymbol L}\prime \mathrm {diag}({\boldsymbol \sigma})\)
 using a Cholesky decomposition, where \(\boldsymbol {\sigma}\) is a
@@ -323,15 +323,15 @@ matrix. Instead of assigning prior distributions on
 \(\boldsymbol{\Sigma}\) directly, priors were assigned to
 \({\boldsymbol \sigma}\) and \textbf{L} to avoid a strong dependence
 between \({\boldsymbol \sigma}\) and \({\boldsymbol \Omega}\)
-(\citeproc{ref-Lewandowski2009}{Lewandowski D et al. 2009};
-\citeproc{ref-Alvarez2014}{Alvarez I et al. 2014}). A prior for
-\textbf{L} was specified as an LKJ distribution with a shape parameter
-of 2 (\citeproc{ref-Lewandowski2009}{Lewandowski D et al. 2009}), which
-is weakly informative for the correlation matrix. A prior for
+(\citeproc{ref-Lewandowski2009}{Lewandowski et al. 2009};
+\citeproc{ref-Alvarez2014}{Alvarez et al. 2014}). A prior for \textbf{L}
+was specified as an LKJ distribution with a shape parameter of 2
+(\citeproc{ref-Lewandowski2009}{Lewandowski et al. 2009}), which is
+weakly informative for the correlation matrix. A prior for
 \(\boldsymbol{\sigma}\) was specified as a Half-Cauchy distribution with
 location 0 and scale 2.5, which is weakly informative and allows for
 occasional large coefficients while still providing reasonable shrinkage
-for coefficients near zero (\citeproc{ref-Gelman2008}{Gelman A et al.
+for coefficients near zero (\citeproc{ref-Gelman2008}{Gelman et al.
 2008}). Priors for \(\alpha_{0,m,s}\), \(\beta_{0,m,s}\), and
 \(\gamma_{0,m,s}\) in Eqs. 2-4 were weakly informative and specified as
 normal distributions with mean 0 and standard deviation 5. Priors for
@@ -385,7 +385,7 @@ had zero expected covariance among traits.
 Models fitted to the randomized datasets either did not converge or
 showed divergent transitions (Table AS1, Figure AS1-2), indicating that
 models fit to randomized data do not provide reliable inferences
-(\citeproc{ref-Betancourt2016}{Betancourt M 2016}). Furthermore, when
+(\citeproc{ref-Betancourt2016}{Betancourt 2016}). Furthermore, when
 models were fitted to randomized data, the scaling exponents
 (\(\alpha_{m,s}\), \(\beta_{m,s}\), and \(\gamma_{m,s}\)) were not
 significantly different from zero. In simple terms, the two-dimensional
@@ -511,19 +511,19 @@ We applied our LMAm-LMAs model to simulated data to better understand
 relationships between photosynthetic capacity
 (\emph{A}\textsubscript{max}) and LMA. The causes and interpretation of
 these relationships are controversial
-(\citeproc{ref-Westoby2013}{Westoby M et al. 2013}). Although
+(\citeproc{ref-Westoby2013}{Westoby et al. 2013}). Although
 \emph{A}\textsubscript{max} is often mass-normalized (e.g.,
-\citeproc{ref-Wright2004a}{Wright IJ et al. 2004};
-\citeproc{ref-Shipley2006}{Shipley B et al. 2006};
-\citeproc{ref-Blonder2011}{Blonder B et al. 2011}), it has been argued
+\citeproc{ref-Wright2004a}{Wright et al. 2004};
+\citeproc{ref-Shipley2006}{Shipley et al. 2006};
+\citeproc{ref-Blonder2011}{Blonder et al. 2011}), it has been argued
 that \emph{A}\textsubscript{max} should be area-normalized when
 exploring trait relationships because photosynthesis is an area-based
-process (\citeproc{ref-Lloyd2013}{Lloyd J et al. 2013}). Consistent with
-this argument, Osnas JLD et al. (\citeproc{ref-Osnas2013}{2013}) showed
-that across global species, variation in whole-leaf
+process (\citeproc{ref-Lloyd2013}{Lloyd et al. 2013}). Consistent with
+this argument, Osnas et al. (\citeproc{ref-Osnas2013}{2013}) showed that
+across global species, variation in whole-leaf
 \emph{A}\textsubscript{max} is strongly dependent on leaf area, but only
 weakly dependent on leaf mass (after controlling for variation in leaf
-area). Osnas JLD et al. (\citeproc{ref-Osnas2018}{2018}) further
+area). Osnas et al. (\citeproc{ref-Osnas2018}{2018}) further
 demonstrated that the relationship between \emph{A}\textsubscript{max}
 and LMA (i.e., the degree of mass- vs.~area-dependence) is sensitive to
 the amount of LL variation in an assemblage, which we hypothesize
@@ -538,7 +538,7 @@ which we varied the following factors: (1) the sensitivity of
 \emph{A}\textsubscript{area} to LMAs (parameter \(\alpha_s\) in Eq. 2),
 and (3) the fraction of total LMA variance due to variance in LMAs. For
 each simulated dataset, we quantified the \emph{A}\textsubscript{max}
-vs.~LMA relationship following Osnas JLD et al.
+vs.~LMA relationship following Osnas et al.
 (\citeproc{ref-Osnas2018}{2018}):
 
 \begin{equation}\phantomsection\label{eq-mass}{
@@ -547,7 +547,7 @@ A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i
 
 where LMA is the sum of LMAm and LMAs (Eq. 1), \emph{c} is a fitted
 constant, and \emph{b} is an index of mass-dependence as illustrated by
-the following cases (\citeproc{ref-Osnas2013}{Osnas JLD et al. 2013},
+the following cases (\citeproc{ref-Osnas2013}{Osnas et al. 2013},
 \citeproc{ref-Osnas2018}{2018}): if \emph{b} = 0, then
 \emph{A}\textsubscript{area} is independent of LMA, which implies that
 whole-leaf \emph{A}\textsubscript{max} is proportional to leaf area;
@@ -557,10 +557,10 @@ proportional to LMA, which implies that whole-leaf
 cases (0 \textless{} \emph{b} \textless{} 1) and more extreme cases
 (\emph{b} \(\le\) 0 or \emph{b} \(\geq\) 1) are also possible, with
 reported estimates ranging between 0 and 1
-(\citeproc{ref-Osnas2018}{Osnas JLD et al. 2018}). Note that applying
+(\citeproc{ref-Osnas2018}{Osnas et al. 2018}). Note that applying
 Eq.~\ref{eq-mass} to either mass- or area-normalized
 \emph{A}\textsubscript{max} yields equivalent results
-(\citeproc{ref-Osnas2018}{Osnas JLD et al. 2018}).
+(\citeproc{ref-Osnas2018}{Osnas et al. 2018}).
 
 For GLOPNET and Panama sun leaves, results from the LMAm-LMAs models
 (Eqs. 2-4) indicated little correlation between LMAm and LMAs
@@ -987,13 +987,13 @@ while the scaling exponent \(\alpha_s\) is constant (\(\alpha_s\) =
 while the scaling exponent \(\alpha_m\) is constant (\(\alpha_m\) =
 0.28). Solid lines indicate simulated medians and shaded regions
 indicate 95\% confidence intervals. Empirical estimates of \emph{b} are
-typically between 0 and 1 (\citeproc{ref-Osnas2018}{Osnas JLD et al.
-2018}). \emph{A}\textsubscript{max} is primarily mass-dependent if
-\emph{b} \textgreater{} 0.5, and primarily area-dependent if 0.5
-\textgreater{} \emph{b} \textgreater{} 0 (\citeproc{ref-Osnas2018}{Osnas
-JLD et al. 2018}). Parameter values are based on the best GLOPNET model
-(Table 1) and Supplementary Section 6: \(\alpha_0\) = 1.77, \(\mu_m\) =
-56.4, \(\mu_s\) = 61.4, and \(\sigma_m\) = 0.84.}
+typically between 0 and 1 (\citeproc{ref-Osnas2018}{Osnas et al. 2018}).
+\emph{A}\textsubscript{max} is primarily mass-dependent if \emph{b}
+\textgreater{} 0.5, and primarily area-dependent if 0.5 \textgreater{}
+\emph{b} \textgreater{} 0 (\citeproc{ref-Osnas2018}{Osnas et al. 2018}).
+Parameter values are based on the best GLOPNET model (Table 1) and
+Supplementary Section 6: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.4,
+\(\mu_s\) = 61.4, and \(\sigma_m\) = 0.84.}
 
 \end{suppfig}%
 
@@ -1121,74 +1121,66 @@ Symbols as in main text Figs. 2-3.}
 \phantomsection\label{refs}
 \begin{CSLReferences}{1}{1}
 \bibitem[\citeproctext]{ref-Alvarez2014}
-Alvarez I, Niemi J, Simpson M (2014) Bayesian inference for a covariance
-matrix. arXiv preprint arXiv:1408.4050v2:1--12.
+Alvarez et al. (2014) Bayesian inference for a covariance matrix. arXiv
+preprint arXiv:1408.4050v2:1--12.
 \url{https://doi.org/10.1214/aos/1176348885}.
 
 \bibitem[\citeproctext]{ref-Betancourt2016}
-Betancourt M (2016) Diagnosing {Suboptimal Cotangent Disintegrations} in
+Betancourt (2016) Diagnosing {Suboptimal Cotangent Disintegrations} in
 {Hamiltonian Monte Carlo}. arXiv.
 \url{https://doi.org/10.48550/arXiv.1604.00695}.
 
 \bibitem[\citeproctext]{ref-Blonder2011}
-Blonder B, Violle C, Bentley LP, Enquist BJ (2011) Venation networks and
-the origin of the leaf economics spectrum. Ecology Letters14:91--100.
+Blonder et al. (2011) Venation networks and the origin of the leaf
+economics spectrum. Ecology Letters14:91--100.
 \url{https://doi.org/10.1111/j.1461-0248.2010.01554.x}.
 
 \bibitem[\citeproctext]{ref-Gelman2008}
-Gelman A, Jakulin A, Pittau MG, Su YS (2008) A weakly informative
-default prior distribution for logistic and other regression models.
-Annals of Applied Statistics2:1360--1383.
-\url{https://doi.org/10.1214/08-AOAS191}.
+Gelman et al. (2008) A weakly informative default prior distribution for
+logistic and other regression models. Annals of Applied
+Statistics2:1360--1383. \url{https://doi.org/10.1214/08-AOAS191}.
 
 \bibitem[\citeproctext]{ref-Lemoine2019}
-Lemoine NP (2019) Moving beyond noninformative priors: Why and how to
+Lemoine (2019) Moving beyond noninformative priors: Why and how to
 choose weakly informative priors in {Bayesian} analyses.
 Oikos128:912--928. \url{https://doi.org/10.1111/oik.05985}.
 
 \bibitem[\citeproctext]{ref-Lewandowski2009}
-Lewandowski D, Kurowicka D, Joe H (2009) Generating random correlation
-matrices based on vines and extended onion method. Journal of
-Multivariate Analysis100:1989--2001.
+Lewandowski et al. (2009) Generating random correlation matrices based
+on vines and extended onion method. Journal of Multivariate
+Analysis100:1989--2001.
 \url{https://doi.org/10.1016/j.jmva.2009.04.008}.
 
 \bibitem[\citeproctext]{ref-Lloyd2013}
-Lloyd J, Bloomfield K, Domingues TF, Farquhar GD (2013)
-Photosynthetically relevant foliar traits correlating better on a mass
-vs an area basis: {Of} ecophysiological relevance or just a case of
-mathematical imperatives and statistical quicksand? New
-Phytologist199:311--321. \url{https://doi.org/10.1111/nph.12281}.
-
-\bibitem[\citeproctext]{ref-Osnas2018}
-Osnas JLD, Katabuchi M, Kitajima K, Wright SJ, Reich PB, Van Bael SA,
-Kraft NJB, Samaniego MJ, Pacala SW, Lichstein JW (2018) Divergent
-drivers of leaf trait variation within species, among species, and among
-functional groups. Proceedings of the National Academy of Sciences of
-the United States of America115:5480--5485.
-\url{https://doi.org/10.1073/pnas.1803989115}.
+Lloyd et al. (2013) Photosynthetically relevant foliar traits
+correlating better on a mass vs an area basis: {Of} ecophysiological
+relevance or just a case of mathematical imperatives and statistical
+quicksand? New Phytologist199:311--321.
+\url{https://doi.org/10.1111/nph.12281}.
 
 \bibitem[\citeproctext]{ref-Osnas2013}
-Osnas JLD, Lichstein JW, Reich PB, Pacala SW (2013) Global leaf trait
-relationships: {Mass}, area, and the leaf economics spectrum.
-Science340:741--744. \url{https://doi.org/10.1126/science.1231574}.
+Osnas et al. (2013) Global leaf trait relationships: {Mass}, area, and
+the leaf economics spectrum. Science340:741--744.
+\url{https://doi.org/10.1126/science.1231574}.
+
+\bibitem[\citeproctext]{ref-Osnas2018}
+Osnas et al. (2018) Divergent drivers of leaf trait variation within
+species, among species, and among functional groups. Proceedings of the
+National Academy of Sciences of the United States of
+America115:5480--5485. \url{https://doi.org/10.1073/pnas.1803989115}.
 
 \bibitem[\citeproctext]{ref-Shipley2006}
-Shipley B, Lechowicz MJ, Wright I, Reich PB (2006) Fundamental
-trade-offs generating the worldwide leaf economics spectrum.
-Ecology87:535--541. \url{https://doi.org/10.1890/05-1051}.
+Shipley et al. (2006) Fundamental trade-offs generating the worldwide
+leaf economics spectrum. Ecology87:535--541.
+\url{https://doi.org/10.1890/05-1051}.
 
 \bibitem[\citeproctext]{ref-Westoby2013}
-Westoby M, Reich PB, Wright IJ (2013) Understanding ecological variation
-across species: {Area-based} vs mass-based expression of leaf traits.
-New Phytologist199:322--323. \url{https://doi.org/10.1111/nph.12345}.
+Westoby et al. (2013) Understanding ecological variation across species:
+{Area-based} vs mass-based expression of leaf traits. New
+Phytologist199:322--323. \url{https://doi.org/10.1111/nph.12345}.
 
 \bibitem[\citeproctext]{ref-Wright2004a}
-Wright IJ, Reich PB, Westoby M, Ackerly DD, Baruch Z, Bongers F,
-Cavender-Bares J, Chapin T, Cornellssen JHC, Diemer M, Flexas J, Garnier
-E, Groom PK, Gulias J, Hikosaka K, Lamont BB, Lee T, Lee W, Lusk C,
-Midgley JJ, Navas ML, Niinemets Ü, Oleksyn J, Osada H, Poorter H, Pool
-P, Prior L, Pyankov VI, Roumet C, Thomas SC, Tjoelker MG, Veneklaas EJ,
-Villar R (2004) The worldwide leaf economics spectrum.
+Wright et al. (2004) The worldwide leaf economics spectrum.
 Nature428:821--827. \url{https://doi.org/10.1038/nature02403}.
 
 \end{CSLReferences}

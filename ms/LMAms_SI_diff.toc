@@ -8,10 +8,10 @@
 \contentsline {section}{\numberline {S5}{\color {blue}\uwave {Understanding and simulating relationships between photosynthetic capacity and LMA}}}{8}{section.5}%
 \contentsline {section}{\numberline {S6}{\color {red}\sout {Supplementary Section 5: Simulated datasets to study relationships between photosynthetic capacity and LMA}}}{10}{section.6}%
 \contentsline {section}{\numberline {S6}{\color {red}\sout {Supplementary Section 6: Variance partitioning}}}{11}{section.6}%
-\contentsline {section}{\numberline {S6}\DIFdelbegin {\color {red}\sout {Figures}}\DIFdelend \DIFaddbegin {\color {blue}\uwave {Stan code}}\DIFaddend }{13}{section.6}%
-\contentsline {section}{\numberline {S7}{\color {red}\sout {Supplementary Section 7: Stan code}}}{14}{section.7}%
+\contentsline {section}{\numberline {S6}{\color {red}\sout {Figures}}}{12}{section.6}%
+\contentsline {section}{\numberline {S6}\DIFdelbegin {\color {red}\sout {Supplementary Section 7: }}\DIFdelend Stan code}{14}{section.6}%
 \contentsline {subsection}{\numberline {S6.1}Stan code for the GLOPNET dataset}{14}{subsection.6.1}%
 \contentsline {subsection}{\numberline {S6.2}Stan code for the Panama dataset}{16}{subsection.6.2}%
-\contentsline {section}{{\color {blue}\uwave {Figures}}}{20}{section*.9}%
-\contentsline {section}{References}{30}{section*.10}%
+\contentsline {section}{{\color {blue}\uwave {Figures}}}{19}{section*.9}%
+\contentsline {section}{References}{29}{section*.10}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
