@@ -1,13 +1,3 @@
-# fig functions
-my_ggsave = function(filename, plot, height = 11.4, width = 11.4, units = "cm", ...){
-  ggsave(filename = filename,
-         plot = plot,
-         height = height,
-         width = width,
-         units = units,
-         dpi = 400,
-         ...)
-}
 
 theme_LES <- function(base_size = 9,
                      base_family = "sans") {

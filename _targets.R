@@ -335,7 +335,7 @@ main_list <- list(
       my_ggsave(
         "figs/coef_sim_gl",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 15,
        width = 15,
        units = "cm"
@@ -350,7 +350,7 @@ main_list <- list(
       my_ggsave(
         "figs/coef_sim_pa",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 15,
        width = 15,
        units = "cm"
@@ -423,7 +423,7 @@ main_list <- list(
       my_ggsave(
         "figs/hypo",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 5,
        width = 17,
        units = "cm"
@@ -446,7 +446,7 @@ main_list <- list(
       my_ggsave(
         "figs/gl_point",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 11.4,
        width = 11.4,
        units = "cm"
@@ -460,7 +460,7 @@ main_list <- list(
       my_ggsave(
         "figs/gl_point_np",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 7.6,
        width = 11.4,
        units = "cm"
@@ -474,7 +474,7 @@ main_list <- list(
       my_ggsave(
         "figs/gl_point_np2",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 11.4,
        width = 11.4,
        units = "cm"
@@ -488,7 +488,7 @@ main_list <- list(
       my_ggsave(
         "figs/pa_point",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 11.4,
        width = 11.4,
        units = "cm"
@@ -502,7 +502,7 @@ main_list <- list(
       my_ggsave(
         "figs/pa_point_npc",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 11.4,
        width = 11.4,
        units = "cm"
@@ -516,7 +516,7 @@ main_list <- list(
       my_ggsave(
         "figs/pa_point_npc_par",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 11.4,
        width = 12.4,
        units = "cm"
@@ -530,7 +530,7 @@ main_list <- list(
       my_ggsave(
         "figs/pa_point_ll",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 6.7,
        width = 6.7,
        units = "cm"
@@ -544,7 +544,7 @@ main_list <- list(
       my_ggsave(
         "figs/pa_point_par_ll",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 6.7,
        width = 6.7,
        units = "cm"
@@ -558,7 +558,7 @@ main_list <- list(
       my_ggsave(
         "figs/ps_point",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 7,
        width = 11.4,
        units = "cm"
@@ -572,7 +572,7 @@ main_list <- list(
       my_ggsave(
         "figs/pair_frac",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 7,
        width = 7,
        units = "cm"
@@ -586,7 +586,7 @@ main_list <- list(
       my_ggsave(
         "figs/pair_lma",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 7,
        width = 11.4,
        units = "cm"
@@ -604,7 +604,7 @@ main_list <- list(
       my_ggsave(
         "figs/ps_point_95ci",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 7,
        width = 11.4,
        units = "cm"
@@ -618,7 +618,7 @@ main_list <- list(
       my_ggsave(
         "figs/vpart",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 6,
        width = 11.4,
        units = "cm"
@@ -632,7 +632,7 @@ main_list <- list(
       my_ggsave(
         "figs/vpart_intra",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 6,
        width = 11.4,
        units = "cm"
@@ -714,7 +714,7 @@ main_list <- list(
       my_ggsave(
         "figs/mass_prop",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 6,
        width = 6,
        units = "cm"
@@ -729,7 +729,7 @@ main_list <- list(
       my_ggsave(
         "figs/mass_prop_mv",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 6,
        width = 6,
        units = "cm"
@@ -743,7 +743,7 @@ main_list <- list(
       my_ggsave(
         "figs/mass_prop_comp",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 6,
        width = 6,
        units = "cm"
@@ -758,7 +758,7 @@ main_list <- list(
       my_ggsave(
         "figs/mass_prop_sim",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 5.5,
        width = 11,
        units = "cm"
@@ -826,7 +826,7 @@ main_list <- list(
       my_ggsave(
         "figs/box_intra",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 11.7,
        width = 11.7,
        units = "cm"
@@ -841,7 +841,7 @@ main_list <- list(
       my_ggsave(
         "figs/box_de",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 11.7,
        width = 11.7,
        units = "cm"
@@ -855,7 +855,7 @@ main_list <- list(
       my_ggsave(
         "figs/box_pa",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 6,
        width = 11.7,
        units = "cm"
@@ -870,7 +870,7 @@ main_list <- list(
       my_ggsave(
         "figs/box_inter",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 11.7,
        width = 11.7,
        units = "cm"
@@ -885,7 +885,7 @@ main_list <- list(
       my_ggsave(
         "figs/box_frac_de",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 6,
        width = 13,
        units = "cm"
@@ -900,7 +900,7 @@ main_list <- list(
       my_ggsave(
         "figs/box_frac_pa",
        p,
-       dpi = 300,
+       dpi = 600,
        height = 6,
        width = 12,
        units = "cm"

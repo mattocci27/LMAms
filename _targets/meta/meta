@@ -1,31 +1,31 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-.Random.seed|object|55ae879658847ae6|||||||||||||||
+.Random.seed|object|5c0c929d9aa1cde2|||||||||||||||
 am_bs_opt|stem|796b1e6dfa860bbe|a270102a16281410|d08213f484b3e9b9|-1396709231|stan/am_bs_opt.stan|t19276.2874305556s|d931c34d8858571a|2347|file|local|vector|||47.583||
 ams_bs|stem|27feecfefd81fe04|fc82e1a89d72bba3|d08213f484b3e9b9|-1029912825|stan/ams_bs.stan|t19276.2874305556s|4dd662639d0ae2b7|2236|file|local|vector|||43.391||
 box_de|function|dee9b72c421ff42a|||||||||||||||
-box_de_plot|stem|b448b144313d40d1|1aef55ee04609397|3c7559e9be8beb92|-38043365|figs/box_de.png*figs/box_de.pdf*figs/box_de.tiff|t19956.127976058s|a580ddb2677bb019|425994|file|local|vector|||1.518||
+box_de_plot|stem|f517c644abe9d373|940b0b41f8e55cc1|ca423ba559f04fa8|-38043365|figs/box_de.png*figs/box_de.pdf*figs/box_de.tiff|t20021.3144815946s|fc804fad00d21286|339925|file|local|vector|||1.274||
 box_frac|function|ee1b6bdebd62d7ca|||||||||||||||
-box_frac_de_plot|stem|84b6d4ac31c2b7f1|6245f419a3849ba6|b03092970e1a09cb|728048107|figs/box_frac_de.png*figs/box_frac_de.pdf*figs/box_frac_de.tiff|t19956.1279520096s|706ecaccb04133a9|338498|file|local|vector|||0.677||
+box_frac_de_plot|stem|8c3e6af847d7d6ca|959f662ad7d40a3b|84c741320cc52a42|728048107|figs/box_frac_de.png*figs/box_frac_de.pdf*figs/box_frac_de.tiff|t20021.3144603498s|f7ec2a4e841d5592|256770|file|local|vector|||0.703||
 box_frac_light|function|fb3a0970835fed30|||||||||||||||
 box_frac_pa|function|c637a795ec063b71|||||||||||||||
-box_frac_pa_plot|stem|1f056ab78320cdbe|9ceaaba6b0e8cff8|c591edb4b2527160|55940642|figs/box_frac_pa.png*figs/box_frac_pa.pdf*figs/box_frac_pa.tiff|t19956.1279584362s|8931cc5f447d4fb8|358668|file|local|vector|||0.55||
+box_frac_pa_plot|stem|617159916c541947|79e6b8a51ea60620|a669b6dd0c29621b|55940642|figs/box_frac_pa.png*figs/box_frac_pa.pdf*figs/box_frac_pa.tiff|t20021.3144667848s|ab7ff84cd3d5e08e|274903|file|local|vector|||0.549||
 box_frac_sun|function|20da63da16455495|||||||||||||||
 box_fun|function|8075732c4f48acdf|||||||||||||||
 box_inter|function|5bbd134b21493d7b|||||||||||||||
-box_inter_plot|stem|38efa794ba8b0bfe|e43d595418689c70|8b53a26e28f3e234|2295300|figs/box_inter.png*figs/box_inter.pdf*figs/box_inter.tiff|t19956.1279935313s|9c926eba220a8c88|540697|file|local|vector|||1.502||
+box_inter_plot|stem|6493a3c897fcb569|b5e49c69289b69b9|9cae7e23c2605673|2295300|figs/box_inter.png*figs/box_inter.pdf*figs/box_inter.tiff|t20021.3144973685s|758771481e4e674d|415951|file|local|vector|||1.357||
 box_intra|function|377e3d7eff2dfb09|||||||||||||||
-box_intra_plot|stem|01211ef991ffa0b6|9e1fab5b9e80c34d|f1888e6636ccb0fb|492352278|figs/box_intra.png*figs/box_intra.pdf*figs/box_intra.tiff|t19956.1280114975s|f161073e3c40e72d|576077|file|local|vector|||1.547||
+box_intra_plot|stem|04f5622823437ef3|5d3e68821b191f7b|cd74e7cb802c9c87|492352278|figs/box_intra.png*figs/box_intra.pdf*figs/box_intra.tiff|t20021.3145164582s|a197d329d842ab6a|472548|file|local|vector|||1.645||
 box_main|function|ab8b397d3d9c952f|||||||||||||||
 box_pa|function|c8686538cad32177|||||||||||||||
-box_pa_plot|stem|55891675e61f72f1|50b8dcdb98cc7468|86c530b6b869636a|-140141244|figs/box_pa.png*figs/box_pa.pdf*figs/box_pa.tiff|t19956.1280181608s|d1124cae06fb36da|321540|file|local|vector|||0.566||
+box_pa_plot|stem|602fb7b939bf22e1|dacebb2bc0af34fd|a096b18075645e6c|-140141244|figs/box_pa.png*figs/box_pa.pdf*figs/box_pa.tiff|t20021.3145228529s|8e3f31d627cfabec|241655|file|local|vector|||0.547||
 clean_gl_res|function|969f9750fb618cbe|||||||||||||||
 clean_pa_res|function|8b3db388b15ea098|||||||||||||||
 cmdstan_path|object|f9d551927707594a|||||||||||||||
 coef_rand|function|e0c4a8d07d1b6a9f|||||||||||||||
 coef_rand2|function|7883f939d194f020|||||||||||||||
 coef_sim|function|3f9044e3b666eb50|||||||||||||||
-coef_sim_gl_plot|stem|9f50c35b0b9f7fb3|d666fc902219a3d2|48477312472657a4|-109283495|figs/coef_sim_gl.png*figs/coef_sim_gl.pdf*figs/coef_sim_gl.tiff|t19956.1277707741s|edeb84fcdf2c30df|2002351|file|local|vector|||1.475|A numeric legend.position argument in theme was deprecated in ggplot23.5.0.ℹ Please use the legend.position.inside argument of theme instead.|
-coef_sim_pa_plot|stem|1b74c7f2b15a93aa|b35dad366642ac91|54ae951b31539a85|93818343|figs/coef_sim_pa.png*figs/coef_sim_pa.pdf*figs/coef_sim_pa.tiff|t19956.127784594s|b76870a81f52123b|1995042|file|local|vector|||1.16||
+coef_sim_gl_plot|stem|c89f1a0a64a7ea92|a302a56939eae4a7|87d3afaa534e7a18|-109283495|figs/coef_sim_gl.png*figs/coef_sim_gl.pdf*figs/coef_sim_gl.tiff|t20021.3142772462s|f9134bedec45fab1|1480989|file|local|vector|||1.608|A numeric legend.position argument in theme was deprecated in ggplot23.5.0.ℹ Please use the legend.position.inside argument of theme instead.|
+coef_sim_pa_plot|stem|feb709d8da7faa77|bde3293c0a0d6454|7032de4b08bc7d1b|93818343|figs/coef_sim_pa.png*figs/coef_sim_pa.pdf*figs/coef_sim_pa.tiff|t20021.3142902341s|8fb8dab371163cc6|1519125|file|local|vector|||1.078||
 compile_model|function|440cd3c27c638fb3|||||||||||||||
 create_para_tbl|function|589f5f68bb64e19f|||||||||||||||
 create_sim_dat|function|9923a4d4cf6dc0e9|||||||||||||||
@@ -115,11 +115,11 @@ gl_para_summary|stem|747f4caa0199d642|52d1554a50d6be36|e7d00f1022a408a5|16493533
 gl_point|function|f34af61a1c3e9b4e|||||||||||||||
 gl_point_n|function|990374a33fe0925f|||||||||||||||
 gl_point_np|function|d91dcde743024d4e|||||||||||||||
-gl_point_np_plot|stem|1a3727190027e015|b58e28214d4870d3|52cf9fb3448f97f9|1030541736|figs/gl_point_np.png*figs/gl_point_np.pdf*figs/gl_point_np.tiff|t19956.1279114392s|830da651e1e08f57|1075048|file|local|vector|||0.818||
+gl_point_np_plot|stem|a5c1a57a9514d967|c622a2d757326386|9a73304e2a6ff726|1030541736|figs/gl_point_np.png*figs/gl_point_np.pdf*figs/gl_point_np.tiff|t20021.3144184819s|24d0f5795f418af1|1015761|file|local|vector|||0.788||
 gl_point_np2|function|a897aa32bbeff89b|||||||||||||||
-gl_point_np2_plot|stem|c10bad04d30beb49|c741a1099a48e002|969dae824da920d0|476811626|figs/gl_point_np2.png*figs/gl_point_np2.pdf*figs/gl_point_np2.tiff|t19956.1278517535s|abf859007fb7fb3f|1298864|file|local|vector|||1.137||
+gl_point_np2_plot|stem|8f8741fb59eaddfb|8c69f8fa5aec839f|dd016af3010f791b|476811626|figs/gl_point_np2.png*figs/gl_point_np2.pdf*figs/gl_point_np2.tiff|t20021.3143570611s|0f42f6b91d92747e|1206569|file|local|vector|||1.169||
 gl_point_p|function|83b95c4687304acc|||||||||||||||
-gl_point_plot|stem|04774512d2698ecd|c0aac9928d6634f3|cf455d0a2298f9dc|-108874728|figs/gl_point.png*figs/gl_point.pdf*figs/gl_point.tiff|t19956.1278385145s|fe82b296d8f393ad|1887673|file|local|vector|||1.046|font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81|
+gl_point_plot|stem|57fda762afa4e4fc|a6615cf700364dea|49f106c3b4ab53dc|-108874728|figs/gl_point.png*figs/gl_point.pdf*figs/gl_point.tiff|t20021.3143434664s|a7542e7e6fa72e56|1811342|file|local|vector|||1.016|font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81|
 gl_res_csv|stem|9c67c4cfd803ffcd|36ea92d440a762b5|94abcf2848b8c1e2|-417079566|data/gl_res.csv|t19951.0779632638s|74907b2c1192992f|47741|file|local|vector|||0.476||
 gl_res_dat|stem|68cde7a8e3fdf8f9|e21b94a8251d9398|79c3da6f5a5aa036|-403777949||t19792.3400462963s|c9bc74dc9885b820|20059|rds|local|vector|||0.125||
 gl_sim_data|pattern|ccfba961e1cf8c0a|cc939f4244cf27ec||-1419858770||||34952|rds|local|vector||gl_sim_data_c8430219*gl_sim_data_9f5fd674*gl_sim_data_680d1670*gl_sim_data_e1ada081*gl_sim_data_e06b41b8*gl_sim_data_e1ba1dc0*gl_sim_data_eaa38dd7*gl_sim_data_14bc53d5*gl_sim_data_9c7f5110*gl_sim_data_c89114c5|5.355||
@@ -152,7 +152,7 @@ gl_summary_am_bs|stem|6f6c1d8bbe166e6a|bfddc0c26e873ff3|6ffc0ac9f746e57b|1415447
 gl_summary_ams_bms|stem|b508ee4b9a5f2076|af3bec9d1d6c68dd|c6571b686e86587a|-1902837510||t19792.3403009259s|0241f540bebdb5a9|166593|fst_tbl|local|vector|||17.62||
 gl_summary_ams_bs|stem|1aff2a063f308c38|9078bdbeffefd1cd|9bdc1faede838a4b|1125713181||t19792.3403125s|8fbc9bd8799bf529|172787|fst_tbl|local|vector|||27.954||
 gl_summary_lma|stem|8b4b08a35294ebe1|e705b46e7711159b|73a844ba15caa46e|61268187||t19792.3403125s|d3cd522c653e59a0|115173|fst_tbl|local|vector|||15.948||
-hypo_plot|stem|07ee7373ae824a28|062af122d33b058b|8f67f77fd176e63b|-2130957156|figs/hypo.png*figs/hypo.pdf*figs/hypo.tiff|t19956.1278263023s|d2a3e85b34619cde|2094911|file|local|vector|||0.856||
+hypo_plot|stem|2f990fb355672b6c|5b3fed0346b098d3|439e416bbd15318e|-2130957156|figs/hypo.png*figs/hypo.pdf*figs/hypo.tiff|t20021.3143316141s|8de9e6247615ed4b|1517407|file|local|vector|||0.876||
 hypo_point|function|dbf019f840043cd6|||||||||||||||
 hypo_points|function|db7bbd3deb8b14ec|||||||||||||||
 leafhabit_file|stem|f9cfd330e326f550|7edb38a1aa7d74b4|ef46db3751d8e999|247774667|data-raw/Osnas2018_S1.csv|t19220.3816550926s|9c3f694b1092d9a9|26723|file|local|vector|||0.768||
@@ -187,20 +187,20 @@ loo_pa_mcmc_lma|stem|7791008988db9f02|5e90e1015c20ac81|5c49f3fe1df9f1b4|-5897891
 loo_pa_mcmc_lma_opt|stem|b97ce73f1394ba77|6663ef58d127f97b|5e92573633942531|374090674||t19792.3405208333s|e38580c0cc49f4a0|5819|rds|local|vector|||1.43||
 loo_tbl|stem|04c4ab2df887471b|dec009b4b9a18854|897404ee63bc05b1|1654956673|data/loo.csv|t19951.0783987397s|4f5338fffcd0c592|1535|file|local|vector|||0.008||
 loop_fun|function|42314d0682666d3f|||||||||||||||
-main_list|object|2554a4d4d42e78f6|||||||||||||||
+main_list|object|de8a64de8a06367c|||||||||||||||
 mass_obs_dat|stem|9e53026f4f5d8b23|38c161feaf1dab43|e67997f8cdd4c283|1931722978||t19951.0783865782s|44d8296aaebe8c60|317|rds|local|vector|||0.065||
-mass_prop_comp_plot|stem|2b5ab8cdfc253cdb|4f1e9595baed0b40|f8a85167858136ce|-1642947083|figs/mass_prop_comp.png*figs/mass_prop_comp.pdf*figs/mass_prop_comp.tiff|t19956.1279440117s|649fa9e459c8124a|333616|file|local|vector|||0.316||
+mass_prop_comp_plot|stem|f322731b4eb7806d|c541481e799ee046|174ffc8b79830121|-1642947083|figs/mass_prop_comp.png*figs/mass_prop_comp.pdf*figs/mass_prop_comp.tiff|t20021.3144520831s|f32e7dd1b7bc5e30|283813|file|local|vector|||0.31||
 mass_prop_comp_point|function|0dc9586356a57a53|||||||||||||||
 mass_prop_grad_am|stem|4259a2b0c52d01bc|f568f63c8ebb133c|9c481377c235a5f2|-2074804403||t19792.3405439815s|a5a86413f31d72cc|1905|rds|local|vector|||29.856||
 mass_prop_grad_as|stem|d78c041202fefe15|c099c05965dee223|9c481377c235a5f2|968106451||t19792.3405439815s|19f9f671f0ce5932|1886|rds|local|vector|||24.789||
-mass_prop_mv_plot|stem|5a49d2f6fab82c01|2f55b77aaf00711a|b32fa5e12886608c|2005230635|figs/mass_prop_mv.png*figs/mass_prop_mv.pdf*figs/mass_prop_mv.tiff|t19956.1279403127s|ff68768ee1624f8f|370076|file|local|vector|||0.353||
-mass_prop_plot|stem|5228de0a5bbbe0d1|52da7b53ea571cc0|7f88e5b673d58a9f|1825464687|figs/mass_prop.png*figs/mass_prop.pdf*figs/mass_prop.tiff|t19956.127936099s|989657f2182795c7|374538|file|local|vector|||0.386|The legend.text.align argument of theme is deprecated as of ggplot23.5.0.ℹ Please use themelegend.text  element_texthjust instead.|
+mass_prop_mv_plot|stem|66790abbe00a2ce7|7b1c58a85f7df081|69967884cd47383a|2005230635|figs/mass_prop_mv.png*figs/mass_prop_mv.pdf*figs/mass_prop_mv.tiff|t20021.3144484325s|f12ff1049b5c58d6|327129|file|local|vector|||0.351||
+mass_prop_plot|stem|6d306cb58bf50583|53dff7811e05b149|e5af3e2825311906|1825464687|figs/mass_prop.png*figs/mass_prop.pdf*figs/mass_prop.tiff|t20021.3144442211s|3471f37cb86d6402|331434|file|local|vector|||0.447|The legend.text.align argument of theme is deprecated as of ggplot23.5.0.ℹ Please use themelegend.text  element_texthjust instead.|
 mass_prop_point|function|4317bfb42688ffd0|||||||||||||||
 mass_prop_sim|function|c23d808c7e8e9637|||||||||||||||
 mass_prop_sim_grad|function|31522d56ab638e4c|||||||||||||||
 mass_prop_sim_grad_each|function|4a8f1d2568e94331|||||||||||||||
 mass_prop_sim_mv|function|dc3e91e040d13b79|||||||||||||||
-mass_sim_plot|stem|e5f5c6e1b483c932|e99c02c79c7914c0|3bd02a03e834e418|185328060|figs/mass_prop_sim.png*figs/mass_prop_sim.pdf*figs/mass_prop_sim.tiff|t19956.1279315573s|e84f2b6315f19493|607476|file|local|vector|||0.667||
+mass_sim_plot|stem|8b9e184d5c02e451|7e2a130eb21f1d4e|2715fb0d28a4dfdb|185328060|figs/mass_prop_sim.png*figs/mass_prop_sim.pdf*figs/mass_prop_sim.tiff|t20021.3144389723s|bd8197d5e8b0c567|489929|file|local|vector|||0.652||
 mass_sim_point|function|006d480143951932|||||||||||||||
 model_json|stem|107180c176754020|e5e2de428bcdfc0e|ef46db3751d8e999|47569753|templates/model.json|t19276.2874305556s|b98f1b6118cbc470|1699|file|local|vector|||0.783||
 model_lma_json|stem|32e140d171c49200|9bda75f57ceb1079|ef46db3751d8e999|1474238360|templates/model_LMA.json|t19276.2874305556s|f3963c450082b208|143|file|local|vector|||0.803||
@@ -208,7 +208,7 @@ model_selection_csv|stem|ccb766013879b943|25f93d9176160d93|7a24c2f5a90ac5f1|-496
 mu_fun|function|66d9a14e318d8251|||||||||||||||
 my_breaks|function|f18396e8a2535b30|||||||||||||||
 my_breaks_x|function|45ba0619efca05ce|||||||||||||||
-my_ggsave|function|1a1a0c22fe7c9a6d|||||||||||||||
+my_ggsave|function|dc4998380e330221|||||||||||||||
 my_loo|function|0e3ce6a385106cbd|||||||||||||||
 my_rlnorm|function|887f7fc84a338b42|||||||||||||||
 my_write_csv|function|46eaaee704021b09|||||||||||||||
@@ -314,15 +314,15 @@ pa_para_all_csv|stem|8ac09b600ad00f0b|7b5bd04764a73e7a|62d2829c9531919f|-1171283
 pa_para_summary|stem|a292df1a603fb322|54b1befbf0ca4104|89481614f1e3c3dc|-753063857||t19792.3527662037s|2dabcffb297d71a5|8626|rds|local|vector|||0.002||
 pa_point|function|847075c0306047d1|||||||||||||||
 pa_point_ll|function|f9875abc032da4d8|||||||||||||||
-pa_point_ll_plot|stem|b089a5d8c4a1a3cf|c109479fa92e572b|f340969c23c2d9cf|-1757494043|figs/pa_point_ll.png*figs/pa_point_ll.pdf*figs/pa_point_ll.tiff|t19956.1278855359s|392e0be3d3c13542|441173|file|local|vector|||0.4||
+pa_point_ll_plot|stem|ca5e99f8b943e043|31ae97b130bd32aa|744efc32c0cb3e87|-1757494043|figs/pa_point_ll.png*figs/pa_point_ll.pdf*figs/pa_point_ll.tiff|t20021.3143937247s|ab86469e696369b7|422719|file|local|vector|||0.409||
 pa_point_npc|function|128ba7904d02ce1f|||||||||||||||
 pa_point_npc_par|function|ca34611a14e9f8ce|||||||||||||||
-pa_point_npc_plot|stem|284505cc6b74dfac|cf62d75ffeb66868|18f0e06c6bd8063e|1670505322|figs/pa_point_npc.png*figs/pa_point_npc.pdf*figs/pa_point_npc.tiff|t19956.1278766583s|0e5463165d36b68f|2007713|file|local|vector|||0.98||
+pa_point_npc_plot|stem|a6b173315d6c3e70|79292cbd2a75446b|20bcd358f8b160a3|1670505322|figs/pa_point_npc.png*figs/pa_point_npc.pdf*figs/pa_point_npc.tiff|t20021.3143847494s|08b83115453580f0|1895515|file|local|vector|||1.033||
 pa_point_npc_rho|function|aeae25fae7bc0b24|||||||||||||||
-pa_point_npc_rho_plot|stem|a0f22cb994361cd1|e74192ca54993210|04b460cb659aa652|1434625342|figs/pa_point_npc_par.png*figs/pa_point_npc_par.pdf*figs/pa_point_npc_par.tiff|t19956.1278652358s|95a0d7695f6f2e27|1657658|file|local|vector|||1.159|Removed 31 rows containing missing values or values outside the scale rangegeom_point.. Removed 31 rows containing missing values or values outside the scale rangegeom_point.. Removed 31 rows containing missing values or values outside the scale rangegeom_point.. Removed 31 rows containing missing values or values outside the scale rangegeom_point.. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substit|
+pa_point_npc_rho_plot|stem|13a574d4215ef7d7|3e9ca42cc4a18973|c75dea40bf768140|1434625342|figs/pa_point_npc_par.png*figs/pa_point_npc_par.pdf*figs/pa_point_npc_par.tiff|t20021.3143726754s|3a74fb93a663f80e|1538115|file|local|vector|||1.343|Removed 31 rows containing missing values or values outside the scale rangegeom_point.. Removed 31 rows containing missing values or values outside the scale rangegeom_point.. Removed 31 rows containing missing values or values outside the scale rangegeom_point.. Removed 31 rows containing missing values or values outside the scale rangegeom_point.. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substit|
 pa_point_par_ll|function|38616170b83c1adf|||||||||||||||
-pa_point_par_ll_plot|stem|a7b2c6dfb7b7dd93|610f0dccb2f83a56|78f72ecdefc62fac|-1856908998|figs/pa_point_par_ll.png*figs/pa_point_par_ll.pdf*figs/pa_point_par_ll.tiff|t19956.1278808594s|7f178ab3ba9a64d2|510328|file|local|vector|||0.356|font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81|
-pa_point_plot|stem|92c76c118cb1e96c|6db4fb6a87a6968a|a475c0c66f5be6e9|-1101285984|figs/pa_point.png*figs/pa_point.pdf*figs/pa_point.tiff|t19956.1279237475s|48f159122dfd04c6|2128643|file|local|vector|||1.06|font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81|
+pa_point_par_ll_plot|stem|abf62a249007068d|6e1bb8b4056ee1a6|653663c4a26a08a1|-1856908998|figs/pa_point_par_ll.png*figs/pa_point_par_ll.pdf*figs/pa_point_par_ll.tiff|t20021.3143889405s|31af2e227357c86d|489569|file|local|vector|||0.357|font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81|
+pa_point_plot|stem|0a1bffe164bdb6f3|a95b955b93e76751|a14f4c5666a34893|-1101285984|figs/pa_point.png*figs/pa_point.pdf*figs/pa_point.tiff|t20021.314431352s|697bffdd345a6c83|2009626|file|local|vector|||1.109|font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. font metrics unknown for Unicode character U03c1. font metrics unknown for Unicode character U03c1. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81. conversion failure on ρ in mbcsToSbcs dot substituted for cf. conversion failure on ρ in mbcsToSbcs dot substituted for 81|
 pa_res_csv|stem|0f41eb19a3b66599|179b0dd8822a83c0|d8cdbe55f837ed39|-196022452|data/pa_res.csv|t19951.0779325399s|519102988e938dc1|57385|file|local|vector|||3.114||
 pa_res_dat|stem|9b4d2d3944b34e11|c6dac6249343b62b|9764aed3e9e13ce0|1037315144||t19951.0781077123s|56b2a687e2190128|26464|rds|local|vector|||0.055||
 pa_rho_dat|stem|4147e451ee7b6f11|8e3b56ea63999914|a888a1ebc1887851|1386978276||t19951.0781084037s|aeac174bedfe7203|34015|rds|local|vector|||0.053||
@@ -371,9 +371,9 @@ pa_summary_ams_bs_opt|stem|03651243b1c03d0f|f14abddb1a0b1b0b|7fe4d1751733c060|-2
 pa_summary_lma|stem|fb27b4e530c2fc3d|fd77dd3dfd3bf2ae|130578e4e07c0e5b|1800309457||t19792.3531828704s|c3f8c33e04bdf7b1|63986|fst_tbl|local|vector|||9.509||
 pa_summary_lma_opt|stem|b69f186978dd8b2a|3dde8105b51af127|90739abbf065a7bf|1487520054||t19792.3531944444s|39d89f27f55a5b4c|65606|fst_tbl|local|vector|||8.463||
 pair_frac_line|function|b48c06913701dc5d|||||||||||||||
-pair_frac_plot|stem|de6ec4ed41669ef8|38b02d7c149383d6|3c1e2ce201535d48|-2031217022|figs/pair_frac.png*figs/pair_frac.pdf*figs/pair_frac.tiff|t19956.1278163125s|cb784212c1d8b3c8|385028|file|local|vector|||0.322||
+pair_frac_plot|stem|9f543e59cf2025cd|352070a7bde6ef7e|00b42eeb2b01e34f|-2031217022|figs/pair_frac.png*figs/pair_frac.pdf*figs/pair_frac.tiff|t20021.3143213947s|3e95e31cbd24e8ba|389426|file|local|vector|||0.307||
 pair_lma_line|function|7f31ecb2b7287a87|||||||||||||||
-pair_lma_plot|stem|de2bb7b82656a123|9d6c6e19c56d0b9b|643b37b6d611e655|-1468147226|figs/pair_lma.png*figs/pair_lma.pdf*figs/pair_lma.tiff|t19956.1278125431s|bae5a34fdb84c364|501036|file|local|vector|||0.551||
+pair_lma_plot|stem|49eef83aac2852b9|5f2a3065cc92e832|eb6aa8522b2d8d61|-1468147226|figs/pair_lma.png*figs/pair_lma.pdf*figs/pair_lma.tiff|t20021.31431779s|8393b9d3e30d9b42|496915|file|local|vector|||0.531||
 para|object|cb5662428fe48050|||||||||||||||
 para_tbl|stem|998eb5c7130dac4f|a16c8671515abd9f|8c9d9d5e314da553|-1163129667|./data/para_tbl.csv|t19951.077963709s|6f4c3c775ad9cd4d|528|file|local|vector|||0.034||
 para_yml|stem|fb5fa973c959445b|519f0abd0ef3dbf0|3b7117184b124c11|689972910|yml/para.yml|t19951.0781127348s|0c79ab4d5be76e6d|422|file|local|vector|||0.076||
@@ -386,8 +386,8 @@ prepare_gl|function|43563b1e024dfb8f|||||||||||||||
 prepare_leafhabit|function|89fd5d483185178c|||||||||||||||
 prepare_pa|function|689a2373906559df|||||||||||||||
 ps_point|function|285c076b664cbe2d|||||||||||||||
-ps_point_95_ci_plot|stem|d767782a25fcea56|38b2b30876ee12ea|865a6e3f4ee4e609|185070030|figs/ps_point_95ci.png*figs/ps_point_95ci.pdf*figs/ps_point_95ci.tiff|t19956.1278954637s|5623564d32b6794f|708163|file|local|vector|||0.853|Using size aesthetic for lines was deprecated in ggplot2 3.4.0.ℹ Please use linewidth instead.|
-ps_point_plot|stem|ad4ce7658d0de3f8|9522cc5e4efe6287|865a6e3f4ee4e609|-43334879|figs/ps_point.png*figs/ps_point.pdf*figs/ps_point.tiff|t19956.1279019194s|7b1b9c37a66e0e26|705377|file|local|vector|||0.553||
+ps_point_95_ci_plot|stem|64870275d2f5d6c2|e2bfc3cc22bddd3c|de5f001852c30773|185070030|figs/ps_point_95ci.png*figs/ps_point_95ci.pdf*figs/ps_point_95ci.tiff|t20021.3144022877s|f20575be7db21633|614396|file|local|vector|||0.735|Using size aesthetic for lines was deprecated in ggplot2 3.4.0.ℹ Please use linewidth instead.|
+ps_point_plot|stem|a65565dde43dce65|2aad62da337c4e1a|de5f001852c30773|-43334879|figs/ps_point.png*figs/ps_point.pdf*figs/ps_point.tiff|t20021.3144093074s|5e817fe30cfa7358|648304|file|local|vector|||0.602||
 ps_point_wrapper|function|9f85015692491cee|||||||||||||||
 quant_fun|function|4d70a48ac028946d|||||||||||||||
 quiet|function|7a0df942450ddbd2|||||||||||||||
@@ -441,8 +441,8 @@ vpart_bar|function|d605e67bbf4f31d8|||||||||||||||
 vpart_bar_csv|function|433c9a08b81f0c6e|||||||||||||||
 vpart_csv|stem|eb74b52dd1b37fee|ab9afddf8f20d154|64d1ffb2a9041dad|-1555996934|data/vpart_inter.csv|t19978.3968287207s|86602595fcf9510b|397|file|local|vector|||0.199||
 vpart_intra_csv|stem|37adaa81b47353c3|c009f4c4851a2496|64d1ffb2a9041dad|2000615245|data/vpart_intra.csv|t19978.3968528082s|86602595fcf9510b|397|file|local|vector|||0.069||
-vpart_intra_plot|stem|edad2f18dc717d11|b116159e030f2fb9|0dd5d9b537b4db8e|362555263|figs/vpart_intra.png*figs/vpart_intra.pdf*figs/vpart_intra.tiff|t19978.4121458026s|aa199610decb3d1d|428529|file|local|vector|||0.665||
-vpart_plot|stem|e1565e6cb6ee8590|60bce98003c5ba19|0dd5d9b537b4db8e|520186996|figs/vpart.png*figs/vpart.pdf*figs/vpart.tiff|t19978.4121379641s|9e9d585fdf2561dc|427309|file|local|vector|||1.153|The size argument of element_line is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.. The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.|
+vpart_intra_plot|stem|7e29759efd34eafd|59604d0a963eff80|2039a4f9c09e3a14|362555263|figs/vpart_intra.png*figs/vpart_intra.pdf*figs/vpart_intra.tiff|t20021.3143115593s|48d97d5dce041478|300977|file|local|vector|||0.613||
+vpart_plot|stem|03ca45e5b5e63ea1|d87e6376819271f7|2039a4f9c09e3a14|520186996|figs/vpart.png*figs/vpart.pdf*figs/vpart.tiff|t20021.3143043692s|1c525f3fd2a6b10d|299905|file|local|vector|||1.015|The size argument of element_line is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.. The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.|
 write_frac_csv|function|744ccf403c830406|||||||||||||||
 write_frac_yml|function|cdb40a1cc85cda8b|||||||||||||||
 write_lma_yml|function|df4628b896c994b5|||||||||||||||

@@ -1,7 +1,7 @@
 
 #' @title ggsave for targets
 my_ggsave <- function(filename, plot, units = c("in", "cm",
-        "mm", "px"), height = NA, width = NA, dpi = 300, ...) {
+        "mm", "px"), height = NA, width = NA, dpi = 600, ...) {
   ggsave(
     filename = paste0(filename, ".png"),
     plot = plot,
@@ -27,7 +27,7 @@ my_ggsave <- function(filename, plot, units = c("in", "cm",
     height = height,
     width = width,
     units = units,
-    dpi = 1000,
+    dpi = dpi,
     compression = "lzw",
     ...
   )
