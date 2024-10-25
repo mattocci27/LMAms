@@ -1,7 +1,7 @@
 % Options for packages loaded elsewhere
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL LMAms_SI_old.tex   Fri Oct 25 06:26:00 2024
-%DIF ADD LMAms_SI.tex       Fri Oct 25 06:25:13 2024
+%DIF DEL LMAms_SI_old.tex   Fri Oct 25 08:03:39 2024
+%DIF ADD LMAms_SI.tex       Fri Oct 25 08:02:53 2024
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -46,11 +46,7 @@
 \usepackage{xcolor}
 \usepackage[margin=1in]{geometry}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
-%DIF 46c46
-%DIF < \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
-%DIF -------
-\setcounter{secnumdepth}{5} %DIF > 
-%DIF -------
+\setcounter{secnumdepth}{5}
 % Make \paragraph and \subparagraph free-standing
 \makeatletter
 \ifx\paragraph\undefined\else
@@ -188,35 +184,21 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-%DIF 184-190c184
-%DIF < \usepackage{xr}
-%DIF < \externaldocument{LMAms_main}
-%DIF < \usepackage{float}
-%DIF < \usepackage{booktabs}
-%DIF < \usepackage{colortbl}
-%DIF < \usepackage{fancyhdr}
-%DIF < \pagestyle{fancy}
-%DIF -------
-\usepackage{fontspec} %DIF > 
-%DIF -------
+\usepackage{fontspec}
 \usepackage[default]{sourcesanspro}
 \usepackage{sourcecodepro}
-%DIF 193a187-189
-\usepackage{amsmath} %DIF > 
-\numberwithin{equation}{section} %DIF > 
-\renewcommand{\theequation}{\thesection.\arabic{equation}} %DIF > 
+\usepackage{amsmath}
+\numberwithin{equation}{section}
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+%DIF 190d190
+%DIF < \renewcommand{\thesection}{S\arabic{section}}
 %DIF -------
 \usepackage{fvextra}
 \usepackage{multirow}
-%DIF 195-196c192-195
-%DIF < \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
-%DIF < \fancyhead[RE,RO]{Katabuchi \textit{et al}.  Appendix}
-%DIF -------
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{fontsize=\small,breaklines,commandchars=\\\{\}} %DIF > 
-\usepackage{titling} %DIF > 
-\pretitle{\begin{center}\large\textbf} %DIF > 
-\posttitle{\end{center}} %DIF > 
-%DIF -------
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{fontsize=\small,breaklines,commandchars=\\\{\}}
+\usepackage{titling}
+\pretitle{\begin{center}\large\textbf}
+\posttitle{\end{center}}
 \KOMAoption{captions}{tableheading}
 \makeatletter
 \@ifpackageloaded{float}{}{\usepackage{float}}
@@ -382,39 +364,13 @@ within and among plant species}
 \tableofcontents
 }
 
-\DIFdelbegin %DIFDELCMD < \newpage
-%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\DIFdelend \section{\DIFdelbegin \DIFdel{Supplementary Section 1: }\DIFdelend Prior information}\DIFdelbegin %DIFDELCMD < \label{supplementary-section-1-prior-information}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \label{prior-information}
-\DIFaddend 
+\section{Prior information}\label{prior-information}
 
 The logarithms of \emph{A}\textsubscript{area},
 \emph{R}\textsubscript{area}, and LL for leaf sample \emph{i} were
-assumed to \DIFdelbegin \DIFdel{have }\DIFdelend \DIFaddbegin \DIFadd{follow }\DIFaddend a multivariate normal distribution:
+assumed to follow a multivariate normal distribution:
 
-\DIFdelbegin \[
-\DIFdel{\begin{aligned}
-\left(
-\begin{array}{ccc}
-\mathrm{ln}(A_{\mathrm{area} \, i})\\
-\mathrm{ln}(R_{\mathrm{area} \, i}) \\
-\mathrm{ln}(\mathrm{LL}_i)
-\end{array}
-\right)
-\sim \mathrm{MVN}
-\left(
-\begin{array}{rrr}
-\mathrm{E}[A_{\mathrm{area} \, i}] & \\
-\mathrm{E}[R_{\mathrm{area} \, i}] &, \boldsymbol{\Sigma}\\
-\mathrm{E}[\mathrm{LL}_i] &
-\end{array}
-\right) \qquad(\mathrm{S}1)
-\end{aligned}
-}\]%DIFAUXCMD
-\DIFdelend \DIFaddbegin \begin{equation}\DIFadd{\phantomsection\label{eq-mvn}{
+\begin{equation}\phantomsection\label{eq-mvn}{
 \begin{aligned}
 \left(
 \begin{array}{ccc}
@@ -432,9 +388,9 @@ assumed to \DIFdelbegin \DIFdel{have }\DIFdelend \DIFaddbegin \DIFadd{follow }\D
 \end{array}
 \right)
 \end{aligned}
-}}\end{equation}\DIFaddend 
+}\end{equation}
 
-where E{[}\(\cdot\){]} indicates \DIFaddbegin \DIFadd{the }\DIFaddend expected value and
+where E{[}\(\cdot\){]} indicates the expected value and
 \(\boldsymbol{\Sigma}\) indicates a covariance matrix. Expected values
 are based on Eqs. 2-4 in the main text.
 
@@ -444,16 +400,15 @@ We used non-informative or weakly informative prior distributions
 }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
 \citeproc{ref-Lemoine2019}{Lemoine 2019}}\hspace{0pt}%DIFAUXCMD
 }\DIFaddend ). The covariance matrix in
-Eq.\DIFdelbegin \DIFdel{S1 }\DIFdelend \DIFaddbegin \DIFadd{~\ref{eq-mvn} }\DIFaddend was decomposed as
+Eq.~\ref{eq-mvn} was decomposed as
 \({\boldsymbol \Sigma} = \mathrm {diag}(\boldsymbol {\sigma}){\boldsymbol \Omega}\mathrm {diag}({\boldsymbol \sigma}) = \mathrm {diag}({\boldsymbol \sigma}){\boldsymbol L}{\boldsymbol L}\prime \mathrm {diag}({\boldsymbol \sigma})\)
 using a Cholesky decomposition, where \(\boldsymbol {\sigma}\) is a
 vector of \(\sigma_{1}\), \(\sigma_{2}\), and \(\sigma_{3}\);
 \({\boldsymbol \Omega}\) is a correlation matrix of \(\rho_{12}\),
 \(\rho_{13}\), and \(\rho_{23}\); and \textbf{L} is a lower triangular
 matrix. Instead of assigning prior distributions on
-\(\boldsymbol{\Sigma}\) directly, priors were assigned \DIFdelbegin \DIFdel{on
-}\DIFdelend \DIFaddbegin \DIFadd{to
-}\DIFaddend \({\boldsymbol \sigma}\) and \textbf{L} to avoid a strong dependence
+\(\boldsymbol{\Sigma}\) directly, priors were assigned to
+\({\boldsymbol \sigma}\) and \textbf{L} to avoid a strong dependence
 between \({\boldsymbol \sigma}\) and \({\boldsymbol \Omega}\)
 (\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \citeproc{ref-Alvarez2014}{Alvarez et al., 2014}}\hspace{0pt}%DIFAUXCMD
@@ -466,8 +421,7 @@ between \({\boldsymbol \sigma}\) and \({\boldsymbol \Omega}\)
 \mbox{%DIFAUXCMD
 \citeproc{ref-Alvarez2014}{Alvarez et al. 2014}}\hspace{0pt}%DIFAUXCMD
 }\DIFaddend ). A prior for \textbf{L}
-was specified as \DIFdelbegin \DIFdel{a so-called }\DIFdelend \DIFaddbegin \DIFadd{an }\DIFaddend LKJ distribution with \DIFdelbegin \DIFdel{shape
-parameter }\DIFdelend \DIFaddbegin \DIFadd{a shape parameter of }\DIFaddend 2
+was specified as an LKJ distribution with a shape parameter of 2
 (\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \citeproc{ref-Lewandowski2009}{Lewandowski et al., 2009}}\hspace{0pt}%DIFAUXCMD
 }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
@@ -476,10 +430,10 @@ parameter }\DIFdelend \DIFaddbegin \DIFadd{a shape parameter of }\DIFaddend 2
 weakly informative for the correlation matrix. A prior for
 \(\boldsymbol{\sigma}\) was specified as a Half-Cauchy distribution with
 location 0 and scale 2.5, which is weakly informative and allows for
-occasional large coefficients while still \DIFdelbegin \DIFdel{performing a reasonable amount
-of }\DIFdelend \DIFaddbegin \DIFadd{providing reasonable }\DIFaddend shrinkage
+occasional large coefficients while still providing reasonable shrinkage
 for coefficients near zero (\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
-\citeproc{ref-Gelman2008}{Gelman et al., 2008}}\hspace{0pt}%DIFAUXCMD
+\citeproc{ref-Gelman2008}{Gelman et al.,
+2008}}\hspace{0pt}%DIFAUXCMD
 }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
 \citeproc{ref-Gelman2008}{Gelman et al.
 2008}}\hspace{0pt}%DIFAUXCMD
@@ -491,16 +445,13 @@ as uniform distributions with range (0, 1).
 
 \newpage
 
-\section{\DIFdelbegin \DIFdel{Supplementary Section 2: }\DIFdelend Model constraints}\DIFdelbegin %DIFDELCMD < \label{supplementary-section-2-model-constraints}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \label{model-constraints}
-\DIFaddend 
+\section{Model constraints}\label{model-constraints}
 
 To ensure that the model was identifiable, we imposed two broad
 assumptions: (i) \emph{A}\textsubscript{area} depends more strongly on
-metabolic leaf mass (LMAm: parameter \(\alpha_m\) in Eq. 2) than \DIFaddbegin \DIFadd{on
-}\DIFaddend structural leaf mass (LMAs: parameter \(\alpha_s\)), and (ii) LL depends
-more strongly on LMAs (\(\beta_s\) in Eq. 4 than \DIFaddbegin \DIFadd{on }\DIFaddend LMAm (\(\beta_m\)).
+metabolic leaf mass (LMAm: parameter \(\alpha_m\) in Eq. 2) than on
+structural leaf mass (LMAs: parameter \(\alpha_s\)), and (ii) LL depends
+more strongly on LMAs (\(\beta_s\) in Eq. 4 than on LMAm (\(\beta_m\)).
 The first assumption was implemented in different model versions either
 by setting \(\alpha_s\) = 0 or by imposing the constraint \(\alpha_m\)
 \textgreater{} \(\alpha_s\). Similarly, the second assumption was
@@ -521,46 +472,37 @@ any constraints on \emph{R}\textsubscript{area} (\(\gamma_m\) and
 
 \newpage
 
-\section{\DIFdelbegin \DIFdel{Supplementary Section 3: }\DIFdelend Model tests with randomized data (including Table AS1 and
-Figure AS1\DIFaddbegin \DIFadd{,
-2}\DIFaddend )}\DIFdelbegin %DIFDELCMD < \label{supplementary-section-3-model-tests-with-randomized-data-including-table-as1-and-figure-as1}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \label{model-tests-with-randomized-data-including-table-as1-and-figure-as1-2}
-\DIFaddend 
+\section{Model tests with randomized data (including Table AS1 and
+Figure AS1,
+2)}\label{model-tests-with-randomized-data-including-table-as1-and-figure-as1-2}
 
 Because our two-dimensional (LMAm-LMAs) modeling approach includes many
-parameters (\DIFaddbegin \DIFadd{with }\DIFaddend one latent variable \emph{f\textsubscript{i}} to
+parameters (with one latent variable \emph{f\textsubscript{i}} to
 partition LMA into LMAm and LMAs for each leaf sample), we implemented
-tests \DIFdelbegin \DIFdel{with
-}\DIFdelend \DIFaddbegin \DIFadd{using }\DIFaddend randomized data to assess potential overfitting.
-\DIFaddbegin 
+tests using randomized data to assess potential overfitting.
 
-\DIFaddend We generated 10 different randomized datasets by randomizing all trait
+We generated 10 different randomized datasets by randomizing all trait
 values (LMA, \emph{A}\textsubscript{area}, \emph{R}\textsubscript{area}
-and LL) across \DIFdelbegin \DIFdel{species. Thus}\DIFdelend \DIFaddbegin \DIFadd{leaf samples, and then we fitted the best models (Table
-1) to these randomized datasets. As a result}\DIFaddend , the randomized datasets
+and LL) across leaf samples, and then we fitted the best models (Table
+1) to these randomized datasets. As a result, the randomized datasets
 had zero expected covariance among traits.
-\DIFdelbegin \DIFdel{Models fit }\DIFdelend \DIFaddbegin 
 
-\DIFadd{Models fitted }\DIFaddend to the randomized datasets either did not converge or
-showed divergent transitions (\DIFdelbegin \DIFdel{Supplementary Section
-3}\DIFdelend \DIFaddbegin \DIFadd{Table AS1, Figure AS1-2}\DIFaddend ), indicating that
+Models fitted to the randomized datasets either did not converge or
+showed divergent transitions (Table AS1, Figure AS1-2), indicating that
 models fit to randomized data do not provide reliable inferences
 (\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \citeproc{ref-Betancourt2016}{Betancourt, 2016}}\hspace{0pt}%DIFAUXCMD
 }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
 \citeproc{ref-Betancourt2016}{Betancourt 2016}}\hspace{0pt}%DIFAUXCMD
 }\DIFaddend ). Furthermore, when
-models were \DIFdelbegin \DIFdel{fit }\DIFdelend \DIFaddbegin \DIFadd{fitted }\DIFaddend to randomized data, the scaling exponents
+models were fitted to randomized data, the scaling exponents
 (\(\alpha_{m,s}\), \(\beta_{m,s}\), and \(\gamma_{m,s}\)) were not
 significantly different from zero. In simple terms, the two-dimensional
-models failed when \DIFdelbegin \DIFdel{fit }\DIFdelend \DIFaddbegin \DIFadd{fitted }\DIFaddend to randomized data.
-\DIFaddbegin 
+models failed when fitted to randomized data.
 
-\DIFaddend In contrast, when \DIFdelbegin \DIFdel{fit }\DIFdelend \DIFaddbegin \DIFadd{fitted }\DIFaddend to the observed (non-randomized) data, the
+In contrast, when fitted to the observed (non-randomized) data, the
 two-dimensional models converged without divergent transitions and
-\DIFdelbegin \DIFdel{out-performed
-}\DIFdelend \DIFaddbegin \DIFadd{outperformed }\DIFaddend one-dimensional models (total LMA) for both GLOPNET and
+outperformed one-dimensional models (total LMA) for both GLOPNET and
 Panama (see Results). Thus, the tests with randomized data indicate that
 our two-dimensional approach is not inherently prone to overfitting or
 to creating spurious results. We therefore assume that estimates of LMAm
@@ -568,23 +510,7 @@ and LMAs obtained from the GLOPNET and Panama datasets reflect
 meaningful patterns in the observations and allow for a meaningful
 exploration of our questions.
 
-\DIFdelbegin \DIFdel{We generated 10 randomized datasets for each of the GLOPNET and the
-Panama datasets by randomly shuffling each trait value across leaf
-samples, and we fit the best models (Table 1) to the randomized data.
-}%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\DIFdel{Most of the model results obtained from the randomized datasets did not
-convergent based on the Gelman-Rubin statistic or showed divergent
-transitions (Table AS1), indicating that models fit to randomized data
-do not provide reliable inferences
-(\mbox{%DIFAUXCMD
-\citeproc{ref-Betancourt2016}{Betancourt, 2016}}\hspace{0pt}%DIFAUXCMD
-).
-}%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\DIFdelend \subsection{Table AS1}\label{table-as1}
+\subsection{Table AS1}\label{table-as1}
 
 \begin{itemize}
 \item
@@ -629,86 +555,74 @@ Panama & sim-10 & 597 & 119\\
 
 \subsection{Figure AS1}\label{figure-as1}
 
-Although many parameters in models \DIFdelbegin \DIFdel{fit }\DIFdelend \DIFaddbegin \DIFadd{fitted }\DIFaddend to randomized data had large
+Although many parameters in models fitted to randomized data had large
 Rhat values (Table AS1), which suggests that the posterior distributions
 did not converge, we nevertheless examined the regression coefficients
 to evaluate if our model framework is prone to overfitting. Figure AS1
 shows the regression coefficients for the randomized GLOPNET data
-(\(\alpha_{0, m, s}\), \(\beta_{0, s}\), and \(\gamma_{0, m, s}\) \DIFaddbegin \DIFadd{as }\DIFaddend in
+(\(\alpha_{0, m, s}\), \(\beta_{0, s}\), and \(\gamma_{0, m, s}\) as in
 Eqs. 2-4 in the main text). There are 10 independent simulations
 (randomizations) in total. Points and lines indicate posterior medians
 and 95\% credible intervals (CIs), respectively. Although intercepts
 were significant, the scaling parameters (\(\alpha_{m, s}\),
-\(\beta_{s}\), and \(\gamma_{m, s}\)) obtained \DIFdelbegin \DIFdel{for }\DIFdelend \DIFaddbegin \DIFadd{from }\DIFaddend the randomized
+\(\beta_{s}\), and \(\gamma_{m, s}\)) obtained from the randomized
 datasets were not significantly different from zero. These tests with
 randomized data indicate that our model is not inherently prone to
 overfitting or to producing patterns from noise.
 
-\DIFdelbegin %DIFDELCMD < \includegraphics{../figs/coef_sim_gl.png}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \includegraphics{../figs/coef_sim_gl.pdf}
-\DIFaddend 
+\includegraphics{../figs/coef_sim_gl.pdf}
 
 \newpage
 
 \subsection{Figure AS2}\label{figure-as2}
 
-Figure AS2 \DIFdelbegin \DIFdel{showsWe also checked }\DIFdelend \DIFaddbegin \DIFadd{shows }\DIFaddend the regression coefficients for the randomized Panama
+Figure AS2 shows the regression coefficients for the randomized Panama
 dataset (\(\alpha_{0, m}\), \(\beta_{0, s}\), \(\gamma_{0, m, s}\), and
-\(\theta\) \DIFdelbegin \DIFdel{in Eqs.2-4 }\DIFdelend \DIFaddbegin \DIFadd{as in Eqs. 2-4 }\DIFaddend in the main text). Details as for Figure AS1.
+\(\theta\) as in Eqs. 2-4 in the main text). Details as for Figure AS1.
 The scaling parameters (\(\alpha_{m}\), \(\beta_{s}\), and
 \(\gamma_{m, s}\)) and the effect of light on leaf lifespan (\(\theta\))
 were not significantly different from zero in the randomized datasets
-\DIFaddbegin \DIFadd{and }\DIFaddend did not show any patterns. Again, these tests with randomized data
+and did not show any patterns. Again, these tests with randomized data
 indicate that our model is not inherently prone to overfitting or to
 producing patterns from noise.
 
-\DIFdelbegin %DIFDELCMD < \includegraphics{../figs/coef_sim_pa.png}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \includegraphics{../figs/coef_sim_pa.pdf}
-\DIFaddend 
+\includegraphics{../figs/coef_sim_pa.pdf}
 
 \newpage
 
-\section{\DIFdelbegin \DIFdel{Supplementary Section 4: Understanding relationships between
-photosynthetic capacity and
-LMA}\DIFdelend \DIFaddbegin \DIFadd{Variance partitioning}\DIFaddend }\DIFdelbegin %DIFDELCMD < \label{supplementary-section-4-understanding-relationships-between-photosynthetic-capacity-and-lma}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \label{variance-partitioning}
+\section{Variance partitioning}\label{variance-partitioning}
 
-\DIFadd{To estimate the contributions of LMAm and LMAs to total LMA variance
+To estimate the contributions of LMAm and LMAs to total LMA variance
 (where LMA = LMAm + LMAs), we used the following identity:
-}
 
-\begin{equation}\DIFadd{\phantomsection\label{eq-vpart}{
+\begin{equation}\phantomsection\label{eq-vpart}{
 \mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2)
-}}\end{equation}
+}\end{equation}
 
-\DIFadd{where Var(\(\cdot\)) is variance and Cov(\(\cdot\)) is covariance. Thus,
+where Var(\(\cdot\)) is variance and Cov(\(\cdot\)) is covariance. Thus,
 the fractions of total LMA variance due to variance in LMAm and LMAs are
 Cov(LMA, LMAm)/Var(LMA) and Cov(LMA, LMAs)/Var(LMA), respectively. We
 applied this method to the simulated datasets described above and also
 to estimates of LMAm and LMAs for GLOPNET and Panama sun and shade
 leaves. Note that Cov(LMA, LMAs)/Var(LMA) can be greater than 100\% when
 there is a negative covariance between LMA and LMAm.
-}
 
-\DIFadd{To estimate the variation in each LMA component between and within leaf
+To estimate the variation in each LMA component between and within leaf
 habits (evergreen vs.~deciduous), sites (wet vs.~dry), and light (sun
 vs.~shade), we used ANOVA. Those post-hoc analyes were performed with
 posterior median parameter values.
-}
 
-\section{\DIFadd{Understanding and simulating relationships between
+\section{Understanding \DIFaddbegin \DIFadd{and simulating }\DIFaddend relationships between
 photosynthetic capacity and
-LMA}}\label{understanding-and-simulating-relationships-between-photosynthetic-capacity-and-lma}
+LMA}\DIFdelbegin %DIFDELCMD < \label{understanding-relationships-between-photosynthetic-capacity-and-lma}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \label{understanding-and-simulating-relationships-between-photosynthetic-capacity-and-lma}
 \DIFaddend 
 
 We applied our LMAm-LMAs model to simulated data to better understand
 relationships between photosynthetic capacity
 (\emph{A}\textsubscript{max}) and LMA. The causes and interpretation of
-\DIFdelbegin \DIFdel{relationships between }\emph{\DIFdel{A}}%DIFAUXCMD
-\DIFdel{\textsubscript{max} and LMA }\DIFdelend \DIFaddbegin \DIFadd{these relationships }\DIFaddend are controversial
+these relationships are controversial
 (\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \citeproc{ref-Westoby2013}{Westoby et al., 2013}}\hspace{0pt}%DIFAUXCMD
 }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
@@ -732,7 +646,7 @@ relationships between photosynthetic capacity
 \citeproc{ref-Blonder2011}{Blonder et al. 2011}}\hspace{0pt}%DIFAUXCMD
 }\DIFaddend ), it has been argued
 that \emph{A}\textsubscript{max} should be area-normalized when
-exploring trait relationships \DIFdelbegin \DIFdel{, }\DIFdelend because photosynthesis is an area-based
+exploring trait relationships because photosynthesis is an area-based
 process (\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \citeproc{ref-Lloyd2013}{Lloyd et al., 2013}}\hspace{0pt}%DIFAUXCMD
 }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
@@ -743,7 +657,7 @@ across global species, variation in whole-leaf
 \emph{A}\textsubscript{max} is strongly dependent on leaf area, but only
 weakly dependent on leaf mass (after controlling for variation in leaf
 area). Osnas et al. (\citeproc{ref-Osnas2018}{2018}) further
-\DIFdelbegin \DIFdel{showed }\DIFdelend \DIFaddbegin \DIFadd{demonstrated }\DIFaddend that the relationship between \emph{A}\textsubscript{max}
+demonstrated that the relationship between \emph{A}\textsubscript{max}
 and LMA (i.e., the degree of mass- vs.~area-dependence) is sensitive to
 the amount of LL variation in an assemblage, which we hypothesize
 depends on the fraction of total LMA variance in the assemblage that is
@@ -760,14 +674,11 @@ each simulated dataset, we quantified the \emph{A}\textsubscript{max}
 vs.~LMA relationship following Osnas et al.
 (\citeproc{ref-Osnas2018}{2018}):
 
-\DIFdelbegin \[
-\DIFdel{A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i \qquad(\mathrm{S}4)
-}\]%DIFAUXCMD
-\DIFdelend \DIFaddbegin \begin{equation}\DIFadd{\phantomsection\label{eq-mass}{
+\begin{equation}\phantomsection\label{eq-mass}{
 A_{\mathrm{area} \, i} = c (LMA_i)^{b}\epsilon_i
-}}\end{equation}\DIFaddend 
+}\end{equation}
 
-where LMA is the sum of LMAm and LMAs \DIFaddbegin \DIFadd{(}\DIFaddend Eq. 1\DIFaddbegin \DIFadd{)}\DIFaddend , \emph{c} is a fitted
+where LMA is the sum of LMAm and LMAs (Eq. 1), \emph{c} is a fitted
 constant, and \emph{b} is an index of mass-dependence as illustrated by
 the following cases (\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \citeproc{ref-Osnas2018}{Osnas et al., 2018}}\hspace{0pt}%DIFAUXCMD
@@ -785,15 +696,15 @@ whole-leaf \emph{A}\textsubscript{max} is proportional to leaf area;
 conversely, if \emph{b} = 1, then \emph{A}\textsubscript{area} is
 proportional to LMA, which implies that whole-leaf
 \emph{A}\textsubscript{max} is proportional to leaf mass. Intermediate
-cases (0 \textless{} \emph{b} \textless{} 1) \DIFdelbegin \DIFdel{, as well as }\DIFdelend \DIFaddbegin \DIFadd{and }\DIFaddend more extreme cases
-(\emph{b} \(\le\) 0 or \emph{b} \(\geq\) 1) \DIFdelbegin \DIFdel{, }\DIFdelend are also possible, with
-reported \DIFdelbegin \DIFdel{estiamtes being }\DIFdelend \DIFaddbegin \DIFadd{estimates ranging }\DIFaddend between 0 and 1
+cases (0 \textless{} \emph{b} \textless{} 1) and more extreme cases
+(\emph{b} \(\le\) 0 or \emph{b} \(\geq\) 1) are also possible, with
+reported \DIFdelbegin \DIFdel{estiamtes }\DIFdelend \DIFaddbegin \DIFadd{estimates }\DIFaddend ranging between 0 and 1
 (\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \citeproc{ref-Osnas2018}{Osnas et al., 2018}}\hspace{0pt}%DIFAUXCMD
 }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
 \citeproc{ref-Osnas2018}{Osnas et al. 2018}}\hspace{0pt}%DIFAUXCMD
 }\DIFaddend ). Note that applying
-Eq.\DIFdelbegin \DIFdel{S4 }\DIFdelend \DIFaddbegin \DIFadd{~\ref{eq-mass} }\DIFaddend to either mass- or area-normalized
+Eq.~\ref{eq-mass} to either mass- or area-normalized
 \emph{A}\textsubscript{max} yields equivalent results
 (\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \citeproc{ref-Osnas2018}{Osnas et al., 2018}}\hspace{0pt}%DIFAUXCMD
@@ -822,7 +733,7 @@ log-scale standard deviation raging from log(1.01) to log(10) across
 simulated datasets. In contrast to GLOPNET and Panama sun leaves, our
 analysis revealed a negative correlation of }\emph{\DIFdel{r}} %DIFAUXCMD
 \DIFdel{= -0.47 between
-LMAm and LMAs for Panama shade leaves (see Supplementary Section 5).
+LMAm and LMAs for Panama shade leaves (see Supplementary Section 6).
 Therefore, we used a multivariate normal distribution with }\emph{\DIFdel{r}} %DIFAUXCMD
 \DIFdel{=
 -0.47 to generate log(LMAm) and log(LMAs) for the Panama shade
@@ -838,23 +749,23 @@ for GLOPNET and Panama sun leaves.
 best-fitting model (GLOPNET or Panama); i.e., the model with the lowest
 LOOIC. We generated 1000 simulated datasets for GLOPNET, Panama sun
 leaves, and Panama shade leaves, with each dataset having a sample size
-of 100 leaves. For each simulated dataset, we used Eq. 5 to quantify the
-relationship between }\emph{\DIFdel{A}}%DIFAUXCMD
+of 100 leaves. For each simulated dataset, we used Eq.~\ref{eq-mass} to
+quantify the relationship between }\emph{\DIFdel{A}}%DIFAUXCMD
 \DIFdel{\textsubscript{area} and LMA.
 }%DIFDELCMD < 
 
 %DIFDELCMD < %%%
-\section{\DIFdel{Supplementary Section 5: Simulated datasets to study
-relationships between photosynthetic capacity and
+\section{\DIFdel{Simulated datasets to study relationships between
+photosynthetic capacity and
 LMA}}%DIFAUXCMD
 \addtocounter{section}{-1}%DIFAUXCMD
-%DIFDELCMD < \label{supplementary-section-5-simulated-datasets-to-study-relationships-between-photosynthetic-capacity-and-lma}
+%DIFDELCMD < \label{simulated-datasets-to-study-relationships-between-photosynthetic-capacity-and-lma}
 %DIFDELCMD < 
 
 %DIFDELCMD < %%%
 \DIFdel{To create simulated datasets to study relationships between
 photosynthetic capacity and LMA , we generated log-normally distributed
-LMAm and LMAs values by sampling ln(LMAm) and ln(LMAs)from normal
+LMAm and LMAs values by sampling ln(LMAm) and ln(LMAs) from normal
 distributions}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
 \citeproc{ref-Osnas2018}{Osnas et al. 2018}}\hspace{0pt}%DIFAUXCMD
 )}\DIFaddend .
@@ -864,19 +775,13 @@ For GLOPNET and Panama sun leaves, results from the LMAm-LMAs models
 \DIFaddbegin \DIFadd{(}\quartosuppfigref{suppfig-LMAm_LMAs}\DIFadd{a)}\DIFaddend , so we used univariate normal
 distributions (N) to generate the LMAm and LMAs samples:
 
-\DIFdelbegin \[
-\DIFdel{\mathrm{ln}(\mathrm{LMAm}) \sim \mathrm{N}(\mathrm{ln}(\mu_m), \sigma_m) \qquad(\mathrm{S}5.1)
-}\]%DIFAUXCMD
-\DIFdelend \DIFaddbegin \begin{equation}\DIFadd{\phantomsection\label{eq-sim_LMAm}{
+\begin{equation}\phantomsection\label{eq-sim_LMAm}{
 \mathrm{ln}(\mathrm{LMAm}) \sim \mathrm{N}(\mathrm{ln}(\mu_m), \sigma_m)
-}}\end{equation}\DIFaddend 
+}\end{equation}
 
-\DIFdelbegin \[
-\DIFdel{\mathrm{ln}(\mathrm{LMAs}) \sim \mathrm{N}(\mathrm{ln}(\mu_s), \sigma_s) \qquad(\mathrm{S}5.2)
-}\]%DIFAUXCMD
-\DIFdelend \DIFaddbegin \begin{equation}\DIFadd{\phantomsection\label{eq-sim_LMAs}{
+\begin{equation}\phantomsection\label{eq-sim_LMAs}{
 \mathrm{ln}(\mathrm{LMAs}) \sim \mathrm{N}(\mathrm{ln}(\mu_s), \sigma_s)
-}}\end{equation}\DIFaddend 
+}\end{equation}
 
 where \(\mathrm{ln}(\mu_m)\) and \(\mathrm{ln}(\mu_s)\) are the means of
 LMAm and LMAs, respectively, on the log-scale and \(\sigma_m\) and
@@ -890,21 +795,7 @@ correlation between LMAm and LMAs
 \DIFaddbegin \DIFadd{(}\quartosuppfigref{suppfig-LMAm_LMAs}\DIFadd{b)}\DIFaddend , so we used a multivariate
 normal distribution (MVN) to generate the LMAm and LMAs samples:
 
-\DIFdelbegin \[
-\DIFdel{\begin{bmatrix}
-\mathrm{ln}(\mathrm{LMAm})\\
-\mathrm{ln}(\mathrm{LMAs})
-\end{bmatrix}
-\sim \mathrm{MVN}
-\left[
-\begin{matrix}
-\ln(\mu_{m}) &\\
-\ln(\mu_{s}) &
-\end{matrix},
-\boldsymbol{\Sigma}
-\right] \qquad(\mathrm{S}5.3)
-}\]%DIFAUXCMD
-\DIFdelend \DIFaddbegin \begin{equation}\DIFadd{\phantomsection\label{eq-sim_LMAm_LMAs}{
+\begin{equation}\phantomsection\label{eq-sim_LMAm_LMAs}{
 \begin{bmatrix}
 \mathrm{ln}(\mathrm{LMAm})\\
 \mathrm{ln}(\mathrm{LMAs})
@@ -917,25 +808,17 @@ normal distribution (MVN) to generate the LMAm and LMAs samples:
 \end{matrix},
 \boldsymbol{\Sigma}
 \right]
-}}\end{equation}\DIFaddend 
+}\end{equation}
 
-\DIFdelbegin \[
-\DIFdel{\boldsymbol{\Sigma} = \
-\begin{bmatrix}
-\sigma_m^2 & \rho \sigma_m \sigma_s \\
-\rho \sigma_m \sigma_s & \sigma_s^2 \\
-\end{bmatrix} \qquad(\mathrm{S}5.4)
-}\]%DIFAUXCMD
-\DIFdelend \DIFaddbegin \DIFadd{where
-}
+where
 
-\begin{equation}\DIFadd{\phantomsection\label{eq-Sigma}{
+\begin{equation}\phantomsection\label{eq-Sigma}{
 \boldsymbol{\Sigma} = \
 \begin{bmatrix}
 \sigma_m^2 & \rho \sigma_m \sigma_s \\
 \rho \sigma_m \sigma_s & \sigma_s^2 \\
 \end{bmatrix}
-}}\end{equation}\DIFaddend 
+}\end{equation}
 
 where \(\boldsymbol{\Sigma}\) is the covariance matrix of ln(LMAm) and
 ln(LMAs), and \(\rho\) is the correlation coefficient between ln(LMAm)
@@ -976,366 +859,9 @@ Eq.\DIFdelbegin \DIFdel{S1}\DIFdelend \DIFaddbegin \DIFadd{~\ref{eq-mass}}\DIFad
 of ln(LMAs) and ln(\emph{A}\textsubscript{area}) were set to 0.99 and
 0.31, respectively, and other GLOPNET parameter values are listed above.
 
-\DIFdelbegin \section{\DIFdel{Supplementary Section 6: Variance
-partitioning}}%DIFAUXCMD
-\addtocounter{section}{-1}%DIFAUXCMD
-%DIFDELCMD < \label{supplementary-section-6-variance-partitioning}
-%DIFDELCMD < 
+\newpage
 
-%DIFDELCMD < %%%
-\DIFdel{To estimate the contributions of LMAm and LMAs to total LMA variance
-(where LMA = LMAm + LMAs), we used the following identity:
-}%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\[
-\DIFdel{\mathrm{Var}(Y = X1 + X2) = \mathrm{Cov}(Y, X1+X2) = \mathrm{Cov}(Y,X1) + \mathrm{Cov}(Y,X2) \qquad(\mathrm{S}6)
-}\]%DIFAUXCMD
-%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\DIFdel{where Var(\(\cdot\)) is variance and Cov(\(\cdot\)) is covariance. Thus,
-the fractions of total LMA variance due to variance in LMAm and LMAs are
-Cov(LMA, LMAm)/Var(LMA) and Cov(LMA, LMAs)/Var(LMA), respectively. We
-applied this method to the simulated datasets described above and also
-to estimates of LMAm and LMAs for GLOPNET and Panama sun and shade
-leaves. Note that Cov(LMA, LMAs)/Var(LMA) can be greater than 100\% when
-there is a negative covariance between LMA and LMAm.
-}%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\DIFdel{To estimate the variation in each LMA component between and within leaf
-habits (evergreen vs.~deciduous), sites (wet vs.~dry), and light (sun
-vs.~shade), we used ANOVA. Those post-hoc analyes were performed with
-posterior median parameter values.
-}%DIFDELCMD < 
-
-%DIFDELCMD < \newpage
-%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\section{\DIFdel{Figures}}%DIFAUXCMD
-\addtocounter{section}{-1}%DIFAUXCMD
-%DIFDELCMD < \label{figures}
-%DIFDELCMD < 
-
-%DIFDELCMD < \begin{suppfig}
-%DIFDELCMD < 
-
-%DIFDELCMD < \centering{
-%DIFDELCMD < 
-
-%DIFDELCMD < \includegraphics{../figs/box_inter.png}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-%DIFDELCMD < \caption{%
-{%DIFAUXCMD
-%DIFDELCMD < \label{suppfig-box_inter}%%%
-\DIFdel{Boxplots comparing leaf mass per area
-(LMA), photosynthetic leaf mass per area (LMAm; posterior medians), and
-structural leaf mass per area (LMAs; posterior medians) across (a)
-deciduous (Dev) and evergreen (Eve) leaves and (b) sites (wet and dry)
-and canopy strata (sun and shade) in Panama. The results shown here
-include all leaves in the Panama dataset, whereas Figs. 6-7 in the main
-text only include Panama species for which both sun and shade leaves
-were available. Boxplot symbols as in Figs. 6-7. Groups sharing the same
-letters are not significantly different (P \textgreater{} 0.05;
-t-tests). Estiamtes are from the best Panama model (Table 1).}}
-%DIFAUXCMD
-%DIFDELCMD < 
-
-%DIFDELCMD < \end{suppfig}%%%
-%DIF < 
-%DIFDELCMD < 
-
-%DIFDELCMD < \newpage
-%DIFDELCMD < 
-
-%DIFDELCMD < \begin{suppfig}
-%DIFDELCMD < 
-
-%DIFDELCMD < \centering{
-%DIFDELCMD < 
-
-%DIFDELCMD < \includegraphics{../figs/box_frac_de.png}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-%DIFDELCMD < \caption{%
-{%DIFAUXCMD
-%DIFDELCMD < \label{suppfig-box_frac_de}%%%
-\DIFdel{Boxplots comparing posterior medians
-of the latent variable }\emph{\DIFdel{f}} %DIFAUXCMD
-\DIFdel{(the fraction of total LMA comprised by
-LMAm) across deciduous (Dev) and evergreen (Eve) leaves. Left: GLOPNET
-dataset. Middle: All leaf samples in the Panama dataset. Right: Paired
-leaf samples in the Panama dataset (species for which both sun and shade
-leaves were available). Note that LMAm = }\emph{\DIFdel{f}} %DIFAUXCMD
-\DIFdel{\(\times\) LMA, and
-LMAs = (1 -- }\emph{\DIFdel{f}}%DIFAUXCMD
-\DIFdel{) \(\times\) LMA. Boxplot symbols as in Fig. 6.
-Groups sharing the same letters are not significantly different (P
-\textgreater{} 0.05; t-tests). Estiamtes are from the best GLOPNET and
-Panama models (Table 1).}}
-%DIFAUXCMD
-%DIFDELCMD < 
-
-%DIFDELCMD < \end{suppfig}%%%
-%DIF < 
-%DIFDELCMD < 
-
-%DIFDELCMD < \newpage
-%DIFDELCMD < 
-
-%DIFDELCMD < \begin{suppfig}
-%DIFDELCMD < 
-
-%DIFDELCMD < \centering{
-%DIFDELCMD < 
-
-%DIFDELCMD < \includegraphics{../figs/box_frac_pa.png}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-%DIFDELCMD < \caption{%
-{%DIFAUXCMD
-%DIFDELCMD < \label{suppfig-box_frac_pa}%%%
-\DIFdel{Boxplots comparing posterior medians
-of the latent variable }\emph{\DIFdel{f}} %DIFAUXCMD
-\DIFdel{(the fraction of total LMA comprised by
-LMAm) across sites (wet and dry) and canopy strata (sun and shade) in
-Panama. Left: All leaf samples in the Panama dataset. Right: Paired leaf
-samples in the Panama dataset (species for which both sun and shade
-leaves were available). Note that LMAm = }\emph{\DIFdel{f}} %DIFAUXCMD
-\DIFdel{\(\times\) LMA, and
-LMAs = (1 -- }\emph{\DIFdel{f}}%DIFAUXCMD
-\DIFdel{) \(\times\) LMA. Boxplot symbols as in Fig. 7.
-Groups sharing the same letters are not significantly different (P
-\textgreater{} 0.05; t-tests). Estiamtes are from the best GLOPNET and
-Panama models (Table 1).}}
-%DIFAUXCMD
-%DIFDELCMD < 
-
-%DIFDELCMD < \end{suppfig}%%%
-%DIF < 
-%DIFDELCMD < 
-
-%DIFDELCMD < \newpage
-%DIFDELCMD < 
-
-%DIFDELCMD < \begin{suppfig}
-%DIFDELCMD < 
-
-%DIFDELCMD < \centering{
-%DIFDELCMD < 
-
-%DIFDELCMD < \includegraphics{../figs/mass_prop_sim.png}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-%DIFDELCMD < \caption{%
-{%DIFAUXCMD
-%DIFDELCMD < \label{suppfig-mass_prop_sim}%%%
-\DIFdel{The relationships between mass
-dependency of }\emph{\DIFdel{A}}%DIFAUXCMD
-\DIFdel{\textsubscript{max} (}\emph{\DIFdel{b}} %DIFAUXCMD
-\DIFdel{in Eq. 5 in the main
-text) and LMAs variance (relative to total LMA variance; Eq. 6) for the
-different values of the scaling exponents \(\alpha_m\) and \(\alpha_s\)
-(Eq. 2). (a) The scaling exponent \(\alpha_m\) varies from 0.1 to 1.0
-while the scaling exponent \(\alpha_s\) is constant (\(\alpha_s\) =
--0.13). (b) The scaling exponent \(\alpha_s\) vary from -0.5 to 0.5
-while the scaling exponent \(\alpha_m\) is constant (\(\alpha_m\) =
-0.28). Solid lines indicate simulated medians and shaded regions
-indicate 95\% confidence intervals. Empirical estimates of }\emph{\DIFdel{b}} %DIFAUXCMD
-\DIFdel{are
-typically between 0 and 1 (\mbox{%DIFAUXCMD
-\citeproc{ref-Osnas2018}{Osnas et al.,
-2018}}\hspace{0pt}%DIFAUXCMD
-). }\emph{\DIFdel{A}}%DIFAUXCMD
-\DIFdel{\textsubscript{max} is primarily mass-dependent if
-}\emph{\DIFdel{b}} %DIFAUXCMD
-\DIFdel{\textgreater{} 0.5, and primarily area-dependent if 0.5
-\textgreater{} }\emph{\DIFdel{b}} %DIFAUXCMD
-\DIFdel{\textgreater{} 0 (\mbox{%DIFAUXCMD
-\citeproc{ref-Osnas2018}{Osnas
-et al., 2018}}\hspace{0pt}%DIFAUXCMD
-). Parameter values are based on the best GLOPNET model
-(Table 1) and Supplementary Section 5: \(\alpha_0\) = 1.77, \(\mu_m\) =
-56.4, \(\mu_s\) = 61.4, and \(\sigma_m\) = 0.84.}}
-%DIFAUXCMD
-%DIFDELCMD < 
-
-%DIFDELCMD < \end{suppfig}%%%
-%DIF < 
-%DIFDELCMD < 
-
-%DIFDELCMD < \newpage
-%DIFDELCMD < 
-
-%DIFDELCMD < \begin{suppfig}
-%DIFDELCMD < 
-
-%DIFDELCMD < \centering{
-%DIFDELCMD < 
-
-%DIFDELCMD < \includegraphics{../figs/mass_prop_comp.png}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-%DIFDELCMD < \caption{%
-{%DIFAUXCMD
-%DIFDELCMD < \label{suppfig-mass_prop_comp}%%%
-\DIFdel{The relationships between mass
-dependency of }\emph{\DIFdel{A}}%DIFAUXCMD
-\DIFdel{\textsubscript{max} (}\emph{\DIFdel{b}} %DIFAUXCMD
-\DIFdel{in Eq. 5 in the main
-text) and LMAs variance (relative to total LMA variance; Eq. 6) for
-simulated datasets generated from a normal distribution (N) vs.~a
-multivariate normal distribution (MVN). Parameter values are based on
-the best Panama model (Table 1) and Supplementary Section 5:
-\(\alpha_0\) = 0.34, \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, \(\mu_m\) =
-7.7, \(\mu_s\) = 26.6, \(\sigma_m\) = 1.95, and \(\rho\) = -0.47.}}
-%DIFAUXCMD
-%DIFDELCMD < 
-
-%DIFDELCMD < \end{suppfig}%%%
-%DIF < 
-%DIFDELCMD < 
-
-%DIFDELCMD < \newpage
-%DIFDELCMD < 
-
-%DIFDELCMD < \begin{suppfig}
-%DIFDELCMD < 
-
-%DIFDELCMD < \centering{
-%DIFDELCMD < 
-
-%DIFDELCMD < \includegraphics{../figs/gl_point_np2.png}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-%DIFDELCMD < \caption{%
-{%DIFAUXCMD
-%DIFDELCMD < \label{suppfig-gl_point_np2}%%%
-\DIFdel{Measured traits related to
-photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf
-area; }\emph{\DIFdel{N}}%DIFAUXCMD
-\DIFdel{\textsubscript{area} and }\emph{\DIFdel{P}}%DIFAUXCMD
-\DIFdel{\textsubscript{area}) are
-positively correlated with LMA and with estimates (posterior medians) of
-the metabolic and structural LMA components (LMAm and LMAs,
-respectively) in the GLOPNET dataset. LMAm yields more consistent
-relationships compared to LMA and LMAs; e.g., evergreen and deciduous
-leaves align along a single relationship in panel b, but not in panels a
-or c. Pearson correlation coefficients (}\emph{\DIFdel{r}}%DIFAUXCMD
-\DIFdel{) for LMA (left column)
-and posterior medians of Pearson correlation coefficients (\(\bar{r}\))
-for LMAm (middle column) and LMAs (right column) are shown.}}
-%DIFAUXCMD
-%DIFDELCMD < 
-
-%DIFDELCMD < \end{suppfig}%%%
-%DIF < 
-%DIFDELCMD < 
-
-%DIFDELCMD < \newpage
-%DIFDELCMD < 
-
-%DIFDELCMD < \begin{suppfig}
-%DIFDELCMD < 
-
-%DIFDELCMD < \centering{
-%DIFDELCMD < 
-
-%DIFDELCMD < \includegraphics{../figs/pa_point_npc_par.png}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-%DIFDELCMD < \caption{%
-{%DIFAUXCMD
-%DIFDELCMD < \label{suppfig-pa_point_npc_par}%%%
-\DIFdel{Partial regression plots for
-nitrogen, phosphorus and cellulose per-unit leaf area
-(}\emph{\DIFdel{N}}%DIFAUXCMD
-\DIFdel{\textsubscript{area}, }\emph{\DIFdel{P}}%DIFAUXCMD
-\DIFdel{\textsubscript{area} and
-CL\textsubscript{area}). (a) LMAs variation is controlled. (b) LMAm
-variation is controlled. The partial regression plots show separation
-between sun and shade when controlling for LMAs variation (i.e., LMAs
-does not explain the sun/shade difference), but overlapping
-distributions of sun and shade when controlling for LMAm variation
-(i.e., LMAm does explain the sun/shade difference). Posterior medians of
-partial correlation coefficients (\(\bar{\rho}\)) are shown.}}
-%DIFAUXCMD
-%DIFDELCMD < 
-
-%DIFDELCMD < \end{suppfig}%%%
-%DIF < 
-%DIFDELCMD < 
-
-%DIFDELCMD < \newpage
-%DIFDELCMD < 
-
-%DIFDELCMD < \begin{suppfig}
-%DIFDELCMD < 
-
-%DIFDELCMD < \centering{
-%DIFDELCMD < 
-
-%DIFDELCMD < \includegraphics{../figs/ps_point.png}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-%DIFDELCMD < \caption{%
-{%DIFAUXCMD
-%DIFDELCMD < \label{suppfig-LMAm_LMAs}%%%
-\DIFdel{Pearson correlation coefficients for
-posterior medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama
-datasets. The non-significant or weak }\emph{\DIFdel{r}} %DIFAUXCMD
-\DIFdel{values indicate that a
-single axis could not accurately represent the two-dimensional space.
-Symbols as in main text Figs. 2-3.}}
-%DIFAUXCMD
-%DIFDELCMD < 
-
-%DIFDELCMD < \end{suppfig}%%%
-%DIF < 
-%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\DIFdelend \newpage
-
-\section{\DIFdelbegin \DIFdel{Supplementary Section 7: }\DIFdelend Stan code}\DIFdelbegin %DIFDELCMD < \label{supplementary-section-7-stan-code}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \label{stan-code}
-\DIFaddend 
+\section{Stan code}\label{stan-code}
 
 \subsection{Stan code for the GLOPNET
 dataset}\label{stan-code-for-the-glopnet-dataset}
@@ -1558,14 +1084,14 @@ constraint of \(\alpha_s\) = 0 and \(\beta_m\) = 0.
 \end{Highlighting}
 \end{Shaded}
 
-\DIFaddbegin \newpage
+\newpage
 
-\section*{\DIFadd{Figures}}
-\addcontentsline{toc}{section}{\DIFadd{Figures}}
+\section*{Figures}
+\addcontentsline{toc}{section}{Figures}
 
 \begin{suppfig}
 
-\centering{
+\DIFaddbegin \centering{
 
 \includegraphics{../figs/vpart_intra.pdf}
 
@@ -1585,24 +1111,24 @@ available.}}
 
 \begin{suppfig}
 
-\centering{
+\DIFaddend \centering{
 
 \includegraphics{../figs/box_inter.pdf}
 
 }
 
-\caption{\label{suppfig-box_inter}\DIFadd{Boxplots comparing leaf mass per area
+\caption{\label{suppfig-box_inter}Boxplots comparing leaf mass per area
 (LMA), photosynthetic leaf mass per area (LMAm; posterior medians), and
 structural leaf mass per area (LMAs; posterior medians) across (a)
 deciduous (Dev) and evergreen (Eve) leaves and (b) sites (wet and dry)
 and canopy strata (sun and shade) in Panama. The results shown here
-include all leaves in the Panama dataset, whereas Figs. 5-6 in the main
+include all leaves in the Panama dataset, whereas Figs. \DIFdelbegin \DIFdel{6-7 }\DIFdelend \DIFaddbegin \DIFadd{5-6 }\DIFaddend in the main
 text only include Panama species for which both sun and shade leaves
-were available. Boxplot symbols as in Figs. 5-6. Groups sharing the same
+were available. Boxplot symbols as in Figs. \DIFdelbegin \DIFdel{6-7}\DIFdelend \DIFaddbegin \DIFadd{5-6}\DIFaddend . Groups sharing the same
 letters are not significantly different (P \textgreater{} 0.05;
-t-tests). Estiamtes are from the best Panama model (Table 1).}}
+t-tests). Estiamtes are from the best Panama model (Table 1).}
 
-\end{suppfig}%DIF > 
+\end{suppfig}%
 
 \newpage
 
@@ -1614,18 +1140,19 @@ t-tests). Estiamtes are from the best Panama model (Table 1).}}
 
 }
 
-\caption{\label{suppfig-box_frac_de}\DIFadd{Boxplots comparing posterior medians
-of the latent variable }\emph{\DIFadd{f}} \DIFadd{(the fraction of total LMA comprised by
+\caption{\label{suppfig-box_frac_de}Boxplots comparing posterior medians
+of the latent variable \emph{f} (the fraction of total LMA comprised by
 LMAm) across deciduous (Dev) and evergreen (Eve) leaves. Left: GLOPNET
 dataset. Middle: All leaf samples in the Panama dataset. Right: Paired
 leaf samples in the Panama dataset (species for which both sun and shade
-leaves were available). Note that LMAm = }\emph{\DIFadd{f}} \DIFadd{\(\times\) LMA, and
-LMAs = (1 -- }\emph{\DIFadd{f}}\DIFadd{) \(\times\) LMA. Boxplot symbols as in Fig. 5.
-Groups sharing the same letters are not significantly different (P
+leaves were available). Note that LMAm = \emph{f} \(\times\) LMA, and
+LMAs = (1 -- \emph{f}) \(\times\) LMA. Boxplot symbols as in Fig. \DIFdelbegin \DIFdel{6.
+}\DIFdelend \DIFaddbegin \DIFadd{5.
+}\DIFaddend Groups sharing the same letters are not significantly different (P
 \textgreater{} 0.05; t-tests). Estiamtes are from the best GLOPNET and
-Panama models (Table 1).}}
+Panama models (Table 1).}
 
-\end{suppfig}%DIF > 
+\end{suppfig}%
 
 \newpage
 
@@ -1637,18 +1164,19 @@ Panama models (Table 1).}}
 
 }
 
-\caption{\label{suppfig-box_frac_pa}\DIFadd{Boxplots comparing posterior medians
-of the latent variable }\emph{\DIFadd{f}} \DIFadd{(the fraction of total LMA comprised by
+\caption{\label{suppfig-box_frac_pa}Boxplots comparing posterior medians
+of the latent variable \emph{f} (the fraction of total LMA comprised by
 LMAm) across sites (wet and dry) and canopy strata (sun and shade) in
 Panama. Left: All leaf samples in the Panama dataset. Right: Paired leaf
 samples in the Panama dataset (species for which both sun and shade
-leaves were available). Note that LMAm = }\emph{\DIFadd{f}} \DIFadd{\(\times\) LMA, and
-LMAs = (1 -- }\emph{\DIFadd{f}}\DIFadd{) \(\times\) LMA. Boxplot symbols as in Fig. 6.
-Groups sharing the same letters are not significantly different (P
+leaves were available). Note that LMAm = \emph{f} \(\times\) LMA, and
+LMAs = (1 -- \emph{f}) \(\times\) LMA. Boxplot symbols as in Fig. \DIFdelbegin \DIFdel{7.
+}\DIFdelend \DIFaddbegin \DIFadd{6.
+}\DIFaddend Groups sharing the same letters are not significantly different (P
 \textgreater{} 0.05; t-tests). Estiamtes are from the best GLOPNET and
-Panama models (Table 1).}}
+Panama models (Table 1).}
 
-\end{suppfig}%DIF > 
+\end{suppfig}%
 
 \newpage
 
@@ -1660,8 +1188,8 @@ Panama models (Table 1).}}
 
 }
 
-\caption{\label{suppfig-mass_prop_sim}\DIFadd{The relationships between mass
-dependency of }\emph{\DIFadd{A}}\DIFadd{\textsubscript{max} (}\emph{\DIFadd{b}} \DIFadd{in Eq. 5 in the main
+\caption{\label{suppfig-mass_prop_sim}The relationships between mass
+dependency of \emph{A}\textsubscript{max} (\emph{b} in Eq. 5 in the main
 text) and LMAs variance (relative to total LMA variance; Eq. 6) for the
 different values of the scaling exponents \(\alpha_m\) and \(\alpha_s\)
 (Eq. 2). (a) The scaling exponent \(\alpha_m\) varies from 0.1 to 1.0
@@ -1669,20 +1197,26 @@ while the scaling exponent \(\alpha_s\) is constant (\(\alpha_s\) =
 -0.13). (b) The scaling exponent \(\alpha_s\) vary from -0.5 to 0.5
 while the scaling exponent \(\alpha_m\) is constant (\(\alpha_m\) =
 0.28). Solid lines indicate simulated medians and shaded regions
-indicate 95\% confidence intervals. Empirical estimates of }\emph{\DIFadd{b}} \DIFadd{are
-typically between 0 and 1 (\mbox{%DIFAUXCMD
+indicate 95\% confidence intervals. Empirical estimates of \emph{b} are
+typically between 0 and 1 (\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\citeproc{ref-Osnas2018}{Osnas et al.,
+2018}}\hspace{0pt}%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
 \citeproc{ref-Osnas2018}{Osnas et al. 2018}}\hspace{0pt}%DIFAUXCMD
-).
-}\emph{\DIFadd{A}}\DIFadd{\textsubscript{max} is primarily mass-dependent if }\emph{\DIFadd{b}}
-\DIFadd{\textgreater{} 0.5, and primarily area-dependent if 0.5 \textgreater{}
-}\emph{\DIFadd{b}} \DIFadd{\textgreater{} 0 (\mbox{%DIFAUXCMD
+}\DIFaddend ).
+\emph{A}\textsubscript{max} is primarily mass-dependent if \emph{b}
+\textgreater{} 0.5, and primarily area-dependent if 0.5 \textgreater{}
+\emph{b} \textgreater{} 0 (\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\citeproc{ref-Osnas2018}{Osnas
+et al., 2018}}\hspace{0pt}%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
 \citeproc{ref-Osnas2018}{Osnas et al. 2018}}\hspace{0pt}%DIFAUXCMD
-).
+}\DIFaddend ).
 Parameter values are based on the best GLOPNET model (Table 1) and
-Supplementary Section 7: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.4,
-\(\mu_s\) = 61.4, and \(\sigma_m\) = 0.84.}}
+Supplementary Section \DIFdelbegin \DIFdel{6}\DIFdelend \DIFaddbegin \DIFadd{7}\DIFaddend : \(\alpha_0\) = 1.77, \(\mu_m\) = 56.4,
+\(\mu_s\) = 61.4, and \(\sigma_m\) = 0.84.}
 
-\end{suppfig}%DIF > 
+\end{suppfig}%
 
 \newpage
 
@@ -1694,16 +1228,16 @@ Supplementary Section 7: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.4,
 
 }
 
-\caption{\label{suppfig-mass_prop_comp}\DIFadd{The relationships between mass
-dependency of }\emph{\DIFadd{A}}\DIFadd{\textsubscript{max} (}\emph{\DIFadd{b}} \DIFadd{in Eq. 5 in the main
+\caption{\label{suppfig-mass_prop_comp}The relationships between mass
+dependency of \emph{A}\textsubscript{max} (\emph{b} in Eq. 5 in the main
 text) and LMAs variance (relative to total LMA variance; Eq. 6) for
 simulated datasets generated from a normal distribution (N) vs.~a
 multivariate normal distribution (MVN). Parameter values are based on
-the best Panama model (Table 1) and Supplementary Section 7:
+the best Panama model (Table 1) and Supplementary Section \DIFdelbegin \DIFdel{6}\DIFdelend \DIFaddbegin \DIFadd{7}\DIFaddend :
 \(\alpha_0\) = 0.34, \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, \(\mu_m\) =
-7.7, \(\mu_s\) = 26.6, \(\sigma_m\) = 1.95, and \(\rho\) = -0.47.}}
+7.7, \(\mu_s\) = 26.6, \(\sigma_m\) = 1.95, and \(\rho\) = -0.47.}
 
-\end{suppfig}%DIF > 
+\end{suppfig}%
 
 \newpage
 
@@ -1715,25 +1249,25 @@ the best Panama model (Table 1) and Supplementary Section 7:
 
 }
 
-\caption{\label{suppfig-gl_point_np2}\DIFadd{Measured traits related to
+\caption{\label{suppfig-gl_point_np2}Measured traits related to
 photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf
-area; }\emph{\DIFadd{N}}\DIFadd{\textsubscript{area} and }\emph{\DIFadd{P}}\DIFadd{\textsubscript{area}) are
+area; \emph{N}\textsubscript{area} and \emph{P}\textsubscript{area}) are
 positively correlated with LMA and with estimates (posterior medians) of
 the metabolic and structural LMA components (LMAm and LMAs,
 respectively) in the GLOPNET dataset. LMAm yields more consistent
 relationships compared to LMA and LMAs; e.g., evergreen and deciduous
 leaves align along a single relationship in panel b, but not in panels a
-or c. Pearson correlation coefficients (}\emph{\DIFadd{r}}\DIFadd{) for LMA (left column)
+or c. Pearson correlation coefficients (\emph{r}) for LMA (left column)
 and posterior medians of Pearson correlation coefficients (\(\bar{r}\))
-for LMAm (middle column) and LMAs (right column) are shown.}}
+for LMAm (middle column) and LMAs (right column) are shown.}
 
-\end{suppfig}%DIF > 
+\end{suppfig}%
 
 \newpage
 
 \begin{suppfig}
 
-\centering{
+\DIFaddbegin \centering{
 
 \includegraphics{../figs/pa_point_npc.pdf}
 
@@ -1763,24 +1297,24 @@ here include all leaves for which }\emph{\DIFadd{N}}\DIFadd{\textsubscript{area}
 
 \begin{suppfig}
 
-\centering{
+\DIFaddend \centering{
 
 \includegraphics{../figs/pa_point_npc_par.pdf}
 
 }
 
-\caption{\label{suppfig-pa_point_npc_par}\DIFadd{Partial regression plots for
+\caption{\label{suppfig-pa_point_npc_par}Partial regression plots for
 nitrogen, phosphorus and cellulose per-unit leaf area
-(}\emph{\DIFadd{N}}\DIFadd{\textsubscript{area}, }\emph{\DIFadd{P}}\DIFadd{\textsubscript{area} and
+(\emph{N}\textsubscript{area}, \emph{P}\textsubscript{area} and
 CL\textsubscript{area}). (a) LMAs variation is controlled. (b) LMAm
 variation is controlled. The partial regression plots show separation
 between sun and shade when controlling for LMAs variation (i.e., LMAs
 does not explain the sun/shade difference), but overlapping
 distributions of sun and shade when controlling for LMAm variation
 (i.e., LMAm does explain the sun/shade difference). Posterior medians of
-partial correlation coefficients (\(\bar{\rho}\)) are shown.}}
+partial correlation coefficients (\(\bar{\rho}\)) are shown.}
 
-\end{suppfig}%DIF > 
+\end{suppfig}%
 
 \newpage
 
@@ -1792,17 +1326,17 @@ partial correlation coefficients (\(\bar{\rho}\)) are shown.}}
 
 }
 
-\caption{\label{suppfig-LMAm_LMAs}\DIFadd{Pearson correlation coefficients for
+\caption{\label{suppfig-LMAm_LMAs}Pearson correlation coefficients for
 posterior medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama
-datasets. The non-significant or weak }\emph{\DIFadd{r}} \DIFadd{values indicate that a
+datasets. The non-significant or weak \emph{r} values indicate that a
 single axis could not accurately represent the two-dimensional space.
-Symbols as in main text Figs. 2-3.}}
+Symbols as in main text Figs. 2-3.}
 
-\end{suppfig}%DIF > 
+\end{suppfig}%
 
 \newpage
 
-\DIFaddend \section*{References}\label{references}
+\section*{References}\label{references}
 \addcontentsline{toc}{section}{References}
 
 \phantomsection\label{refs}
@@ -1876,8 +1410,8 @@ National Academy of Sciences of the United States of
 \DIFdelbegin \DIFdel{America 115, }\DIFdelend \DIFaddbegin \DIFadd{America115:}\DIFaddend 5480--5485. \url{https://doi.org/10.1073/pnas.1803989115}\DIFdelbegin %DIFDELCMD < 
 
 %DIFDELCMD < \bibitem[\citeproctext]{ref-Osnas2013}
-\DIFdel{Osnas, J.L.
-D., Lichstein, J.W., Reich, P.B., Pacala, S.W., 2013. Global
+\DIFdel{Osnas, J.L.D., Lichstein, J.W.
+, Reich, P.B., Pacala, S.W., 2013. Global
 leaf trait relationships: }%DIFDELCMD < {%%%
 \DIFdel{Mass}%DIFDELCMD < }%%%
 \DIFdel{, area, and the leaf economics spectrum.

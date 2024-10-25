@@ -1,17 +1,15 @@
-\contentsline {section}{\numberline {1}\DIFdelbegin {\color {red}\sout {Supplementary Section 1: }}\DIFdelend Prior information}{2}{section.1}%
-\contentsline {section}{\numberline {2}\DIFdelbegin {\color {red}\sout {Supplementary Section 2: }}\DIFdelend Model constraints}{3}{section.2}%
-\contentsline {section}{\numberline {3}\DIFdelbegin {\color {red}\sout {Supplementary Section 3: }}\DIFdelend Model tests with randomized data (including Table AS1 and Figure AS1\DIFaddbegin {\color {blue}\uwave {, 2}}\DIFaddend )}{4}{section.3}%
+\contentsline {section}{\numberline {1}Prior information}{2}{section.1}%
+\contentsline {section}{\numberline {2}Model constraints}{3}{section.2}%
+\contentsline {section}{\numberline {3}Model tests with randomized data (including Table AS1 and Figure AS1, 2)}{4}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Table AS1}{4}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Figure AS1}{6}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Figure AS2}{7}{subsection.3.3}%
-\contentsline {section}{\numberline {4}\DIFdelbegin {\color {red}\sout {Supplementary Section 4: Understanding relationships between photosynthetic capacity and LMA}}\DIFdelend \DIFaddbegin {\color {blue}\uwave {Variance partitioning}}\DIFaddend }{8}{section.4}%
-\contentsline {section}{\numberline {5}{\color {blue}\uwave {Understanding and simulating relationships between photosynthetic capacity and LMA}}}{8}{section.5}%
-\contentsline {section}{\numberline {6}{\color {red}\sout {Supplementary Section 5: Simulated datasets to study relationships between photosynthetic capacity and LMA}}}{10}{section.6}%
-\contentsline {section}{\numberline {6}{\color {red}\sout {Supplementary Section 6: Variance partitioning}}}{11}{section.6}%
-\contentsline {section}{\numberline {6}{\color {red}\sout {Figures}}}{12}{section.6}%
-\contentsline {section}{\numberline {6}\DIFdelbegin {\color {red}\sout {Supplementary Section 7: }}\DIFdelend Stan code}{14}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Stan code for the GLOPNET dataset}{14}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Stan code for the Panama dataset}{16}{subsection.6.2}%
-\contentsline {section}{{\color {blue}\uwave {Figures}}}{19}{section*.9}%
-\contentsline {section}{References}{29}{section*.10}%
+\contentsline {section}{\numberline {4}Variance partitioning}{8}{section.4}%
+\contentsline {section}{\numberline {5}Understanding \DIFaddbegin {\color {blue}\uwave {and simulating }}\DIFaddend relationships between photosynthetic capacity and LMA}{8}{section.5}%
+\contentsline {section}{\numberline {6}{\color {red}\sout {Simulated datasets to study relationships between photosynthetic capacity and LMA}}}{9}{section.6}%
+\contentsline {section}{\numberline {6}Stan code}{12}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Stan code for the GLOPNET dataset}{12}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Stan code for the Panama dataset}{14}{subsection.6.2}%
+\contentsline {section}{Figures}{17}{section*.9}%
+\contentsline {section}{References}{27}{section*.10}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

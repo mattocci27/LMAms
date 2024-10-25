@@ -1,5 +1,5 @@
-GIT = a261a204
-GIT2 = e97923ed
+GIT = 978c9633
+GIT2 = 978c9633
 COVER = ms/cover
 MAIN = ms/LMAms_main
 SI = ms/LMAms_SI
