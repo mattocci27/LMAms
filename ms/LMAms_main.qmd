@@ -61,15 +61,19 @@ para_val <- yaml::yaml.load_file(here("yml/para.yml"))
 
 ```{r, include=FALSE}
 # Make sure the order is correct
+s_fig("vpart")
+
 s_fig("box_inter")
 s_fig("box_frac_de")
 s_fig("box_frac_pa")
-s_fig("vpart")
+
 s_fig("mass_prop_sim")
 s_fig("mass_prop_comp")
+
 s_fig("gl_point_np2")
 s_fig("pa_point_np")
 s_fig("pa_point_npc_par")
+
 s_fig("LMAm_LMAs")
 
 # because \stepcounter doesn't work for docx
@@ -91,7 +95,6 @@ appendix("model_cons")
 appendix("rand")
 appendix("vpart")
 appendix("mass_prop")
-appendix("mass_prop_sim")
 appendix("stan")
 
 ```
@@ -210,9 +213,8 @@ Given the large number of parameters in these models, we performed tests with ra
 These tests suggested that our two-dimensional modeling approach revealed meaningful patterns in the observed trait data (`r appendix("rand")`).
 We then used the model predictions to study how LMAm and LMAs contribute to LMA variance, evergreen-deciduous LMA differences, and sun-shade LMA differences (`r appendix("vpart")`).
 
-To better understand the factors affecting relationships between *A*~max~ and LMA (`r appendix("mass_prop")`), we
-generated simulated datasets with different *A*~area~-LMAm relationships and different LMAm and LMAs variances (`r appendix("mass_prop_sim")`).
-For each simulated dataset, we quantified the mass-dependence of *A*~max~ in relation to LMA, which we quantified as the scaling exponent of *A*~max~ with LMA (`r appendix("mass_prop")`) following @Osnas2018.
+To better understand the factors affecting relationships between *A*~max~ and LMA, we generated simulated datasets with different *A*~area~-LMAm relationships and different LMAm and LMAs variances (`r appendix("mass_prop")`).
+For each simulated dataset, we quantified the mass-dependence of *A*~max~ in relation to LMA, which we quantified as the scaling exponent of *A*~max~ with LMA following @Osnas2018.
 
 All statistical analyses were conducted in R version 4.3.2 [@RCoreTeam2022] using the R package *targets* version 1.5.1 for workflow management [@Landau2021].
 
@@ -341,16 +343,16 @@ Thus, although building costs appear similar for different leaf chemical compone
 
 ## Evergreen leaves have greater LMAs than deciduous leaves, and sun leaves have both greater LMAm and LMAs than shade leaves.
 
-Leaf habit (evergreen vs. deciduous) explained very little variation in LMAm but substantial variation in LMAs for both GLOPNET and Panama (`r s_fig_num("vpart")`a-b).
+Leaf habit (evergreen vs. deciduous) explained very little variation in LMAm but substantial variation in LMAs for both GLOPNET and Panama (Figs. `r s_fig_num("vpart")`a-b).
 The higher total LMA in evergreen compared to deciduous leaves was primarily due to differences in LMAs (Figs. [-@fig-box_de], `r s_fig_num("box_inter")`a, and `r s_fig_num("box_frac_de")`).
-In the Panama dataset, light (sun vs. shade) explained more variation in LMAm than LMAs, whereas site (wet vs. dry) explained near zero variation in LMAm but substantial variaion in LMAs (`r s_fig_num("vpart")`c).
+In the Panama dataset, light (sun vs. shade) explained more variation in LMAm than LMAs, whereas site (wet vs. dry) explained near zero variation in LMAm but substantial variaion in LMAs (Fig. `r s_fig_num("vpart")`c).
 Panama wet-site leaves had higher total LMA than dry-site leaves due to greater wet-site LMAs for both sun and shade leaves (Figs. [-@fig-box_pa] and `r s_fig_num("box_inter")`b).
 In contrast, Panama sun leaves had higher total LMA than shade leaves primarily due to greater LMAm, with a smaller but significant contribution from LMAs (Figs. [-@fig-box_pa] and `r s_fig_num("box_inter")`b).
 LMAs comprised a larger fraction of total LMA for shade leaves than for sun leaves (`r s_fig("box_frac_pa")`).
 
 ## LMA variance components affect the area- vs. mass-dependence of leaf photosynthetic capacity (*A*~max~).
 
-Analysis of simulated data showed that the percent of LMA variation due to LMAs variation strongly affected the area- vs. mass-dependence of *A*~max~ (i.e., the degree to which whole-leaf *A*~max~ depends on leaf area or mass; see `r appendix("vpart")`).
+Analysis of simulated data showed that the percent of LMA variation due to LMAs variation strongly affected the area- vs. mass-dependence of *A*~max~ (i.e., the degree to which whole-leaf *A*~max~ depends on leaf area or mass; see `r appendix("mass-prop")`).
 As expected, mass-dependence of *A*~max~ was generally weak (area-dependence was strong) when LMA variance was dominated by LMAs (@fig-mass_prop).
 In this case, *A*~max~ per-unit leaf area (*A*~area~)  and LMA are not strongly correlated because LMA variance is dominated by structural mass (LMAs) that does not directly contribute to photosynthesis (and whole-leaf *A*~max~  thus depends primarily on leaf area rather than mass).
 
@@ -600,7 +602,7 @@ Simulated two-dimensional functional space that can result in either a two- or o
 Panels b and c represent normalization by leaf area and leaf mass, respectively.
 (b) Two-dimensional relationship between photosynthetic capacity (*A*~max~) per-unit leaf area and total LMA (equal to LMAm + LMAs).
 (c) One-dimensional relationship between *A*~max~ per-unit leaf mass and total LMA.
-Methods used to simulate the data are explained in `r appendix("mass_prop_sim")`.
+Methods used to simulate the data are explained in `r appendix("mass_prop")`.
 
 :::
 
@@ -687,7 +689,7 @@ Solid lines indicate simulated medians and shaded regions indicate 95% confidenc
 Each point indicates the estimated values from the empirical data and represents interspecific variation (e.g., across species within a canopy position in the Panama dataset).
 The y-axis values indicates if photosynthetic capacity (*A*~max~) is is primarily mass-dependent (*b* > 0.5) or primarily area-dependent (0.5 > *b* > 0), with *b* near 0 indicating  purely area-dependence [@Osnas2018].
 If *b* > 1, then *A*~max~ increases exponentially with LMA, which is not consistent with observed relationships [@Osnas2018].
-See Supplementary Sections `r appendix_num("vpart")`-`r appendix_num("mass_prop_sim")` for details.
+See Supplementary Sections `r appendix_num("vpart")`-`r appendix_num("mass_prop")` for details.
 
 :::
 

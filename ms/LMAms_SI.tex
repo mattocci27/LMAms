@@ -187,7 +187,6 @@
 \usepackage{amsmath}
 \numberwithin{equation}{section}
 \renewcommand{\theequation}{\thesection.\arabic{equation}}
-\renewcommand{\thesection}{S\arabic{section}}
 \usepackage{fvextra}
 \usepackage{multirow}
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{fontsize=\small,breaklines,commandchars=\\\{\}}
@@ -884,6 +883,26 @@ constraint of \(\alpha_s\) = 0 and \(\beta_m\) = 0.
 
 \centering{
 
+\includegraphics{../figs/vpart_intra.pdf}
+
+}
+
+\caption{\label{suppfig-vpart}Variance partitioning on LMA components
+between and within leaf habits (evergreen vs.~deciduous) for the GLOPNET
+dataset and the Panama dataset, and between and within sites (wet
+vs.~dry) and light (sun vs.~shade) for the Panama dataset. To isolate
+the effects of intraspecific variation, the Panama results shown here
+only include species for which both sun and shade leaves were
+available.}
+
+\end{suppfig}%
+
+\newpage
+
+\begin{suppfig}
+
+\centering{
+
 \includegraphics{../figs/box_inter.pdf}
 
 }
@@ -953,26 +972,6 @@ Panama models (Table 1).}
 
 \centering{
 
-\includegraphics{../figs/vpart_intra.pdf}
-
-}
-
-\caption{\label{suppfig-vpart}Variance partitioning on LMA components
-between and within leaf habits (evergreen vs.~deciduous) for the GLOPNET
-dataset and the Panama dataset, and between and within sites (wet
-vs.~dry) and light (sun vs.~shade) for the Panama dataset. To isolate
-the effects of intraspecific variation, the Panama results shown here
-only include species for which both sun and shade leaves were
-available.}
-
-\end{suppfig}%
-
-\newpage
-
-\begin{suppfig}
-
-\centering{
-
 \includegraphics{../figs/mass_prop_sim.pdf}
 
 }
@@ -992,7 +991,7 @@ typically between 0 and 1 (\citeproc{ref-Osnas2018}{Osnas et al. 2018}).
 \textgreater{} 0.5, and primarily area-dependent if 0.5 \textgreater{}
 \emph{b} \textgreater{} 0 (\citeproc{ref-Osnas2018}{Osnas et al. 2018}).
 Parameter values are based on the best GLOPNET model (Table 1) and
-Supplementary Section 6: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.4,
+Supplementary Section 7: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.4,
 \(\mu_s\) = 61.4, and \(\sigma_m\) = 0.84.}
 
 \end{suppfig}%
@@ -1012,7 +1011,7 @@ dependency of \emph{A}\textsubscript{max} (\emph{b} in Eq. 5 in the main
 text) and LMAs variance (relative to total LMA variance; Eq. 6) for
 simulated datasets generated from a normal distribution (N) vs.~a
 multivariate normal distribution (MVN). Parameter values are based on
-the best Panama model (Table 1) and Supplementary Section 6:
+the best Panama model (Table 1) and Supplementary Section 7:
 \(\alpha_0\) = 0.34, \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, \(\mu_m\) =
 7.7, \(\mu_s\) = 26.6, \(\sigma_m\) = 1.95, and \(\rho\) = -0.47.}
 

@@ -17,23 +17,10 @@ crossref:
 project:
   execute-dir: ms
 format:
-  html:
-    theme: spacelab #readable #sandstone #spacelab #flatly
-    toc: true
-    toc-depth: 2
-    toc-title: Contents
-    self-contained: true
-    smooth-scroll: true
-    highlight-style: github
-  docx:
-    toc: true
-    number-sections: false
-    highlight-style: github
-    html-math-method: katex
-    reference-doc: my_template.docx
   pdf:
     number-sections: true  # Enable section numbering
     toc: true
+    keep-tex: true
     include-in-header:
       text: |
         \usepackage{fontspec}
@@ -42,41 +29,18 @@ format:
         \usepackage{amsmath}
         \numberwithin{equation}{section}
         \renewcommand{\theequation}{\thesection.\arabic{equation}}
-        \renewcommand{\thesection}{S\arabic{section}}
         \usepackage{fvextra}
         \usepackage{multirow}
         \DefineVerbatimEnvironment{Highlighting}{Verbatim}{fontsize=\small,breaklines,commandchars=\\\{\}}
         \usepackage{titling}
         \pretitle{\begin{center}\large\textbf}
         \posttitle{\end{center}}
-    keep-tex: true
-    elsevier-pdf:
-      keep-tex: true
-      include-in-header:
-        text: |
-          \numberwithin{equation}{section}
-          \renewcommand{\theequation}{\thesection.\arabic{equation}}
-          \renewcommand{\thesection}{S\arabic{section}}
-  # pdf:
-  #   toc: true
-  #   keep-tex: true
-  #   latex-clean: true
-  #   pdf-engine: xelatex
-  #   include-in-header:
-  #     text: |
-  #       \usepackage{xr}
-  #       \externaldocument{LMAms_main}
-  #       \usepackage{float}
-  #       \usepackage{booktabs}
-  #       \usepackage{colortbl}
-  #       \usepackage{fancyhdr}
-  #       \pagestyle{fancy}
-  #       \usepackage[default]{sourcesanspro}
-  #       \usepackage{sourcecodepro}
-  #       \usepackage{fvextra}
-  #       \usepackage{multirow}
-  #       \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
-  #       \fancyhead[RE,RO]{Katabuchi \textit{et al}.  Appendix}
+  docx:
+    toc: true
+    number-sections: false
+    highlight-style: github
+    html-math-method: katex
+    reference-doc: my_template.docx
 ---
 
 ```{r global_options, include=FALSE}
@@ -134,11 +98,11 @@ appendix("model_cons")
 appendix("rand")
 appendix("vpart")
 appendix("mass_prop")
-appendix("mass_prop_sim")
 appendix("stan")
 ```
-
 # Prior information
+<!-- \section*{Supplementary Section 1: Prior information}
+\addcontentsline{toc}{section}{Supplementary Section 1: Prior information} -->
 
 The logarithms of *A*~area~, *R*~area~, and LL for leaf sample *i* were assumed to follow a multivariate normal distribution:
 
@@ -404,6 +368,17 @@ The best model for the Panama dataset is LMAm-LMAs-light with the constraint of 
 \section*{Figures}
 \addcontentsline{toc}{section}{Figures}
 
+::: {#suppfig-vpart}
+
+![](../figs/vpart_intra.pdf)
+
+Variance partitioning on LMA components between and within leaf habits (evergreen vs. deciduous) for the GLOPNET dataset and the Panama dataset, and between and within sites (wet vs. dry) and light (sun vs. shade) for the Panama dataset.
+To isolate the effects of intraspecific variation, the Panama results shown here only include species for which both sun and shade leaves were available.
+
+:::
+
+\newpage
+
 ::: {#suppfig-box_inter}
 
 ![](../figs/box_inter.pdf)
@@ -448,17 +423,6 @@ Note that LMAm = *f* $\times$ LMA, and LMAs = (1 – *f*) $\times$ LMA.
 Boxplot symbols as in `r fig("box_pa")`.
 Groups sharing the same letters are not significantly different (P > 0.05; t-tests).
 Estiamtes are from the best GLOPNET and Panama models (`r table("looic")`).
-
-:::
-
-\newpage
-
-::: {#suppfig-vpart}
-
-![](../figs/vpart_intra.pdf)
-
-Variance partitioning on LMA components between and within leaf habits (evergreen vs. deciduous) for the GLOPNET dataset and the Panama dataset, and between and within sites (wet vs. dry) and light (sun vs. shade) for the Panama dataset.
-To isolate the effects of intraspecific variation, the Panama results shown here only include species for which both sun and shade leaves were available.
 
 :::
 

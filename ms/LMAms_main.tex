@@ -460,13 +460,12 @@ evergreen-deciduous LMA differences, and sun-shade LMA differences
 (Supplementary Section 4).
 
 To better understand the factors affecting relationships between
-\emph{A}\textsubscript{max} and LMA (Supplementary Section 5), we
-generated simulated datasets with different
-\emph{A}\textsubscript{area}-LMAm relationships and different LMAm and
-LMAs variances (Supplementary Section 6). For each simulated dataset, we
-quantified the mass-dependence of \emph{A}\textsubscript{max} in
-relation to LMA, which we quantified as the scaling exponent of
-\emph{A}\textsubscript{max} with LMA (Supplementary Section 5) following
+\emph{A}\textsubscript{max} and LMA, we generated simulated datasets
+with different \emph{A}\textsubscript{area}-LMAm relationships and
+different LMAm and LMAs variances (Supplementary Section 5). For each
+simulated dataset, we quantified the mass-dependence of
+\emph{A}\textsubscript{max} in relation to LMA, which we quantified as
+the scaling exponent of \emph{A}\textsubscript{max} with LMA following
 Osnas et al. (\citeproc{ref-Osnas2018}{2018}).
 
 All statistical analyses were conducted in R version 4.3.2
@@ -722,18 +721,18 @@ leaves.}\label{evergreen-leaves-have-greater-lmas-than-deciduous-leaves-and-sun-
 
 Leaf habit (evergreen vs.~deciduous) explained very little variation in
 LMAm but substantial variation in LMAs for both GLOPNET and Panama
-(S4a-b). The higher total LMA in evergreen compared to deciduous leaves
-was primarily due to differences in LMAs (Figs. \ref{fig-box_de}, S1a,
-and S2). In the Panama dataset, light (sun vs.~shade) explained more
-variation in LMAm than LMAs, whereas site (wet vs.~dry) explained near
-zero variation in LMAm but substantial variaion in LMAs (S4c). Panama
-wet-site leaves had higher total LMA than dry-site leaves due to greater
-wet-site LMAs for both sun and shade leaves (Figs. \ref{fig-box_pa} and
-S1b). In contrast, Panama sun leaves had higher total LMA than shade
-leaves primarily due to greater LMAm, with a smaller but significant
-contribution from LMAs (Figs. \ref{fig-box_pa} and S1b). LMAs comprised
-a larger fraction of total LMA for shade leaves than for sun leaves
-(Fig. S3).
+(Figs. S1a-b). The higher total LMA in evergreen compared to deciduous
+leaves was primarily due to differences in LMAs (Figs. \ref{fig-box_de},
+S2a, and S3). In the Panama dataset, light (sun vs.~shade) explained
+more variation in LMAm than LMAs, whereas site (wet vs.~dry) explained
+near zero variation in LMAm but substantial variaion in LMAs (Fig. S1c).
+Panama wet-site leaves had higher total LMA than dry-site leaves due to
+greater wet-site LMAs for both sun and shade leaves (Figs.
+\ref{fig-box_pa} and S2b). In contrast, Panama sun leaves had higher
+total LMA than shade leaves primarily due to greater LMAm, with a
+smaller but significant contribution from LMAs (Figs. \ref{fig-box_pa}
+and S2b). LMAs comprised a larger fraction of total LMA for shade leaves
+than for sun leaves (Fig. S4).
 
 \subsection{\texorpdfstring{LMA variance components affect the area-
 vs.~mass-dependence of leaf photosynthetic capacity
@@ -743,7 +742,7 @@ Analysis of simulated data showed that the percent of LMA variation due
 to LMAs variation strongly affected the area- vs.~mass-dependence of
 \emph{A}\textsubscript{max} (i.e., the degree to which whole-leaf
 \emph{A}\textsubscript{max} depends on leaf area or mass; see
-Supplementary Section 4). As expected, mass-dependence of
+Supplementary Section 7). As expected, mass-dependence of
 \emph{A}\textsubscript{max} was generally weak (area-dependence was
 strong) when LMA variance was dominated by LMAs
 (Fig.~\ref{fig-mass_prop}). In this case, \emph{A}\textsubscript{max}
@@ -849,9 +848,9 @@ mass components, such as cellulose, lignin, and other fibres
 \citeproc{ref-Kitajima2012}{Kitajima et al. 2012},
 \citeproc{ref-Kitajima2016}{2016}). Median values of LMAs, as a percent
 of total LMA, were \textasciitilde60\% for evergreen species
-vs.~\textasciitilde40\% for deciduous species (Fig. S2), and
+vs.~\textasciitilde40\% for deciduous species (Fig. S3), and
 \textasciitilde70\% for shade leaves vs.~\textasciitilde40\% for sun
-leaves (Fig. S3). These estimates align with measurements of cell wall
+leaves (Fig. S4). These estimates align with measurements of cell wall
 (fibre) content from a global dataset (median 47\% of total leaf mass
 across species and canopy positions, with higher values for shade than
 sun leaves; Onoda et al.~2011) and a Panama study site (Barro Colorado
@@ -985,7 +984,7 @@ area-dependent across species, our analysis also helps explain why these
 same traits tend to be mass-dependent within species across light levels
 (\citeproc{ref-Osnas2018}{Osnas et al. 2018}). LMA increased from shade
 to sun primarily due to an increase in LMAm (Figs. \ref{fig-box_pa} and
-S1), which should lead to strong mass-dependence of
+S2), which should lead to strong mass-dependence of
 \emph{A}\textsubscript{max} and \emph{R}\textsubscript{dark}
 (Fig.~\ref{fig-mass_prop}) and likely reflects an increase in the size
 and number of palisade mesophyll cells with increasing light levels
@@ -1002,7 +1001,7 @@ theoretically, be greater than 1 (implying an exponential increase in
 area-normalized traits with increasing LMA), two factors likely
 constrain the observed values of \emph{b}. Firstly, at least some of the
 LMA increase from shade to sun is due to LMAs (Figs. \ref{fig-box_pa}
-and S1), which may reflect the additional LMAs needed to protect and
+and S2), which may reflect the additional LMAs needed to protect and
 support the high LMAm of sun leaves and/or additional LMAs required to
 withstand hydraulic or other stress in the upper canopy. Secondly, as
 discussed above, \emph{A}\textsubscript{area} and
@@ -1512,7 +1511,7 @@ between photosynthetic capacity (\emph{A}\textsubscript{max}) per-unit
 leaf area and total LMA (equal to LMAm + LMAs). (c) One-dimensional
 relationship between \emph{A}\textsubscript{max} per-unit leaf mass and
 total LMA. Methods used to simulate the data are explained in
-Supplementary Section 6.}
+Supplementary Section 5.}
 
 \end{figure}%
 
@@ -1605,7 +1604,7 @@ interquartile range, and points are outliers. Groups sharing the same
 letters are not significantly different (P \textgreater{} 0.05;
 t-tests). The Panama results only include species for which both sun and
 shade leaves were available. Qualitatively similar results were obtained
-when all Panama species were included (Fig. S1). Note that the vertical
+when all Panama species were included (Fig. S2). Note that the vertical
 axis is on a log\textsubscript{10} scale.}
 
 \end{figure}%
@@ -1626,7 +1625,7 @@ and LMAs, respectively) across sites (wet and dry) and canopy strata
 (sun and shade) in the Panama dataset. These results only include
 species for which both sun and shade leaves were available.
 Qualitatively similar results were obtained when all Panama species were
-included (Fig. S1). Details as for Fig.~\ref{fig-box_de}.}
+included (Fig. S2). Details as for Fig.~\ref{fig-box_de}.}
 
 \end{figure}%
 
@@ -1655,7 +1654,7 @@ indicating purely area-dependence (\citeproc{ref-Osnas2018}{Osnas et al.
 2018}). If \emph{b} \textgreater{} 1, then \emph{A}\textsubscript{max}
 increases exponentially with LMA, which is not consistent with observed
 relationships (\citeproc{ref-Osnas2018}{Osnas et al. 2018}). See
-Supplementary Sections 4-6 for details.}
+Supplementary Sections 4-5 for details.}
 
 \end{figure}%
 

@@ -1,7 +1,7 @@
 % Options for packages loaded elsewhere
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL LMAms_SI_old.tex   Thu Oct 24 08:02:14 2024
-%DIF ADD LMAms_SI.tex       Thu Oct 24 08:01:28 2024
+%DIF DEL LMAms_SI_old.tex   Fri Oct 25 06:26:00 2024
+%DIF ADD LMAms_SI.tex       Fri Oct 25 06:25:13 2024
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -201,15 +201,14 @@
 %DIF -------
 \usepackage[default]{sourcesanspro}
 \usepackage{sourcecodepro}
-%DIF 193a187-190
+%DIF 193a187-189
 \usepackage{amsmath} %DIF > 
 \numberwithin{equation}{section} %DIF > 
 \renewcommand{\theequation}{\thesection.\arabic{equation}} %DIF > 
-\renewcommand{\thesection}{S\arabic{section}} %DIF > 
 %DIF -------
 \usepackage{fvextra}
 \usepackage{multirow}
-%DIF 195-196c193-196
+%DIF 195-196c192-195
 %DIF < \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 %DIF < \fancyhead[RE,RO]{Katabuchi \textit{et al}.  Appendix}
 %DIF -------
@@ -1568,6 +1567,26 @@ constraint of \(\alpha_s\) = 0 and \(\beta_m\) = 0.
 
 \centering{
 
+\includegraphics{../figs/vpart_intra.pdf}
+
+}
+
+\caption{\label{suppfig-vpart}\DIFadd{Variance partitioning on LMA components
+between and within leaf habits (evergreen vs.~deciduous) for the GLOPNET
+dataset and the Panama dataset, and between and within sites (wet
+vs.~dry) and light (sun vs.~shade) for the Panama dataset. To isolate
+the effects of intraspecific variation, the Panama results shown here
+only include species for which both sun and shade leaves were
+available.}}
+
+\end{suppfig}%DIF > 
+
+\newpage
+
+\begin{suppfig}
+
+\centering{
+
 \includegraphics{../figs/box_inter.pdf}
 
 }
@@ -1637,26 +1656,6 @@ Panama models (Table 1).}}
 
 \centering{
 
-\includegraphics{../figs/vpart_intra.pdf}
-
-}
-
-\caption{\label{suppfig-vpart}\DIFadd{Variance partitioning on LMA components
-between and within leaf habits (evergreen vs.~deciduous) for the GLOPNET
-dataset and the Panama dataset, and between and within sites (wet
-vs.~dry) and light (sun vs.~shade) for the Panama dataset. To isolate
-the effects of intraspecific variation, the Panama results shown here
-only include species for which both sun and shade leaves were
-available.}}
-
-\end{suppfig}%DIF > 
-
-\newpage
-
-\begin{suppfig}
-
-\centering{
-
 \includegraphics{../figs/mass_prop_sim.pdf}
 
 }
@@ -1680,7 +1679,7 @@ typically between 0 and 1 (\mbox{%DIFAUXCMD
 \citeproc{ref-Osnas2018}{Osnas et al. 2018}}\hspace{0pt}%DIFAUXCMD
 ).
 Parameter values are based on the best GLOPNET model (Table 1) and
-Supplementary Section 6: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.4,
+Supplementary Section 7: \(\alpha_0\) = 1.77, \(\mu_m\) = 56.4,
 \(\mu_s\) = 61.4, and \(\sigma_m\) = 0.84.}}
 
 \end{suppfig}%DIF > 
@@ -1700,7 +1699,7 @@ dependency of }\emph{\DIFadd{A}}\DIFadd{\textsubscript{max} (}\emph{\DIFadd{b}} 
 text) and LMAs variance (relative to total LMA variance; Eq. 6) for
 simulated datasets generated from a normal distribution (N) vs.~a
 multivariate normal distribution (MVN). Parameter values are based on
-the best Panama model (Table 1) and Supplementary Section 6:
+the best Panama model (Table 1) and Supplementary Section 7:
 \(\alpha_0\) = 0.34, \(\alpha_m\) = 0.56, \(\alpha_s\) = 0, \(\mu_m\) =
 7.7, \(\mu_s\) = 26.6, \(\sigma_m\) = 1.95, and \(\rho\) = -0.47.}}
 
