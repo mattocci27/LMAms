@@ -63,7 +63,7 @@ hypo_point <- function(para_yml, n = 200, seed = 123) {
   Aarea <- exp(log_Aarea)
   dat <- tibble(LMA, LMAm, LMAs, Aarea)
 
-  lma_breaks <- c(10, 30, 100, 300, 900, 1000)
+  lma_breaks <- c(10, 30, 100, 300, 1000)
   p1 <- ggplot(dat, aes(LMAm, LMAs, color = LMA)) +
     geom_point(alpha = 0.9) +
     scale_x_log10() +
@@ -93,14 +93,14 @@ hypo_point <- function(para_yml, n = 200, seed = 123) {
     scale_y_log10(breaks = c(3, 10, 30, 50, 100)) +
     scale_color_viridis_c(trans = "log10",
                           breaks = lma_breaks,
-                          name = "Total LMA"
+                          name = "Total LMA",
+                          guide = guide_colorbar(barwidth = 0.5, barheight = 4)
                           ) +
     xlab(expression(Total~LMA~(g~m^{-2}))) +
     ylab(expression(italic(A)[mass]~(nmol~g^{-1}~s^{-1}))) +
     theme_LES() +
     theme(legend.position = "right",
           legend.key.size = unit(0.3, "cm"),
-          legend.spacing.y = unit(0.1, "cm"),
           legend.text = element_text(size = 8),
           legend.title = element_text(size = 8))
 
@@ -108,7 +108,9 @@ hypo_point <- function(para_yml, n = 200, seed = 123) {
     plot_annotation(tag_levels = "a",
       tag_prefix = "(",
       tag_suffix = ")") &
-    theme(legend.background =  element_blank(),
+    theme(
+      legend.background =  element_blank(),
+      # legend.spacing.y = unit(2, "cm"),
       axis.text.x = element_text(size = 8))
   p4
 }
