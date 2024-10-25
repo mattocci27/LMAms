@@ -567,8 +567,7 @@ write_r2 <- function(gl_res_csv, gl_draws, pa_res_csv, pa_draws) {
   writeLines(paste0("  PA_LL_par:"),
              out,
              sep = "\n")
-  # writeLines(paste0("    LMAs_LL: 'italic(rho) == ",
-  writeLines(paste0("    LMAs_LL: 'italic(bar(\u03c1)) == ",
+  writeLines(paste0("    LMAs_LL: 'italic(bar(rho)) == ",
                     par_LMAs_LL,
                     "'"),
              out,

@@ -21,6 +21,7 @@ my_ggsave <- function(filename, plot, units = c("in", "cm",
     ...
   )
 
+  showtext_auto(FALSE)
   ggsave(
     filename = paste0(filename, ".tiff"),
     plot = plot,
@@ -319,8 +320,8 @@ gl_point <- function(gl_long_dat, settings_yml, r_vals_yml) {
                      r_vals = r_vals$r_vals$GL %>% unlist,
                      trait2 = rep(lim_gl2$trait2, each = 3),
                      LMA = rep(lim_gl$LMA, 3)
-                     ) |>
-    mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
+                     ) #|>
+    # mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
 
   scatter_plt(dat, lab1, settings_yml)
 }
@@ -356,8 +357,8 @@ gl_point_np <- function(gl_long_dat, settings_yml, r_vals_yml) {
                      #kr_vals = r_vals[4:6],
                      trait2 = rep(lim_gl2$trait2, each = 3),
                      LMA = rep(lim_gl$LMA, 2)
-                     ) |>
-    mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
+                     ) #|>
+    # mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
 
   scatter_plt(dat, lab1, settings_yml) +
     scale_x_log10()
@@ -384,8 +385,8 @@ gl_point_p <- function(gl_long_dat, settings_yml, r_vals_yml) {
                      r_vals = r_vals[4:6],
                      trait2 = rep(lim_gl2$trait2, each = 3),
                      LMA = rep(lim_gl$LMA, 1)
-                     ) |>
-    mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
+                     ) #|>
+    # mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
 
   scatter_plt(dat, lab1, settings_yml)
 }
@@ -410,8 +411,8 @@ gl_point_n <- function(gl_long_dat, settings_yml, r_vals_yml) {
                      r_vals = r_vals[1:3],
                      trait2 = rep(lim_gl2$trait2, each = 3),
                      LMA = rep(lim_gl$LMA, 1)
-                     ) |>
-    mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
+                     ) #|>
+    # mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
 
   scatter_plt(dat, lab1, settings_yml)
 }
@@ -441,8 +442,8 @@ pa_point <- function(pa_long_dat, settings_yml, r_vals_yml) {
                      r_vals = r_vals$r_vals$PA %>% unlist,
                      trait2 = rep(lim_pa2$trait2, each = 3),
                      LMA = rep(lim_pa$LMA, 3)
-                     ) |>
-    mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
+                     ) #|>
+    # mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
 
   scatter_plt(dat, lab1, settings_yml, GL = FALSE)
 }
@@ -466,8 +467,8 @@ pa_ld_point <- function(pa_long_dat, settings_yml, r_vals_yml) {
                      r_vals = r_vals$r_vals$PA %>% unlist,
                      trait2 = rep(lim_pa2$trait2, each = 3),
                      LMA = rep(lim_pa$LMA, 3)
-                     ) |>
-    mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
+                     ) #|>
+    # mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
 
   scatter_plt(dat, lab1, settings_yml, GL = FALSE)
 }
@@ -491,8 +492,8 @@ pa_point_npc <- function(pa_long_dat, settings_yml, r_vals_yml) {
                      r_vals = r_vals$r_vals$PA_NP %>% unlist,
                      trait2 = rep(lim_pa2$trait2, each = 3),
                      LMA = rep(lim_pa$LMA, 3)
-                     ) |>
-    mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
+                     ) # |>
+    # mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
 
   scatter_plt(dat, lab1, settings_yml, GL = FALSE)
 }
@@ -568,8 +569,8 @@ pa_point_npc_rho <- function(pa_rho_dat, settings_yml, r_vals_yml) {
                      r_vals = r_vals$r_vals$PA_NP_par %>% unlist,
                      trait2 = rep(lim_pa2$trait2, each = 2),
                      LMA = rep(lim_pa$LMA, 3)
-                     ) |>
-    mutate(r_vals = str_replace_all(r_vals, "rho", "\u03C1"))
+                     ) #|>
+    # mutate(r_vals = str_replace_all(r_vals, "rho", "bar(rho)"))
 
 
   fills <- c("Sun-Dry" = settings$fills$sun_dry,

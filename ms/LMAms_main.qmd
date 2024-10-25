@@ -595,7 +595,7 @@ if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
 
 ::: {#fig-hypo}
 
-![](../figs/hypo.png)
+![](../figs/hypo.pdf)
 
 Simulated two-dimensional functional space that can result in either a two- or one-dimensional trait space, depending on how metabolic traits are normalized.
 (a) Hypothetical independent variation in two leaf mass per area (LMA) components: metabolic leaf mass per area (LMAm, which largely determines per-area values of photosynthesis, respiration, and nutrient concentrations) and structural leaf mass per area (LMAs, which determines leaf toughness but has little effect on metabolic traits).
@@ -610,7 +610,7 @@ Methods used to simulate the data are explained in `r appendix("mass_prop")`.
 
 ::: {#fig-gl_point}
 
-![](../figs/gl_point.png)
+![](../figs/gl_point.pdf)
 
 Observed and estimated leaf-trait relationships in the global GLOPNET dataset.
 Estimates are from the best GLOPNET model (Table 1).
@@ -625,7 +625,7 @@ Therefore, ($\bar{r}$) is reported for LL (single predictor variable), whereas (
 
 ::: {#fig-pa_point}
 
-![](../figs/pa_point.png)
+![](../figs/pa_point.pdf)
 
 Observed and estimated leaf-trait relationships in the Panama dataset.
 Estimates are from the best Panama model (Table 1), which included effects of light on LL.
@@ -640,7 +640,7 @@ The observed separation of LL between sun and shade leaves is accounted for in t
 
 ::: {#fig-ll_point}
 
-![](../figs/pa_point_par_ll.png)
+![](../figs/pa_point_par_ll.pdf)
 
 Relationship between leaf lifespan (LL) and LMAs in the Panama dataset, after accounting for the effects of light (suv vs. shade leaves; see `r eq("LL")`b).
 The dashed line indicates the 1:1 relationship expected for residuals on the log-scale.
@@ -654,7 +654,7 @@ The results shown here include all leaves in the Panama dataset.
 
 ::: {#fig-box_de}
 
-![](../figs/box_de.png)
+![](../figs/box_de.pdf)
 
 Boxplots comparing leaf mass per area (LMA) and posterior medians of photosynthetic and structural LMA components (LMAm and LMAs, respectively) across deciduous (Dev) and evergreen (Eve) leaves in the GLOPNET dataset (a) and in the Panama dataset (b).
 The center line in each box indicates the median, upper and lower box edges indicate the interquartile range, whiskers show 1.5 times the interquartile range, and points are outliers.
@@ -669,7 +669,7 @@ Note that the vertical axis is on a log~10~ scale.
 
 :::{#fig-box_pa}
 
-![](../figs/box_pa.png)
+![](../figs/box_pa.pdf)
 
 Boxplots comparing leaf mass per area (LMA) and posterior medians of metabolic and structural LMA components (LMAm and LMAs, respectively) across sites (wet and dry) and canopy strata (sun and shade) in the Panama dataset.
 These results only include species for which both sun and shade leaves were available.
@@ -682,7 +682,7 @@ Details as for [@fig-box_de].
 
 ::: {#fig-mass_prop}
 
-![](../figs/mass_prop_mv.png)
+![](../figs/mass_prop_mv.pdf)
 
 Relationships between mass dependency (*b* in `r s_eq("mass")`.1) and LMAs variance (relative to total LMA variance; `r s_eq("var")`.1) for the global GLPNET dataset, sun leaves in Panama, and shade leaves in Panama.
 Solid lines indicate simulated medians and shaded regions indicate 95% confidence intervals.

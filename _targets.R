@@ -27,7 +27,8 @@ tar_option_set(packages = c(
   "jsonlite",
   "foreach",
   "doParallel",
-  "multcompView"
+  "multcompView",
+  "showtext"
 ))
 
 # tar_option_set(
