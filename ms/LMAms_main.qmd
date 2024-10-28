@@ -16,7 +16,6 @@ format:
     keep-tex: true
     latex-clean: false
     pdf-engine: xelatex
-    css: style.css
     # number-sections: true  # Enable section numbering
     include-in-header:
       text: |
@@ -36,7 +35,6 @@ format:
   docx:
     prefer-html: true
     toc: false
-    css: style.css
     # number-sections: true
     highlight-style: github
     html-math-method: katex
@@ -162,6 +160,7 @@ For example, across global species, whole-leaf values of traits related to photo
 whereas the opposite pattern (strong mass-dependence of these same traits) is observed within species across light gradients [@Osnas2018; @Osada2001; @Niinemets2015].
 Functional groups (e.g., deciduous vs. evergreen angiosperms) also differ from each other in terms of how variation in photosynthetic and metabolic traits depends on leaf mass and area [@Lusk2008; @Osnas2018].
 These divergent patterns suggest the presence of multiple drivers of trait variation.
+<!-- @Huntingford2017; @Tcherkez2017 -->
 
 Strong interspecific correlations among leaf mass per area (LMA), leaf lifespan (LL), and mass-normalized leaf traits related to photosynthesis and metabolism (hereafter, 'metabolic traits') have been interpreted as evidence for a single dominant axis of leaf functional variation [@Wright2004a].
 However, the interpretation of these strong correlations, which can result from mass-normalization of area-dependent traits [@Lloyd2013; @Osnas2013], is controversial.
@@ -171,7 +170,7 @@ In global analyses, normalizing leaf traits by mass/LL yields similarly weak cor
 
 Area-dependence of metabolic traits and the inconsistent correlation strengths obtained from different normalizers [@Lloyd2013; @Osnas2013] suggest that strong mass-based correlations should not, by themselves, be taken as strong evidence for a single dominant axis of leaf functional diversity.
 The existence of multiple important axes of leaf functional diversity would not invalidate mass-normalization or the LES [@Westoby2013].
-This multi-dimensionality would, however, have important implications for our understanding of leaf function [@Onoda2017; @Niinemets2006a], the role of trait variation in community assembly [e.g., @Falster2017; @Lichstein2021], and how to accurately represent trait variation in ecosystem models, including dynamic global vegetation models (DGVMs; e.g., Bonan et al., 2002; Fisher et al., 2015; Sakschewski et al., 2016).
+This multi-dimensionality would, however, have important implications for our understanding of leaf function [@Onoda2017; @Niinemets2006a], the role of trait variation in community assembly [e.g., @Falster2017; @Lichstein2021], and how to accurately represent trait variation in ecosystem models, including dynamic global vegetation models (DGVMs; e.g., Bonan et al. 2002; Fisher et al. 2015; Sakschewski et al. 2016).
 <!-- (DGVMs; e.g., [@Bonan2002; @Fisher2015; @Sakschewski2016]) -->
 
 To understand why the same data can be interpreted as either supporting or opposing the existence of a single dominant axis of leaf trait variation, consider the conceptual model proposed by @Osnas2018, in which LMA is comprised of two additive components:
