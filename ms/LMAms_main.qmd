@@ -16,6 +16,7 @@ format:
     keep-tex: true
     latex-clean: false
     pdf-engine: xelatex
+    css: style.css
     # number-sections: true  # Enable section numbering
     include-in-header:
       text: |
@@ -35,6 +36,7 @@ format:
   docx:
     prefer-html: true
     toc: false
+    css: style.css
     # number-sections: true
     highlight-style: github
     html-math-method: katex
@@ -592,11 +594,12 @@ if ("html" == knitr::opts_knit$get("rmarkdown.pandoc.to")) {
 
 \newpage
 
+# Figure legends
 
-::: {#fig-hypo}
-
-![](../figs/hypo.pdf)
-
+::: {#fig-hypo .hidden}
+<!-- ![](../figs/hypo.png) -->
+:::
+**Fig. 1:**
 Simulated two-dimensional functional space that can result in either a two- or one-dimensional trait space, depending on how metabolic traits are normalized.
 (a) Hypothetical independent variation in two leaf mass per area (LMA) components: metabolic leaf mass per area (LMAm, which largely determines per-area values of photosynthesis, respiration, and nutrient concentrations) and structural leaf mass per area (LMAs, which determines leaf toughness but has little effect on metabolic traits).
 Panels b and c represent normalization by leaf area and leaf mass, respectively.
@@ -604,14 +607,10 @@ Panels b and c represent normalization by leaf area and leaf mass, respectively.
 (c) One-dimensional relationship between *A*~max~ per-unit leaf mass and total LMA.
 Methods used to simulate the data are explained in `r appendix("mass_prop")`.
 
-:::
-
-\newpage
-
 ::: {#fig-gl_point}
-
-![](../figs/gl_point.pdf)
-
+<!-- ![](../figs/gl_point.pdf) -->
+:::
+**Fig. 2:**
 Observed and estimated leaf-trait relationships in the global GLOPNET dataset.
 Estimates are from the best GLOPNET model (Table 1).
 Leaf life span (LL), net photosynthetic rate per unit leaf area (*A*~area~), and dark respiration rate per unit leaf area (*R*~area~) are plotted against observed LMA, posterior medians of LMAm and LMAs.
@@ -619,14 +618,10 @@ Pearson correlation coefficients (*r*) for LMA (left column) and posterior media
 Note that LL was modeled by LMAs alone due to improved model performance with this parameter constraint (Table 1).
 Therefore, ($\bar{r}$) is reported for LL (single predictor variable), whereas ($\bar{\rho}$) is reported for *A*~area~ and *R*~area~ (multiple predictor variables).
 
-:::
-
-\newpage
-
 ::: {#fig-pa_point}
-
-![](../figs/pa_point.pdf)
-
+<!-- ![](../figs/pa_point.png) -->
+:::
+**Fig. 3:**
 Observed and estimated leaf-trait relationships in the Panama dataset.
 Estimates are from the best Panama model (Table 1), which included effects of light on LL.
 Details as for [@fig-gl_point].
@@ -634,28 +629,20 @@ Note that *A*~area~ and LL were modeled by LMAm and LMAs alone, respectively, du
 The results shown here include all leaves in the Panama dataset.
 The observed separation of LL between sun and shade leaves is accounted for in the model predictions [@fig-ll_point].
 
-:::
-
-\newpage
-
 ::: {#fig-ll_point}
-
-![](../figs/pa_point_par_ll.pdf)
-
+<!-- ![](../figs/pa_point_par_ll.pdf) -->
+:::
+**Fig. 4:**
 Relationship between leaf lifespan (LL) and LMAs in the Panama dataset, after accounting for the effects of light (suv vs. shade leaves; see `r eq("LL")`b).
 The dashed line indicates the 1:1 relationship expected for residuals on the log-scale.
 The posterior medians of the partial correlation coefficient ($\bar{\rho}$) is shown.
 The results shown here include all leaves in the Panama dataset.
 
-:::
-
-
-\newpage
 
 ::: {#fig-box_de}
-
-![](../figs/box_de.pdf)
-
+<!-- ![](../figs/box_de.pdf) -->
+:::
+**Fig. 5:**
 Boxplots comparing leaf mass per area (LMA) and posterior medians of photosynthetic and structural LMA components (LMAm and LMAs, respectively) across deciduous (Dev) and evergreen (Eve) leaves in the GLOPNET dataset (a) and in the Panama dataset (b).
 The center line in each box indicates the median, upper and lower box edges indicate the interquartile range, whiskers show 1.5 times the interquartile range, and points are outliers.
 Groups sharing the same letters are not significantly different (P > 0.05; t-tests).
@@ -663,27 +650,19 @@ The Panama results only include species for which both sun and shade leaves were
 Qualitatively similar results were obtained when all Panama species were included (`r s_fig("box_inter")`).
 Note that the vertical axis is on a log~10~ scale.
 
-:::
-
-\newpage
-
 :::{#fig-box_pa}
-
-![](../figs/box_pa.pdf)
-
+<!-- ![](../figs/box_pa.pdf) -->
+:::
+**Fig. 6:**
 Boxplots comparing leaf mass per area (LMA) and posterior medians of metabolic and structural LMA components (LMAm and LMAs, respectively) across sites (wet and dry) and canopy strata (sun and shade) in the Panama dataset.
 These results only include species for which both sun and shade leaves were available.
 Qualitatively similar results were obtained when all Panama species were included (`r s_fig("box_inter")`).
 Details as for [@fig-box_de].
 
-:::
-
-\newpage
-
 ::: {#fig-mass_prop}
-
-![](../figs/mass_prop_mv.pdf)
-
+<!-- ![](../figs/mass_prop_mv.pdf) -->
+:::
+**Fig. 7:**
 Relationships between mass dependency (*b* in `r s_eq("mass")`.1) and LMAs variance (relative to total LMA variance; `r s_eq("var")`.1) for the global GLPNET dataset, sun leaves in Panama, and shade leaves in Panama.
 Solid lines indicate simulated medians and shaded regions indicate 95% confidence intervals.
 Each point indicates the estimated values from the empirical data and represents interspecific variation (e.g., across species within a canopy position in the Panama dataset).
@@ -691,6 +670,31 @@ The y-axis values indicates if photosynthetic capacity (*A*~max~) is is primaril
 If *b* > 1, then *A*~max~ increases exponentially with LMA, which is not consistent with observed relationships [@Osnas2018].
 See Supplementary Sections `r appendix_num("vpart")`-`r appendix_num("mass_prop")` for details.
 
-:::
-
 \newpage
+
+**Fig. 1:**
+![](../figs/hypo.png)
+\newpage
+
+**Fig. 2:**
+![](../figs/gl_point.png)
+\newpage
+
+**Fig. 3:**
+![](../figs/pa_point.png)
+\newpage
+
+**Fig. 4:**
+![](../figs/pa_point_par_ll.png)
+\newpage
+
+**Fig. 5:**
+![](../figs/box_de.png)
+\newpage
+
+**Fig. 6:**
+![](../figs/box_pa.png)
+\newpage
+
+**Fig. 7:**
+![](../figs/mass_prop_mv.png)

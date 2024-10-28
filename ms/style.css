@@ -1,0 +1,12 @@
+.hidden {
+  display: none;
+}
+
+.hidden {
+  opacity: 0;
+  height: 0;
+}
+
+div:empty {
+  display: none;
+}
