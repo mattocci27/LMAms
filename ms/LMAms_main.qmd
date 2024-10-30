@@ -140,6 +140,13 @@ global vegetation models,
 latent variables,
 optimal leaf lifespan
 
+Author Contributions:
+MK, JWL and JLDO conceived of the study.
+KK provided guidance on leaf physiology and interpreting trait data.
+KK, SJW and SAVB contributed data.
+MK devised the analytical approach and performed analyses.
+MK and JWL wrote the first draft of the manuscript, and all authors contributed to revisions.
+
 **Abstract**
 
 Across the global flora, interspecific variation in photosynthetic and metabolic rates depends more strongly on leaf area than leaf mass.
@@ -490,32 +497,6 @@ The data used in this study are from the GLOPNET database [@Wright2004a] and the
 ## Code availability
 
 Data, codes and computing environments to reproduce this manuscript will be archived on Zenodo at https://doi.org/xxx and also available on Github at https://github.com/mattocci27/LMAms.
-
-## Authors' contributions
-
-**Mastaoshi Katabuchi:**
-Conceptualization,
-Methodology,
-Formal analysis,
-Visualization,
-Writing - Original Draft,
-Writing - Review & Editing.
-**Kaoru Kitajima:**
-Resources,
-Writing - Review & Editing.
-**S. Joseph Wright:**
-Resources,
-Writing - Review & Editing.
-**Sunshine A. Van Bael:**
-Resources,
-Writing - Review & Editing.
-**Jeanne L. D. Osnas:**
-Conceptualization,
-Writing - Review & Editing.
-**Jeremy W. Lichstein:**
-Conceptualization,
-Writing - Original Draft,
-Writing - Review & Editing.
 
 # References
 
