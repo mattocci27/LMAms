@@ -28,7 +28,7 @@ format:
     theme: spacelab #readable #sandstone #spacelab #flatly
     toc: true
     toc-depth: 2
-    toc-title: Contents
+    toc-title: Content
     self-contained: true
     smooth-scroll: true
     highlight-style: github
@@ -188,7 +188,7 @@ While [@fig-hypo]b and [@fig-hypo]c are both 'correct' representations of the sa
 If LMAm, LMAs, and/or other axes are largely independent and have distinct functional consequences, then it would not be possible to accurately represent functional variation with a single axis.
 
 The hypothetical example in [@fig-hypo] shows how mass-normalization can, in principle, make a two-dimensional trait space appear one-dimensional, but the dimensionality of functional variation in real leaf assemblages remains an open question.
-One way to better understand the dimensionality of leaf trait variation is to compare models with different numbers of dimensions and to ask if models with multiple dimensions provide improved statistical fits compared to a single axis.
+One way to better understand the dimensionality of leaf trait variation is to compare models with different numbers of dimensions and to ask if models with multiple dimensions provide greater predictive power compared to a single axis.
 For example, the two-dimensional 'LMAm-LMAs' model proposed by @Osnas2018 could be compared to a one-dimensional LMA model in terms of their capacities to explain variation in other traits.
 However, implementing the 'LMAm-LMAs' model is challenging because although certain leaf mass components can be neatly classified as 'metabolic' or 'structural' [@Poorter2009; @Osnas2018], other leaf mass components cannot.
 For example, thick cell walls contribute to structural toughness [@Onoda2015], but at least some cell wall mass is required for the biomechanical support that enables photosynthesis.
@@ -292,7 +292,7 @@ The implementation of these assumptions is described in Table 1 and `r appendix(
 
 ## Datasets
 
-We fit the models described abovµe using observations of LMA (g m^-2^), *A*~area~ (µmol s^-1^ m^-2^), *R*~area~ (µmol s^-1^ m^-2^) and LL (months) from the GLOPNET global leaf traits database [@Wright2004a] and from two tropical forest sites in Panama: Parque Natural Metropolitano (PNM, “dry site”) and Bosque Protector San Lorenzo (SL, “wet site”).
+We fit the models described above using observations of LMA (g m^-2^), *A*~area~ (µmol s^-1^ m^-2^), *R*~area~ (µmol s^-1^ m^-2^) and LL (months) from the GLOPNET global leaf traits database [@Wright2004a] and from two tropical forest sites in Panama: Parque Natural Metropolitano (PNM, “dry site”) and Bosque Protector San Lorenzo (SL, “wet site”).
 The GLOPNET data primarily represent interspecific variation (the dataset reports 2,548 species $\times$ site combinations, with 2,021 unique species and only 350 species occurring at more than one site) and only reports data for sun leaves if data for both sun and shade leaves are available [@Wright2004a].
 In contrast, the Panama dataset represents both inter- and intraspecific variation, including leaves sampled at two canopy positions ("sun": full sun at the top of the canopy; and "shade": well shaded, sampled within 2 m of the forest floor) from trees within reach of canopy cranes.
 The dry PNM site is a semi-deciduous coastal Pacific forest with a 5-month dry season from December-April and 1740 mm of annual rainfall [@Wright2003].
@@ -406,6 +406,10 @@ The failure of LMAs to provide robust predictions of LL across canopy positions 
 In a global meta-analysis, leaf toughness was strongly related to toughness per-unit leaf tissue density, but only weakly related to leaf thickness or density [@Onoda2011].
 Accordingly, on BCI, Panama, the difference between shade and sun leaves was greater for cellulose content (% of leaf mass) than cell wall content (which includes cellulose, as well as other fibres that provide less structural toughness) [@Kitajima2016].
 Thus, just as not all LMA is equal, it is almost certainly true that not all LMAs is equal, with some LMAs components (e.g., cellulose) imparting greater toughness and longevity than others [e.g., lignin in secondary cell walls of vascular tissue, @Kitajima2016].
+
+Furthermore, 65% of these "unclassified" species are grasses or herbaceous forbs, which often have lower leaf tissue density reduced structural fiber content than woody plants [@Onoda2011].
+This likely contributes to their markedly low LMAs ([@fig-pa_point]i).
+In this sense, growth form adds another dimension of LMA variation, particularly in herbs that invest relatively little mass in toughening tissues.
 
 In summary, the dependencies of *A*~area~, *R*~area~, and LL on model-inferred values of LMAm and LMAs are broadly consistent with previous analyses of measured traits.
 Our results support the hypothesis that LMA can be partitioned into metabolic and structural components, the latter having a maintenance respiration rate indistinguishable from zero.
