@@ -176,7 +176,7 @@
 
 
 \author{Masatoshi Katabuchi}
-\date{2025-01-22}
+\date{2025-01-27}
 
 \begin{document}
 
@@ -187,7 +187,7 @@ We hereby resubmit the manuscript (OECO-D-24-00601), ``Decomposing leaf
 mass into metabolic and structural components explains divergent
 patterns of trait variation within and among plant species''.
 
-We thank the associate editor and the reviewers for their careful
+We thank the handling editor and the reviewers for their careful
 attention to detail in our manuscript and for providing comments that
 have greatly improved the study.
 
@@ -196,16 +196,27 @@ following:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\tightlist
 \item
+  \textbf{Broader appeal and novelty:} We have revised the Discussion to
+  emphasize how decomposing LMA into metabolic and structural components
+  can enhance understanding of leaf functions well beyond trait-based
+  ecology, for instance in modeling and global change research.
 \item
+  \textbf{Clear take-home message:} We improved the first paragraph of
+  the Discussion to clarify our main conclusions and their broader
+  significance, including how this refined framework can help interpret
+  divergent patterns of leaf traits within versus among species
 \item
+  \textbf{Physiological dimensions and implications:} We further
+  elaborate on how our approach might be extended to accommodate
+  additional components (e.g., non-structural carbohydrates), with
+  potential applications to earth system modeling.
 \end{enumerate}
 
 The programming code and the data supporting the findings of this study
-will be deposited at Zenodo (https://zenodo.org) and Github
-(https://github.com/mattocci27/leaf-disc). At the moment, we have
-attached the stan code for our Bayesian model.
+will be deposited at Zenodo (https://zenodo.org). The corresponding
+Github (https://github.com/mattocci27/LMAms) is already publicly
+available.
 
 Below we provide detailed responses. The editing history is recorded in
 a separate pdf file.
@@ -223,13 +234,16 @@ Lichstein
 
 Corresponding author and contact information: Key Laboratory of Tropical
 Forest Ecology, Xishuangbanna Tropical Botanical Garden, Chinese Academy
-of Sciences, Mengla, Yunnan 666303, China
-
+of Sciences, Mengla, Yunnan 666303, China\\
 Email: katabuchi@xtbg.ac.cn; mattocci27@gmail.com
 
 \newpage
 
 \section{Responses}\label{responses}
+
+Please note that line numbers refer to LMAms\_main\_diff.pdf that
+contains editing history. The word file has slightly different line
+numbers.
 
 \begin{quote}
 Handling Editor: The referees were generally positive regarding
@@ -248,6 +262,15 @@ less about how this work confirms prior work. if the work is deemed
 confirmatory, it could have difficulties getting priority for
 publication. We look forward to seeing the revisions.
 \end{quote}
+
+We have substantially revised the Discussion to emphasize the broader
+ecological and modeling significance of our work, focusing on the key
+insight that partitioning LMA into structural and metabolic components
+provides new perspectives for trait-based studies and Earth system
+models. By explaining how this approach clarifies patterns observed
+within species (across light gradients) and among species (globally), we
+demonstrate novelty and highlight our study's contribution beyond
+confirming previous results.
 
 \begin{quote}
 Reviewer \#1: The manuscript develops a statistical method to separate
@@ -317,12 +340,13 @@ We have corrected the typo (Line XXX).
 Line 771 Fig. 2, It is interesting that the `Unclassified' species take
 the lower end of the LMAs distribution. Are they mostly grasses or
 aquatic plants? It might be a worthy discussion point and an indirect
-evidence of the physiological basis of derived LMAs
+evidence of the physiological basis of derived LMAs.
 \end{quote}
 
-The ``Unclassified'' group consists of 32 grass/herb species and 18
-tree/shrub species. We have added a discussion on the potential
-physiological basis of the derived LMAs in the manuscript (Line XXX).''
+The unclassified species at the lower end of LMAs are mainly herbaceous
+species (65\% are grasses or forbs), which generally have lower leaf
+tissue density. We discuss how this supports a physiological basis for
+low LMAs in the revised text (Line XXX).
 
 \begin{quote}
 Reviewer\# 2: OECO-D-24-00601 is largely well written with few editorial
@@ -352,6 +376,10 @@ multi-functional approach might specifically improve the predictability
 and utility of models.
 \end{quote}
 
+We thank you for highlighting the importance of demonstrating broader
+appeal and stronger emphasis on the findings. Below are our responses to
+your specific suggestions.
+
 \begin{quote}
 Specific comments to help guide revisions: 1) For a study such as this,
 the first paragraph of the discussion is the central element that can
@@ -363,6 +391,11 @@ is not clear, giving the paper the sense it is mired in the weeds.
 Consider refocusing the start of the introduction to emphasize the
 important contribution of this paper and its larger significance.
 \end{quote}
+
+We agree and have rewritten the opening paragraph of the Discussion to
+state our main conclusions clearly and highlight the broader importance
+of decomposing LMA into LMAm and LMAs for ecology, physiology, and
+modeling applications (Line XXX).
 
 \begin{quote}
 \begin{enumerate}
@@ -383,6 +416,11 @@ important contribution of this paper and its larger significance.
 \end{enumerate}
 \end{quote}
 
+We have removed some of the numeric medians from the text. Where
+possible, we focus on why these differences matter (e.g., how structural
+vs.~metabolic investment drives leaf longevity vs.~respiration) rather
+than simply listing values (Lines XXX).
+
 \begin{quote}
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -392,6 +430,8 @@ important contribution of this paper and its larger significance.
   Line 409-411: States the obvious.We know not all LMAs are equal.
 \end{enumerate}
 \end{quote}
+
+We have removed this statement.
 
 \begin{quote}
 \begin{enumerate}
@@ -409,6 +449,12 @@ important contribution of this paper and its larger significance.
 \end{enumerate}
 \end{quote}
 
+We have removed this phrase and instead emphasize how this LMAm--LMAs
+partitioning moves the field forward (Line XXX), particularly its
+potential for refining trait-based approaches in ecosystem models.
+
+**we have highlighted the novelty early in the discussion.*
+
 \begin{quote}
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -419,6 +465,20 @@ important contribution of this paper and its larger significance.
   redundancy.
 \end{enumerate}
 \end{quote}
+
+We have removed several redundant statements and streamlined the text to
+improve readability. For example, we have removed a summary paragraph in
+the section ``Modeling \emph{A}\textsubscript{max},
+\emph{R}\textsubscript{dark}, and LL as functions of metabolic and
+structural LMA'', and some exact numerical values in the discussion. We
+have also restructured the section ``Implications for understanding LL
+variation'' to avoid redundancy (Lines XXX).
+
+We have minimized repetition by deleting several summary sentences,
+numeric details, and a short summary paragraph in ``Modeling Amax,
+Rdark, and LL\ldots{}'' (Lines XXX). We also restructured discussion of
+how our results inform the counter-gradient phenomenon (leaf lifespan
+patterns in sun vs.~shade).
 
 \begin{quote}
 \begin{enumerate}
@@ -434,6 +494,11 @@ important contribution of this paper and its larger significance.
   Section S5.
 \end{enumerate}
 \end{quote}
+
+We have clarified in the figure caption that Fig. 1 illustrates
+simulated data drawn from normal distributions, displayed as points to
+mimic empirical sampling. \emph{A}\textsubscript{max} was assumed to be
+proportional to leaf area (Line XXX)
 
 
 

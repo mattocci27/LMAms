@@ -3,6 +3,7 @@ GIT2 = 978c9633
 COVER = ms/cover
 MAIN = ms/LMAms_main
 SI = ms/LMAms_SI
+RE = ms/response_letter
 
 FIG_DIR = figs
 FIG_DEST_DIR = submission-si/figs
@@ -16,7 +17,7 @@ EPS_FILES = $(PDF_FILES:.pdf=.eps)
 
 MS_FILES = LMA.bib LMAms_SI.tex LMAms_main.docx LMAms_main.pdf LMAms_SI.docx LMAms_SI.pdf
 
-all: $(MAIN).pdf $(MAIN).docx $(SI).pdf $(SI).docx $(MAIN)_diff.pdf $(SI)_diff.pdf
+all: $(MAIN).pdf $(MAIN).docx $(SI).pdf $(SI).docx $(MAIN)_diff.pdf $(SI)_diff.pdf $(RE).docx $(RE).pdf
 diff: $(MAIN)_diff.pdf
 diff2: $(SI)_diff.pdf
 pdf: $(MAIN).pdf
@@ -50,6 +51,12 @@ $(MAIN).pdf: $(MAIN).qmd
 
 $(MAIN).docx: $(MAIN).qmd ms/my_template.docx
 	quarto render $< --to docx
+
+$(RE).docx: $(RE).qmd
+	quarto render $< --to docx
+
+$(RE).pdf: $(RE).qmd
+	quarto render $< --to pdf
 
 $(SI).pdf: $(SI).qmd
 	quarto render $< --to pdf
