@@ -61,6 +61,7 @@ para_val <- yaml::yaml.load_file(here("yml/para.yml"))
 
 ```{r, include=FALSE}
 # Make sure the order is correct
+s_fig("LMAm_LMAs")
 s_fig("vpart")
 
 s_fig("box_inter")
@@ -74,7 +75,6 @@ s_fig("gl_point_np2")
 s_fig("pa_point_np")
 s_fig("pa_point_npc_par")
 
-s_fig("LMAm_LMAs")
 
 # because \stepcounter doesn't work for docx
 eq("LMA")
@@ -336,6 +336,7 @@ A model with lower LOOIC is considered to have better predictive accuracy [@Veht
 For both the GLOPNET and Panama datasets, two-dimensional models (LMAm-LMAs) performed better in cross-validation than one-dimensional (LMA) models (Table 1).
 Thus, predictions of *A*~area~, *R*~area~, and LL were improved by partitioning LMA into separate metabolic and structural components (see details below and Tables 1-2).
 Each of these traits (*A*~area~, *R*~area~, and LL) had a strong positive relationship with either LMAm or LMAs (but not both), which was always stronger than the corresponding relationship with total LMA (Figs. [-@fig-gl_point]-[-@fig-pa_point]).
+In addition, correlations between LMAm and LMAs were weak or absent (`r s_fig("LMAm_LMAs")`).
 
 In the best GLOPNET model (lowest LOOIC), *A*~area~ increased with LMAm and decreased with LMAs, *R*~area~ increased with LMAm and had little dependence on LMAs, and LL increased with LMAs and was independent of LMAm (Tables 1-2; @fig-gl_point).
 
@@ -384,6 +385,7 @@ This paradigm has yielded valuable insights into global trait patterns and remai
 Nevertheless, our results show that much of the apparent simplicity in LMA arises from the conflation of distinct mass components—metabolic (LMAm) and structural (LMAs)—each conferring different functions.
 By decomposing LMA into LMAm and LMAs, we reveal why mass‐based correlations that seem to support a single LES axis can obscure key mechanisms and lead to divergent area‐ vs. mass‐dependence of photosynthetic traits across species and light environments.
 Far from rejecting the utility of the LES, our analysis clarifies its limitations and extends it in a way that can better reconcile variation in photosynthesis, respiration, and leaf lifespan, thereby offering a more nuanced view of leaf functional diversity.
+Specifically, our evidence that metabolic and structural components of LMA vary largely independently indicates that relying on total LMA as a single proxy for both photosynthetic capacity and mechanical toughness can obscure major dimensions of leaf function.
 This refined understanding has implications for both ecological research and modeling frameworks—particularly dynamic global vegetation models—that rely on trait‐based parameters to predict ecosystem processes.　
 
 ## Modeling *A*~max~, *R*~dark~, and LL as functions of metabolic and structural LMA

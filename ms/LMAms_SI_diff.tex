@@ -1,7 +1,7 @@
 % Options for packages loaded elsewhere
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL LMAms_SI_old.tex   Fri Oct 25 09:28:47 2024
-%DIF ADD LMAms_SI.tex       Fri Oct 25 09:28:04 2024
+%DIF DEL LMAms_SI_old.tex   Mon Jan 27 12:31:06 2025
+%DIF ADD LMAms_SI.tex       Mon Jan 27 12:30:54 2025
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -765,7 +765,7 @@ LMA}}%DIFAUXCMD
 %DIFDELCMD < %%%
 \DIFdel{To create simulated datasets to study relationships between
 photosynthetic capacity and LMA , we generated log-normally distributed
-LMAm and LMAs values by sampling ln(LMAm) and ln(LMAs) from normal
+LMAm and LMAs values by sampling ln(LMAm) and ln(LMAs)from normal
 distributions}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
 \citeproc{ref-Osnas2018}{Osnas et al. 2018}}\hspace{0pt}%DIFAUXCMD
 )}\DIFaddend .
@@ -1093,6 +1093,24 @@ constraint of \(\alpha_s\) = 0 and \(\beta_m\) = 0.
 
 \DIFaddbegin \centering{
 
+\includegraphics{../figs/ps_point.pdf}
+
+}
+
+\caption{\label{suppfig-LMAm_LMAs}\DIFadd{Pearson correlation coefficients for
+posterior medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama
+datasets. The non-significant or weak }\emph{\DIFadd{r}} \DIFadd{values indicate that a
+single axis could not accurately represent the two-dimensional space.
+Symbols as in main text Figs. 2-3.}}
+
+\end{suppfig}%DIF > 
+
+\newpage
+
+\begin{suppfig}
+
+\centering{
+
 \includegraphics{../figs/vpart_intra.pdf}
 
 }
@@ -1318,25 +1336,36 @@ partial correlation coefficients (\(\bar{\rho}\)) are shown.}
 
 \newpage
 
-\begin{suppfig}
+\DIFdelbegin %DIFDELCMD < \begin{suppfig}
+%DIFDELCMD < 
 
-\centering{
+%DIFDELCMD < \centering{
+%DIFDELCMD < 
 
-\includegraphics{../figs/ps_point.pdf}
+%DIFDELCMD < \includegraphics{../figs/ps_point.pdf}
+%DIFDELCMD < 
 
-}
+%DIFDELCMD < }
+%DIFDELCMD < 
 
-\caption{\label{suppfig-LMAm_LMAs}Pearson correlation coefficients for
+%DIFDELCMD < \caption{\label{suppfig-LMAm_LMAs}%%%
+\DIFdel{Pearson correlation coefficients for
 posterior medians of LMAm vs LMAs in the (a) GLOPNET and (b) Panama
-datasets. The non-significant or weak \emph{r} values indicate that a
+datasets. The non-significant or weak }\emph{\DIFdel{r}} %DIFAUXCMD
+\DIFdel{values indicate that a
 single axis could not accurately represent the two-dimensional space.
-Symbols as in main text Figs. 2-3.}
+Symbols as in main text Figs. 2-3.}%DIFDELCMD < \MBLOCKRIGHTBRACE
+%DIFDELCMD < 
 
-\end{suppfig}%
+%DIFDELCMD < \end{suppfig}%%%
+%DIF < 
+%DIFDELCMD < 
 
-\newpage
+%DIFDELCMD < \newpage
+%DIFDELCMD < 
 
-\section*{References}\label{references}
+%DIFDELCMD < %%%
+\DIFdelend \section*{References}\label{references}
 \addcontentsline{toc}{section}{References}
 
 \phantomsection\label{refs}
@@ -1410,8 +1439,8 @@ National Academy of Sciences of the United States of
 \DIFdelbegin \DIFdel{America 115, }\DIFdelend \DIFaddbegin \DIFadd{America115:}\DIFaddend 5480--5485. \url{https://doi.org/10.1073/pnas.1803989115}\DIFdelbegin %DIFDELCMD < 
 
 %DIFDELCMD < \bibitem[\citeproctext]{ref-Osnas2013}
-\DIFdel{Osnas, J.L.D., Lichstein, J.W.
-, Reich, P.B., Pacala, S.W., 2013. Global
+\DIFdel{Osnas, J.L.D.
+, Lichstein, J.W., Reich, P.B., Pacala, S.W., 2013. Global
 leaf trait relationships: }%DIFDELCMD < {%%%
 \DIFdel{Mass}%DIFDELCMD < }%%%
 \DIFdel{, area, and the leaf economics spectrum.
