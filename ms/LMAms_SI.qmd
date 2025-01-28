@@ -497,7 +497,7 @@ Pearson correlation coefficients (*r*) for LMA (left column) and posterior media
 Measured traits in the Panama dataset related to photosynthesis and metabolism (nitrogen and phosphorus per-unit leaf area; *N*~area~ and *P*~area~) are better correlated with estimates (posterior medians) of the metabolic LMA component (LMAm) than the structural component (LMAs), whereas the opposite pattern occurs for a measured structural trait (cellulose per-unit leaf area; CL~area~).
 *N*~area~, *P*~area~, and CL~area~ data were not used to fit the models, and are presented here as independent support for the model results.
 Pearson correlation coefficients (*r*) for LMA and the posterior medians of Pearson correlation coefficients ($\bar{r}$) for LMAm and LMAs are shown.
-Analogous results were obtained for *N*~area~ and *P*~area~ for GLOPNET (`r s_fig("gl_point_np2")`).
+Analogous results were obtained for *N*~area~ and *P*~area~ for GLOPNET (@suppfig-gl_point_np2).
 The results shown here include all leaves for which *N*~area~, *P*~area~  and CL~area~ are available.
 
 :::

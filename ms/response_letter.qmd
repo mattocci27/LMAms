@@ -57,12 +57,12 @@ knitr::opts_chunk$set(
 Dear Dr. Niinemets,
 
 We hereby resubmit the manuscript (OECO-D-24-00601), "Decomposing leaf mass into metabolic and structural components explains divergent patterns of trait variation within and among plant species".
-
 We thank the handling editor and the reviewers for their careful attention to detail in our manuscript and for providing comments that have greatly improved the study.
+
 Based on the comments, we have updated the manuscript to reflect the following:
 
 1. **Broader significance:**
-We now emphasize that decomposing LMA into metabolic (LMAm) and structural (LMAs) components has applications well beyond trait‐based ecology, offering a powerful framework for modeling and global change research.
+We now emphasize that decomposing LMA into metabolic (LMAm) and structural (LMAs) components has applications well beyond trait‐based ecology, offering a better framework for modeling and global change research.
 
 2. **Clear take‐home message:**
 The opening paragraph of the Discussion has been reorganized to highlight our main conclusions—namely how a two‐component LMA model helps explain divergent patterns of leaf traits within vs. among species, and how this refined perspective improves trait‐based models.

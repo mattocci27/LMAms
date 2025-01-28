@@ -261,7 +261,6 @@ $$
 \mathrm{E}[\mathrm{LL}_i] = \beta_0\mathrm{LMAm}_{i}^{\beta_m} \mathrm{LMAs}_{i}^{\beta_s}  = \beta_0 (f_i \mathrm{LMA}_{i})^{\beta_m} \bigl\{(1-f_i) \mathrm{LMA}_{i}\bigr\}^{\beta_s} \qquad(4\mathrm{a})
 $$
 
-
 where E[$\cdot$] indicates expected value;
 the $\alpha$, $\beta$, and $\gamma$ terms are fitted parameters;
 and the logarithms of *A*~area~, *R*~area~, and LL are assumed to have a multivariate normal distribution (`r appendix("prior")`).
@@ -336,7 +335,7 @@ A model with lower LOOIC is considered to have better predictive accuracy [@Veht
 For both the GLOPNET and Panama datasets, two-dimensional models (LMAm-LMAs) performed better in cross-validation than one-dimensional (LMA) models (Table 1).
 Thus, predictions of *A*~area~, *R*~area~, and LL were improved by partitioning LMA into separate metabolic and structural components (see details below and Tables 1-2).
 Each of these traits (*A*~area~, *R*~area~, and LL) had a strong positive relationship with either LMAm or LMAs (but not both), which was always stronger than the corresponding relationship with total LMA (Figs. [-@fig-gl_point]-[-@fig-pa_point]).
-In addition, correlations between LMAm and LMAs were weak or absent (`r s_fig("LMAm_LMAs")`).
+In addition, LMAm and LMAs showed only weak correlation in the Panama dataset and no correlation in GLOPNET (`r s_fig("LMAm_LMAs")`).
 
 In the best GLOPNET model (lowest LOOIC), *A*~area~ increased with LMAm and decreased with LMAs, *R*~area~ increased with LMAm and had little dependence on LMAs, and LL increased with LMAs and was independent of LMAm (Tables 1-2; @fig-gl_point).
 
@@ -454,14 +453,15 @@ Together, these constraints explain why *b* > 1 is rarely observed in real lea
 
 ## Implications for Terrestrial Ecosystem Models
 
-Low-dimensional trait tradeoffs have been explored as a means to represent plant functional diversity in the vegetation components of biogeochemical models [@Moorcroft2001; @Bonan2002; @Verheijen2013], with the ultimate goal of adding ecological and physiological realism to coupled Earth system models [ESMs, @Moorcroft2006; @Wullschleger2014].
+Low-dimensional trait tradeoffs have been explored for decades as a means to represent plant functional diversity in the vegetation components of biogeochemical models [@Moorcroft2001; @Bonan2002; @Verheijen2013], with the ultimate goal of adding ecological and physiological realism to coupled Earth system models [ESMs, @Moorcroft2006; @Wullschleger2014].
 Recently, there has been a proliferation of interest in this topic [@Scheiter2013; @Fisher2015; @Sakschewski2015; @Sakschewski2016; @DantasdePaula2021] along with demographic approaches capable of representing the dynamics of diverse communities in ESMs [@Fisher2018].
 Although many models employ the leaf economics spectrum (LES) to parameterize a single axis of trait variation [@Wright2004a], our findings suggest that this one‐dimensional view omits critical nuances.
-Specifically, the weak or absent correlation between metabolic and structural components of LMA in our analysis implies that treating leaf mass per area as a uniform proxy for both photosynthetic capacity and toughness overlooks major axes of leaf function (`r s_fig("LMAm_LMAs")`).
+
+Here, we demonstrate that the correlation between metabolic and structural components of LMA is weak or absent, indicating that treating total LMA as a uniform proxy for both photosynthetic capacity and toughness overlooks major axes of leaf function (`r s_fig("LMAm_LMAs")`).
 Consistent with our conclusion that leaf function is inherently multidimensional, previous work also shows that nitrogen is partitioned into metabolic (e.g., rubisco) versus structural fractions [@Dong2017; @Dong2022], and that more than 20% of total leaf nitrogen in high‐LMA leaves can be bound in cell walls [@Onoda2017].
 Similarly, partitioning leaf phosphorus reveals LMA‐dependent metabolic, structural, and nucleic acid fractions [@Hidaka2011].
 We suggest that future biogeochemical model developments account for these distinct components of leaf construction costs and maintenance, and that models with coupled carbon‐nutrient cycles explicitly represent how LMA, nitrogen, and phosphorus are allocated to different functions.
-Incorporating separate metabolic and structural components within LMA can refine the parameterization of respiration in ESMs— which often assume a direct correspondence between leaf mass and maintenance costs— and also improve trait‐based predictions of plant performance, community assembly, and ecosystem feedbacks under changing environments.
+Incorporating separate metabolic and structural components within LMA can refine the parameterization of respiration in ESMs—which often assume a direct correspondence between leaf mass and maintenance costs—and also improve trait‐based predictions of plant performance, community assembly, and ecosystem feedbacks under changing environments.
 
 # Acknowledgments
 
@@ -621,7 +621,7 @@ The observed separation of LL between sun and shade leaves is accounted for in t
 <!-- ![](../figs/pa_point_par_ll.pdf) -->
 :::
 **Fig. 4:**
-Relationship between leaf lifespan (LL) and LMAs in the Panama dataset, after accounting for the effects of light (suv vs. shade leaves; see `r eq("LL")`b).
+Relationship between leaf lifespan (LL) and LMAs in the Panama dataset, after accounting for the effects of light (sun vs. shade leaves; see `r eq("LL")`b).
 The dashed line indicates the 1:1 relationship expected for residuals on the log-scale.
 The posterior medians of the partial correlation coefficient ($\bar{\rho}$) is shown.
 The results shown here include all leaves in the Panama dataset.
