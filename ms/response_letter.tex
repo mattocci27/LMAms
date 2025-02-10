@@ -176,7 +176,7 @@
 
 
 \author{Masatoshi Katabuchi}
-\date{2025-01-28}
+\date{2025-02-10}
 
 \begin{document}
 
@@ -311,23 +311,22 @@ directly involved in photosynthesis and respiration, while LMAs is tied
 to leaf toughness (e.g., fibers, cell walls) that confers longer leaf
 lifespan.
 
-Regarding your suggestion to fit the model exclusively to
-\emph{A}\textsubscript{area} or \emph{R}\textsubscript{area}, our
-results suggest that LMAs does not strongly influence either of these
-traits on its own. Therefore, restricting the analysis to
-\emph{A}\textsubscript{area} or \emph{R}\textsubscript{area} would not
-substantially constrain LMAs, and thus would likely produce the same
-decomposition of LMA into LMAm and LMAs. In effect, the limited role of
-LMAs in explaining A\emph{\textsubscript{area} or
-}R*\textsubscript{area} alone means those traits do not provide strong
-additional information for partitioning total LMA. Hence, removing the
-other traits from the model would not be expected to change the results
-meaningfully.
-
-We hope these clarifications underscore the physiological rationale for
-separating metabolic vs.~structural components of leaf mass and
-illustrate why our comprehensive, multivariate approach is most
-informative. We appreciate the insight behind your suggestion.
+Regarding the suggestion to fit the model exclusively to
+\emph{A}\textsubscript{area} or \emph{R}\textsubscript{area}: To
+clarify, the models were fit to \emph{A}\textsubscript{area} or
+\emph{R}\textsubscript{area}, LMA, and LL (not
+\emph{N}\textsubscript{area}, \emph{P}\textsubscript{area}, or
+CL\textsubscript{area}). This is explained on lines \textasciitilde XXX,
+and we have now added an additional clarification of this point on lines
+\textasciitilde XXX. Our results suggest that LMAs does not strongly
+influence \emph{A}\textsubscript{area} or \emph{R}\textsubscript{area}.
+Therefore, restricting the analysis to \emph{A}\textsubscript{area} or
+\emph{R}\textsubscript{area} would not substantially constrain LMAs. It
+is possible that the decomposition of LMA into LMAm and LMAs would be
+robust to removing LL from the model-fitting, but we believe the most
+direct way to address our main questions is to include in the model the
+measured traits that we expect to be strongly affected by LMAm and LMAs;
+this includes LL, which we expect to be strongly affected by LMAs.
 
 \begin{quote}
 Some minor comments throughout the text Line 108-111 This statement is
@@ -335,9 +334,13 @@ surely true. Adding degrees of freedom will always make the statistical
 fit better\ldots.
 \end{quote}
 
-We used the term `predictive power' rather than `statistical fit' to
-emphasize our focus on model performance and to account for potential
-overfitting (Line XXX).
+Good point. We have changed `improved statistical fits' to `improved
+predictions and insights' (line XXX). Similarly, in the next sentence,
+we changed `explain variation in other traits' to `predict and
+understand variation in other traits' (line XXX). The new wording
+emphasizes predictive ability (which does not necessarily increase with
+the number of model parameters) as well as the insights gained from
+treating LMA as a composite trait.
 
 \begin{quote}
 Line 220 typo in `abovµe'
@@ -352,10 +355,11 @@ aquatic plants? It might be a worthy discussion point and an indirect
 evidence of the physiological basis of derived LMAs.
 \end{quote}
 
-The unclassified species at the lower end of LMAs are mainly herbaceous
-species (65\% are grasses or forbs), which generally have lower leaf
-tissue density. We discuss how this supports a physiological basis for
-low LMAs in the revised text (Line XXX).
+Thanks for the suggestion. The unclassified species at the lower end of
+LMAs are mainly herbaceous species (65\% are grasses or forbs), which
+generally have lower leaf tissue density. We now discuss how this
+supports a physiological basis for low LMAs in the revised text (Line
+XXX).
 
 \begin{quote}
 Reviewer\# 2: OECO-D-24-00601 is largely well written with few editorial
@@ -385,9 +389,12 @@ multi-functional approach might specifically improve the predictability
 and utility of models.
 \end{quote}
 
-Thank you for emphasizing the broader significance of our work and the
-need to highlight it more explicitly. Below are our responses to your
-specific suggestions.
+We appreciate the suggestion to emphasize the broader significance of
+our work and to more explicitly explain the implications for ecosystem
+models. These points are now addressed in Discussion, where we added new
+text to highlight the broader significance (lines XXX and XXX) and
+specific implications for ecosystem models (lines XXX; e.g., biased
+representation of leaf respiration in single-axis approaches).
 
 \begin{quote}
 Specific comments to help guide revisions: 1) For a study such as this,
@@ -404,10 +411,7 @@ important contribution of this paper and its larger significance.
 We have revised the beginning of the Discussion to clearly state the
 advances beyond prior work. We emphasize the two‐component approach as a
 conceptual advance that helps resolve contradictions in mass‐
-vs.~area‐based trait scaling. We now also include a short example in
-``Implications for Terrestrial Ecosystem Models'' about how ignoring
-LMAm vs.~LMAs can lead to over‐ or under‐estimations of leaf maintenance
-costs.
+vs.~area‐based trait scaling.
 
 \begin{quote}
 \begin{enumerate}
@@ -464,14 +468,15 @@ We have removed this statement.
 \end{enumerate}
 \end{quote}
 
-We removed phrases like ``are broadly consistent,'' which might suggest
-minimal novelty. Instead, we more directly state how the LMAm--LMAs
-partition can motivate new research---for example, further subdividing
-structural tissues or incorporating nutrient fractions (lines
-\textasciitilde XXX). While we did not explicitly model additional
-nutrients (N, P, K) here, we note how future work could integrate such
-traits into our framework to further improve predictive modeling of leaf
-function across environments.
+Thank you for the suggestion. We removed phrases like ``are broadly
+consistent,'' which might suggest minimal novelty. Instead, we more
+directly state how the LMAm--LMAs partition can motivate new
+research---for example, further subdividing structural tissues or
+incorporating nutrient fractions (lines \textasciitilde XXX). While we
+did not explicitly model additional nutrients (N, P, K) here, we note
+how future work could integrate such traits into our framework to
+further improve predictive modeling of leaf function across
+environments.
 
 \begin{quote}
 \begin{enumerate}
@@ -509,8 +514,14 @@ repetitive statements.
 
 We have clarified in the figure caption that Fig. 1 illustrates
 simulated data drawn from normal distributions, displayed as points to
-mimic empirical sampling. \emph{A}\textsubscript{max} was assumed to be
-proportional to leaf area (Line XXX)
+mimic empirical sampling (now explained on lines XXX). We agree that it
+would be possible to represent these relationships as continuous
+surfaces, but this would require a more complicated three-dimensional
+figure (e.g., Fig. 1a would show LMAm and LMAs on the x- and y-axes, and
+the joint probability density on the z-axis). We think it is more
+helpful to show the simulation results with a sample of points,
+analogous to an empirical trait dataset (we have now clarified this in
+the figure caption on lines XXX).
 
 
 
