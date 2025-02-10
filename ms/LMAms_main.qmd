@@ -395,7 +395,7 @@ In any case, an increase in *A*~area~ with LMAm but not LMAs, as observed for bo
 *R*~dark~ per-unit leaf area (*R*~area~) increased with LMAm and was unrelated to LMAs (Figs. [-@fig-gl_point]-[-@fig-pa_point] and Table 2), consistent with the view that LMAs is comprised of non-metabolic leaf mass components, such as cellulose, lignin, and other fibres [@Onoda2011; @Kitajima2012; @Kitajima2016].
 Our analysis shows that evergreen species and shade leaves allocate a higher fraction of their LMA to structural mass compared with deciduous species and sun leaves (Figs. `r s_fig_num("box_frac_de")`-`r s_fig_num("box_frac_pa")`)—patterns broadly consistent with published measurements of cell wall (fiber) content [@Onoda2011; @Kitajima2016].
 Thus, evergreen species have high LMA primarily due to high LMAs, whereas sun leaves have high LMA primarily due to high LMAm.
-This explains why Rarea increases with LMA from shade leaves to sun (Figs. [-@fig-pa_point]d-f), whereas Rarea is similar between evergreen and deciduous leaves despite higher evergreen LMA (Figs. [-@fig-pa_point]d-f).
+This explains why *R*~area~ increases with LMA from shade leaves to sun (Figs. [-@fig-pa_point]d-f), whereas *R*~area~ is similar between evergreen and deciduous leaves despite higher evergreen LMA (Figs. [-@fig-pa_point]d-f).
 
 LL increased with LMAs but was unrelated to LMAm (Figs. [-@fig-gl_point]-[-@fig-pa_point] and Tables 1-2), consistent with well-established relationships between leaf fibre content, toughness, and LL [@Onoda2011; @Onoda2017; @Kitajima2012; @Kitajima2016].
 For a given LMAs, shade leaves had longer LL than sun leaves ([@fig-pa_point]i), suggesting that toughness alone does not determine LL.
