@@ -1,7 +1,7 @@
 % Options for packages loaded elsewhere
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL LMAms_main_old.tex   Mon Feb 10 15:44:04 2025
-%DIF ADD LMAms_main.tex       Mon Feb 10 15:43:48 2025
+%DIF DEL LMAms_main_old.tex   Tue Feb 11 08:10:25 2025
+%DIF ADD LMAms_main.tex       Tue Feb 11 08:10:03 2025
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -368,9 +368,13 @@ of leaf functional variation.
 Leaf functional traits play an important role in ecological and
 physiological tradeoffs (\citeproc{ref-Wright2004a}{Wright et al. 2004};
 \citeproc{ref-Reich2014}{Reich 2014}; \citeproc{ref-Onoda2017}{Onoda et
-al. 2017}) and in carbon and nutrient cycling
-(\citeproc{ref-Tcherkez2017}{Tcherkez et al. 2017}; e.g.,
-\citeproc{ref-Huntingford2017}{Huntingford et al. 2017}). Thus,
+al. 2017}) and in carbon and nutrient cycling (\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\citeproc{ref-Tcherkez2017}{Tcherkez et al. 2017}}\hspace{0pt}%DIFAUXCMD
+; }\DIFdelend e.g.,
+\DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\citeproc{ref-Tcherkez2017}{Tcherkez et al. 2017}}\hspace{0pt}%DIFAUXCMD
+;
+}\DIFaddend \citeproc{ref-Huntingford2017}{Huntingford et al. 2017}). Thus,
 understanding the causes and consequences of leaf trait variation is an
 important goal in ecology, plant physiology, and biogeochemistry
 (\citeproc{ref-Bonan2002}{Bonan et al. 2002};
@@ -1000,12 +1004,25 @@ species \DIFdelbegin \DIFdel{but decreases with increasing LMA within species }\
 \citeproc{ref-Osnas2018}{Osnas et al. 2018}). \DIFdelbegin \DIFdel{The failure of LMAs to
 provide robust predictions of LL across canopy positions may reflect
 factors unrealted to leaf toughness − e.g.
-, how optimal LL depends on
+}\DIFdelend \DIFaddbegin \DIFadd{We discuss potential
+drivers of this pattern in the next section.
+}
+
+\DIFadd{Finally, the clustering of unclassified species (not reported as
+evergreen or deciduous) at the lower extreme of LMAs (Figs.
+\ref{fig-gl_point}c,f,i) further supports the physiological basis of the
+modeled LMA components (LMAm and LMAs). Sixty-five percent of the
+unclassified species are grasses or herbaceous forbs, whose leaves
+typically exhibit reduced tissue density and lower fiber content
+(\mbox{%DIFAUXCMD
+\citeproc{ref-Onoda2011}{Onoda et al. 2011}}\hspace{0pt}%DIFAUXCMD
+)}\DIFaddend , \DIFdelbegin \DIFdel{how optimal LL depends on
 light availability (\mbox{%DIFAUXCMD
 \citeproc{ref-Kikuzawa1991}{Kikuzawa 1991}}\hspace{0pt}%DIFAUXCMD
 ) − as
 well as
-variation in leaf toughness for a given value of LMAs . In a
+variation in leaf toughness for a given value of LMAs }\DIFdelend \DIFaddbegin \DIFadd{which likely explain
+their low LMAs}\DIFaddend . \DIFdelbegin \DIFdel{In a
 global meta-analysis,leaf toughness was strongly related to toughness
 per-unit leaf tissue density,but only weakly related to leaf thickness
 or density (\mbox{%DIFAUXCMD
@@ -1019,49 +1036,41 @@ for cellulose content (\% of leaf mass) than cell wall content
 includes cellulose, as well as other fibres that provide less structural
 toughness) (\mbox{%DIFAUXCMD
 \citeproc{ref-Kitajima2016}{Kitajima et al. 2016}}\hspace{0pt}%DIFAUXCMD
-). Thus,
-just as not all LMA is equal, it is almost certainly true that not all
+). Thus, just as not all LMA is equal, it is almost certainly true that not all
 LMAs is equal, with some LMAscomponents (e.g. , cellulose) imparting
-greater toughness and longevity than others (e.g. , lignin in secondary
+greater toughness and longevity than others }\DIFdelend \DIFaddbegin \DIFadd{Herbaceous taxa with rapid leaf turnover may have little
+incentive to invest in structural leaf mass, whereas woody species often
+rely on thicker‐walled tissues to maintain longevity under stress }\DIFaddend (e.g.,
+\DIFdelbegin \DIFdel{lignin in secondary
 cell walls of vascular tissue, \mbox{%DIFAUXCMD
 \citeproc{ref-Kitajima2016}{Kitajima et
 al. 2016}}\hspace{0pt}%DIFAUXCMD
-). }\DIFdelend \DIFaddbegin \DIFadd{We discuss potential
-drivers of this pattern in the next section.
-}\DIFaddend 
+). }%DIFDELCMD < 
 
-\DIFdelbegin \DIFdel{In summary, the dependencies of }\emph{\DIFdel{A}}%DIFAUXCMD
-\DIFdel{\textsubscript{area}}\DIFdelend \DIFaddbegin \DIFadd{Finally, the clustering of unclassified species (not reported as
-evergreen or deciduous) at the lower extreme of LMAs (Figs.
-\ref{fig-gl_point}c,f,i) further supports the physiological basis of the
-modeled LMA components (LMAm and LMAs). Sixty-five percent of the
-unclassified species are grasses or herbaceous forbs, whose leaves
-typically exhibit reduced tissue density and lower fiber content
-(\mbox{%DIFAUXCMD
-\citeproc{ref-Onoda2011}{Onoda et al. 2011}}\hspace{0pt}%DIFAUXCMD
-)}\DIFaddend , \DIFdelbegin \emph{\DIFdel{R}}%DIFAUXCMD
+%DIFDELCMD < %%%
+\DIFdel{In summary, the dependencies of }\emph{\DIFdel{A}}%DIFAUXCMD
+\DIFdel{\textsubscript{area},
+}\emph{\DIFdel{R}}%DIFAUXCMD
 \DIFdel{\textsubscript{area}, and LL on model-inferred values of LMAm
 and LMAs are broadly consistent with previous analyses of measured
 traits. Our results support the hypothesis that LMA can be partitioned
 into metabolic and structural components, the latter having a
-maintenance respiration rate indistinguishable from
-zero. Like total
+maintenance respiration rate indistinguishable from zero. Like total
 LMA, LMAs is likely a composite trait, including cuticle and fibres with
 different functions. A more refined modeling approach that links
 different structural components to specific functions (e.g., mesophyll
 cell wall thickness that imparts overall lamina toughness vs.~fibres in
 vascular tissue that contribute to cavitation resistance) could
 potentially provide a mechanistic explanation for LL variation across
-canopy positions as well as ecophysiological tradeoffs across edaphic-climate gradients}\DIFdelend \DIFaddbegin \DIFadd{which likely explain
-their low LMAs. Herbaceous taxa with rapid leaf turnover may have little
-incentive to invest in structural leaf mass, whereas woody species often
-rely on thicker‐walled tissues to maintain longevity under stress Onoda
-et al. (\mbox{%DIFAUXCMD
-\citeproc{ref-Onoda2017}{2017}}\hspace{0pt}%DIFAUXCMD
-). Because LMA encompasses varying
-densities and chemical compositions, distinguishing its metabolic from
-its structural components is crucial for accurately modeling leaf
-function across diverse plant forms}\DIFaddend .
+canopy positions as well as ecophysiological tradeoffs across edaphic-climate gradients}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\citeproc{ref-Diaz2016}{Díaz et al. 2016}}\hspace{0pt}%DIFAUXCMD
+;
+\mbox{%DIFAUXCMD
+\citeproc{ref-Onoda2017}{Onoda et al. 2017}}\hspace{0pt}%DIFAUXCMD
+). Because LMA encompasses
+varying densities and chemical compositions, distinguishing its
+metabolic from its structural components is crucial for accurately
+modeling leaf function across diverse plant forms}\DIFaddend .
 
 \subsection{Implications for understanding LL
 variation}\label{implications-for-understanding-ll-variation}
@@ -1246,14 +1255,14 @@ future biogeochemical model developments }\DIFdelend \DIFaddbegin
 \DIFadd{Future biogeochemical model development should }\DIFaddend consider multiple axes of
 leaf functional diversity, and \DIFdelbegin \DIFdel{that }\DIFdelend models with coupled carbon-nutrient
 cycles \DIFaddbegin \DIFadd{should }\DIFaddend consider how LMA, nitrogen, and phosphorus are allocated
-to different functions\DIFaddbegin \DIFadd{. Single-axis approaches could not capture the
+to different functions\DIFaddbegin \DIFadd{. Single-axis approaches will not capture the
 divergent patterns revealed by our analysis---e.g., LMA variation
 between deciduous and evergreen species due to structural leaf mass
 (with minor implications for }\emph{\DIFadd{A}}\DIFadd{\textsubscript{area} and
 }\emph{\DIFadd{R}}\DIFadd{\textsubscript{area}) versus LMA variation between sun and shade
 due to metabolic leaf mass (with strong effects on
 }\emph{\DIFadd{A}}\DIFadd{\textsubscript{area} and }\emph{\DIFadd{R}}\DIFadd{\textsubscript{area}). More
-generally, single-axis approaches would could not capture variation in
+generally, single-axis approaches would will not capture variation in
 photosynthesis and respiration associated with different LMA components,
 such as structural LMA variation associated with leaf hydraulics and
 leaf lifespan (\mbox{%DIFAUXCMD

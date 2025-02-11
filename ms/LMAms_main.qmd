@@ -10,6 +10,10 @@ crossref:
   eq-prefix: Equation
 project:
   execute-dir: ms
+nocite: |
+  @Bonan2002
+  @Fisher2015
+  @Sakschewski2016
 format:
   pdf:
     # toc: false
@@ -160,14 +164,13 @@ LMAm and LMAs were nearly independent of each other in both global and Panama da
 
 # Introduction
 
-Leaf functional traits play an important role in ecological and physiological tradeoffs [@Wright2004a; @Reich2014; @Onoda2017] and in carbon and nutrient cycling [e.g., @Huntingford2017; @Tcherkez2017].
+Leaf functional traits play an important role in ecological and physiological tradeoffs [@Wright2004a; @Reich2014; @Onoda2017] and in carbon and nutrient cycling [e.g., @Tcherkez2017; @Huntingford2017].
 Thus, understanding the causes and consequences of leaf trait variation is an important goal in ecology, plant physiology, and biogeochemistry [@Bonan2002; @Poorter2009].
 Different leaf assemblages exhibit markedly different patterns of trait variation.
 For example, across global species, whole-leaf values of traits related to photosynthesis and metabolism (e.g., the photosynthetic capacity, respiration rate, or nutrient content of entire leaves) tend to increase more strongly with leaf area than leaf mass [@Osnas2013],
 whereas the opposite pattern (strong mass-dependence of these same traits) is observed within species across light gradients [@Osnas2018; @Osada2001; @Niinemets2015].
 Functional groups (e.g., deciduous vs. evergreen angiosperms) also differ from each other in terms of how variation in photosynthetic and metabolic traits depends on leaf mass and area [@Lusk2008; @Osnas2018].
 These divergent patterns suggest the presence of multiple drivers of trait variation.
-<!-- @Huntingford2017; @Tcherkez2017 -->
 
 Strong interspecific correlations among leaf mass per area (LMA), leaf lifespan (LL), and mass-normalized leaf traits related to photosynthesis and metabolism (hereafter, 'metabolic traits') have been interpreted as evidence for a single dominant axis of leaf functional variation [@Wright2004a].
 However, the interpretation of these strong correlations, which can result from mass-normalization of area-dependent traits [@Lloyd2013; @Osnas2013], is controversial.
@@ -178,7 +181,6 @@ In global analyses, normalizing leaf traits by mass/LL yields similarly weak cor
 Area-dependence of metabolic traits and the inconsistent correlation strengths obtained from different normalizers [@Lloyd2013; @Osnas2013] suggest that strong mass-based correlations should not, by themselves, be taken as strong evidence for a single dominant axis of leaf functional diversity.
 The existence of multiple important axes of leaf functional diversity would not invalidate mass-normalization or the LES [@Westoby2013].
 This multi-dimensionality would, however, have important implications for our understanding of leaf function [@Onoda2017; @Niinemets2006a], the role of trait variation in community assembly [e.g., @Falster2017; @Lichstein2021], and how to accurately represent trait variation in ecosystem models, including dynamic global vegetation models (DGVMs; e.g., Bonan et al. 2002; Fisher et al. 2015; Sakschewski et al. 2016).
-<!-- (DGVMs; e.g., [@Bonan2002; @Fisher2015; @Sakschewski2016]) -->
 
 To understand why the same data can be interpreted as either supporting or opposing the existence of a single dominant axis of leaf trait variation, consider the conceptual model proposed by @Osnas2018, in which LMA is comprised of two additive components:
 metabolic LMA (LMAm) -- the mass per area of chloroplasts and other metabolically active leaf components that contribute directly to photosynthesis and respiration -- and structural LMA (LMAs) -- the mass per area of structural leaf components that contribute to toughness and durability [@Kitajima2012; @Kitajima2016; @Onoda2017].
@@ -404,7 +406,7 @@ We discuss potential drivers of this pattern in the next section.
 
 Finally, the clustering of unclassified species (not reported as evergreen or deciduous) at the lower extreme of LMAs (Figs. [-@fig-gl_point]c,f,i) further supports the physiological basis of the modeled LMA components (LMAm and LMAs).
 Sixty-five percent of the unclassified species are grasses or herbaceous forbs, whose leaves typically exhibit reduced tissue density and lower fiber content [@Onoda2011], which likely explain their low LMAs.
-Herbaceous taxa with rapid leaf turnover may have little incentive to invest in structural leaf mass, whereas woody species often rely on thicker‐walled tissues to maintain longevity under stress [e.g., @Diaz2016, @Onoda2017].
+Herbaceous taxa with rapid leaf turnover may have little incentive to invest in structural leaf mass, whereas woody species often rely on thicker‐walled tissues to maintain longevity under stress [e.g., @Diaz2016; @Onoda2017].
 Because LMA encompasses varying densities and chemical compositions, distinguishing its metabolic from its structural components is crucial for accurately modeling leaf function across diverse plant forms.
 
 ## Implications for understanding LL variation
@@ -458,8 +460,8 @@ Consistent with our conclusion that leaf function is multi-dimensional, analyses
 Similarly, partitioning leaf phosphorus reveals substantial, LMA-dependent metabolic, structural, and nucleic acid fractions [@Hidaka2011].
 
 Future biogeochemical model development should consider multiple axes of leaf functional diversity, and models with coupled carbon-nutrient cycles should consider how LMA, nitrogen, and phosphorus are allocated to different functions.
-Single-axis approaches could not capture the divergent patterns revealed by our analysis—e.g., LMA variation between deciduous and evergreen species due to structural leaf mass (with minor implications for *A*~area~ and *R*~area~) versus LMA variation between sun and shade due to metabolic leaf mass (with strong effects on *A*~area~ and *R*~area~).
-More generally, single-axis approaches would could not capture variation in photosynthesis and respiration associated with different LMA components, such as structural LMA variation associated with leaf hydraulics and leaf lifespan [@Simonin2012] versus metabolic LMA variation associated with photosynthetic responses to changing nutrient conditions [@Walker2014a].
+Single-axis approaches will not capture the divergent patterns revealed by our analysis—e.g., LMA variation between deciduous and evergreen species due to structural leaf mass (with minor implications for *A*~area~ and *R*~area~) versus LMA variation between sun and shade due to metabolic leaf mass (with strong effects on *A*~area~ and *R*~area~).
+More generally, single-axis approaches would will not capture variation in photosynthesis and respiration associated with different LMA components, such as structural LMA variation associated with leaf hydraulics and leaf lifespan [@Simonin2012] versus metabolic LMA variation associated with photosynthetic responses to changing nutrient conditions [@Walker2014a].
 Because structural and metabolic LMA components appear largely decoupled, they should be treated separately in ESMs to accurately capture leaf functional responses to different global change drivers.
 
 # Acknowledgments

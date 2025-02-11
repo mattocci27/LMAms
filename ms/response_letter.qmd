@@ -69,7 +69,7 @@ The opening paragraph of the Discussion has been reorganized to highlight our ma
 
 3. **Physiological context:**
 We refined our explanation of how LMAs vs. LMAm differ functionally (toughness/longevity vs. photosynthetic capacity/respiration).
-We also moved the former Fig. S10 to Fig. S1 to highlight those two axes are nearly independent in the Discussion.
+We also moved the former Fig. S10 to Fig. S1 to better highlight the two axes in the Discussion.
 
 The programming code and the data supporting the findings of this study will be deposited at Zenodo (https://zenodo.org).
 The corresponding Github (https://github.com/mattocci27/LMAms) is already publicly available.
@@ -100,8 +100,8 @@ The word file has slightly different line numbers.
 > Handling Editor:  The referees were generally positive regarding  OECO-D-24-00601 by Katabuchi et al., both recommending the paper could be acceptable with minor revisions.  The revisions recommended center around 1) revising the paper (mostly discussion) to broaden the appeal to an audience beyond the trait-based reader; 2) more effectively presenting the main, "take-home" message and its implications, and 3) providing clarity on the physiological dimensions and their implications.  Novelty was listed as a concern, but both referees felt the study should lead to good discussions and thus will be well received by the trait-based audience.  However, the authors could improve the impact of the discussion by emphasizing better the strength of the findings and their contributions to our understanding, while worrying less about how this work confirms prior work.  if the work is deemed confirmatory, it could have difficulties getting priority for publication.  We look forward to
 seeing the revisions.
 
-We have substantially revised the Discussion (particularly its opening paragraph) to emphasize how decomposing LMA into LMAm and LMAs can be applied in broader ecological and modeling contexts.
-In particular, we highlight how the framework clarifies divergent within‐ vs. among‐species trait patterns and how Earth system models can benefit from more nuanced treatment of LMA components (final paragraphs of the Discussion).
+We have substantially revised the Discussion (particularly the first Discussion paragraph and the newly added last Discussion paragraph) to emphasize how decomposing LMA into LMAm and LMAs can be applied in broader ecological and modeling contexts.
+In particular, we highlight how the framework clarifies divergent within‐ vs. among‐species trait patterns and how Earth system models can benefit from more nuanced treatment of LMA components.
 These changes underscore the novelty and global significance of partitioning LMA—beyond simply confirming prior work.
 
 > Reviewer #1: The manuscript develops a statistical method to separate leaf mass per area (LMA) into structural (LMAs) and metabolic (LMAm) components with the assumption that the metabolic component should be more correlated with other metabolic traits such as area-based Amax and Rdark and that the structural component should be more correlated with leaf longevity. Such analysis was conducted for two data sets - GLOPNET that only has sun-lit leaf traits and the BCI data that has both sun-lit and shade leaf traits. Overall, evergreen species have lower LMAm fraction than deciduous species and shade leaves have lower LMAm fraction than conspecific sunlit leaves. The analysis argues for going beyond the single-axis mass-based leaf economics spectrum and the need to consider at least the structural and metabolic dimensions in applications such as Earth System Modeling.
@@ -115,7 +115,7 @@ In the revised text (lines 365-380 in the tracked‐changes PDF), we highlighted
 This underscores that LMAm captures metabolically active tissues (e.g., mesophyll) directly involved in photosynthesis and respiration, while LMAs reflects structural components (e.g., fibers, cell walls) tied to leaf toughness and longevity, yet contributes little to maintenance respiration.
 
 Regarding the suggestion to fit the model exclusively to *A*~area~ or *R*~area~:
-To clarify, the models were fit to *A*~area~ or *R*~area~, LMA, and LL (not *N*~area~, *P*~area~, or CL~area~).
+To clarify, the models were fit to *A*~area~, *R*~area~, LMA, and LL (not *N*~area~, *P*~area~, or CL~area~).
 This is explained on lines 131-134, and we have now added an additional clarification of this point on lines 227-228
 Our results suggest that LMAs does not strongly influence *A*~area~ or *R*~area~.
 Therefore, restricting the analysis to *A*~area~ or *R*~area~ would not substantially constrain LMAs.
@@ -149,13 +149,14 @@ table(d$leaf_habit, d$growth_form)
 > Reviewer# 2: OECO-D-24-00601 is largely well written with few editorial mistakes and points of poor clarity. The science is sound, but novelty does not appear high as currently presented.  The focus is to dissect the Leaf mass per area metrics into sub-component contributions of physiology and structure, noting focusing on just LMA as a predictor is too simple.  Most people would probably agree with the simplicity of using LMA, but this is also its beauty and a core rationale for the trait-based approach which is trying to get around the complexity and potential morass of specific details that contribute to fitness but may be difficult to measure and model on large populations. Overall, the exercise presented should be interesting to the trait based audience, which is sizable, though probably not a larger audience as it appears to be concentrating on certain details of a focused nature.  The overall conclusion that a one dimensional leaf function is multidimensional and one dimensional treatments are unsatisfying, and may be underselling the overall trait-based approach which does consider multiple function beyond LMA. To argue that models should consider multiple axes of leaf functional diversity and link to nutrients states the obvious, and in the end is not satisfying, especially since this study did not incorporate nutrients such as N, P, K.  I dont recommend that the core of the study be altered, but do suggest the discussion be refocused slightly to be more appealing to a broader audience and to finish with conclusions that go beyond the obvious to perhaps address how the multi-functional approach might specifically improve the predictability and utility of models.
 
 We appreciate the suggestion to emphasize the broader significance of our work and to more explicitly explain the implications for ecosystem models.
-These points are now addressed in Discussion, where we added new text to highlight the broader significance (lines 330-353) and specific implications for ecosystem models (lines 516-528; e.g., biased representation of leaf respiration in single-axis approaches).
+These points are now addressed in Discussion, where we added new text to highlight the broader significance (lines 330-353) and specific implications for ecosystem models (lines 516-528; e.g., biased representation of photosynthesis and leaf respiration in single-axis approaches).
 
 > Specific comments to help guide revisions:
 > 1) For a study such as this, the first paragraph of the discussion is the central element that can capture or turn-off a broader audience. If it effectively summarizes the take home message and its broader significance, then the study can hold the readers attention, if it does not, it loses the readers.  In this regard, the opening of the discussion is weak, and the take-home message is not clear, giving the paper the sense it is mired in the weeds. Consider refocusing the start of the introduction to emphasize the important contribution of this paper and its larger significance.
 
-We have revised the beginning of the Discussion to clearly state the advances beyond prior work.
-We emphasize the two‐component approach as a conceptual advance that helps resolve contradictions in mass‐ vs. area‐based trait scaling.
+We have revised the beginning of the Discussion to focus it on a clear, simple take-home message:
+Decomposing LMA into structural and metabolic components explains divergent inter- and intraspecific patterns in leaf trait variation that cannot be explained by a single trait axis.
+Therefore, understanding leaf functional variation and accurately representing this variation in ecosystem models will require at least two leaf trait dimensions.
 
 > 2) A lot of results are reiterated in the discussion, possibly at the expense of interpretation and placing the finding in the context of the literature.  Please consider less results presentation in favor of more explanation of the results and their interpretation. For example, on line 384-393, why are these points important, and why is it worth noting median LMA's of functional groups?  Usually, placing supplemental data such as this as a key point of a paragraph on the second page of the discussion makes the reader wonder why the data is not presented in the main text, and why a paragraph in this position is not emphasizing findings in the main text.
 
@@ -170,8 +171,8 @@ We have removed this statement.
 
 Thank you for the suggestion.
 We removed phrases like “are broadly consistent,” which might suggest minimal novelty.
-Instead, we more directly state how the LMAm–LMAs partition can motivate new research.
-In the revised text, we describe future biogeochemical model development should consider multiple axes (i.e., LMAm and LMAs) of leaf functional diversity, and models with coupled carbon-nutrient cycles should consider how LMA, nitrogen, and phosphorus are allocated to different functions (lines 516-528).
+Instead of summarizing the results, we now focus on the physiological basis of low LMAs in unclassified species, which includes herbaceous species like grasses and forbs (lines 392-419; see our response to Reviewer 1).
+We also more directly state how the LMAm–LMAs partitioning can motivate new research, such as integrating this partitioning with nutrient cycling models (lines 516-528).
 
 > 5) I got a sense the paper is repetitious and could be proofed to remove redundancy.
 
