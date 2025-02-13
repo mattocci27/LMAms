@@ -475,10 +475,11 @@ We also thank Ülo Niinemets and two anonymous reviewers, whose comments greatly
 
 We thank the Andrew W. Mellon Foundation for supporting this work.
 MK was supported by
-a Xishuangbanna State Rainforest Talent Support Program (E4BN041B01),
-a CAS President's International Fellowship Initiative (2020FYB0003),
-a ZiHui (Wisdom) Yunnan Program (202203AM140026), and
-a Postdoctoral Fellowship for Research Abroad from the Japan Society for the Promotion of Science (25-504).
+the Xingdian Talent Support Program of Yunnan Province,
+the Xishuangbanna State Rainforest Talent Support Program (E4BN041B01),
+the CAS President's International Fellowship Initiative (2020FYB0003),
+the ZiHui (Wisdom) Yunnan Program (202203AM140026), and
+the Postdoctoral Fellowship for Research Abroad from the Japan Society for the Promotion of Science (25-504).
 
 ## Conflicts of interest/Competing interests
 
