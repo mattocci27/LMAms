@@ -180,6 +180,6 @@ We also revised the sections “Implications for understanding LL variation” a
 
 > 6) Not clear about Figure 1.  If it is theoretical data, then why not express as continuous responses rather than specific data points? Please be more explicit in the legend regarding how the data were generated.  Summarize this in the legend for Fig 1 and specifically note it is a simulated data set generated from xxx, as explained in Section S5.
 
-We have clarified in the figure caption that Fig. 1 illustrates simulated data drawn from normal distributions, displayed as points to mimic empirical sampling (now explained on lines 720-721).
+We have clarified in the figure caption that Fig. 1 illustrates simulated data drawn from normal distributions, displayed as points to mimic empirical sampling (now explained on lines 721-722).
 We agree that it would be possible to represent these relationships as continuous surfaces, but this would require a more complicated three-dimensional figure (e.g., Fig. 1a would show LMAm and LMAs on the x- and y-axes, and the joint probability density on the z-axis).
-We think it is more helpful to show the simulation results with a sample of points, analogous to an empirical trait dataset (we have now clarified this in the figure caption on lines 727-728).
+We think it is more helpful to show the simulation results with a sample of points, analogous to an empirical trait dataset (we have now clarified this in the figure caption on lines 728-729).
