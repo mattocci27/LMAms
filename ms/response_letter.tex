@@ -1,0 +1,529 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  12pt,
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage[default]{sourcesanspro}
+\usepackage{sourcecodepro}
+\usepackage{xcolor}
+\usepackage{mdframed}
+% Define blockquote colors
+\definecolor{blockquote-border}{RGB}{221,221,221}
+\definecolor{blockquote-text}{RGB}{119,119,119}
+% Define custom blockquote environment
+\newmdenv[
+  rightline=false,
+  bottomline=false,
+  topline=false,
+  linewidth=3pt,
+  linecolor=blockquote-border,
+  skipabove=\parskip,
+  innerleftmargin=10pt,
+  innerrightmargin=0pt,
+  frametitlebackgroundcolor=gray!20
+]{customblockquote}
+\renewenvironment{quote}
+  {\begin{customblockquote}\color{blockquote-text}\ignorespaces}
+  {\end{customblockquote}}
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdfauthor={Masatoshi Katabuchi},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\author{Masatoshi Katabuchi}
+\date{2025-02-13}
+
+\begin{document}
+
+
+Dear Dr.~Niinemets,
+
+We hereby resubmit the manuscript (OECO-D-24-00601), ``Decomposing leaf
+mass into metabolic and structural components explains divergent
+patterns of trait variation within and among plant species''. We thank
+the handling editor and the reviewers for their careful attention to
+detail in our manuscript and for providing comments that have greatly
+improved the study.
+
+Based on the comments, we have updated the manuscript to reflect the
+following:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Broader significance:} We now emphasize that decomposing LMA
+  into metabolic (LMAm) and structural (LMAs) components has
+  applications well beyond trait‐based ecology, offering a better
+  framework for modeling and global change research.
+\item
+  \textbf{Clear take‐home message:} The opening paragraph of the
+  Discussion has been reorganized to highlight our main
+  conclusions---namely how a two‐component LMA model helps explain
+  divergent patterns of leaf traits within vs.~among species, and how
+  this refined perspective improves trait‐based models.
+\item
+  \textbf{Physiological context:} We refined our explanation of how LMAs
+  vs.~LMAm differ functionally (toughness/longevity vs.~photosynthetic
+  capacity/respiration). We also moved the former Fig. S10 to Fig. S1 to
+  better highlight the two axes in the Discussion.
+\end{enumerate}
+
+The programming code and the data supporting the findings of this study
+will be deposited at Zenodo (https://zenodo.org). The corresponding
+Github (https://github.com/mattocci27/LMAms) is already publicly
+available.
+
+We believe these revisions strengthen the manuscript and clarify both
+the novelty and broader applications of our findings.
+
+Below we provide detailed responses. The editing history is recorded in
+a separate pdf file.
+
+Sincerely,
+
+Masatoshi Katabuchi
+
+On behalf of the authors: Masatoshi Katabuchi, Kaoru Kitajima, S. Joseph
+Wright, Sunshine A. Van Bael, Jeanne L. D. Osnas, and Jeremy W.
+Lichstein
+
+Corresponding author and contact information: Key Laboratory of Tropical
+Forest Ecology, Xishuangbanna Tropical Botanical Garden, Chinese Academy
+of Sciences, Mengla, Yunnan 666303, China\\
+Email: katabuchi@xtbg.ac.cn; mattocci27@gmail.com
+
+\newpage
+
+\section{Responses}\label{responses}
+
+Please note that line numbers refer to LMAms\_main\_diff.pdf that
+contains editing history. The word file has slightly different line
+numbers.
+
+\begin{quote}
+Handling Editor: The referees were generally positive regarding
+OECO-D-24-00601 by Katabuchi et al., both recommending the paper could
+be acceptable with minor revisions. The revisions recommended center
+around 1) revising the paper (mostly discussion) to broaden the appeal
+to an audience beyond the trait-based reader; 2) more effectively
+presenting the main, ``take-home'' message and its implications, and 3)
+providing clarity on the physiological dimensions and their
+implications. Novelty was listed as a concern, but both referees felt
+the study should lead to good discussions and thus will be well received
+by the trait-based audience. However, the authors could improve the
+impact of the discussion by emphasizing better the strength of the
+findings and their contributions to our understanding, while worrying
+less about how this work confirms prior work. if the work is deemed
+confirmatory, it could have difficulties getting priority for
+publication. We look forward to seeing the revisions.
+\end{quote}
+
+We have substantially revised the Discussion (particularly the first
+Discussion paragraph and the newly added last Discussion paragraph) to
+emphasize how decomposing LMA into LMAm and LMAs can be applied in
+broader ecological and modeling contexts. In particular, we highlight
+how the framework clarifies divergent within‐ vs.~among‐species trait
+patterns and how Earth system models can benefit from more nuanced
+treatment of LMA components. These changes underscore the novelty and
+global significance of partitioning LMA---beyond simply confirming prior
+work.
+
+\begin{quote}
+Reviewer \#1: The manuscript develops a statistical method to separate
+leaf mass per area (LMA) into structural (LMAs) and metabolic (LMAm)
+components with the assumption that the metabolic component should be
+more correlated with other metabolic traits such as area-based Amax and
+Rdark and that the structural component should be more correlated with
+leaf longevity. Such analysis was conducted for two data sets - GLOPNET
+that only has sun-lit leaf traits and the BCI data that has both sun-lit
+and shade leaf traits. Overall, evergreen species have lower LMAm
+fraction than deciduous species and shade leaves have lower LMAm
+fraction than conspecific sunlit leaves. The analysis argues for going
+beyond the single-axis mass-based leaf economics spectrum and the need
+to consider at least the structural and metabolic dimensions in
+applications such as Earth System Modeling.
+\end{quote}
+
+Thank you so much for your positive comments and constructive feedback.
+
+\begin{quote}
+Overall, I enjoyed reading the manuscript, which attempts to decompose
+LMA that is long known to be a very `complex' trait. My main concern is
+that the derivation of LMAs and LMAm, albeit informative, is largely
+statistical. What is the key evidence that the decomposition makes
+physiological sense? In my understanding, the analysis with Narea,
+Parea, CLarea (Fig. S7-S9) is somewhat relevant but those three traits
+are also complex. And Fig. S8 shows LMA rather than LMAs or LMAm are
+better correlated with Narea, Parea, and CLarea. I was wondering whether
+it would be helpful to only include Aarea or Rarea in your statistical
+fitting and see whether the results change\ldots{}
+\end{quote}
+
+We agree it is crucial to establish that LMAm vs.~LMAs have
+physiological underpinnings. In the revised text (lines 365-380 in the
+tracked‐changes PDF), we highlighted how variation in
+\emph{R}\textsubscript{area} can be explained by the balance of LMAm and
+LMAs. This underscores that LMAm captures metabolically active tissues
+(e.g., mesophyll) directly involved in photosynthesis and respiration,
+while LMAs reflects structural components (e.g., fibers, cell walls)
+tied to leaf toughness and longevity, yet contributes little to
+maintenance respiration.
+
+Regarding the suggestion to fit the model exclusively to
+\emph{A}\textsubscript{area} or \emph{R}\textsubscript{area}: To
+clarify, the models were fit to \emph{A}\textsubscript{area},
+\emph{R}\textsubscript{area}, LMA, and LL (not
+\emph{N}\textsubscript{area}, \emph{P}\textsubscript{area}, or
+CL\textsubscript{area}). This is explained on lines 131-134, and we have
+now added an additional clarification of this point on lines 227-228 Our
+results suggest that LMAs does not strongly influence
+\emph{A}\textsubscript{area} or \emph{R}\textsubscript{area}. Therefore,
+restricting the analysis to \emph{A}\textsubscript{area} or
+\emph{R}\textsubscript{area} would not substantially constrain LMAs. It
+is possible that the decomposition of LMA into LMAm and LMAs would be
+robust to removing LL from the model-fitting, but we believe the most
+direct way to address our main questions is to include in the model the
+measured traits that we expect to be strongly affected by LMAm and LMAs;
+this includes LL, which we expect to be strongly affected by LMAs.
+
+\begin{quote}
+Some minor comments throughout the text Line 108-111 This statement is
+surely true. Adding degrees of freedom will always make the statistical
+fit better\ldots.
+\end{quote}
+
+Good point. We have changed `improved statistical fits' to `improved
+predictions and insights' (line 104). Similarly, in the next sentence,
+we changed `explain variation in other traits' to `predict and
+understand variation in other traits' (line 107). The new wording
+emphasizes predictive ability (which does not necessarily increase with
+the number of model parameters) as well as the insights gained from
+treating LMA as a composite trait.
+
+\begin{quote}
+Line 220 typo in `abovµe'
+\end{quote}
+
+We have corrected the typo (Line 200).
+
+\begin{quote}
+Line 771 Fig. 2, It is interesting that the `Unclassified' species take
+the lower end of the LMAs distribution. Are they mostly grasses or
+aquatic plants? It might be a worthy discussion point and an indirect
+evidence of the physiological basis of derived LMAs.
+\end{quote}
+
+Thanks for the suggestion. The unclassified species at the lower end of
+LMAs are mainly herbaceous species (65\% are grasses or forbs), which
+generally have lower leaf tissue density. We now discuss how this
+supports a physiological basis for low LMAs in the revised text (Line
+401-419).
+
+\begin{quote}
+Reviewer\# 2: OECO-D-24-00601 is largely well written with few editorial
+mistakes and points of poor clarity. The science is sound, but novelty
+does not appear high as currently presented. The focus is to dissect the
+Leaf mass per area metrics into sub-component contributions of
+physiology and structure, noting focusing on just LMA as a predictor is
+too simple. Most people would probably agree with the simplicity of
+using LMA, but this is also its beauty and a core rationale for the
+trait-based approach which is trying to get around the complexity and
+potential morass of specific details that contribute to fitness but may
+be difficult to measure and model on large populations. Overall, the
+exercise presented should be interesting to the trait based audience,
+which is sizable, though probably not a larger audience as it appears to
+be concentrating on certain details of a focused nature. The overall
+conclusion that a one dimensional leaf function is multidimensional and
+one dimensional treatments are unsatisfying, and may be underselling the
+overall trait-based approach which does consider multiple function
+beyond LMA. To argue that models should consider multiple axes of leaf
+functional diversity and link to nutrients states the obvious, and in
+the end is not satisfying, especially since this study did not
+incorporate nutrients such as N, P, K. I dont recommend that the core of
+the study be altered, but do suggest the discussion be refocused
+slightly to be more appealing to a broader audience and to finish with
+conclusions that go beyond the obvious to perhaps address how the
+multi-functional approach might specifically improve the predictability
+and utility of models.
+\end{quote}
+
+We appreciate the suggestion to emphasize the broader significance of
+our work and to more explicitly explain the implications for ecosystem
+models. These points are now addressed in Discussion, where we added new
+text to highlight the broader significance (lines 330-353) and specific
+implications for ecosystem models (lines 516-528; e.g., biased
+representation of photosynthesis and leaf respiration in single-axis
+approaches).
+
+\begin{quote}
+Specific comments to help guide revisions: 1) For a study such as this,
+the first paragraph of the discussion is the central element that can
+capture or turn-off a broader audience. If it effectively summarizes the
+take home message and its broader significance, then the study can hold
+the readers attention, if it does not, it loses the readers. In this
+regard, the opening of the discussion is weak, and the take-home message
+is not clear, giving the paper the sense it is mired in the weeds.
+Consider refocusing the start of the introduction to emphasize the
+important contribution of this paper and its larger significance.
+\end{quote}
+
+We have revised the beginning of the Discussion to focus it on a clear,
+simple take-home message: Decomposing LMA into structural and metabolic
+components explains divergent inter- and intraspecific patterns in leaf
+trait variation that cannot be explained by a single trait axis.
+Therefore, understanding leaf functional variation and accurately
+representing this variation in ecosystem models will require at least
+two leaf trait dimensions.
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  A lot of results are reiterated in the discussion, possibly at the
+  expense of interpretation and placing the finding in the context of
+  the literature. Please consider less results presentation in favor of
+  more explanation of the results and their interpretation. For example,
+  on line 384-393, why are these points important, and why is it worth
+  noting median LMA's of functional groups? Usually, placing
+  supplemental data such as this as a key point of a paragraph on the
+  second page of the discussion makes the reader wonder why the data is
+  not presented in the main text, and why a paragraph in this position
+  is not emphasizing findings in the main text.
+\end{enumerate}
+\end{quote}
+
+In accordance with your suggestion, we streamlined the Discussion by
+reducing repeated numeric summaries and providing more interpretive
+context in reference to existing literature. For instance, instead of
+listing median LMA values for multiple subgroups, we now emphasize why
+differences in metabolic vs.~structural investment matter for leaf
+longevity or respiratory costs (lines 365-380).
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Line 409-411: States the obvious.We know not all LMAs are equal.
+\end{enumerate}
+\end{quote}
+
+We have removed this statement.
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  line 414: ``are broadly consistent'' - not the best way to get
+  accepted in a journal that requires novelty for acceptance. Perhaps
+  better to start the paragraph with the second sentence, and then
+  discussing how this division into physiological and structrural LMA's
+  can move understanding forward. Could they be further subdivided to
+  gain even more predictability, building off a the general logic of the
+  paper? How might this be done?
+\end{enumerate}
+\end{quote}
+
+Thank you for the suggestion. We removed phrases like ``are broadly
+consistent,'' which might suggest minimal novelty. The paragraph is now
+focused on the physiological basis of low LMAs in unclassified species,
+which are primarily grasses and herbaceous forbs (lines 392-419).
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  I got a sense the paper is repetitious and could be proofed to remove
+  redundancy.
+\end{enumerate}
+\end{quote}
+
+We removed several redundant statements and reorganized portions of the
+text to improve readability (e.g., lines 354-419 in ``Modeling Amax,
+Rdark, and LL\ldots{}''). We also revised the sections ``Implications
+for understanding LL variation'' and ``Implications for understanding
+relationships between photosynthetic capacity and LMA'', making them
+more concise and avoiding repetitive statements.
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Not clear about Figure 1. If it is theoretical data, then why not
+  express as continuous responses rather than specific data points?
+  Please be more explicit in the legend regarding how the data were
+  generated. Summarize this in the legend for Fig 1 and specifically
+  note it is a simulated data set generated from xxx, as explained in
+  Section S5.
+\end{enumerate}
+\end{quote}
+
+We have clarified in the figure caption that Fig. 1 illustrates
+simulated data drawn from normal distributions, displayed as points to
+mimic empirical sampling (now explained on lines 721-722). We agree that
+it would be possible to represent these relationships as continuous
+surfaces, but this would require a more complicated three-dimensional
+figure (e.g., Fig. 1a would show LMAm and LMAs on the x- and y-axes, and
+the joint probability density on the z-axis). We think it is more
+helpful to show the simulation results with a sample of points,
+analogous to an empirical trait dataset (we have now clarified this in
+the figure caption on lines 728-729).
+
+
+
+
+\end{document}
