@@ -1,5 +1,6 @@
 # Metabolic and structural leaf mass
-
+[![DOI](https://img.shields.io/badge/DOI-10.1007%2Fs00442--025--05714--3-green)](https://doi.org/10.1007/s00442-025-05714-3)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.15272810-blue)](https://doi.org/10.5281/zenodo.15272810)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
